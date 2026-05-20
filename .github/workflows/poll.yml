@@ -37,7 +37,7 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install requests pyyaml
+          pip install -r requirements.txt
 
       - name: Run poller
         run: python -m src.poll
