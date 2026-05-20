@@ -52,7 +52,24 @@
       </div>
 
       <div class="controls">
-        <input type="text" id="search" placeholder="search title, company, location…">
+        <div class="role-dropdown" id="role-dropdown">
+          <button class="role-dropdown-trigger" id="role-trigger" type="button" aria-haspopup="true" aria-expanded="false">
+            <span id="role-trigger-label">Roles: 5 of 5</span>
+            <span class="role-dropdown-chevron">▾</span>
+          </button>
+          <div class="role-dropdown-panel hidden" id="role-panel" role="menu">
+            <label class="role-option"><input type="checkbox" data-role="vp" checked> VP Program Management</label>
+            <label class="role-option"><input type="checkbox" data-role="director" checked> Director, Technical Program Management</label>
+            <label class="role-option"><input type="checkbox" data-role="sr_manager" checked> Sr Manager, Technical Program Management</label>
+            <label class="role-option"><input type="checkbox" data-role="manager" checked> Manager, Technical Program Management</label>
+            <label class="role-option"><input type="checkbox" data-role="principal" checked> Principal Technical Program Management</label>
+            <div class="role-panel-divider"></div>
+            <label class="role-edit-search">
+              <span>Edit search</span>
+              <input type="text" id="role-search-text" placeholder="title, company, location…">
+            </label>
+          </div>
+        </div>
         <select id="filter-source">
           <option value="">all sources</option>
           <option value="greenhouse">greenhouse</option>

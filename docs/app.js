@@ -42,6 +42,14 @@ function scoreBucket(score) {
   return 'low';
 }
 
+const ROLE_CATEGORIES = [
+  { id: 'vp',         pattern: /\b(vp|vice\s+president|head\s+of)\b.*\bprogram/i },
+  { id: 'director',   pattern: /\bdirector\b.*(\btpm\b|technical\s+program|program\s+management)/i },
+  { id: 'sr_manager', pattern: /(sr\.?\s*manager|senior\s+manager).*(\btpm\b|technical\s+program|program\s+management)/i },
+  { id: 'manager',    pattern: /\bmanager\b.*(\btpm\b|technical\s+program|program\s+management)/i },
+  { id: 'principal',  pattern: /(principal|staff)\s+(technical\s+program\s+manager|tpm)/i },
+];
+
 let allJobs = [];
 let metaData = {};
 
@@ -102,12 +110,20 @@ function renderMetrics() {
   $('m-interviewing').textContent = interviewing;
 }
 
+function getSelectedRoles() {
+  return ROLE_CATEGORIES.filter(r => {
+    const cb = document.querySelector(`#role-panel input[data-role="${r.id}"]`);
+    return cb && cb.checked;
+  });
+}
+
 function renderTable() {
-  const search = $('search').value.toLowerCase().trim();
+  const search = ($('role-search-text')?.value || '').toLowerCase().trim();
   const source = $('filter-source').value;
   const status = $('filter-status').value;
   const scoreFilter = $('filter-score').value;
   const statuses = loadStatuses();
+  const selectedRoles = getSelectedRoles();
 
   let filtered = allJobs.filter(j => {
     if (source && j.source !== source) return false;
@@ -115,6 +131,8 @@ function renderTable() {
     if (scoreFilter === 'standard' && j.score < 70) return false;
     const curStatus = statuses[jobKey(j)] || 'new';
     if (status && curStatus !== status) return false;
+    const title = (j.title || '').toLowerCase();
+    if (!selectedRoles.some(r => r.pattern.test(title))) return false;
     if (search) {
       const blob = `${j.title} ${j.company} ${j.location}`.toLowerCase();
       if (!blob.includes(search)) return false;
@@ -234,11 +252,42 @@ function bindGate() {
   $('gate-input').addEventListener('keydown', (e) => { if (e.key === 'Enter') tryUnlock(); });
 }
 
+function updateRoleTriggerLabel() {
+  const total = ROLE_CATEGORIES.length;
+  const selected = getSelectedRoles().length;
+  const label = selected === 0 ? 'Roles: none' : `Roles: ${selected} of ${total}`;
+  $('role-trigger-label').textContent = label;
+}
+
+function bindRoleDropdown() {
+  const trigger = $('role-trigger');
+  const panel = $('role-panel');
+  trigger.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const isHidden = panel.classList.toggle('hidden');
+    trigger.setAttribute('aria-expanded', String(!isHidden));
+  });
+  panel.addEventListener('click', (e) => e.stopPropagation());
+  document.addEventListener('click', () => {
+    panel.classList.add('hidden');
+    trigger.setAttribute('aria-expanded', 'false');
+  });
+  panel.querySelectorAll('input[data-role]').forEach(cb => {
+    cb.addEventListener('change', () => {
+      updateRoleTriggerLabel();
+      renderTable();
+    });
+  });
+  $('role-search-text').addEventListener('input', renderTable);
+  updateRoleTriggerLabel();
+}
+
 function bindControls() {
-  ['search', 'filter-source', 'filter-status', 'filter-score'].forEach(id => {
+  ['filter-source', 'filter-status', 'filter-score'].forEach(id => {
     $(id).addEventListener('input', renderTable);
     $(id).addEventListener('change', renderTable);
   });
+  bindRoleDropdown();
   $('export-btn').addEventListener('click', exportStatus);
   $('import-btn').addEventListener('click', () => $('import-file').click());
   $('import-file').addEventListener('change', (e) => {
