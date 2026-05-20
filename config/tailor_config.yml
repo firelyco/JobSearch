@@ -1,0 +1,26 @@
+# Tunable knobs for the resume tailoring pipeline (JOBSEARCH-002).
+# Loaded by src/tailor.py at runtime.
+
+# Anthropic models — verify against env context / docs.anthropic.com at impl time.
+models:
+  tailor: "claude-sonnet-4-6"
+  verify: "claude-haiku-4-5"
+  cover_letter: "claude-sonnet-4-6"
+
+# Hard caps to prevent cost runaway (Risk 6 in PRD).
+limits:
+  max_tailor_calls_per_run: 3       # initial + 2 retries on failed bullets
+  max_jd_tokens: 8000               # truncate JD before sending
+  max_output_tokens: 2000           # tailored bullet output
+  temperature: 0.4                  # slight variation across re-tailors
+
+# Feature flags.
+features:
+  cover_letter: true                # generate cover letter in same run
+  prompt_caching: true              # cache profile JSON across calls
+
+# Verification policy.
+verification:
+  retry_failed_bullets: true
+  max_retries_per_bullet: 2
+  drop_unverified: true             # ship shorter resume rather than wrong one
