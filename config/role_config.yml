@@ -1,0 +1,112 @@
+title_patterns:
+  - "vp.*program\\s+management"
+  - "vp.*technical\\s+program"
+  - "vice\\s+president.*program\\s+management"
+  - "vice\\s+president.*technical\\s+program"
+  - "head\\s+of\\s+program\\s+management"
+  - "head\\s+of\\s+technical\\s+program"
+
+  - "director.*program\\s+management"
+  - "director.*technical\\s+program"
+  - "director.*\\btpm\\b"
+  - "sr\\.?\\s*director.*program"
+  - "senior\\s+director.*program"
+
+  - "sr\\.?\\s*manager.*program\\s+management"
+  - "sr\\.?\\s*manager.*technical\\s+program"
+  - "senior\\s+manager.*program\\s+management"
+  - "senior\\s+manager.*technical\\s+program"
+  - "sr\\.?\\s*manager.*\\btpm\\b"
+
+  - "senior\\s+technical\\s+program\\s+manager"
+  - "sr\\.?\\s+technical\\s+program\\s+manager"
+  - "principal\\s+technical\\s+program\\s+manager"
+  - "staff\\s+technical\\s+program\\s+manager"
+
+excluded_title_patterns:
+  - "intern"
+  - "internship"
+  - "new\\s+graduate"
+  - "\\bnew\\s+grad\\b"
+  - "junior"
+  - "\\bjr\\.?\\b"
+  - "associate"
+  - "entry\\s*level"
+  - "early\\s+career"
+  - "level\\s*[1-3]\\b"
+
+preferred_locations:
+  - boston
+  - massachusetts
+  - "remote"
+  - "us-remote"
+  - "united states"
+  - "new york"
+  - "ny metro"
+
+excluded_locations:
+  - "india"
+  - "bengaluru"
+  - "bangalore"
+  - "gurugram"
+  - "hyderabad"
+  - "mumbai"
+  - "chennai"
+  - "pune"
+  - "noida"
+  - "philippines"
+  - "manila"
+  - "singapore"
+  - "tokyo"
+  - "japan"
+  - "shanghai"
+  - "beijing"
+  - "china"
+  - "dublin"
+  - "barcelona"
+  - "berlin"
+  - "munich"
+  - "amsterdam"
+  - "warsaw"
+
+excluded_companies: []
+
+score_weights:
+  title_match: 25
+
+  vp_or_head: 40
+  director: 35
+  sr_manager: 30
+  staff_or_principal: 25
+  senior_tpm: 20
+
+  remote_or_us: 20
+  preferred_location_bonus: 10
+  excluded_location_penalty: -60
+  excluded_company_penalty: -100
+
+seniority_keywords:
+  vp_or_head:
+    - "\\bvp\\b"
+    - "vice\\s+president"
+    - "head\\s+of"
+
+  director:
+    - "director"
+    - "sr\\.?\\s*director"
+    - "senior\\s+director"
+
+  sr_manager:
+    - "sr\\.?\\s*manager"
+    - "senior\\s+manager"
+
+  staff_or_principal:
+    - "staff"
+    - "principal"
+
+  senior_tpm:
+    - "senior\\s+technical\\s+program\\s+manager"
+    - "sr\\.?\\s+technical\\s+program\\s+manager"
+
+notification_threshold: 60
+hot_match_threshold: 80

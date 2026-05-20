@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JobSearch</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <div id="gate" class="gate hidden">
+    <div class="gate-card">
+      <h1>JobSearch</h1>
+      <p>Enter passphrase to view</p>
+      <input type="password" id="gate-input" autocomplete="off" placeholder="passphrase">
+      <button id="gate-button">Unlock</button>
+      <p id="gate-error" class="error hidden">Wrong passphrase</p>
+    </div>
+  </div>
+
+  <main id="app" class="hidden">
+
+    <header>
+      <div class="title-row">
+        <div>
+          <h1>JobSearch</h1>
+          <p class="subtitle" id="meta-line">loading…</p>
+        </div>
+        <div class="badges">
+          <span class="badge badge-info" id="badge-hot">— hot</span>
+          <span class="badge badge-neutral" id="badge-total">— total</span>
+        </div>
+      </div>
+
+      <div class="metrics">
+        <div class="metric">
+          <div class="metric-label">New today</div>
+          <div class="metric-value" id="m-today">—</div>
+        </div>
+        <div class="metric">
+          <div class="metric-label">This week</div>
+          <div class="metric-value" id="m-week">—</div>
+        </div>
+        <div class="metric">
+          <div class="metric-label">Applied</div>
+          <div class="metric-value" id="m-applied">—</div>
+        </div>
+        <div class="metric">
+          <div class="metric-label">Interviewing</div>
+          <div class="metric-value" id="m-interviewing">—</div>
+        </div>
+      </div>
+
+      <div class="controls">
+        <input type="text" id="search" placeholder="search title, company, location…">
+        <select id="filter-source">
+          <option value="">all sources</option>
+          <option value="greenhouse">greenhouse</option>
+          <option value="lever">lever</option>
+          <option value="ashby">ashby</option>
+          <option value="workday">workday</option>
+        </select>
+        <select id="filter-status">
+          <option value="">all status</option>
+          <option value="new">new</option>
+          <option value="reviewing">reviewing</option>
+          <option value="applied">applied</option>
+          <option value="interviewing">interviewing</option>
+          <option value="rejected">rejected</option>
+          <option value="not-interested">not interested</option>
+        </select>
+        <select id="filter-score">
+          <option value="">all scores</option>
+          <option value="hot">hot only (85+)</option>
+          <option value="standard">standard+ (70+)</option>
+        </select>
+        <button id="export-btn" title="Export your status data">Export</button>
+        <button id="import-btn" title="Import status data">Import</button>
+        <input type="file" id="import-file" accept=".json" hidden>
+      </div>
+    </header>
+
+    <section class="results">
+      <table id="jobs-table">
+        <thead>
+          <tr>
+            <th class="col-score">Score</th>
+            <th class="col-role">Role</th>
+            <th class="col-company">Company</th>
+            <th class="col-posted">Posted</th>
+            <th class="col-status">Status</th>
+          </tr>
+        </thead>
+        <tbody id="jobs-tbody">
+          <tr><td colspan="5" class="empty">Loading…</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <footer>
+      <p>JobSearch · <a href="https://github.com/firelyco/JobSearch" target="_blank" rel="noopener">source on GitHub</a></p>
+    </footer>
+
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
