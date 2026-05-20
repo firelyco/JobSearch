@@ -1,0 +1,152 @@
+{
+  "_comment": "Copy this file to config/profile.json and fill in your real data. Anything left as <PLACEHOLDER> or [REAL DETAILS HERE] will be rejected by the Haiku verifier (Phase 2) before reaching your tailored resume.",
+
+  "schema_version": "1.0",
+
+  "person": {
+    "name": "Your Full Name",
+    "email": "you@example.com",
+    "location": "City, ST",
+    "linkedin": "https://linkedin.com/in/your-handle",
+    "headline_variants": {
+      "default":         "Senior TPM leader with N+ years driving cross-functional programs across <domains>",
+      "ai_focused":      "TPM leader specializing in AI-first product architecture and multi-agent systems",
+      "enterprise_saas": "TPM leader with deep enterprise SaaS experience scaling B2B platforms",
+      "platform_infra":  "TPM leader with platform and infrastructure focus across compute, devices, and developer productivity"
+    }
+  },
+
+  "experience": [
+    {
+      "id": "current_role",
+      "company": "Current Company",
+      "title": "Your Title",
+      "location": "City, ST or Remote",
+      "start": "2024-01",
+      "end": null,
+      "themes": ["ai", "founder", "product_architecture"],
+      "context": "One-sentence summary of scope, team, and product. The tailor model uses this to pick which JDs this experience is relevant for.",
+      "achievements": [
+        {
+          "id": "headline_achievement_1",
+          "summary": "Short title for this accomplishment (5-10 words)",
+          "details": "Full description in 1-3 sentences. Specific, factual, no embellishment. The tailor model will rephrase this against each JD; the verifier checks that every rephrased version still traces back to text in THIS field.",
+          "metrics": [
+            "Concrete metric 1 (e.g., 'launched to 10M users')",
+            "Concrete metric 2 (e.g., 'reduced p99 latency 40%')",
+            "Team or scope (e.g., '12-person team, 3 quarters')"
+          ],
+          "tech": ["Tool1", "Tool2", "Tool3"],
+          "themes": ["product_architecture", "ai", "team_leadership"]
+        },
+        {
+          "id": "headline_achievement_2",
+          "summary": "Second accomplishment from this role",
+          "details": "Same shape as above. Add 2-5 achievements per role — that's enough for the tailor to have material to pick from without overwhelming context.",
+          "metrics": ["..."],
+          "tech": ["..."],
+          "themes": ["..."]
+        }
+      ]
+    },
+    {
+      "id": "prior_role_1",
+      "company": "Prior Company",
+      "title": "Prior Title",
+      "location": "City, ST",
+      "start": "2020-06",
+      "end": "2023-12",
+      "themes": ["enterprise_saas", "compliance"],
+      "context": "Scope and product summary.",
+      "achievements": [
+        {
+          "id": "prior_achievement_1",
+          "summary": "...",
+          "details": "...",
+          "metrics": ["..."],
+          "tech": ["..."],
+          "themes": ["..."]
+        }
+      ]
+    },
+    {
+      "id": "earlier_role",
+      "company": "Earlier Company",
+      "title": "Earlier Title",
+      "location": "City, ST",
+      "start": "2017-01",
+      "end": "2020-05",
+      "themes": ["devices", "scale"],
+      "context": "Scope and product summary.",
+      "achievements": [
+        {
+          "id": "earlier_achievement_1",
+          "summary": "...",
+          "details": "...",
+          "metrics": ["..."],
+          "tech": ["..."],
+          "themes": ["..."]
+        }
+      ]
+    }
+  ],
+
+  "skills": {
+    "program_management": [
+      "Cross-functional program leadership",
+      "Multi-team coordination at scale",
+      "Roadmap definition and execution",
+      "Risk identification and mitigation",
+      "Stakeholder management to executive level"
+    ],
+    "technical": [
+      "System architecture review",
+      "API design review",
+      "Distributed systems concepts",
+      "Cloud platforms (AWS, GCP)",
+      "Agile / Scrum / SAFe"
+    ],
+    "ai_ml": [
+      "Multi-agent LLM systems",
+      "Prompt engineering at scale",
+      "AI product architecture",
+      "Anthropic / OpenAI API integration"
+    ],
+    "compliance_regulatory": [
+      "GDPR / CCPA compliance programs",
+      "Privacy by design",
+      "Regulatory program management"
+    ],
+    "tools": [
+      "Jira", "Confluence", "Linear", "Asana",
+      "Figma", "Notion", "Slack",
+      "GitHub Actions", "Claude Code"
+    ]
+  },
+
+  "education": [
+    {
+      "school": "University Name",
+      "degree": "Degree (e.g., MS Computer Science)",
+      "year": 2010,
+      "themes": ["computer_science"]
+    }
+  ],
+
+  "patents_publications": [],
+
+  "preferences": {
+    "target_titles": [
+      "VP Technical Program Management",
+      "Director Technical Program Management",
+      "Head of Technical Program Management",
+      "Senior Manager Technical Program Management",
+      "Senior Technical Program Manager"
+    ],
+    "comp_floor_base": 250000,
+    "remote_ok": true,
+    "preferred_locations": ["Boston", "Remote-US"],
+    "excluded_companies": [],
+    "industries_of_interest": ["ai", "enterprise_saas", "platform"]
+  }
+}

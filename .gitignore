@@ -26,3 +26,13 @@ ENV/
 .vscode/
 *.swp
 .DS_Store
+
+# v0.2 resume tailoring
+# Personal profile data — copy profile.json.example to profile.json and fill in
+# real values. Gitignored by default; if you've decided your career history is
+# fine to publish (consistent with the LinkedIn-is-public argument in the PRD),
+# delete this line and commit profile.json explicitly.
+config/profile.json
+# Tailored resume output (docx, cover letter md) — uploaded as Actions artifacts
+tailored/
+!tailored/.gitkeep
