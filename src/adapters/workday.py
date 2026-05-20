@@ -126,3 +126,58 @@ def fetch(config: dict) -> list[Job]:
 
     log.info("workday %s: %d jobs", tenant, len(results))
     return results
+
+
+def fetch_detail(job: Job, wd_server: str = "wd3") -> str:
+    """Fetch the full HTML JD body for a single Workday job.
+
+    Requires a second API call to:
+      GET {base_host}/wday/cxs/{tenant}/{site}/job{externalPath}
+    where externalPath is what we stored as the job id at poll time and
+    already starts with '/'. The response shape is
+    {jobPostingInfo: {jobDescription: "<html>...</html>", ...}}.
+
+    Returns "" on failure. We accept wd_server as kwarg because the
+    normalized Job dict doesn't carry it; defaults to wd3, callers that
+    know better should pass it. tenant + site are extracted from the
+    job's id (externalPath includes neither, so we also need company).
+    """
+    tenant = job.get("company", "")
+    external_path = job.get("id", "")
+    if not tenant or not external_path:
+        return ""
+    # externalPath looks like "/job/Boston/Senior-TPM_R-12345" — we need
+    # the matching site (e.g., NVIDIAExternalCareerSite). It's not in the
+    # normalized job dict so we reconstruct from the stored url.
+    url = job.get("url", "")
+    site = _extract_site_from_url(url)
+    if not site:
+        log.warning("workday detail %s: cannot extract site from url=%r", tenant, url)
+        return ""
+    base_host = f"https://{tenant}.{wd_server}.myworkdayjobs.com"
+    api_url = f"{base_host}/wday/cxs/{tenant}/{site}/job{external_path}"
+    headers = dict(HEADERS)
+    headers["Referer"] = f"{base_host}/en-US/{site}"
+    try:
+        r = requests.get(api_url, headers=headers, timeout=TIMEOUT)
+        if r.status_code != 200:
+            log.warning("workday detail %s HTTP %d", tenant, r.status_code)
+            return ""
+        data = r.json()
+    except (requests.RequestException, ValueError) as e:
+        log.warning("workday detail %s failed: %s", tenant, e)
+        return ""
+    info = data.get("jobPostingInfo", {}) if isinstance(data, dict) else {}
+    return safe_str(info.get("jobDescription"))
+
+
+def _extract_site_from_url(url: str) -> str:
+    """url is like https://nvidia.wd5.myworkdayjobs.com/en-US/NVIDIAExternalCareerSite/job/..."""
+    if not url:
+        return ""
+    marker = ".myworkdayjobs.com/en-US/"
+    idx = url.find(marker)
+    if idx < 0:
+        return ""
+    rest = url[idx + len(marker):]
+    return rest.split("/", 1)[0]

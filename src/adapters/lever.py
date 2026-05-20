@@ -60,3 +60,29 @@ def fetch(tenant: str) -> list[Job]:
         ))
     log.info("lever %s: %d jobs", tenant, len(results))
     return results
+
+
+def fetch_detail(job: Job) -> str:
+    """Fetch the full JD body for a single Lever posting.
+
+    Endpoint: GET /v0/postings/{tenant}/{posting_id}?mode=json
+    Returns the `descriptionPlain` field (plain text) when present,
+    else falls back to `description` (HTML). Returns "" on failure.
+    """
+    tenant = job.get("company", "")
+    posting_id = job.get("id", "")
+    if not tenant or not posting_id:
+        return ""
+    url = f"{BASE}/{tenant}/{posting_id}?mode=json"
+    try:
+        r = requests.get(url, timeout=TIMEOUT)
+        if r.status_code != 200:
+            log.warning("lever detail %s/%s HTTP %d", tenant, posting_id, r.status_code)
+            return ""
+        data = r.json()
+    except (requests.RequestException, ValueError) as e:
+        log.warning("lever detail %s/%s failed: %s", tenant, posting_id, e)
+        return ""
+    if not isinstance(data, dict):
+        return ""
+    return safe_str(data.get("descriptionPlain") or data.get("description"))

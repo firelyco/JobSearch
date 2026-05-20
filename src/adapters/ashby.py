@@ -49,3 +49,31 @@ def fetch(tenant: str) -> list[Job]:
         ))
     log.info("ashby %s: %d jobs", tenant, len(results))
     return results
+
+
+def fetch_detail(job: Job) -> str:
+    """Fetch the full JD body for a single Ashby job.
+
+    Ashby's job board endpoint returns descriptionHtml inline in the
+    listing — we just re-fetch the board and pick out the matching id.
+    This avoids needing a separate per-job endpoint. Returns "" on failure.
+    """
+    tenant = job.get("company", "")
+    job_id = job.get("id", "")
+    if not tenant or not job_id:
+        return ""
+    url = f"{BASE}/{tenant}"
+    try:
+        r = requests.get(url, timeout=TIMEOUT)
+        if r.status_code != 200:
+            log.warning("ashby detail %s HTTP %d", tenant, r.status_code)
+            return ""
+        data = r.json()
+    except (requests.RequestException, ValueError) as e:
+        log.warning("ashby detail %s failed: %s", tenant, e)
+        return ""
+    raw_jobs = data.get("jobs", []) if isinstance(data, dict) else []
+    for j in raw_jobs:
+        if isinstance(j, dict) and safe_str(j.get("id")) == job_id:
+            return safe_str(j.get("descriptionHtml") or j.get("descriptionPlain"))
+    return ""
