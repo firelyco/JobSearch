@@ -57,6 +57,21 @@ jobs:
           fi
           echo "key length: ${#ANTHROPIC_API_KEY}"
 
+      - name: Write profile.json from secret
+        run: |
+          if [ -z "$PROFILE_JSON" ]; then
+            echo "::error::PROFILE_JSON secret is not configured. Upload it at Settings → Secrets → Actions."
+            exit 1
+          fi
+          mkdir -p config
+          printf '%s' "$PROFILE_JSON" > config/profile.json
+          # Validate the secret was a well-formed JSON document before we burn credit
+          python -c "import json; json.load(open('config/profile.json'))" \
+            || (echo "::error::PROFILE_JSON secret is not valid JSON"; exit 1)
+          echo "profile.json written ($(wc -c < config/profile.json) bytes)"
+        env:
+          PROFILE_JSON: ${{ secrets.PROFILE_JSON }}
+
       - name: Verify profile.json exists
         run: |
           if [ ! -f config/profile.json ]; then
