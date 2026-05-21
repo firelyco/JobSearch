@@ -127,8 +127,10 @@
     <div class="modal-card">
       <h2 id="pat-modal-title">GitHub Personal Access Token</h2>
       <p class="modal-body">
-        Tailoring runs as a GitHub Actions workflow. To trigger it from this dashboard the browser needs a token with
-        <strong>Actions: write</strong> and <strong>Contents: read</strong> on <code>firelyco/JobSearch</code>.
+        Tailoring runs as a GitHub Actions workflow. To trigger it from this dashboard the browser needs a
+        fine-grained token scoped to <code>firelyco/JobSearch</code> with one permission:
+        <strong>Contents: Read and write</strong>. (The repository-dispatch API is a Repos-category endpoint —
+        it needs Contents write, not the Actions permission.)
       </p>
       <p class="modal-body">
         <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">Generate a fine-grained token →</a>
