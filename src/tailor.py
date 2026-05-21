@@ -29,7 +29,7 @@ import sys
 from dataclasses import dataclass, asdict
 from pathlib import Path
 
-from src import jd_fetch, llm_client, verify
+from src import jd_fetch, llm_client, tailored_state, verify
 
 logging.basicConfig(
     level=logging.INFO,
@@ -40,7 +40,9 @@ log = logging.getLogger("tailor")
 ROOT = Path(__file__).resolve().parent.parent
 CONFIG_DIR = ROOT / "config"
 DOCS_DIR = ROOT / "docs"
+STATE_DIR = ROOT / "state"
 TAILORED_DIR = ROOT / "tailored"
+TAILORED_STATE_FILE = STATE_DIR / "tailored_jobs.json"
 
 
 TAILOR_SYSTEM_PROMPT = """You are a senior resume editor for technical program management candidates.
@@ -315,8 +317,13 @@ def tailor(
     )
 
 
-def write_output(job_key: str, result: TailorResult) -> Path:
-    """Write the verified output to tailored/{job_key}/. Returns the directory."""
+def write_output(job_key: str, result: TailorResult, profile: dict | None = None) -> Path:
+    """Write resume.json, resume.docx, and cover_letter.md to tailored/{job_key}/.
+
+    Returns the directory. If profile is None, only the JSON + markdown are
+    written (the docx render needs the profile to look up company/dates per
+    bullet). Workflow callers pass profile so all 3 artifacts ship together.
+    """
     safe_key = job_key.replace(":", "_").replace("/", "_")
     out_dir = TAILORED_DIR / safe_key
     out_dir.mkdir(parents=True, exist_ok=True)
@@ -325,6 +332,13 @@ def write_output(job_key: str, result: TailorResult) -> Path:
     if result.cover_letter:
         with open(out_dir / "cover_letter.md", "w", encoding="utf-8") as f:
             f.write(result.cover_letter)
+    if profile is not None:
+        try:
+            from src import render_docx
+            render_docx.render_resume(profile, asdict(result), out_dir / "resume.docx")
+        except Exception as e:
+            # Don't lose the JSON if docx rendering fails — log and continue
+            log.warning("docx render failed for %s: %s", job_key, e)
     return out_dir
 
 
@@ -332,14 +346,33 @@ def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--job-key", required=True, help="e.g., greenhouse:stripe:12345")
     parser.add_argument("--no-cover-letter", action="store_true")
+    parser.add_argument("--run-id", default="", help="GitHub Actions run id (for state file)")
+    parser.add_argument("--max-per-hour", type=int, default=10,
+                        help="refuse to run if more than N tailorings finished in the last hour")
     args = parser.parse_args(argv)
+
+    allowed, current = tailored_state.check_rate_limit(TAILORED_STATE_FILE, max_per_hour=args.max_per_hour)
+    if not allowed:
+        log.error("rate limit hit: %d tailorings already in the last hour (cap %d)", current, args.max_per_hour)
+        return 2
 
     cfg = load_config()
     if args.no_cover_letter:
         cfg.setdefault("features", {})["cover_letter"] = False
 
-    result = tailor(args.job_key, cfg=cfg)
-    out_dir = write_output(args.job_key, result)
+    profile = load_profile()
+    result = tailor(args.job_key, profile=profile, cfg=cfg)
+    out_dir = write_output(args.job_key, result, profile=profile)
+    safe_key = args.job_key.replace(":", "_").replace("/", "_")
+    artifact_name = f"tailored-{safe_key}-{args.run_id}" if args.run_id else f"tailored-{safe_key}"
+    tailored_state.record(
+        TAILORED_STATE_FILE, args.job_key,
+        run_id=args.run_id,
+        bullets_count=len(result.bullets),
+        dropped_count=result.dropped_bullet_count,
+        cost_estimate_usd=result.cost_estimate_usd,
+        artifact_name=artifact_name,
+    )
     log.info(
         "done: %d bullets (%d dropped), cost ~$%.4f, wrote %s",
         len(result.bullets), result.dropped_bullet_count, result.cost_estimate_usd, out_dir,

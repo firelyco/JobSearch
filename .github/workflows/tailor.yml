@@ -1,0 +1,103 @@
+name: Tailor resume for a job
+
+on:
+  repository_dispatch:
+    types: [tailor_job]
+  workflow_dispatch:
+    inputs:
+      job_key:
+        description: "Job key, e.g. greenhouse:stripe:12345"
+        required: true
+        type: string
+      no_cover_letter:
+        description: "Skip cover letter generation"
+        required: false
+        type: boolean
+        default: false
+
+# Two clicks on the SAME job serialize. Different jobs run in parallel.
+concurrency:
+  group: tailor-${{ github.event.client_payload.job_key || inputs.job_key }}
+  cancel-in-progress: false
+
+permissions:
+  contents: write   # commit state/tailored_jobs.json back to main
+
+jobs:
+  tailor:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    env:
+      JOB_KEY: ${{ github.event.client_payload.job_key || inputs.job_key }}
+      NO_COVER_LETTER: ${{ github.event.client_payload.no_cover_letter || inputs.no_cover_letter || 'false' }}
+      ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run tests (gate the AI run)
+        run: python -m unittest discover -s tests -v
+
+      - name: Verify ANTHROPIC_API_KEY is set
+        run: |
+          if [ -z "$ANTHROPIC_API_KEY" ]; then
+            echo "::error::ANTHROPIC_API_KEY secret is not configured"
+            exit 1
+          fi
+          echo "key length: ${#ANTHROPIC_API_KEY}"
+
+      - name: Verify profile.json exists
+        run: |
+          if [ ! -f config/profile.json ]; then
+            echo "::error::config/profile.json is missing. Author it from profile.json.example first."
+            exit 1
+          fi
+
+      - name: Run tailor
+        id: tailor
+        run: |
+          ARGS="--job-key $JOB_KEY --run-id ${{ github.run_id }}"
+          if [ "$NO_COVER_LETTER" = "true" ]; then
+            ARGS="$ARGS --no-cover-letter"
+          fi
+          python -m src.tailor $ARGS
+
+      - name: Compute safe key for artifact name
+        id: safekey
+        run: |
+          SAFE_KEY="${JOB_KEY//:/_}"
+          SAFE_KEY="${SAFE_KEY//\//_}"
+          echo "safe_key=$SAFE_KEY" >> "$GITHUB_OUTPUT"
+
+      - name: Upload tailored artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: tailored-${{ steps.safekey.outputs.safe_key }}-${{ github.run_id }}
+          path: tailored/${{ steps.safekey.outputs.safe_key }}/
+          retention-days: 30
+          if-no-files-found: error
+
+      - name: Commit updated tailored_jobs.json
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add state/tailored_jobs.json
+          if git diff --staged --quiet; then
+            echo "no state change to commit"
+          else
+            # rebase onto any cron poller commits that landed during this run
+            git pull --rebase origin main
+            git commit -m "tailor: $JOB_KEY (run ${{ github.run_id }})"
+            git push
+          fi
