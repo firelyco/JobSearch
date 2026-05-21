@@ -49,6 +49,14 @@ function scoreBucket(score) {
   return 'low';
 }
 
+function postedTooltip(j) {
+  const parts = [];
+  if (j.posted_at) parts.push(`Opened by employer: ${j.posted_at}`);
+  if (j.first_seen_at) parts.push(`First seen by poller: ${j.first_seen_at}`);
+  if (!j.posted_at) parts.push('(ATS did not report a posting date)');
+  return parts.join('\n');
+}
+
 const ROLE_CATEGORIES = [
   { id: 'vp',         pattern: /\b(vp|vice\s+president|head\s+of)\b.*\bprogram/i },
   { id: 'director',   pattern: /\bdirector\b.*(\btpm\b|technical\s+program|program\s+management)/i },
@@ -209,7 +217,7 @@ function renderTable() {
           <div class="role-meta">${escapeHtml(meta)}</div>
         </td>
         <td>${escapeHtml(j.company)}</td>
-        <td>${relativeTime(j.first_seen_at || j.posted_at)}</td>
+        <td title="${escapeAttr(postedTooltip(j))}">${relativeTime(j.posted_at || j.first_seen_at)}${j.posted_at ? '' : '<span class="posted-fallback" title="ATS did not report a posting date — showing when our poller first saw this job"> ?</span>'}</td>
         <td>
           <select class="status-select">
             <option value="new" ${curStatus==='new'?'selected':''}>New</option>
