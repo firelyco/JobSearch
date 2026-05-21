@@ -182,7 +182,13 @@ function renderTable() {
   const statuses = loadStatuses();
   const selectedRoles = getSelectedRoles();
 
-  let filtered = allJobs.filter(j => {
+  const sortedJobs = [...allJobs].sort((a, b) => {
+    const aDate = a.posted_at || a.first_seen_at || '';
+    const bDate = b.posted_at || b.first_seen_at || '';
+    return bDate.localeCompare(aDate);  // newest opened first
+  });
+
+  let filtered = sortedJobs.filter(j => {
     if (source && j.source !== source) return false;
     if (scoreFilter === 'hot' && j.score < 85) return false;
     if (scoreFilter === 'standard' && j.score < 70) return false;
