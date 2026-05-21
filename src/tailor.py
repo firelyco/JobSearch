@@ -40,9 +40,10 @@ log = logging.getLogger("tailor")
 ROOT = Path(__file__).resolve().parent.parent
 CONFIG_DIR = ROOT / "config"
 DOCS_DIR = ROOT / "docs"
-STATE_DIR = ROOT / "state"
 TAILORED_DIR = ROOT / "tailored"
-TAILORED_STATE_FILE = STATE_DIR / "tailored_jobs.json"
+# Lives under docs/ so GitHub Pages serves it to the dashboard with no auth.
+# The poller's seen_jobs.json stays in state/ — it's internal to v0.
+TAILORED_STATE_FILE = DOCS_DIR / "tailored_jobs.json"
 
 
 TAILOR_SYSTEM_PROMPT = """You are a senior resume editor for technical program management candidates.

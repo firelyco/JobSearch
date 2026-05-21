@@ -1,6 +1,13 @@
 const STORAGE_KEY = 'jobsearch.status.v1';
 const PASS_KEY = 'jobsearch.gate.v1';
+const PAT_KEY = 'jobsearch.pat.v1';
+const TAILORING_KEY = 'jobsearch.tailoring.v1';
 const PASSPHRASE_HASH = null;
+
+const REPO_OWNER = 'firelyco';
+const REPO_NAME = 'JobSearch';
+const POLL_INTERVAL_MS = 10000;
+const TAILORING_TIMEOUT_MS = 5 * 60 * 1000;
 
 const $ = (id) => document.getElementById(id);
 
@@ -52,22 +59,64 @@ const ROLE_CATEGORIES = [
 
 let allJobs = [];
 let metaData = {};
+let tailoredJobs = {};       // { jobKey: { tailored_at, run_id, ... } } from docs/tailored_jobs.json
+let pollTimer = null;
+
+// ---------- PAT management ----------
+function getPAT() { return localStorage.getItem(PAT_KEY) || ''; }
+function setStoredPAT(value) { localStorage.setItem(PAT_KEY, value); }
+function clearStoredPAT() { localStorage.removeItem(PAT_KEY); }
+
+// ---------- In-flight tailoring tracking ----------
+function loadInFlight() {
+  try { return JSON.parse(localStorage.getItem(TAILORING_KEY) || '{}'); }
+  catch { return {}; }
+}
+function saveInFlight(state) { localStorage.setItem(TAILORING_KEY, JSON.stringify(state)); }
+function markTailoringStarted(jobKey) {
+  const s = loadInFlight();
+  s[jobKey] = { dispatchedAt: Date.now() };
+  saveInFlight(s);
+}
+function markTailoringFinished(jobKey) {
+  const s = loadInFlight();
+  delete s[jobKey];
+  saveInFlight(s);
+}
 
 async function loadData() {
   try {
-    const [jobsResp, metaResp] = await Promise.all([
+    const [jobsResp, metaResp, tailoredResp] = await Promise.all([
       fetch(`jobs.json?t=${Date.now()}`),
       fetch(`meta.json?t=${Date.now()}`).catch(() => null),
+      fetch(`tailored_jobs.json?t=${Date.now()}`).catch(() => null),
     ]);
     if (!jobsResp.ok) throw new Error(`jobs.json HTTP ${jobsResp.status}`);
     allJobs = await jobsResp.json();
     if (metaResp && metaResp.ok) metaData = await metaResp.json();
+    if (tailoredResp && tailoredResp.ok) {
+      try { tailoredJobs = await tailoredResp.json(); } catch { tailoredJobs = {}; }
+    }
   } catch (e) {
     console.error('load failed', e);
-    $('jobs-tbody').innerHTML = `<tr><td colspan="5" class="empty">Could not load jobs.json. The poller may not have run yet.</td></tr>`;
+    $('jobs-tbody').innerHTML = `<tr><td colspan="6" class="empty">Could not load jobs.json. The poller may not have run yet.</td></tr>`;
     return;
   }
   render();
+  if (Object.keys(loadInFlight()).length > 0) startPolling();
+}
+
+async function refreshTailoredJobs() {
+  try {
+    const r = await fetch(`tailored_jobs.json?t=${Date.now()}`);
+    if (r.ok) {
+      tailoredJobs = await r.json();
+      return true;
+    }
+  } catch (e) {
+    console.warn('tailored_jobs.json fetch failed', e);
+  }
+  return false;
 }
 
 function render() {
@@ -142,16 +191,18 @@ function renderTable() {
 
   const tbody = $('jobs-tbody');
   if (filtered.length === 0) {
-    tbody.innerHTML = `<tr><td colspan="5" class="empty">No jobs match your filters.</td></tr>`;
+    tbody.innerHTML = `<tr><td colspan="6" class="empty">No jobs match your filters.</td></tr>`;
     return;
   }
 
+  const inFlight = loadInFlight();
   tbody.innerHTML = filtered.map(j => {
     const bucket = scoreBucket(j.score || 0);
-    const curStatus = statuses[jobKey(j)] || 'new';
+    const key = jobKey(j);
+    const curStatus = statuses[key] || 'new';
     const meta = [j.location, j.source].filter(Boolean).join(' · ');
     return `
-      <tr data-key="${escapeAttr(jobKey(j))}">
+      <tr data-key="${escapeAttr(key)}">
         <td><span class="score-pill score-${bucket}">${j.score || 0}</span></td>
         <td>
           <div class="role-title"><a href="${escapeAttr(j.url)}" target="_blank" rel="noopener">${escapeHtml(j.title)}</a></div>
@@ -169,6 +220,7 @@ function renderTable() {
             <option value="not-interested" ${curStatus==='not-interested'?'selected':''}>Not interested</option>
           </select>
         </td>
+        <td>${tailorCellHtml(key, tailoredJobs[key], inFlight[key])}</td>
       </tr>
     `;
   }).join('');
@@ -181,6 +233,178 @@ function renderTable() {
       renderMetrics();
     });
   });
+
+  tbody.querySelectorAll('.tailor-btn, .retailor-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      const row = e.target.closest('tr');
+      onTailorClick(row.getAttribute('data-key'));
+    });
+  });
+}
+
+function tailorCellHtml(key, tailored, inflight) {
+  if (inflight) {
+    return `<span class="tailor-spinner" title="Dispatched ${relativeTime(new Date(inflight.dispatchedAt).toISOString())} ago">⟳ Tailoring…</span>`;
+  }
+  if (tailored && tailored.run_id) {
+    const url = `https://github.com/${REPO_OWNER}/${REPO_NAME}/actions/runs/${escapeAttr(String(tailored.run_id))}#artifacts`;
+    const bullets = tailored.bullets_count ?? '?';
+    const dropped = tailored.dropped_count ?? 0;
+    const meta = dropped > 0 ? `${bullets} bullets · ${dropped} dropped` : `${bullets} bullets`;
+    return `
+      <div class="tailor-cell">
+        <a class="download-link" href="${url}" target="_blank" rel="noopener">↓ Download</a>
+        <button class="retailor-btn btn-ghost-sm" type="button">Re-tailor</button>
+        <div class="tailor-meta">${escapeHtml(meta)}</div>
+      </div>
+    `;
+  }
+  return `<button class="tailor-btn btn-primary-sm" type="button">Tailor →</button>`;
+}
+
+// ---------- Dispatch ----------
+async function onTailorClick(key) {
+  const pat = getPAT();
+  if (!pat) {
+    openPatModal({ pendingTailor: key });
+    return;
+  }
+  try {
+    await dispatchTailor(key, pat);
+    markTailoringStarted(key);
+    toast(`Tailoring ${key.split(':').slice(1).join(':')} — this takes ~60-90s`, 'info');
+    renderTable();
+    startPolling();
+  } catch (e) {
+    console.error('dispatch failed', e);
+    if (String(e.message).includes('401') || String(e.message).includes('403')) {
+      toast('PAT invalid or missing scope. Click PAT to update.', 'error');
+    } else {
+      toast(`Tailor dispatch failed: ${e.message}`, 'error');
+    }
+  }
+}
+
+async function dispatchTailor(key, pat) {
+  const r = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/dispatches`, {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/vnd.github+json',
+      'Authorization': `Bearer ${pat}`,
+      'X-GitHub-Api-Version': '2022-11-28',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      event_type: 'tailor_job',
+      client_payload: { job_key: key },
+    }),
+  });
+  if (r.status !== 204) {
+    const body = await r.text().catch(() => '');
+    throw new Error(`HTTP ${r.status} ${body.slice(0, 200)}`);
+  }
+}
+
+// ---------- Polling ----------
+function startPolling() {
+  if (pollTimer) return;
+  pollTimer = setInterval(pollTailoringStatus, POLL_INTERVAL_MS);
+  pollTailoringStatus();
+}
+function stopPolling() {
+  if (pollTimer) { clearInterval(pollTimer); pollTimer = null; }
+}
+
+async function pollTailoringStatus() {
+  const inFlight = loadInFlight();
+  const keys = Object.keys(inFlight);
+  if (keys.length === 0) { stopPolling(); return; }
+
+  // Time-out stale dispatches so the UI doesn't spin forever
+  const now = Date.now();
+  let dirty = false;
+  for (const k of keys) {
+    if (now - (inFlight[k].dispatchedAt || 0) > TAILORING_TIMEOUT_MS) {
+      markTailoringFinished(k);
+      toast(`Tailoring for ${k} timed out — check Actions tab`, 'error');
+      dirty = true;
+    }
+  }
+  if (dirty) { renderTable(); }
+  if (Object.keys(loadInFlight()).length === 0) { stopPolling(); return; }
+
+  // Refresh server-side state. If our in-flight job has a tailored_at timestamp
+  // newer than the dispatch time, the workflow finished.
+  const updated = await refreshTailoredJobs();
+  if (!updated) return;
+  const current = loadInFlight();
+  let changed = false;
+  for (const k of Object.keys(current)) {
+    const entry = tailoredJobs[k];
+    if (!entry) continue;
+    const tailoredAtMs = Date.parse(entry.tailored_at || '');
+    if (tailoredAtMs && tailoredAtMs >= current[k].dispatchedAt) {
+      markTailoringFinished(k);
+      toast(`Tailored ${k.split(':').slice(1).join(':')} ready to download`, 'success');
+      changed = true;
+    }
+  }
+  if (changed) renderTable();
+  if (Object.keys(loadInFlight()).length === 0) stopPolling();
+}
+
+// ---------- PAT modal ----------
+let _patModalContext = {};
+function openPatModal(ctx = {}) {
+  _patModalContext = ctx;
+  $('pat-modal').classList.remove('hidden');
+  const existing = getPAT();
+  $('pat-input').value = '';
+  $('pat-input').placeholder = existing ? '(token already saved — paste a new one to replace)' : 'github_pat_…';
+  $('pat-modal-error').classList.add('hidden');
+  setTimeout(() => $('pat-input').focus(), 0);
+}
+function closePatModal() {
+  $('pat-modal').classList.add('hidden');
+  _patModalContext = {};
+}
+function savePatFromModal() {
+  const val = $('pat-input').value.trim();
+  if (!val) {
+    showPatError('Paste a token first.');
+    return;
+  }
+  if (!/^(github_pat_|ghp_)/.test(val)) {
+    showPatError('Looks invalid — expected to start with github_pat_ or ghp_.');
+    return;
+  }
+  setStoredPAT(val);
+  updatePatButtonLabel();
+  closePatModal();
+  toast('PAT saved', 'success');
+  if (_patModalContext.pendingTailor) {
+    onTailorClick(_patModalContext.pendingTailor);
+  }
+}
+function showPatError(msg) {
+  const el = $('pat-modal-error');
+  el.textContent = msg;
+  el.classList.remove('hidden');
+}
+function updatePatButtonLabel() {
+  $('pat-btn').textContent = getPAT() ? 'PAT ✓' : 'PAT';
+}
+
+// ---------- Toast ----------
+function toast(msg, kind = 'info') {
+  const container = $('toasts');
+  if (!container) return;
+  const el = document.createElement('div');
+  el.className = `toast toast-${kind}`;
+  el.textContent = msg;
+  container.appendChild(el);
+  setTimeout(() => el.classList.add('toast-fade'), 4500);
+  setTimeout(() => el.remove(), 5000);
 }
 
 function escapeHtml(s) {
@@ -293,6 +517,24 @@ function bindControls() {
   $('import-file').addEventListener('change', (e) => {
     if (e.target.files[0]) importStatus(e.target.files[0]);
   });
+
+  // PAT modal
+  $('pat-btn').addEventListener('click', () => openPatModal());
+  $('pat-save-btn').addEventListener('click', savePatFromModal);
+  $('pat-input').addEventListener('keydown', (e) => { if (e.key === 'Enter') savePatFromModal(); });
+  $('pat-clear-btn').addEventListener('click', () => {
+    clearStoredPAT();
+    updatePatButtonLabel();
+    toast('PAT cleared from this browser', 'info');
+    closePatModal();
+  });
+  document.querySelectorAll('[data-close-modal]').forEach(el => {
+    el.addEventListener('click', closePatModal);
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !$('pat-modal').classList.contains('hidden')) closePatModal();
+  });
+  updatePatButtonLabel();
 }
 
 (async function init() {

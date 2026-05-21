@@ -300,6 +300,169 @@ footer {
 }
 footer a { color: var(--text-muted); }
 
+.col-tailor { width: 140px; }
+
+.tailor-btn, .retailor-btn {
+  font-size: 12px;
+  font-family: var(--font);
+  border-radius: var(--radius);
+  cursor: pointer;
+  padding: 5px 10px;
+  border: 0.5px solid var(--border-strong);
+}
+.btn-primary-sm {
+  background: var(--accent);
+  color: white;
+  border-color: var(--accent);
+}
+.btn-primary-sm:hover { filter: brightness(0.95); }
+.btn-ghost-sm {
+  background: var(--surface);
+  color: var(--text-muted);
+}
+.btn-ghost-sm:hover { background: var(--bg); }
+
+.tailor-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: flex-start;
+}
+.download-link {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--success);
+  text-decoration: none;
+  padding: 4px 8px;
+  border: 0.5px solid var(--success);
+  border-radius: var(--radius);
+  background: var(--success-bg);
+}
+.download-link:hover { filter: brightness(0.95); }
+.tailor-meta {
+  font-size: 10px;
+  color: var(--text-tertiary);
+}
+
+.tailor-spinner {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+.tailor-spinner::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 1.5px solid var(--text-tertiary);
+  border-top-color: var(--accent);
+  animation: spin 0.9s linear infinite;
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ---------- PAT modal ---------- */
+.modal {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  z-index: 50;
+}
+.modal-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+}
+.modal-card {
+  position: relative;
+  background: var(--surface);
+  border: 0.5px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  width: 100%;
+  max-width: 480px;
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.18);
+}
+.modal-card h2 { margin: 0 0 0.5rem; font-size: 18px; font-weight: 500; }
+.modal-body { margin: 0.5rem 0; color: var(--text-muted); font-size: 13px; line-height: 1.5; }
+.modal-body code {
+  background: var(--bg);
+  padding: 1px 5px;
+  border-radius: 4px;
+  font-size: 12px;
+}
+.modal-body a { color: var(--accent); }
+.modal-card input[type="password"] {
+  width: 100%;
+  padding: 8px 12px;
+  border: 0.5px solid var(--border-strong);
+  border-radius: var(--radius);
+  background: var(--bg);
+  color: var(--text);
+  font-size: 13px;
+  font-family: var(--font);
+  margin-top: 12px;
+}
+.modal-card .error { color: var(--danger); font-size: 12px; margin-top: 8px; }
+.modal-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 16px;
+}
+.modal-spacer { flex: 1; }
+.btn-primary, .btn-ghost {
+  padding: 8px 14px;
+  border-radius: var(--radius);
+  font-size: 13px;
+  font-family: var(--font);
+  cursor: pointer;
+  border: 0.5px solid var(--border-strong);
+}
+.btn-primary {
+  background: var(--accent);
+  color: white;
+  border-color: var(--accent);
+}
+.btn-primary:hover { filter: brightness(0.95); }
+.btn-ghost {
+  background: var(--surface);
+  color: var(--text-muted);
+}
+.btn-ghost:hover { background: var(--bg); }
+
+/* ---------- Toasts ---------- */
+.toasts {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  z-index: 60;
+  max-width: 340px;
+}
+.toast {
+  padding: 10px 14px;
+  border-radius: var(--radius);
+  font-size: 13px;
+  border: 0.5px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.10);
+  transition: opacity 0.45s, transform 0.45s;
+}
+.toast-success { background: var(--success-bg); color: var(--success); border-color: var(--success); }
+.toast-error   { background: var(--danger-bg);  color: var(--danger);  border-color: var(--danger); }
+.toast-info    { background: var(--accent-bg);  color: var(--accent);  border-color: var(--accent); }
+.toast-fade { opacity: 0; transform: translateX(20px); }
+
 @media (max-width: 700px) {
   .metrics { grid-template-columns: repeat(2, 1fr); }
   .col-posted, .col-company { display: none; }
