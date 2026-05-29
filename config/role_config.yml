@@ -18,10 +18,12 @@ title_patterns:
   - "senior\\s+manager.*technical\\s+program"
   - "sr\\.?\\s*manager.*\\btpm\\b"
 
-  - "senior\\s+technical\\s+program\\s+manager"
-  - "sr\\.?\\s+technical\\s+program\\s+manager"
-  - "principal\\s+technical\\s+program\\s+manager"
-  - "staff\\s+technical\\s+program\\s+manager"
+  # [\s,]+ after the seniority word so "Staff, Technical Program Manager"
+  # (comma format used by Walmart and others) matches, not just "Staff Technical…"
+  - "senior[\\s,]+technical\\s+program\\s+manager"
+  - "sr\\.?[\\s,]+technical\\s+program\\s+manager"
+  - "principal[\\s,]+technical\\s+program\\s+manager"
+  - "staff[\\s,]+technical\\s+program\\s+manager"
 
 excluded_title_patterns:
   - "intern"

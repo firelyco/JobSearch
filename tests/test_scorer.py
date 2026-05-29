@@ -78,6 +78,26 @@ class TestScorer(unittest.TestCase):
         score, _ = score_job(job, CONFIG)
         self.assertGreaterEqual(score, 80)
 
+    def test_staff_tpm_comma_format_kept(self):
+        """Walmart-style 'Staff, Technical Program Manager' (comma after the
+        seniority word) must pass the title gate, not just the space form."""
+        job = {
+            "title": "Staff, Technical Program Manager",
+            "location": "Sunnyvale, CA",
+            "company": "walmart",
+        }
+        score, reasons = score_job(job, CONFIG)
+        self.assertGreaterEqual(score, 60, f"comma-format Staff TPM should pass, got {score}: {reasons}")
+
+    def test_principal_tpm_comma_format_kept(self):
+        job = {
+            "title": "Principal, Technical Program Manager",
+            "location": "Sunnyvale, CA",
+            "company": "walmart",
+        }
+        score, reasons = score_job(job, CONFIG)
+        self.assertGreaterEqual(score, 60, f"comma-format Principal TPM should pass, got {score}: {reasons}")
+
     def test_plain_tpm_is_dropped(self):
         """No seniority modifier = not our target. Should not pass title gate."""
         job = {

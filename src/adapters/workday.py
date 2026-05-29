@@ -63,11 +63,17 @@ def _parse_relative_posted(s: str) -> str:
 def fetch(config: dict) -> list[Job]:
     """Fetch all jobs for a Workday tenant.
 
-    `config` is a dict with keys: tenant, site, wd_server.
+    `config` is a dict with keys: tenant, site, wd_server, and an optional
+    `search`. For large employers (e.g. Walmart, ~2000 postings) the first
+    PAGE_CAP*LIMIT jobs are mostly irrelevant retail/ops roles, so the few
+    TPM roles get missed. Set `search` (e.g. "program manager") to send it as
+    Workday's searchText — the API then returns relevance-ranked matches and
+    our scorer filters those to the target seniority. Omit it to fetch all.
     """
     tenant = config.get("tenant")
     site = config.get("site")
     wd_server = config.get("wd_server", "wd3")
+    search = config.get("search", "") or ""
     if not tenant or not site:
         log.warning("workday config missing tenant/site: %s", config)
         return []
@@ -80,7 +86,7 @@ def fetch(config: dict) -> list[Job]:
     results: list[Job] = []
     offset = 0
     for _ in range(PAGE_CAP):
-        body = {"appliedFacets": {}, "limit": LIMIT, "offset": offset, "searchText": ""}
+        body = {"appliedFacets": {}, "limit": LIMIT, "offset": offset, "searchText": search}
         try:
             r = requests.post(api_url, json=body, headers=headers, timeout=TIMEOUT)
         except requests.RequestException as e:
