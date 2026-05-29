@@ -70,6 +70,32 @@ let metaData = {};
 let tailoredJobs = {};       // { jobKey: { tailored_at, run_id, ... } } from docs/tailored_jobs.json
 let fitScores = {};          // { jobKey: { recommendation, reason, scored_at } } from docs/fit_scores.json
 let pollTimer = null;
+let quickFilter = null;      // 'new-today' | 'this-week' | 'applied' | 'interviewing' | 'hot' | null
+
+// Region matchers — word-boundary regexes so "us" doesn't match "Austin" etc.
+const LOCATION_MATCHERS = {
+  us: (loc) =>
+    /\b(u\.?s\.?a?|united states|north america|washington dc|bay area)\b/i.test(loc)
+    || /,\s*(ca|ny|tx|wa|ma|il|ga|co|fl|or|az|nc|va|pa|nj|nh|me|vt|md|oh|nv|mn|wi|mi)\b/i.test(loc)
+    || /\b(california|texas|washington|massachusetts|new york|florida|georgia|colorado|oregon|arizona|illinois|virginia|pennsylvania|new jersey|new hampshire|maine|vermont|maryland|ohio|nevada|north carolina)\b/i.test(loc)
+    || /\b(san francisco|new york city|boston|seattle|austin|chicago|denver|atlanta|los angeles|miami|dallas|houston|raleigh|charlotte|philadelphia|san jose|san diego|phoenix|nashville|columbus|baltimore|pittsburgh|bellevue|mountain view|hayward|foster city|fort collins|santa clara|tysons)\b/i.test(loc),
+  canada: (loc) => /\b(canada|toronto|vancouver|montreal|ottawa|ontario|quebec|calgary|waterloo)\b/i.test(loc),
+  europe: (loc) => /\b(europe|eu|united kingdom|uk|england|london|ireland|dublin|cork|germany|berlin|munich|france|paris|netherlands|amsterdam|spain|barcelona|madrid|poland|warsaw|serbia|belgrade|banbury|sweden|stockholm|switzerland|zurich|italy|portugal|lisbon)\b/i.test(loc),
+  india: (loc) => /\b(india|bangalore|bengaluru|hyderabad|mumbai|delhi|gurugram|gurgaon|noida|chennai|pune|kolkata)\b/i.test(loc),
+  uae: (loc) => /\b(uae|united arab emirates|dubai|abu dhabi)\b/i.test(loc),
+};
+
+function matchesLocation(loc, region) {
+  const m = LOCATION_MATCHERS[region];
+  return m ? m(loc || '') : true;
+}
+
+function matchesWorkmode(loc, mode) {
+  const isRemote = /\bremote\b/i.test(loc || '');
+  if (mode === 'remote') return isRemote;
+  if (mode === 'onsite') return !isRemote;
+  return true;
+}
 
 // ---------- PAT management ----------
 function getPAT() { return localStorage.getItem(PAT_KEY) || ''; }
@@ -150,6 +176,34 @@ function renderMeta() {
   $('badge-total').textContent = `${allJobs.length} total`;
 }
 
+function matchesQuickFilter(j, curStatus) {
+  const ts = j.first_seen_at ? new Date(j.first_seen_at).getTime() : 0;
+  const now = Date.now();
+  switch (quickFilter) {
+    case 'new-today':    return ts >= now - 86400 * 1000;
+    case 'this-week':    return ts >= now - 7 * 86400 * 1000;
+    case 'applied':      return curStatus === 'applied';
+    case 'interviewing': return curStatus === 'interviewing';
+    case 'hot':          return (j.score || 0) >= 85;
+    default:             return true;
+  }
+}
+
+function setQuickFilter(key) {
+  // toggle: clicking the active one (or the empty "total") clears it
+  quickFilter = (key && key !== quickFilter) ? key : null;
+  document.querySelectorAll('.quick').forEach(el => {
+    el.classList.toggle('quick-active', !!quickFilter && el.getAttribute('data-quick') === quickFilter);
+  });
+  renderTable();
+}
+
+function bindQuickFilters() {
+  document.querySelectorAll('.quick').forEach(el => {
+    el.addEventListener('click', () => setQuickFilter(el.getAttribute('data-quick')));
+  });
+}
+
 function renderMetrics() {
   const statuses = loadStatuses();
   const dayAgo = Date.now() - 86400 * 1000;
@@ -185,6 +239,8 @@ function renderTable() {
   const status = $('filter-status').value;
   const scoreFilter = $('filter-score').value;
   const fitFilter = $('filter-fit').value;
+  const locationFilter = $('filter-location').value;
+  const workmodeFilter = $('filter-workmode').value;
   const statuses = loadStatuses();
   const selectedRoles = getSelectedRoles();
 
@@ -204,6 +260,9 @@ function renderTable() {
     }
     const curStatus = statuses[jobKey(j)] || 'new';
     if (status && curStatus !== status) return false;
+    if (quickFilter && !matchesQuickFilter(j, curStatus)) return false;
+    if (locationFilter && !matchesLocation(j.location, locationFilter)) return false;
+    if (workmodeFilter && !matchesWorkmode(j.location, workmodeFilter)) return false;
     const title = (j.title || '').toLowerCase();
     if (!selectedRoles.some(r => r.pattern.test(title))) return false;
     if (search) {
@@ -547,11 +606,12 @@ function bindRoleDropdown() {
 }
 
 function bindControls() {
-  ['filter-source', 'filter-status', 'filter-score', 'filter-fit'].forEach(id => {
+  ['filter-source', 'filter-status', 'filter-score', 'filter-fit', 'filter-location', 'filter-workmode'].forEach(id => {
     $(id).addEventListener('input', renderTable);
     $(id).addEventListener('change', renderTable);
   });
   bindRoleDropdown();
+  bindQuickFilters();
   $('export-btn').addEventListener('click', exportStatus);
   $('import-btn').addEventListener('click', () => $('import-file').click());
   $('import-file').addEventListener('change', (e) => {

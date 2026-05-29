@@ -27,25 +27,25 @@
           <p class="subtitle" id="meta-line">loading…</p>
         </div>
         <div class="badges">
-          <span class="badge badge-info" id="badge-hot">— hot</span>
-          <span class="badge badge-neutral" id="badge-total">— total</span>
+          <span class="badge badge-info quick" id="badge-hot" data-quick="hot" title="Show only hot matches (85+)">— hot</span>
+          <span class="badge badge-neutral quick" id="badge-total" data-quick="" title="Clear quick filter — show all">— total</span>
         </div>
       </div>
 
       <div class="metrics">
-        <div class="metric">
+        <div class="metric quick" data-quick="new-today" title="Show only jobs first seen in the last 24h">
           <div class="metric-label">New today</div>
           <div class="metric-value" id="m-today">—</div>
         </div>
-        <div class="metric">
+        <div class="metric quick" data-quick="this-week" title="Show only jobs first seen in the last 7 days">
           <div class="metric-label">This week</div>
           <div class="metric-value" id="m-week">—</div>
         </div>
-        <div class="metric">
+        <div class="metric quick" data-quick="applied" title="Show only jobs you've marked Applied">
           <div class="metric-label">Applied</div>
           <div class="metric-value" id="m-applied">—</div>
         </div>
-        <div class="metric">
+        <div class="metric quick" data-quick="interviewing" title="Show only jobs you've marked Interviewing">
           <div class="metric-label">Interviewing</div>
           <div class="metric-value" id="m-interviewing">—</div>
         </div>
@@ -96,6 +96,19 @@
           <option value="strong">strong fit</option>
           <option value="medium">medium fit</option>
           <option value="not">not a fit</option>
+        </select>
+        <select id="filter-location">
+          <option value="">all locations</option>
+          <option value="us">US</option>
+          <option value="europe">Europe</option>
+          <option value="canada">Canada</option>
+          <option value="india">India</option>
+          <option value="uae">UAE</option>
+        </select>
+        <select id="filter-workmode">
+          <option value="">remote/onsite</option>
+          <option value="remote">remote</option>
+          <option value="onsite">onsite</option>
         </select>
         <button id="export-btn" title="Export your status data">Export</button>
         <button id="import-btn" title="Import status data">Import</button>
