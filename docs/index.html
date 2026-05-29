@@ -91,6 +91,12 @@
           <option value="hot">hot only (85+)</option>
           <option value="standard">standard+ (70+)</option>
         </select>
+        <select id="filter-fit">
+          <option value="">all fit</option>
+          <option value="strong">strong fit</option>
+          <option value="medium">medium fit</option>
+          <option value="not">not a fit</option>
+        </select>
         <button id="export-btn" title="Export your status data">Export</button>
         <button id="import-btn" title="Import status data">Import</button>
         <input type="file" id="import-file" accept=".json" hidden>
@@ -103,6 +109,7 @@
         <thead>
           <tr>
             <th class="col-score">Score</th>
+            <th class="col-fit">Fit</th>
             <th class="col-role">Role</th>
             <th class="col-company">Company</th>
             <th class="col-posted">Posted</th>
@@ -111,7 +118,7 @@
           </tr>
         </thead>
         <tbody id="jobs-tbody">
-          <tr><td colspan="6" class="empty">Loading…</td></tr>
+          <tr><td colspan="7" class="empty">Loading…</td></tr>
         </tbody>
       </table>
     </section>

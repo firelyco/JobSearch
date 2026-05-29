@@ -246,6 +246,7 @@ thead tr {
 }
 thead th { padding: 10px 12px; font-weight: 500; }
 .col-score { width: 60px; }
+.col-fit { width: 90px; }
 .col-company { width: 130px; }
 .col-posted { width: 80px; }
 .col-status { width: 130px; }
@@ -274,6 +275,20 @@ tbody td { padding: 12px; vertical-align: top; font-size: 13px; }
 .score-hot { background: var(--success-bg); color: var(--success); }
 .score-standard { background: var(--warn-bg); color: var(--warn); }
 .score-low { background: var(--surface); color: var(--text-muted); border: 0.5px solid var(--border); }
+
+.fit-pill {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 500;
+  padding: 2px 8px;
+  border-radius: var(--radius);
+  white-space: nowrap;
+  cursor: help;
+}
+.fit-strong { background: var(--success-bg); color: var(--success); }
+.fit-medium { background: var(--warn-bg); color: var(--warn); }
+.fit-not { background: var(--danger-bg); color: var(--danger); }
+.fit-pending { background: var(--surface); color: var(--text-tertiary); border: 0.5px solid var(--border); cursor: default; }
 
 .role-title { font-weight: 500; }
 .role-title a { color: var(--text); text-decoration: none; }

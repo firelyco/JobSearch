@@ -68,6 +68,7 @@ const ROLE_CATEGORIES = [
 let allJobs = [];
 let metaData = {};
 let tailoredJobs = {};       // { jobKey: { tailored_at, run_id, ... } } from docs/tailored_jobs.json
+let fitScores = {};          // { jobKey: { recommendation, reason, scored_at } } from docs/fit_scores.json
 let pollTimer = null;
 
 // ---------- PAT management ----------
@@ -94,10 +95,11 @@ function markTailoringFinished(jobKey) {
 
 async function loadData() {
   try {
-    const [jobsResp, metaResp, tailoredResp] = await Promise.all([
+    const [jobsResp, metaResp, tailoredResp, fitResp] = await Promise.all([
       fetch(`jobs.json?t=${Date.now()}`),
       fetch(`meta.json?t=${Date.now()}`).catch(() => null),
       fetch(`tailored_jobs.json?t=${Date.now()}`).catch(() => null),
+      fetch(`fit_scores.json?t=${Date.now()}`).catch(() => null),
     ]);
     if (!jobsResp.ok) throw new Error(`jobs.json HTTP ${jobsResp.status}`);
     allJobs = await jobsResp.json();
@@ -105,9 +107,12 @@ async function loadData() {
     if (tailoredResp && tailoredResp.ok) {
       try { tailoredJobs = await tailoredResp.json(); } catch { tailoredJobs = {}; }
     }
+    if (fitResp && fitResp.ok) {
+      try { fitScores = await fitResp.json(); } catch { fitScores = {}; }
+    }
   } catch (e) {
     console.error('load failed', e);
-    $('jobs-tbody').innerHTML = `<tr><td colspan="6" class="empty">Could not load jobs.json. The poller may not have run yet.</td></tr>`;
+    $('jobs-tbody').innerHTML = `<tr><td colspan="7" class="empty">Could not load jobs.json. The poller may not have run yet.</td></tr>`;
     return;
   }
   render();
@@ -179,6 +184,7 @@ function renderTable() {
   const source = $('filter-source').value;
   const status = $('filter-status').value;
   const scoreFilter = $('filter-score').value;
+  const fitFilter = $('filter-fit').value;
   const statuses = loadStatuses();
   const selectedRoles = getSelectedRoles();
 
@@ -192,6 +198,10 @@ function renderTable() {
     if (source && j.source !== source) return false;
     if (scoreFilter === 'hot' && j.score < 85) return false;
     if (scoreFilter === 'standard' && j.score < 70) return false;
+    if (fitFilter) {
+      const rec = (fitScores[jobKey(j)] || {}).recommendation || '';
+      if (rec !== fitFilter) return false;
+    }
     const curStatus = statuses[jobKey(j)] || 'new';
     if (status && curStatus !== status) return false;
     const title = (j.title || '').toLowerCase();
@@ -205,7 +215,7 @@ function renderTable() {
 
   const tbody = $('jobs-tbody');
   if (filtered.length === 0) {
-    tbody.innerHTML = `<tr><td colspan="6" class="empty">No jobs match your filters.</td></tr>`;
+    tbody.innerHTML = `<tr><td colspan="7" class="empty">No jobs match your filters.</td></tr>`;
     return;
   }
 
@@ -218,6 +228,7 @@ function renderTable() {
     return `
       <tr data-key="${escapeAttr(key)}">
         <td><span class="score-pill score-${bucket}">${j.score || 0}</span></td>
+        <td>${fitCellHtml(fitScores[key])}</td>
         <td>
           <div class="role-title"><a href="${escapeAttr(j.url)}" target="_blank" rel="noopener">${escapeHtml(j.title)}</a></div>
           <div class="role-meta">${escapeHtml(meta)}</div>
@@ -254,6 +265,21 @@ function renderTable() {
       onTailorClick(row.getAttribute('data-key'));
     });
   });
+}
+
+const FIT_LABELS = {
+  strong: { label: 'Strong', cls: 'fit-strong' },
+  medium: { label: 'Medium', cls: 'fit-medium' },
+  not:    { label: 'Not a fit', cls: 'fit-not' },
+};
+
+function fitCellHtml(fit) {
+  if (!fit || !fit.recommendation) {
+    return `<span class="fit-pill fit-pending" title="Not scored yet — the fit workflow runs after each poll">—</span>`;
+  }
+  const meta = FIT_LABELS[fit.recommendation] || FIT_LABELS.medium;
+  const reason = fit.reason ? escapeAttr(fit.reason) : '';
+  return `<span class="fit-pill ${meta.cls}" title="${reason}">${meta.label}</span>`;
 }
 
 function tailorCellHtml(key, tailored, inflight) {
@@ -521,7 +547,7 @@ function bindRoleDropdown() {
 }
 
 function bindControls() {
-  ['filter-source', 'filter-status', 'filter-score'].forEach(id => {
+  ['filter-source', 'filter-status', 'filter-score', 'filter-fit'].forEach(id => {
     $(id).addEventListener('input', renderTable);
     $(id).addEventListener('change', renderTable);
   });

@@ -1,0 +1,85 @@
+name: Score profile fit
+
+on:
+  workflow_run:
+    workflows: ["Poll job boards"]
+    types: [completed]
+  workflow_dispatch:
+    inputs:
+      rescore:
+        description: "Re-score every job, ignoring the cache"
+        required: false
+        type: boolean
+        default: false
+
+# Serialize fit runs; never run two at once (they both write fit_scores.json).
+concurrency:
+  group: fit
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  fit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    # On the workflow_run trigger, only proceed if the poll actually succeeded.
+    if: ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' }}
+    env:
+      ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Verify ANTHROPIC_API_KEY is set
+        run: |
+          if [ -z "$ANTHROPIC_API_KEY" ]; then
+            echo "::error::ANTHROPIC_API_KEY secret is not configured"
+            exit 1
+          fi
+
+      - name: Write profile.json from secret
+        run: |
+          if [ -z "$PROFILE_JSON" ]; then
+            echo "::error::PROFILE_JSON secret is not configured."
+            exit 1
+          fi
+          mkdir -p config
+          printf '%s' "$PROFILE_JSON" > config/profile.json
+          python -c "import json; json.load(open('config/profile.json'))" \
+            || (echo "::error::PROFILE_JSON secret is not valid JSON"; exit 1)
+        env:
+          PROFILE_JSON: ${{ secrets.PROFILE_JSON }}
+
+      - name: Score fit for new jobs
+        run: |
+          ARGS=""
+          if [ "${{ inputs.rescore }}" = "true" ]; then
+            ARGS="--rescore"
+          fi
+          python -m src.fit $ARGS
+
+      - name: Commit updated fit_scores.json
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/fit_scores.json
+          if git diff --staged --quiet; then
+            echo "no fit-score changes to commit"
+          else
+            git pull --rebase origin main
+            git commit -m "fit: score profile fit $(date -u +%Y-%m-%dT%H:%MZ)"
+            git push
+          fi
