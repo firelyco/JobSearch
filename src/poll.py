@@ -20,7 +20,7 @@ from pathlib import Path
 
 import yaml
 
-from src.adapters import greenhouse, lever, ashby, workday, amazon_jobs
+from src.adapters import greenhouse, lever, ashby, workday, amazon_jobs, oracle_cloud
 from src import dedupe, scorer
 
 logging.basicConfig(
@@ -59,6 +59,9 @@ def build_fetch_tasks(companies: dict) -> list[tuple[str, str, callable, object]
             tasks.append(("workday", cfg.get("tenant", "?"), workday.fetch, cfg))
     for query in companies.get("amazon_jobs", []) or []:
         tasks.append(("amazon_jobs", str(query), amazon_jobs.fetch, query))
+    for cfg in companies.get("oracle_cloud", []) or []:
+        if isinstance(cfg, dict):
+            tasks.append(("oracle_cloud", cfg.get("company", "?"), oracle_cloud.fetch, cfg))
     return tasks
 
 
@@ -71,6 +74,7 @@ def fetch_all(companies: dict) -> tuple[list[dict], dict]:
         "ashby": {"ok": 0, "fail": 0, "jobs": 0},
         "workday": {"ok": 0, "fail": 0, "jobs": 0},
         "amazon_jobs": {"ok": 0, "fail": 0, "jobs": 0},
+        "oracle_cloud": {"ok": 0, "fail": 0, "jobs": 0},
     }
     all_jobs: list[dict] = []
 
