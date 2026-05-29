@@ -65,7 +65,10 @@ def build_client(fake: Any | None = None) -> Any:
             raise RuntimeError(
                 "openai package not installed; add it to requirements.txt and pip install"
             ) from e
-        return OpenAI(base_url=NVIDIA_BASE_URL, api_key=api_key)
+        # Bound each call: NVIDIA's free gateway can hang (observed a 504 after
+        # 5 min). 90s timeout + 1 retry means a bad call fails fast instead of
+        # eating the whole job budget.
+        return OpenAI(base_url=NVIDIA_BASE_URL, api_key=api_key, timeout=90.0, max_retries=1)
 
     # default: anthropic
     api_key = os.environ.get("ANTHROPIC_API_KEY")
