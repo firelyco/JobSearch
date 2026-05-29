@@ -79,7 +79,8 @@ jobs:
           if git diff --staged --quiet; then
             echo "no fit-score changes to commit"
           else
-            git pull --rebase origin main
+            # commit BEFORE rebasing — git refuses to rebase with a dirty index
             git commit -m "fit: score profile fit $(date -u +%Y-%m-%dT%H:%MZ)"
+            git pull --rebase origin main
             git push
           fi

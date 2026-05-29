@@ -111,8 +111,9 @@ jobs:
           if git diff --staged --quiet; then
             echo "no state change to commit"
           else
-            # rebase onto any cron poller commits that landed during this run
-            git pull --rebase origin main
+            # commit BEFORE rebasing — git refuses to rebase with a dirty index.
+            # The rebase then folds in any cron poller commits from this window.
             git commit -m "tailor: $JOB_KEY (run ${{ github.run_id }})"
+            git pull --rebase origin main
             git push
           fi
