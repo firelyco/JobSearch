@@ -26,7 +26,10 @@ permissions:
 jobs:
   tailor:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    # Generous: a tailor run makes many sequential calls (tailor + verify +
+    # per-bullet retries + cover letter), and the NVIDIA free tier runs
+    # ~1-2 min/call. With LLM_PROVIDER=anthropic this finishes in ~1 min.
+    timeout-minutes: 30
     env:
       JOB_KEY: ${{ github.event.client_payload.job_key || inputs.job_key }}
       NO_COVER_LETTER: ${{ github.event.client_payload.no_cover_letter || inputs.no_cover_letter || 'false' }}

@@ -23,7 +23,7 @@ permissions:
 jobs:
   fit:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
     # On the workflow_run trigger, only proceed if the poll actually succeeded.
     if: ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' }}
     env:

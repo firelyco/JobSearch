@@ -65,10 +65,12 @@ def build_client(fake: Any | None = None) -> Any:
             raise RuntimeError(
                 "openai package not installed; add it to requirements.txt and pip install"
             ) from e
-        # Bound each call: NVIDIA's free gateway can hang (observed a 504 after
-        # 5 min). 90s timeout + 1 retry means a bad call fails fast instead of
-        # eating the whole job budget.
-        return OpenAI(base_url=NVIDIA_BASE_URL, api_key=api_key, timeout=90.0, max_retries=1)
+        # Bound each call: NVIDIA's free gateway is slow (healthy calls run
+        # 1-2 min) and sometimes hangs (observed a 504 after 5 min). 150s
+        # covers healthy calls; max_retries=0 means a hung call fails once and
+        # the caller skips it (fit.py retries the job next cycle) rather than
+        # doubling the wait on a retry.
+        return OpenAI(base_url=NVIDIA_BASE_URL, api_key=api_key, timeout=150.0, max_retries=0)
 
     # default: anthropic
     api_key = os.environ.get("ANTHROPIC_API_KEY")

@@ -43,7 +43,10 @@ PROFILE_FILE = CONFIG_DIR / "profile.json"
 TAILOR_CONFIG_FILE = CONFIG_DIR / "tailor_config.yml"
 FIT_FILE = DOCS_DIR / "fit_scores.json"
 
-MAX_JOBS_PER_RUN = 40
+# Small cap because the NVIDIA free tier is slow (~1-2 min/call): a run must
+# finish and commit within the job timeout. Remaining jobs are picked up on the
+# next poll-triggered run (incremental, eventually-consistent).
+MAX_JOBS_PER_RUN = 6
 DEFAULT_FIT_MODEL = "claude-haiku-4-5"
 
 
@@ -128,9 +131,16 @@ def run(
             except Exception as e:
                 log.warning("jd fetch failed for %s: %s", k, e)
                 jd_text = ""
-        verdict = fit_scorer.score_fit(
-            profile, job, jd_text, client=client, condensed=condensed, model=model
-        )
+        try:
+            verdict = fit_scorer.score_fit(
+                profile, job, jd_text, client=client, condensed=condensed, model=model
+            )
+        except Exception as e:
+            # A slow/flaky provider (e.g. NVIDIA free-tier timeouts) must not
+            # crash the whole run and lose already-scored jobs. Skip this one;
+            # it stays uncached and gets retried next cycle.
+            log.warning("fit scoring failed for %s: %s — skipping, will retry next run", k, e)
+            continue
         scores[k] = {
             "recommendation": verdict.recommendation,
             "reason": verdict.reason,

@@ -32,5 +32,7 @@ features:
 # Verification policy.
 verification:
   retry_failed_bullets: true
-  max_retries_per_bullet: 2
+  # 1 retry (not 2) to bound total call count — each call is ~1-2 min on the
+  # NVIDIA free tier. A bullet that fails its single retry is dropped.
+  max_retries_per_bullet: 1
   drop_unverified: true             # ship shorter resume rather than wrong one
