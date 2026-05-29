@@ -1,11 +1,21 @@
-# Tunable knobs for the resume tailoring pipeline (JOBSEARCH-002).
-# Loaded by src/tailor.py at runtime.
+# Tunable knobs for the resume tailoring + fit-scoring pipelines (JOBSEARCH-002).
+# Loaded by src/tailor.py and src/fit.py at runtime.
 
-# Anthropic models — verify against env context / docs.anthropic.com at impl time.
+# Provider is selected by the LLM_PROVIDER env var (set in the workflows):
+#   "nvidia"    -> OpenAI-compatible NVIDIA NIM endpoint, needs NVIDIA_API_KEY
+#   "anthropic" -> Claude, needs ANTHROPIC_API_KEY
+# The model strings below must match the ACTIVE provider. They're currently
+# set for NVIDIA DeepSeek. If you flip LLM_PROVIDER back to "anthropic",
+# change these back to the claude-* slugs (e.g. claude-sonnet-4-6 /
+# claude-haiku-4-5).
+#
+# NOTE: confirm the exact DeepSeek slug at build.nvidia.com — the catalog path
+# is the model id. As of this writing it is deepseek-ai/deepseek-v4-pro.
 models:
-  tailor: "claude-sonnet-4-6"
-  verify: "claude-haiku-4-5"
-  cover_letter: "claude-sonnet-4-6"
+  tailor: "deepseek-ai/deepseek-v4-pro"
+  verify: "deepseek-ai/deepseek-v4-pro"
+  cover_letter: "deepseek-ai/deepseek-v4-pro"
+  fit: "deepseek-ai/deepseek-v4-pro"
 
 # Hard caps to prevent cost runaway (Risk 6 in PRD).
 limits:
@@ -17,7 +27,7 @@ limits:
 # Feature flags.
 features:
   cover_letter: true                # generate cover letter in same run
-  prompt_caching: true              # cache profile JSON across calls
+  prompt_caching: true              # cache profile JSON across calls (Anthropic only)
 
 # Verification policy.
 verification:

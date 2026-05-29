@@ -27,6 +27,8 @@ jobs:
     # On the workflow_run trigger, only proceed if the poll actually succeeded.
     if: ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' }}
     env:
+      LLM_PROVIDER: nvidia
+      NVIDIA_API_KEY: ${{ secrets.NVIDIA_API_KEY }}
       ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
     steps:
       - name: Checkout
@@ -43,11 +45,18 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Verify ANTHROPIC_API_KEY is set
+      - name: Verify model API key is set
         run: |
-          if [ -z "$ANTHROPIC_API_KEY" ]; then
-            echo "::error::ANTHROPIC_API_KEY secret is not configured"
-            exit 1
+          if [ "$LLM_PROVIDER" = "nvidia" ]; then
+            if [ -z "$NVIDIA_API_KEY" ]; then
+              echo "::error::NVIDIA_API_KEY secret is not configured (LLM_PROVIDER=nvidia)"
+              exit 1
+            fi
+          else
+            if [ -z "$ANTHROPIC_API_KEY" ]; then
+              echo "::error::ANTHROPIC_API_KEY secret is not configured"
+              exit 1
+            fi
           fi
 
       - name: Write profile.json from secret

@@ -30,6 +30,8 @@ jobs:
     env:
       JOB_KEY: ${{ github.event.client_payload.job_key || inputs.job_key }}
       NO_COVER_LETTER: ${{ github.event.client_payload.no_cover_letter || inputs.no_cover_letter || 'false' }}
+      LLM_PROVIDER: nvidia
+      NVIDIA_API_KEY: ${{ secrets.NVIDIA_API_KEY }}
       ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
     steps:
       - name: Checkout
@@ -49,13 +51,19 @@ jobs:
       - name: Run tests (gate the AI run)
         run: python -m unittest discover -s tests -v
 
-      - name: Verify ANTHROPIC_API_KEY is set
+      - name: Verify model API key is set
         run: |
-          if [ -z "$ANTHROPIC_API_KEY" ]; then
-            echo "::error::ANTHROPIC_API_KEY secret is not configured"
-            exit 1
+          if [ "$LLM_PROVIDER" = "nvidia" ]; then
+            if [ -z "$NVIDIA_API_KEY" ]; then
+              echo "::error::NVIDIA_API_KEY secret is not configured (LLM_PROVIDER=nvidia)"
+              exit 1
+            fi
+          else
+            if [ -z "$ANTHROPIC_API_KEY" ]; then
+              echo "::error::ANTHROPIC_API_KEY secret is not configured"
+              exit 1
+            fi
           fi
-          echo "key length: ${#ANTHROPIC_API_KEY}"
 
       - name: Write profile.json from secret
         run: |

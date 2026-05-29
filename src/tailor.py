@@ -189,11 +189,17 @@ def _retry_bullet(
 
 
 def _estimate_cost(input_tokens: int, output_tokens: int, model: str) -> float:
-    """Rough per-call cost in USD. Prices in $/MTok."""
+    """Rough per-call cost in USD. Prices in $/MTok.
+
+    NVIDIA-hosted models (DeepSeek etc.) are free on the NIM tier, so they
+    price at $0. Unknown models default to Sonnet pricing (conservative).
+    """
     prices = {
         "claude-sonnet-4-6": (3.0, 15.0),
         "claude-haiku-4-5": (1.0, 5.0),
     }
+    if model.startswith("deepseek") or "/" in model:  # NVIDIA NIM slug, e.g. deepseek-ai/...
+        return 0.0
     inp, out = prices.get(model, (3.0, 15.0))
     return (input_tokens * inp + output_tokens * out) / 1_000_000
 

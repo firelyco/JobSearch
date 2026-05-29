@@ -40,9 +40,24 @@ CONFIG_DIR = ROOT / "config"
 DOCS_DIR = ROOT / "docs"
 JOBS_FILE = DOCS_DIR / "jobs.json"
 PROFILE_FILE = CONFIG_DIR / "profile.json"
+TAILOR_CONFIG_FILE = CONFIG_DIR / "tailor_config.yml"
 FIT_FILE = DOCS_DIR / "fit_scores.json"
 
 MAX_JOBS_PER_RUN = 40
+DEFAULT_FIT_MODEL = "claude-haiku-4-5"
+
+
+def _fit_model() -> str:
+    """Read the fit model slug from tailor_config.yml (falls back to default)."""
+    if not TAILOR_CONFIG_FILE.exists():
+        return DEFAULT_FIT_MODEL
+    try:
+        import yaml
+        with open(TAILOR_CONFIG_FILE, "r", encoding="utf-8") as f:
+            cfg = yaml.safe_load(f) or {}
+        return (cfg.get("models", {}) or {}).get("fit") or DEFAULT_FIT_MODEL
+    except Exception:
+        return DEFAULT_FIT_MODEL
 
 
 def _key(job: dict) -> str:
@@ -100,6 +115,7 @@ def run(
 
     client = llm_client.build_client(fake=fake_client)
     condensed = fit_scorer.condense_profile(profile)
+    model = _fit_model()
 
     scored_count = 0
     for job in capped:
@@ -113,7 +129,7 @@ def run(
                 log.warning("jd fetch failed for %s: %s", k, e)
                 jd_text = ""
         verdict = fit_scorer.score_fit(
-            profile, job, jd_text, client=client, condensed=condensed
+            profile, job, jd_text, client=client, condensed=condensed, model=model
         )
         scores[k] = {
             "recommendation": verdict.recommendation,
