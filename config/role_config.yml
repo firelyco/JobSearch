@@ -112,3 +112,8 @@ seniority_keywords:
 
 notification_threshold: 60
 hot_match_threshold: 80
+
+# Drop jobs whose ATS-reported posted_at is older than this many days.
+# Jobs with no posted_at (or an unparseable one) are kept — we don't know
+# their age, so we don't penalize missing data.
+max_posted_age_days: 21

@@ -111,6 +111,25 @@ def score_job(job: dict, config: dict) -> tuple[int, list[str]]:
     return score, reasons
 
 
+def is_recent(posted_at_iso: str, max_age_days: int, now=None) -> bool:
+    """True if posted_at is within max_age_days of now.
+
+    Empty / unparseable posted_at returns True — we don't know the age, so we
+    keep the job rather than penalize missing data. Future-dated stamps also
+    return True (treat as "just posted").
+    """
+    if not posted_at_iso or max_age_days <= 0:
+        return True
+    from datetime import datetime, timezone, timedelta
+    try:
+        dt = datetime.fromisoformat(str(posted_at_iso).replace("Z", "+00:00"))
+    except (ValueError, AttributeError, TypeError):
+        return True
+    n = now or datetime.now(timezone.utc)
+    cutoff = n - timedelta(days=int(max_age_days))
+    return dt >= cutoff
+
+
 def classify(score: int, config: dict) -> str:
     """Bucket a score into 'hot' | 'standard' | 'low' | 'drop'."""
     hot = int(config.get("hot_match_threshold", 85))

@@ -110,16 +110,22 @@ def main() -> int:
     log.info("fetched %d raw jobs across all sources", len(all_jobs))
 
     scored: list[dict] = []
+    dropped_age = 0
+    max_age = int(role.get("max_posted_age_days", 0))
     for j in all_jobs:
         score, reasons = scorer.score_job(j, role)
         bucket = scorer.classify(score, role)
         if bucket == "drop":
             continue
+        if max_age > 0 and not scorer.is_recent(j.get("posted_at", ""), max_age):
+            dropped_age += 1
+            continue
         j["score"] = score
         j["score_reasons"] = reasons
         j["bucket"] = bucket
         scored.append(j)
-    log.info("after scoring: %d kept (score > 0)", len(scored))
+    log.info("after scoring: %d kept (score > 0); %d dropped as > %d days old",
+             len(scored), dropped_age, max_age)
 
     seen = dedupe.load_seen(STATE_FILE)
     new_jobs, updated_seen = dedupe.diff_and_update(scored, seen)

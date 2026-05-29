@@ -200,5 +200,54 @@ class TestScorer(unittest.TestCase):
                         f"Expected VP bonus to take priority, got: {seniority_reasons}")
 
 
+class TestIsRecent(unittest.TestCase):
+    from datetime import datetime, timezone, timedelta
+    NOW = datetime(2026, 5, 29, 12, 0, 0, tzinfo=timezone.utc)
+
+    def test_recent_kept(self):
+        from datetime import timedelta
+        ts = (self.NOW - timedelta(days=5)).isoformat()
+        from src.scorer import is_recent
+        self.assertTrue(is_recent(ts, 21, now=self.NOW))
+
+    def test_exactly_at_cutoff_kept(self):
+        from datetime import timedelta
+        ts = (self.NOW - timedelta(days=21)).isoformat()
+        from src.scorer import is_recent
+        self.assertTrue(is_recent(ts, 21, now=self.NOW))
+
+    def test_over_cutoff_dropped(self):
+        from datetime import timedelta
+        ts = (self.NOW - timedelta(days=22)).isoformat()
+        from src.scorer import is_recent
+        self.assertFalse(is_recent(ts, 21, now=self.NOW))
+
+    def test_empty_posted_at_kept(self):
+        from src.scorer import is_recent
+        self.assertTrue(is_recent("", 21, now=self.NOW))
+        self.assertTrue(is_recent(None, 21, now=self.NOW))
+
+    def test_unparseable_kept(self):
+        from src.scorer import is_recent
+        self.assertTrue(is_recent("yesterday", 21, now=self.NOW))
+
+    def test_future_dated_kept(self):
+        from datetime import timedelta
+        from src.scorer import is_recent
+        ts = (self.NOW + timedelta(days=3)).isoformat()
+        self.assertTrue(is_recent(ts, 21, now=self.NOW))
+
+    def test_zero_max_age_disables_filter(self):
+        from datetime import timedelta
+        from src.scorer import is_recent
+        ts = (self.NOW - timedelta(days=500)).isoformat()
+        self.assertTrue(is_recent(ts, 0, now=self.NOW))
+
+    def test_z_suffix_iso_parsed(self):
+        from src.scorer import is_recent
+        ts = "2026-05-25T12:00:00Z"  # 4 days before NOW
+        self.assertTrue(is_recent(ts, 21, now=self.NOW))
+
+
 if __name__ == "__main__":
     unittest.main()
