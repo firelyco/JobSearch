@@ -91,9 +91,11 @@ ashby:
   - vultr
 
 workday:
-  - tenant: amazon
-    site: Amazon
-    wd_server: wd1
+  # DISABLED — not on public Workday. Amazon posts via amazon.jobs (custom
+  # API); needs a dedicated adapter. Tracked as a follow-up.
+  # - tenant: amazon
+  #   site: Amazon
+  #   wd_server: wd1
   - tenant: nvidia
     site: NVIDIAExternalCareerSite
     wd_server: wd5
@@ -103,17 +105,22 @@ workday:
     wd_server: wd5
     search: "program manager"
   - tenant: cisco
-    site: external_career_site
+    site: Cisco_Careers          # was external_career_site (404)
     wd_server: wd5
-  - tenant: oracle
-    site: Oracle
-    wd_server: wd5
+    search: "program manager"
+  # DISABLED — Oracle uses Oracle Recruiting Cloud, not public Workday.
+  # - tenant: oracle
+  #   site: Oracle
+  #   wd_server: wd5
   - tenant: capitalone
     site: Capital_One
-    wd_server: wd1
-  - tenant: dell
-    site: ExternalSite
-    wd_server: wd1
+    wd_server: wd12              # was wd1 (migrated; wd1 now returns empty)
+    search: "program manager"
+  # DISABLED — Dell migrated to Oracle Recruiting Cloud; its Workday board
+  # returns HTTP 200 with zero jobs. Real listings are on jobs.dell.com.
+  # - tenant: dell
+  #   site: External
+  #   wd_server: wd1
   - tenant: intel
     site: External
     wd_server: wd1
