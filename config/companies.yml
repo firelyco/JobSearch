@@ -129,3 +129,9 @@ workday:
     site: WalmartExternal
     wd_server: wd5
     search: "program manager"   # ~2000 postings; search surfaces relevant roles
+
+# Amazon is not on public Workday — it runs amazon.jobs. Each entry is a
+# search query; the scorer filters to senior TPM roles.
+amazon_jobs:
+  - "technical program manager"
+  - "program management"

@@ -20,7 +20,7 @@ from pathlib import Path
 
 import yaml
 
-from src.adapters import greenhouse, lever, ashby, workday
+from src.adapters import greenhouse, lever, ashby, workday, amazon_jobs
 from src import dedupe, scorer
 
 logging.basicConfig(
@@ -57,6 +57,8 @@ def build_fetch_tasks(companies: dict) -> list[tuple[str, str, callable, object]
     for cfg in companies.get("workday", []) or []:
         if isinstance(cfg, dict):
             tasks.append(("workday", cfg.get("tenant", "?"), workday.fetch, cfg))
+    for query in companies.get("amazon_jobs", []) or []:
+        tasks.append(("amazon_jobs", str(query), amazon_jobs.fetch, query))
     return tasks
 
 
@@ -68,6 +70,7 @@ def fetch_all(companies: dict) -> tuple[list[dict], dict]:
         "lever": {"ok": 0, "fail": 0, "jobs": 0},
         "ashby": {"ok": 0, "fail": 0, "jobs": 0},
         "workday": {"ok": 0, "fail": 0, "jobs": 0},
+        "amazon_jobs": {"ok": 0, "fail": 0, "jobs": 0},
     }
     all_jobs: list[dict] = []
 
@@ -95,11 +98,12 @@ def main() -> int:
     role = load_yaml(CONFIG_DIR / "role_config.yml")
 
     log.info(
-        "config: %d greenhouse + %d lever + %d ashby + %d workday",
+        "config: %d greenhouse + %d lever + %d ashby + %d workday + %d amazon queries",
         len(companies.get("greenhouse", []) or []),
         len(companies.get("lever", []) or []),
         len(companies.get("ashby", []) or []),
         len(companies.get("workday", []) or []),
+        len(companies.get("amazon_jobs", []) or []),
     )
 
     all_jobs, stats = fetch_all(companies)
