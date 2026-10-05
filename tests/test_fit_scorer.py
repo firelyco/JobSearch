@@ -120,7 +120,7 @@ class TestScoreFit(unittest.TestCase):
         score_fit(PROFILE, JOB, "JD", client=fake, model="claude-haiku-4-5")
         call = fake.calls[0]
         self.assertEqual(call["model"], "claude-haiku-4-5")
-        self.assertEqual(call["temperature"], 0.0)
+        self.assertEqual(call["extra_body"]["temperature"], 0.0)
         self.assertIsInstance(call["system"], list)  # cache-control wrapped
 
 

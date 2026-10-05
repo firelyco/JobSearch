@@ -110,7 +110,9 @@ class TestAnthropicModelShapes(unittest.TestCase):
 
     def test_haiku_keeps_temperature_and_cap(self):
         sent = self._call("claude-haiku-4-5")
-        self.assertEqual(sent["temperature"], 0.4)
+        # SDK 1.x rejects a temperature kwarg; it must ride in extra_body.
+        self.assertNotIn("temperature", sent)
+        self.assertEqual(sent["extra_body"], {"temperature": 0.4})
         self.assertEqual(sent["max_tokens"], 400)
         self.assertNotIn("fallbacks", sent)
 
@@ -118,6 +120,7 @@ class TestAnthropicModelShapes(unittest.TestCase):
         # Sonnet 5.5 400s on a non-default temperature; thinking needs headroom.
         sent = self._call("claude-sonnet-5-5")
         self.assertNotIn("temperature", sent)
+        self.assertNotIn("extra_body", sent)
         self.assertGreaterEqual(sent["max_tokens"], 16000)
         self.assertEqual(sent["fallbacks"], "default")
         self.assertEqual(sent["betas"], ["server-side-fallback-2026-07-01"])

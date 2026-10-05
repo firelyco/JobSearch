@@ -137,7 +137,10 @@ def _call_anthropic(client, model, system, user, max_tokens, temperature, cache_
     if model.startswith(_NO_SAMPLING_PREFIXES):
         kwargs["max_tokens"] = max(max_tokens, _THINKING_MIN_MAX_TOKENS)
     else:
-        kwargs["temperature"] = temperature
+        # anthropic SDK 1.x dropped the temperature kwarg (TypeError), but
+        # Haiku 4.5 / 4.6-era models still honour it on the wire. fit/verify
+        # rely on 0.0 for stable verdicts, so send it in the request body.
+        kwargs["extra_body"] = {"temperature": temperature}
     if model.startswith(_FALLBACK_DEFAULT_MODELS):
         # On a safety-classifier decline, the API re-runs the request on a
         # fallback model inside the same call instead of returning a refusal.

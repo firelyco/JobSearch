@@ -157,7 +157,7 @@ class TestVerifyBullets(unittest.TestCase):
         self.assertEqual(len(fake.calls), 1)
         call = fake.calls[0]
         self.assertEqual(call["model"], "claude-haiku-4-5")
-        self.assertEqual(call["temperature"], 0.0)
+        self.assertEqual(call["extra_body"]["temperature"], 0.0)
         # system was passed as cache-control wrapped list
         self.assertIsInstance(call["system"], list)
         self.assertEqual(call["system"][0]["cache_control"]["type"], "ephemeral")
