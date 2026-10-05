@@ -126,7 +126,7 @@ def redact_history(reason: str, profile: dict) -> str:
     names += [edu.get("school", "") for edu in profile.get("education", []) or []]
     for name in sorted({n for n in names if n and len(n) > 2}, key=len, reverse=True):
         reason = re.sub(re.escape(name), "prior employer", reason, flags=re.IGNORECASE)
-        # Also catch the first word alone ("Berkshire" for "Berkshire Grey").
+        # Also catch the first word alone ("Acme" for "Acme Robotics").
         first = name.split()[0]
         if len(first) > 3 and first.lower() != name.lower():
             reason = re.sub(rf"\b{re.escape(first)}\b", "prior employer", reason, flags=re.IGNORECASE)
