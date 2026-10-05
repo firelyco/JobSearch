@@ -156,6 +156,7 @@ def run(
         scores[k] = {
             "recommendation": verdict.recommendation,
             "reason": verdict.reason,
+            "step": verdict.step,
             "scored_at": stamp,
         }
         scored_count += 1

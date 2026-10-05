@@ -29,6 +29,10 @@ from src import llm_client
 log = logging.getLogger(__name__)
 
 VALID_RECOMMENDATIONS = {"strong", "medium", "not"}
+# Only discipline, domain and guardrails can fail a role outright; level and
+# comp are tie-breakers that may only demote.
+DEMOTE_ONLY_STEPS = {"level", "comp"}
+VALID_STEPS = {"discipline", "domain", "guardrails", "none"} | DEMOTE_ONLY_STEPS
 
 # The method is generic and lives here; the candidate-specific parameters
 # (accepted disciplines, domain gates, never-claim list, comp floor) come from
@@ -50,10 +54,11 @@ Verdict:
 - "strong": right discipline, no gate, target level, guardrails intact, and ideally the candidate's differentiators are named requirements.
 Judge only on evidence in the profile and the JD. Never assume skills, domains or seniority not present. "not" is a valid and useful answer; do not inflate.
 
-The reason is shown on a public page, so describe the ROLE. Never mention the candidate's employers, schools, titles or history. Start it with the deciding step, e.g. "Discipline: this is product management, not program management" or "Domain gate: requires clinical trial operations depth" or "Strong: platform program org leadership is the core ask".
+The reason is shown on a public page, so describe the ROLE. Never mention the candidate's employers, schools, titles, history, or comp floor; describe posted pay only as below or within band. Start it with the deciding step, e.g. "Discipline: this is product management, not program management" or "Domain gate: requires clinical trial operations depth" or "Strong: platform program org leadership is the core ask".
 
 Return ONLY a JSON object, no prose:
-{"recommendation": "strong|medium|not", "reason": "<= 20 words"}"""
+{"recommendation": "strong|medium|not", "step": "discipline|domain|level|guardrails|comp|none", "reason": "<= 20 words"}
+"step" is the step that decided the verdict ("none" for a clean strong)."""
 
 
 def render_rules(rules: dict | None) -> str:
@@ -81,6 +86,7 @@ def render_rules(rules: dict | None) -> str:
 class FitVerdict:
     recommendation: str   # "strong" | "medium" | "not"
     reason: str
+    step: str = "none"    # the deciding step, one of VALID_STEPS
 
 
 def condense_profile(profile: dict) -> str:
@@ -116,8 +122,8 @@ def condense_profile(profile: dict) -> str:
     return "\n".join(lines)
 
 
-def redact_history(reason: str, profile: dict) -> str:
-    """Replace the candidate's employer and school names in a reason.
+def redact_history(reason: str, profile: dict, rules: dict | None = None) -> str:
+    """Replace the candidate's employer and school names and comp floor in a reason.
 
     fit_scores.json is served on the public dashboard, and the prompt's
     "describe the role" instruction isn't always followed, so enforce it.
@@ -130,6 +136,11 @@ def redact_history(reason: str, profile: dict) -> str:
         first = name.split()[0]
         if len(first) > 3 and first.lower() != name.lower():
             reason = re.sub(rf"\b{re.escape(first)}\b", "prior employer", reason, flags=re.IGNORECASE)
+    floor = (rules or {}).get("comp_floor_usd")
+    if isinstance(floor, (int, float)) and floor >= 1000:
+        k = int(floor) // 1000
+        # e.g. "$150K", "150k", "150,000" -> "[redacted]" (backstop; the prompt forbids it)
+        reason = re.sub(rf"\$?\b{k}(?:,?000\b|\s?[kK]\b)", "the floor", reason)
     return reason
 
 
@@ -196,8 +207,17 @@ def score_fit(
         return FitVerdict("medium", "could not classify (non-JSON response)")
 
     rec = str(parsed.get("recommendation", "")).lower().strip()
-    reason = redact_history(str(parsed.get("reason", "")).strip(), profile)
+    reason = redact_history(str(parsed.get("reason", "")).strip(), profile, rules)
+    step = str(parsed.get("step", "none")).lower().strip()
+    if step not in VALID_STEPS:
+        step = "none"
     if rec not in VALID_RECOMMENDATIONS:
         log.warning("fit: unexpected recommendation %r for %s", rec, job.get("title"))
-        return FitVerdict("medium", reason or "could not classify")
-    return FitVerdict(rec, reason)
+        return FitVerdict("medium", reason or "could not classify", step)
+    if rec == "not" and step in DEMOTE_ONLY_STEPS:
+        # Level and comp only demote; a pass needs a discipline, domain or
+        # guardrail failure. Enforced here because the model sometimes stacks
+        # two demotions into a pass.
+        log.info("fit: %s pass on %r downgraded to medium", job.get("title"), step)
+        rec = "medium"
+    return FitVerdict(rec, reason, step)

@@ -143,6 +143,25 @@ class TestScoreFit(unittest.TestCase):
         self.assertNotIn("State University", out)
         self.assertIn("prior employer", out)
 
+    def test_comp_or_level_cannot_pass_a_role(self):
+        for step in ("comp", "level"):
+            fake = FakeClient([json.dumps({"recommendation": "not", "step": step, "reason": "below band"})])
+            v = score_fit(PROFILE, JOB, "JD", client=fake)
+            self.assertEqual(v.recommendation, "medium", step)
+            self.assertEqual(v.step, step)
+
+    def test_gating_step_can_pass_a_role(self):
+        fake = FakeClient([json.dumps({"recommendation": "not", "step": "discipline", "reason": "Discipline: PM"})])
+        v = score_fit(PROFILE, JOB, "JD", client=fake)
+        self.assertEqual((v.recommendation, v.step), ("not", "discipline"))
+
+    def test_reason_redacts_comp_floor(self):
+        from src.fit_scorer import redact_history
+        rules = {"comp_floor_usd": 150000}
+        for text in ("below $150K floor", "below 150,000", "under $150k"):
+            self.assertNotIn("150", redact_history(text, {}, rules), text)
+        self.assertIn("$148.7K", redact_history("posted $148.7K", {}, rules))
+
     def test_no_rules_uses_generic_prompt(self):
         from src.fit_scorer import FIT_SYSTEM_PROMPT
         fake = FakeClient([json.dumps({"recommendation": "medium", "reason": "x"})])
