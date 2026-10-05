@@ -29,21 +29,51 @@ log = logging.getLogger(__name__)
 
 VALID_RECOMMENDATIONS = {"strong", "medium", "not"}
 
-FIT_SYSTEM_PROMPT = """You assess how well a candidate fits a specific job, using only their verified career profile and the job description.
+# The method is generic and lives here; the candidate-specific parameters
+# (accepted disciplines, domain gates, never-claim list, comp floor) come from
+# config/fit_rules.json, which is written from a secret at run time because
+# this repo is public. See config/fit_rules.json.example.
+FIT_SYSTEM_PROMPT = """You screen job postings for one candidate, using only their verified career profile, their CANDIDATE RULES, and the job description. Honesty is the fixed point: the question underneath every step is whether an honest resume could win this role, or whether a first interview would expose the candidate.
 
-Return exactly one recommendation:
-- "strong": the candidate's core experience and skills directly match the role's domain, seniority, and primary requirements.
-- "medium": the candidate matches seniority and general function but the domain or some key requirements are a partial or adjacent match.
-- "not": the role requires a domain, seniority, or skill set the candidate clearly lacks, or it is a different function entirely.
+Work through these steps in order. Read past the title every time; titles misstate both the kind of work and the industry.
 
-Rules:
-- Judge ONLY on evidence in the profile. Never assume skills, domains, or seniority not present.
-- Seniority matters: a Director/Principal-level candidate is a weak fit for a first-line IC role and vice versa.
-- Domain matters: weight the candidate's actual industries (per the profile) against the role's domain.
-- Be honest. "not" is a valid and useful answer — do not inflate.
+1. Discipline. From the JD body, decide what work this actually is. If it is one of the candidate's rejected disciplines, or anything else that is not one of their accepted disciplines, it fails.
+2. Domain gate. Industry depth gates only when the JD states it as a required qualification AND it is the substance of the role. A domain that appears in the product but not the qualifications does not gate. The company's industry is not the role's domain. Fails if a required domain is one of the candidate's hard domain gates or is otherwise absent from the profile.
+3. Level. Compare the role's level and shape (people leader vs individual contributor) with the candidate's targets. This is a flag, not a failure: an IC role or one slightly below target lowers the verdict, it does not fail it.
+4. Guardrails. Would an honest resume need a claim on the candidate's never-claim list? If that claim is central to the role it fails; if it is one preferred line it is a stretch to note.
+5. Comp and location. Tie-breakers only. Posted comp clearly below the candidate's floor lowers the verdict; it never fails a role alone.
+
+Verdict:
+- "not" (pass): any hard failure in step 1, 2 or 4.
+- "medium" (middle): no hard failure, but a real stretch, e.g. IC level, a below-band comp, a preferred guardrail line, or a partial domain match.
+- "strong": right discipline, no gate, target level, guardrails intact, and ideally the candidate's differentiators are named requirements.
+Judge only on evidence in the profile and the JD. Never assume skills, domains or seniority not present. "not" is a valid and useful answer; do not inflate.
+
+The reason is shown on a public page, so describe the ROLE, not the candidate's history. Start it with the deciding step, e.g. "Discipline: this is product management, not program management" or "Domain gate: requires clinical trial operations depth" or "Strong: platform program org leadership is the core ask".
 
 Return ONLY a JSON object, no prose:
-{"recommendation": "strong|medium|not", "reason": "<= 15 words, concrete"}"""
+{"recommendation": "strong|medium|not", "reason": "<= 20 words"}"""
+
+
+def render_rules(rules: dict | None) -> str:
+    """Render candidate fit rules (fit_rules.json) as prompt text.
+
+    Generic over keys so the rules file can evolve without code changes:
+    lists become bullets, scalars become one line.
+    """
+    if not rules:
+        return ""
+    lines = ["CANDIDATE RULES:"]
+    for key, value in rules.items():
+        if key.startswith("_"):
+            continue
+        label = key.replace("_", " ").upper()
+        if isinstance(value, list):
+            lines.append(f"{label}:")
+            lines.extend(f"  - {v}" for v in value)
+        else:
+            lines.append(f"{label}: {value}")
+    return "\n".join(lines)
 
 
 @dataclass
@@ -104,6 +134,7 @@ def score_fit(
     model: str = "claude-haiku-4-5",
     condensed: str | None = None,
     max_jd_chars: int = 6000,
+    rules: dict | None = None,
 ) -> FitVerdict:
     """Assess fit for one job. Returns a FitVerdict.
 
@@ -125,13 +156,17 @@ def score_fit(
         f"JOB DESCRIPTION:\n{jd if jd else '(no JD body available — judge on title alone, lower confidence)'}"
     )
 
+    # Rules are constant for a run, so they go in the cached system prompt.
+    rules_text = render_rules(rules)
+    system = f"{FIT_SYSTEM_PROMPT}\n\n{rules_text}" if rules_text else FIT_SYSTEM_PROMPT
+
     llm = llm_client.build_client(fake=client) if client else llm_client.build_client()
     resp = llm_client.call(
         llm,
         model=model,
-        system=FIT_SYSTEM_PROMPT,
+        system=system,
         user=user,
-        max_tokens=200,
+        max_tokens=300,
         temperature=0.0,
         cache_system=True,
     )

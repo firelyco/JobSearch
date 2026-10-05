@@ -33,6 +33,8 @@ ENV/
 # fine to publish (consistent with the LinkedIn-is-public argument in the PRD),
 # delete this line and commit profile.json explicitly.
 config/profile.json
+# Personal fit-screening rules (written from the FIT_RULES_JSON secret in CI)
+config/fit_rules.json
 # Tailored resume output (docx, cover letter md) — uploaded as Actions artifacts
 tailored/
 !tailored/.gitkeep

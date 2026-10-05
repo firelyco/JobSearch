@@ -42,6 +42,10 @@ JOBS_FILE = DOCS_DIR / "jobs.json"
 PROFILE_FILE = CONFIG_DIR / "profile.json"
 TAILOR_CONFIG_FILE = CONFIG_DIR / "tailor_config.yml"
 FIT_FILE = DOCS_DIR / "fit_scores.json"
+# Candidate-specific screening rules. Gitignored (the repo is public); fit.yml
+# writes it from the FIT_RULES_JSON secret. Optional: without it the scorer
+# falls back to the generic method alone.
+FIT_RULES_FILE = CONFIG_DIR / "fit_rules.json"
 
 # Haiku answers in seconds, so 40 jobs fit well inside the job timeout and
 # clear a backlog in a few runs (~$0.002/job). Drop back to ~6 on a slow
@@ -92,6 +96,7 @@ def run(
     rescore: bool = False,
     fake_client: object | None = None,
     jd_text_for: dict | None = None,
+    rules: dict | None = None,
     now: datetime | None = None,
     on_scored=None,
 ) -> dict:
@@ -105,6 +110,7 @@ def run(
     """
     jobs = jobs if jobs is not None else load_json(JOBS_FILE, [])
     profile = profile if profile is not None else load_json(PROFILE_FILE, {})
+    rules = rules if rules is not None else load_json(FIT_RULES_FILE, {})
     scores = dict(existing if existing is not None else load_json(FIT_FILE, {}))
     stamp = (now or datetime.now(timezone.utc)).isoformat()
 
@@ -138,7 +144,8 @@ def run(
                 jd_text = ""
         try:
             verdict = fit_scorer.score_fit(
-                profile, job, jd_text, client=client, condensed=condensed, model=model
+                profile, job, jd_text, client=client, condensed=condensed, model=model,
+                rules=rules,
             )
         except Exception as e:
             # A slow/flaky provider (e.g. NVIDIA free-tier timeouts) must not
@@ -176,6 +183,8 @@ def main(argv: list[str] | None = None) -> int:
         log.error("config/profile.json missing — cannot score fit")
         return 1
 
+    if not FIT_RULES_FILE.exists():
+        log.warning("config/fit_rules.json missing — scoring with the generic method only")
     scores = run(max_jobs=args.max, rescore=args.rescore, on_scored=save)
     save(scores)
     log.info("wrote %s (%d entries)", FIT_FILE, len(scores))

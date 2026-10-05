@@ -63,7 +63,10 @@ const ROLE_CATEGORIES = [
   { id: 'director',   pattern: /\bdirector\b.*(\btpm\b|technical\s+program|program\s+management)/i },
   { id: 'sr_manager', pattern: /(sr\.?\s*manager|senior\s+manager).*(\btpm\b|technical\s+program|program\s+management)/i },
   { id: 'manager',    pattern: /\bmanager\b.*(\btpm\b|technical\s+program|program\s+management)/i },
-  { id: 'principal',  pattern: /(principal|staff)\s+(technical\s+program\s+manager|tpm)/i },
+  { id: 'principal',  pattern: /(principal|staff|distinguished)[\s,]+(technical\s+program\s+manager|tpm)/i },
+  { id: 'epm',        pattern: /engineering\s+program\s+manage/i },
+  // Adjacent disciplines kept by role_config.yml: eng ops and AI program/delivery leadership
+  { id: 'eng_ops_ai', pattern: /\b(head\s+of|director|vp|vice\s+president)\b.*(engineering\s+operations|\bai\b.*(program|delivery))/i },
 ];
 
 let allJobs = [];
@@ -329,8 +332,8 @@ function renderTable() {
 
 const FIT_LABELS = {
   strong: { label: 'Strong', cls: 'fit-strong' },
-  medium: { label: 'Medium', cls: 'fit-medium' },
-  not:    { label: 'Not a fit', cls: 'fit-not' },
+  medium: { label: 'Middle', cls: 'fit-medium' },
+  not:    { label: 'Pass', cls: 'fit-not' },
 };
 
 function fitCellHtml(fit) {

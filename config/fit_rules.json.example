@@ -1,0 +1,12 @@
+{
+  "_comment": "Copy to config/fit_rules.json (gitignored) and fill in. In CI it is written from the FIT_RULES_JSON secret: gh secret set FIT_RULES_JSON < config/fit_rules.json. Every key is rendered into the fit prompt, so add or rename keys freely; keys starting with _ are skipped.",
+  "target_levels": "e.g. Manager of TPMs through VP. IC roles allowed but rated middle",
+  "accepted_disciplines": ["Technical program management", "Engineering program management"],
+  "rejected_disciplines": ["Product management", "Professional services P&L"],
+  "hard_domain_gates": ["Industries whose required depth you lack"],
+  "strong_domains": ["Industries where your experience is a direct match"],
+  "domain_notes": ["Distinctions that are easy to get wrong"],
+  "never_claim": ["Claims an honest resume cannot make"],
+  "differentiators": ["What you want named as a requirement"],
+  "comp_floor_usd": 0
+}

@@ -187,6 +187,24 @@ class TestScorer(unittest.TestCase):
         _, reasons = score_job(job, CONFIG)
         self.assertFalse(any("remote/US" in r for r in reasons), reasons)
 
+    def test_pursued_role_families_kept(self):
+        # Role types actually applied to (fit rules: accepted disciplines).
+        for title in ["Manager, Technical Program Management, Workspace",
+                      "Engineering Program Manager Manager",
+                      "Director, Engineering Program Management",
+                      "Head of Engineering Operations",
+                      "Director, AI Solution Delivery",
+                      "Senior Distinguished Technical Program Manager"]:
+            score, _ = score_job({"title": title, "location": "Boston, MA", "company": "x"}, CONFIG)
+            self.assertGreater(score, 0, title)
+
+    def test_adjacent_but_rejected_titles_dropped(self):
+        for title in ["Engineering Manager, Payments", "Director, Product Management",
+                      "Account Director, AI Sales", "Director, Maintenance Programs",
+                      "Associate Director, Technical Program Management"]:
+            score, _ = score_job({"title": title, "location": "Boston, MA", "company": "x"}, CONFIG)
+            self.assertEqual(score, 0, title)
+
     def test_excluded_company(self):
         config = {**CONFIG, "excluded_companies": ["badcorp"]}
         job = {

@@ -24,6 +24,20 @@ title_patterns:
   - "sr\\.?[\\s,]+technical\\s+program\\s+manager"
   - "principal[\\s,]+technical\\s+program\\s+manager"
   - "staff[\\s,]+technical\\s+program\\s+manager"
+  - "distinguished[\\s,]+technical\\s+program\\s+manager"
+
+  # Role families pursued in practice (fit rules: accepted disciplines).
+  # Manager of TPMs/EPMs, e.g. "Manager, Technical Program Management"
+  - "\\bmanager,?\\s+(of\\s+)?(technical|engineering)\\s+program"
+  # Engineering program management (Apple/Adobe style EPM)
+  - "director.*engineering\\s+program"
+  - "head\\s+of\\s+engineering\\s+program"
+  - "engineering\\s+program\\s+manager.*\\bmanager\\b"
+  - "(sr\\.?|senior)\\s*manager.*engineering\\s+program"
+  # Engineering operations leadership
+  - "(head\\s+of|director|vp|vice\\s+president).*engineering\\s+operations"
+  # AI program office / AI delivery leadership
+  - "(head\\s+of|director|vp|vice\\s+president).*\\bai\\b.*(program|delivery)"
 
 excluded_title_patterns:
   - "intern"
@@ -80,6 +94,7 @@ score_weights:
   director: 35
   sr_manager: 30
   staff_or_principal: 25
+  tpm_manager: 25
   senior_tpm: 20
 
   remote_or_us: 20
@@ -105,6 +120,11 @@ seniority_keywords:
   staff_or_principal:
     - "staff"
     - "principal"
+    - "distinguished"
+
+  tpm_manager:
+    - "\\bmanager,?\\s+(of\\s+)?(technical|engineering)\\s+program"
+    - "engineering\\s+program\\s+manager.*\\bmanager\\b"
 
   senior_tpm:
     - "senior\\s+technical\\s+program\\s+manager"

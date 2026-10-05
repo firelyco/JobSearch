@@ -72,6 +72,17 @@ jobs:
         env:
           PROFILE_JSON: ${{ secrets.PROFILE_JSON }}
 
+      - name: Write fit_rules.json from secret
+        # Personal screening rules stay out of the public repo. Optional:
+        # without the secret, fit.py uses the generic method only.
+        run: |
+          if [ -n "$FIT_RULES_JSON" ]; then
+            printf '%s' "$FIT_RULES_JSON" > config/fit_rules.json
+            python -c "import json; json.load(open('config/fit_rules.json'))"               || (echo "::error::FIT_RULES_JSON secret is not valid JSON"; exit 1)
+          fi
+        env:
+          FIT_RULES_JSON: ${{ secrets.FIT_RULES_JSON }}
+
       - name: Score fit for new jobs
         run: |
           ARGS=""

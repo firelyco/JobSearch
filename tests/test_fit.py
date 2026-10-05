@@ -55,6 +55,13 @@ class TestRun(unittest.TestCase):
                 on_scored=lambda s: snapshots.append(len(s)))
         self.assertEqual(snapshots, [1, 2])
 
+    def test_rules_passed_to_scorer(self):
+        jobs = [job("greenhouse", "stripe", "1")]
+        fake = FakeClient([verdict("not")])
+        fit.run(jobs=jobs, profile=PROFILE, existing={}, fake_client=fake,
+                jd_text_for={key(jobs[0]): "jd"}, rules={"hard_domain_gates": ["Example industry"]}, now=NOW)
+        self.assertIn("Example industry", fake.calls[0]["system"][0]["text"])
+
     def test_only_scores_uncached(self):
         jobs = [job("greenhouse", "stripe", "1"), job("lever", "netflix", "2")]
         existing = {"greenhouse:stripe:1": {"recommendation": "strong", "reason": "cached", "scored_at": "old"}}

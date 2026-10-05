@@ -123,6 +123,23 @@ class TestScoreFit(unittest.TestCase):
         self.assertEqual(call["extra_body"]["temperature"], 0.0)
         self.assertIsInstance(call["system"], list)  # cache-control wrapped
 
+    def test_rules_rendered_into_cached_system_prompt(self):
+        fake = FakeClient([json.dumps({"recommendation": "not", "reason": "Domain gate: example industry"})])
+        rules = {"_comment": "skip me", "hard_domain_gates": ["Example industry"], "comp_floor_usd": 150000}
+        score_fit(PROFILE, JOB, "JD", client=fake, rules=rules)
+        system = fake.calls[0]["system"][0]["text"]
+        self.assertIn("HARD DOMAIN GATES:\n  - Example industry", system)
+        self.assertIn("COMP FLOOR USD: 150000", system)
+        self.assertNotIn("skip me", system)
+        # Rules belong in the cached system prompt, not the per-job user turn.
+        self.assertNotIn("Example industry", fake.calls[0]["messages"][0]["content"])
+
+    def test_no_rules_uses_generic_prompt(self):
+        from src.fit_scorer import FIT_SYSTEM_PROMPT
+        fake = FakeClient([json.dumps({"recommendation": "medium", "reason": "x"})])
+        score_fit(PROFILE, JOB, "JD", client=fake)
+        self.assertEqual(fake.calls[0]["system"][0]["text"], FIT_SYSTEM_PROMPT)
+
 
 if __name__ == "__main__":
     unittest.main()
