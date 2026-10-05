@@ -92,11 +92,15 @@ def run(
     fake_client: object | None = None,
     jd_text_for: dict | None = None,
     now: datetime | None = None,
+    on_scored=None,
 ) -> dict:
     """Score fit for jobs lacking a cached verdict. Returns the updated scores dict.
 
     Test hooks: pass jobs/profile/existing to avoid disk, fake_client to avoid
     the network, jd_text_for={job_key: jd_text} to avoid jd_fetch HTTP calls.
+    on_scored(scores) is called after each new verdict so main() can persist
+    progress — a run killed mid-way (slow provider, job timeout) keeps what
+    it already paid for.
     """
     jobs = jobs if jobs is not None else load_json(JOBS_FILE, [])
     profile = profile if profile is not None else load_json(PROFILE_FILE, {})
@@ -147,6 +151,8 @@ def run(
             "scored_at": stamp,
         }
         scored_count += 1
+        if on_scored is not None:
+            on_scored(scores)
         log.info("fit %-7s %s | %s", verdict.recommendation, k, verdict.reason)
 
     log.info("scored %d new jobs; %d total cached", scored_count, len(scores))
@@ -169,7 +175,7 @@ def main(argv: list[str] | None = None) -> int:
         log.error("config/profile.json missing — cannot score fit")
         return 1
 
-    scores = run(max_jobs=args.max, rescore=args.rescore)
+    scores = run(max_jobs=args.max, rescore=args.rescore, on_scored=save)
     save(scores)
     log.info("wrote %s (%d entries)", FIT_FILE, len(scores))
     return 0

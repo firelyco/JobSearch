@@ -46,6 +46,15 @@ class TestRun(unittest.TestCase):
         self.assertEqual(scores["lever:netflix:2"]["recommendation"], "medium")
         self.assertEqual(scores["greenhouse:stripe:1"]["scored_at"], NOW.isoformat())
 
+    def test_on_scored_called_after_each_verdict(self):
+        jobs = [job("greenhouse", "stripe", "1"), job("lever", "netflix", "2")]
+        fake = FakeClient([verdict("strong"), verdict("medium")])
+        snapshots = []
+        fit.run(jobs=jobs, profile=PROFILE, existing={}, fake_client=fake,
+                jd_text_for={key(j): "jd" for j in jobs}, now=NOW,
+                on_scored=lambda s: snapshots.append(len(s)))
+        self.assertEqual(snapshots, [1, 2])
+
     def test_only_scores_uncached(self):
         jobs = [job("greenhouse", "stripe", "1"), job("lever", "netflix", "2")]
         existing = {"greenhouse:stripe:1": {"recommendation": "strong", "reason": "cached", "scored_at": "old"}}
