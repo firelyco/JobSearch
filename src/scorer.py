@@ -33,23 +33,34 @@ def _matches_substring(text: str, needles: list[str]) -> bool:
     return any(n.lower() in text_low for n in needles)
 
 
-_US_LOCATION_HINTS = [
-    "remote", "united states", "usa", " us", "us-", "u.s.",
-    "ca", "ny", "tx", "wa", "ma", "il", "ga", "co", "fl", "or", "az", "nc", "va",
-    "san francisco", "new york", "boston", "seattle", "austin", "chicago",
-    "denver", "atlanta", "los angeles", "portland", "miami", "dallas", "houston",
-    "raleigh", "charlotte", "philadelphia", "washington dc", "san jose",
-    "san diego", "phoenix", "minneapolis", "pittsburgh", "detroit",
-    "california", "new york", "texas", "washington", "massachusetts",
-    "illinois", "georgia", "colorado", "florida", "oregon", "arizona",
+# Word-boundary regexes (kept in sync with LOCATION_MATCHERS.us in docs/app.js).
+# State codes only count after a comma or a "US" prefix ("Austin, TX",
+# "US-CA-Santa-Clara", "US, CA, San Jose") so "ca" can't match "Canada".
+_STATE_CODES = r"(ca|ny|tx|wa|ma|il|ga|co|fl|or|az|nc|va|pa|nj|nh|me|vt|md|oh|nv|mn|wi|mi|ut|tn|dc)"
+_US_LOCATION_RES = [
+    re.compile(r"\b(remote|u\.?s\.?a?|united states|north america|bay area)\b", re.IGNORECASE),
+    re.compile(r"(,\s*|\bus[-,\s]+)" + _STATE_CODES + r"\b", re.IGNORECASE),
+    re.compile(
+        r"\b(california|texas|washington|massachusetts|new york|florida|georgia|"
+        r"colorado|oregon|arizona|illinois|virginia|pennsylvania|new jersey|"
+        r"north carolina|maryland|ohio|minnesota|michigan|utah)\b",
+        re.IGNORECASE,
+    ),
+    re.compile(
+        r"\b(san francisco|boston|seattle|austin|chicago|denver|atlanta|"
+        r"los angeles|portland|miami|dallas|houston|raleigh|charlotte|"
+        r"philadelphia|san jose|san diego|phoenix|minneapolis|pittsburgh|"
+        r"detroit|nashville|sunnyvale|mountain view|santa clara|bellevue|"
+        r"redmond|palo alto|menlo park|cambridge)\b",
+        re.IGNORECASE,
+    ),
 ]
 
 
 def _is_us_or_remote(location: str) -> bool:
     if not location:
         return False
-    low = " " + location.lower() + " "
-    return any(hint in low for hint in _US_LOCATION_HINTS)
+    return any(r.search(location) for r in _US_LOCATION_RES)
 
 
 def score_job(job: dict, config: dict) -> tuple[int, list[str]]:
@@ -94,7 +105,8 @@ def score_job(job: dict, config: dict) -> tuple[int, list[str]]:
 
     excluded_locations = config.get("excluded_locations", []) or []
     preferred_locations = config.get("preferred_locations", []) or []
-    if location and _matches_substring(location, excluded_locations):
+    excluded = bool(location) and _matches_substring(location, excluded_locations)
+    if excluded:
         penalty = int(weights.get("excluded_location_penalty", -40))
         score += penalty
         reasons.append(f"excluded location: {location} ({penalty})")
@@ -102,7 +114,8 @@ def score_job(job: dict, config: dict) -> tuple[int, list[str]]:
         bonus = int(weights.get("preferred_location_bonus", 10))
         score += bonus
         reasons.append(f"preferred location: {location} (+{bonus})")
-    if location and _is_us_or_remote(location):
+    # No US/remote bonus for excluded locations ("Remote - India").
+    if location and not excluded and _is_us_or_remote(location):
         bonus = int(weights.get("remote_or_us", 20))
         score += bonus
         reasons.append(f"remote/US eligible (+{bonus})")
@@ -125,6 +138,10 @@ def is_recent(posted_at_iso: str, max_age_days: int, now=None) -> bool:
         dt = datetime.fromisoformat(str(posted_at_iso).replace("Z", "+00:00"))
     except (ValueError, AttributeError, TypeError):
         return True
+    if dt.tzinfo is None:
+        # Date-only or offset-less stamps (e.g. Oracle's "2026-09-30") — assume
+        # UTC; comparing naive to aware raises TypeError and crashed the poller.
+        dt = dt.replace(tzinfo=timezone.utc)
     n = now or datetime.now(timezone.utc)
     cutoff = n - timedelta(days=int(max_age_days))
     return dt >= cutoff

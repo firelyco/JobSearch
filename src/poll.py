@@ -114,9 +114,16 @@ def main() -> int:
     log.info("fetched %d raw jobs across all sources", len(all_jobs))
 
     scored: list[dict] = []
+    seen_keys: set[str] = set()
     dropped_age = 0
     max_age = int(role.get("max_posted_age_days", 0))
     for j in all_jobs:
+        # Overlapping queries (e.g. two amazon_jobs searches) return the same
+        # job more than once; keep the first so jobs.json has one row per key.
+        k = f"{j['source']}:{j['company']}:{j['id']}"
+        if k in seen_keys:
+            continue
+        seen_keys.add(k)
         score, reasons = scorer.score_job(j, role)
         bucket = scorer.classify(score, role)
         if bucket == "drop":

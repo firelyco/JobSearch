@@ -14,6 +14,7 @@ from __future__ import annotations
 import logging
 from datetime import datetime, timezone, timedelta
 import re
+from urllib.parse import urlparse
 import requests
 from . import Job, safe_str
 
@@ -40,7 +41,9 @@ def _parse_relative_posted(s: str) -> str:
     if not s:
         return ""
     low = s.lower().strip()
-    now = datetime.now(timezone.utc)
+    # Day precision: a full-resolution now() would rewrite every Workday
+    # posted_at on every poll, forcing a commit every 15 minutes.
+    now = datetime.now(timezone.utc).replace(hour=0, minute=0, second=0, microsecond=0)
     if "today" in low:
         return now.isoformat()
     if "yesterday" in low:
@@ -134,34 +137,32 @@ def fetch(config: dict) -> list[Job]:
     return results
 
 
-def fetch_detail(job: Job, wd_server: str = "wd3") -> str:
+def fetch_detail(job: Job) -> str:
     """Fetch the full HTML JD body for a single Workday job.
 
     Requires a second API call to:
-      GET {base_host}/wday/cxs/{tenant}/{site}/job{externalPath}
+      GET {base_host}/wday/cxs/{tenant}/{site}{externalPath}
     where externalPath is what we stored as the job id at poll time and
-    already starts with '/'. The response shape is
+    already starts with '/job/'. The response shape is
     {jobPostingInfo: {jobDescription: "<html>...</html>", ...}}.
 
-    Returns "" on failure. We accept wd_server as kwarg because the
-    normalized Job dict doesn't carry it; defaults to wd3, callers that
-    know better should pass it. tenant + site are extracted from the
-    job's id (externalPath includes neither, so we also need company).
+    Returns "" on failure. The host (which carries the wd1/wd5/wd12 data
+    center) and the site aren't in the normalized Job dict, so both are
+    recovered from the stored public url.
     """
     tenant = job.get("company", "")
     external_path = job.get("id", "")
     if not tenant or not external_path:
         return ""
-    # externalPath looks like "/job/Boston/Senior-TPM_R-12345" — we need
-    # the matching site (e.g., NVIDIAExternalCareerSite). It's not in the
-    # normalized job dict so we reconstruct from the stored url.
+    # url looks like https://nvidia.wd5.myworkdayjobs.com/en-US/NVIDIAExternalCareerSite/job/...
     url = job.get("url", "")
     site = _extract_site_from_url(url)
-    if not site:
-        log.warning("workday detail %s: cannot extract site from url=%r", tenant, url)
+    host = urlparse(url).hostname or ""
+    if not site or not host.endswith(".myworkdayjobs.com"):
+        log.warning("workday detail %s: cannot extract host/site from url=%r", tenant, url)
         return ""
-    base_host = f"https://{tenant}.{wd_server}.myworkdayjobs.com"
-    api_url = f"{base_host}/wday/cxs/{tenant}/{site}/job{external_path}"
+    base_host = f"https://{host}"
+    api_url = f"{base_host}/wday/cxs/{tenant}/{site}{external_path}"
     headers = dict(HEADERS)
     headers["Referer"] = f"{base_host}/en-US/{site}"
     try:

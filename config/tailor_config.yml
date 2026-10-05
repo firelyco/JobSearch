@@ -10,12 +10,13 @@
 # claude-haiku-4-5).
 #
 # NOTE: confirm the exact DeepSeek slug at build.nvidia.com — the catalog path
-# is the model id. As of this writing it is deepseek-ai/deepseek-v4-flash.
+# is the model id. NVIDIA retires old slugs (HTTP 410 Gone): v4-flash was
+# pulled in Aug 2026; check https://integrate.api.nvidia.com/v1/models.
 models:
-  tailor: "deepseek-ai/deepseek-v4-flash"
-  verify: "deepseek-ai/deepseek-v4-flash"
-  cover_letter: "deepseek-ai/deepseek-v4-flash"
-  fit: "deepseek-ai/deepseek-v4-flash"
+  tailor: "deepseek-ai/deepseek-v4.1-flash"
+  verify: "deepseek-ai/deepseek-v4.1-flash"
+  cover_letter: "deepseek-ai/deepseek-v4.1-flash"
+  fit: "deepseek-ai/deepseek-v4.1-flash"
 
 # Hard caps to prevent cost runaway (Risk 6 in PRD).
 limits:

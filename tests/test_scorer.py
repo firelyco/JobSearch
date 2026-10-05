@@ -170,6 +170,23 @@ class TestScorer(unittest.TestCase):
         score, _ = score_job(job, CONFIG)
         self.assertLess(score, 60)
 
+    def test_non_us_locations_get_no_us_bonus(self):
+        # Two-letter state codes used to match as substrings ("ca" in Canada).
+        from src.scorer import _is_us_or_remote
+        for loc in ["Toronto, Canada", "Berlin, Germany", "Mexico City", "Bangalore, India"]:
+            self.assertFalse(_is_us_or_remote(loc), loc)
+        for loc in ["Austin, TX", "US-CA-Santa-Clara", "Seattle, WA, USA", "Remote", "Pittsburgh"]:
+            self.assertTrue(_is_us_or_remote(loc), loc)
+
+    def test_excluded_remote_location_gets_no_us_bonus(self):
+        job = {
+            "title": "Senior Technical Program Manager",
+            "location": "Remote - India",
+            "company": "mongodb",
+        }
+        _, reasons = score_job(job, CONFIG)
+        self.assertFalse(any("remote/US" in r for r in reasons), reasons)
+
     def test_excluded_company(self):
         config = {**CONFIG, "excluded_companies": ["badcorp"]}
         job = {
@@ -247,6 +264,12 @@ class TestIsRecent(unittest.TestCase):
         from src.scorer import is_recent
         ts = "2026-05-25T12:00:00Z"  # 4 days before NOW
         self.assertTrue(is_recent(ts, 21, now=self.NOW))
+
+    def test_date_only_posted_at_is_compared_as_utc(self):
+        # Oracle returns "2026-05-20"; a naive datetime crashed the poller.
+        from src.scorer import is_recent
+        self.assertTrue(is_recent("2026-05-20", 21, now=self.NOW))
+        self.assertFalse(is_recent("2026-01-01", 21, now=self.NOW))
 
 
 if __name__ == "__main__":

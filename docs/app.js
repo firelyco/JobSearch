@@ -43,11 +43,12 @@ function relativeTime(iso) {
   return `${Math.floor(days / 30)}mo`;
 }
 
-function scoreBucket(score) {
-  if (score >= 85) return 'hot';
-  if (score >= 70) return 'standard';
-  return 'low';
+// The poller classifies each job against role_config.yml thresholds; use its
+// bucket rather than duplicating the cutoffs here.
+function scoreBucket(j) {
+  return j.bucket || 'low';
 }
+function isHot(j) { return scoreBucket(j) === 'hot'; }
 
 function postedTooltip(j) {
   const parts = [];
@@ -171,7 +172,7 @@ function renderMeta() {
   } else {
     $('meta-line').textContent = '';
   }
-  const hot = allJobs.filter(j => j.score >= 85).length;
+  const hot = allJobs.filter(isHot).length;
   $('badge-hot').textContent = `${hot} hot`;
   $('badge-total').textContent = `${allJobs.length} total`;
 }
@@ -184,7 +185,7 @@ function matchesQuickFilter(j, curStatus) {
     case 'this-week':    return ts >= now - 7 * 86400 * 1000;
     case 'applied':      return curStatus === 'applied';
     case 'interviewing': return curStatus === 'interviewing';
-    case 'hot':          return (j.score || 0) >= 85;
+    case 'hot':          return isHot(j);
     default:             return true;
   }
 }
@@ -252,8 +253,8 @@ function renderTable() {
 
   let filtered = sortedJobs.filter(j => {
     if (source && j.source !== source) return false;
-    if (scoreFilter === 'hot' && j.score < 85) return false;
-    if (scoreFilter === 'standard' && j.score < 70) return false;
+    if (scoreFilter === 'hot' && !isHot(j)) return false;
+    if (scoreFilter === 'standard' && scoreBucket(j) === 'low') return false;
     if (fitFilter) {
       const rec = (fitScores[jobKey(j)] || {}).recommendation || '';
       if (rec !== fitFilter) return false;
@@ -280,7 +281,7 @@ function renderTable() {
 
   const inFlight = loadInFlight();
   tbody.innerHTML = filtered.map(j => {
-    const bucket = scoreBucket(j.score || 0);
+    const bucket = scoreBucket(j);
     const key = jobKey(j);
     const curStatus = statuses[key] || 'new';
     const meta = [j.location, j.source].filter(Boolean).join(' · ');
