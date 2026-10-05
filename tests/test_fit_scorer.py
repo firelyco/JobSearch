@@ -134,6 +134,15 @@ class TestScoreFit(unittest.TestCase):
         # Rules belong in the cached system prompt, not the per-job user turn.
         self.assertNotIn("Example industry", fake.calls[0]["messages"][0]["content"])
 
+    def test_reason_redacts_candidate_employers(self):
+        # Reasons are public; the model sometimes names the candidate's history.
+        from src.fit_scorer import redact_history
+        profile = {"experience": [{"company": "Acme Robotics"}], "education": [{"school": "State University"}]}
+        out = redact_history("Level fit: built org at Acme Robotics; Acme team; State University grad", profile)
+        self.assertNotIn("Acme", out)
+        self.assertNotIn("State University", out)
+        self.assertIn("prior employer", out)
+
     def test_no_rules_uses_generic_prompt(self):
         from src.fit_scorer import FIT_SYSTEM_PROMPT
         fake = FakeClient([json.dumps({"recommendation": "medium", "reason": "x"})])

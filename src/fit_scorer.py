@@ -21,6 +21,7 @@ by fit.py so each job is scored once.
 from __future__ import annotations
 import json
 import logging
+import re
 from dataclasses import dataclass
 
 from src import llm_client
@@ -49,7 +50,7 @@ Verdict:
 - "strong": right discipline, no gate, target level, guardrails intact, and ideally the candidate's differentiators are named requirements.
 Judge only on evidence in the profile and the JD. Never assume skills, domains or seniority not present. "not" is a valid and useful answer; do not inflate.
 
-The reason is shown on a public page, so describe the ROLE, not the candidate's history. Start it with the deciding step, e.g. "Discipline: this is product management, not program management" or "Domain gate: requires clinical trial operations depth" or "Strong: platform program org leadership is the core ask".
+The reason is shown on a public page, so describe the ROLE. Never mention the candidate's employers, schools, titles or history. Start it with the deciding step, e.g. "Discipline: this is product management, not program management" or "Domain gate: requires clinical trial operations depth" or "Strong: platform program org leadership is the core ask".
 
 Return ONLY a JSON object, no prose:
 {"recommendation": "strong|medium|not", "reason": "<= 20 words"}"""
@@ -115,6 +116,23 @@ def condense_profile(profile: dict) -> str:
     return "\n".join(lines)
 
 
+def redact_history(reason: str, profile: dict) -> str:
+    """Replace the candidate's employer and school names in a reason.
+
+    fit_scores.json is served on the public dashboard, and the prompt's
+    "describe the role" instruction isn't always followed, so enforce it.
+    """
+    names = [exp.get("company", "") for exp in profile.get("experience", []) or []]
+    names += [edu.get("school", "") for edu in profile.get("education", []) or []]
+    for name in sorted({n for n in names if n and len(n) > 2}, key=len, reverse=True):
+        reason = re.sub(re.escape(name), "prior employer", reason, flags=re.IGNORECASE)
+        # Also catch the first word alone ("Berkshire" for "Berkshire Grey").
+        first = name.split()[0]
+        if len(first) > 3 and first.lower() != name.lower():
+            reason = re.sub(rf"\b{re.escape(first)}\b", "prior employer", reason, flags=re.IGNORECASE)
+    return reason
+
+
 def _strip_to_json(s: str) -> str:
     if not s:
         return "{}"
@@ -178,7 +196,7 @@ def score_fit(
         return FitVerdict("medium", "could not classify (non-JSON response)")
 
     rec = str(parsed.get("recommendation", "")).lower().strip()
-    reason = str(parsed.get("reason", "")).strip()
+    reason = redact_history(str(parsed.get("reason", "")).strip(), profile)
     if rec not in VALID_RECOMMENDATIONS:
         log.warning("fit: unexpected recommendation %r for %s", rec, job.get("title"))
         return FitVerdict("medium", reason or "could not classify")

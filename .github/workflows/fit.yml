@@ -11,6 +11,11 @@ on:
         required: false
         type: boolean
         default: false
+      max:
+        description: "Max jobs to score this run (default 40)"
+        required: false
+        type: string
+        default: "40"
 
 # Serialize fit runs; never run two at once (they both write fit_scores.json).
 concurrency:
@@ -85,9 +90,9 @@ jobs:
 
       - name: Score fit for new jobs
         run: |
-          ARGS=""
+          ARGS="--max ${{ inputs.max || '40' }}"
           if [ "${{ inputs.rescore }}" = "true" ]; then
-            ARGS="--rescore"
+            ARGS="$ARGS --rescore"
           fi
           python -m src.fit $ARGS
 
