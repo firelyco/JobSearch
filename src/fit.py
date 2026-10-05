@@ -43,10 +43,11 @@ PROFILE_FILE = CONFIG_DIR / "profile.json"
 TAILOR_CONFIG_FILE = CONFIG_DIR / "tailor_config.yml"
 FIT_FILE = DOCS_DIR / "fit_scores.json"
 
-# Small cap because the NVIDIA free tier is slow (~1-2 min/call): a run must
-# finish and commit within the job timeout. Remaining jobs are picked up on the
-# next poll-triggered run (incremental, eventually-consistent).
-MAX_JOBS_PER_RUN = 6
+# Haiku answers in seconds, so 40 jobs fit well inside the job timeout and
+# clear a backlog in a few runs (~$0.002/job). Drop back to ~6 on a slow
+# provider (the NVIDIA free tier ran 1-2 min/call). Remaining jobs are picked
+# up on the next poll-triggered run (incremental, eventually-consistent).
+MAX_JOBS_PER_RUN = 40
 DEFAULT_FIT_MODEL = "claude-haiku-4-5"
 
 

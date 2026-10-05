@@ -109,18 +109,43 @@ def call(
     return _call_anthropic(client, model, system, user, max_tokens, temperature, cache_system)
 
 
+# Newer Claude models reject non-default sampling params (temperature) with a
+# 400 and run adaptive thinking by default; Haiku 4.5 / 4.6-era models don't.
+_NO_SAMPLING_PREFIXES = (
+    "claude-sonnet-5", "claude-opus-5", "claude-opus-4-7", "claude-opus-4-8",
+    "claude-fable", "claude-mythos",
+)
+# Thinking tokens count against max_tokens, so callers' small caps (sized for
+# answer-only models) would truncate the answer. Floor them for these models.
+_THINKING_MIN_MAX_TOKENS = 16000
+# Models that accept the server-side refusal fallback in its "default" form.
+_FALLBACK_DEFAULT_MODELS = ("claude-sonnet-5-5",)
+_FALLBACK_BETA = "server-side-fallback-2026-07-01"
+
+
 def _call_anthropic(client, model, system, user, max_tokens, temperature, cache_system) -> LLMResponse:
     if cache_system:
         system_param: Any = [{"type": "text", "text": system, "cache_control": {"type": "ephemeral"}}]
     else:
         system_param = system
-    resp = client.messages.create(
-        model=model,
-        max_tokens=max_tokens,
-        temperature=temperature,
-        system=system_param,
-        messages=[{"role": "user", "content": user}],
-    )
+    kwargs: dict[str, Any] = {
+        "model": model,
+        "max_tokens": max_tokens,
+        "system": system_param,
+        "messages": [{"role": "user", "content": user}],
+    }
+    if model.startswith(_NO_SAMPLING_PREFIXES):
+        kwargs["max_tokens"] = max(max_tokens, _THINKING_MIN_MAX_TOKENS)
+    else:
+        kwargs["temperature"] = temperature
+    if model.startswith(_FALLBACK_DEFAULT_MODELS):
+        # On a safety-classifier decline, the API re-runs the request on a
+        # fallback model inside the same call instead of returning a refusal.
+        resp = client.beta.messages.create(betas=[_FALLBACK_BETA], fallbacks="default", **kwargs)
+    else:
+        resp = client.messages.create(**kwargs)
+    if getattr(resp, "stop_reason", None) == "refusal":
+        raise RuntimeError(f"{model} declined the request (stop_reason=refusal)")
     content = getattr(resp, "content", None) or []
     parts = [getattr(b, "text", "") for b in content if getattr(b, "type", None) == "text"]
     usage = getattr(resp, "usage", None)

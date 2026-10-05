@@ -40,6 +40,7 @@ class FakeClient:
         self._responses = list(responses)
         self.calls: list[dict] = []
         self.messages = self  # so client.messages.create works
+        self.beta = self      # ...and client.beta.messages.create
 
     def create(self, **kwargs):
         self.calls.append(kwargs)

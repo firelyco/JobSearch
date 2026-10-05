@@ -100,6 +100,29 @@ class TestProviderDispatch(unittest.TestCase):
         self.assertIsInstance(client.calls[0]["system"], list)
 
 
+class TestAnthropicModelShapes(unittest.TestCase):
+
+    def _call(self, model, **kw):
+        client = FakeClient(["ok"])
+        llm_client.call(client, model=model, system="s", user="u",
+                        max_tokens=400, temperature=0.4, **kw)
+        return client.calls[0]
+
+    def test_haiku_keeps_temperature_and_cap(self):
+        sent = self._call("claude-haiku-4-5")
+        self.assertEqual(sent["temperature"], 0.4)
+        self.assertEqual(sent["max_tokens"], 400)
+        self.assertNotIn("fallbacks", sent)
+
+    def test_sonnet_5_5_drops_temperature_floors_tokens_and_falls_back(self):
+        # Sonnet 5.5 400s on a non-default temperature; thinking needs headroom.
+        sent = self._call("claude-sonnet-5-5")
+        self.assertNotIn("temperature", sent)
+        self.assertGreaterEqual(sent["max_tokens"], 16000)
+        self.assertEqual(sent["fallbacks"], "default")
+        self.assertEqual(sent["betas"], ["server-side-fallback-2026-07-01"])
+
+
 class TestActiveProvider(unittest.TestCase):
 
     def test_default_is_anthropic(self):

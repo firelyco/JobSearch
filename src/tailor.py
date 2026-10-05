@@ -195,6 +195,7 @@ def _estimate_cost(input_tokens: int, output_tokens: int, model: str) -> float:
     price at $0. Unknown models default to Sonnet pricing (conservative).
     """
     prices = {
+        "claude-sonnet-5-5": (2.0, 10.0),
         "claude-sonnet-4-6": (3.0, 15.0),
         "claude-haiku-4-5": (1.0, 5.0),
     }
@@ -224,9 +225,9 @@ def tailor(
     job = find_job(jobs, job_key)
 
     models = cfg.get("models", {}) or {}
-    tailor_model = models.get("tailor", "claude-sonnet-4-6")
+    tailor_model = models.get("tailor", "claude-sonnet-5-5")
     verify_model = models.get("verify", "claude-haiku-4-5")
-    cover_model = models.get("cover_letter", "claude-sonnet-4-6")
+    cover_model = models.get("cover_letter", "claude-sonnet-5-5")
 
     limits = cfg.get("limits", {}) or {}
     max_jd_tokens = int(limits.get("max_jd_tokens", 8000))
