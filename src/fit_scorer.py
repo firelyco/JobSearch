@@ -140,7 +140,7 @@ def redact_history(reason: str, profile: dict, rules: dict | None = None) -> str
     if isinstance(floor, (int, float)) and floor >= 1000:
         k = int(floor) // 1000
         # e.g. "$150K", "150k", "150,000" -> "[redacted]" (backstop; the prompt forbids it)
-        reason = re.sub(rf"\$?\b{k}(?:,?000\b|\s?[kK]\b)", "the floor", reason)
+        reason = re.sub(rf"\$?\b{k}(?:,?000\b|\s?[kK]\b)", "[redacted]", reason)
     return reason
 
 
