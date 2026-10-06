@@ -108,7 +108,11 @@ def fetch(config: dict) -> list[Job]:
             break
 
         postings = data.get("jobPostings", []) if isinstance(data, dict) else []
-        total = int(data.get("total", 0)) if isinstance(data, dict) else 0
+        # Many tenants report `total` only on the first page and 0 after it;
+        # re-reading it every page stopped pagination at 40 jobs.
+        page_total = int(data.get("total", 0) or 0) if isinstance(data, dict) else 0
+        if offset == 0 or page_total:
+            total = page_total
 
         for j in postings:
             if not isinstance(j, dict):

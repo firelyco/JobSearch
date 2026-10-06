@@ -11,6 +11,22 @@ from unittest.mock import patch, MagicMock
 from src.adapters import workday
 
 
+class TestFetchPaging(unittest.TestCase):
+
+    def test_keeps_first_page_total(self):
+        # Workday reports `total` on page 1 only; later pages say 0.
+        def page(total):
+            m = MagicMock(status_code=200)
+            m.json.return_value = {"total": total, "jobPostings": [
+                {"title": "TPM", "externalPath": f"/job/x/{id(m)}_{i}"} for i in range(20)]}
+            return m
+        pages = [page(60), page(0), page(0)]
+        with patch("src.adapters.workday.requests.post", side_effect=pages) as m:
+            jobs = workday.fetch({"tenant": "t", "site": "s", "wd_server": "wd5"})
+        self.assertEqual(m.call_count, 3)
+        self.assertEqual(len(jobs), 60)
+
+
 class TestFetchDetail(unittest.TestCase):
 
     def test_uses_job_host_and_external_path(self):

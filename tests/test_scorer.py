@@ -205,6 +205,25 @@ class TestScorer(unittest.TestCase):
             score, _ = score_job({"title": title, "location": "Boston, MA", "company": "x"}, CONFIG)
             self.assertEqual(score, 0, title)
 
+    def test_plain_tpm_kept_only_at_unleveled_companies(self):
+        # Anthropic/Netflix/Apple don't put levels in titles; others do, so a
+        # plain title there means a junior role.
+        kept = [("anthropic", "Technical Program Manager, Compute"),
+                ("netflix", "Technical Program Manager 6 - Infrastructure, AI"),
+                ("apple", "Engineering Program Manager (ANE/ML/AI)")]
+        for company, title in kept:
+            score, reasons = score_job({"title": title, "location": "Remote, US", "company": company}, CONFIG)
+            self.assertGreaterEqual(score, CONFIG["notification_threshold"], title)
+            self.assertTrue(any(r.startswith("level not in title") for r in reasons), reasons)
+        score, _ = score_job({"title": "Technical Program Manager, Payments", "location": "Remote, US",
+                              "company": "stripe"}, CONFIG)
+        self.assertEqual(score, 0)
+
+    def test_tpm_manager_and_qualified_senior_titles(self):
+        for title in ["TPM Manager, Infrastructure", "Senior Software Technical Program Manager"]:
+            score, _ = score_job({"title": title, "location": "Remote, US", "company": "x"}, CONFIG)
+            self.assertGreater(score, 0, title)
+
     def test_excluded_company(self):
         config = {**CONFIG, "excluded_companies": ["badcorp"]}
         job = {

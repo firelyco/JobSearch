@@ -84,7 +84,12 @@ def score_job(job: dict, config: dict) -> tuple[int, list[str]]:
 
     weights = config.get("score_weights", {}) or {}
     title_patterns = config.get("title_patterns", []) or []
-    if not _matches_any(title, title_patterns):
+    # Some companies never put seniority in titles ("Technical Program
+    # Manager, Compute"); for them a plain TPM/EPM title is kept and the fit
+    # check, which reads the JD, judges the level.
+    unleveled = company.lower() in (c.lower() for c in config.get("unleveled_title_companies", []) or [])
+    unleveled_match = unleveled and _matches_any(title, config.get("unleveled_title_patterns", []) or [])
+    if not _matches_any(title, title_patterns) and not unleveled_match:
         return 0, ["no title match"]
     score = int(weights.get("title_match", 30))
     reasons.append(f"title match (+{weights.get('title_match', 30)})")
@@ -95,13 +100,20 @@ def score_job(job: dict, config: dict) -> tuple[int, list[str]]:
         key=lambda kv: int(weights.get(kv[0], 0)),
         reverse=True,
     )
+    seniority_found = False
     for bucket_name, patterns in sorted_buckets:
         if _matches_any(title, patterns):
             bonus = int(weights.get(bucket_name, 0))
             if bonus > 0:
                 score += bonus
                 reasons.append(f"{bucket_name.replace('_', ' ')} (+{bonus})")
+                seniority_found = True
             break
+    if unleveled_match and not seniority_found:
+        bonus = int(weights.get("unleveled_title_bonus", 0))
+        if bonus > 0:
+            score += bonus
+            reasons.append(f"level not in title, fit check judges it (+{bonus})")
 
     excluded_locations = config.get("excluded_locations", []) or []
     preferred_locations = config.get("preferred_locations", []) or []

@@ -25,6 +25,10 @@ title_patterns:
   - "principal[\\s,]+technical\\s+program\\s+manager"
   - "staff[\\s,]+technical\\s+program\\s+manager"
   - "distinguished[\\s,]+technical\\s+program\\s+manager"
+  # Seniority with a qualifier in between: "Senior Software Technical Program Manager"
+  - "(senior|sr\\.?)\\s+[a-z/&]+\\s+technical\\s+program\\s+manager"
+  # "TPM Manager, Infrastructure" (Anthropic) = manager of TPMs
+  - "\\btpm\\s+manager\\b"
 
   # Role families pursued in practice (fit rules: accepted disciplines).
   # Manager of TPMs/EPMs, e.g. "Manager, Technical Program Management"
@@ -38,6 +42,19 @@ title_patterns:
   - "(head\\s+of|director|vp|vice\\s+president).*engineering\\s+operations"
   # AI program office / AI delivery leadership
   - "(head\\s+of|director|vp|vice\\s+president).*\\bai\\b.*(program|delivery)"
+
+# Companies that never put seniority in titles: Anthropic ("Technical Program
+# Manager, Compute"), Netflix ("Technical Program Manager 6"), Apple
+# ("Engineering Program Manager"). For these a plain TPM/EPM title is kept
+# (scored as standard) and the AI fit check reads the JD to judge level.
+unleveled_title_companies:
+  - anthropic
+  - netflix
+  - apple
+unleveled_title_patterns:
+  - "technical\\s+program\\s+manager"
+  - "engineering\\s+program\\s+manager"
+  - "\\btpm\\b"
 
 excluded_title_patterns:
   - "intern"
@@ -96,6 +113,7 @@ score_weights:
   staff_or_principal: 25
   tpm_manager: 25
   senior_tpm: 20
+  unleveled_title_bonus: 20
 
   remote_or_us: 20
   preferred_location_bonus: 10
@@ -125,10 +143,12 @@ seniority_keywords:
   tpm_manager:
     - "\\bmanager,?\\s+(of\\s+)?(technical|engineering)\\s+program"
     - "engineering\\s+program\\s+manager.*\\bmanager\\b"
+    - "\\btpm\\s+manager\\b"
 
   senior_tpm:
     - "senior\\s+technical\\s+program\\s+manager"
     - "sr\\.?\\s+technical\\s+program\\s+manager"
+    - "(senior|sr\\.?)\\s+[a-z/&]+\\s+technical\\s+program\\s+manager"
 
 notification_threshold: 60
 hot_match_threshold: 80

@@ -67,6 +67,9 @@ const ROLE_CATEGORIES = [
   { id: 'epm',        pattern: /engineering\s+program\s+manage/i },
   // Adjacent disciplines kept by role_config.yml: eng ops and AI program/delivery leadership
   { id: 'eng_ops_ai', pattern: /\b(head\s+of|director|vp|vice\s+president)\b.*(engineering\s+operations|\bai\b.*(program|delivery))/i },
+  // Companies that don't level titles (Anthropic, Netflix, Apple): the poller
+  // flags these in score_reasons, since the title alone can't place them.
+  { id: 'unleveled',  match: (j) => (j.score_reasons || []).some(r => r.startsWith('level not in title')) },
 ];
 
 let allJobs = [];
@@ -268,7 +271,7 @@ function renderTable() {
     if (locationFilter && !matchesLocation(j.location, locationFilter)) return false;
     if (workmodeFilter && !matchesWorkmode(j.location, workmodeFilter)) return false;
     const title = (j.title || '').toLowerCase();
-    if (!selectedRoles.some(r => r.pattern.test(title))) return false;
+    if (!selectedRoles.some(r => r.match ? r.match(j) : r.pattern.test(title))) return false;
     if (search) {
       const blob = `${j.title} ${j.company} ${j.location}`.toLowerCase();
       if (!blob.includes(search)) return false;
