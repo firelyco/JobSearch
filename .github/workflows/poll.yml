@@ -2,7 +2,9 @@ name: Poll job boards
 
 on:
   schedule:
-    - cron: "*/15 * * * *"
+    # Off the :00/:15 marks: GitHub delays or drops scheduled runs at peak
+    # minutes, and in practice this fired only ~4-8 times a day at */15.
+    - cron: "7,22,37,52 * * * *"
   workflow_dispatch: {}
   push:
     branches: [main]
@@ -26,6 +28,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
+          # Latest main, not the triggering commit: a queued run would
+          # otherwise start from a stale tree and conflict on push.
+          ref: main
           fetch-depth: 1
 
       - name: Set up Python
@@ -51,7 +56,15 @@ jobs:
             echo "no changes"
           else
             git commit -m "poll: refresh jobs $(date -u +%Y-%m-%dT%H:%MZ)"
-            # fit/tailor runs may have pushed since checkout; fold them in
-            git pull --rebase origin main
+            # fit/tailor runs may have pushed since checkout; fold them in.
+            # If another poll's output landed first, this run's files are
+            # newer: keep them whole (during a rebase, "theirs" is our commit)
+            # rather than hunk-merging JSON.
+            OUTPUTS="docs/jobs.json docs/meta.json state/seen_jobs.json"
+            if ! git pull --rebase origin main; then
+              git checkout --theirs -- $OUTPUTS
+              git add $OUTPUTS
+              GIT_EDITOR=true git rebase --continue
+            fi
             git push
           fi
