@@ -44,7 +44,7 @@ Work through these steps in order. Read past the title every time; titles missta
 
 1. Discipline. From the JD body, decide what work this actually is. If it is one of the candidate's rejected disciplines, or anything else that is not one of their accepted disciplines, it fails.
 2. Domain gate. Industry depth gates only when the JD states it as a required qualification AND it is the substance of the role. A domain that appears in the product but not the qualifications does not gate. The company's industry is not the role's domain. Fails if a required domain is one of the candidate's hard domain gates or is otherwise absent from the profile.
-3. Level. Compare the role's level and shape (people leader vs individual contributor) with the candidate's targets. This is a flag, not a failure: an IC role or one slightly below target lowers the verdict, it does not fail it.
+3. Level. Judge the ROLE's level from the JD, never the candidate's. A role manages people only if the JD says so (direct reports, "manage a team of", "hire and develop", "lead a team of program managers"). Senior, Staff, Principal, Lead and "Leadership" TPM titles without such language are individual contributor (IC) roles. This is a flag, not a failure: an IC role or one below target lowers the verdict to medium, it does not fail it.
 4. Guardrails. Would an honest resume need a claim on the candidate's never-claim list? If that claim is central to the role it fails; if it is one preferred line it is a stretch to note.
 5. Comp and location. Tie-breakers only. Posted comp clearly below the candidate's floor lowers the verdict; it never fails a role alone.
 
@@ -54,11 +54,11 @@ Verdict:
 - "strong": right discipline, no gate, target level, guardrails intact, and ideally the candidate's differentiators are named requirements.
 Judge only on evidence in the profile and the JD. Never assume skills, domains or seniority not present. "not" is a valid and useful answer; do not inflate.
 
-The reason is shown on a public page, so describe the ROLE. Never mention the candidate's employers, schools, titles, history, or comp floor; describe posted pay only as below or within band. Start it with the deciding step, e.g. "Discipline: this is product management, not program management" or "Domain gate: requires clinical trial operations depth" or "Strong: platform program org leadership is the core ask".
+"role_summary" is shown on a public page. It must describe only the ROLE and what it asks for, never the candidate: no years of experience, past titles, employers, domains the candidate has, or comp floor. Start it with the deciding step, e.g. "Discipline: this is product management, not program management" or "Domain gate: requires clinical trial operations depth" or "Strong: leads a team of TPMs on an AI platform".
 
 Return ONLY a JSON object, no prose:
-{"recommendation": "strong|medium|not", "step": "discipline|domain|level|guardrails|comp|none", "reason": "<= 20 words"}
-"step" is the step that decided the verdict ("none" for a clean strong)."""
+{"recommendation": "strong|medium|not", "step": "discipline|domain|level|guardrails|comp|none", "role_level": "ic|people_manager|unknown", "role_summary": "<= 20 words about the role"}
+"step" is the step that decided the verdict ("none" for a clean strong). "role_level" is from the JD alone: people_manager only if the JD describes managing people."""
 
 
 def render_rules(rules: dict | None) -> str:
@@ -207,10 +207,11 @@ def score_fit(
         return FitVerdict("medium", "could not classify (non-JSON response)")
 
     rec = str(parsed.get("recommendation", "")).lower().strip()
-    reason = redact_history(str(parsed.get("reason", "")).strip(), profile, rules)
     step = str(parsed.get("step", "none")).lower().strip()
     if step not in VALID_STEPS:
         step = "none"
+    raw = str(parsed.get("role_summary") or parsed.get("reason") or "").strip()
+    reason = public_summary(redact_history(raw, profile, rules), step)
     if rec not in VALID_RECOMMENDATIONS:
         log.warning("fit: unexpected recommendation %r for %s", rec, job.get("title"))
         return FitVerdict("medium", reason or "could not classify", step)
@@ -220,4 +221,28 @@ def score_fit(
         # two demotions into a pass.
         log.info("fit: %s pass on %r downgraded to medium", job.get("title"), step)
         rec = "medium"
+    role_level = str(parsed.get("role_level", "unknown")).lower().strip()
+    if rec == "strong" and role_level == "ic":
+        # The model tends to judge the candidate's level instead of the
+        # role's; an individual-contributor role caps at medium.
+        log.info("fit: %s strong on an IC role capped at medium", job.get("title"))
+        rec, step = "medium", "level"
+        reason = f"Level: individual contributor role. {reason}".strip()
     return FitVerdict(rec, reason, step)
+
+
+# Text that describes the candidate rather than the role. The summary is
+# public, so one that slips through is replaced rather than published.
+_CANDIDATE_TALK_RE = re.compile(
+    r"\b\d+\+?\s*(?:years|yrs)\b|\bcandidate\b|\bprofile\b|\bguardrails?\b"
+    r"|\bprior employer\b|\b(?:my|his|her|their) (?:experience|background)\b"
+    r"|\b(?:org|organization)[- ]builder\b|\bbuilt (?:the )?(?:tpm|program)",
+    re.IGNORECASE,
+)
+
+
+def public_summary(text: str, step: str) -> str:
+    if text and not _CANDIDATE_TALK_RE.search(text):
+        return text
+    label = {"none": "Strong", "comp": "Comp"}.get(step, step.capitalize())
+    return f"{label}: details withheld from the public page" if text else ""

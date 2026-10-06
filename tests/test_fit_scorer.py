@@ -162,6 +162,28 @@ class TestScoreFit(unittest.TestCase):
             self.assertNotIn("150", redact_history(text, {}, rules), text)
         self.assertIn("$148.7K", redact_history("posted $148.7K", {}, rules))
 
+    def test_strong_on_ic_role_capped_at_medium(self):
+        fake = FakeClient([json.dumps({"recommendation": "strong", "step": "none", "role_level": "ic",
+                                       "role_summary": "Strong: drives AI platform launches"})])
+        v = score_fit(PROFILE, JOB, "JD", client=fake)
+        self.assertEqual((v.recommendation, v.step), ("medium", "level"))
+        self.assertTrue(v.reason.startswith("Level: individual contributor role."))
+
+    def test_strong_on_people_manager_role_kept(self):
+        fake = FakeClient([json.dumps({"recommendation": "strong", "step": "none", "role_level": "people_manager",
+                                       "role_summary": "Strong: leads a team of TPMs"})])
+        v = score_fit(PROFILE, JOB, "JD", client=fake)
+        self.assertEqual(v.recommendation, "strong")
+        self.assertEqual(v.reason, "Strong: leads a team of TPMs")
+
+    def test_candidate_talk_withheld_from_public_summary(self):
+        from src.fit_scorer import public_summary
+        for leaky in ["Director TPM, 20+ years, built TPM orgs", "Strong fit; all guardrails intact",
+                      "Candidate matches seniority"]:
+            self.assertEqual(public_summary(leaky, "none"), "Strong: details withheld from the public page", leaky)
+        ok = "Domain gate: requires clinical trial operations depth"
+        self.assertEqual(public_summary(ok, "domain"), ok)
+
     def test_no_rules_uses_generic_prompt(self):
         from src.fit_scorer import FIT_SYSTEM_PROMPT
         fake = FakeClient([json.dumps({"recommendation": "medium", "reason": "x"})])
