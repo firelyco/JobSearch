@@ -38,6 +38,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          # Latest main, not the triggering commit, so a queued run doesn't
+          # start from a stale state file.
+          ref: main
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -109,6 +113,14 @@ jobs:
           else
             # commit BEFORE rebasing — git refuses to rebase with a dirty index
             git commit -m "fit: score profile fit $(date -u +%Y-%m-%dT%H:%MZ)"
-            git pull --rebase origin main
+            # Another run may have pushed docs/fit_scores.json meanwhile; on conflict, union
+            # the two versions by key (ours wins) instead of failing.
+            cp docs/fit_scores.json "$RUNNER_TEMP/ours.json"
+            if ! git pull --rebase origin main; then
+              git checkout --ours -- docs/fit_scores.json   # during a rebase, "ours" is upstream main
+              python -m src.merge_json docs/fit_scores.json "$RUNNER_TEMP/ours.json"
+              git add docs/fit_scores.json
+              GIT_EDITOR=true git rebase --continue
+            fi
             git push
           fi
