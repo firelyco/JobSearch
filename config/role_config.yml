@@ -29,6 +29,11 @@ title_patterns:
   - "(senior|sr\\.?)\\s+[a-z/&]+\\s+technical\\s+program\\s+manager"
   # "TPM Manager, Infrastructure" (Anthropic) = manager of TPMs
   - "\\btpm\\s+manager\\b"
+  # Cisco: "Leader, Program management", "Principal Engineering, Hardware
+  # Project & Program Management", "Senior Hardware Engineering Program Manager"
+  - "\\bleader\\b.*program\\s+management"
+  - "principal\\b.*program\\s+management"
+  - "(senior|sr\\.?|principal|staff)\\s+([a-z/&]+\\s+){0,2}engineering\\s+program\\s+manager"
 
   # Role families pursued in practice (fit rules: accepted disciplines).
   # Manager of TPMs/EPMs, e.g. "Manager, Technical Program Management"
@@ -51,6 +56,33 @@ unleveled_title_companies:
   - anthropic
   - netflix
   - apple
+  # Google: the adapter already restricts to ADVANCED/DIRECTOR_PLUS levels.
+  - google
+  # Cisco: "2025124 Technical Program Manager", level only in the JD.
+  - cisco
+  # AI labs and startups mostly post plain "Technical Program Manager".
+  - openai
+  - xai
+  - perplexity
+  - cursor
+  - cohere
+  - coreweave
+  - crusoe
+  - baseten
+  - cerebras
+  - character
+  - deepgram
+  - mercor
+  - reflectionai
+  - sesame
+  - suno
+  - thinkingmachines
+  - physicalintelligence
+  - lambda
+  - togetherai
+  - sambanovasystems
+  - figureai
+  - scaleai
 unleveled_title_patterns:
   - "technical\\s+program\\s+manager"
   - "engineering\\s+program\\s+manager"
@@ -109,6 +141,7 @@ score_weights:
 
   vp_or_head: 40
   director: 35
+  director_equiv: 35
   sr_manager: 30
   staff_or_principal: 25
   tpm_manager: 25
@@ -149,6 +182,11 @@ seniority_keywords:
     - "senior\\s+technical\\s+program\\s+manager"
     - "sr\\.?\\s+technical\\s+program\\s+manager"
     - "(senior|sr\\.?)\\s+[a-z/&]+\\s+technical\\s+program\\s+manager"
+    - "(senior|sr\\.?)\\s+([a-z/&]+\\s+){0,2}engineering\\s+program\\s+manager"
+
+  # "Leader, Program management" (Cisco's director-equivalent naming)
+  director_equiv:
+    - "\\bleader\\b.*program\\s+management"
 
 notification_threshold: 60
 hot_match_threshold: 80

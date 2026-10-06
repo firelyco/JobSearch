@@ -42,6 +42,18 @@ greenhouse:
   - mixpanel
   - twitch
   - wise
+  # AI infrastructure / labs (added 2026-10-06)
+  - xai
+  - coreweave
+  - togetherai
+  - sambanovasystems
+  - figureai
+  - inflectionai
+  - stabilityai
+  - snorkelai
+  - assemblyai
+  - labelbox
+  - typeface
 
 lever:
   - spotify
@@ -79,6 +91,33 @@ ashby:
   - patreon
   - sentry
   - amplitude
+  # AI labs and startups (added 2026-10-06; checked live, all have boards)
+  - cohere
+  - crusoe
+  - baseten
+  - cerebras
+  - character
+  - deepgram
+  - mercor
+  - reflectionai
+  - sesame
+  - suno
+  - thinkingmachines
+  - physicalintelligence
+  - lambda
+  - anyscale
+  - cognition
+  - elevenlabs
+  - langchain
+  - fireworks
+  - abridge
+  - cartesia
+  - synthesia
+  - llamaindex
+  - pinecone
+  - runway
+  - ambiencehealthcare
+  - openevidence
 
 workday:
   # DISABLED — not on public Workday. Amazon posts via amazon.jobs (custom
@@ -94,10 +133,16 @@ workday:
     site: external_experienced
     wd_server: wd5
     search: "program manager"
+  # Cisco titles program leadership as "Project & Program Management" or
+  # "Leader, Program management"; two searches cover both (dedupe merges).
   - tenant: cisco
     site: Cisco_Careers          # was external_career_site (404)
     wd_server: wd5
-    search: "program manager"
+    search: "technical program manager"
+  - tenant: cisco
+    site: Cisco_Careers
+    wd_server: wd5
+    search: "program management leader"
   # DISABLED — Oracle uses Oracle Recruiting Cloud, not public Workday.
   # - tenant: oracle
   #   site: Oracle
@@ -139,6 +184,14 @@ apple:
   - '"engineering program manager"'
   - '"technical program manager"'
   - '"program management"'
+
+# Google has no public API; src/adapters/google.py parses the results page.
+# Titles don't show level, so ask Google for senior levels only.
+google:
+  - query: '"program manager"'
+    levels: [ADVANCED, DIRECTOR_PLUS]
+  - query: '"program management"'
+    levels: [ADVANCED, DIRECTOR_PLUS]
 
 # Oracle Recruiting Cloud (HCM Candidate Experience) — re-enables Oracle
 # and Dell (both moved off Workday to Oracle's own platform).

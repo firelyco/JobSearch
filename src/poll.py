@@ -20,7 +20,7 @@ from pathlib import Path
 
 import yaml
 
-from src.adapters import greenhouse, lever, ashby, workday, amazon_jobs, oracle_cloud, netflix, apple
+from src.adapters import greenhouse, lever, ashby, workday, amazon_jobs, oracle_cloud, netflix, apple, google
 from src import dedupe, scorer
 
 logging.basicConfig(
@@ -66,6 +66,9 @@ def build_fetch_tasks(companies: dict) -> list[tuple[str, str, callable, object]
         tasks.append(("netflix", str(query), netflix.fetch, query))
     for query in companies.get("apple", []) or []:
         tasks.append(("apple", str(query), apple.fetch, query))
+    for cfg in companies.get("google", []) or []:
+        label = cfg.get("query", "?") if isinstance(cfg, dict) else str(cfg)
+        tasks.append(("google", label, google.fetch, cfg))
     return tasks
 
 
@@ -81,6 +84,7 @@ def fetch_all(companies: dict) -> tuple[list[dict], dict]:
         "oracle_cloud": {"ok": 0, "fail": 0, "jobs": 0},
         "netflix": {"ok": 0, "fail": 0, "jobs": 0},
         "apple": {"ok": 0, "fail": 0, "jobs": 0},
+        "google": {"ok": 0, "fail": 0, "jobs": 0},
     }
     all_jobs: list[dict] = []
 

@@ -224,6 +224,16 @@ class TestScorer(unittest.TestCase):
             score, _ = score_job({"title": title, "location": "Remote, US", "company": "x"}, CONFIG)
             self.assertGreater(score, 0, title)
 
+    def test_cisco_program_leadership_titles(self):
+        for title in ["Leader, Program management, Federal DoW programs",
+                      "Principal Engineering, Hardware Project & Program Management",
+                      "Senior Hardware Engineering Program Manager"]:
+            score, _ = score_job({"title": title, "location": "San Jose, California", "company": "cisco"}, CONFIG)
+            self.assertGreater(score, 0, title)
+        for title in ["Customer Program Manager", "Team Leader, Sales Programs"]:
+            score, _ = score_job({"title": title, "location": "San Jose, California", "company": "cisco"}, CONFIG)
+            self.assertEqual(score, 0, title)
+
     def test_excluded_company(self):
         config = {**CONFIG, "excluded_companies": ["badcorp"]}
         job = {
