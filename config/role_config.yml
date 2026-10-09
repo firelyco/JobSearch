@@ -105,7 +105,8 @@ preferred_locations:
   - massachusetts
   - "remote"
   - "us-remote"
-  - "united states"
+  # (not "united states": every US job already gets remote_or_us, so it
+  # double-counted and made Nashville "preferred")
   - "new york"
   - "ny metro"
 

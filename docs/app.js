@@ -90,7 +90,11 @@ function relativeTime(iso) {
 function scoreBucket(j) {
   return j.bucket || 'low';
 }
-function isHot(j) { return scoreBucket(j) === 'hot'; }
+// Hot = the title matches strongly AND the fit check (which reads the JD)
+// didn't pass on it. A great-looking title on the wrong job isn't hot.
+function isHot(j) {
+  return scoreBucket(j) === 'hot' && (fitScores[jobKey(j)] || {}).recommendation !== 'not';
+}
 
 function postedTooltip(j) {
   const parts = [];
@@ -346,7 +350,7 @@ function renderTable() {
     return `
       <tr data-key="${escapeAttr(key)}">
         <td class="col-applied"><input type="checkbox" class="applied-cb" title="Mark as applied" ${isAppliedStatus(curStatus) ? 'checked' : ''}></td>
-        <td><span class="score-pill score-${bucket}">${j.score || 0}</span></td>
+        <td><span class="score-pill score-${bucket}${(fitScores[key] || {}).recommendation === 'not' ? ' score-muted' : ''}" title="${escapeAttr((j.score_reasons || []).join('\n'))}">${j.score || 0}</span></td>
         <td>${fitCellHtml(fitScores[key])}</td>
         <td>
           <div class="role-title"><a href="${escapeAttr(j.url)}" target="_blank" rel="noopener">${escapeHtml(j.title)}</a></div>
