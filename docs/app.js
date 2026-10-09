@@ -30,6 +30,48 @@ function setStatus(jobKey, status) {
 
 function jobKey(j) { return `${j.source}:${j.company}:${j.id}`; }
 
+// ---------- Applied history ----------
+// A status alone is just a job key; once the posting leaves jobs.json (14-day
+// window, or it closes) the title, company and link are gone. So applying
+// also stores a snapshot of the job, kept until the user removes it.
+const APPLIED_KEY = 'jobsearch.applied.v1';
+const HIDE_APPLIED_KEY = 'jobsearch.hideApplied.v1';
+const APPLIED_STATES = new Set(['applied', 'interviewing', 'rejected']);
+const isAppliedStatus = (s) => APPLIED_STATES.has(s);
+
+function loadApplied() {
+  try { return JSON.parse(localStorage.getItem(APPLIED_KEY) || '{}'); }
+  catch { return {}; }
+}
+function saveApplied(a) { localStorage.setItem(APPLIED_KEY, JSON.stringify(a)); }
+function recordApplied(key, job, { estimated = false } = {}) {
+  const a = loadApplied();
+  if (a[key] || !job) return;
+  a[key] = {
+    title: job.title || '',
+    company: job.company || '',
+    location: job.location || '',
+    url: job.url || '',
+    source: job.source || '',
+    posted_at: job.posted_at || '',
+    fit: (fitScores[key] || {}).recommendation || '',
+    applied_at: new Date().toISOString(),
+    applied_at_estimated: estimated,
+  };
+  saveApplied(a);
+}
+function forgetApplied(key) {
+  const a = loadApplied();
+  if (a[key]) { delete a[key]; saveApplied(a); }
+}
+// One place for status changes so the snapshot always follows the status.
+function changeStatus(key, status) {
+  setStatus(key, status === 'new' ? null : status);
+  if (isAppliedStatus(status)) recordApplied(key, jobsByKey[key]);
+  else forgetApplied(key);
+}
+function hideApplied() { return $('hide-applied') ? $('hide-applied').checked : true; }
+
 function relativeTime(iso) {
   if (!iso) return '—';
   const then = new Date(iso);
@@ -73,6 +115,7 @@ const ROLE_CATEGORIES = [
 ];
 
 let allJobs = [];
+let jobsByKey = {};          // jobKey -> job, for snapshotting on apply
 let metaData = {};
 let tailoredJobs = {};       // { jobKey: { tailored_at, run_id, ... } } from docs/tailored_jobs.json
 let fitScores = {};          // { jobKey: { recommendation, reason, scored_at } } from docs/fit_scores.json
@@ -143,9 +186,15 @@ async function loadData() {
     if (fitResp && fitResp.ok) {
       try { fitScores = await fitResp.json(); } catch { fitScores = {}; }
     }
+    jobsByKey = Object.fromEntries(allJobs.map(j => [jobKey(j), j]));
+    // Backfill: jobs marked applied before snapshots existed get one now,
+    // while they're still listed. The real apply date is unknown.
+    for (const [key, st] of Object.entries(loadStatuses())) {
+      if (isAppliedStatus(st)) recordApplied(key, jobsByKey[key], { estimated: true });
+    }
   } catch (e) {
     console.error('load failed', e);
-    $('jobs-tbody').innerHTML = `<tr><td colspan="7" class="empty">Could not load jobs.json. The poller may not have run yet.</td></tr>`;
+    $('jobs-tbody').innerHTML = `<tr><td colspan="8" class="empty">Could not load jobs.json. The poller may not have run yet.</td></tr>`;
     return;
   }
   render();
@@ -169,6 +218,7 @@ function render() {
   renderMeta();
   renderMetrics();
   renderTable();
+  renderAppliedHistory();
 }
 
 function renderMeta() {
@@ -267,6 +317,8 @@ function renderTable() {
     }
     const curStatus = statuses[jobKey(j)] || 'new';
     if (status && curStatus !== status) return false;
+    const viewingApplied = isAppliedStatus(status) || quickFilter === 'applied' || quickFilter === 'interviewing';
+    if (hideApplied() && isAppliedStatus(curStatus) && !viewingApplied) return false;
     if (quickFilter && !matchesQuickFilter(j, curStatus)) return false;
     if (locationFilter && !matchesLocation(j.location, locationFilter)) return false;
     if (workmodeFilter && !matchesWorkmode(j.location, workmodeFilter)) return false;
@@ -281,7 +333,7 @@ function renderTable() {
 
   const tbody = $('jobs-tbody');
   if (filtered.length === 0) {
-    tbody.innerHTML = `<tr><td colspan="7" class="empty">No jobs match your filters.</td></tr>`;
+    tbody.innerHTML = `<tr><td colspan="8" class="empty">No jobs match your filters.</td></tr>`;
     return;
   }
 
@@ -293,6 +345,7 @@ function renderTable() {
     const meta = [j.location, j.source].filter(Boolean).join(' · ');
     return `
       <tr data-key="${escapeAttr(key)}">
+        <td class="col-applied"><input type="checkbox" class="applied-cb" title="Mark as applied" ${isAppliedStatus(curStatus) ? 'checked' : ''}></td>
         <td><span class="score-pill score-${bucket}">${j.score || 0}</span></td>
         <td>${fitCellHtml(fitScores[key])}</td>
         <td>
@@ -320,8 +373,19 @@ function renderTable() {
     sel.addEventListener('change', (e) => {
       const row = e.target.closest('tr');
       const key = row.getAttribute('data-key');
-      setStatus(key, e.target.value === 'new' ? null : e.target.value);
+      changeStatus(key, e.target.value);
       renderMetrics();
+      renderAppliedHistory();
+      if (hideApplied() && isAppliedStatus(e.target.value)) renderTable();
+    });
+  });
+
+  tbody.querySelectorAll('.applied-cb').forEach(cb => {
+    cb.addEventListener('change', (e) => {
+      const key = e.target.closest('tr').getAttribute('data-key');
+      changeStatus(key, e.target.checked ? 'applied' : 'new');
+      if (e.target.checked && hideApplied()) toast('Marked applied. It is now in Applied history below.', 'success');
+      render();
     });
   });
 
@@ -329,6 +393,58 @@ function renderTable() {
     btn.addEventListener('click', (e) => {
       const row = e.target.closest('tr');
       onTailorClick(row.getAttribute('data-key'));
+    });
+  });
+}
+
+function renderAppliedHistory() {
+  const tbody = $('applied-tbody');
+  if (!tbody) return;
+  const applied = loadApplied();
+  const statuses = loadStatuses();
+  const rows = Object.entries(applied).sort((a, b) => (b[1].applied_at || '').localeCompare(a[1].applied_at || ''));
+  $('applied-count').textContent = rows.length;
+  if (rows.length === 0) {
+    tbody.innerHTML = `<tr><td colspan="6" class="empty">Nothing yet. Tick the Applied box on a job to keep it here.</td></tr>`;
+    return;
+  }
+  tbody.innerHTML = rows.map(([key, a]) => {
+    const st = statuses[key] || 'applied';
+    const open = !!jobsByKey[key];
+    const date = a.applied_at ? new Date(a.applied_at).toLocaleDateString() : '—';
+    const fit = FIT_LABELS[a.fit] ? FIT_LABELS[a.fit].label : '—';
+    return `
+      <tr data-key="${escapeAttr(key)}">
+        <td title="${a.applied_at_estimated ? 'Marked applied before history existed; date is when it was first recorded' : ''}">${date}${a.applied_at_estimated ? ' ≈' : ''}</td>
+        <td>
+          <div class="role-title">${a.url ? `<a href="${escapeAttr(a.url)}" target="_blank" rel="noopener">${escapeHtml(a.title)}</a>` : escapeHtml(a.title)}</div>
+          <div class="role-meta">${escapeHtml([a.location, a.source].filter(Boolean).join(' · '))}</div>
+        </td>
+        <td>${escapeHtml(a.company)}</td>
+        <td>${escapeHtml(fit)}</td>
+        <td>
+          <select class="status-select applied-status">
+            ${['applied', 'interviewing', 'rejected'].map(v =>
+              `<option value="${v}" ${st === v ? 'selected' : ''}>${v[0].toUpperCase() + v.slice(1)}</option>`).join('')}
+          </select>
+        </td>
+        <td>
+          <span class="listing ${open ? 'listing-open' : 'listing-closed'}">${open ? 'Listed' : 'No longer listed'}</span>
+          <button class="btn-ghost-sm applied-remove" type="button" title="Remove from history and set back to New">Remove</button>
+        </td>
+      </tr>`;
+  }).join('');
+
+  tbody.querySelectorAll('.applied-status').forEach(sel => {
+    sel.addEventListener('change', (e) => {
+      setStatus(e.target.closest('tr').getAttribute('data-key'), e.target.value);
+      renderMetrics();
+    });
+  });
+  tbody.querySelectorAll('.applied-remove').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      changeStatus(e.target.closest('tr').getAttribute('data-key'), 'new');
+      render();
     });
   });
 }
@@ -520,7 +636,9 @@ function escapeHtml(s) {
 function escapeAttr(s) { return escapeHtml(s); }
 
 function exportStatus() {
-  const data = loadStatuses();
+  // v2 carries the applied snapshots too: this browser's localStorage is the
+  // only copy, so the export is the backup.
+  const data = { version: 2, statuses: loadStatuses(), applied: loadApplied() };
   const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
@@ -536,10 +654,13 @@ function importStatus(file) {
     try {
       const imported = JSON.parse(e.target.result);
       if (typeof imported !== 'object' || imported === null) throw new Error('not an object');
-      const merged = { ...loadStatuses(), ...imported };
-      saveStatuses(merged);
+      // v1 exports were a flat {jobKey: status} map.
+      const statuses = imported.version === 2 ? (imported.statuses || {}) : imported;
+      const applied = imported.version === 2 ? (imported.applied || {}) : {};
+      saveStatuses({ ...loadStatuses(), ...statuses });
+      saveApplied({ ...loadApplied(), ...applied });
       render();
-      alert(`Imported ${Object.keys(imported).length} status entries.`);
+      alert(`Imported ${Object.keys(statuses).length} statuses and ${Object.keys(applied).length} applied records.`);
     } catch (err) {
       alert(`Import failed: ${err.message}`);
     }
@@ -619,6 +740,11 @@ function bindControls() {
   });
   bindRoleDropdown();
   bindQuickFilters();
+  try { $('hide-applied').checked = localStorage.getItem(HIDE_APPLIED_KEY) !== 'false'; } catch {}
+  $('hide-applied').addEventListener('change', (e) => {
+    try { localStorage.setItem(HIDE_APPLIED_KEY, String(e.target.checked)); } catch {}
+    renderTable();
+  });
   $('export-btn').addEventListener('click', exportStatus);
   $('import-btn').addEventListener('click', () => $('import-file').click());
   $('import-file').addEventListener('change', (e) => {

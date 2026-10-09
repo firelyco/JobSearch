@@ -500,3 +500,17 @@ footer a { color: var(--text-muted); }
   .col-posted, .col-company { display: none; }
   thead th, tbody td { padding: 10px 8px; }
 }
+
+/* ---------- Applied tracking ---------- */
+.col-applied { width: 56px; text-align: center; }
+td.col-applied input { width: 16px; height: 16px; cursor: pointer; }
+.toggle { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: var(--text-muted); cursor: pointer; white-space: nowrap; }
+.applied-history { margin-top: 24px; }
+.applied-history details { background: var(--surface); border: 0.5px solid var(--border); border-radius: var(--radius-lg); overflow-x: auto; }
+.applied-history summary { padding: 12px 16px; font-weight: 500; cursor: pointer; }
+.applied-note { font-weight: 400; font-size: 12px; color: var(--text-tertiary); margin-left: 8px; }
+.applied-history table td { padding: 8px 12px; border-top: 0.5px solid var(--border); vertical-align: top; }
+.listing { display: inline-block; font-size: 12px; padding: 2px 8px; border-radius: 999px; margin-right: 6px; }
+.listing-open { background: var(--success-bg); color: var(--success); }
+.listing-closed { background: var(--bg); color: var(--text-tertiary); }
+.applied-remove { border: 0.5px solid var(--border); border-radius: var(--radius); padding: 3px 8px; font-size: 12px; cursor: pointer; }
