@@ -14,6 +14,34 @@ BASE = "https://api.ashbyhq.com/posting-api/job-board"
 TIMEOUT = 15
 
 
+def _place(name: str, address) -> str:
+    """'San Francisco' + postal address -> 'San Francisco, California, United States'."""
+    postal = (address or {}).get("postalAddress") or {} if isinstance(address, dict) else {}
+    parts = [safe_str(name)]
+    for key in ("addressRegion", "addressCountry"):
+        v = safe_str(postal.get(key))
+        if v and v.lower() not in " ".join(parts).lower():
+            parts.append(v)
+    return ", ".join(p for p in parts if p)
+
+
+def _location(j: dict) -> str:
+    """Build a location string from Ashby's posting fields.
+
+    The API now sends `location` (city name) plus a structured `address` and
+    `secondaryLocations`; the old `locationName` field is gone, which left
+    every Ashby job's location blank (no US bonus, failed the US filter).
+    """
+    places = [_place(j.get("location") or j.get("locationName"), j.get("address"))]
+    for sec in j.get("secondaryLocations") or []:
+        if isinstance(sec, dict):
+            places.append(_place(sec.get("location"), sec.get("address")))
+    loc = "; ".join(dict.fromkeys(p for p in places if p))
+    if j.get("isRemote") is True and "remote" not in loc.lower():
+        loc = f"Remote; {loc}" if loc else "Remote"
+    return loc
+
+
 def fetch(tenant: str) -> list[Job]:
     url = f"{BASE}/{tenant}"
     try:
@@ -42,7 +70,7 @@ def fetch(tenant: str) -> list[Job]:
             source="ashby",
             company=tenant,
             title=safe_str(j.get("title")),
-            location=safe_str(j.get("locationName")),
+            location=_location(j),
             url=safe_str(j.get("jobUrl")),
             posted_at=safe_str(j.get("publishedAt")),
             updated_at=safe_str(j.get("updatedAt") or j.get("publishedAt")),
