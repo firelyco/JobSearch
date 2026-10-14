@@ -107,7 +107,7 @@
         </select>
         <select id="filter-fit">
           <option value="">all fit</option>
-          <option value="strong">strong</option>
+          <option value="strong" selected>strong</option>
           <option value="medium">middle</option>
           <option value="not">pass</option>
         </select>
@@ -135,7 +135,8 @@
     </header>
 
     <section class="results">
-      <table id="jobs-table">
+      <p id="fit-status" class="muted" role="status"></p>
+        <table id="jobs-table">
         <thead>
           <tr>
             <th class="col-applied" title="Tick when you apply">Applied</th>

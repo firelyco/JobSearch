@@ -195,11 +195,16 @@ async function loadData() {
         const policy = await policyResp.json();
         if (policy.version) {
           for (const [key, verdict] of Object.entries(fitScores)) {
-            if (verdict.policy_version !== policy.version) delete fitScores[key];
+            verdict.refresh_pending = verdict.policy_version !== policy.version;
           }
         }
       }
     }
+    const refreshCount = Object.values(fitScores).filter(v => v.refresh_pending).length;
+    const fitNotice = $('fit-status');
+    if (fitNotice) fitNotice.textContent = refreshCount
+      ? `${refreshCount} previous fit ratings are awaiting reassessment. Previous Strong ratings have not yet cleared the current base-pay requirement.`
+      : 'Fit ratings use the current criteria. Posted pay is not a confirmed offer; verify salary and benefits before applying.';
     jobsByKey = Object.fromEntries(allJobs.map(j => [jobKey(j), j]));
     // Backfill: jobs marked applied before snapshots existed get one now,
     // while they're still listed. The real apply date is unknown.
@@ -353,7 +358,7 @@ function renderTable() {
 
   const tbody = $('jobs-tbody');
   if (filtered.length === 0) {
-    tbody.innerHTML = `<tr><td colspan="8" class="empty">No jobs match your filters.</td></tr>`;
+    tbody.innerHTML = `<tr><td colspan="8" class="empty">No jobs match your filters. Try all fit to see provisional and pending assessments.</td></tr>`;
     return;
   }
 
@@ -477,11 +482,12 @@ const FIT_LABELS = {
 
 function fitCellHtml(fit) {
   if (!fit || !fit.recommendation) {
-    return `<span class="fit-pill fit-pending" title="Not scored yet — the fit workflow runs after each poll">—</span>`;
+    return `<span class="fit-pill fit-pending" title="Not scored yet — the fit workflow runs after each poll">Pending</span>`;
   }
   const meta = FIT_LABELS[fit.recommendation] || FIT_LABELS.medium;
-  const reason = fit.reason ? escapeAttr(fit.reason) : '';
-  return `<span class="fit-pill ${meta.cls}" title="${reason}">${meta.label}</span>`;
+  const pending = !!fit.refresh_pending;
+  const reason = escapeAttr((pending ? 'Previous rating: reassessment pending; current base-pay requirement is unconfirmed. ' : '') + (fit.reason || ''));
+  return `<span class="fit-pill ${meta.cls}" title="${reason}">${meta.label}${pending ? ' (previous)' : ''}</span>`;
 }
 
 function tailorCellHtml(key, tailored, inflight) {
