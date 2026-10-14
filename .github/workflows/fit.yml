@@ -118,6 +118,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add docs/fit_scores.json
+          if [ -f docs/fit_policy.json ]; then git add docs/fit_policy.json; fi
           if git diff --staged --quiet; then
             echo "no fit-score changes to commit"
           else
@@ -130,6 +131,7 @@ jobs:
               git checkout --ours -- docs/fit_scores.json   # during a rebase, "ours" is upstream main
               python -m src.merge_json docs/fit_scores.json "$RUNNER_TEMP/ours.json"
               git add docs/fit_scores.json
+          if [ -f docs/fit_policy.json ]; then git add docs/fit_policy.json; fi
               GIT_EDITOR=true git rebase --continue
             fi
             git push

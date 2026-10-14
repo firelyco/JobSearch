@@ -176,11 +176,12 @@ function markTailoringFinished(jobKey) {
 
 async function loadData() {
   try {
-    const [jobsResp, metaResp, tailoredResp, fitResp] = await Promise.all([
+    const [jobsResp, metaResp, tailoredResp, fitResp, policyResp] = await Promise.all([
       fetch(`jobs.json?t=${Date.now()}`),
       fetch(`meta.json?t=${Date.now()}`).catch(() => null),
       fetch(`tailored_jobs.json?t=${Date.now()}`).catch(() => null),
       fetch(`fit_scores.json?t=${Date.now()}`).catch(() => null),
+      fetch(`fit_policy.json?t=${Date.now()}`).catch(() => null),
     ]);
     if (!jobsResp.ok) throw new Error(`jobs.json HTTP ${jobsResp.status}`);
     allJobs = await jobsResp.json();
@@ -190,6 +191,14 @@ async function loadData() {
     }
     if (fitResp && fitResp.ok) {
       try { fitScores = await fitResp.json(); } catch { fitScores = {}; }
+      if (policyResp && policyResp.ok) {
+        const policy = await policyResp.json();
+        if (policy.version) {
+          for (const [key, verdict] of Object.entries(fitScores)) {
+            if (verdict.policy_version !== policy.version) delete fitScores[key];
+          }
+        }
+      }
     }
     jobsByKey = Object.fromEntries(allJobs.map(j => [jobKey(j), j]));
     // Backfill: jobs marked applied before snapshots existed get one now,

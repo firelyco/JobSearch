@@ -46,7 +46,7 @@ Work through these steps in order. Read past the title every time; titles missta
 2. Domain gate. Industry depth gates only when the JD states it as a required qualification AND it is the substance of the role. A domain that appears in the product but not the qualifications does not gate. The company's industry is not the role's domain. Fails if a required domain is one of the candidate's hard domain gates or is otherwise absent from the profile.
 3. Level. Judge the ROLE's level from the JD, never the candidate's. A role manages people only if the JD says so (direct reports, "manage a team of", "hire and develop", "lead a team of program managers"). Senior, Staff, Principal, Lead and "Leadership" TPM titles without such language are individual contributor (IC) roles. Use the candidate's target levels and ALLOW_IC_STRONG preference. When ALLOW_IC_STRONG is true, IC status alone does not lower the verdict. Judge senior scope from responsibilities, not merely the title or a minimum-years threshold. Truly junior scope can still lower the verdict.
 4. Guardrails. Would an honest resume need a claim on the candidate's never-claim list? If that claim is central to the role it fails; if it is one preferred line it is a stretch to note.
-5. Comp and location. Tie-breakers only. Posted comp clearly below the candidate's floor lowers the verdict; it never fails a role alone. For IC roles when IC_STRONG_REQUIRES_COMP is true, Strong requires a disclosed compensation range that can meet the floor: meets_floor if the lower bound meets it, potentially_meets_floor if the range overlaps it, below_floor if the upper bound is below it, and unknown when compensation is not disclosed or not comparable. Do not assume an offer, invent equity value, or treat an undisclosed range as adequate.
+5. Comp and location. Tie-breakers only. Posted comp clearly below the candidate's floor lowers the verdict; it never fails a role alone. For IC roles when IC_STRONG_REQUIRES_COMP is true, Strong requires a disclosed compensation range that can meet the floor: meets_floor if the lower bound meets it, potentially_meets_floor if the range overlaps it, below_floor if the upper bound is below it, and unknown when compensation is not disclosed or not comparable. When STRONG_REQUIRES_BASE_COMP is true, this applies to ALL roles: Strong requires disclosed annual USD base salary strictly above COMP_FLOOR_USD at the LOWER bound. A range that overlaps the floor is provisional, not Strong. Bonus, equity, total compensation and benefits do not count as base salary. Return comp_evidence as an exact contiguous quote from the JD containing the base-salary label and amount/range, or an empty string if absent. Do not assume an offer, invent equity value, or treat an undisclosed range as adequate.
 
 Verdict:
 - "not" (pass): any hard failure in step 1, 2 or 4.
@@ -57,7 +57,7 @@ Judge only on evidence in the profile and the JD. Never assume skills, domains o
 "role_summary" is shown on a public page. It must describe only the ROLE and what it asks for, never the candidate: no years of experience, past titles, employers, domains the candidate has, or comp floor. Start it with the deciding step, e.g. "Discipline: this is product management, not program management" or "Domain gate: requires clinical trial operations depth" or "Strong: leads a team of TPMs on an AI platform".
 
 Return ONLY a JSON object, no prose:
-{"recommendation": "strong|medium|not", "step": "discipline|domain|level|guardrails|comp|none", "role_level": "ic|people_manager|unknown", "comp_status": "meets_floor|potentially_meets_floor|below_floor|unknown", "role_summary": "<= 20 words about the role"}
+{"recommendation": "strong|medium|not", "step": "discipline|domain|level|guardrails|comp|none", "role_level": "ic|people_manager|unknown", "comp_status": "meets_floor|potentially_meets_floor|below_floor|unknown", "comp_evidence": "exact base salary quote from JD or empty", "role_summary": "<= 20 words about the role"}
 "step" is the step that decided the verdict ("none" for a clean strong). "role_level" is from the JD alone: people_manager only if the JD describes managing people."""
 
 
@@ -154,6 +154,35 @@ def _strip_to_json(s: str) -> str:
     return s[first : last + 1]
 
 
+
+def verified_base_comp_status(jd_text: str, evidence: str, floor: float) -> str:
+    """Conservative check of literal annual USD base-pay evidence, not model verdicts.
+
+    Ambiguous currency, pay periods, multiple bands and total-comp packages
+    need confirmation. The floor is private and never included in reasons.
+    """
+    quote = " ".join(str(evidence or "").split())
+    source = " ".join((jd_text or "").split())
+    if not quote or quote not in source:
+        return "unknown"
+    if not re.search(r"(?i)base\s+(?:salary|pay|compensation)", quote):
+        return "unknown"
+    if re.search(r"(?i)\b(?:CAD|AUD|NZD|SGD|HKD|EUR|GBP|hourly|monthly|weekly|per hour|per month)\b|C\$|A\$", quote):
+        return "unknown"
+    # Require explicit USD / US salary context rather than assuming '$' is USD.
+    if not re.search(r"(?i)\bUSD\b|US\$|U\.?S\.?\s+(?:base|salary|pay)|United States", quote):
+        return "unknown"
+    values = []
+    for match in re.finditer(r"(?:\$\s*|\bUSD\s+)(\d{2,3}(?:,\d{3})+|\d{5,7}|\d{2,3}(?:\.\d+)?)\s*([kK])?", quote):
+        value = float(match.group(1).replace(",", ""))
+        values.append(value * 1000 if match.group(2) else value)
+    if not values or len(values) > 2 or any(v < 10000 for v in values):
+        return "unknown"
+    if min(values) > floor:
+        return "meets_floor"
+    return "potentially_meets_floor" if max(values) > floor else "below_floor"
+
+
 def score_fit(
     profile: dict,
     job: dict,
@@ -234,11 +263,19 @@ def score_fit(
         log.info("fit: %s strong on an IC role capped at medium", job.get("title"))
         rec, step = "medium", "level"
         reason = f"Level: individual contributor role. {reason}".strip()
-    if rec == "strong" and role_level == "ic" and (rules or {}).get("allow_ic_strong") and (rules or {}).get("ic_strong_requires_comp"):
+    strict_base = (rules or {}).get("strong_requires_base_comp", False)
+    requires_comp = strict_base or (role_level == "ic" and (rules or {}).get("allow_ic_strong") and (rules or {}).get("ic_strong_requires_comp"))
+    if rec == "strong" and requires_comp:
         comp_status = parsed.get("comp_status", "unknown")
-        if comp_status not in {"meets_floor", "potentially_meets_floor"}:
+        if strict_base:
+            comp_status = verified_base_comp_status(jd_text, parsed.get("comp_evidence", ""), float((rules or {}).get("comp_floor_usd", 0)))
+        allowed = {"meets_floor"} if strict_base else {"meets_floor", "potentially_meets_floor"}
+        if comp_status not in allowed:
             rec, step = "medium", "comp"
-            explanation = "Comp: compensation confirmation needed." if comp_status != "below_floor" else "Comp: compensation range limits suitability."
+            explanation = {
+                "below_floor": "Comp: posted base salary does not clear the required threshold.",
+                "potentially_meets_floor": "Comp: posted range requires offer confirmation.",
+            }.get(comp_status, "Comp: annual USD base salary confirmation needed.")
             reason = f"{explanation} {reason}".strip()
         elif comp_status == "potentially_meets_floor":
             reason = f"{reason} Confirm compensation within the posted range.".strip()

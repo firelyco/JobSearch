@@ -194,7 +194,11 @@ def main(argv: list[str] | None = None) -> int:
 
     if not FIT_RULES_FILE.exists():
         log.warning("config/fit_rules.json missing — scoring with the generic method only")
-    scores = run(max_jobs=args.max, rescore=args.rescore, on_scored=save, job_keys=selected_keys)
+    rules = load_json(FIT_RULES_FILE, {})
+    policy = {"version": rules.get("fit_policy_version", "")}
+    DOCS_DIR.mkdir(parents=True, exist_ok=True)
+    (DOCS_DIR / "fit_policy.json").write_text(json.dumps(policy) + "\n", encoding="utf-8")
+    scores = run(rules=rules, max_jobs=args.max, rescore=args.rescore, on_scored=save, job_keys=selected_keys)
     save(scores)
     log.info("wrote %s (%d entries)", FIT_FILE, len(scores))
     return 0
