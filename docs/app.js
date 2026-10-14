@@ -808,7 +808,6 @@ function bindControls() {
   $('pat-input').addEventListener('keydown', (e) => { if (e.key === 'Enter') savePatFromModal(); });
   $('pat-clear-btn').addEventListener('click', () => {
     clearStoredPAT();
-    setHistorySyncStatus('Private history disconnected. Local records are retained.');
     updatePatButtonLabel();
     toast('PAT cleared from this browser', 'info');
     closePatModal();
@@ -819,15 +818,16 @@ function bindControls() {
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && !$('pat-modal').classList.contains('hidden')) closePatModal();
   });
-  $('history-sync-btn')?.addEventListener('click', () => getPAT() ? syncPrivateHistory() : openPatModal());
+  $('history-sync-btn')?.addEventListener('click', () => getHistorySession() ? syncPrivateHistory() : openHistoryLogin());
+  $('history-login-submit')?.addEventListener('click',loginHistory);
+  $('history-password')?.addEventListener('keydown',event=>{if(event.key==='Enter')loginHistory();});
+  document.querySelectorAll('[data-close-history]').forEach(node=>node.addEventListener('click',()=>$('history-login-modal').classList.add('hidden')));
   $('history-range')?.addEventListener('change', renderAppliedHistory);
   updatePatButtonLabel();
 }
 
-// Private shared application history. Tokens stay in the browser and are
-// sent only to GitHub. No application records go into the public dashboard.
-const HISTORY_REPO = 'JobSearch-private-state';
-const HISTORY_FILE = 'applications.json';
+// Application history is stored in PostgreSQL through a private API.
+// Browser storage is only an offline cache and migration source.
 const CLOUD_HISTORY_KEY = 'jobsearch.cloudHistory.v1';
 let historySyncRunning = false;
 let historySyncTimer = null;
@@ -864,7 +864,7 @@ function recordCloudHistoryChange(key) {
     mutation_id: crypto.randomUUID(), deleted: status === 'new' && !application,
   };
   localStorage.setItem(CLOUD_HISTORY_KEY, JSON.stringify(records));
-  setHistorySyncStatus(getPAT() ? 'Saved locally; syncing private history…' : 'Saved locally. Connect private history to sync across devices.');
+  setHistorySyncStatus(getHistorySession() ? 'Saved locally; saving to your database…' : 'Saved locally. Sign in to save this change to your database.');
   scheduleHistorySync();
 }
 
@@ -903,55 +903,77 @@ function applySharedHistory(records) {
   localStorage.setItem(CLOUD_HISTORY_KEY, JSON.stringify(records));
 }
 
-function encodeHistoryFile(value) {
-  const bytes = new TextEncoder().encode(JSON.stringify(value, null, 2));
-  return btoa(Array.from(bytes, byte => String.fromCharCode(byte)).join(''));
+const HISTORY_API = 'https://jobsearch-history.vercel.app/api/history';
+const HISTORY_SESSION_KEY = 'jobsearch.historySession.v1';
+
+function getHistorySession() {
+  try {
+    const session = JSON.parse(sessionStorage.getItem(HISTORY_SESSION_KEY) || 'null');
+    if (session && session.expires_at > Date.now()) return session.token;
+    sessionStorage.removeItem(HISTORY_SESSION_KEY);
+  } catch {}
+  return '';
 }
-function decodeHistoryFile(value) {
-  return JSON.parse(new TextDecoder().decode(Uint8Array.from(atob(value.replace(/\s/g, '')), c => c.charCodeAt(0))));
+
+function openHistoryLogin() {
+  $('history-login-modal').classList.remove('hidden');
+  $('history-password').value = '';
+  $('history-login-error').textContent = '';
+  $('history-password').focus();
+}
+
+async function loginHistory() {
+  const button = $('history-login-submit');
+  const password = $('history-password').value;
+  button.disabled = true;
+  $('history-login-error').textContent = '';
+  try {
+    const response = await fetch(HISTORY_API, {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'login',password})});
+    const result = await response.json();
+    if (!response.ok) throw new Error(result.error || 'Could not sign in');
+    sessionStorage.setItem(HISTORY_SESSION_KEY,JSON.stringify({token:result.token,expires_at:Date.now()+result.expires_in*1000}));
+    $('history-password').value = '';
+    $('history-login-modal').classList.add('hidden');
+    await syncPrivateHistory();
+  } catch (error) {
+    $('history-login-error').textContent = error.message;
+  } finally {button.disabled = false;}
 }
 
 async function syncPrivateHistory() {
   if (historySyncRunning) { scheduleHistorySync(); return; }
-  const token = getPAT();
-  if (!token) { setHistorySyncStatus('Connect private history to save and sync across devices.'); return; }
+  const token = getHistorySession();
+  if (!token) { setHistorySyncStatus('Sign in to application history. Records are stored in your private database.'); return; }
   historySyncRunning = true;
-  const base = `https://api.github.com/repos/${REPO_OWNER}/${HISTORY_REPO}`;
-  const headers = { Accept: 'application/vnd.github+json', Authorization: `Bearer ${token}`, 'X-GitHub-Api-Version': '2022-11-28' };
+  const headers = {Authorization:`Bearer ${token}`,'Content-Type':'application/json'};
   try {
-    setHistorySyncStatus('Syncing private history…');
-    const repoResponse = await fetch(base, {headers, cache:'no-store'});
-    if (!repoResponse.ok) throw new Error('Your token needs access to the private history repository.');
-    const repo = await repoResponse.json();
-    if (repo.private !== true) throw new Error('History sync stopped: storage must be private.');
-    let written = null;
-    for (let attempt = 0; attempt < 4; attempt++) {
-      const response = await fetch(`${base}/contents/${HISTORY_FILE}`, {headers, cache:'no-store'});
-      if (!response.ok && response.status !== 404) throw new Error('Could not read private history. Local changes are retained.');
-      const file = response.ok ? await response.json() : null;
-      const document = file ? decodeHistoryFile(file.content) : {version:1, records:{}};
-      if (document.version !== 1 || !document.records || typeof document.records !== 'object' || Array.isArray(document.records)) throw new Error('History format is unsupported. Local changes are retained.');
-      const merged = mergeHistoryRecords(document.records, seedLegacyHistory(document.records));
-      if (JSON.stringify(merged) === JSON.stringify(document.records)) { written = merged; break; }
-      const update = await fetch(`${base}/contents/${HISTORY_FILE}`, {
-        method:'PUT', headers:{...headers,'Content-Type':'application/json'},
-        body:JSON.stringify({message:'Update private application history', content:encodeHistoryFile({version:1, records:merged}), ...(file ? {sha:file.sha} : {})}),
-      });
-      if (update.status === 409 || update.status === 422) continue;
-      if (!update.ok) throw new Error('History was not uploaded. Check Contents: Read and write permission.');
-      written = merged;
-      break;
+    setHistorySyncStatus('Saving application history…');
+    const response = await fetch(HISTORY_API,{headers,cache:'no-store'});
+    const document = await response.json();
+    if (response.status === 401) {
+      sessionStorage.removeItem(HISTORY_SESSION_KEY);
+      throw new Error('Your sign-in expired. Sign in again; local changes are retained.');
     }
-    if (!written) throw new Error('Another device is updating history. Local changes are retained; sync will retry.');
-    const finalRecords = mergeHistoryRecords(written, loadCloudHistory());
+    if (!response.ok) throw new Error(document.error || 'Could not read application history.');
+    if (document.version !== 1 || !document.records || typeof document.records !== 'object') throw new Error('Unsupported history format.');
+    const merged = mergeHistoryRecords(document.records,seedLegacyHistory(document.records));
+    const pending = Object.fromEntries(Object.entries(merged).filter(([key,entry]) => JSON.stringify(entry)!==JSON.stringify(document.records[key])));
+    let written = document.records;
+    if (Object.keys(pending).length) {
+      const update = await fetch(HISTORY_API,{method:'POST',headers,body:JSON.stringify({records:pending})});
+      const saved = await update.json();
+      if (!update.ok) throw new Error(saved.error || 'Application history was not saved.');
+      written = saved.records;
+    }
+    const finalRecords = mergeHistoryRecords(written,loadCloudHistory());
     applySharedHistory(finalRecords);
-    if (JSON.stringify(finalRecords) !== JSON.stringify(written)) {
-      setHistorySyncStatus('New local changes pending upload…'); scheduleHistorySync();
-    } else setHistorySyncStatus('Private history synced across devices.');
+    if (JSON.stringify(finalRecords)!==JSON.stringify(written)) {
+      setHistorySyncStatus('New changes pending save…');scheduleHistorySync();
+    } else setHistorySyncStatus('Saved to your private database. Available on any device after sign-in.');
     render();
   } catch (error) {
-    setHistorySyncStatus(`History not synced: ${error.message}`);
-  } finally { historySyncRunning = false; }
+    setHistorySyncStatus(`History not saved to database: ${error.message}`);
+  } finally {historySyncRunning = false;}
 }
 
 window.addEventListener('focus', () => syncPrivateHistory());

@@ -157,10 +157,10 @@
     <section class="applied-history">
       <details id="applied-details" open>
         <summary>Applied history (<span id="applied-count">0</span>)
-          <span class="applied-note">Private shared history when connected; local backup retained.</span>
+          <span class="applied-note">Stored in your private database; local offline backup retained.</span>
         </summary>
-        <button id="history-sync-btn" class="btn-ghost" type="button">Connect / sync history</button>
-        <p id="history-sync-status" role="status">Connect private history to save and sync across devices.</p>
+        <button id="history-sync-btn" class="btn-ghost" type="button">Sign in / refresh history</button>
+        <p id="history-sync-status" role="status">Sign in to see your application history from any device.</p>
         <label for="history-range">Show applications from</label>
         <select id="history-range">
           <option value="30" selected>Last 30 days</option>
@@ -195,8 +195,8 @@
     <div class="modal-card">
       <h2 id="pat-modal-title">GitHub Personal Access Token</h2>
       <p class="modal-body">
-        Private history sync and tailoring use your GitHub connection. Connect once in each browser with a
-        fine-grained token with access to <code>firelyco/JobSearch</code> for tailoring and <code>firelyco/JobSearch-private-state</code> for private application history, with permission:
+        Tailoring runs as a GitHub Actions workflow. To trigger it from this dashboard the browser needs a
+        fine-grained token scoped to <code>firelyco/JobSearch</code> with permission:
         <strong>Contents: Read and write</strong>. (The repository-dispatch API is a Repos-category endpoint —
         it needs Contents write, not the Actions permission.)
       </p>
@@ -210,6 +210,21 @@
         <span class="modal-spacer"></span>
         <button id="pat-cancel-btn" class="btn-ghost" data-close-modal>Cancel</button>
         <button id="pat-save-btn" class="btn-primary">Save</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="history-login-modal" class="modal hidden" role="dialog" aria-labelledby="history-login-title">
+    <div class="modal-overlay" data-close-history></div>
+    <div class="modal-card">
+      <h2 id="history-login-title">Sign in to application history</h2>
+      <p class="modal-body">Use your existing Interview Copilot app password. Your application records are stored in a private database, independently of this browser.</p>
+      <label for="history-password">Password</label>
+      <input type="password" id="history-password" autocomplete="current-password">
+      <p id="history-login-error" class="error" role="alert"></p>
+      <div class="modal-actions">
+        <button class="btn-ghost" data-close-history>Cancel</button>
+        <button id="history-login-submit" class="btn-primary">Sign in</button>
       </div>
     </div>
   </div>
