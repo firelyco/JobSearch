@@ -90,7 +90,14 @@ def score_job(job: dict, config: dict) -> tuple[int, list[str]]:
     unleveled = company.lower() in (c.lower() for c in config.get("unleveled_title_companies", []) or [])
     unleveled_match = unleveled and _matches_any(title, config.get("unleveled_title_patterns", []) or [])
     if not _matches_any(title, title_patterns) and not unleveled_match:
-        return 0, ["no title match"]
+        # Broader screening keeps unusual titles for description-based fit assessment.
+        broad = config.get("broad_discovery", {}) or {}
+        body = job.get("description", "") or ""
+        leadership = _matches_any(title, broad.get("leadership_patterns", [])) or _matches_any(body, broad.get("scope_patterns", []))
+        domain = _matches_any(title + " " + body, broad.get("responsibility_patterns", []))
+        if not broad.get("enabled") or not leadership or not domain:
+            return 0, ["no title match"]
+        reasons.append("broader responsibility match; needs profile assessment")
     score = int(weights.get("title_match", 30))
     reasons.append(f"title match (+{weights.get('title_match', 30)})")
 

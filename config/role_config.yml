@@ -195,4 +195,16 @@ hot_match_threshold: 80
 # Drop jobs whose ATS-reported posted_at is older than this many days.
 # Jobs with no posted_at (or an unparseable one) are kept — we don't know
 # their age, so we don't penalize missing data.
-max_posted_age_days: 14
+max_posted_age_days: 0
+
+# Do not lose senior roles merely because the title uses a different vocabulary.
+broad_discovery:
+  enabled: true
+  leadership_patterns:
+    - '\b(director|head|principal|staff|senior|lead|vp|vice president)\b'
+  responsibility_patterns:
+    - '\b(technical|engineering|technology|ai|platform|r&d)\b.{0,60}\b(program|programs|portfolio|operations|delivery)\b'
+    - '\b(program|programs|portfolio)\b.{0,60}\b(technical|engineering|technology|ai|platform)\b'
+  scope_patterns:
+    - 'cross[- ](functional|team|organizational).{0,80}(technical|engineering|program)'
+    - 'lead.{0,60}(multiple engineering teams|enterprise.*program|portfolio.*program)'

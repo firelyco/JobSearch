@@ -1,0 +1,210 @@
+# Boards re-checked 2026-10-05: companies that switched ATS were moved to
+# their new source. No public board found (dropped): hashicorp, atlassian,
+# rippling, github, netflix, shopify, segment, replicate, glean, evenup.
+greenhouse:
+  - stripe
+  - airbnb
+  - anthropic
+  - figma
+  - databricks
+  - vercel
+  - coinbase
+  - robinhood
+  - duolingo
+  - instacart
+  - doordashusa
+  - asana
+  - discord
+  - dropbox
+  - gitlab
+  - mongodb
+  - twilio
+  - elastic
+  - cloudflare
+  - datadog
+  - brex
+  - scaleai
+  - samsara
+  - affirm
+  - checkr
+  - pinterest
+  - reddit
+  - lyft
+  - carta
+  - abnormalsecurity
+  - tenstorrent
+  - aptoslabs
+  - project44
+  - pdtpartners
+  - circleci
+  - klaviyo
+  - lattice
+  - mixpanel
+  - twitch
+  - wise
+  # AI infrastructure / labs (added 2026-10-06)
+  - xai
+  - coreweave
+  - togetherai
+  - sambanovasystems
+  - figureai
+  - inflectionai
+  - stabilityai
+  - snorkelai
+  - assemblyai
+  - labelbox
+  - typeface
+
+lever:
+  - spotify
+  - palantir
+  - coupa
+  - zoox
+  - wealthfront
+
+ashby:
+  - ramp
+  - linear
+  - openai
+  - perplexity
+  - cursor
+  - supabase
+  - modal
+  - harvey
+  - decagon
+  - sierra
+  - writer
+  - speakeasy
+  - mystenlabs
+  - latentlabs
+  - emerald-ai
+  - fundamental
+  - plaud
+  - hammerhead-ai
+  - fluidstack
+  - vultr
+  - notion
+  - snowflake
+  - plaid
+  - benchling
+  - kraken.com
+  - patreon
+  - sentry
+  - amplitude
+  # AI labs and startups (added 2026-10-06; checked live, all have boards)
+  - cohere
+  - crusoe
+  - baseten
+  - cerebras
+  - character
+  - deepgram
+  - mercor
+  - reflectionai
+  - sesame
+  - suno
+  - thinkingmachines
+  - physicalintelligence
+  - lambda
+  - anyscale
+  - cognition
+  - elevenlabs
+  - langchain
+  - fireworks
+  - abridge
+  - cartesia
+  - synthesia
+  - llamaindex
+  - pinecone
+  - runway
+  - ambiencehealthcare
+  - openevidence
+
+workday:
+  # DISABLED — not on public Workday. Amazon posts via amazon.jobs (custom
+  # API); needs a dedicated adapter. Tracked as a follow-up.
+  # - tenant: amazon
+  #   site: Amazon
+  #   wd_server: wd1
+  - tenant: nvidia
+    site: NVIDIAExternalCareerSite
+    wd_server: wd5
+    search: "program manager"
+  - tenant: adobe
+    site: external_experienced
+    wd_server: wd5
+    search: "program manager"
+  # Cisco titles program leadership as "Project & Program Management" or
+  # "Leader, Program management"; two searches cover both (dedupe merges).
+  - tenant: cisco
+    site: Cisco_Careers          # was external_career_site (404)
+    wd_server: wd5
+    search: "technical program manager"
+  - tenant: cisco
+    site: Cisco_Careers
+    wd_server: wd5
+    search: "program management leader"
+  # DISABLED — Oracle uses Oracle Recruiting Cloud, not public Workday.
+  # - tenant: oracle
+  #   site: Oracle
+  #   wd_server: wd5
+  - tenant: capitalone
+    site: Capital_One
+    wd_server: wd12              # was wd1 (migrated; wd1 now returns empty)
+    search: "program manager"
+  # DISABLED — Dell migrated to Oracle Recruiting Cloud; its Workday board
+  # returns HTTP 200 with zero jobs. Real listings are on jobs.dell.com.
+  # - tenant: dell
+  #   site: External
+  #   wd_server: wd1
+  - tenant: intel
+    site: External
+    wd_server: wd1
+    search: "program manager"
+  - tenant: walmart
+    site: WalmartExternal
+    wd_server: wd5
+    search: "program manager"   # ~2000 postings; search surfaces relevant roles
+  - tenant: salesforce
+    site: External_Career_Site
+    wd_server: wd12
+    search: "technical program manager"   # "program manager" returns sales/ops noise
+
+# Amazon is not on public Workday — it runs amazon.jobs. Each entry is a
+# search query; the scorer filters to senior TPM roles.
+amazon_jobs:
+  - "technical program manager"
+  - "program management"
+
+# Netflix moved off Lever to an Eightfold board (src/adapters/netflix.py).
+netflix:
+  - "program manager"
+
+# Apple search is fuzzy; quoted phrases keep results relevant (src/adapters/apple.py).
+apple:
+  - '"engineering program manager"'
+  - '"technical program manager"'
+  - '"program management"'
+
+# Google has no public API; src/adapters/google.py parses the results page.
+# Titles don't show level, so ask Google for senior levels only.
+google:
+  - query: '"program manager"'
+    levels: [ADVANCED, DIRECTOR_PLUS]
+  - query: '"program management"'
+    levels: [ADVANCED, DIRECTOR_PLUS]
+
+# Oracle Recruiting Cloud (HCM Candidate Experience) — re-enables Oracle
+# and Dell (both moved off Workday to Oracle's own platform).
+oracle_cloud:
+  - company: oracle
+    tenant: eeho
+    dc: us2
+    site: jobsearch
+    site_number: CX_45001
+    search: "program manager"
+  - company: dell
+    tenant: iawmqy
+    dc: ocs
+    site: careers
+    site_number: CX_1001
+    search: "program manager"

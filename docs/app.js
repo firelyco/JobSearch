@@ -105,6 +105,7 @@ function postedTooltip(j) {
 }
 
 const ROLE_CATEGORIES = [
+  { id: 'adjacent', match: (j) => (j.score_reasons || []).some(r => r.startsWith('broader responsibility match')) },
   { id: 'vp',         pattern: /\b(vp|vice\s+president|head\s+of)\b.*\bprogram/i },
   { id: 'director',   pattern: /\bdirector\b.*(\btpm\b|technical\s+program|program\s+management)/i },
   { id: 'sr_manager', pattern: /(sr\.?\s*manager|senior\s+manager).*(\btpm\b|technical\s+program|program\s+management)/i },
@@ -232,6 +233,12 @@ function renderMeta() {
   } else {
     $('meta-line').textContent = '';
   }
+  const coverage = [...Object.values(metaData.stats || {}).flatMap(s => s.sources || []), ...(metaData.discovery || [])];
+  if ($('coverage-status')) {
+    $('coverage-status').innerHTML = coverage.length ? coverage.map(s => `<div>${escapeHtml(s.label || s.query || s.url || s.source)}: <strong>${escapeHtml(s.status)}</strong> (${s.jobs ?? s.leads ?? 0})</div>`).join('') : 'Detailed source coverage becomes available after the next poll.';
+  }
+  const unavailable = coverage.filter(s => ['failed', 'partial', 'limit_reached', 'not_configured'].includes(s.status));
+  if (unavailable.length) $('meta-line').textContent += ` ? coverage incomplete (${unavailable.length} sources/queries)`;
   const hot = allJobs.filter(isHot).length;
   $('badge-hot').textContent = `${hot} hot`;
   $('badge-total').textContent = `${allJobs.length} total`;
@@ -346,7 +353,7 @@ function renderTable() {
     const bucket = scoreBucket(j);
     const key = jobKey(j);
     const curStatus = statuses[key] || 'new';
-    const meta = [j.location, j.source].filter(Boolean).join(' · ');
+    const meta = [j.location, j.source, j.open_status === 'unverified_source_failure' ? 'open status unverified: source unavailable' : ''].filter(Boolean).join(' · ');
     return `
       <tr data-key="${escapeAttr(key)}">
         <td class="col-applied"><input type="checkbox" class="applied-cb" title="Mark as applied" ${isAppliedStatus(curStatus) ? 'checked' : ''}></td>
@@ -738,6 +745,20 @@ function bindRoleDropdown() {
 }
 
 function bindControls() {
+  $('check-missing-posting')?.addEventListener('click', () => {
+    const input = $('missing-posting-url').value.trim();
+    const normalize = value => {
+      try {
+        const url = new URL(value);
+        if (url.protocol !== 'https:') return '';
+        for (const key of [...url.searchParams.keys()]) if (key.startsWith('utm_') || ['source', 'ref', 'referrer'].includes(key)) url.searchParams.delete(key);
+        url.hash = ''; return url.href.replace(/\/$/, '');
+      } catch { return ''; }
+    };
+    const url = normalize(input);
+    const matches = url && allJobs.filter(j => normalize(j.url) === url);
+    $('missing-posting-result').textContent = !url ? 'Enter a valid HTTPS posting URL.' : matches.length ? `Found in this snapshot: ${matches.map(j => j.title).join('; ')}. Clear role, fit, location, source and applied filters to see it.` : 'Not in the published snapshot. Check Source coverage for disabled or failed discovery. The repository command python -m src.explain_missing --url YOUR_URL --learn can inspect and monitor its employer board.';
+  });
   ['filter-source', 'filter-status', 'filter-score', 'filter-fit', 'filter-location', 'filter-workmode'].forEach(id => {
     $(id).addEventListener('input', renderTable);
     $(id).addEventListener('change', renderTable);

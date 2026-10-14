@@ -91,6 +91,8 @@ def get_jd_text(job: dict) -> str:
     Note: dispatches via module attribute lookup (not a captured function ref) so
     tests can patch adapter.fetch_detail without monkey-patching this module.
     """
+    if job.get("description"):
+        return strip_html(job["description"])
     source = job.get("source", "")
     module = _ADAPTER_MODULES.get(source)
     if module is None:

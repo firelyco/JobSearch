@@ -21,7 +21,9 @@ from pathlib import Path
 import yaml
 
 from src.adapters import greenhouse, lever, ashby, workday, amazon_jobs, oracle_cloud, netflix, apple, google
-from src import dedupe, scorer
+from src import dedupe, scorer, discovery, jd_fetch
+import re
+from src.source_health import fetch_with_health
 
 logging.basicConfig(
     level=logging.INFO,
@@ -89,12 +91,16 @@ def fetch_all(companies: dict) -> tuple[list[dict], dict]:
     all_jobs: list[dict] = []
 
     with ThreadPoolExecutor(max_workers=MAX_WORKERS) as ex:
-        futures = {ex.submit(fn, arg): (source, label) for (source, label, fn, arg) in tasks}
+        futures = {ex.submit(fetch_with_health, source, label, fn, arg): (source, label) for (source, label, fn, arg) in tasks}
         for fut in as_completed(futures):
             source, label = futures[fut]
             try:
-                jobs = fut.result()
-                stats[source]["ok"] += 1
+                jobs, health = fut.result()
+                stats[source].setdefault("sources", []).append(health)
+                if health["status"] in {"failed", "partial"}:
+                    stats[source]["fail"] += 1
+                else:
+                    stats[source]["ok"] += 1
                 stats[source]["jobs"] += len(jobs)
                 all_jobs.extend(jobs)
             except Exception as e:
@@ -121,8 +127,83 @@ def main() -> int:
     )
 
     all_jobs, stats = fetch_all(companies)
+    previous = json.loads(JOBS_FILE.read_text(encoding="utf-8")) if JOBS_FILE.exists() else []
+    cache_file = STATE_DIR / "discovery_cache.json"
+    registry_file = STATE_DIR / "discovered_boards.json"
+    def read_state(path, fallback):
+        try: return json.loads(path.read_text(encoding="utf-8"))
+        except (OSError, ValueError): return fallback
+    cache = read_state(cache_file, {})
+    registry = read_state(registry_file, [])
+    discovery_config = load_yaml(CONFIG_DIR / "discovery.yml") if (CONFIG_DIR / "discovery.yml").exists() else {}
+    new_jobs, learned, discovery_health = discovery.discover(discovery_config, cache)
+    registry = list({discovery.board_key(b): b for b in registry + learned}.values())
+    modules = {"greenhouse": greenhouse, "lever": lever, "ashby": ashby, "workday": workday}
+    configured = {(source, str(arg.get("tenant")) if isinstance(arg, dict) else str(arg))
+                  for source, _, _, arg in build_fetch_tasks(companies)}
+    unconfigured = [b for b in registry if (b["source"], str(b["config"].get("tenant")) if isinstance(b["config"], dict) else b["config"]) not in configured]
+    cap = int(discovery_config.get("max_discovered_boards_per_poll", 24))
+    cursor = int(cache.get("board_cursor", 0))
+    rotated = unconfigured[cursor % len(unconfigured):] + unconfigured[:cursor % len(unconfigured)] if unconfigured else []
+    if discovery_config.get("enabled", False):
+        with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
+            futures = [executor.submit(fetch_with_health, b["source"], discovery.board_key(b), modules[b["source"]].fetch, b["config"]) for b in rotated[:cap] if b["source"] in modules]
+            for future in as_completed(futures):
+                jobs, health = future.result()
+                cache["board:" + health["label"]] = {"jobs": jobs, "health": health, "checked_at": start.isoformat()}
+                new_jobs.extend(jobs); discovery_health.append(health)
+        # Rotation must not remove jobs from discovered boards not polled this run.
+        for board in rotated[cap:]:
+            cached = cache.get("board:" + discovery.board_key(board), {})
+            new_jobs.extend(cached.get("jobs", []))
+            if cached:
+                discovery_health.append({**cached["health"], "status": "cached", "checked_at": cached["checked_at"]})
+        cache["board_cursor"] = cursor + cap
+    all_jobs = discovery.merge_jobs(all_jobs, new_jobs)
+    # A failed source is unknown, not proof that yesterday's postings closed.
+    failures = [h for info in stats.values() for h in info.get("sources", []) if h["status"] in {"failed", "partial"}]
+    failures += [h for h in discovery_health if h["status"] in {"failed", "partial"}]
+    def affected(job):
+        for h in failures:
+            if h["source"] != job["source"]: continue
+            if h["source"] in {"greenhouse", "lever", "ashby", "workday"}:
+                label = h.get("label", "")
+                try:
+                    board = json.loads(label); cfg = board["config"]
+                    label = cfg.get("tenant", "") if isinstance(cfg, dict) else cfg
+                except (ValueError, TypeError, KeyError): pass
+                if label != job["company"]: continue
+            return True
+        return False
+    retained = [{**j, "open_status": "unverified_source_failure"} for j in previous if affected(j)]
+    all_jobs = discovery.merge_jobs(all_jobs, retained)
+    STATE_DIR.mkdir(parents=True, exist_ok=True)
+    cache_file.write_text(json.dumps(cache), encoding="utf-8")
+    registry_file.write_text(json.dumps(registry, indent=2), encoding="utf-8")
     log.info("fetched %d raw jobs across all sources", len(all_jobs))
 
+    # Bounded description enrichment prevents unusual titles disappearing before fit.
+    candidates = []
+    candidate_urls = set()
+    for job in all_jobs:
+        if job.get("description") or scorer.score_job(job, role)[0] > 0: continue
+        if scorer._matches_any(job.get("title", ""), role.get("excluded_title_patterns", [])): continue
+        if not re.search(r"technical.*program|engineering.*program|\btpm\b|portfolio|engineering.*operations", job.get("title", ""), re.I): continue
+        if job.get("url") in candidate_urls: continue
+        candidate_urls.add(job.get("url")); candidates.append(job)
+    def enrich(job):
+        try:
+            body, status = discovery.cached_call(cache, "jd:" + job["url"], 6, lambda: jd_fetch.get_jd_text(job))
+            if body: job["description"] = body
+            return {"source": "description_check", "url": job["url"], "status": status if body else "failed"}
+        except Exception:
+            return {"source": "description_check", "url": job.get("url", ""), "status": "failed"}
+    enriched = min(40, len(candidates))
+    with ThreadPoolExecutor(max_workers=8) as executor:
+        discovery_health.extend(executor.map(enrich, candidates[:40]))
+    if len(candidates) > 40:
+        discovery_health.append({"source": "description_check", "status": "limit_reached", "deferred": len(candidates) - 40})
+    cache_file.write_text(json.dumps(cache), encoding="utf-8")
     scored: list[dict] = []
     seen_keys: set[str] = set()
     dropped_age = 0
@@ -171,6 +252,11 @@ def main() -> int:
         "total_jobs_kept": len(scored),
         "new_this_run": len(new_jobs),
         "tracked_total": len(pruned_seen),
+        "discovery": discovery_health,
+        "discovered_boards": len(registry),
+        "description_checks": enriched,
+        "description_check_limit": 40,
+        "coverage_note": "Configured feeds plus employer-independent discovery; indexing, provider availability and pagination limit coverage.",
     }
     with open(META_FILE, "w", encoding="utf-8") as f:
         json.dump(meta, f, indent=2)

@@ -1,0 +1,20 @@
+# Employer-independent discovery. No private profile content enters web queries.
+enabled: true
+public_feeds: [remotive, arbeitnow]
+# Cached for six hours, respecting Remotive's max-four-fetches/day guidance.
+# Broad web searches activate when BRAVE_SEARCH_API_KEY is configured.
+queries:
+  - '"technical program" "director" jobs'
+  - '"technical program" "principal" jobs'
+  - '"technical program" "staff" jobs startup'
+  - '"head of" "program management" careers'
+  - '"engineering operations" "director" careers'
+  - '"AI" "program leadership" careers'
+  - '"technical program" site:jobs.ashbyhq.com'
+  - '"technical program" site:jobs.lever.co'
+  - '"program management" site:job-boards.greenhouse.io'
+  - '"technical program" site:myworkdayjobs.com'
+# A missing posting can seed employer discovery without maintaining an allowlist.
+seed_urls:
+  - https://expedia.wd108.myworkdayjobs.com/search/job/Washington---Seattle-Campus/Director-Technical-Program-Management---Planning--_R-107898
+max_discovered_boards_per_poll: 24

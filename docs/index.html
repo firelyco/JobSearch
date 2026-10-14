@@ -24,6 +24,8 @@
       <div class="title-row">
         <div>
           <h1>JobSearch</h1>
+          <details><summary>Check a missing posting</summary><input id="missing-posting-url" type="url" placeholder="Paste the employer job URL"><button id="check-missing-posting" type="button">Check snapshot</button><p id="missing-posting-result"></p></details>
+          <details id="coverage-details"><summary>Source coverage</summary><div id="coverage-status"></div></details>
           <p class="subtitle" id="meta-line">loading…</p>
         </div>
         <div class="badges">
@@ -65,6 +67,7 @@
             <label class="role-option"><input type="checkbox" data-role="principal" checked> Principal / Distinguished Technical Program Management</label>
             <label class="role-option"><input type="checkbox" data-role="epm" checked> Engineering Program Management</label>
             <label class="role-option"><input type="checkbox" data-role="eng_ops_ai" checked> Engineering Ops / AI Program Leadership</label>
+            <label class="role-option"><input type="checkbox" data-role="adjacent" checked> Adjacent leadership roles needing fit assessment</label>
             <label class="role-option"><input type="checkbox" data-role="unleveled" checked> TPM / EPM, level not in title (Anthropic, Netflix, Apple)</label>
             <div class="role-panel-divider"></div>
             <label class="role-edit-search">
@@ -84,6 +87,9 @@
           <option value="netflix">netflix</option>
           <option value="apple">apple</option>
           <option value="google">google</option>
+            <option value="remotive">remotive</option>
+            <option value="arbeitnow">arbeitnow</option>
+            <option value="web_discovery">career-site discovery</option>
         </select>
         <select id="filter-status">
           <option value="">all status</option>
