@@ -13,9 +13,17 @@ class ICPolicy(unittest.TestCase):
         fake = FakeClient([json.dumps({"recommendation": recommendation, "step": step, "role_level": "ic", "comp_status": compensation, "role_summary": "Delivers AI platform programs"})])
         return score_fit(PROFILE, JOB, "AI platform job", client=fake, rules=RULES)
 
+    def test_typical_long_posting_retains_qualifications_and_compensation(self):
+        fake = FakeClient([json.dumps({"recommendation": "strong", "role_level": "ic", "comp_status": "meets_floor", "role_summary": "Engineering operations"})])
+        jd = "Role responsibilities. " * 300 + "Requires 10+ years in technical program management. " + "Benefits. " * 200 + "Compensation range: $230,000 - $280,000."
+        score_fit(PROFILE, JOB, jd, client=fake, rules=RULES)
+        sent = fake.calls[0]["messages"][0]["content"]
+        self.assertIn("Requires 10+ years", sent)
+        self.assertIn("$230,000 - $280,000", sent)
+
     def test_salary_at_end_of_long_posting_is_retained(self):
         fake = FakeClient([json.dumps({"recommendation": "strong", "role_level": "ic", "comp_status": "meets_floor", "role_summary": "AI platform operations"})])
-        jd = "Lead technical programs. " + "Benefits and company information. " * 400 + "Compensation Range: $230,000 - $280,000 + bonus."
+        jd = "Lead technical programs. " + "Benefits and company information. " * 1000 + "Compensation Range: $230,000 - $280,000 + bonus."
         score_fit(PROFILE, JOB, jd, client=fake, rules=RULES)
         self.assertIn("$230,000 - $280,000", fake.calls[0]["messages"][0]["content"])
 

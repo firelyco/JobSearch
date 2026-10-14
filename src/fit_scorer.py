@@ -162,7 +162,7 @@ def score_fit(
     client: object | None = None,
     model: str = "claude-haiku-4-5",
     condensed: str | None = None,
-    max_jd_chars: int = 6000,
+    max_jd_chars: int = 16000,
     rules: dict | None = None,
 ) -> FitVerdict:
     """Assess fit for one job. Returns a FitVerdict.
