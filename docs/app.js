@@ -213,7 +213,7 @@ async function loadData() {
     }
   } catch (e) {
     console.error('load failed', e);
-    $('jobs-tbody').innerHTML = `<tr><td colspan="8" class="empty">Could not load jobs.json. The poller may not have run yet.</td></tr>`;
+    $('jobs-tbody').innerHTML = `<tr><td colspan="7" class="empty">Could not load jobs.json. The poller may not have run yet.</td></tr>`;
     return;
   }
   render();
@@ -358,20 +358,18 @@ function renderTable() {
 
   const tbody = $('jobs-tbody');
   if (filtered.length === 0) {
-    tbody.innerHTML = `<tr><td colspan="8" class="empty">No jobs match your filters. Try all fit to see provisional and pending assessments.</td></tr>`;
+    tbody.innerHTML = `<tr><td colspan="7" class="empty">No jobs match your filters. Try all fit to see provisional and pending assessments.</td></tr>`;
     return;
   }
 
   const inFlight = loadInFlight();
   tbody.innerHTML = filtered.map(j => {
-    const bucket = scoreBucket(j);
     const key = jobKey(j);
     const curStatus = statuses[key] || 'new';
     const meta = [j.location, j.source, j.open_status === 'unverified_source_failure' ? 'open status unverified: source unavailable' : ''].filter(Boolean).join(' · ');
     return `
       <tr data-key="${escapeAttr(key)}">
         <td class="col-applied"><input type="checkbox" class="applied-cb" title="Mark as applied" ${isAppliedStatus(curStatus) ? 'checked' : ''}></td>
-        <td><span class="score-pill score-${bucket}${(fitScores[key] || {}).recommendation === 'not' ? ' score-muted' : ''}" title="${escapeAttr((j.score_reasons || []).join('\n'))}">${j.score || 0}</span></td>
         <td>${fitCellHtml(fitScores[key])}</td>
         <td>
           <div class="role-title"><a href="${escapeAttr(j.url)}" target="_blank" rel="noopener">${escapeHtml(j.title)}</a></div>
