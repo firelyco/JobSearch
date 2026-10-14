@@ -1,17 +1,29 @@
 {
-  "polled_at": "2026-10-14T17:04:42.256929+00:00",
-  "elapsed_seconds": 46.08,
+  "polled_at": "2026-10-14T17:08:06.145400+00:00",
+  "elapsed_seconds": 39.26,
   "stats": {
     "greenhouse": {
       "ok": 51,
       "fail": 0,
-      "jobs": 8867,
+      "jobs": 8866,
       "sources": [
         {
           "source": "greenhouse",
-          "label": "cloudflare",
+          "label": "twilio",
           "status": "ok",
-          "jobs": 446
+          "jobs": 143
+        },
+        {
+          "source": "greenhouse",
+          "label": "elastic",
+          "status": "ok",
+          "jobs": 376
+        },
+        {
+          "source": "greenhouse",
+          "label": "dropbox",
+          "status": "ok",
+          "jobs": 32
         },
         {
           "source": "greenhouse",
@@ -23,13 +35,7 @@
           "source": "greenhouse",
           "label": "discord",
           "status": "ok",
-          "jobs": 49
-        },
-        {
-          "source": "greenhouse",
-          "label": "duolingo",
-          "status": "ok",
-          "jobs": 59
+          "jobs": 48
         },
         {
           "source": "greenhouse",
@@ -39,21 +45,15 @@
         },
         {
           "source": "greenhouse",
-          "label": "stripe",
+          "label": "gitlab",
           "status": "ok",
-          "jobs": 724
+          "jobs": 216
         },
         {
           "source": "greenhouse",
-          "label": "anthropic",
+          "label": "duolingo",
           "status": "ok",
-          "jobs": 651
-        },
-        {
-          "source": "greenhouse",
-          "label": "airbnb",
-          "status": "ok",
-          "jobs": 165
+          "jobs": 59
         },
         {
           "source": "greenhouse",
@@ -63,15 +63,9 @@
         },
         {
           "source": "greenhouse",
-          "label": "datadog",
+          "label": "airbnb",
           "status": "ok",
-          "jobs": 438
-        },
-        {
-          "source": "greenhouse",
-          "label": "twilio",
-          "status": "ok",
-          "jobs": 143
+          "jobs": 165
         },
         {
           "source": "greenhouse",
@@ -81,33 +75,15 @@
         },
         {
           "source": "greenhouse",
-          "label": "dropbox",
-          "status": "ok",
-          "jobs": 32
-        },
-        {
-          "source": "greenhouse",
           "label": "robinhood",
           "status": "ok",
           "jobs": 151
         },
         {
           "source": "greenhouse",
-          "label": "gitlab",
+          "label": "brex",
           "status": "ok",
-          "jobs": 216
-        },
-        {
-          "source": "greenhouse",
-          "label": "mongodb",
-          "status": "ok",
-          "jobs": 405
-        },
-        {
-          "source": "greenhouse",
-          "label": "checkr",
-          "status": "ok",
-          "jobs": 44
+          "jobs": 264
         },
         {
           "source": "greenhouse",
@@ -123,15 +99,27 @@
         },
         {
           "source": "greenhouse",
-          "label": "affirm",
+          "label": "datadog",
           "status": "ok",
-          "jobs": 206
+          "jobs": 438
         },
         {
           "source": "greenhouse",
-          "label": "carta",
+          "label": "checkr",
           "status": "ok",
-          "jobs": 73
+          "jobs": 44
+        },
+        {
+          "source": "greenhouse",
+          "label": "stripe",
+          "status": "ok",
+          "jobs": 724
+        },
+        {
+          "source": "greenhouse",
+          "label": "anthropic",
+          "status": "ok",
+          "jobs": 651
         },
         {
           "source": "greenhouse",
@@ -141,15 +129,15 @@
         },
         {
           "source": "greenhouse",
-          "label": "aptoslabs",
+          "label": "pinterest",
           "status": "ok",
-          "jobs": 7
+          "jobs": 154
         },
         {
           "source": "greenhouse",
-          "label": "elastic",
+          "label": "affirm",
           "status": "ok",
-          "jobs": 376
+          "jobs": 206
         },
         {
           "source": "greenhouse",
@@ -159,21 +147,15 @@
         },
         {
           "source": "greenhouse",
-          "label": "brex",
+          "label": "cloudflare",
           "status": "ok",
-          "jobs": 264
+          "jobs": 446
         },
         {
           "source": "greenhouse",
-          "label": "lyft",
+          "label": "carta",
           "status": "ok",
-          "jobs": 177
-        },
-        {
-          "source": "greenhouse",
-          "label": "project44",
-          "status": "ok",
-          "jobs": 29
+          "jobs": 73
         },
         {
           "source": "greenhouse",
@@ -183,33 +165,39 @@
         },
         {
           "source": "greenhouse",
-          "label": "pinterest",
+          "label": "lyft",
           "status": "ok",
-          "jobs": 154
+          "jobs": 177
         },
         {
           "source": "greenhouse",
-          "label": "pdtpartners",
+          "label": "mongodb",
           "status": "ok",
-          "jobs": 11
+          "jobs": 405
         },
         {
           "source": "greenhouse",
-          "label": "doordashusa",
+          "label": "aptoslabs",
           "status": "ok",
-          "jobs": 460
+          "jobs": 7
+        },
+        {
+          "source": "greenhouse",
+          "label": "project44",
+          "status": "ok",
+          "jobs": 29
         },
         {
           "source": "greenhouse",
           "label": "reddit",
           "status": "ok",
-          "jobs": 145
+          "jobs": 144
         },
         {
           "source": "greenhouse",
-          "label": "lattice",
+          "label": "doordashusa",
           "status": "ok",
-          "jobs": 9
+          "jobs": 461
         },
         {
           "source": "greenhouse",
@@ -225,15 +213,9 @@
         },
         {
           "source": "greenhouse",
-          "label": "klaviyo",
+          "label": "wise",
           "status": "ok",
-          "jobs": 146
-        },
-        {
-          "source": "greenhouse",
-          "label": "inflectionai",
-          "status": "ok",
-          "jobs": 6
+          "jobs": 20
         },
         {
           "source": "greenhouse",
@@ -243,15 +225,9 @@
         },
         {
           "source": "greenhouse",
-          "label": "stabilityai",
+          "label": "sambanovasystems",
           "status": "ok",
-          "jobs": 6
-        },
-        {
-          "source": "greenhouse",
-          "label": "togetherai",
-          "status": "ok",
-          "jobs": 73
+          "jobs": 61
         },
         {
           "source": "greenhouse",
@@ -261,27 +237,21 @@
         },
         {
           "source": "greenhouse",
-          "label": "sambanovasystems",
+          "label": "klaviyo",
           "status": "ok",
-          "jobs": 61
+          "jobs": 146
         },
         {
           "source": "greenhouse",
-          "label": "assemblyai",
+          "label": "lattice",
           "status": "ok",
-          "jobs": 8
+          "jobs": 9
         },
         {
           "source": "greenhouse",
-          "label": "wise",
+          "label": "pdtpartners",
           "status": "ok",
-          "jobs": 20
-        },
-        {
-          "source": "greenhouse",
-          "label": "snorkelai",
-          "status": "ok",
-          "jobs": 43
+          "jobs": 11
         },
         {
           "source": "greenhouse",
@@ -291,9 +261,27 @@
         },
         {
           "source": "greenhouse",
-          "label": "typeface",
+          "label": "assemblyai",
           "status": "ok",
-          "jobs": 15
+          "jobs": 8
+        },
+        {
+          "source": "greenhouse",
+          "label": "stabilityai",
+          "status": "ok",
+          "jobs": 6
+        },
+        {
+          "source": "greenhouse",
+          "label": "inflectionai",
+          "status": "ok",
+          "jobs": 6
+        },
+        {
+          "source": "greenhouse",
+          "label": "xai",
+          "status": "ok",
+          "jobs": 303
         },
         {
           "source": "greenhouse",
@@ -303,9 +291,21 @@
         },
         {
           "source": "greenhouse",
-          "label": "xai",
+          "label": "typeface",
           "status": "ok",
-          "jobs": 303
+          "jobs": 15
+        },
+        {
+          "source": "greenhouse",
+          "label": "snorkelai",
+          "status": "ok",
+          "jobs": 43
+        },
+        {
+          "source": "greenhouse",
+          "label": "togetherai",
+          "status": "ok",
+          "jobs": 73
         },
         {
           "source": "greenhouse",
@@ -316,21 +316,21 @@
       ]
     },
     "lever": {
-      "ok": 5,
-      "fail": 0,
-      "jobs": 687,
+      "ok": 4,
+      "fail": 1,
+      "jobs": 607,
       "sources": [
-        {
-          "source": "lever",
-          "label": "wealthfront",
-          "status": "ok",
-          "jobs": 23
-        },
         {
           "source": "lever",
           "label": "coupa",
           "status": "ok",
           "jobs": 32
+        },
+        {
+          "source": "lever",
+          "label": "wealthfront",
+          "status": "ok",
+          "jobs": 23
         },
         {
           "source": "lever",
@@ -340,29 +340,23 @@
         },
         {
           "source": "lever",
-          "label": "spotify",
-          "status": "ok",
-          "jobs": 80
-        },
-        {
-          "source": "lever",
           "label": "palantir",
           "status": "ok",
           "jobs": 314
+        },
+        {
+          "source": "lever",
+          "label": "spotify",
+          "status": "failed",
+          "jobs": 0
         }
       ]
     },
     "ashby": {
       "ok": 54,
       "fail": 0,
-      "jobs": 5201,
+      "jobs": 5200,
       "sources": [
-        {
-          "source": "ashby",
-          "label": "linear",
-          "status": "ok",
-          "jobs": 30
-        },
         {
           "source": "ashby",
           "label": "supabase",
@@ -374,24 +368,6 @@
           "label": "modal",
           "status": "ok",
           "jobs": 41
-        },
-        {
-          "source": "ashby",
-          "label": "mystenlabs",
-          "status": "ok",
-          "jobs": 6
-        },
-        {
-          "source": "ashby",
-          "label": "latentlabs",
-          "status": "ok",
-          "jobs": 9
-        },
-        {
-          "source": "ashby",
-          "label": "emerald-ai",
-          "status": "ok",
-          "jobs": 8
         },
         {
           "source": "ashby",
@@ -407,21 +383,21 @@
         },
         {
           "source": "ashby",
-          "label": "writer",
+          "label": "linear",
           "status": "ok",
-          "jobs": 49
+          "jobs": 30
         },
         {
           "source": "ashby",
-          "label": "fundamental",
+          "label": "mystenlabs",
           "status": "ok",
-          "jobs": 21
+          "jobs": 6
         },
         {
           "source": "ashby",
-          "label": "plaud",
+          "label": "latentlabs",
           "status": "ok",
-          "jobs": 52
+          "jobs": 9
         },
         {
           "source": "ashby",
@@ -431,15 +407,33 @@
         },
         {
           "source": "ashby",
-          "label": "ramp",
+          "label": "emerald-ai",
           "status": "ok",
-          "jobs": 162
+          "jobs": 8
+        },
+        {
+          "source": "ashby",
+          "label": "fundamental",
+          "status": "ok",
+          "jobs": 21
+        },
+        {
+          "source": "ashby",
+          "label": "writer",
+          "status": "ok",
+          "jobs": 49
         },
         {
           "source": "ashby",
           "label": "hammerhead-ai",
           "status": "ok",
           "jobs": 7
+        },
+        {
+          "source": "ashby",
+          "label": "plaud",
+          "status": "ok",
+          "jobs": 52
         },
         {
           "source": "ashby",
@@ -455,31 +449,13 @@
         },
         {
           "source": "ashby",
+          "label": "ramp",
+          "status": "ok",
+          "jobs": 162
+        },
+        {
+          "source": "ashby",
           "label": "patreon",
-          "status": "ok",
-          "jobs": 14
-        },
-        {
-          "source": "ashby",
-          "label": "benchling",
-          "status": "ok",
-          "jobs": 57
-        },
-        {
-          "source": "ashby",
-          "label": "notion",
-          "status": "ok",
-          "jobs": 130
-        },
-        {
-          "source": "ashby",
-          "label": "sentry",
-          "status": "ok",
-          "jobs": 45
-        },
-        {
-          "source": "ashby",
-          "label": "character",
           "status": "ok",
           "jobs": 13
         },
@@ -491,21 +467,15 @@
         },
         {
           "source": "ashby",
-          "label": "fluidstack",
+          "label": "benchling",
           "status": "ok",
-          "jobs": 248
+          "jobs": 57
         },
         {
           "source": "ashby",
-          "label": "harvey",
+          "label": "sentry",
           "status": "ok",
-          "jobs": 342
-        },
-        {
-          "source": "ashby",
-          "label": "amplitude",
-          "status": "ok",
-          "jobs": 38
+          "jobs": 45
         },
         {
           "source": "ashby",
@@ -521,33 +491,39 @@
         },
         {
           "source": "ashby",
+          "label": "amplitude",
+          "status": "ok",
+          "jobs": 38
+        },
+        {
+          "source": "ashby",
+          "label": "character",
+          "status": "ok",
+          "jobs": 13
+        },
+        {
+          "source": "ashby",
+          "label": "notion",
+          "status": "ok",
+          "jobs": 130
+        },
+        {
+          "source": "ashby",
+          "label": "harvey",
+          "status": "ok",
+          "jobs": 342
+        },
+        {
+          "source": "ashby",
+          "label": "fluidstack",
+          "status": "ok",
+          "jobs": 248
+        },
+        {
+          "source": "ashby",
           "label": "sesame",
           "status": "ok",
           "jobs": 25
-        },
-        {
-          "source": "ashby",
-          "label": "reflectionai",
-          "status": "ok",
-          "jobs": 47
-        },
-        {
-          "source": "ashby",
-          "label": "anyscale",
-          "status": "ok",
-          "jobs": 20
-        },
-        {
-          "source": "ashby",
-          "label": "thinkingmachines",
-          "status": "ok",
-          "jobs": 55
-        },
-        {
-          "source": "ashby",
-          "label": "cerebras",
-          "status": "ok",
-          "jobs": 123
         },
         {
           "source": "ashby",
@@ -557,9 +533,15 @@
         },
         {
           "source": "ashby",
-          "label": "deepgram",
+          "label": "cohere",
           "status": "ok",
-          "jobs": 91
+          "jobs": 117
+        },
+        {
+          "source": "ashby",
+          "label": "thinkingmachines",
+          "status": "ok",
+          "jobs": 55
         },
         {
           "source": "ashby",
@@ -575,27 +557,15 @@
         },
         {
           "source": "ashby",
-          "label": "mercor",
+          "label": "reflectionai",
           "status": "ok",
-          "jobs": 111
+          "jobs": 47
         },
         {
           "source": "ashby",
-          "label": "cohere",
+          "label": "cerebras",
           "status": "ok",
-          "jobs": 117
-        },
-        {
-          "source": "ashby",
-          "label": "pinecone",
-          "status": "ok",
-          "jobs": 5
-        },
-        {
-          "source": "ashby",
-          "label": "llamaindex",
-          "status": "ok",
-          "jobs": 8
+          "jobs": 123
         },
         {
           "source": "ashby",
@@ -605,15 +575,45 @@
         },
         {
           "source": "ashby",
+          "label": "mercor",
+          "status": "ok",
+          "jobs": 111
+        },
+        {
+          "source": "ashby",
+          "label": "anyscale",
+          "status": "ok",
+          "jobs": 20
+        },
+        {
+          "source": "ashby",
+          "label": "deepgram",
+          "status": "ok",
+          "jobs": 91
+        },
+        {
+          "source": "ashby",
+          "label": "lambda",
+          "status": "ok",
+          "jobs": 91
+        },
+        {
+          "source": "ashby",
+          "label": "llamaindex",
+          "status": "ok",
+          "jobs": 8
+        },
+        {
+          "source": "ashby",
           "label": "cartesia",
           "status": "ok",
           "jobs": 28
         },
         {
           "source": "ashby",
-          "label": "openevidence",
+          "label": "pinecone",
           "status": "ok",
-          "jobs": 9
+          "jobs": 5
         },
         {
           "source": "ashby",
@@ -623,21 +623,15 @@
         },
         {
           "source": "ashby",
-          "label": "fireworks",
+          "label": "cognition",
           "status": "ok",
-          "jobs": 84
+          "jobs": 103
         },
         {
           "source": "ashby",
           "label": "ambiencehealthcare",
           "status": "ok",
           "jobs": 19
-        },
-        {
-          "source": "ashby",
-          "label": "cognition",
-          "status": "ok",
-          "jobs": 103
         },
         {
           "source": "ashby",
@@ -653,9 +647,15 @@
         },
         {
           "source": "ashby",
-          "label": "lambda",
+          "label": "openevidence",
           "status": "ok",
-          "jobs": 91
+          "jobs": 9
+        },
+        {
+          "source": "ashby",
+          "label": "fireworks",
+          "status": "ok",
+          "jobs": 84
         },
         {
           "source": "ashby",
@@ -702,19 +702,19 @@
         },
         {
           "source": "workday",
-          "label": "salesforce",
-          "status": "limit_reached",
-          "jobs": 200
-        },
-        {
-          "source": "workday",
           "label": "cisco",
           "status": "limit_reached",
           "jobs": 200
         },
         {
           "source": "workday",
-          "label": "adobe",
+          "label": "cisco",
+          "status": "ok",
+          "jobs": 147
+        },
+        {
+          "source": "workday",
+          "label": "salesforce",
           "status": "limit_reached",
           "jobs": 200
         },
@@ -726,15 +726,15 @@
         },
         {
           "source": "workday",
-          "label": "intel",
+          "label": "adobe",
           "status": "limit_reached",
           "jobs": 200
         },
         {
           "source": "workday",
-          "label": "cisco",
-          "status": "ok",
-          "jobs": 147
+          "label": "intel",
+          "status": "limit_reached",
+          "jobs": 200
         }
       ]
     },
@@ -821,22 +821,22 @@
       "sources": [
         {
           "source": "google",
-          "label": "\"program management\"",
-          "status": "ok",
-          "jobs": 81
-        },
-        {
-          "source": "google",
           "label": "\"program manager\"",
           "status": "ok",
           "jobs": 94
+        },
+        {
+          "source": "google",
+          "label": "\"program management\"",
+          "status": "ok",
+          "jobs": 81
         }
       ]
     }
   },
-  "total_jobs_fetched": 27355,
+  "total_jobs_fetched": 27286,
   "total_jobs_kept": 761,
-  "new_this_run": 6,
+  "new_this_run": 0,
   "tracked_total": 822,
   "discovery": [
     {
@@ -942,316 +942,148 @@
       "jobs": 1
     },
     {
-      "source": "ashby",
-      "label": "{\"config\": \"spruceid\", \"source\": \"ashby\"}",
-      "status": "ok",
-      "jobs": 5
-    },
-    {
-      "source": "ashby",
-      "label": "{\"config\": \"cape\", \"source\": \"ashby\"}",
-      "status": "ok",
-      "jobs": 26
-    },
-    {
-      "source": "ashby",
-      "label": "{\"config\": \"taktile\", \"source\": \"ashby\"}",
-      "status": "ok",
-      "jobs": 38
-    },
-    {
-      "source": "ashby",
-      "label": "{\"config\": \"andromeda\", \"source\": \"ashby\"}",
-      "status": "ok",
-      "jobs": 18
-    },
-    {
-      "source": "ashby",
-      "label": "{\"config\": \"basecamp-research\", \"source\": \"ashby\"}",
-      "status": "ok",
-      "jobs": 12
-    },
-    {
-      "source": "ashby",
-      "label": "{\"config\": \"havocai\", \"source\": \"ashby\"}",
-      "status": "ok",
-      "jobs": 29
-    },
-    {
-      "source": "ashby",
-      "label": "{\"config\": \"runpod\", \"source\": \"ashby\"}",
-      "status": "ok",
-      "jobs": 30
-    },
-    {
-      "source": "ashby",
-      "label": "{\"config\": \"Intellistack\", \"source\": \"ashby\"}",
-      "status": "ok",
-      "jobs": 9
-    },
-    {
-      "source": "ashby",
-      "label": "{\"config\": \"netboxlabs\", \"source\": \"ashby\"}",
-      "status": "ok",
-      "jobs": 22
-    },
-    {
-      "source": "ashby",
-      "label": "{\"config\": \"parasail\", \"source\": \"ashby\"}",
-      "status": "ok",
-      "jobs": 9
-    },
-    {
-      "source": "ashby",
-      "label": "{\"config\": \"cyberhaven\", \"source\": \"ashby\"}",
-      "status": "ok",
-      "jobs": 28
-    },
-    {
-      "source": "lever",
-      "label": "{\"config\": \"wmg\", \"source\": \"lever\"}",
-      "status": "ok",
-      "jobs": 32
-    },
-    {
-      "source": "lever",
-      "label": "{\"config\": \"compassx\", \"source\": \"lever\"}",
-      "status": "ok",
-      "jobs": 13
-    },
-    {
-      "source": "ashby",
-      "label": "{\"config\": \"applied\", \"source\": \"ashby\"}",
-      "status": "ok",
-      "jobs": 328
-    },
-    {
-      "source": "lever",
-      "label": "{\"config\": \"thinkahead\", \"source\": \"lever\"}",
-      "status": "ok",
-      "jobs": 157
-    },
-    {
-      "source": "workday",
-      "label": "{\"config\": {\"search\": \"program\", \"site\": \"careers\", \"tenant\": \"gogo\", \"wd_server\": \"wd1\"}, \"source\": \"workday\"}",
-      "status": "failed",
-      "jobs": 0
-    },
-    {
-      "source": "workday",
-      "label": "{\"config\": {\"search\": \"program\", \"site\": \"gocjobs\", \"tenant\": \"google\", \"wd_server\": \"wd501\"}, \"source\": \"workday\"}",
-      "status": "ok",
-      "jobs": 32
-    },
-    {
-      "source": "lever",
-      "label": "{\"config\": \"greenlight\", \"source\": \"lever\"}",
-      "status": "ok",
-      "jobs": 13
-    },
-    {
-      "source": "lever",
-      "label": "{\"config\": \"waabi\", \"source\": \"lever\"}",
-      "status": "ok",
-      "jobs": 96
-    },
-    {
-      "source": "lever",
-      "label": "{\"config\": \"shieldai\", \"source\": \"lever\"}",
-      "status": "ok",
-      "jobs": 611
-    },
-    {
-      "source": "lever",
-      "label": "{\"config\": \"jobgether\", \"source\": \"lever\"}",
-      "status": "ok",
-      "jobs": 4115
-    },
-    {
-      "source": "workday",
-      "label": "{\"config\": {\"search\": \"program\", \"site\": \"search\", \"tenant\": \"expedia\", \"wd_server\": \"wd108\"}, \"source\": \"workday\"}",
-      "status": "ok",
-      "jobs": 140
-    },
-    {
-      "source": "lever",
-      "label": "{\"config\": \"matchgroup\", \"source\": \"lever\"}",
-      "status": "ok",
-      "jobs": 68
-    },
-    {
-      "source": "workday",
-      "label": "{\"config\": {\"search\": \"program\", \"site\": \"Workday\", \"tenant\": \"workday\", \"wd_server\": \"wd5\"}, \"source\": \"workday\"}",
-      "status": "ok",
-      "jobs": 196
-    },
-    {
       "source": "greenhouse",
       "label": "{\"config\": \"oura\", \"source\": \"greenhouse\"}",
-      "status": "cached",
-      "jobs": 77,
-      "checked_at": "2026-10-14T15:14:39.944091+00:00"
+      "status": "ok",
+      "jobs": 77
     },
     {
       "source": "greenhouse",
       "label": "{\"config\": \"purestorage\", \"source\": \"greenhouse\"}",
-      "status": "cached",
-      "jobs": 373,
-      "checked_at": "2026-10-14T15:14:39.944091+00:00"
+      "status": "ok",
+      "jobs": 376
     },
     {
       "source": "greenhouse",
       "label": "{\"config\": \"spycloud\", \"source\": \"greenhouse\"}",
-      "status": "cached",
-      "jobs": 11,
-      "checked_at": "2026-10-14T15:28:03.674986+00:00"
-    },
-    {
-      "source": "greenhouse",
-      "label": "{\"config\": \"masterclass\", \"source\": \"greenhouse\"}",
-      "status": "cached",
-      "jobs": 6,
-      "checked_at": "2026-10-14T15:28:03.674986+00:00"
-    },
-    {
-      "source": "greenhouse",
-      "label": "{\"config\": \"mercury\", \"source\": \"greenhouse\"}",
-      "status": "cached",
-      "jobs": 72,
-      "checked_at": "2026-10-14T15:28:03.674986+00:00"
+      "status": "ok",
+      "jobs": 11
     },
     {
       "source": "greenhouse",
       "label": "{\"config\": \"industrialelectricmanufacturing\", \"source\": \"greenhouse\"}",
-      "status": "cached",
-      "jobs": 128,
-      "checked_at": "2026-10-14T15:28:03.674986+00:00"
+      "status": "ok",
+      "jobs": 128
     },
     {
       "source": "greenhouse",
-      "label": "{\"config\": \"bpcs\", \"source\": \"greenhouse\"}",
-      "status": "cached",
-      "jobs": 29,
-      "checked_at": "2026-10-14T15:28:03.674986+00:00"
-    },
-    {
-      "source": "greenhouse",
-      "label": "{\"config\": \"mitratech\", \"source\": \"greenhouse\"}",
-      "status": "cached",
-      "jobs": 15,
-      "checked_at": "2026-10-14T15:28:03.674986+00:00"
+      "label": "{\"config\": \"masterclass\", \"source\": \"greenhouse\"}",
+      "status": "ok",
+      "jobs": 6
     },
     {
       "source": "greenhouse",
       "label": "{\"config\": \"natera\", \"source\": \"greenhouse\"}",
-      "status": "cached",
-      "jobs": 217,
-      "checked_at": "2026-10-14T15:28:03.674986+00:00"
+      "status": "ok",
+      "jobs": 219
     },
     {
       "source": "greenhouse",
-      "label": "{\"config\": \"notexternal\", \"source\": \"greenhouse\"}",
-      "status": "cached",
-      "jobs": 9,
-      "checked_at": "2026-10-14T15:28:03.674986+00:00"
+      "label": "{\"config\": \"mitratech\", \"source\": \"greenhouse\"}",
+      "status": "ok",
+      "jobs": 15
+    },
+    {
+      "source": "greenhouse",
+      "label": "{\"config\": \"mercury\", \"source\": \"greenhouse\"}",
+      "status": "ok",
+      "jobs": 72
+    },
+    {
+      "source": "greenhouse",
+      "label": "{\"config\": \"bpcs\", \"source\": \"greenhouse\"}",
+      "status": "ok",
+      "jobs": 29
     },
     {
       "source": "greenhouse",
       "label": "{\"config\": \"bluelabsanalyticsinc\", \"source\": \"greenhouse\"}",
-      "status": "cached",
-      "jobs": 9,
-      "checked_at": "2026-10-14T15:28:03.674986+00:00"
+      "status": "ok",
+      "jobs": 9
+    },
+    {
+      "source": "greenhouse",
+      "label": "{\"config\": \"notexternal\", \"source\": \"greenhouse\"}",
+      "status": "ok",
+      "jobs": 9
     },
     {
       "source": "workday",
       "label": "{\"config\": {\"search\": \"program\", \"site\": \"csi_careers\", \"tenant\": \"csiweb\", \"wd_server\": \"wd1\"}, \"source\": \"workday\"}",
-      "status": "cached",
-      "jobs": 4,
-      "checked_at": "2026-10-14T15:28:03.674986+00:00"
-    },
-    {
-      "source": "workday",
-      "label": "{\"config\": {\"search\": \"program\", \"site\": \"BlueOrigin\", \"tenant\": \"blueorigin\", \"wd_server\": \"wd5\"}, \"source\": \"workday\"}",
-      "status": "cached",
-      "jobs": 200,
-      "checked_at": "2026-10-14T15:28:03.674986+00:00"
-    },
-    {
-      "source": "workday",
-      "label": "{\"config\": {\"search\": \"program\", \"site\": \"CengageNorthAmericaCareers\", \"tenant\": \"cengage\", \"wd_server\": \"wd5\"}, \"source\": \"workday\"}",
-      "status": "cached",
-      "jobs": 76,
-      "checked_at": "2026-10-14T15:28:03.674986+00:00"
-    },
-    {
-      "source": "workday",
-      "label": "{\"config\": {\"search\": \"program\", \"site\": \"entegriscareers\", \"tenant\": \"entegris\", \"wd_server\": \"wd1\"}, \"source\": \"workday\"}",
-      "status": "cached",
-      "jobs": 200,
-      "checked_at": "2026-10-14T15:28:03.674986+00:00"
-    },
-    {
-      "source": "workday",
-      "label": "{\"config\": {\"search\": \"program\", \"site\": \"Search\", \"tenant\": \"kla\", \"wd_server\": \"wd1\"}, \"source\": \"workday\"}",
-      "status": "cached",
-      "jobs": 200,
-      "checked_at": "2026-10-14T15:28:03.674986+00:00"
-    },
-    {
-      "source": "workday",
-      "label": "{\"config\": {\"search\": \"program\", \"site\": \"external\", \"tenant\": \"wgu\", \"wd_server\": \"wd5\"}, \"source\": \"workday\"}",
-      "status": "cached",
-      "jobs": 84,
-      "checked_at": "2026-10-14T15:28:03.674986+00:00"
-    },
-    {
-      "source": "workday",
-      "label": "{\"config\": {\"search\": \"program\", \"site\": \"TMNA\", \"tenant\": \"toyota\", \"wd_server\": \"wd503\"}, \"source\": \"workday\"}",
-      "status": "cached",
-      "jobs": 128,
-      "checked_at": "2026-10-14T15:28:03.674986+00:00"
-    },
-    {
-      "source": "workday",
-      "label": "{\"config\": {\"search\": \"program\", \"site\": \"External\", \"tenant\": \"amat\", \"wd_server\": \"wd1\"}, \"source\": \"workday\"}",
-      "status": "cached",
-      "jobs": 200,
-      "checked_at": "2026-10-14T15:28:03.674986+00:00"
-    },
-    {
-      "source": "workday",
-      "label": "{\"config\": {\"search\": \"program\", \"site\": \"CorporateCareers\", \"tenant\": \"mastercard\", \"wd_server\": \"wd1\"}, \"source\": \"workday\"}",
-      "status": "cached",
-      "jobs": 200,
-      "checked_at": "2026-10-14T15:28:03.674986+00:00"
+      "status": "ok",
+      "jobs": 5
     },
     {
       "source": "workday",
       "label": "{\"config\": {\"search\": \"program\", \"site\": \"Boston_Dynamics\", \"tenant\": \"bostondynamics\", \"wd_server\": \"wd1\"}, \"source\": \"workday\"}",
-      "status": "cached",
-      "jobs": 32,
-      "checked_at": "2026-10-14T15:28:03.674986+00:00"
+      "status": "ok",
+      "jobs": 33
+    },
+    {
+      "source": "workday",
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"external\", \"tenant\": \"wgu\", \"wd_server\": \"wd5\"}, \"source\": \"workday\"}",
+      "status": "ok",
+      "jobs": 87
     },
     {
       "source": "workday",
       "label": "{\"config\": {\"search\": \"program\", \"site\": \"External\", \"tenant\": \"wgu\", \"wd_server\": \"wd5\"}, \"source\": \"workday\"}",
-      "status": "cached",
-      "jobs": 84,
-      "checked_at": "2026-10-14T15:28:03.674986+00:00"
-    },
-    {
-      "source": "workday",
-      "label": "{\"config\": {\"search\": \"program\", \"site\": \"GLOBAL\", \"tenant\": \"kimberlyclark\", \"wd_server\": \"wd1\"}, \"source\": \"workday\"}",
-      "status": "cached",
-      "jobs": 67,
-      "checked_at": "2026-10-14T15:28:03.674986+00:00"
+      "status": "ok",
+      "jobs": 87
     },
     {
       "source": "workday",
       "label": "{\"config\": {\"search\": \"program\", \"site\": \"shicareers\", \"tenant\": \"shi\", \"wd_server\": \"wd12\"}, \"source\": \"workday\"}",
-      "status": "cached",
-      "jobs": 80,
-      "checked_at": "2026-10-14T15:28:03.674986+00:00"
+      "status": "ok",
+      "jobs": 81
+    },
+    {
+      "source": "workday",
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"CengageNorthAmericaCareers\", \"tenant\": \"cengage\", \"wd_server\": \"wd5\"}, \"source\": \"workday\"}",
+      "status": "ok",
+      "jobs": 76
+    },
+    {
+      "source": "workday",
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"GLOBAL\", \"tenant\": \"kimberlyclark\", \"wd_server\": \"wd1\"}, \"source\": \"workday\"}",
+      "status": "ok",
+      "jobs": 67
+    },
+    {
+      "source": "workday",
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"TMNA\", \"tenant\": \"toyota\", \"wd_server\": \"wd503\"}, \"source\": \"workday\"}",
+      "status": "ok",
+      "jobs": 129
+    },
+    {
+      "source": "workday",
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"entegriscareers\", \"tenant\": \"entegris\", \"wd_server\": \"wd1\"}, \"source\": \"workday\"}",
+      "status": "limit_reached",
+      "jobs": 200
+    },
+    {
+      "source": "workday",
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"Search\", \"tenant\": \"kla\", \"wd_server\": \"wd1\"}, \"source\": \"workday\"}",
+      "status": "limit_reached",
+      "jobs": 200
+    },
+    {
+      "source": "workday",
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"BlueOrigin\", \"tenant\": \"blueorigin\", \"wd_server\": \"wd5\"}, \"source\": \"workday\"}",
+      "status": "limit_reached",
+      "jobs": 200
+    },
+    {
+      "source": "workday",
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"CorporateCareers\", \"tenant\": \"mastercard\", \"wd_server\": \"wd1\"}, \"source\": \"workday\"}",
+      "status": "limit_reached",
+      "jobs": 200
+    },
+    {
+      "source": "workday",
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"External\", \"tenant\": \"amat\", \"wd_server\": \"wd1\"}, \"source\": \"workday\"}",
+      "status": "limit_reached",
+      "jobs": 200
     },
     {
       "source": "workday",
@@ -1266,6 +1098,219 @@
       "status": "cached",
       "jobs": 200,
       "checked_at": "2026-10-14T15:28:03.674986+00:00"
+    },
+    {
+      "source": "workday",
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"gocjobs\", \"tenant\": \"google\", \"wd_server\": \"wd501\"}, \"source\": \"workday\"}",
+      "status": "cached",
+      "jobs": 32,
+      "checked_at": "2026-10-14T17:04:42.256929+00:00"
+    },
+    {
+      "source": "workday",
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"careers\", \"tenant\": \"gogo\", \"wd_server\": \"wd1\"}, \"source\": \"workday\"}",
+      "status": "cached",
+      "jobs": 0,
+      "checked_at": "2026-10-14T17:04:42.256929+00:00"
+    },
+    {
+      "source": "workday",
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"search\", \"tenant\": \"expedia\", \"wd_server\": \"wd108\"}, \"source\": \"workday\"}",
+      "status": "cached",
+      "jobs": 140,
+      "checked_at": "2026-10-14T17:04:42.256929+00:00"
+    },
+    {
+      "source": "workday",
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"Workday\", \"tenant\": \"workday\", \"wd_server\": \"wd5\"}, \"source\": \"workday\"}",
+      "status": "cached",
+      "jobs": 196,
+      "checked_at": "2026-10-14T17:04:42.256929+00:00"
+    },
+    {
+      "source": "ashby",
+      "label": "{\"config\": \"applied\", \"source\": \"ashby\"}",
+      "status": "cached",
+      "jobs": 328,
+      "checked_at": "2026-10-14T17:04:42.256929+00:00"
+    },
+    {
+      "source": "ashby",
+      "label": "{\"config\": \"andromeda\", \"source\": \"ashby\"}",
+      "status": "cached",
+      "jobs": 18,
+      "checked_at": "2026-10-14T17:04:42.256929+00:00"
+    },
+    {
+      "source": "ashby",
+      "label": "{\"config\": \"spruceid\", \"source\": \"ashby\"}",
+      "status": "cached",
+      "jobs": 5,
+      "checked_at": "2026-10-14T17:04:42.256929+00:00"
+    },
+    {
+      "source": "ashby",
+      "label": "{\"config\": \"cyberhaven\", \"source\": \"ashby\"}",
+      "status": "cached",
+      "jobs": 28,
+      "checked_at": "2026-10-14T17:04:42.256929+00:00"
+    },
+    {
+      "source": "ashby",
+      "label": "{\"config\": \"havocai\", \"source\": \"ashby\"}",
+      "status": "cached",
+      "jobs": 29,
+      "checked_at": "2026-10-14T17:04:42.256929+00:00"
+    },
+    {
+      "source": "ashby",
+      "label": "{\"config\": \"netboxlabs\", \"source\": \"ashby\"}",
+      "status": "cached",
+      "jobs": 22,
+      "checked_at": "2026-10-14T17:04:42.256929+00:00"
+    },
+    {
+      "source": "ashby",
+      "label": "{\"config\": \"runpod\", \"source\": \"ashby\"}",
+      "status": "cached",
+      "jobs": 30,
+      "checked_at": "2026-10-14T17:04:42.256929+00:00"
+    },
+    {
+      "source": "ashby",
+      "label": "{\"config\": \"taktile\", \"source\": \"ashby\"}",
+      "status": "cached",
+      "jobs": 38,
+      "checked_at": "2026-10-14T17:04:42.256929+00:00"
+    },
+    {
+      "source": "ashby",
+      "label": "{\"config\": \"cape\", \"source\": \"ashby\"}",
+      "status": "cached",
+      "jobs": 26,
+      "checked_at": "2026-10-14T17:04:42.256929+00:00"
+    },
+    {
+      "source": "ashby",
+      "label": "{\"config\": \"Intellistack\", \"source\": \"ashby\"}",
+      "status": "cached",
+      "jobs": 9,
+      "checked_at": "2026-10-14T17:04:42.256929+00:00"
+    },
+    {
+      "source": "ashby",
+      "label": "{\"config\": \"parasail\", \"source\": \"ashby\"}",
+      "status": "cached",
+      "jobs": 9,
+      "checked_at": "2026-10-14T17:04:42.256929+00:00"
+    },
+    {
+      "source": "ashby",
+      "label": "{\"config\": \"basecamp-research\", \"source\": \"ashby\"}",
+      "status": "cached",
+      "jobs": 12,
+      "checked_at": "2026-10-14T17:04:42.256929+00:00"
+    },
+    {
+      "source": "lever",
+      "label": "{\"config\": \"jobgether\", \"source\": \"lever\"}",
+      "status": "cached",
+      "jobs": 4115,
+      "checked_at": "2026-10-14T17:04:42.256929+00:00"
+    },
+    {
+      "source": "lever",
+      "label": "{\"config\": \"thinkahead\", \"source\": \"lever\"}",
+      "status": "cached",
+      "jobs": 157,
+      "checked_at": "2026-10-14T17:04:42.256929+00:00"
+    },
+    {
+      "source": "lever",
+      "label": "{\"config\": \"wmg\", \"source\": \"lever\"}",
+      "status": "cached",
+      "jobs": 32,
+      "checked_at": "2026-10-14T17:04:42.256929+00:00"
+    },
+    {
+      "source": "lever",
+      "label": "{\"config\": \"greenlight\", \"source\": \"lever\"}",
+      "status": "cached",
+      "jobs": 13,
+      "checked_at": "2026-10-14T17:04:42.256929+00:00"
+    },
+    {
+      "source": "lever",
+      "label": "{\"config\": \"compassx\", \"source\": \"lever\"}",
+      "status": "cached",
+      "jobs": 13,
+      "checked_at": "2026-10-14T17:04:42.256929+00:00"
+    },
+    {
+      "source": "lever",
+      "label": "{\"config\": \"matchgroup\", \"source\": \"lever\"}",
+      "status": "cached",
+      "jobs": 68,
+      "checked_at": "2026-10-14T17:04:42.256929+00:00"
+    },
+    {
+      "source": "lever",
+      "label": "{\"config\": \"shieldai\", \"source\": \"lever\"}",
+      "status": "cached",
+      "jobs": 611,
+      "checked_at": "2026-10-14T17:04:42.256929+00:00"
+    },
+    {
+      "source": "lever",
+      "label": "{\"config\": \"waabi\", \"source\": \"lever\"}",
+      "status": "cached",
+      "jobs": 96,
+      "checked_at": "2026-10-14T17:04:42.256929+00:00"
+    },
+    {
+      "source": "description_check",
+      "url": "https://job-boards.greenhouse.io/gitlab/jobs/8626772002",
+      "status": "cached"
+    },
+    {
+      "source": "description_check",
+      "url": "https://job-boards.greenhouse.io/gitlab/jobs/8626740002",
+      "status": "cached"
+    },
+    {
+      "source": "description_check",
+      "url": "https://job-boards.greenhouse.io/gitlab/jobs/8784185002",
+      "status": "cached"
+    },
+    {
+      "source": "description_check",
+      "url": "https://job-boards.greenhouse.io/gitlab/jobs/8784056002",
+      "status": "cached"
+    },
+    {
+      "source": "description_check",
+      "url": "https://boards.greenhouse.io/figma/jobs/6211910004?gh_jid=6211910004",
+      "status": "cached"
+    },
+    {
+      "source": "description_check",
+      "url": "https://boards.greenhouse.io/figma/jobs/6020719004?gh_jid=6020719004",
+      "status": "failed"
+    },
+    {
+      "source": "description_check",
+      "url": "https://www.coinbase.com/careers/positions/8013948?gh_jid=8013948",
+      "status": "cached"
+    },
+    {
+      "source": "description_check",
+      "url": "https://www.coinbase.com/careers/positions/8013892?gh_jid=8013892",
+      "status": "cached"
+    },
+    {
+      "source": "description_check",
+      "url": "https://careers.datadoghq.com/detail/8144018/?gh_jid=8144018",
+      "status": "failed"
     },
     {
       "source": "description_check",
@@ -1319,62 +1364,7 @@
     },
     {
       "source": "description_check",
-      "url": "https://careers.datadoghq.com/detail/8144018/?gh_jid=8144018",
-      "status": "failed"
-    },
-    {
-      "source": "description_check",
-      "url": "https://boards.greenhouse.io/figma/jobs/6211910004?gh_jid=6211910004",
-      "status": "cached"
-    },
-    {
-      "source": "description_check",
-      "url": "https://boards.greenhouse.io/figma/jobs/6020719004?gh_jid=6020719004",
-      "status": "failed"
-    },
-    {
-      "source": "description_check",
-      "url": "https://job-boards.greenhouse.io/gitlab/jobs/8626772002",
-      "status": "cached"
-    },
-    {
-      "source": "description_check",
-      "url": "https://job-boards.greenhouse.io/gitlab/jobs/8626740002",
-      "status": "cached"
-    },
-    {
-      "source": "description_check",
-      "url": "https://job-boards.greenhouse.io/gitlab/jobs/8784185002",
-      "status": "cached"
-    },
-    {
-      "source": "description_check",
-      "url": "https://job-boards.greenhouse.io/gitlab/jobs/8784056002",
-      "status": "cached"
-    },
-    {
-      "source": "description_check",
-      "url": "https://www.mongodb.com/careers/job/?gh_jid=8201176",
-      "status": "cached"
-    },
-    {
-      "source": "description_check",
-      "url": "https://www.mongodb.com/careers/job/?gh_jid=7493634",
-      "status": "cached"
-    },
-    {
-      "source": "description_check",
-      "url": "https://www.mongodb.com/careers/job/?gh_jid=7831454",
-      "status": "cached"
-    },
-    {
-      "source": "description_check",
-      "url": "https://www.coinbase.com/careers/positions/8013948?gh_jid=8013948",
-      "status": "cached"
-    },
-    {
-      "source": "description_check",
-      "url": "https://www.coinbase.com/careers/positions/8013892?gh_jid=8013892",
+      "url": "https://www.pinterestcareers.com/jobs/?gh_jid=8209324",
       "status": "cached"
     },
     {
@@ -1409,7 +1399,17 @@
     },
     {
       "source": "description_check",
-      "url": "https://www.pinterestcareers.com/jobs/?gh_jid=8209324",
+      "url": "https://www.mongodb.com/careers/job/?gh_jid=8201176",
+      "status": "cached"
+    },
+    {
+      "source": "description_check",
+      "url": "https://www.mongodb.com/careers/job/?gh_jid=7493634",
+      "status": "cached"
+    },
+    {
+      "source": "description_check",
+      "url": "https://www.mongodb.com/careers/job/?gh_jid=7831454",
       "status": "cached"
     },
     {
@@ -1419,42 +1419,17 @@
     },
     {
       "source": "description_check",
-      "url": "https://jobs.ashbyhq.com/plaud/4de38470-d9fd-4c80-929a-f2379e515d8b",
-      "status": "cached"
-    },
-    {
-      "source": "description_check",
       "url": "https://jobs.ashbyhq.com/hammerhead-ai/e78d36aa-0435-4392-b537-78f29b164b07",
       "status": "cached"
     },
     {
       "source": "description_check",
-      "url": "https://jobs.lever.co/zoox/92aa7d9b-2a89-4e3e-b48e-7b2fc5fa1e9e",
-      "status": "ok"
-    },
-    {
-      "source": "description_check",
-      "url": "https://jobs.lever.co/zoox/5c373b68-b18b-45ef-b69e-7c0f8e578b57",
-      "status": "ok"
-    },
-    {
-      "source": "description_check",
-      "url": "https://jobs.lever.co/zoox/42bb084b-e5a0-47d7-bdf7-90a24026e4c5",
-      "status": "ok"
-    },
-    {
-      "source": "description_check",
-      "url": "https://jobs.lever.co/zoox/0a22d356-f7f7-4374-b393-55637772edda",
-      "status": "ok"
-    },
-    {
-      "source": "description_check",
-      "url": "https://jobs.ashbyhq.com/vultr/a00e9c3f-f1de-42d3-8aae-50649a9f753e",
+      "url": "https://jobs.ashbyhq.com/plaud/4de38470-d9fd-4c80-929a-f2379e515d8b",
       "status": "cached"
     },
     {
       "source": "description_check",
-      "url": "https://jobs.ashbyhq.com/notion/7ec83090-7c5b-4691-bf20-e11e892cede1",
+      "url": "https://jobs.ashbyhq.com/vultr/a00e9c3f-f1de-42d3-8aae-50649a9f753e",
       "status": "cached"
     },
     {
@@ -1464,8 +1439,33 @@
     },
     {
       "source": "description_check",
+      "url": "https://jobs.ashbyhq.com/notion/7ec83090-7c5b-4691-bf20-e11e892cede1",
+      "status": "cached"
+    },
+    {
+      "source": "description_check",
+      "url": "https://jobs.ashbyhq.com/harvey/467049ce-b5ea-4063-95aa-71c9742768d5",
+      "status": "cached"
+    },
+    {
+      "source": "description_check",
+      "url": "https://jobs.ashbyhq.com/harvey/a3981433-9f7c-46f7-8245-7b1013a0f9f0",
+      "status": "cached"
+    },
+    {
+      "source": "description_check",
       "url": "https://jobs.ashbyhq.com/fluidstack/0b241534-14b2-4b39-b86a-7c5f1cfa6cf2",
       "status": "cached"
+    },
+    {
+      "source": "description_check",
+      "url": "https://jobs.ashbyhq.com/fluidstack/f93527ee-b4b2-47e4-9a25-51f783bbf3e3",
+      "status": "ok"
+    },
+    {
+      "source": "description_check",
+      "url": "https://jobs.ashbyhq.com/fluidstack/1c3617df-e4cf-4749-8110-290edf842284",
+      "status": "ok"
     },
     {
       "source": "description_check",
