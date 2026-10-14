@@ -427,10 +427,17 @@ function renderAppliedHistory() {
   if (!tbody) return;
   const applied = loadApplied();
   const statuses = loadStatuses();
-  const rows = Object.entries(applied).sort((a, b) => (b[1].applied_at || '').localeCompare(a[1].applied_at || ''));
+  const period = $('history-range')?.value || '30';
+  const now = Date.now();
+  const cutoff = now - 30 * 86400 * 1000;
+  const rows = Object.entries(applied).filter(([, entry]) => {
+    if (period === 'all') return true;
+    const timestamp = Date.parse(entry.applied_at || '');
+    return Number.isFinite(timestamp) && timestamp >= cutoff && timestamp <= now;
+  }).sort((a, b) => (b[1].applied_at || '').localeCompare(a[1].applied_at || ''));
   $('applied-count').textContent = rows.length;
   if (rows.length === 0) {
-    tbody.innerHTML = `<tr><td colspan="6" class="empty">Nothing yet. Tick the Applied box on a job to keep it here.</td></tr>`;
+    tbody.innerHTML = `<tr><td colspan="6" class="empty">${period === 'all' ? 'No saved applications yet.' : 'No applications in the last 30 days. Select All history to see older records.'}</td></tr>`;
     return;
   }
   tbody.innerHTML = rows.map(([key, a]) => {
@@ -807,6 +814,7 @@ function bindControls() {
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && !$('pat-modal').classList.contains('hidden')) closePatModal();
   });
+  $('history-range')?.addEventListener('change', renderAppliedHistory);
   updatePatButtonLabel();
 }
 
