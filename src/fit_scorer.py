@@ -175,7 +175,13 @@ def score_fit(
     profile_text = condensed if condensed is not None else condense_profile(profile)
     jd = (jd_text or "").strip()
     if len(jd) > max_jd_chars:
-        jd = jd[:max_jd_chars] + "\n[truncated]"
+        # Salary sections often follow long benefit/legal sections. Preserve
+        # their evidence rather than treating a truncated salary as undisclosed.
+        matches = list(re.finditer(r"(?i)compensation range|base salary|salary range|total cash range|\$\s*\d{2}", jd))
+        excerpts = [jd[max(0, match.start() - 60):match.start() + 650] for match in matches]
+        compensation = "\n".join(dict.fromkeys(excerpts))[:min(1600, max_jd_chars // 3)]
+        budget = max_jd_chars - len(compensation)
+        jd = jd[:budget] + "\n[truncated]" + ("\nCompensation excerpts from this posting:\n" + compensation if compensation else "")
 
     user = (
         f"{profile_text}\n\n"

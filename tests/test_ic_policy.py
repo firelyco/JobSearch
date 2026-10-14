@@ -13,6 +13,12 @@ class ICPolicy(unittest.TestCase):
         fake = FakeClient([json.dumps({"recommendation": recommendation, "step": step, "role_level": "ic", "comp_status": compensation, "role_summary": "Delivers AI platform programs"})])
         return score_fit(PROFILE, JOB, "AI platform job", client=fake, rules=RULES)
 
+    def test_salary_at_end_of_long_posting_is_retained(self):
+        fake = FakeClient([json.dumps({"recommendation": "strong", "role_level": "ic", "comp_status": "meets_floor", "role_summary": "AI platform operations"})])
+        jd = "Lead technical programs. " + "Benefits and company information. " * 400 + "Compensation Range: $230,000 - $280,000 + bonus."
+        score_fit(PROFILE, JOB, jd, client=fake, rules=RULES)
+        self.assertIn("$230,000 - $280,000", fake.calls[0]["messages"][0]["content"])
+
     def test_good_compensation_allows_strong_ic(self):
         self.assertEqual(self.result("meets_floor").recommendation, "strong")
 
