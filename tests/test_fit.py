@@ -7,6 +7,7 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
 
 import json
 import unittest
+from unittest.mock import patch
 from datetime import datetime, timezone
 from tests.test_verify import FakeClient
 
@@ -34,6 +35,11 @@ def verdict(rec, reason="r"):
 
 
 class TestRun(unittest.TestCase):
+
+    def setUp(self):
+        rules = patch.object(fit, "FIT_RULES_FILE", fit.FIT_RULES_FILE.with_name("test-no-fit-rules.json"))
+        rules.start()
+        self.addCleanup(rules.stop)
 
     def test_scores_all_when_no_cache(self):
         jobs = [job("greenhouse", "stripe", "1"), job("lever", "netflix", "2")]

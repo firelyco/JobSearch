@@ -99,6 +99,7 @@ def run(
     rules: dict | None = None,
     now: datetime | None = None,
     on_scored=None,
+    job_keys: list[str] | None = None,
 ) -> dict:
     """Score fit for jobs lacking a cached verdict. Returns the updated scores dict.
 
@@ -117,7 +118,9 @@ def run(
     current_keys = {_key(j) for j in jobs}
     scores = prune(scores, current_keys)
 
-    to_score = [j for j in jobs if rescore or _key(j) not in scores]
+    version = rules.get("fit_policy_version")
+    to_score = [j for j in jobs if (job_keys is None or _key(j) in job_keys)
+                and (rescore or _key(j) not in scores or version and scores[_key(j)].get("policy_version") != version)]
     if not to_score:
         log.info("no jobs need fit scoring (%d already cached)", len(scores))
         return scores
@@ -158,6 +161,7 @@ def run(
             "reason": verdict.reason,
             "step": verdict.step,
             "scored_at": stamp,
+            **({"policy_version": version} if version else {}),
         }
         scored_count += 1
         if on_scored is not None:
@@ -178,7 +182,11 @@ def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--max", type=int, default=MAX_JOBS_PER_RUN)
     parser.add_argument("--rescore", action="store_true", help="re-score every job, ignoring cache")
+    parser.add_argument("--job-keys", help="JSON array of specific job keys to score")
     args = parser.parse_args(argv)
+    selected_keys = json.loads(args.job_keys) if args.job_keys else None
+    if selected_keys is not None and (not isinstance(selected_keys, list) or not all(isinstance(k, str) for k in selected_keys)):
+        parser.error("--job-keys must be a JSON array of strings")
 
     if not PROFILE_FILE.exists():
         log.error("config/profile.json missing — cannot score fit")
@@ -186,7 +194,7 @@ def main(argv: list[str] | None = None) -> int:
 
     if not FIT_RULES_FILE.exists():
         log.warning("config/fit_rules.json missing — scoring with the generic method only")
-    scores = run(max_jobs=args.max, rescore=args.rescore, on_scored=save)
+    scores = run(max_jobs=args.max, rescore=args.rescore, on_scored=save, job_keys=selected_keys)
     save(scores)
     log.info("wrote %s (%d entries)", FIT_FILE, len(scores))
     return 0

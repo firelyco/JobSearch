@@ -6,6 +6,10 @@ on:
     types: [completed]
   workflow_dispatch:
     inputs:
+      job_keys:
+        description: "Optional JSON array of job keys to refresh"
+        required: false
+        type: string
       rescore:
         description: "Re-score every job, ignoring the cache"
         required: false
@@ -93,12 +97,18 @@ jobs:
           FIT_RULES_JSON: ${{ secrets.FIT_RULES_JSON }}
 
       - name: Score fit for new jobs
+        env:
+          FIT_JOB_KEYS: ${{ inputs.job_keys }}
         run: |
           ARGS="--max ${{ inputs.max || '40' }}"
           if [ "${{ inputs.rescore }}" = "true" ]; then
             ARGS="$ARGS --rescore"
           fi
-          python -m src.fit $ARGS
+          if [ -n "$FIT_JOB_KEYS" ]; then
+            python -m src.fit $ARGS --job-keys "$FIT_JOB_KEYS"
+          else
+            python -m src.fit $ARGS
+          fi
 
       - name: Commit updated fit_scores.json
         # Run even if scoring died part-way: fit.py saves after each verdict,

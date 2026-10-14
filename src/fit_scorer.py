@@ -44,20 +44,20 @@ Work through these steps in order. Read past the title every time; titles missta
 
 1. Discipline. From the JD body, decide what work this actually is. If it is one of the candidate's rejected disciplines, or anything else that is not one of their accepted disciplines, it fails.
 2. Domain gate. Industry depth gates only when the JD states it as a required qualification AND it is the substance of the role. A domain that appears in the product but not the qualifications does not gate. The company's industry is not the role's domain. Fails if a required domain is one of the candidate's hard domain gates or is otherwise absent from the profile.
-3. Level. Judge the ROLE's level from the JD, never the candidate's. A role manages people only if the JD says so (direct reports, "manage a team of", "hire and develop", "lead a team of program managers"). Senior, Staff, Principal, Lead and "Leadership" TPM titles without such language are individual contributor (IC) roles. This is a flag, not a failure: an IC role or one below target lowers the verdict to medium, it does not fail it.
+3. Level. Judge the ROLE's level from the JD, never the candidate's. A role manages people only if the JD says so (direct reports, "manage a team of", "hire and develop", "lead a team of program managers"). Senior, Staff, Principal, Lead and "Leadership" TPM titles without such language are individual contributor (IC) roles. Use the candidate's target levels and ALLOW_IC_STRONG preference. When ALLOW_IC_STRONG is true, IC status alone does not lower the verdict. Judge senior scope from responsibilities, not merely the title or a minimum-years threshold. Truly junior scope can still lower the verdict.
 4. Guardrails. Would an honest resume need a claim on the candidate's never-claim list? If that claim is central to the role it fails; if it is one preferred line it is a stretch to note.
-5. Comp and location. Tie-breakers only. Posted comp clearly below the candidate's floor lowers the verdict; it never fails a role alone.
+5. Comp and location. Tie-breakers only. Posted comp clearly below the candidate's floor lowers the verdict; it never fails a role alone. For IC roles when IC_STRONG_REQUIRES_COMP is true, Strong requires a disclosed compensation range that can meet the floor: meets_floor if the lower bound meets it, potentially_meets_floor if the range overlaps it, below_floor if the upper bound is below it, and unknown when compensation is not disclosed or not comparable. Do not assume an offer, invent equity value, or treat an undisclosed range as adequate.
 
 Verdict:
 - "not" (pass): any hard failure in step 1, 2 or 4.
-- "medium" (middle): no hard failure, but a real stretch, e.g. IC level, a below-band comp, a preferred guardrail line, or a partial domain match.
+- "medium" (middle): no hard failure, but a real stretch, e.g. below-target scope, unconfirmed compensation where required, a below-band comp, a preferred guardrail line, or a partial domain match.
 - "strong": right discipline, no gate, target level, guardrails intact, and ideally the candidate's differentiators are named requirements.
 Judge only on evidence in the profile and the JD. Never assume skills, domains or seniority not present. "not" is a valid and useful answer; do not inflate.
 
 "role_summary" is shown on a public page. It must describe only the ROLE and what it asks for, never the candidate: no years of experience, past titles, employers, domains the candidate has, or comp floor. Start it with the deciding step, e.g. "Discipline: this is product management, not program management" or "Domain gate: requires clinical trial operations depth" or "Strong: leads a team of TPMs on an AI platform".
 
 Return ONLY a JSON object, no prose:
-{"recommendation": "strong|medium|not", "step": "discipline|domain|level|guardrails|comp|none", "role_level": "ic|people_manager|unknown", "role_summary": "<= 20 words about the role"}
+{"recommendation": "strong|medium|not", "step": "discipline|domain|level|guardrails|comp|none", "role_level": "ic|people_manager|unknown", "comp_status": "meets_floor|potentially_meets_floor|below_floor|unknown", "role_summary": "<= 20 words about the role"}
 "step" is the step that decided the verdict ("none" for a clean strong). "role_level" is from the JD alone: people_manager only if the JD describes managing people."""
 
 
@@ -222,12 +222,20 @@ def score_fit(
         log.info("fit: %s pass on %r downgraded to medium", job.get("title"), step)
         rec = "medium"
     role_level = str(parsed.get("role_level", "unknown")).lower().strip()
-    if rec == "strong" and role_level == "ic":
+    if rec == "strong" and role_level == "ic" and not (rules or {}).get("allow_ic_strong", False):
         # The model tends to judge the candidate's level instead of the
         # role's; an individual-contributor role caps at medium.
         log.info("fit: %s strong on an IC role capped at medium", job.get("title"))
         rec, step = "medium", "level"
         reason = f"Level: individual contributor role. {reason}".strip()
+    if rec == "strong" and role_level == "ic" and (rules or {}).get("allow_ic_strong") and (rules or {}).get("ic_strong_requires_comp"):
+        comp_status = parsed.get("comp_status", "unknown")
+        if comp_status not in {"meets_floor", "potentially_meets_floor"}:
+            rec, step = "medium", "comp"
+            explanation = "Comp: compensation confirmation needed." if comp_status != "below_floor" else "Comp: compensation range limits suitability."
+            reason = f"{explanation} {reason}".strip()
+        elif comp_status == "potentially_meets_floor":
+            reason = f"{reason} Confirm compensation within the posted range.".strip()
     return FitVerdict(rec, reason, step)
 
 
