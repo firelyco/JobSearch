@@ -45,3 +45,27 @@ class BaseCompPolicy(unittest.TestCase):
         fake = FakeClient([json.dumps({"recommendation": "not", "step": "domain", "comp_evidence": quote, "role_summary": "Requires specialist industry knowledge"})])
         result = score_fit(PROFILE, JOB, quote, client=fake, rules={"strong_requires_base_comp": True, "comp_floor_usd": 250000})
         self.assertEqual(result.recommendation, "not")
+
+
+class EmployerSalaryFormats(unittest.TestCase):
+    def test_annual_salary_html_without_base_word(self):
+        jd = '<div>Annual Salary:</div><span>$365,000</span><span>–</span><span>$565,000 USD</span>'
+        self.assertEqual(verified_base_comp_status(jd, '', 250000), 'meets_floor')
+
+    def test_yearly_salary_overlap_remains_provisional(self):
+        jd = '<div>The reasonably estimated yearly salary for this role is:</div><span>$224,000</span><span>–</span><span>$280,000 USD</span>'
+        self.assertEqual(verified_base_comp_status(jd, '', 250000), 'potentially_meets_floor')
+
+    def test_entities_and_bare_upper_bound(self):
+        jd = 'Annual Salary:&nbsp; $365,000 &ndash; 565,000 USD'
+        self.assertEqual(verified_base_comp_status(jd, '', 250000), 'meets_floor')
+
+    def test_salary_html_is_enforced_after_role_fit(self):
+        jd = '<div>Annual Salary:</div><span>$365,000</span><span>–</span><span>$565,000 USD</span>'
+        fake = FakeClient([json.dumps({'recommendation':'strong', 'role_level':'people_manager', 'comp_status':'unknown', 'role_summary':'Manages infrastructure TPM programs'})])
+        result = score_fit(PROFILE, JOB, jd, client=fake, rules={'allow_ic_strong':True,'strong_requires_base_comp':True,'comp_floor_usd':250000})
+        self.assertEqual(result.recommendation, 'strong')
+
+    def test_total_compensation_and_ote_do_not_qualify(self):
+        for jd in ['Total compensation: $365,000 – $565,000 USD', 'Annual Salary: $365,000 – $565,000 USD OTE including commissions']:
+            self.assertEqual(verified_base_comp_status(jd, '', 250000), 'unknown')

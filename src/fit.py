@@ -127,7 +127,7 @@ def run(
 
     # Recheck previously Strong roles first when private criteria change.
     # Preserve stable order within groups and existing cache identities.
-    to_score.sort(key=lambda j: scores.get(_key(j), {}).get("recommendation") != "strong")
+    to_score.sort(key=lambda j: not (scores.get(_key(j), {}).get("recommendation") == "strong" or scores.get(_key(j), {}).get("step") == "comp"))
     capped = to_score[:max_jobs]
     if len(to_score) > max_jobs:
         log.warning("capping fit scoring at %d/%d jobs this run; rest next cycle",

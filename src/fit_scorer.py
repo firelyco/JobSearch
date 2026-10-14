@@ -21,6 +21,7 @@ by fit.py so each job is scored once.
 from __future__ import annotations
 import json
 import logging
+import html
 import re
 from dataclasses import dataclass
 
@@ -49,6 +50,7 @@ Work through these steps in order. Read past the title every time; titles missta
 5. Comp and location. Tie-breakers only. Posted comp clearly below the candidate's floor lowers the verdict; it never fails a role alone. For IC roles when IC_STRONG_REQUIRES_COMP is true, Strong requires a disclosed compensation range that can meet the floor: meets_floor if the lower bound meets it, potentially_meets_floor if the range overlaps it, below_floor if the upper bound is below it, and unknown when compensation is not disclosed or not comparable. When STRONG_REQUIRES_BASE_COMP is true, this applies to ALL roles: Strong requires disclosed annual USD base salary strictly above COMP_FLOOR_USD at the LOWER bound. A range that overlaps the floor is provisional, not Strong. Bonus, equity, total compensation and benefits do not count as base salary. Return comp_evidence as an exact contiguous quote from the JD containing the base-salary label and amount/range, or an empty string if absent. Do not assume an offer, invent equity value, or treat an undisclosed range as adequate.
 
 Verdict:
+Assess recommendation and step from discipline, domain, level and guardrails ONLY. The application separately enforces the compensation rules using the employer's published salary evidence. Do not set step=comp or lower recommendation due to compensation; return its evidence separately. An employer's Annual Salary or yearly salary disclosure is salary even if it does not use the word base.
 - "not" (pass): any hard failure in step 1, 2 or 4.
 - "medium" (middle): no hard failure, but a real stretch, e.g. below-target scope, unconfirmed compensation where required, a below-band comp, a preferred guardrail line, or a partial domain match.
 - "strong": right discipline, no gate, target level, guardrails intact, and ideally the candidate's differentiators are named requirements.
@@ -57,7 +59,7 @@ Judge only on evidence in the profile and the JD. Never assume skills, domains o
 "role_summary" is shown on a public page. It must describe only the ROLE and what it asks for, never the candidate: no years of experience, past titles, employers, domains the candidate has, or comp floor. Start it with the deciding step, e.g. "Discipline: this is product management, not program management" or "Domain gate: requires clinical trial operations depth" or "Strong: leads a team of TPMs on an AI platform".
 
 Return ONLY a JSON object, no prose:
-{"recommendation": "strong|medium|not", "step": "discipline|domain|level|guardrails|comp|none", "role_level": "ic|people_manager|unknown", "comp_status": "meets_floor|potentially_meets_floor|below_floor|unknown", "comp_evidence": "exact base salary quote from JD or empty", "role_summary": "<= 20 words about the role"}
+{"recommendation": "strong|medium|not", "step": "discipline|domain|level|guardrails|comp|none", "role_level": "ic|people_manager|unknown", "comp_status": "meets_floor|potentially_meets_floor|below_floor|unknown", "comp_evidence": "exact annual salary or base salary quote from JD or empty", "role_summary": "<= 20 words about the role"}
 "step" is the step that decided the verdict ("none" for a clean strong). "role_level" is from the JD alone: people_manager only if the JD describes managing people."""
 
 
@@ -155,32 +157,47 @@ def _strip_to_json(s: str) -> str:
 
 
 
-def verified_base_comp_status(jd_text: str, evidence: str, floor: float) -> str:
-    """Conservative check of literal annual USD base-pay evidence, not model verdicts.
+def salary_text(text: str) -> str:
+    """Normalize employer HTML and model evidence into comparable plain text."""
+    text = html.unescape(html.unescape(str(text or "")))
+    return " ".join(re.sub(r"<[^>]+>", " ", text).split())
 
-    Ambiguous currency, pay periods, multiple bands and total-comp packages
-    need confirmation. The floor is private and never included in reasons.
+
+def verified_base_comp_status(jd_text: str, evidence: str, floor: float) -> str:
+    """Read literal salary bands; reject total compensation, ambiguous currency,
+    nonannual pay, invented evidence and ranges not clearing the private floor.
+    Annual/yearly salary labels mean salary, not a total compensation package.
     """
-    quote = " ".join(str(evidence or "").split())
-    source = " ".join((jd_text or "").split())
-    if not quote or quote not in source:
+    source = salary_text(jd_text)
+    quote = salary_text(evidence)
+    label = r"base\s+(?:salary|pay|compensation)|annual\s+salary|(?:estimated\s+)?yearly\s+salary"
+    # Prefer the employer's salary section over a model-selected excerpt.
+    excerpts = [source[m.start():m.start()+240] for m in re.finditer(label, source, re.I)]
+    if quote and quote in source and re.search(label, quote, re.I):
+        excerpts.append(quote)
+    bands = []
+    for section in excerpts:
+        if re.search(r"(?i)\b(?:CAD|AUD|NZD|SGD|HKD|EUR|GBP|hourly|monthly|weekly|per hour|per month|OTE)\b|C\$|A\$|total compensation|total cash|on.target earnings", section):
+            continue
+        if not re.search(r"(?i)\bUSD\b|US\$|U\.?S\.?\s+(?:base|salary|pay)|United States", section):
+            continue
+        amount = r"(\d{2,3}(?:,\d{3})+|\d{5,7}|\d{2,3}(?:\.\d+)?)\s*([kK])?"
+        # A salary label is followed by a literal pay band, not unrelated
+        # company revenue or an amount from a subsequent benefit paragraph.
+        m = re.search(r"(?:\$\s*|\bUSD\s+)" + amount, section)
+        if not m:
+            continue
+        lo = float(m.group(1).replace(",", "")) * (1000 if m.group(2) else 1)
+        tail = section[m.end():]
+        upper = re.match(r"\s*(?:USD\s*)?(?:[-–—�]|to)\s*(?:\$\s*|USD\s*)?" + amount, tail)
+        hi = float(upper.group(1).replace(",", "")) * (1000 if upper.group(2) else 1) if upper else lo
+        if 10000 <= lo <= hi:
+            bands.append((lo, hi))
+    if not bands:
         return "unknown"
-    if not re.search(r"(?i)base\s+(?:salary|pay|compensation)", quote):
-        return "unknown"
-    if re.search(r"(?i)\b(?:CAD|AUD|NZD|SGD|HKD|EUR|GBP|hourly|monthly|weekly|per hour|per month)\b|C\$|A\$", quote):
-        return "unknown"
-    # Require explicit USD / US salary context rather than assuming '$' is USD.
-    if not re.search(r"(?i)\bUSD\b|US\$|U\.?S\.?\s+(?:base|salary|pay)|United States", quote):
-        return "unknown"
-    values = []
-    for match in re.finditer(r"(?:\$\s*|\bUSD\s+)(\d{2,3}(?:,\d{3})+|\d{5,7}|\d{2,3}(?:\.\d+)?)\s*([kK])?", quote):
-        value = float(match.group(1).replace(",", ""))
-        values.append(value * 1000 if match.group(2) else value)
-    if not values or len(values) > 2 or any(v < 10000 for v in values):
-        return "unknown"
-    if min(values) > floor:
+    if all(lo > floor for lo, hi in bands):
         return "meets_floor"
-    return "potentially_meets_floor" if max(values) > floor else "below_floor"
+    return "potentially_meets_floor" if any(hi > floor for lo, hi in bands) else "below_floor"
 
 
 def score_fit(
@@ -223,6 +240,9 @@ def score_fit(
     # Rules are constant for a run, so they go in the cached system prompt.
     rules_text = render_rules(rules)
     system = f"{FIT_SYSTEM_PROMPT}\n\n{rules_text}" if rules_text else FIT_SYSTEM_PROMPT
+    if (rules or {}).get("strong_requires_base_comp"):
+        system += "\nFinal output instruction: recommendation and step assess role fit only. Never use step=comp; the application checks salary separately. Annual Salary and yearly salary are valid salary labels."
+
 
     llm = llm_client.build_client(fake=client) if client else llm_client.build_client()
     resp = llm_client.call(
