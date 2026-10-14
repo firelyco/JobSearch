@@ -26,6 +26,7 @@ function setStatus(jobKey, status) {
   if (!status) delete s[jobKey];
   else s[jobKey] = status;
   saveStatuses(s);
+  recordCloudHistoryChange(jobKey);
 }
 
 function jobKey(j) { return `${j.source}:${j.company}:${j.id}`; }
@@ -59,10 +60,11 @@ function recordApplied(key, job, { estimated = false } = {}) {
     applied_at_estimated: estimated,
   };
   saveApplied(a);
+  recordCloudHistoryChange(key);
 }
 function forgetApplied(key) {
   const a = loadApplied();
-  if (a[key]) { delete a[key]; saveApplied(a); }
+  if (a[key]) { delete a[key]; saveApplied(a); recordCloudHistoryChange(key); }
 }
 // One place for status changes so the snapshot always follows the status.
 function changeStatus(key, status) {
@@ -217,6 +219,7 @@ async function loadData() {
     return;
   }
   render();
+  syncPrivateHistory();
   if (Object.keys(loadInFlight()).length > 0) startPolling();
 }
 
@@ -467,7 +470,7 @@ function renderAppliedHistory() {
 
   tbody.querySelectorAll('.applied-status').forEach(sel => {
     sel.addEventListener('change', (e) => {
-      setStatus(e.target.closest('tr').getAttribute('data-key'), e.target.value);
+      changeStatus(e.target.closest('tr').getAttribute('data-key'), e.target.value);
       renderMetrics();
     });
   });
@@ -631,12 +634,14 @@ function savePatFromModal() {
     showPatError('Looks invalid — expected to start with github_pat_ or ghp_.');
     return;
   }
+  const savedContext = _patModalContext;
   setStoredPAT(val);
+  syncPrivateHistory();
   updatePatButtonLabel();
   closePatModal();
   toast('PAT saved', 'success');
-  if (_patModalContext.pendingTailor) {
-    onTailorClick(_patModalContext.pendingTailor);
+  if (savedContext.pendingTailor) {
+    onTailorClick(savedContext.pendingTailor);
   }
 }
 function showPatError(msg) {
@@ -690,6 +695,7 @@ function importStatus(file) {
       const applied = imported.version === 2 ? (imported.applied || {}) : {};
       saveStatuses({ ...loadStatuses(), ...statuses });
       saveApplied({ ...loadApplied(), ...applied });
+      for (const key of new Set([...Object.keys(statuses), ...Object.keys(applied)])) recordCloudHistoryChange(key);
       render();
       alert(`Imported ${Object.keys(statuses).length} statuses and ${Object.keys(applied).length} applied records.`);
     } catch (err) {
@@ -802,6 +808,7 @@ function bindControls() {
   $('pat-input').addEventListener('keydown', (e) => { if (e.key === 'Enter') savePatFromModal(); });
   $('pat-clear-btn').addEventListener('click', () => {
     clearStoredPAT();
+    setHistorySyncStatus('Private history disconnected. Local records are retained.');
     updatePatButtonLabel();
     toast('PAT cleared from this browser', 'info');
     closePatModal();
@@ -812,9 +819,143 @@ function bindControls() {
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && !$('pat-modal').classList.contains('hidden')) closePatModal();
   });
+  $('history-sync-btn')?.addEventListener('click', () => getPAT() ? syncPrivateHistory() : openPatModal());
   $('history-range')?.addEventListener('change', renderAppliedHistory);
   updatePatButtonLabel();
 }
+
+// Private shared application history. Tokens stay in the browser and are
+// sent only to GitHub. No application records go into the public dashboard.
+const HISTORY_REPO = 'JobSearch-private-state';
+const HISTORY_FILE = 'applications.json';
+const CLOUD_HISTORY_KEY = 'jobsearch.cloudHistory.v1';
+let historySyncRunning = false;
+let historySyncTimer = null;
+let historyMutationClock = 0;
+
+function loadCloudHistory() {
+  try { return JSON.parse(localStorage.getItem(CLOUD_HISTORY_KEY) || '{}'); }
+  catch { return {}; }
+}
+
+function mergeHistoryRecords(remote, local) {
+  const merged = { ...remote };
+  for (const [key, entry] of Object.entries(local)) {
+    const current = merged[key];
+    if (!current || Number(entry.updated_at || 0) > Number(current.updated_at || 0)
+      || (Number(entry.updated_at || 0) === Number(current.updated_at || 0)
+        && String(entry.mutation_id || '') > String(current.mutation_id || ''))) merged[key] = entry;
+  }
+  return merged;
+}
+
+function setHistorySyncStatus(message) {
+  const node = $('history-sync-status');
+  if (node) node.textContent = message;
+}
+
+function recordCloudHistoryChange(key) {
+  const records = loadCloudHistory();
+  const application = loadApplied()[key] || null;
+  const status = loadStatuses()[key] || 'new';
+  historyMutationClock = Math.max(Date.now(), historyMutationClock + 1, Number(records[key]?.updated_at || 0) + 1);
+  records[key] = {
+    status, application, updated_at: historyMutationClock,
+    mutation_id: crypto.randomUUID(), deleted: status === 'new' && !application,
+  };
+  localStorage.setItem(CLOUD_HISTORY_KEY, JSON.stringify(records));
+  setHistorySyncStatus(getPAT() ? 'Saved locally; syncing private history…' : 'Saved locally. Connect private history to sync across devices.');
+  scheduleHistorySync();
+}
+
+function scheduleHistorySync() {
+  clearTimeout(historySyncTimer);
+  historySyncTimer = setTimeout(syncPrivateHistory, 600);
+}
+
+function seedLegacyHistory(remote) {
+  const records = loadCloudHistory();
+  const statuses = loadStatuses();
+  const applied = loadApplied();
+  for (const key of new Set([...Object.keys(statuses), ...Object.keys(applied)])) {
+    // A fresh browser's old local copy must not overwrite an existing cloud
+    // record or resurrect a removal. Only seed keys absent from both stores.
+    if (remote[key] || records[key]) continue;
+    records[key] = { status: statuses[key] || 'applied', application: applied[key] || null,
+      updated_at: 0, mutation_id: 'legacy-import', deleted: false };
+  }
+  return records;
+}
+
+function applySharedHistory(records) {
+  const statuses = loadStatuses();
+  const applied = loadApplied();
+  for (const [key, entry] of Object.entries(records)) {
+    if (entry.deleted) { delete statuses[key]; delete applied[key]; continue; }
+    if (entry.status && entry.status !== 'new') statuses[key] = entry.status;
+    else delete statuses[key];
+    if (entry.application) applied[key] = entry.application;
+    else delete applied[key];
+  }
+  // Direct writes avoid re-enqueuing downloaded changes as new mutations.
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(statuses));
+  localStorage.setItem(APPLIED_KEY, JSON.stringify(applied));
+  localStorage.setItem(CLOUD_HISTORY_KEY, JSON.stringify(records));
+}
+
+function encodeHistoryFile(value) {
+  const bytes = new TextEncoder().encode(JSON.stringify(value, null, 2));
+  return btoa(Array.from(bytes, byte => String.fromCharCode(byte)).join(''));
+}
+function decodeHistoryFile(value) {
+  return JSON.parse(new TextDecoder().decode(Uint8Array.from(atob(value.replace(/\s/g, '')), c => c.charCodeAt(0))));
+}
+
+async function syncPrivateHistory() {
+  if (historySyncRunning) { scheduleHistorySync(); return; }
+  const token = getPAT();
+  if (!token) { setHistorySyncStatus('Connect private history to save and sync across devices.'); return; }
+  historySyncRunning = true;
+  const base = `https://api.github.com/repos/${REPO_OWNER}/${HISTORY_REPO}`;
+  const headers = { Accept: 'application/vnd.github+json', Authorization: `Bearer ${token}`, 'X-GitHub-Api-Version': '2022-11-28' };
+  try {
+    setHistorySyncStatus('Syncing private history…');
+    const repoResponse = await fetch(base, {headers, cache:'no-store'});
+    if (!repoResponse.ok) throw new Error('Your token needs access to the private history repository.');
+    const repo = await repoResponse.json();
+    if (repo.private !== true) throw new Error('History sync stopped: storage must be private.');
+    let written = null;
+    for (let attempt = 0; attempt < 4; attempt++) {
+      const response = await fetch(`${base}/contents/${HISTORY_FILE}`, {headers, cache:'no-store'});
+      if (!response.ok && response.status !== 404) throw new Error('Could not read private history. Local changes are retained.');
+      const file = response.ok ? await response.json() : null;
+      const document = file ? decodeHistoryFile(file.content) : {version:1, records:{}};
+      if (document.version !== 1 || !document.records || typeof document.records !== 'object' || Array.isArray(document.records)) throw new Error('History format is unsupported. Local changes are retained.');
+      const merged = mergeHistoryRecords(document.records, seedLegacyHistory(document.records));
+      if (JSON.stringify(merged) === JSON.stringify(document.records)) { written = merged; break; }
+      const update = await fetch(`${base}/contents/${HISTORY_FILE}`, {
+        method:'PUT', headers:{...headers,'Content-Type':'application/json'},
+        body:JSON.stringify({message:'Update private application history', content:encodeHistoryFile({version:1, records:merged}), ...(file ? {sha:file.sha} : {})}),
+      });
+      if (update.status === 409 || update.status === 422) continue;
+      if (!update.ok) throw new Error('History was not uploaded. Check Contents: Read and write permission.');
+      written = merged;
+      break;
+    }
+    if (!written) throw new Error('Another device is updating history. Local changes are retained; sync will retry.');
+    const finalRecords = mergeHistoryRecords(written, loadCloudHistory());
+    applySharedHistory(finalRecords);
+    if (JSON.stringify(finalRecords) !== JSON.stringify(written)) {
+      setHistorySyncStatus('New local changes pending upload…'); scheduleHistorySync();
+    } else setHistorySyncStatus('Private history synced across devices.');
+    render();
+  } catch (error) {
+    setHistorySyncStatus(`History not synced: ${error.message}`);
+  } finally { historySyncRunning = false; }
+}
+
+window.addEventListener('focus', () => syncPrivateHistory());
+setInterval(() => { if (document.visibilityState === 'visible') syncPrivateHistory(); }, 60000);
 
 (async function init() {
   bindGate();

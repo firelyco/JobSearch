@@ -157,8 +157,10 @@
     <section class="applied-history">
       <details id="applied-details" open>
         <summary>Applied history (<span id="applied-count">0</span>)
-          <span class="applied-note">Saved in this browser only. Use Export to back it up.</span>
+          <span class="applied-note">Private shared history when connected; local backup retained.</span>
         </summary>
+        <button id="history-sync-btn" class="btn-ghost" type="button">Connect / sync history</button>
+        <p id="history-sync-status" role="status">Connect private history to save and sync across devices.</p>
         <label for="history-range">Show applications from</label>
         <select id="history-range">
           <option value="30" selected>Last 30 days</option>
@@ -193,8 +195,8 @@
     <div class="modal-card">
       <h2 id="pat-modal-title">GitHub Personal Access Token</h2>
       <p class="modal-body">
-        Tailoring runs as a GitHub Actions workflow. To trigger it from this dashboard the browser needs a
-        fine-grained token scoped to <code>firelyco/JobSearch</code> with one permission:
+        Private history sync and tailoring use your GitHub connection. Connect once in each browser with a
+        fine-grained token with access to <code>firelyco/JobSearch</code> for tailoring and <code>firelyco/JobSearch-private-state</code> for private application history, with permission:
         <strong>Contents: Read and write</strong>. (The repository-dispatch API is a Repos-category endpoint —
         it needs Contents write, not the Actions permission.)
       </p>
