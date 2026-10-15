@@ -6,6 +6,10 @@ on:
     types: [completed]
   workflow_dispatch:
     inputs:
+      benchmark:
+        description: "Run reviewed real-posting calibration without changing ratings"
+        type: boolean
+        default: false
       inventory_only:
         description: "Build private evidence inventory without changing scores"
         type: boolean
@@ -105,7 +109,12 @@ jobs:
         env:
           FIT_JOB_KEYS: ${{ inputs.job_keys }}
           FIT_INVENTORY_ONLY: ${{ inputs.inventory_only }}
+          FIT_BENCHMARK: ${{ inputs.benchmark }}
         run: |
+          if [ "$FIT_BENCHMARK" = "true" ]; then
+            python -m src.fit_benchmark
+            exit $?
+          fi
           if [ "$FIT_INVENTORY_ONLY" = "true" ]; then
             python -m src.fit --inventory-only
             exit 0
@@ -128,6 +137,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add docs/fit_scores.json
+          if [ -f docs/fit_benchmark.json ]; then git add docs/fit_benchmark.json; fi
           if [ -f docs/fit_policy.json ]; then git add docs/fit_policy.json; fi
           if git diff --staged --quiet; then
             echo "no fit-score changes to commit"
