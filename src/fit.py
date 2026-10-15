@@ -130,8 +130,8 @@ def run(
         except (ValueError,TypeError):return True
         return age>=6*3600
     if rules.get('evidence_required'):
-        from src.evidence_fit import digest,build_inventory
-        context_hash=digest({'inventory':build_inventory(profile,rules),'rules':rules,'model':_fit_model()})
+        from src.evidence_fit import digest,build_inventory,scorer_revision
+        context_hash=digest({'revision':scorer_revision(),'inventory':build_inventory(profile,rules),'rules':rules,'model':_fit_model()})
     to_score = [j for j in jobs if (job_keys is None or _key(j) in job_keys)
                 and (rules.get("evidence_required") and needs_evidence_refresh(j) or rescore or _key(j) not in scores or version and scores[_key(j)].get("policy_version") != version)]
     if not to_score:

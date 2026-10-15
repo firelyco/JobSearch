@@ -1,5 +1,5 @@
 """Real-posting calibration. Candidate evidence stays in private PostgreSQL."""
-import hashlib,json,logging
+import hashlib,json,logging,concurrent.futures
 from datetime import datetime,timezone
 from src import fit,jd_fetch,llm_client
 from src.evidence_fit import assess
@@ -14,8 +14,9 @@ def main():
     rules=fit.load_json(fit.FIT_RULES_FILE,{})
     rules={**rules,'evidence_required':True,'fit_policy_version':'evidence-v1'}
     jobs={fit._key(j):j for j in fit.load_json(fit.JOBS_FILE,[])}
-    client=llm_client.build_client();results=[]
-    for index,case in enumerate(config['cases']):
+    def evaluate(pair):
+        index,case=pair
+        client=llm_client.build_client()
         job=jobs.get(case['job_key'])
         result={'job_key':case['job_key'],'title':case['title'],'url':case['url'],'expected':case['allowed_career_fit']}
         try:
@@ -31,8 +32,10 @@ def main():
         except Exception as error:
             # Never publish model output, private profile text or credentials.
             result.update(passed=False,error=type(error).__name__)
-        results.append(result)
         log.info('benchmark %d/%d %s %s',index+1,len(config['cases']),case['job_key'],'PASS' if result['passed'] else 'FAIL')
+        return result
+    with concurrent.futures.ThreadPoolExecutor(max_workers=3) as pool:
+        results=list(pool.map(evaluate,enumerate(config['cases'])))
     report={'version':config['version'],'completed_at':datetime.now(timezone.utc).isoformat(),'total':len(results),
         'passed':sum(row['passed'] for row in results),'cases':results}
     (fit.DOCS_DIR/'fit_benchmark.json').write_text(json.dumps(report,indent=2)+'\n',encoding='utf-8')
