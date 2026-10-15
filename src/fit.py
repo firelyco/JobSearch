@@ -119,8 +119,21 @@ def run(
     scores = prune(scores, current_keys)
 
     version = rules.get("fit_policy_version")
+    context_hash=None
+    def snapshot_hash(job):
+        from src.evidence_fit import digest
+        return digest({key:job.get(key) for key in ('title','company','location','url','description','updated_at')})
+    def needs_evidence_refresh(job):
+        cached=scores.get(_key(job),{})
+        if cached.get('context_hash')!=context_hash or cached.get('job_snapshot_hash')!=snapshot_hash(job):return True
+        try:age=(datetime.fromisoformat(stamp)-datetime.fromisoformat(cached.get('jd_checked_at',''))).total_seconds()
+        except (ValueError,TypeError):return True
+        return age>=6*3600
+    if rules.get('evidence_required'):
+        from src.evidence_fit import digest,build_inventory
+        context_hash=digest({'inventory':build_inventory(profile,rules),'rules':rules,'model':_fit_model()})
     to_score = [j for j in jobs if (job_keys is None or _key(j) in job_keys)
-                and (rescore or _key(j) not in scores or version and scores[_key(j)].get("policy_version") != version)]
+                and (rules.get("evidence_required") and needs_evidence_refresh(j) or rescore or _key(j) not in scores or version and scores[_key(j)].get("policy_version") != version)]
     if not to_score:
         log.info("no jobs need fit scoring (%d already cached)", len(scores))
         return scores
@@ -128,7 +141,7 @@ def run(
     # Recheck previously Strong roles first when private criteria change.
     # Preserve stable order within groups and existing cache identities.
     to_score.sort(key=lambda j: not (scores.get(_key(j), {}).get("recommendation") == "strong" or scores.get(_key(j), {}).get("step") == "comp"))
-    capped = to_score[:max_jobs]
+    capped = to_score if rules.get("evidence_required") else to_score[:max_jobs]
     if len(to_score) > max_jobs:
         log.warning("capping fit scoring at %d/%d jobs this run; rest next cycle",
                     max_jobs, len(to_score))
@@ -138,7 +151,10 @@ def run(
     model = _fit_model()
 
     scored_count = 0
+    jd_checks=0
     for job in capped:
+        if scored_count >= max_jobs or jd_checks>=max(40,max_jobs*3): break
+        jd_checks+=1
         k = _key(job)
         if jd_text_for is not None:
             jd_text = jd_text_for.get(k, "")
@@ -148,6 +164,12 @@ def run(
             except Exception as e:
                 log.warning("jd fetch failed for %s: %s", k, e)
                 jd_text = ""
+        if rules.get('evidence_required'):
+            from src.evidence_fit import input_hash
+            fingerprint=input_hash(profile,job,jd_text,rules,model)
+            if not rescore and scores.get(k,{}).get('input_hash')==fingerprint:
+                scores[k]['jd_checked_at']=stamp
+                continue
         try:
             verdict = fit_scorer.score_fit(
                 profile, job, jd_text, client=client, condensed=condensed, model=model,
@@ -159,7 +181,16 @@ def run(
             # it stays uncached and gets retried next cycle.
             log.warning("fit scoring failed for %s: %s — skipping, will retry next run", k, e)
             continue
+        if rules.get('evidence_required'):
+            try:
+                from src.private_fit_store import save_private
+                save_private(verdict.private,job_key=k)
+            except Exception:
+                log.warning('private assessment persistence failed for %s; keeping verdict pending',k)
+                continue
         scores[k] = {
+            **(getattr(verdict,'public',{}) or {}),
+            **({'context_hash':context_hash,'job_snapshot_hash':snapshot_hash(job),'jd_checked_at':stamp} if context_hash else {}),
             "recommendation": verdict.recommendation,
             "reason": verdict.reason,
             "step": verdict.step,
@@ -183,6 +214,7 @@ def save(scores: dict) -> None:
 
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser()
+    parser.add_argument("--inventory-only",action="store_true")
     parser.add_argument("--max", type=int, default=MAX_JOBS_PER_RUN)
     parser.add_argument("--rescore", action="store_true", help="re-score every job, ignoring cache")
     parser.add_argument("--job-keys", help="JSON array of specific job keys to score")
@@ -198,6 +230,12 @@ def main(argv: list[str] | None = None) -> int:
     if not FIT_RULES_FILE.exists():
         log.warning("config/fit_rules.json missing — scoring with the generic method only")
     rules = load_json(FIT_RULES_FILE, {})
+    if args.inventory_only:
+        from src.evidence_fit import build_inventory
+        from src.private_fit_store import save_private
+        save_private({'inventory':build_inventory(load_json(PROFILE_FILE,{}),rules)})
+        log.info('Private evidence inventory saved')
+        return 0
     policy = {"version": rules.get("fit_policy_version", "")}
     DOCS_DIR.mkdir(parents=True, exist_ok=True)
     (DOCS_DIR / "fit_policy.json").write_text(json.dumps(policy) + "\n", encoding="utf-8")

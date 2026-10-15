@@ -7,11 +7,20 @@ import os
 import secrets
 import time
 from http.server import BaseHTTPRequestHandler
+from urllib.parse import urlparse, parse_qs
 
 ALLOWED_STATUSES = {'new', 'applied', 'interviewing', 'rejected', 'not-interested'}
 MAX_BODY = 2_000_000
 SESSION_SECONDS = 12 * 3600
 SCHEMA = '''
+CREATE TABLE IF NOT EXISTS candidate_evidence (
+ inventory_hash TEXT PRIMARY KEY, payload JSONB NOT NULL, saved_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+CREATE TABLE IF NOT EXISTS fit_assessments (
+ job_key TEXT NOT NULL, input_hash TEXT NOT NULL, inventory_hash TEXT NOT NULL REFERENCES candidate_evidence(inventory_hash),
+ payload JSONB NOT NULL, saved_at TIMESTAMPTZ NOT NULL DEFAULT now(), PRIMARY KEY(job_key,input_hash)
+);
+
 CREATE TABLE IF NOT EXISTS application_records (
   job_key TEXT PRIMARY KEY, status TEXT NOT NULL, application JSONB,
   updated_at BIGINT NOT NULL, mutation_id TEXT NOT NULL, deleted BOOLEAN NOT NULL DEFAULT FALSE,
@@ -153,6 +162,28 @@ class handler(BaseHTTPRequestHandler):
                 body = json.loads(self.rfile.read(size))
                 if not isinstance(body,dict):
                     raise ValueError('Invalid request')
+            if body.get('action') in {'assessment_write','inventory_write'}:
+                machine = os.environ.get('HISTORY_SCORER_TOKEN','')
+                supplied = self.headers.get('Authorization','')
+                if not machine or not hmac.compare_digest(supplied.encode(),('Bearer '+machine).encode()):
+                    self.respond(401,{'error':'Scorer authentication required'});return
+                from psycopg.types.json import Jsonb
+                payload=body.get('payload',{})
+                inventory=payload.get('inventory')
+                if not isinstance(inventory,list) or not inventory or len(inventory)>1000:
+                    raise ValueError('Invalid inventory')
+                inventory_hash=hashlib.sha256(json.dumps(inventory,sort_keys=True).encode()).hexdigest()
+                with connect() as connection:
+                    initialize(connection)
+                    connection.execute('INSERT INTO candidate_evidence(inventory_hash,payload) VALUES (%s,%s) ON CONFLICT DO NOTHING',(inventory_hash,Jsonb(inventory)))
+                    if body['action']=='assessment_write':
+                        fingerprint=payload.get('input_hash','')
+                        key=body.get('job_key','')
+                        if len(fingerprint)!=64 or not key or len(key)>500:raise ValueError('Invalid assessment')
+                        stored={k:v for k,v in payload.items() if k!='inventory'}
+                        connection.execute('INSERT INTO fit_assessments(job_key,input_hash,inventory_hash,payload) VALUES (%s,%s,%s,%s) ON CONFLICT(job_key,input_hash) DO UPDATE SET payload=EXCLUDED.payload,saved_at=now()',
+                            (key,fingerprint,inventory_hash,Jsonb(stored)))
+                self.respond(200,{'saved':True});return
             if body.get('action') == 'login':
                 password = body.get('password','')
                 expected = os.environ.get('HISTORY_PASSWORD','')
@@ -175,6 +206,14 @@ class handler(BaseHTTPRequestHandler):
             authorization = self.headers.get('Authorization','')
             if not authorization.startswith('Bearer ') or not verify_session(authorization[7:]):
                 self.respond(401,{'error':'Sign in to access private application history'}); return
+            query=parse_qs(urlparse(self.path).query)
+            if self.command=='GET' and query.get('action')==['assessment']:
+                key=query.get('job_key',[''])[0];fingerprint=query.get('input_hash',[''])[0]
+                with connect() as connection:
+                    initialize(connection)
+                    row=connection.execute('SELECT f.payload,e.payload FROM fit_assessments f JOIN candidate_evidence e USING(inventory_hash) WHERE job_key=%s AND input_hash=%s',(key,fingerprint)).fetchone()
+                if not row:self.respond(404,{'error':'This assessment is not available yet'});return
+                self.respond(200,{'assessment':{**row[0],'inventory':row[1]}});return
             with connect() as connection:
                 initialize(connection)
                 records = save_records(connection,body.get('records')) if self.command == 'POST' else read_records(connection)

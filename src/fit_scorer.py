@@ -218,6 +218,10 @@ def score_fit(
     verdict defaults to "medium" with an explanatory reason (cached, so we
     don't retry forever).
     """
+    if (rules or {}).get("evidence_required"):
+        from src.evidence_fit import assess
+        llm = llm_client.build_client(fake=client) if client else llm_client.build_client()
+        return assess(profile,job,jd_text,client=llm,model=model,rules=rules)
     profile_text = condensed if condensed is not None else condense_profile(profile)
     jd = (jd_text or "").strip()
     if len(jd) > max_jd_chars:

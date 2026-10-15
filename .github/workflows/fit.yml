@@ -6,6 +6,10 @@ on:
     types: [completed]
   workflow_dispatch:
     inputs:
+      inventory_only:
+        description: "Build private evidence inventory without changing scores"
+        type: boolean
+        default: false
       job_keys:
         description: "Optional JSON array of job keys to refresh"
         required: false
@@ -36,6 +40,7 @@ jobs:
     # On the workflow_run trigger, only proceed if the poll actually succeeded.
     if: ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' }}
     env:
+      HISTORY_SCORER_TOKEN: ${{ secrets.HISTORY_SCORER_TOKEN }}
       LLM_PROVIDER: anthropic
       NVIDIA_API_KEY: ${{ secrets.NVIDIA_API_KEY }}
       ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
@@ -99,7 +104,12 @@ jobs:
       - name: Score fit for new jobs
         env:
           FIT_JOB_KEYS: ${{ inputs.job_keys }}
+          FIT_INVENTORY_ONLY: ${{ inputs.inventory_only }}
         run: |
+          if [ "$FIT_INVENTORY_ONLY" = "true" ]; then
+            python -m src.fit --inventory-only
+            exit 0
+          fi
           ARGS="--max ${{ inputs.max || '40' }}"
           if [ "${{ inputs.rescore }}" = "true" ]; then
             ARGS="$ARGS --rescore"
