@@ -1,10 +1,10 @@
 """Real-posting calibration. Candidate evidence stays in private PostgreSQL."""
-import hashlib,json,logging,concurrent.futures
+import hashlib,json,logging,concurrent.futures,os
 from datetime import datetime,timezone
 from src import fit,jd_fetch,llm_client
-from src.evidence_fit import assess
+from src.evidence_fit import assess,review_result,digest,scorer_revision,REVIEW_PROMPT,canonical,build_inventory
 from src.fit_scorer import salary_text
-from src.private_fit_store import save_private
+from src.private_fit_store import save_private,load_private
 
 log=logging.getLogger(__name__)
 
@@ -24,7 +24,19 @@ def main():
             jd=jd_fetch.get_jd_text(job)
             current_hash=hashlib.sha256(salary_text(jd).encode()).hexdigest()
             if current_hash!=case['jd_hash']:raise ValueError('Posting changed since manual benchmark review')
-            verdict=assess(profile,job,jd,client=client,model=fit._fit_model(),rules=rules)
+            cached=load_private(case['job_key']) if os.environ.get('FIT_BENCHMARK_REPLAY')=='true' else None
+            if cached:cached['inventory']=build_inventory(profile,rules)
+            if cached and cached.get('extraction') and hashlib.sha256(cached['job_text'].encode()).hexdigest()==case['jd_hash']:
+                if os.environ.get('FIT_BENCHMARK_REVIEW')=='true':
+                    response=llm_client.call(client,model=fit._fit_model(),system=REVIEW_PROMPT+'\nPRIVATE EVIDENCE AND RULES:\n'+canonical({'inventory':cached['inventory'],'rules':rules}),user=canonical({'job_text':cached['job_text'],'job':{k:job.get(k) for k in ('title','company','location')},'proposal':cached['extraction']}),max_tokens=6000,temperature=0.0,cache_system=True)
+                    text=response.text
+                    cached['independent_review']=json.loads(text[text.find('{'):text.rfind('}')+1])
+                verdict=review_result(cached['extraction'],cached['independent_review'],cached['inventory'],cached['job_text'],job,cached['public']['comp_status'],rules)
+                fingerprint=digest(['replay',cached['input_hash'],scorer_revision()])
+                verdict.public['input_hash']=fingerprint
+                verdict.private.update(input_hash=fingerprint,engine_version='evidence-v1',job=cached['job'],job_text=cached['job_text'],replayed_from=cached['input_hash'])
+            else:
+                verdict=assess(profile,job,jd,client=client,model=fit._fit_model(),rules=rules)
             save_private(verdict.private,job_key=case['job_key'])
             result.update(career_fit=verdict.public['career_fit'],recommendation=verdict.recommendation,
                 input_hash=verdict.public['input_hash'],passed=verdict.public['career_fit'] in case['allowed_career_fit'],

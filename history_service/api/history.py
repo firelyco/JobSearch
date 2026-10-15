@@ -204,14 +204,17 @@ class handler(BaseHTTPRequestHandler):
                     self.respond(401,{'error':'Incorrect password'}); return
                 self.respond(200,{'token':issue_session(),'expires_in':SESSION_SECONDS}); return
             authorization = self.headers.get('Authorization','')
-            if not authorization.startswith('Bearer ') or not verify_session(authorization[7:]):
+            query=parse_qs(urlparse(self.path).query)
+            scorer=os.environ.get('HISTORY_SCORER_TOKEN','')
+            machine_read=bool(self.command=='GET' and query.get('action')==['assessment'] and scorer and hmac.compare_digest(authorization.encode(),('Bearer '+scorer).encode()))
+            if not machine_read and (not authorization.startswith('Bearer ') or not verify_session(authorization[7:])):
                 self.respond(401,{'error':'Sign in to access private application history'}); return
             query=parse_qs(urlparse(self.path).query)
             if self.command=='GET' and query.get('action')==['assessment']:
                 key=query.get('job_key',[''])[0];fingerprint=query.get('input_hash',[''])[0]
                 with connect() as connection:
                     initialize(connection)
-                    row=connection.execute('SELECT f.payload,e.payload FROM fit_assessments f JOIN candidate_evidence e USING(inventory_hash) WHERE job_key=%s AND input_hash=%s',(key,fingerprint)).fetchone()
+                    row=connection.execute('SELECT f.payload,e.payload FROM fit_assessments f JOIN candidate_evidence e USING(inventory_hash) WHERE job_key=%s AND (input_hash=%s OR %s) ORDER BY f.saved_at DESC LIMIT 1',(key,fingerprint, bool(machine_read and not fingerprint))).fetchone()
                 if not row:self.respond(404,{'error':'This assessment is not available yet'});return
                 self.respond(200,{'assessment':{**row[0],'inventory':row[1]}});return
             with connect() as connection:

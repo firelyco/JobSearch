@@ -195,9 +195,17 @@ async function loadData() {
       try { fitScores = await fitResp.json(); } catch { fitScores = {}; }
       if (policyResp && policyResp.ok) {
         const policy = await policyResp.json();
+        if (policy.evidence_required) {
+          await Promise.all(allJobs.map(async job=>{
+            const verdict=fitScores[jobKey(job)];if(!verdict)return;
+            const snapshot={company:job.company??null,description:job.description??null,location:job.location??null,title:job.title??null,updated_at:job.updated_at??null,url:job.url??null};
+            const hash=await sha256Hex(JSON.stringify(snapshot));
+            verdict.inputs_stale=verdict.job_snapshot_hash!==hash || verdict.context_hash!==policy.context_hash || verdict.scorer_revision!==policy.scorer_revision;
+          }));
+        }
         if (policy.version) {
           for (const [key, verdict] of Object.entries(fitScores)) {
-            verdict.refresh_pending = verdict.policy_version !== policy.version;
+            verdict.refresh_pending = verdict.policy_version !== policy.version || !!verdict.inputs_stale;
             if (policy.evidence_required && (verdict.refresh_pending || verdict.engine_version !== 'evidence-v1')) {
               verdict.previous_rating=verdict.recommendation;
               verdict.recommendation='review';

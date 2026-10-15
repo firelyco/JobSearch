@@ -59,6 +59,22 @@ class EvidenceDecision(unittest.TestCase):
  def test_missing_jd_is_review_without_model_call(self):
   result=assess({'experience':[{'achievements':[{'details':'Delivered a shared platform program.'}]}]},JOB,'',client=FakeClient([]),model='test',rules={});self.assertEqual(result.recommendation,'review')
 
+class StructuredOutputSafety(unittest.TestCase):
+ def test_malformed_model_output_is_private_review_not_strong(self):
+  profile={'experience':[{'achievements':[{'details':'Delivered a shared software platform program.'}]}]}
+  result=assess(profile,JOB,JD*3,client=FakeClient(['malformed private model output']),model='test',rules={})
+  self.assertEqual(result.recommendation,'review')
+  self.assertEqual(result.private['model_error']['phase'],'extraction')
+  self.assertNotIn('malformed private model output',json.dumps(result.public))
+ def test_credentials_are_available_as_evidence(self):
+  facts=build_inventory({'education':[{'degree':'Bachelor of Computer Science','school':'Example school'}]})
+  self.assertEqual(facts[0]['kind'],'credential')
+ def test_verifiable_section_prefix_is_removed_without_inventing_words(self):
+  p=proposal();p['requirements'][1]['quote']='Minimum qualifications: '+QUOTES[1]
+  result=review_result(p,review(),FACTS,JD,JOB,'meets_floor')
+  self.assertEqual(result.recommendation,'strong')
+  self.assertEqual(result.private['requirements'][1]['quote'],QUOTES[1])
+
 class EvidenceCache(unittest.TestCase):
  def test_profile_and_jd_changes_invalidate_cache(self):
   profile={'experience':[{'achievements':[{'details':'Delivered a shared software platform program.'}]}]};rules={'evidence_required':True,'fit_policy_version':'test'};key='test:example:1';now=datetime(2026,10,15,tzinfo=timezone.utc)

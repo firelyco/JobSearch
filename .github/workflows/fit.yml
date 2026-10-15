@@ -6,6 +6,14 @@ on:
     types: [completed]
   workflow_dispatch:
     inputs:
+      benchmark_review:
+        description: "Independently re-review saved extraction evidence"
+        type: boolean
+        default: false
+      benchmark_replay:
+        description: "Replay saved evidence audits before making new model calls"
+        type: boolean
+        default: false
       benchmark:
         description: "Run reviewed real-posting calibration without changing ratings"
         type: boolean
@@ -40,7 +48,7 @@ permissions:
 jobs:
   fit:
     runs-on: ubuntu-latest
-    timeout-minutes: ${{ inputs.benchmark && 45 || 20 }}
+    timeout-minutes: ${{ inputs.benchmark && 45 || 30 }}
     # On the workflow_run trigger, only proceed if the poll actually succeeded.
     if: ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' }}
     env:
@@ -110,6 +118,8 @@ jobs:
           FIT_JOB_KEYS: ${{ inputs.job_keys }}
           FIT_INVENTORY_ONLY: ${{ inputs.inventory_only }}
           FIT_BENCHMARK: ${{ inputs.benchmark }}
+          FIT_BENCHMARK_REPLAY: ${{ inputs.benchmark_replay }}
+          FIT_BENCHMARK_REVIEW: ${{ inputs.benchmark_review }}
         run: |
           if [ "$FIT_BENCHMARK" = "true" ]; then
             python -m src.fit_benchmark
