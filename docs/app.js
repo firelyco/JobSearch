@@ -198,6 +198,11 @@ async function loadData() {
         if (policy.version) {
           for (const [key, verdict] of Object.entries(fitScores)) {
             verdict.refresh_pending = verdict.policy_version !== policy.version;
+            if (policy.evidence_required && (verdict.refresh_pending || verdict.engine_version !== 'evidence-v1')) {
+              verdict.previous_rating=verdict.recommendation;
+              verdict.recommendation='review';
+              verdict.reason='Awaiting the current requirement-to-evidence assessment.';
+            }
           }
         }
       }
@@ -205,7 +210,7 @@ async function loadData() {
     const refreshCount = Object.values(fitScores).filter(v => v.refresh_pending).length;
     const fitNotice = $('fit-status');
     if (fitNotice) fitNotice.textContent = refreshCount
-      ? `${refreshCount} previous fit ratings are awaiting reassessment. Previous Strong ratings have not yet cleared the current base-pay requirement.`
+      ? `${refreshCount} roles await reassessment. Strong results require reviewed evidence plus confirmed posted-pay and location eligibility.`
       : 'Fit ratings use the current criteria. Posted pay is not a confirmed offer; verify salary and benefits before applying.';
     jobsByKey = Object.fromEntries(allJobs.map(j => [jobKey(j), j]));
     // Backfill: jobs marked applied before snapshots existed get one now,
@@ -373,7 +378,7 @@ function renderTable() {
     return `
       <tr data-key="${escapeAttr(key)}">
         <td class="col-applied"><input type="checkbox" class="applied-cb" title="Mark as applied" ${isAppliedStatus(curStatus) ? 'checked' : ''}></td>
-        <td>${fitCellHtml(fitScores[key])}</td>
+        <td>${fitCellHtml(fitScores[key],key)}</td>
         <td>
           <div class="role-title"><a href="${escapeAttr(j.url)}" target="_blank" rel="noopener">${escapeHtml(j.title)}</a></div>
           <div class="role-meta">${escapeHtml(meta)}</div>
@@ -395,6 +400,7 @@ function renderTable() {
     `;
   }).join('');
 
+  tbody.querySelectorAll('.fit-evidence-btn').forEach(button=>button.addEventListener('click',()=>showFitEvidence(button.dataset.jobKey)));
   tbody.querySelectorAll('.status-select').forEach(sel => {
     sel.addEventListener('change', (e) => {
       const row = e.target.closest('tr');
@@ -484,18 +490,22 @@ function renderAppliedHistory() {
 
 const FIT_LABELS = {
   strong: { label: 'Strong', cls: 'fit-strong' },
+  reach: { label: 'Reach', cls: 'fit-medium' },
+  review: { label: 'Needs review', cls: 'fit-pending' },
   medium: { label: 'Middle', cls: 'fit-medium' },
   not:    { label: 'Pass', cls: 'fit-not' },
 };
 
-function fitCellHtml(fit) {
+function fitCellHtml(fit, key) {
   if (!fit || !fit.recommendation) {
     return `<span class="fit-pill fit-pending" title="Not scored yet — the fit workflow runs after each poll">Pending</span>`;
   }
   const meta = FIT_LABELS[fit.recommendation] || FIT_LABELS.medium;
   const pending = !!fit.refresh_pending;
   const reason = escapeAttr((pending ? 'Previous rating: reassessment pending; current base-pay requirement is unconfirmed. ' : '') + (fit.reason || ''));
-  return `<span class="fit-pill ${meta.cls}" title="${reason}">${meta.label}${pending ? ' (previous)' : ''}</span>`;
+  const label=fit.recommendation==='strong' && fit.tier==='top_tier' ? 'Top tier' : meta.label;
+  const why=fit.engine_version==='evidence-v1' && key ? `<button type="button" class="btn-ghost-sm fit-evidence-btn" data-job-key="${escapeAttr(key)}">Why?</button>` : '';
+  return `<span class="fit-pill ${meta.cls}" title="${reason}">${label}${pending ? ' (previous)' : ''}</span>${why}`;
 }
 
 function tailorCellHtml(key, tailored, inflight) {
@@ -819,6 +829,7 @@ function bindControls() {
     if (e.key === 'Escape' && !$('pat-modal').classList.contains('hidden')) closePatModal();
   });
   $('history-sync-btn')?.addEventListener('click', () => getHistorySession() ? syncPrivateHistory() : openHistoryLogin());
+  document.querySelectorAll('[data-close-fit-evidence]').forEach(node=>node.addEventListener('click',()=>$('fit-evidence-modal').classList.add('hidden')));
   $('history-login-submit')?.addEventListener('click',loginHistory);
   $('history-password')?.addEventListener('keydown',event=>{if(event.key==='Enter')loginHistory();});
   document.querySelectorAll('[data-close-history]').forEach(node=>node.addEventListener('click',()=>$('history-login-modal').classList.add('hidden')));
@@ -935,6 +946,7 @@ async function loginHistory() {
     $('history-password').value = '';
     $('history-login-modal').classList.add('hidden');
     await syncPrivateHistory();
+    if(pendingFitEvidence){const key=pendingFitEvidence;pendingFitEvidence=null;await showFitEvidence(key);}
   } catch (error) {
     $('history-login-error').textContent = error.message;
   } finally {button.disabled = false;}
@@ -974,6 +986,23 @@ async function syncPrivateHistory() {
   } catch (error) {
     setHistorySyncStatus(`History not saved to database: ${error.message}`);
   } finally {historySyncRunning = false;}
+}
+
+let pendingFitEvidence=null;
+async function showFitEvidence(key) {
+  if(!getHistorySession()){pendingFitEvidence=key;openHistoryLogin();return;}
+  $('fit-evidence-modal').classList.remove('hidden');
+  const content=$('fit-evidence-content');content.textContent='Loading private assessment…';
+  try {
+    const fit=fitScores[key] || {};
+    const query=new URLSearchParams({action:'assessment',job_key:key,input_hash:fit.input_hash || ''});
+    const response=await fetch(`${HISTORY_API}?${query}`,{headers:{Authorization:`Bearer ${getHistorySession()}`},cache:'no-store'});
+    const body=await response.json();if(!response.ok)throw new Error(body.error || 'Could not load assessment');
+    const data=body.assessment;const facts=Object.fromEntries(data.inventory.map(fact=>[fact.id,fact]));
+    content.innerHTML=`<h3>${escapeHtml(data.job.title)}</h3><p>Career fit: ${escapeHtml(data.public.career_fit)} · Posted pay: ${escapeHtml(data.public.comp_status)} · Location: ${escapeHtml(data.public.location_status)}</p>`+
+      data.requirements.map(requirement=>`<details><summary>${escapeHtml(requirement.match)} — ${escapeHtml(requirement.quote)}</summary><p>${escapeHtml(requirement.explanation)}</p><ul>${requirement.evidence_ids.map(id=>{const fact=facts[id];return fact?`<li>${escapeHtml(fact.text)}<br><small>${escapeHtml(fact.company)} · ${escapeHtml(fact.period)} · ${escapeHtml(fact.source)}</small></li>`:'';}).join('')}</ul></details>`).join('')+
+      `<p>Validation notes: ${escapeHtml((data.validation_errors || []).join('; ') || 'Requirement citations checked and matches independently reviewed.')}</p>`;
+  }catch(error){content.textContent=error.message;}
 }
 
 window.addEventListener('focus', () => syncPrivateHistory());

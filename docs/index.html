@@ -108,7 +108,9 @@
         <select id="filter-fit">
           <option value="">all fit</option>
           <option value="strong" selected>strong</option>
-          <option value="medium">middle</option>
+          <option value="medium">middle / provisional</option>
+          <option value="reach">reach</option>
+          <option value="review">needs review</option>
           <option value="not">pass</option>
         </select>
         <select id="filter-location">
@@ -229,6 +231,14 @@
     </div>
   </div>
 
+  <div id="fit-evidence-modal" class="modal hidden" role="dialog" aria-labelledby="fit-evidence-title">
+    <div class="modal-overlay" data-close-fit-evidence></div>
+    <div class="modal-card" style="width:min(1000px,95vw);max-height:85vh;overflow:auto">
+      <h2 id="fit-evidence-title">Private fit assessment</h2>
+      <div id="fit-evidence-content"></div>
+      <button type="button" class="btn-ghost" data-close-fit-evidence>Close</button>
+    </div>
+  </div>
   <div id="toasts" class="toasts"></div>
 
   <script src="app.js"></script>
