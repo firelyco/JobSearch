@@ -1,11 +1,11 @@
 {
-  "scorer_revision": "b7a142d80c28b0679790acf5f254f50e1ec28e898b56e8e70f3ab4562d715a31",
+  "scorer_revision": "b68d8d25aaa0dd883907f4ec5c12573af60c3aaef7b8fccc78444de6230af482",
   "extraction_model": "claude-haiku-4-5",
   "review_model": "claude-sonnet-5-5",
-  "version": "evidence-calibration-1",
-  "completed_at": "2026-10-16T00:19:00.308439+00:00",
+  "version": "evidence-calibration-2",
+  "completed_at": "2026-10-16T00:20:52.363692+00:00",
   "total": 24,
-  "passed": 13,
+  "passed": 0,
   "cases": [
     {
       "job_key": "ashby:supabase:9c04bc60-78a1-4529-950d-4704ab475764",
@@ -14,13 +14,8 @@
       "expected": [
         "not"
       ],
-      "career_fit": "not",
-      "recommendation": "not",
-      "input_hash": "68d83bcce9e52293092314c674c96099afc047aad51f97d106100b3db8b69da4",
-      "passed": true,
-      "evidence_complete": true,
-      "direct_count": 0,
-      "critical_count": 15
+      "passed": false,
+      "error": "BadRequestError"
     },
     {
       "job_key": "google:google:116888337637089990",
@@ -30,44 +25,30 @@
         "reach",
         "medium"
       ],
-      "career_fit": "reach",
-      "recommendation": "reach",
-      "input_hash": "1fa3e6c0419a8b405662eeb7a9c884f4d1a8e11c0134602df315b727133db9d0",
-      "passed": true,
-      "evidence_complete": true,
-      "direct_count": 6,
-      "critical_count": 9
+      "passed": false,
+      "error": "BadRequestError"
     },
     {
       "job_key": "ashby:harvey:9ea6dcda-7869-4181-b493-2822bbc14097",
       "title": "Staff Technical Program Manager",
       "url": "https://jobs.ashbyhq.com/harvey/9ea6dcda-7869-4181-b493-2822bbc14097",
       "expected": [
-        "reach",
+        "strong",
         "medium"
       ],
-      "career_fit": "reach",
-      "recommendation": "reach",
-      "input_hash": "3cdf03185df0250dcf2fa3d2654cc4e7d5f34e8625bc98208ab1caa7ccf391cb",
-      "passed": true,
-      "evidence_complete": true,
-      "direct_count": 11,
-      "critical_count": 15
+      "passed": false,
+      "error": "BadRequestError"
     },
     {
       "job_key": "greenhouse:doordashusa:8197722",
       "title": "Director of TPM",
       "url": "https://job-boards.greenhouse.io/doordashusa/jobs/8197722",
       "expected": [
-        "strong"
+        "medium",
+        "reach"
       ],
-      "career_fit": "reach",
-      "recommendation": "reach",
-      "input_hash": "2221f96b09dab47088ff6c2bba19c02f2bab7a1a264dc76db11000c4b4614bf8",
       "passed": false,
-      "evidence_complete": true,
-      "direct_count": 7,
-      "critical_count": 12
+      "error": "BadRequestError"
     },
     {
       "job_key": "workday:nvidia:/job/US-CA-Santa-Clara/Director--Carline-Program-Management---Autonomous-Vehicles_JR2020452",
@@ -77,13 +58,8 @@
         "not",
         "reach"
       ],
-      "career_fit": "reach",
-      "recommendation": "reach",
-      "input_hash": "6b5d62aa150c260c8fce489d27d59511dbff1a19ba4158aff63fa4c384ad6e56",
-      "passed": true,
-      "evidence_complete": true,
-      "direct_count": 3,
-      "critical_count": 9
+      "passed": false,
+      "error": "BadRequestError"
     },
     {
       "job_key": "ashby:sentry:278476b1-87c5-461f-ad7e-950cd31e5f31",
@@ -92,13 +68,8 @@
       "expected": [
         "strong"
       ],
-      "career_fit": "strong",
-      "recommendation": "medium",
-      "input_hash": "b92351a9e9e645eb534f7bd0b326220563ba1eb5a1436f7cc664c83e5a794b34",
-      "passed": true,
-      "evidence_complete": true,
-      "direct_count": 6,
-      "critical_count": 7
+      "passed": false,
+      "error": "BadRequestError"
     },
     {
       "job_key": "amazon_jobs:amazon:10567908",
@@ -118,13 +89,8 @@
         "not",
         "reach"
       ],
-      "career_fit": "reach",
-      "recommendation": "reach",
-      "input_hash": "6b00a31d87b411143eb5c126adb32897da286734fc5d9fc0e40a655fb8e03c91",
-      "passed": true,
-      "evidence_complete": true,
-      "direct_count": 3,
-      "critical_count": 9
+      "passed": false,
+      "error": "BadRequestError"
     },
     {
       "job_key": "greenhouse:anthropic:5013743008",
@@ -134,13 +100,8 @@
         "not",
         "reach"
       ],
-      "career_fit": "reach",
-      "recommendation": "reach",
-      "input_hash": "0854a1c2323eccc3b47df38ab269ac2102f98cd53798cc9a0d55e1c418493e79",
-      "passed": true,
-      "evidence_complete": true,
-      "direct_count": 7,
-      "critical_count": 17
+      "passed": false,
+      "error": "BadRequestError"
     },
     {
       "job_key": "greenhouse:anthropic:5380379008",
@@ -150,13 +111,8 @@
         "reach",
         "medium"
       ],
-      "career_fit": "reach",
-      "recommendation": "reach",
-      "input_hash": "8ce5abdf5d621b94815cc56af82e9723b1a7de98b30eb7303ffdba45c8be4200",
-      "passed": true,
-      "evidence_complete": true,
-      "direct_count": 3,
-      "critical_count": 12
+      "passed": false,
+      "error": "BadRequestError"
     },
     {
       "job_key": "greenhouse:anthropic:5298359008",
@@ -166,13 +122,8 @@
         "reach",
         "medium"
       ],
-      "career_fit": "reach",
-      "recommendation": "reach",
-      "input_hash": "bc92e5920b5e8198f98aac44c2d24bd05d977aa125ce4a8953bbfb33ecd5ab8f",
-      "passed": true,
-      "evidence_complete": true,
-      "direct_count": 9,
-      "critical_count": 15
+      "passed": false,
+      "error": "BadRequestError"
     },
     {
       "job_key": "greenhouse:anthropic:5380327008",
@@ -182,13 +133,8 @@
         "not",
         "reach"
       ],
-      "career_fit": "reach",
-      "recommendation": "reach",
-      "input_hash": "64d1cd2d314bd2c5a14790d6e2df03c667d5936b335e8cc6c01787fa06e81b82",
-      "passed": true,
-      "evidence_complete": true,
-      "direct_count": 4,
-      "critical_count": 12
+      "passed": false,
+      "error": "BadRequestError"
     },
     {
       "job_key": "greenhouse:anthropic:4989788008",
@@ -198,13 +144,8 @@
         "reach",
         "medium"
       ],
-      "career_fit": "reach",
-      "recommendation": "reach",
-      "input_hash": "af650d73bbc1802de0a3484ca1c486a33b9902a41c21bab74a1562a7d722c022",
-      "passed": true,
-      "evidence_complete": true,
-      "direct_count": 8,
-      "critical_count": 13
+      "passed": false,
+      "error": "BadRequestError"
     },
     {
       "job_key": "greenhouse:anthropic:5380377008",
@@ -213,13 +154,8 @@
       "expected": [
         "not"
       ],
-      "career_fit": "not",
-      "recommendation": "not",
-      "input_hash": "5a8de6934b61d9cd5aa1ee2a79cec4ecd615c32b97ba1d9d710689f4888ae7ac",
-      "passed": true,
-      "evidence_complete": true,
-      "direct_count": 2,
-      "critical_count": 8
+      "passed": false,
+      "error": "BadRequestError"
     },
     {
       "job_key": "greenhouse:anthropic:5453262008",
@@ -228,13 +164,8 @@
       "expected": [
         "reach"
       ],
-      "career_fit": "reach",
-      "recommendation": "reach",
-      "input_hash": "1dec72eb8c0dd2d5ae1abd82ef2f42c9b7b63ac8fa3e5c08537a2112ffa12ed8",
-      "passed": true,
-      "evidence_complete": true,
-      "direct_count": 2,
-      "critical_count": 9
+      "passed": false,
+      "error": "BadRequestError"
     },
     {
       "job_key": "apple:apple:200648818",
@@ -261,7 +192,8 @@
       "title": "Principal Technical Program Manager; Devices, Grocery and Omni-Channel Advertising, Devices, Grocery, and Omni-Channel Advertising",
       "url": "https://www.amazon.jobs/en/jobs/10576212/principal-technical-program-manager-devices-grocery-and-omni-channel-advertising-devices-grocery-and-omni-channel-advertising",
       "expected": [
-        "not"
+        "not",
+        "reach"
       ],
       "passed": false,
       "error": "BadRequestError"
@@ -282,8 +214,7 @@
       "title": "Sr. Staff Technical Program Manager (Hardware) - DoorDash Dot",
       "url": "https://job-boards.greenhouse.io/doordashusa/jobs/7611520",
       "expected": [
-        "strong",
-        "medium"
+        "reach"
       ],
       "passed": false,
       "error": "BadRequestError"
