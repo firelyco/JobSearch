@@ -59,6 +59,17 @@ class EvidenceDecision(unittest.TestCase):
  def test_missing_jd_is_review_without_model_call(self):
   result=assess({'experience':[{'achievements':[{'details':'Delivered a shared platform program.'}]}]},JOB,'',client=FakeClient([]),model='test',rules={});self.assertEqual(result.recommendation,'review')
 
+class ReviewerCorrections(unittest.TestCase):
+ def test_review_can_correct_primary_coverage_without_weakening_matches(self):
+  p=proposal();p['coverage_complete']=False
+  result=review_result(p,review(),FACTS,JD,JOB,'meets_floor')
+  self.assertEqual(result.recommendation,'strong')
+  r=review();r['requirements'][1]['match']='unknown'
+  self.assertEqual(review_result(p,r,FACTS,JD,JOB,'meets_floor').recommendation,'reach')
+ def test_review_can_correct_generic_leadership_miscategorized_as_domain(self):
+  p=proposal();p['requirements'][0]['category']='domain';r=review();r['requirements'][0]['category']='program'
+  self.assertEqual(review_result(p,r,FACTS,JD,JOB,'meets_floor').recommendation,'strong')
+
 class StructuredOutputSafety(unittest.TestCase):
  def test_malformed_model_output_is_private_review_not_strong(self):
   profile={'experience':[{'achievements':[{'details':'Delivered a shared software platform program.'}]}]}
@@ -80,7 +91,7 @@ class EvidenceCache(unittest.TestCase):
   profile={'experience':[{'achievements':[{'details':'Delivered a shared software platform program.'}]}]};rules={'evidence_required':True,'fit_policy_version':'test'};key='test:example:1';now=datetime(2026,10,15,tzinfo=timezone.utc)
   def score(profile,job,jd,**kwargs):
    return EvidenceVerdict('strong','Reviewed','none',{'input_hash':input_hash(profile,job,jd,rules,fit._fit_model())},{'inventory':FACTS})
-  with patch('src.fit_scorer.score_fit',side_effect=score) as scorer,patch('src.private_fit_store.save_private'):
+  with patch('src.fit_scorer.score_fit',side_effect=score) as scorer,patch('src.evidence_batch.save_private'):
    first=fit.run(jobs=[JOB],profile=profile,existing={},rules=rules,jd_text_for={key:JD},fake_client=FakeClient([]),now=now)
    fit.run(jobs=[JOB],profile=profile,existing=first,rules=rules,jd_text_for={key:JD},fake_client=FakeClient([]),now=now+timedelta(hours=1));self.assertEqual(scorer.call_count,1)
    altered=copy.deepcopy(profile);altered['experience'][0]['achievements'][0]['details']+=' Additional verified scope.'

@@ -28,7 +28,7 @@ def main():
             if cached:cached['inventory']=build_inventory(profile,rules)
             if cached and cached.get('extraction') and hashlib.sha256(cached['job_text'].encode()).hexdigest()==case['jd_hash']:
                 if os.environ.get('FIT_BENCHMARK_REVIEW')=='true':
-                    response=llm_client.call(client,model=fit._fit_model(),system=REVIEW_PROMPT+'\nPRIVATE EVIDENCE AND RULES:\n'+canonical({'inventory':cached['inventory'],'rules':rules}),user=canonical({'job_text':cached['job_text'],'job':{k:job.get(k) for k in ('title','company','location')},'proposal':cached['extraction']}),max_tokens=6000,temperature=0.0,cache_system=True)
+                    response=llm_client.call(client,model=rules.get('evidence_review_model') or fit._fit_model(),system=REVIEW_PROMPT+'\nPRIVATE EVIDENCE AND RULES:\n'+canonical({'inventory':cached['inventory'],'rules':rules}),user=canonical({'job_text':cached['job_text'],'job':{k:job.get(k) for k in ('title','company','location')},'proposal':cached['extraction']}),max_tokens=6000,temperature=0.0,cache_system=True)
                     text=response.text
                     cached['independent_review']=json.loads(text[text.find('{'):text.rfind('}')+1])
                 verdict=review_result(cached['extraction'],cached['independent_review'],cached['inventory'],cached['job_text'],job,cached['public']['comp_status'],rules)
