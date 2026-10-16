@@ -48,6 +48,9 @@ def build_inventory(profile, rules=None):
                 add(f'profile.{group}[{index}]',text,'credential')
     for group,skills in (profile.get('skills') or {}).items():
         for n,text in enumerate(skills or []):add(f'profile.skills.{group}[{n}]',text,'skill')
+    for n,reference in enumerate((rules or {}).get('reference_evidence',[])):
+        if reference.get('status')!='documented' or reference.get('assumed'):continue
+        add(str(reference.get('source') or f'private.reference_evidence[{n}]'),reference.get('text',''),'kb_reference',reference.get('company',''),reference.get('period',''))
     for n,assertion in enumerate((rules or {}).get('evidence_assertions',[])):
         if assertion.get('confirmed') is True:
             add(f"user-confirmed rubric[{n}]",assertion.get('text',''),'user_assertion',assertion.get('company',''))

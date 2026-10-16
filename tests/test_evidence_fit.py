@@ -135,3 +135,9 @@ class EvidenceCache(unittest.TestCase):
    altered=copy.deepcopy(profile);altered['experience'][0]['achievements'][0]['details']+=' Additional verified scope.'
    fit.run(jobs=[JOB],profile=altered,existing=first,rules=rules,jd_text_for={key:JD},fake_client=FakeClient([]),now=now+timedelta(hours=1));self.assertEqual(scorer.call_count,2)
    fit.run(jobs=[JOB],profile=profile,existing=first,rules=rules,jd_text_for={key:JD+' Changed qualifications.'},fake_client=FakeClient([]),now=now+timedelta(hours=7));self.assertEqual(scorer.call_count,3)
+
+class PrivateReferenceProvenance(unittest.TestCase):
+ def test_documented_kb_references_keep_source_and_exclude_assumptions(self):
+  rules={'reference_evidence':[{'status':'documented','text':'Led a shared platform roadmap across consuming product teams.','source':'Private KB:127','company':'Example'}, {'status':'documented','assumed':True,'text':'Hypothetical ownership of inference fleet routing.'}, {'status':'unconfirmed','text':'Designed an undisclosed production architecture.'}]}
+  facts=build_inventory({},rules)
+  self.assertEqual(len(facts),1);self.assertEqual(facts[0]['source'],'Private KB:127');self.assertEqual(facts[0]['kind'],'kb_reference')
