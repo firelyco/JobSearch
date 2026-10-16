@@ -1,6 +1,6 @@
 const fs=require('fs'),vm=require('vm'),assert=require('assert'),crypto=require('crypto');
 const path=require('path');
-const root=process.env.JOBSEARCH_ROOT || 'C:/Users/sande/JobSearch';
+const root=process.env.JOBSEARCH_ROOT || path.join(__dirname,'..');
 const code=fs.readFileSync(path.join(root,'docs/app.js'),'utf8');
 const digest=value=>crypto.createHash('sha256').update(JSON.stringify(value)).digest('hex');
 const jobs=['current','legacy','job_changed','profile_changed','code_changed'].map(id=>({source:'test',company:'Example',id,title:'Principal TPM — AI',location:'Boston, MA',url:'https://example.com/'+id}));
