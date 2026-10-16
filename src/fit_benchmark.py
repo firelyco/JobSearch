@@ -12,6 +12,8 @@ def main():
     config=fit.load_json(fit.CONFIG_DIR/'fit_benchmark.json',{})
     profile=fit.load_json(fit.PROFILE_FILE,{})
     rules=fit.load_json(fit.FIT_RULES_FILE,{})
+    # Operational pause flags must match their absence after activation.
+    rules.pop('fit_api_blocked',None);rules.pop('calibration_pending',None)
     rules={**rules,'evidence_required':True,'fit_policy_version':'evidence-v1'}
     jobs={fit._key(j):j for j in fit.load_json(fit.JOBS_FILE,[])}
     def evaluate(pair):
