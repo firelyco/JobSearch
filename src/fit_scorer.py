@@ -172,14 +172,16 @@ def verified_base_comp_status(jd_text: str, evidence: str, floor: float) -> str:
     quote = salary_text(evidence)
     label = r"base\s+(?:salary|pay|compensation)|annual\s+salary|(?:estimated\s+)?yearly\s+salary"
     # Prefer the employer's salary section over a model-selected excerpt.
-    excerpts = [source[m.start():m.start()+240] for m in re.finditer(label, source, re.I)]
+    excerpts = [(source[m.start():m.start()+240],source[max(0,m.start()-30):m.start()]) for m in re.finditer(label, source, re.I)]
     if quote and quote in source and re.search(label, quote, re.I):
-        excerpts.append(quote)
+        start=re.search(label,quote,re.I).start()
+        excerpts.append((quote[start:],quote[max(0,start-30):start]))
     bands = []
-    for section in excerpts:
-        if re.search(r"(?i)\b(?:CAD|AUD|NZD|SGD|HKD|EUR|GBP|hourly|monthly|weekly|per hour|per month|OTE)\b|C\$|A\$|total compensation|total cash|on.target earnings", section):
+    for section, prefix in excerpts:
+        currency_context=prefix+section
+        if re.search(r"(?i)\b(?:CAD|AUD|NZD|SGD|HKD|EUR|GBP|hourly|monthly|weekly|per hour|per month|OTE)\b|C\$|A\$|total compensation|total cash|on.target earnings", currency_context):
             continue
-        if not re.search(r"(?i)\bUSD\b|US\$|U\.?S\.?\s+(?:base|salary|pay)|United States", section):
+        if not re.search(r"(?i)\bUSD\b|US\$|U\.?S\.?\s+(?:base|salary|pay)|United States", currency_context):
             continue
         amount = r"(\d{2,3}(?:,\d{3})+|\d{5,7}|\d{2,3}(?:\.\d+)?)\s*([kK])?"
         # A salary label is followed by a literal pay band, not unrelated

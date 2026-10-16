@@ -77,3 +77,6 @@ class SalaryCurrencyPlacement(unittest.TestCase):
         self.assertEqual(verified_base_comp_status('Annual USD base salary: $230,000/year - $300,000/year.', '', 250000),'potentially_meets_floor')
     def test_currency_postfix_cannot_promote_total_compensation(self):
         self.assertEqual(verified_base_comp_status('Total compensation range is 272,000 USD - 425,500 USD.', '', 250000),'unknown')
+
+    def test_preceding_bonus_cannot_be_mistaken_for_base(self):
+        self.assertEqual(verified_base_comp_status('Bonus $500,000. Annual USD base salary: $200,000.', '', 250000),'below_floor')
