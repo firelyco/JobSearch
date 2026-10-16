@@ -25,3 +25,12 @@ harmonic:
   enabled: true
   max_companies: 25
   minimum_companies: 20
+
+# Public portfolio/job directories; bounded rotation with visible partial coverage.
+startup_portfolios:
+  enabled: true
+  sources: [a16z, sequoia, greylock, yc, techstars]
+  max_pages_per_query: 2
+  max_employers_per_source: 8
+  employer_limits:
+    techstars: 30

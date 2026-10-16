@@ -183,6 +183,8 @@ def main() -> int:
     all_jobs = discovery.merge_jobs(all_jobs, retained)
     from src.harmonic_discovery import tag_jobs
     tag_jobs(all_jobs, cache)
+    from src.portfolio_discovery import tag_jobs as tag_portfolio_jobs
+    tag_portfolio_jobs(all_jobs, cache)
     STATE_DIR.mkdir(parents=True, exist_ok=True)
     cache_file.write_text(json.dumps(cache), encoding="utf-8")
     registry_file.write_text(json.dumps(registry, indent=2), encoding="utf-8")

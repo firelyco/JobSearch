@@ -29,6 +29,9 @@ def board_from_url(url):
     p = urlparse(canonical_url(url))
     parts = [s for s in p.path.split("/") if s]
     for source, hosts in ATS.items():
+        if source == "greenhouse" and p.hostname in hosts and parts and parts[0] == "embed":
+            tenant = dict(parse_qsl(p.query)).get("for", "")
+            return {"source": source, "config": tenant} if re.fullmatch(r"[\w-]+", tenant) else None
         if p.hostname in hosts and parts and re.fullmatch(r"[\w-]+", parts[0]):
             return {"source": source, "config": parts[0]}
     host = p.hostname or ""
@@ -144,6 +147,9 @@ def discover(config, cache):
     from src import harmonic_discovery
     harmonic_boards, harmonic_health = harmonic_discovery.discover(config.get("harmonic", {}), cache)
     boards.extend(harmonic_boards); health.extend(harmonic_health)
+    from src import portfolio_discovery
+    portfolio_boards, portfolio_health = portfolio_discovery.discover(config.get("startup_portfolios", {}), cache)
+    boards.extend(portfolio_boards); health.extend(portfolio_health)
     key = os.environ.get("BRAVE_SEARCH_API_KEY", "")
     urls = list(config.get("seed_urls", []))
     if not key:

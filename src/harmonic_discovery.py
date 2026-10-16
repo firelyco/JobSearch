@@ -70,6 +70,8 @@ def employer_boards(company, max_pages=3):
         visited.add(url)
         try: html,final=fetch_html(url)
         except (requests.RequestException,ValueError): failed=True;continue
+        if board:=board_from_url(final):
+            boards[board_key(board)]=board;break
         for href,text in links(html,final):
             href=public_url(href)
             if not href: continue
