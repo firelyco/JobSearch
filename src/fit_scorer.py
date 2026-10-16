@@ -47,12 +47,12 @@ Work through these steps in order. Read past the title every time; titles missta
 2. Domain gate. Industry depth gates only when the JD states it as a required qualification AND it is the substance of the role. A domain that appears in the product but not the qualifications does not gate. The company's industry is not the role's domain. Fails if a required domain is one of the candidate's hard domain gates or is otherwise absent from the profile.
 3. Level. Judge the ROLE's level from the JD, never the candidate's. A role manages people only if the JD says so (direct reports, "manage a team of", "hire and develop", "lead a team of program managers"). Senior, Staff, Principal, Lead and "Leadership" TPM titles without such language are individual contributor (IC) roles. Use the candidate's target levels and ALLOW_IC_STRONG preference. When ALLOW_IC_STRONG is true, IC status alone does not lower the verdict. Judge senior scope from responsibilities, not merely the title or a minimum-years threshold. Truly junior scope can still lower the verdict.
 4. Guardrails. Would an honest resume need a claim on the candidate's never-claim list? If that claim is central to the role it fails; if it is one preferred line it is a stretch to note.
-5. Comp and location. Tie-breakers only. Posted comp clearly below the candidate's floor lowers the verdict; it never fails a role alone. For IC roles when IC_STRONG_REQUIRES_COMP is true, Strong requires a disclosed compensation range that can meet the floor: meets_floor if the lower bound meets it, potentially_meets_floor if the range overlaps it, below_floor if the upper bound is below it, and unknown when compensation is not disclosed or not comparable. When STRONG_REQUIRES_BASE_COMP is true, this applies to ALL roles: Strong requires disclosed annual USD base salary strictly above COMP_FLOOR_USD at the LOWER bound. A range that overlaps the floor is provisional, not Strong. Bonus, equity, total compensation and benefits do not count as base salary. Return comp_evidence as an exact contiguous quote from the JD containing the base-salary label and amount/range, or an empty string if absent. Do not assume an offer, invent equity value, or treat an undisclosed range as adequate.
+5. Comp and location. Tie-breakers only. Posted comp clearly below the candidate's floor lowers the verdict; it never fails a role alone. For IC roles when IC_STRONG_REQUIRES_COMP is true, Salary eligibility uses the published maximum; unknown pay remains visible: meets_floor if the lower bound meets it, potentially_meets_floor if the range overlaps it, below_floor if the upper bound is below it, and unknown when compensation is not disclosed or not comparable. When STRONG_REQUIRES_BASE_COMP is true, this applies to ALL roles: Exclude on salary only if the published maximum annual USD base salary is BELOW COMP_FLOOR_USD. A range reaching or exceeding the floor qualifies. Unknown salary remains visible and labelled unverified. Bonus, equity, total compensation and benefits do not count as base salary. Return comp_evidence as an exact contiguous quote from the JD containing the base-salary label and amount/range, or an empty string if absent. Do not assume an offer, invent equity value, or treat an undisclosed range as adequate.
 
 Verdict:
 Assess recommendation and step from discipline, domain, level and guardrails ONLY. The application separately enforces the compensation rules using the employer's published salary evidence. Do not set step=comp or lower recommendation due to compensation; return its evidence separately. An employer's Annual Salary or yearly salary disclosure is salary even if it does not use the word base.
 - "not" (pass): any hard failure in step 1, 2 or 4.
-- "medium" (middle): no hard failure, but a real stretch, e.g. below-target scope, unconfirmed compensation where required, a below-band comp, a preferred guardrail line, or a partial domain match.
+- "medium" (middle): no hard failure, but a real stretch, e.g. below-target scope, a below-band comp, a preferred guardrail line, or a partial domain match.
 - "strong": right discipline, no gate, target level, guardrails intact, and ideally the candidate's differentiators are named requirements.
 Judge only on evidence in the profile and the JD. Never assume skills, domains or seniority not present. "not" is a valid and useful answer; do not inflate.
 
@@ -202,7 +202,7 @@ def verified_base_comp_status(jd_text: str, evidence: str, floor: float) -> str:
         return "unknown"
     if all(lo > floor for lo, hi in bands):
         return "meets_floor"
-    return "potentially_meets_floor" if any(hi > floor for lo, hi in bands) else "below_floor"
+    return "potentially_meets_floor" if any(hi >= floor for lo, hi in bands) else "below_floor"
 
 
 def score_fit(
@@ -250,7 +250,7 @@ def score_fit(
     rules_text = render_rules(rules)
     system = f"{FIT_SYSTEM_PROMPT}\n\n{rules_text}" if rules_text else FIT_SYSTEM_PROMPT
     if (rules or {}).get("strong_requires_base_comp"):
-        system += "\nFinal output instruction: recommendation and step assess role fit only. Never use step=comp; the application checks salary separately. Annual Salary and yearly salary are valid salary labels."
+        system += "\nFinal output instruction: exclude on salary only when the published maximum base is below the floor; retain unknown pay. recommendation and step assess role fit only. Never use step=comp; the application checks salary separately. Annual Salary and yearly salary are valid salary labels."
 
 
     llm = llm_client.build_client(fake=client) if client else llm_client.build_client()
@@ -298,7 +298,7 @@ def score_fit(
         comp_status = parsed.get("comp_status", "unknown")
         if strict_base:
             comp_status = verified_base_comp_status(jd_text, parsed.get("comp_evidence", ""), float((rules or {}).get("comp_floor_usd", 0)))
-        allowed = {"meets_floor"} if strict_base else {"meets_floor", "potentially_meets_floor"}
+        allowed = {"meets_floor", "potentially_meets_floor", "unknown"}
         if comp_status not in allowed:
             rec, step = "medium", "comp"
             explanation = {

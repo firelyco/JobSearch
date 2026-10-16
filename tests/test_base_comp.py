@@ -11,7 +11,9 @@ class BaseCompPolicy(unittest.TestCase):
             ("Annual USD base salary: $250,000 - $300,000", "potentially_meets_floor"),
             ("Annual USD base salary: $230,000 - $280,000", "potentially_meets_floor"),
             ("Annual USD base salary: $150,000 - $240,000", "below_floor"),
-            ("Annual USD base salary: $250,000", "below_floor"),
+            ("Annual USD base salary: $212,600 - $319,800", "potentially_meets_floor"),
+            ("Annual USD base salary: $200,000 - $250,000", "potentially_meets_floor"),
+            ("Annual USD base salary: $250,000", "potentially_meets_floor"),
             ("Annual USD base salary: $260K - $300K", "meets_floor"),
             ("Annual USD total compensation: $400,000", "unknown"),
             ("Annual CAD base salary: $400,000", "unknown"),
@@ -25,14 +27,14 @@ class BaseCompPolicy(unittest.TestCase):
     def test_invented_evidence_does_not_pass(self):
         self.assertEqual(verified_base_comp_status("Competitive pay", "Annual USD base salary: $300,000", 250000), "unknown")
 
-    def test_all_roles_require_verified_base_despite_model_claim(self):
+    def test_only_published_maximum_below_floor_excludes(self):
         rules = {"allow_ic_strong": True, "strong_requires_base_comp": True, "comp_floor_usd": 250000}
         for level in ("ic", "people_manager", "unknown"):
             for quote, expected in [
                 ("Annual USD base salary: $260,000 - $300,000", "strong"),
-                ("Annual USD base salary: $230,000 - $280,000", "medium"),
+                ("Annual USD base salary: $230,000 - $280,000", "strong"),
                 ("Annual USD base salary: $150,000 - $240,000", "medium"),
-                ("Competitive salary", "medium"),
+                ("Competitive salary", "strong"),
             ]:
                 fake = FakeClient([json.dumps({"recommendation": "strong", "role_level": level, "comp_status": "meets_floor", "comp_evidence": quote, "role_summary": "AI program delivery"})])
                 with self.subTest(level=level, quote=quote):

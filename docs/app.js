@@ -154,6 +154,7 @@ function baseSalaryStatus(fit) {
 }
 function matchesBaseSalary(fit, filter) {
   const status = baseSalaryStatus(fit);
+  if (filter === 'eligible') return status !== 'below_floor';
   if (filter === 'confirmed') return status === 'meets_floor';
   if (filter === 'possible') return ['meets_floor', 'potentially_meets_floor'].includes(status);
   if (filter === 'unknown') return status === 'unknown';
@@ -167,8 +168,8 @@ function matchesPostingWindow(job, days, now = Date.now()) {
   return Number.isFinite(timestamp) && timestamp <= now && timestamp >= now - Number(days) * 86400000;
 }
 function baseSalaryLabel(fit) {
-  return {meets_floor: 'Base above $250K', potentially_meets_floor: 'Base range may exceed $250K',
-    below_floor: 'Base does not exceed $250K', unknown: 'Base pay unverified'}[baseSalaryStatus(fit)] || 'Base pay unverified';
+  return {meets_floor: 'Base above $250K', potentially_meets_floor: 'Base range reaches $250K',
+    below_floor: 'Base maximum below $250K', unknown: 'Base pay unverified'}[baseSalaryStatus(fit)] || 'Base pay unverified';
 }
 
 function matchesWorkmode(loc, mode) {
@@ -247,7 +248,7 @@ async function loadData() {
       ? 'Updated fit scoring is waiting for Anthropic API credits. Displayed ratings are previous assessments.'
       : calibrationPending ? 'The revised rubric is still being validated. Displayed ratings are previous assessments.'
       : refreshCount
-      ? `${allJobs.length-refreshCount} of ${allJobs.length} roles have current assessments; ${refreshCount} await assessment or reassessment. Strong results require reviewed evidence plus confirmed posted-pay and location eligibility.`
+      ? `${allJobs.length-refreshCount} of ${allJobs.length} roles have current assessments; ${refreshCount} await assessment or reassessment. Strong results require reviewed evidence and location eligibility. Only a published base maximum below $250K is excluded; undisclosed pay remains unverified.`
       : 'Fit ratings use the current criteria. Posted pay is not a confirmed offer; verify salary and benefits before applying.';
     jobsByKey = Object.fromEntries(allJobs.map(j => [jobKey(j), j]));
     // Backfill: jobs marked applied before snapshots existed get one now,

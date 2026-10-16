@@ -37,6 +37,10 @@ vm.runInContext(code.slice(code.indexOf('async function loadData()'),code.indexO
  vm.runInContext(code.slice(code.indexOf('function baseSalaryStatus('),code.indexOf('function matchesWorkmode(')),ctx);
  const fresh={engine_version:'evidence-v1',comp_status:'meets_floor'};
  assert(ctx.matchesBaseSalary(fresh,'confirmed'));
+ assert(ctx.matchesBaseSalary(undefined,'eligible'));
+ assert(ctx.matchesBaseSalary({...fresh,comp_status:'potentially_meets_floor'},'eligible'));
+ assert(!ctx.matchesBaseSalary({...fresh,comp_status:'below_floor'},'eligible'));
+ assert(html.includes('<option value="eligible" selected>base max $250K+ / unverified</option>'));
  assert(!ctx.matchesBaseSalary({...fresh,refresh_pending:true},'confirmed'));
  assert(ctx.matchesBaseSalary({...fresh,refresh_pending:true},'unknown'));
  assert(ctx.matchesBaseSalary({...fresh,comp_status:'potentially_meets_floor'},'possible'));

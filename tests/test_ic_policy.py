@@ -35,8 +35,11 @@ class ICPolicy(unittest.TestCase):
         self.assertEqual(result.recommendation, "strong")
         self.assertIn("Confirm compensation", result.reason)
 
-    def test_missing_or_low_compensation_remains_provisional(self):
-        for status in ("unknown", "below_floor", "invented"):
+    def test_unknown_salary_remains_eligible(self):
+        self.assertEqual(self.result("unknown").recommendation, "strong")
+
+    def test_low_or_invalid_compensation_remains_provisional(self):
+        for status in ("below_floor", "invented"):
             result = self.result(status)
             self.assertEqual((result.recommendation, result.step), ("medium", "comp"))
 

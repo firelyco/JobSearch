@@ -46,7 +46,9 @@ class EvidenceDecision(unittest.TestCase):
   p=proposal();r=review();p['requirements'][1].update(required=False,hard_gate=True);r['requirements'][1].update(required=False,match='unknown',hard_gate_supported=True)
   self.assertNotEqual(self.evaluate(p=p,r=r).recommendation,'not')
  def test_compensation_does_not_change_career_fit(self):
-  result=self.evaluate(comp='potentially_meets_floor');self.assertEqual(result.public['career_fit'],'strong');self.assertEqual(result.recommendation,'medium')
+  for comp in ['potentially_meets_floor','unknown']:
+   result=self.evaluate(comp=comp);self.assertEqual(result.public['career_fit'],'strong');self.assertEqual(result.recommendation,'strong')
+  self.assertEqual(self.evaluate(comp='below_floor').recommendation,'medium')
  def test_location_uncertainty_is_not_eligible(self):
   r=review();r['location_supported']=False;result=self.evaluate(r=r);self.assertFalse(result.public['eligible']);self.assertEqual(result.recommendation,'medium')
  def test_bogus_boolean_does_not_pass_coverage(self):

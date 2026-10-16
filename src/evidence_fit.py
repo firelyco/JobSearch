@@ -162,11 +162,13 @@ def review_result(extraction,review,inventory,jd,job,comp_status,rules=None):
     elif not scope_ok or not direct_program or capability_gaps:career,tier,step='medium','middle','evidence'
     elif direct_edges:career,tier,step='strong',('top_tier' if len(direct_edges)>=2 else 'strong'),'none'
     else:career,tier,step='medium','middle','differentiator'
-    eligible=comp_status=='meets_floor' and loc=='eligible'
+    salary_eligible=comp_status!='below_floor'
+    eligible=salary_eligible and loc=='eligible'
     # Public shortlist rating is separate from career fit. A well-matched but
-    # unconfirmed salary/location is provisional, never silently eligible.
+    # salary excludes only a published maximum below the floor. Unknown pay is
+    # retained and explicitly labelled; it is not a confirmed salary offer.
     recommendation=career
-    if career=='strong' and not eligible:recommendation='medium';step='comp' if comp_status!='meets_floor' else 'location'
+    if career=='strong' and not eligible:recommendation='medium';step='comp' if not salary_eligible else 'location'
     reasons={
       'not':'Confirmed exclusion in a central required qualification.',
       'review':'Assessment needs review: incomplete or unsupported requirement evidence.',
@@ -176,7 +178,9 @@ def review_result(extraction,review,inventory,jd,job,comp_status,rules=None):
     }
     reason=reasons[career]
     if career=='not' and not gates:reason='The core required work is outside the demonstrated capabilities in the evidence.'
-    if career=='strong' and not eligible:reason+=' Compensation or location still requires confirmation.'
+    if career=='strong' and not eligible:reason+=' Posted base salary is below the minimum or location requires confirmation.'
+    elif career=='strong' and comp_status=='unknown':reason+=' Base salary is unverified; confirm with the recruiter.'
+    elif career=='strong' and comp_status=='potentially_meets_floor':reason+=' The published base range reaches the minimum; confirm the actual offer.'
     public={'engine_version':ENGINE_VERSION,'career_fit':career,'tier':tier,'comp_status':comp_status,'location_status':loc,
         'eligible':eligible,'evidence_complete':complete,'validated':complete,'critical_count':len(critical),
         'direct_count':sum(r['match']=='direct' for r in critical),'differentiator_count':len(direct_edges)}
