@@ -46,6 +46,9 @@ vm.runInContext(code.slice(code.indexOf('async function loadData()'),code.indexO
  assert(ctx.matchesBaseSalary({...fresh,comp_status:'potentially_meets_floor'},'possible'));
  assert(!ctx.matchesBaseSalary({...fresh,comp_status:'potentially_meets_floor'},'confirmed'));
  assert(!ctx.matchesBaseSalary(undefined,'possible'));
+ vm.runInContext(code.slice(code.indexOf('const ROLE_CATEGORIES ='),code.indexOf('let allJobs =')),ctx);
+ assert(vm.runInContext("ROLE_CATEGORIES.find(r=>r.id==='senior_ic').pattern.test('Senior Leadership Technical Program Manager, Product Development Ecosystem')",ctx));
+ assert(vm.runInContext("!ROLE_CATEGORIES.find(r=>r.id==='senior_ic').pattern.test('Junior Technical Program Manager')",ctx));
  const now=Date.parse('2026-10-16T18:00:00Z');
  assert(ctx.matchesPostingWindow({posted_at:'2026-10-15T12:00:00Z'},7,now));
  assert(!ctx.matchesPostingWindow({posted_at:'2026-06-01',first_seen_at:'2026-10-15'},7,now));
