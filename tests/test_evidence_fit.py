@@ -85,6 +85,29 @@ class CapabilityBridges(unittest.TestCase):
   jd=JD+" You\u2019ll own senior organization-wide program outcomes."
   self.assertEqual(review_result(p,review(),FACTS,jd,JOB,'meets_floor').recommendation,'strong')
 
+class FinalReviewSafety(unittest.TestCase):
+ def test_reviewer_can_restore_a_substantive_required_technical_qualification(self):
+  p=proposal();p['requirements'][1].update(critical=False,required=False)
+  r=review();r['requirements'][1].update(critical=True,required=True,category='domain',match='unknown')
+  self.assertEqual(review_result(p,r,FACTS,JD,JOB,'meets_floor').recommendation,'reach')
+ def test_differentiator_can_include_a_skill_when_concrete_achievement_also_cited(self):
+  facts=copy.deepcopy(FACTS)+[{'id':'skill','kind':'skill','text':'Program leadership'}]
+  p=proposal();p['differentiators'][0]['evidence_ids'].append('skill');r=review();r['accepted_differentiators']=['org_builder']
+  self.assertEqual(review_result(p,r,facts,JD,JOB,'meets_floor').recommendation,'strong')
+ def test_entirely_unsupported_specialist_core_is_pass_not_middle(self):
+  r=review()
+  for row in r['requirements']:row['match']='unknown'
+  self.assertEqual(review_result(proposal(),r,FACTS,JD,JOB,'meets_floor').recommendation,'not')
+ def test_repair_is_reviewed_and_bounded(self):
+  r=review();r['coverage_complete']=False;r['missing_critical_requirements']=['A required responsibility was omitted']
+  for final_review,expected in [(review(),'strong'),(r,'review')]:
+   fake=FakeClient([json.dumps(proposal()),json.dumps(r),json.dumps(proposal()),json.dumps(final_review)])
+   with patch('src.evidence_fit.build_inventory',return_value=FACTS):
+    result=assess({},JOB,JD*3,client=fake,model='extractor',rules={'comp_floor_usd':250000,'evidence_review_model':'reviewer'})
+   self.assertEqual(result.public['career_fit'],expected)
+   self.assertTrue(result.private['repair_attempted']);self.assertEqual(len(fake.calls),4)
+   self.assertEqual(fake.calls[1]['model'],'reviewer')
+
 class StructuredOutputSafety(unittest.TestCase):
  def test_malformed_model_output_is_private_review_not_strong(self):
   profile={'experience':[{'achievements':[{'details':'Delivered a shared software platform program.'}]}]}

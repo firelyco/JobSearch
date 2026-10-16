@@ -37,6 +37,8 @@ def main():
                 verdict.private.update(input_hash=fingerprint,engine_version='evidence-v1',job=cached['job'],job_text=cached['job_text'],replayed_from=cached['input_hash'])
             else:
                 verdict=assess(profile,job,jd,client=client,model=fit._fit_model(),rules=rules)
+            if verdict.recommendation=='review':
+                verdict=assess(profile,job,jd,client=client,model=fit._fit_model(),rules=rules)
             save_private(verdict.private,job_key=case['job_key'])
             result.update(career_fit=verdict.public['career_fit'],recommendation=verdict.recommendation,
                 input_hash=verdict.public['input_hash'],passed=verdict.public['career_fit'] in case['allowed_career_fit'],
@@ -48,7 +50,7 @@ def main():
         return result
     with concurrent.futures.ThreadPoolExecutor(max_workers=3) as pool:
         results=list(pool.map(evaluate,enumerate(config['cases'])))
-    report={'version':config['version'],'completed_at':datetime.now(timezone.utc).isoformat(),'total':len(results),
+    report={'scorer_revision':scorer_revision(),'extraction_model':fit._fit_model(),'review_model':rules.get('evidence_review_model') or fit._fit_model(),'version':config['version'],'completed_at':datetime.now(timezone.utc).isoformat(),'total':len(results),
         'passed':sum(row['passed'] for row in results),'cases':results}
     (fit.DOCS_DIR/'fit_benchmark.json').write_text(json.dumps(report,indent=2)+'\n',encoding='utf-8')
     return 0 if report['passed']==report['total'] else 1

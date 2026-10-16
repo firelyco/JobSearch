@@ -28,7 +28,7 @@ def run(*,jobs,profile,existing,rules,max_jobs,rescore,fake_client,jd_text_for,s
         try:
             jd=jd_text_for.get(job_key,'') if jd_text_for is not None else jd_fetch.get_jd_text(job)
             fingerprint=input_hash(profile,job,jd,rules,model)
-            if not rescore and scores.get(job_key,{}).get('input_hash')==fingerprint:
+            if not rescore and scores.get(job_key,{}).get('input_hash')==fingerprint and scores.get(job_key,{}).get('recommendation')!='review':
                 return job_key,{**scores[job_key],'jd_checked_at':stamp}
             client=llm_client.build_client(fake=fake_client) if fake_client else llm_client.build_client()
             verdict=fit_scorer.score_fit(profile,job,jd,client=client,model=model,rules=rules)
