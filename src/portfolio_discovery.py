@@ -150,7 +150,11 @@ def discover(config,cache):
   if not unique and not candidates:status='failed'
   health={'source':source,'label':spec['label']+' startup discovery','url':spec['url'],'status':status,'leads':len(unique),'employers_found':len(candidates),'employers_checked':len(selected),'deferred':deferred,'unresolved':unresolved,'listing_failures':failures}
   return list(unique.values()),origins,health
- with ThreadPoolExecutor(max_workers=5) as pool:results=list(pool.map(process,enabled))
+ def safe_process(source):
+  try:return process(source)
+  except Exception:
+   return [],{},{'source':source,'label':SOURCES[source]['label']+' startup discovery','url':SOURCES[source]['url'],'status':'failed','leads':0}
+ with ThreadPoolExecutor(max_workers=5) as pool:results=list(pool.map(safe_process,enabled))
  boards={};origins=cache.setdefault('portfolio:board_origins',{})
  for found,learned,_ in results:
   for b in found:boards[board_key(b)]=b

@@ -68,6 +68,13 @@ class PortfolioDiscovery(unittest.TestCase):
  def test_employer_redirect_to_ats_learns_board(self):
   with patch('src.harmonic_discovery.fetch_html',return_value=('<html>Enable Javascript</html>','https://jobs.ashbyhq.com/startup')):
    self.assertEqual(employer_boards({'url':'https://startup.example/careers'})['boards'],[{'source':'ashby','config':'startup'}])
+ def test_one_changed_source_does_not_stop_other_sources(self):
+  def pages(source,*args):
+   if source=='a16z':raise AttributeError('Changed external schema')
+   return [{'source':'ashby','config':'startup'}],[],True,0
+  with patch.object(p,'listing_pages',side_effect=pages):
+   boards,health=p.discover({'enabled':True,'sources':['a16z','greylock']},{})
+  self.assertEqual(boards,[{'source':'ashby','config':'startup'}]);self.assertEqual(health[0]['status'],'failed');self.assertEqual(health[1]['status'],'ok')
  def test_all_sources_integrate_without_changing_job_facts(self):
   board={'source':'ashby','config':'startup'}
   with patch.object(p,'discover',return_value=([board],[{'source':'a16z','status':'ok'}])),patch.dict('os.environ',{'BRAVE_SEARCH_API_KEY':''}):
