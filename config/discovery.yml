@@ -18,3 +18,10 @@ queries:
 seed_urls:
   - https://expedia.wd108.myworkdayjobs.com/search/job/Washington---Seattle-Campus/Director-Technical-Program-Management---Planning--_R-107898
 max_discovered_boards_per_poll: 24
+
+# Discover startup employers from the latest public Harmonic Hot 25.
+# Cached daily; career boards still use the normal poll and fit pipeline.
+harmonic:
+  enabled: true
+  max_companies: 25
+  minimum_companies: 20

@@ -141,6 +141,9 @@ def discover(config, cache):
             jobs.extend(found); health.append({"source": name, "status": status, "jobs": len(found)})
         except (requests.RequestException, ValueError, KeyError, TypeError, AttributeError):
             health.append({"source": name, "status": "failed", "jobs": 0})
+    from src import harmonic_discovery
+    harmonic_boards, harmonic_health = harmonic_discovery.discover(config.get("harmonic", {}), cache)
+    boards.extend(harmonic_boards); health.extend(harmonic_health)
     key = os.environ.get("BRAVE_SEARCH_API_KEY", "")
     urls = list(config.get("seed_urls", []))
     if not key:

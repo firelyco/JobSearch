@@ -137,6 +137,8 @@ def main() -> int:
     registry = read_state(registry_file, [])
     discovery_config = load_yaml(CONFIG_DIR / "discovery.yml") if (CONFIG_DIR / "discovery.yml").exists() else {}
     new_jobs, learned, discovery_health = discovery.discover(discovery_config, cache)
+    previous_board_keys = {discovery.board_key(b) for b in registry}
+    fresh_board_keys = {discovery.board_key(b) for b in learned} - previous_board_keys
     registry = list({discovery.board_key(b): b for b in registry + learned}.values())
     modules = {"greenhouse": greenhouse, "lever": lever, "ashby": ashby, "workday": workday}
     configured = {(source, str(arg.get("tenant")) if isinstance(arg, dict) else str(arg))
@@ -145,6 +147,8 @@ def main() -> int:
     cap = int(discovery_config.get("max_discovered_boards_per_poll", 24))
     cursor = int(cache.get("board_cursor", 0))
     rotated = unconfigured[cursor % len(unconfigured):] + unconfigured[:cursor % len(unconfigured)] if unconfigured else []
+    # Fetch newly discovered startup boards immediately, then resume rotation.
+    rotated = [b for b in rotated if discovery.board_key(b) in fresh_board_keys] + [b for b in rotated if discovery.board_key(b) not in fresh_board_keys]
     if discovery_config.get("enabled", False):
         with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
             futures = [executor.submit(fetch_with_health, b["source"], discovery.board_key(b), modules[b["source"]].fetch, b["config"]) for b in rotated[:cap] if b["source"] in modules]
@@ -177,6 +181,8 @@ def main() -> int:
         return False
     retained = [{**j, "open_status": "unverified_source_failure"} for j in previous if affected(j)]
     all_jobs = discovery.merge_jobs(all_jobs, retained)
+    from src.harmonic_discovery import tag_jobs
+    tag_jobs(all_jobs, cache)
     STATE_DIR.mkdir(parents=True, exist_ok=True)
     cache_file.write_text(json.dumps(cache), encoding="utf-8")
     registry_file.write_text(json.dumps(registry, indent=2), encoding="utf-8")

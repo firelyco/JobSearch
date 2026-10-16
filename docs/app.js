@@ -384,7 +384,7 @@ function renderTable() {
   let filtered = sortedJobs.filter(j => {
     if (!matchesPostingWindow(j, postingDays)) return false;
     if (!matchesBaseSalary(fitScores[jobKey(j)], salaryFilter)) return false;
-    if (source && j.source !== source) return false;
+    if (source === 'harmonic' ? !(j.discovery_sources || []).includes('harmonic') : source && j.source !== source) return false;
     if (scoreFilter === 'hot' && !isHot(j)) return false;
     if (scoreFilter === 'standard' && scoreBucket(j) === 'low') return false;
     if (fitFilter) {
@@ -418,7 +418,7 @@ function renderTable() {
   tbody.innerHTML = filtered.map(j => {
     const key = jobKey(j);
     const curStatus = statuses[key] || 'new';
-    const meta = [j.location, j.source, j.open_status === 'unverified_source_failure' ? 'open status unverified: source unavailable' : ''].filter(Boolean).join(' · ');
+    const meta = [j.location, j.source, (j.discovery_sources || []).includes('harmonic') ? 'via Harmonic' : '', j.open_status === 'unverified_source_failure' ? 'open status unverified: source unavailable' : ''].filter(Boolean).join(' · ');
     return `
       <tr data-key="${escapeAttr(key)}">
         <td class="col-applied"><input type="checkbox" class="applied-cb" title="Mark as applied" ${isAppliedStatus(curStatus) ? 'checked' : ''}></td>
