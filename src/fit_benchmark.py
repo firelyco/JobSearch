@@ -17,6 +17,8 @@ def main():
     rules={**rules,'evidence_required':True,'fit_policy_version':'evidence-v1'}
     jobs={fit._key(j):j for j in fit.load_json(fit.JOBS_FILE,[])}
     selected=set(json.loads(os.environ['FIT_JOB_KEYS'])) if os.environ.get('FIT_JOB_KEYS') else None
+    prior=fit.load_json(fit.DOCS_DIR/'fit_benchmark.json',{})
+    prior_cases={case['job_key']:case for case in prior.get('cases',[])}
     def evaluate(pair):
         index,case=pair
         client=llm_client.build_client()
@@ -29,8 +31,10 @@ def main():
             if current_hash!=case['jd_hash']:raise ValueError('Posting changed since manual benchmark review')
             cached=load_private(case['job_key']) if os.environ.get('FIT_BENCHMARK_REPLAY')=='true' else None
             refresh=selected is None or case['job_key'] in selected
-            if not refresh and (not cached or cached.get('input_hash')!=input_hash(profile,job,jd,rules,fit._fit_model())):
-                raise ValueError('Unselected assessment has changed inputs and needs review')
+            if not refresh:
+                previous_hash=input_hash(profile,job,jd,rules,fit._fit_model(),revision=prior.get('scorer_revision'))
+                if not cached or cached.get('input_hash') not in {input_hash(profile,job,jd,rules,fit._fit_model()),previous_hash} or prior_cases.get(case['job_key'],{}).get('input_hash')!=cached.get('input_hash'):
+                    raise ValueError('Unselected assessment has changed inputs and needs review')
             if cached:cached['inventory']=build_inventory(profile,rules)
             if cached and cached.get('extraction') and hashlib.sha256(cached['job_text'].encode()).hexdigest()==case['jd_hash']:
                 if refresh and os.environ.get('FIT_BENCHMARK_REVIEW')=='true':
