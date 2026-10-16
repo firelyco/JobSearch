@@ -70,6 +70,21 @@ class ReviewerCorrections(unittest.TestCase):
   p=proposal();p['requirements'][0]['category']='domain';r=review();r['requirements'][0]['category']='program'
   self.assertEqual(review_result(p,r,FACTS,JD,JOB,'meets_floor').recommendation,'strong')
 
+class CapabilityBridges(unittest.TestCase):
+ def test_documented_program_bridge_is_allowed_but_not_unknown(self):
+  p=proposal();p['requirements'].append({'id':'R4','quote':QUOTES[0],'category':'program','critical':True,'required':True,'match':'transferable','evidence_ids':['E1']})
+  r=review();r['requirements'].append({'id':'R4','match':'transferable','evidence_ids':['E1']})
+  self.assertEqual(review_result(p,r,FACTS,JD,JOB,'meets_floor').recommendation,'strong')
+  r['requirements'][-1]['match']='unknown'
+  self.assertEqual(review_result(p,r,FACTS,JD,JOB,'meets_floor').recommendation,'medium')
+ def test_people_leadership_shortfall_is_not_filled_by_program_bridge(self):
+  p=proposal();p['requirements'][1]['category']='people';r=review();r['requirements'][1]['match']='transferable'
+  self.assertEqual(review_result(p,r,FACTS,JD,JOB,'meets_floor').recommendation,'medium')
+ def test_curly_apostrophe_scope_citation_matches_plain_apostrophe(self):
+  p=proposal();p['scope']['quote']="You'll own senior organization-wide program outcomes."
+  jd=JD+" You\u2019ll own senior organization-wide program outcomes."
+  self.assertEqual(review_result(p,review(),FACTS,jd,JOB,'meets_floor').recommendation,'strong')
+
 class StructuredOutputSafety(unittest.TestCase):
  def test_malformed_model_output_is_private_review_not_strong(self):
   profile={'experience':[{'achievements':[{'details':'Delivered a shared software platform program.'}]}]}

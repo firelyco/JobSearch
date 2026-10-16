@@ -84,7 +84,7 @@ def review_result(extraction,review,inventory,jd,job,comp_status,rules=None):
     by_id={fact['id']:fact for fact in inventory}
     def quote_normalize(text):
         text=unicodedata.normalize('NFKC',text).casefold()
-        text=re.sub(r"['’‘�–—-]",' ',text)
+        text=re.sub(r"['\u2019\u2018\ufffd\u2013\u2014-]",' ',text)
         return ' '.join(text.split())
     def quoted(text,source=jd):return isinstance(text,str) and len(text.strip())>=8 and quote_normalize(text) in quote_normalize(source)
     errors=[];requirements=[]
@@ -119,11 +119,15 @@ def review_result(extraction,review,inventory,jd,job,comp_status,rules=None):
         item.update(match=status,evidence_ids=valid_ids,critical=critical,required=required,hard_gate=hard_gate,
             explanation=str(check.get('explanation') or item.get('explanation') or 'Evidence needs review'))
         requirements.append(item)
-    categories={r['category'] for r in requirements if r['critical']}
+    categories={r['category'] for r in requirements if r['critical'] and r['required']}
     complete=bool(type(extraction.get('coverage_complete')) is bool and review.get('coverage_complete') is True and not review.get('missing_critical_requirements') and 'program' in categories and not errors)
-    critical=[r for r in requirements if r['critical'] and r['category']!='logistics']
+    critical=[r for r in requirements if r['critical'] and r['required'] and r['category']!='logistics']
     domain_gaps=[r for r in critical if r['category']=='domain' and r['match']!='direct']
-    direct_program=any(r['category']=='program' and r['critical'] and r['match']=='direct' for r in requirements)
+    direct_program=any(r['category']=='program' and r['critical'] and r['required'] and r['match']=='direct' for r in requirements)
+    # General program competencies can have documented transferable evidence.
+    # Specialist domain prerequisites and required people-leadership experience
+    # still need direct evidence; no transferable match fills those gaps.
+    capability_gaps=[r for r in critical if r['match'] in {'unknown','gap'} or (r['category']!='program' and r['match']!='direct')]
     gates=[r for r in requirements if r['hard_gate']]
     direct_edges=set()
     accepted=set(review.get('accepted_differentiators') or [])
@@ -140,7 +144,7 @@ def review_result(extraction,review,inventory,jd,job,comp_status,rules=None):
     elif not complete:career,tier,step='review','needs_review','evidence'
     elif scope.get('kind')=='junior':career,tier,step='medium','middle','level'
     elif domain_gaps and direct_program:career,tier,step='reach','reach','domain'
-    elif not scope_ok or not direct_program or any(r['match']!='direct' for r in critical):career,tier,step='medium','middle','evidence'
+    elif not scope_ok or not direct_program or capability_gaps:career,tier,step='medium','middle','evidence'
     elif direct_edges:career,tier,step='strong',('top_tier' if len(direct_edges)>=2 else 'strong'),'none'
     else:career,tier,step='medium','middle','differentiator'
     eligible=comp_status=='meets_floor' and loc=='eligible'
@@ -153,7 +157,7 @@ def review_result(extraction,review,inventory,jd,job,comp_status,rules=None):
       'review':'Assessment needs review: incomplete or unsupported requirement evidence.',
       'reach':'Central technical requirements need a documented domain bridge.',
       'medium':'Some required capabilities or differentiators are not directly established.',
-      'strong':'Critical requirements have reviewed direct evidence and relevant differentiators.',
+      'strong':'Reviewed evidence supports the core program mandate and relevant differentiators; specialist prerequisites are directly supported.',
     }
     reason=reasons[career]
     if career=='strong' and not eligible:reason+=' Compensation or location still requires confirmation.'

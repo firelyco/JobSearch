@@ -80,3 +80,6 @@ class SalaryCurrencyPlacement(unittest.TestCase):
 
     def test_preceding_bonus_cannot_be_mistaken_for_base(self):
         self.assertEqual(verified_base_comp_status('Bonus $500,000. Annual USD base salary: $200,000.', '', 250000),'below_floor')
+
+    def test_real_unicode_dash_preserves_upper_bound(self):
+        self.assertEqual(verified_base_comp_status('Annual USD base salary: $230,000 \u2013 $300,000.', '', 250000),'potentially_meets_floor')

@@ -194,7 +194,7 @@ def verified_base_comp_status(jd_text: str, evidence: str, floor: float) -> str:
         lo = float(m.group(1).replace(",", "")) * (1000 if m.group(2) else 1)
         tail = section[m.end():]
         tail = re.sub(r"^\s*(?:/\s*year|per\s+year|annually)\b", " ", tail, flags=re.I)
-        upper = re.match(r"\s*(?:USD\s*)?(?:[-–—�]|to)\s*(?:\$\s*|USD\s*)?" + amount, tail)
+        upper = re.match(r"\s*(?:USD\s*)?(?:[-\u2013\u2014\ufffd]|to)\s*(?:\$\s*|USD\s*)?" + amount, tail)
         hi = float(upper.group(1).replace(",", "")) * (1000 if upper.group(2) else 1) if upper else lo
         if 10000 <= lo <= hi:
             bands.append((lo, hi))
