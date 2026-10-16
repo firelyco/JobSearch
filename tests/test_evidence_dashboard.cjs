@@ -10,6 +10,7 @@ scores['test:Example:legacy'].policy_version='old';
 scores['test:Example:job_changed'].job_snapshot_hash='outdated';
 scores['test:Example:profile_changed'].context_hash='outdated';
 scores['test:Example:code_changed'].scorer_revision='outdated';
+jobs.push({source:'test',company:'Example',id:'unassessed',title:'New startup TPM',location:'Boston, MA'});
 const nodes={};
 const ctx={Date,Object,console,Uint8Array,TextEncoder,crypto:crypto.webcrypto,
  $:id=>nodes[id]??={textContent:'',innerHTML:''},
@@ -26,7 +27,8 @@ vm.runInContext(code.slice(code.indexOf('async function loadData()'),code.indexO
  for(const id of ['legacy','job_changed','profile_changed','code_changed']){
   const rating=ctx.fitScores['test:Example:'+id];assert.equal(rating.recommendation,'review',id);assert.equal(rating.refresh_pending,true,id);
  }
- assert(nodes['fit-status'].textContent.includes('4 roles await reassessment'));
+ assert(nodes['fit-status'].textContent.includes('1 of 6 roles have current assessments; 5 await assessment or reassessment'));
+ assert.equal(ctx.fitScores['test:Example:unassessed'],undefined);
  const html=fs.readFileSync(path.join(root,'docs/index.html'),'utf8');
  assert(html.includes('<option value="strong" selected>strong</option>'));
  assert(html.includes('<option value="us" selected>US</option>'));

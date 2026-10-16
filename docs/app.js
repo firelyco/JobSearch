@@ -217,13 +217,13 @@ async function loadData() {
         }
       }
     }
-    const refreshCount = Object.values(fitScores).filter(v => v.refresh_pending).length;
+    const refreshCount = allJobs.filter(job=>!fitScores[jobKey(job)] || fitScores[jobKey(job)].refresh_pending).length;
     const fitNotice = $('fit-status');
     if (fitNotice) fitNotice.textContent = providerUnavailable
       ? 'Updated fit scoring is waiting for Anthropic API credits. Displayed ratings are previous assessments.'
       : calibrationPending ? 'The revised rubric is still being validated. Displayed ratings are previous assessments.'
       : refreshCount
-      ? `${refreshCount} roles await reassessment. Strong results require reviewed evidence plus confirmed posted-pay and location eligibility.`
+      ? `${allJobs.length-refreshCount} of ${allJobs.length} roles have current assessments; ${refreshCount} await assessment or reassessment. Strong results require reviewed evidence plus confirmed posted-pay and location eligibility.`
       : 'Fit ratings use the current criteria. Posted pay is not a confirmed offer; verify salary and benefits before applying.';
     jobsByKey = Object.fromEntries(allJobs.map(j => [jobKey(j), j]));
     // Backfill: jobs marked applied before snapshots existed get one now,
