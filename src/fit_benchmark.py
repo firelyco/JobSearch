@@ -3,7 +3,7 @@ import hashlib,json,logging,concurrent.futures,os
 from datetime import datetime,timezone
 from src import fit,jd_fetch,llm_client
 from src.evidence_fit import assess,review_result,digest,scorer_revision,REVIEW_PROMPT,canonical,build_inventory
-from src.fit_scorer import salary_text
+from src.fit_scorer import salary_text,verified_base_comp_status
 from src.private_fit_store import save_private,load_private
 
 log=logging.getLogger(__name__)
@@ -31,7 +31,7 @@ def main():
                     response=llm_client.call(client,model=rules.get('evidence_review_model') or fit._fit_model(),system=REVIEW_PROMPT+'\nPRIVATE EVIDENCE AND RULES:\n'+canonical({'inventory':cached['inventory'],'rules':rules}),user=canonical({'job_text':cached['job_text'],'job':{k:job.get(k) for k in ('title','company','location')},'proposal':cached['extraction']}),max_tokens=6000,temperature=0.0,cache_system=True)
                     text=response.text
                     cached['independent_review']=json.loads(text[text.find('{'):text.rfind('}')+1])
-                verdict=review_result(cached['extraction'],cached['independent_review'],cached['inventory'],cached['job_text'],job,cached['public']['comp_status'],rules)
+                verdict=review_result(cached['extraction'],cached['independent_review'],cached['inventory'],cached['job_text'],job,verified_base_comp_status(jd,'',float(rules.get('comp_floor_usd',0))),rules)
                 fingerprint=digest(['replay',cached['input_hash'],scorer_revision()])
                 verdict.public['input_hash']=fingerprint
                 verdict.private.update(input_hash=fingerprint,engine_version='evidence-v1',job=cached['job'],job_text=cached['job_text'],replayed_from=cached['input_hash'])

@@ -69,3 +69,11 @@ class EmployerSalaryFormats(unittest.TestCase):
     def test_total_compensation_and_ote_do_not_qualify(self):
         for jd in ['Total compensation: $365,000 – $565,000 USD', 'Annual Salary: $365,000 – $565,000 USD OTE including commissions']:
             self.assertEqual(verified_base_comp_status(jd, '', 250000), 'unknown')
+
+class SalaryCurrencyPlacement(unittest.TestCase):
+    def test_usd_after_each_amount_is_verified(self):
+        self.assertEqual(verified_base_comp_status('Annual base salary range is 272,000 USD - 425,500 USD. Benefits additional.', '', 250000),'meets_floor')
+    def test_yearly_unit_does_not_hide_overlapping_upper_bound(self):
+        self.assertEqual(verified_base_comp_status('Annual USD base salary: $230,000/year - $300,000/year.', '', 250000),'potentially_meets_floor')
+    def test_currency_postfix_cannot_promote_total_compensation(self):
+        self.assertEqual(verified_base_comp_status('Total compensation range is 272,000 USD - 425,500 USD.', '', 250000),'unknown')

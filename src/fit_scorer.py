@@ -186,9 +186,12 @@ def verified_base_comp_status(jd_text: str, evidence: str, floor: float) -> str:
         # company revenue or an amount from a subsequent benefit paragraph.
         m = re.search(r"(?:\$\s*|\bUSD\s+)" + amount, section)
         if not m:
+            m = re.search(amount + r"\s+USD\b", section, re.I)
+        if not m:
             continue
         lo = float(m.group(1).replace(",", "")) * (1000 if m.group(2) else 1)
         tail = section[m.end():]
+        tail = re.sub(r"^\s*(?:/\s*year|per\s+year|annually)\b", " ", tail, flags=re.I)
         upper = re.match(r"\s*(?:USD\s*)?(?:[-–—�]|to)\s*(?:\$\s*|USD\s*)?" + amount, tail)
         hi = float(upper.group(1).replace(",", "")) * (1000 if upper.group(2) else 1) if upper else lo
         if 10000 <= lo <= hi:
