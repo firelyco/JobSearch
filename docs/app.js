@@ -147,6 +147,30 @@ function matchesLocation(loc, region) {
   return m ? m(loc || '') : true;
 }
 
+// Salary eligibility is separate from role fit; stale or absent evidence is unknown.
+function baseSalaryStatus(fit) {
+  return fit && fit.engine_version === 'evidence-v1' && !fit.refresh_pending && !fit.inputs_stale
+    ? (fit.comp_status || 'unknown') : 'unknown';
+}
+function matchesBaseSalary(fit, filter) {
+  const status = baseSalaryStatus(fit);
+  if (filter === 'confirmed') return status === 'meets_floor';
+  if (filter === 'possible') return ['meets_floor', 'potentially_meets_floor'].includes(status);
+  if (filter === 'unknown') return status === 'unknown';
+  if (filter === 'below') return status === 'below_floor';
+  return true;
+}
+function matchesPostingWindow(job, days, now = Date.now()) {
+  if (!days) return true;
+  const posted = Date.parse(job.posted_at || '');
+  const timestamp = Number.isFinite(posted) ? posted : Date.parse(job.first_seen_at || '');
+  return Number.isFinite(timestamp) && timestamp <= now && timestamp >= now - Number(days) * 86400000;
+}
+function baseSalaryLabel(fit) {
+  return {meets_floor: 'Base above $250K', potentially_meets_floor: 'Base range may exceed $250K',
+    below_floor: 'Base does not exceed $250K', unknown: 'Base pay unverified'}[baseSalaryStatus(fit)] || 'Base pay unverified';
+}
+
 function matchesWorkmode(loc, mode) {
   const isRemote = /\bremote\b/i.test(loc || '');
   if (mode === 'remote') return isRemote;
@@ -344,6 +368,8 @@ function renderTable() {
   const fitFilter = $('filter-fit').value;
   const locationFilter = $('filter-location').value;
   const workmodeFilter = $('filter-workmode').value;
+  const salaryFilter = $('filter-salary')?.value || '';
+  const postingDays = $('filter-posted')?.value || '';
   const statuses = loadStatuses();
   const selectedRoles = getSelectedRoles();
 
@@ -354,6 +380,8 @@ function renderTable() {
   });
 
   let filtered = sortedJobs.filter(j => {
+    if (!matchesPostingWindow(j, postingDays)) return false;
+    if (!matchesBaseSalary(fitScores[jobKey(j)], salaryFilter)) return false;
     if (source && j.source !== source) return false;
     if (scoreFilter === 'hot' && !isHot(j)) return false;
     if (scoreFilter === 'standard' && scoreBucket(j) === 'low') return false;
@@ -378,8 +406,9 @@ function renderTable() {
   });
 
   const tbody = $('jobs-tbody');
+  if ($('results-count')) $('results-count').textContent = `${filtered.length} matching roles${postingDays ? ` in the last ${postingDays} days` : ''}. Dates use employer posting dates; first discovery is used when missing. Salary excludes bonus, equity and benefits.`;
   if (filtered.length === 0) {
-    tbody.innerHTML = `<tr><td colspan="7" class="empty">No jobs match your filters. Try all fit to see provisional and pending assessments.</td></tr>`;
+    tbody.innerHTML = `<tr><td colspan="7" class="empty">No jobs match these filters. Select all fit or broaden the base-salary or posting-date filter to see more roles.</td></tr>`;
     return;
   }
 
@@ -391,7 +420,7 @@ function renderTable() {
     return `
       <tr data-key="${escapeAttr(key)}">
         <td class="col-applied"><input type="checkbox" class="applied-cb" title="Mark as applied" ${isAppliedStatus(curStatus) ? 'checked' : ''}></td>
-        <td>${fitCellHtml(fitScores[key],key)}</td>
+        <td>${fitCellHtml(fitScores[key],key)}<div class="role-meta">${escapeHtml(baseSalaryLabel(fitScores[key]))}</div></td>
         <td>
           <div class="role-title"><a href="${escapeAttr(j.url)}" target="_blank" rel="noopener">${escapeHtml(j.title)}</a></div>
           <div class="role-meta">${escapeHtml(meta)}</div>
@@ -808,7 +837,7 @@ function bindControls() {
     const matches = url && allJobs.filter(j => normalize(j.url) === url);
     $('missing-posting-result').textContent = !url ? 'Enter a valid HTTPS posting URL.' : matches.length ? `Found in this snapshot: ${matches.map(j => j.title).join('; ')}. Clear role, fit, location, source and applied filters to see it.` : 'Not in the published snapshot. Check Source coverage for disabled or failed discovery. The repository command python -m src.explain_missing --url YOUR_URL --learn can inspect and monitor its employer board.';
   });
-  ['filter-source', 'filter-status', 'filter-score', 'filter-fit', 'filter-location', 'filter-workmode'].forEach(id => {
+  ['filter-source', 'filter-status', 'filter-score', 'filter-fit', 'filter-location', 'filter-workmode', 'filter-salary', 'filter-posted'].forEach(id => {
     $(id).addEventListener('input', renderTable);
     $(id).addEventListener('change', renderTable);
   });

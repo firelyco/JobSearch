@@ -113,6 +113,19 @@
           <option value="review">needs review</option>
           <option value="not">pass</option>
         </select>
+        <select id="filter-posted" aria-label="Posting date">
+          <option value="7" selected>posted: last 7 days</option>
+          <option value="2">posted: last 48 hours</option>
+          <option value="14">posted: last 14 days</option>
+          <option value="">all posting dates</option>
+        </select>
+        <select id="filter-salary" aria-label="Annual USD base salary" title="Annual USD base salary only; bonus, equity and benefits are additional">
+          <option value="">all base salaries</option>
+          <option value="confirmed">base above $250K confirmed</option>
+          <option value="possible">base above $250K possible</option>
+          <option value="unknown">base pay unverified</option>
+          <option value="below">base at or below $250K</option>
+        </select>
         <select id="filter-location">
           <option value="">all locations</option>
           <option value="us" selected>US</option>
@@ -138,6 +151,7 @@
 
     <section class="results">
       <p id="fit-status" class="muted" role="status"></p>
+      <p id="results-count" class="muted" role="status"></p>
         <table id="jobs-table">
         <thead>
           <tr>
