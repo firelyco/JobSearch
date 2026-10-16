@@ -6,6 +6,10 @@ on:
     types: [completed]
   workflow_dispatch:
     inputs:
+      provider_health:
+        description: "Check API availability without sending career evidence"
+        type: boolean
+        default: false
       publish_benchmark:
         description: "Publish a fully passing current calibration without repeating model calls"
         type: boolean
@@ -119,6 +123,7 @@ jobs:
 
       - name: Score fit for new jobs
         env:
+          FIT_PROVIDER_HEALTH: ${{ inputs.provider_health }}
           FIT_PUBLISH_BENCHMARK: ${{ inputs.publish_benchmark }}
           FIT_JOB_KEYS: ${{ inputs.job_keys }}
           FIT_INVENTORY_ONLY: ${{ inputs.inventory_only }}
@@ -126,6 +131,10 @@ jobs:
           FIT_BENCHMARK_REPLAY: ${{ inputs.benchmark_replay }}
           FIT_BENCHMARK_REVIEW: ${{ inputs.benchmark_review }}
         run: |
+          if [ "$FIT_PROVIDER_HEALTH" = "true" ]; then
+            python -m src.fit_provider_health
+            exit $?
+          fi
           if [ "$FIT_PUBLISH_BENCHMARK" = "true" ]; then
             python -m src.promote_fit_benchmark
             exit $?
