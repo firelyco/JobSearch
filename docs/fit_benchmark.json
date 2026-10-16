@@ -1,8 +1,11 @@
 {
+  "scorer_revision": "b7a142d80c28b0679790acf5f254f50e1ec28e898b56e8e70f3ab4562d715a31",
+  "extraction_model": "claude-haiku-4-5",
+  "review_model": "claude-sonnet-5-5",
   "version": "evidence-calibration-1",
-  "completed_at": "2026-10-16T00:10:22.951738+00:00",
+  "completed_at": "2026-10-16T00:19:00.308439+00:00",
   "total": 24,
-  "passed": 15,
+  "passed": 13,
   "cases": [
     {
       "job_key": "ashby:supabase:9c04bc60-78a1-4529-950d-4704ab475764",
@@ -11,10 +14,10 @@
       "expected": [
         "not"
       ],
-      "career_fit": "medium",
-      "recommendation": "medium",
-      "input_hash": "3dcd59125edd01b407ca0d1fd61f790b9cdec85122a7c2cc7ac00705739e4e81",
-      "passed": false,
+      "career_fit": "not",
+      "recommendation": "not",
+      "input_hash": "68d83bcce9e52293092314c674c96099afc047aad51f97d106100b3db8b69da4",
+      "passed": true,
       "evidence_complete": true,
       "direct_count": 0,
       "critical_count": 15
@@ -29,10 +32,10 @@
       ],
       "career_fit": "reach",
       "recommendation": "reach",
-      "input_hash": "5b5e6d193b604d30edca1b21bc540e048ffb35af53cac242fde69d0f43ce4422",
+      "input_hash": "1fa3e6c0419a8b405662eeb7a9c884f4d1a8e11c0134602df315b727133db9d0",
       "passed": true,
       "evidence_complete": true,
-      "direct_count": 5,
+      "direct_count": 6,
       "critical_count": 9
     },
     {
@@ -43,13 +46,13 @@
         "reach",
         "medium"
       ],
-      "career_fit": "medium",
-      "recommendation": "medium",
-      "input_hash": "5d838d6bb977f285e5b9272703bd5102c5d9ea8bbd9e5fb2251c5ff2d5686163",
+      "career_fit": "reach",
+      "recommendation": "reach",
+      "input_hash": "3cdf03185df0250dcf2fa3d2654cc4e7d5f34e8625bc98208ab1caa7ccf391cb",
       "passed": true,
       "evidence_complete": true,
-      "direct_count": 12,
-      "critical_count": 13
+      "direct_count": 11,
+      "critical_count": 15
     },
     {
       "job_key": "greenhouse:doordashusa:8197722",
@@ -58,13 +61,13 @@
       "expected": [
         "strong"
       ],
-      "career_fit": "medium",
-      "recommendation": "medium",
-      "input_hash": "63447e353c520f6a1e5f49746645ad3d1c0843a73756d3d677017d4b4833f454",
+      "career_fit": "reach",
+      "recommendation": "reach",
+      "input_hash": "2221f96b09dab47088ff6c2bba19c02f2bab7a1a264dc76db11000c4b4614bf8",
       "passed": false,
       "evidence_complete": true,
-      "direct_count": 6,
-      "critical_count": 10
+      "direct_count": 7,
+      "critical_count": 12
     },
     {
       "job_key": "workday:nvidia:/job/US-CA-Santa-Clara/Director--Carline-Program-Management---Autonomous-Vehicles_JR2020452",
@@ -74,9 +77,9 @@
         "not",
         "reach"
       ],
-      "career_fit": "not",
-      "recommendation": "not",
-      "input_hash": "c149cf75364d6c5d185c5a1aaeb50841513f081405a5be8217b1b1c89b8c65b4",
+      "career_fit": "reach",
+      "recommendation": "reach",
+      "input_hash": "6b5d62aa150c260c8fce489d27d59511dbff1a19ba4158aff63fa4c384ad6e56",
       "passed": true,
       "evidence_complete": true,
       "direct_count": 3,
@@ -89,12 +92,12 @@
       "expected": [
         "strong"
       ],
-      "career_fit": "medium",
+      "career_fit": "strong",
       "recommendation": "medium",
-      "input_hash": "dddbbaf6e4879507a5c6f8e6d5b05b44afa24ce5a19e55e23182cf8dbb5dd7cc",
-      "passed": false,
+      "input_hash": "b92351a9e9e645eb534f7bd0b326220563ba1eb5a1436f7cc664c83e5a794b34",
+      "passed": true,
       "evidence_complete": true,
-      "direct_count": 5,
+      "direct_count": 6,
       "critical_count": 7
     },
     {
@@ -104,13 +107,8 @@
       "expected": [
         "strong"
       ],
-      "career_fit": "review",
-      "recommendation": "review",
-      "input_hash": "084c72646299a86057c1449fe3262796065a4f88514ce12d065726cca47e500b",
       "passed": false,
-      "evidence_complete": false,
-      "direct_count": 10,
-      "critical_count": 10
+      "error": "BadRequestError"
     },
     {
       "job_key": "workday:nvidia:/job/US-CA-Santa-Clara/Senior-Manager--Technical-Program-Management---Image-Quality_JR2027679",
@@ -122,7 +120,7 @@
       ],
       "career_fit": "reach",
       "recommendation": "reach",
-      "input_hash": "6b5accb0e8504c9303ea189f6849200a434688d4c92cd8fd2874bffccf2f2006",
+      "input_hash": "6b00a31d87b411143eb5c126adb32897da286734fc5d9fc0e40a655fb8e03c91",
       "passed": true,
       "evidence_complete": true,
       "direct_count": 3,
@@ -138,7 +136,7 @@
       ],
       "career_fit": "reach",
       "recommendation": "reach",
-      "input_hash": "702df73e4cf4ffd6639b1aed24d978582773fdd1ee6e21ff69f40c4b75925d07",
+      "input_hash": "0854a1c2323eccc3b47df38ab269ac2102f98cd53798cc9a0d55e1c418493e79",
       "passed": true,
       "evidence_complete": true,
       "direct_count": 7,
@@ -154,10 +152,10 @@
       ],
       "career_fit": "reach",
       "recommendation": "reach",
-      "input_hash": "ce1f02ba8199d16e87381b7847971d6aab8d3cbe4f2c65af69e572903afaa4b2",
+      "input_hash": "8ce5abdf5d621b94815cc56af82e9723b1a7de98b30eb7303ffdba45c8be4200",
       "passed": true,
       "evidence_complete": true,
-      "direct_count": 5,
+      "direct_count": 3,
       "critical_count": 12
     },
     {
@@ -170,11 +168,11 @@
       ],
       "career_fit": "reach",
       "recommendation": "reach",
-      "input_hash": "66101747d5b7ef79db7f46f7e9efdd4daa53892d594d99abaf8e13ee80d96928",
+      "input_hash": "bc92e5920b5e8198f98aac44c2d24bd05d977aa125ce4a8953bbfb33ecd5ab8f",
       "passed": true,
       "evidence_complete": true,
-      "direct_count": 8,
-      "critical_count": 14
+      "direct_count": 9,
+      "critical_count": 15
     },
     {
       "job_key": "greenhouse:anthropic:5380327008",
@@ -186,11 +184,11 @@
       ],
       "career_fit": "reach",
       "recommendation": "reach",
-      "input_hash": "ac66a80bd54b7ba37aa16784de3086c87795c4ebd3e78c2a888d180c8505858f",
+      "input_hash": "64d1cd2d314bd2c5a14790d6e2df03c667d5936b335e8cc6c01787fa06e81b82",
       "passed": true,
       "evidence_complete": true,
       "direct_count": 4,
-      "critical_count": 9
+      "critical_count": 12
     },
     {
       "job_key": "greenhouse:anthropic:4989788008",
@@ -200,13 +198,13 @@
         "reach",
         "medium"
       ],
-      "career_fit": "medium",
-      "recommendation": "medium",
-      "input_hash": "29674eff285cdb610db861f9e1ef45187d962308e75f8bf6b18b703bfe555695",
+      "career_fit": "reach",
+      "recommendation": "reach",
+      "input_hash": "af650d73bbc1802de0a3484ca1c486a33b9902a41c21bab74a1562a7d722c022",
       "passed": true,
       "evidence_complete": true,
-      "direct_count": 6,
-      "critical_count": 9
+      "direct_count": 8,
+      "critical_count": 13
     },
     {
       "job_key": "greenhouse:anthropic:5380377008",
@@ -217,7 +215,7 @@
       ],
       "career_fit": "not",
       "recommendation": "not",
-      "input_hash": "71e748e97726848857f907ff2b8393e75101c55843b6a1b85dfdd1973550db7e",
+      "input_hash": "5a8de6934b61d9cd5aa1ee2a79cec4ecd615c32b97ba1d9d710689f4888ae7ac",
       "passed": true,
       "evidence_complete": true,
       "direct_count": 2,
@@ -232,11 +230,11 @@
       ],
       "career_fit": "reach",
       "recommendation": "reach",
-      "input_hash": "2730201986781884cac689f68b48a4e000a7140157fdd43604137d9c676eed35",
+      "input_hash": "1dec72eb8c0dd2d5ae1abd82ef2f42c9b7b63ac8fa3e5c08537a2112ffa12ed8",
       "passed": true,
       "evidence_complete": true,
       "direct_count": 2,
-      "critical_count": 6
+      "critical_count": 9
     },
     {
       "job_key": "apple:apple:200648818",
@@ -245,13 +243,8 @@
       "expected": [
         "strong"
       ],
-      "career_fit": "medium",
-      "recommendation": "medium",
-      "input_hash": "d60feabe038234ec111e50d8e910786745cf42312b136221536cc26ef7833d4a",
       "passed": false,
-      "evidence_complete": true,
-      "direct_count": 8,
-      "critical_count": 9
+      "error": "BadRequestError"
     },
     {
       "job_key": "google:google:93972202474349254",
@@ -260,13 +253,8 @@
       "expected": [
         "not"
       ],
-      "career_fit": "not",
-      "recommendation": "not",
-      "input_hash": "f4c64407cc2db4df3dbf747f81d5205f3171bbfcf272c662992c3d99db04f253",
-      "passed": true,
-      "evidence_complete": true,
-      "direct_count": 2,
-      "critical_count": 8
+      "passed": false,
+      "error": "BadRequestError"
     },
     {
       "job_key": "amazon_jobs:amazon:10576212",
@@ -275,13 +263,8 @@
       "expected": [
         "not"
       ],
-      "career_fit": "reach",
-      "recommendation": "reach",
-      "input_hash": "fd7d598dd027dc1524c94c493e63a16ea0165856ba2b8f2a575f7cf39eae7f1d",
       "passed": false,
-      "evidence_complete": true,
-      "direct_count": 8,
-      "critical_count": 12
+      "error": "BadRequestError"
     },
     {
       "job_key": "apple:apple:200688511",
@@ -291,13 +274,8 @@
         "reach",
         "medium"
       ],
-      "career_fit": "reach",
-      "recommendation": "reach",
-      "input_hash": "8c7012e106d574af7311ab3bf541b0bf955bf42e6976f4fe42a45a3dbeeff448",
-      "passed": true,
-      "evidence_complete": true,
-      "direct_count": 5,
-      "critical_count": 8
+      "passed": false,
+      "error": "BadRequestError"
     },
     {
       "job_key": "greenhouse:doordashusa:7611520",
@@ -307,13 +285,8 @@
         "strong",
         "medium"
       ],
-      "career_fit": "reach",
-      "recommendation": "reach",
-      "input_hash": "4c04818e200d78b0667fd059daaba5c9d7430914befed105dcec4eaaabb178aa",
       "passed": false,
-      "evidence_complete": true,
-      "direct_count": 8,
-      "critical_count": 12
+      "error": "BadRequestError"
     },
     {
       "job_key": "ashby:crusoe:56852412-28e0-4d5a-b62c-dcc616d3c99f",
@@ -323,13 +296,8 @@
         "reach",
         "medium"
       ],
-      "career_fit": "reach",
-      "recommendation": "reach",
-      "input_hash": "96f5000d01b716853603b5b5b1981f607e5cdbcbb1baab733cb2a64ef6860d31",
-      "passed": true,
-      "evidence_complete": true,
-      "direct_count": 7,
-      "critical_count": 12
+      "passed": false,
+      "error": "BadRequestError"
     },
     {
       "job_key": "amazon_jobs:amazon:10522022",
@@ -338,13 +306,8 @@
       "expected": [
         "strong"
       ],
-      "career_fit": "medium",
-      "recommendation": "medium",
-      "input_hash": "ba1ebc0acbcdc66509a353acf916347ba9faddcf4afa10ec9ce7be7775ccdef8",
       "passed": false,
-      "evidence_complete": true,
-      "direct_count": 6,
-      "critical_count": 7
+      "error": "BadRequestError"
     },
     {
       "job_key": "greenhouse:anthropic:5256303008",
@@ -354,13 +317,8 @@
         "reach",
         "medium"
       ],
-      "career_fit": "reach",
-      "recommendation": "reach",
-      "input_hash": "6037364ef2aa55da069c4cca6b99c056743c3a62b7e0d99b1807524c7e49bdc9",
-      "passed": true,
-      "evidence_complete": true,
-      "direct_count": 8,
-      "critical_count": 12
+      "passed": false,
+      "error": "BadRequestError"
     },
     {
       "job_key": "greenhouse:anthropic:5251609008",
@@ -369,13 +327,8 @@
       "expected": [
         "strong"
       ],
-      "career_fit": "medium",
-      "recommendation": "medium",
-      "input_hash": "05661c268910d555b973ae0d46545fc08bdd2498455d3df5262d6ad83f585c6b",
       "passed": false,
-      "evidence_complete": true,
-      "direct_count": 9,
-      "critical_count": 13
+      "error": "BadRequestError"
     }
   ]
 }
