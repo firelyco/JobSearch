@@ -16,6 +16,7 @@ def main():
     rules.pop('fit_api_blocked',None);rules.pop('calibration_pending',None)
     rules={**rules,'evidence_required':True,'fit_policy_version':'evidence-v1'}
     jobs={fit._key(j):j for j in fit.load_json(fit.JOBS_FILE,[])}
+    selected=set(json.loads(os.environ['FIT_JOB_KEYS'])) if os.environ.get('FIT_JOB_KEYS') else None
     def evaluate(pair):
         index,case=pair
         client=llm_client.build_client()
@@ -27,9 +28,12 @@ def main():
             current_hash=hashlib.sha256(salary_text(jd).encode()).hexdigest()
             if current_hash!=case['jd_hash']:raise ValueError('Posting changed since manual benchmark review')
             cached=load_private(case['job_key']) if os.environ.get('FIT_BENCHMARK_REPLAY')=='true' else None
+            refresh=selected is None or case['job_key'] in selected
+            if not refresh and (not cached or cached.get('input_hash')!=input_hash(profile,job,jd,rules,fit._fit_model())):
+                raise ValueError('Unselected assessment has changed inputs and needs review')
             if cached:cached['inventory']=build_inventory(profile,rules)
             if cached and cached.get('extraction') and hashlib.sha256(cached['job_text'].encode()).hexdigest()==case['jd_hash']:
-                if os.environ.get('FIT_BENCHMARK_REVIEW')=='true':
+                if refresh and os.environ.get('FIT_BENCHMARK_REVIEW')=='true':
                     response=llm_client.call(client,model=rules.get('evidence_review_model') or fit._fit_model(),system=REVIEW_PROMPT+'\nPRIVATE EVIDENCE AND RULES:\n'+canonical({'inventory':cached['inventory'],'rules':rules}),user=canonical({'job_text':cached['job_text'],'job':{k:job.get(k) for k in ('title','company','location')},'proposal':cached['extraction']}),max_tokens=6000,temperature=0.0,cache_system=True)
                     text=response.text
                     cached['independent_review']=json.loads(text[text.find('{'):text.rfind('}')+1])
@@ -39,7 +43,7 @@ def main():
                 verdict.private.update(input_hash=fingerprint,engine_version='evidence-v1',job={k:job.get(k) for k in ('title','company','location','url')},job_text=cached['job_text'],replayed_from=cached['input_hash'])
             else:
                 verdict=assess(profile,job,jd,client=client,model=fit._fit_model(),rules=rules)
-            if verdict.recommendation=='review':
+            if refresh and verdict.recommendation=='review':
                 verdict=assess(profile,job,jd,client=client,model=fit._fit_model(),rules=rules)
             save_private(verdict.private,job_key=case['job_key'])
             result.update(career_fit=verdict.public['career_fit'],recommendation=verdict.recommendation,
