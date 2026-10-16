@@ -2,7 +2,7 @@
 import hashlib,json,logging,concurrent.futures,os
 from datetime import datetime,timezone
 from src import fit,jd_fetch,llm_client
-from src.evidence_fit import assess,review_result,digest,scorer_revision,REVIEW_PROMPT,canonical,build_inventory
+from src.evidence_fit import assess,review_result,digest,scorer_revision,REVIEW_PROMPT,canonical,build_inventory,input_hash
 from src.fit_scorer import salary_text,verified_base_comp_status
 from src.private_fit_store import save_private,load_private
 
@@ -32,9 +32,9 @@ def main():
                     text=response.text
                     cached['independent_review']=json.loads(text[text.find('{'):text.rfind('}')+1])
                 verdict=review_result(cached['extraction'],cached['independent_review'],cached['inventory'],cached['job_text'],job,verified_base_comp_status(jd,'',float(rules.get('comp_floor_usd',0))),rules)
-                fingerprint=digest(['replay',cached['input_hash'],scorer_revision()])
+                fingerprint=input_hash(profile,job,jd,rules,fit._fit_model())
                 verdict.public['input_hash']=fingerprint
-                verdict.private.update(input_hash=fingerprint,engine_version='evidence-v1',job=cached['job'],job_text=cached['job_text'],replayed_from=cached['input_hash'])
+                verdict.private.update(input_hash=fingerprint,engine_version='evidence-v1',job={k:job.get(k) for k in ('title','company','location','url')},job_text=cached['job_text'],replayed_from=cached['input_hash'])
             else:
                 verdict=assess(profile,job,jd,client=client,model=fit._fit_model(),rules=rules)
             if verdict.recommendation=='review':

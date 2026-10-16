@@ -6,6 +6,10 @@ on:
     types: [completed]
   workflow_dispatch:
     inputs:
+      publish_benchmark:
+        description: "Publish a fully passing current calibration without repeating model calls"
+        type: boolean
+        default: false
       benchmark_review:
         description: "Independently re-review saved extraction evidence"
         type: boolean
@@ -39,7 +43,7 @@ on:
 
 # Serialize fit runs; never run two at once (they both write fit_scores.json).
 concurrency:
-  group: fit
+  group: ${{ inputs.benchmark && 'fit-benchmark' || 'fit' }}
   cancel-in-progress: false
 
 permissions:
@@ -115,12 +119,17 @@ jobs:
 
       - name: Score fit for new jobs
         env:
+          FIT_PUBLISH_BENCHMARK: ${{ inputs.publish_benchmark }}
           FIT_JOB_KEYS: ${{ inputs.job_keys }}
           FIT_INVENTORY_ONLY: ${{ inputs.inventory_only }}
           FIT_BENCHMARK: ${{ inputs.benchmark }}
           FIT_BENCHMARK_REPLAY: ${{ inputs.benchmark_replay }}
           FIT_BENCHMARK_REVIEW: ${{ inputs.benchmark_review }}
         run: |
+          if [ "$FIT_PUBLISH_BENCHMARK" = "true" ]; then
+            python -m src.promote_fit_benchmark
+            exit $?
+          fi
           if [ "$FIT_BENCHMARK" = "true" ]; then
             python -m src.fit_benchmark
             exit $?
