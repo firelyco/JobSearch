@@ -177,6 +177,7 @@ function markTailoringFinished(jobKey) {
 }
 
 async function loadData() {
+  let calibrationPending=false,providerUnavailable=false;
   try {
     const [jobsResp, metaResp, tailoredResp, fitResp, policyResp] = await Promise.all([
       fetch(`jobs.json?t=${Date.now()}`),
@@ -195,6 +196,7 @@ async function loadData() {
       try { fitScores = await fitResp.json(); } catch { fitScores = {}; }
       if (policyResp && policyResp.ok) {
         const policy = await policyResp.json();
+        calibrationPending=policy.calibration_pending===true;providerUnavailable=policy.provider_status==='insufficient_credits';
         if (policy.evidence_required) {
           await Promise.all(allJobs.map(async job=>{
             const verdict=fitScores[jobKey(job)];if(!verdict)return;
@@ -205,7 +207,7 @@ async function loadData() {
         }
         if (policy.version) {
           for (const [key, verdict] of Object.entries(fitScores)) {
-            verdict.refresh_pending = verdict.policy_version !== policy.version || !!verdict.inputs_stale;
+            verdict.refresh_pending = calibrationPending || verdict.policy_version !== policy.version || !!verdict.inputs_stale;
             if (policy.evidence_required && (verdict.refresh_pending || verdict.engine_version !== 'evidence-v1')) {
               verdict.previous_rating=verdict.recommendation;
               verdict.recommendation='review';
@@ -217,7 +219,10 @@ async function loadData() {
     }
     const refreshCount = Object.values(fitScores).filter(v => v.refresh_pending).length;
     const fitNotice = $('fit-status');
-    if (fitNotice) fitNotice.textContent = refreshCount
+    if (fitNotice) fitNotice.textContent = providerUnavailable
+      ? 'Updated fit scoring is waiting for Anthropic API credits. Displayed ratings are previous assessments.'
+      : calibrationPending ? 'The revised rubric is still being validated. Displayed ratings are previous assessments.'
+      : refreshCount
       ? `${refreshCount} roles await reassessment. Strong results require reviewed evidence plus confirmed posted-pay and location eligibility.`
       : 'Fit ratings use the current criteria. Posted pay is not a confirmed offer; verify salary and benefits before applying.';
     jobsByKey = Object.fromEntries(allJobs.map(j => [jobKey(j), j]));
@@ -510,7 +515,7 @@ function fitCellHtml(fit, key) {
   }
   const meta = FIT_LABELS[fit.recommendation] || FIT_LABELS.medium;
   const pending = !!fit.refresh_pending;
-  const reason = escapeAttr((pending ? 'Previous rating: reassessment pending; current base-pay requirement is unconfirmed. ' : '') + (fit.reason || ''));
+  const reason = escapeAttr((pending ? 'Previous rating: reassessment under the current rubric is pending. ' : '') + (fit.reason || ''));
   const label=fit.recommendation==='strong' && fit.tier==='top_tier' ? 'Top tier' : meta.label;
   const why=fit.engine_version==='evidence-v1' && key ? `<button type="button" class="btn-ghost-sm fit-evidence-btn" data-job-key="${escapeAttr(key)}">Why?</button>` : '';
   return `<span class="fit-pill ${meta.cls}" title="${reason}">${label}${pending ? ' (previous)' : ''}</span>${why}`;

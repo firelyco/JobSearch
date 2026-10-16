@@ -210,6 +210,8 @@ def main(argv: list[str] | None = None) -> int:
         log.info('Private evidence inventory saved')
         return 0
     policy = {"version": rules.get("fit_policy_version", "")}
+    if rules.get("calibration_pending"):policy["calibration_pending"]=True
+    if rules.get("fit_api_blocked"):policy["provider_status"]="insufficient_credits"
     if rules.get('evidence_required'):
         from src.evidence_batch import context_hash
         from src.evidence_fit import ENGINE_VERSION,scorer_revision
@@ -217,6 +219,9 @@ def main(argv: list[str] | None = None) -> int:
             context_hash=context_hash(load_json(PROFILE_FILE,{}),rules,_fit_model()))
     DOCS_DIR.mkdir(parents=True, exist_ok=True)
     (DOCS_DIR / "fit_policy.json").write_text(json.dumps(policy) + "\n", encoding="utf-8")
+    if rules.get("fit_api_blocked"):
+        log.warning("Fit scoring is waiting for Anthropic API credits; previous ratings retained")
+        return 0
     scores = run(rules=rules, max_jobs=args.max, rescore=args.rescore, on_scored=save, job_keys=selected_keys)
     save(scores)
     log.info("wrote %s (%d entries)", FIT_FILE, len(scores))

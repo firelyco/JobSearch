@@ -141,3 +141,13 @@ class PrivateReferenceProvenance(unittest.TestCase):
   rules={'reference_evidence':[{'status':'documented','text':'Led a shared platform roadmap across consuming product teams.','source':'Private KB:127','company':'Example'}, {'status':'documented','assumed':True,'text':'Hypothetical ownership of inference fleet routing.'}, {'status':'unconfirmed','text':'Designed an undisclosed production architecture.'}]}
   facts=build_inventory({},rules)
   self.assertEqual(len(facts),1);self.assertEqual(facts[0]['source'],'Private KB:127');self.assertEqual(facts[0]['kind'],'kb_reference')
+
+class ProviderUnavailable(unittest.TestCase):
+ def test_credit_block_retains_ratings_without_model_calls(self):
+  import tempfile
+  from pathlib import Path
+  with tempfile.TemporaryDirectory() as tmp:
+   root=Path(tmp);(root/'profile.json').write_text('{}');(root/'rules.json').write_text(json.dumps({'fit_api_blocked':True,'calibration_pending':True,'fit_policy_version':'previous'}))
+   with patch.object(fit,'PROFILE_FILE',root/'profile.json'),patch.object(fit,'FIT_RULES_FILE',root/'rules.json'),patch.object(fit,'DOCS_DIR',root),patch.object(fit,'run') as scorer:
+    self.assertEqual(fit.main([]),0);scorer.assert_not_called()
+   policy=json.loads((root/'fit_policy.json').read_text());self.assertTrue(policy['calibration_pending']);self.assertEqual(policy['provider_status'],'insufficient_credits')
