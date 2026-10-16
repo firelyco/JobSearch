@@ -3,9 +3,9 @@
   "extraction_model": "claude-haiku-4-5",
   "review_model": "claude-sonnet-5-5",
   "version": "evidence-calibration-2",
-  "completed_at": "2026-10-16T00:20:52.363692+00:00",
+  "completed_at": "2026-10-16T17:09:18.389598+00:00",
   "total": 24,
-  "passed": 0,
+  "passed": 22,
   "cases": [
     {
       "job_key": "ashby:supabase:9c04bc60-78a1-4529-950d-4704ab475764",
@@ -14,8 +14,13 @@
       "expected": [
         "not"
       ],
-      "passed": false,
-      "error": "BadRequestError"
+      "career_fit": "not",
+      "recommendation": "not",
+      "input_hash": "9f05b5abb1e9243cb7bcdd53ae554c14703d6c2329d4295f01a0494f22ded4e5",
+      "passed": true,
+      "evidence_complete": true,
+      "direct_count": 0,
+      "critical_count": 15
     },
     {
       "job_key": "google:google:116888337637089990",
@@ -25,8 +30,13 @@
         "reach",
         "medium"
       ],
-      "passed": false,
-      "error": "BadRequestError"
+      "career_fit": "reach",
+      "recommendation": "reach",
+      "input_hash": "ec32b9a1bef887915294f8b44126ab46487f421657021415840ce8511b305abd",
+      "passed": true,
+      "evidence_complete": true,
+      "direct_count": 5,
+      "critical_count": 9
     },
     {
       "job_key": "ashby:harvey:9ea6dcda-7869-4181-b493-2822bbc14097",
@@ -36,8 +46,13 @@
         "strong",
         "medium"
       ],
+      "career_fit": "reach",
+      "recommendation": "reach",
+      "input_hash": "3c4cc1f714fbafae24763414886adea5c3ccaf3e756bf5f07c31e82c9d813b5d",
       "passed": false,
-      "error": "BadRequestError"
+      "evidence_complete": true,
+      "direct_count": 12,
+      "critical_count": 14
     },
     {
       "job_key": "greenhouse:doordashusa:8197722",
@@ -47,8 +62,13 @@
         "medium",
         "reach"
       ],
-      "passed": false,
-      "error": "BadRequestError"
+      "career_fit": "medium",
+      "recommendation": "medium",
+      "input_hash": "ce3703dceb2588b0df034efbf92439b1318b7a22db9bbef1a4590824fb51765c",
+      "passed": true,
+      "evidence_complete": true,
+      "direct_count": 11,
+      "critical_count": 12
     },
     {
       "job_key": "workday:nvidia:/job/US-CA-Santa-Clara/Director--Carline-Program-Management---Autonomous-Vehicles_JR2020452",
@@ -58,8 +78,13 @@
         "not",
         "reach"
       ],
-      "passed": false,
-      "error": "BadRequestError"
+      "career_fit": "reach",
+      "recommendation": "reach",
+      "input_hash": "0514de13f3461a2d4b5148b1e91f7fdf1b79bf63599b852d412bebe707996551",
+      "passed": true,
+      "evidence_complete": true,
+      "direct_count": 3,
+      "critical_count": 9
     },
     {
       "job_key": "ashby:sentry:278476b1-87c5-461f-ad7e-950cd31e5f31",
@@ -68,8 +93,13 @@
       "expected": [
         "strong"
       ],
-      "passed": false,
-      "error": "BadRequestError"
+      "career_fit": "strong",
+      "recommendation": "medium",
+      "input_hash": "636e046119bd39782600884c30b7d1d3ba93709705149e5318252ce34c03f429",
+      "passed": true,
+      "evidence_complete": true,
+      "direct_count": 6,
+      "critical_count": 7
     },
     {
       "job_key": "amazon_jobs:amazon:10567908",
@@ -78,8 +108,13 @@
       "expected": [
         "strong"
       ],
-      "passed": false,
-      "error": "BadRequestError"
+      "career_fit": "strong",
+      "recommendation": "medium",
+      "input_hash": "fd90b3a27319ca1a7015a762f3ea4debf2f2257a2d68d8b681606410764ddf7f",
+      "passed": true,
+      "evidence_complete": true,
+      "direct_count": 11,
+      "critical_count": 12
     },
     {
       "job_key": "workday:nvidia:/job/US-CA-Santa-Clara/Senior-Manager--Technical-Program-Management---Image-Quality_JR2027679",
@@ -89,8 +124,13 @@
         "not",
         "reach"
       ],
-      "passed": false,
-      "error": "BadRequestError"
+      "career_fit": "reach",
+      "recommendation": "reach",
+      "input_hash": "fe79a7ef7b15c8f11738d10cf2b8ab615e50817af8fd440e17efc3b2b8348024",
+      "passed": true,
+      "evidence_complete": true,
+      "direct_count": 3,
+      "critical_count": 9
     },
     {
       "job_key": "greenhouse:anthropic:5013743008",
@@ -100,8 +140,13 @@
         "not",
         "reach"
       ],
-      "passed": false,
-      "error": "BadRequestError"
+      "career_fit": "reach",
+      "recommendation": "reach",
+      "input_hash": "9ea95138f0e7f6ccfacaa919b9ba3bddb5a6c78c0734569ceaa953661ac1cc6a",
+      "passed": true,
+      "evidence_complete": true,
+      "direct_count": 7,
+      "critical_count": 16
     },
     {
       "job_key": "greenhouse:anthropic:5380379008",
@@ -111,8 +156,13 @@
         "reach",
         "medium"
       ],
-      "passed": false,
-      "error": "BadRequestError"
+      "career_fit": "reach",
+      "recommendation": "reach",
+      "input_hash": "6e7fc0396753954f114c4c108a743582e7afd7dee6f2d4b63606be35c3b645a3",
+      "passed": true,
+      "evidence_complete": true,
+      "direct_count": 5,
+      "critical_count": 13
     },
     {
       "job_key": "greenhouse:anthropic:5298359008",
@@ -122,8 +172,13 @@
         "reach",
         "medium"
       ],
-      "passed": false,
-      "error": "BadRequestError"
+      "career_fit": "reach",
+      "recommendation": "reach",
+      "input_hash": "47375dac531f6b6d392f2985157f175f201e7fcad74459fda30441396f71fd75",
+      "passed": true,
+      "evidence_complete": true,
+      "direct_count": 9,
+      "critical_count": 15
     },
     {
       "job_key": "greenhouse:anthropic:5380327008",
@@ -133,8 +188,13 @@
         "not",
         "reach"
       ],
-      "passed": false,
-      "error": "BadRequestError"
+      "career_fit": "reach",
+      "recommendation": "reach",
+      "input_hash": "0dbb55ff0fc12558e0f55a1dbce20bdcdcd91de0abcadff9bd1072cc5593e361",
+      "passed": true,
+      "evidence_complete": true,
+      "direct_count": 4,
+      "critical_count": 11
     },
     {
       "job_key": "greenhouse:anthropic:4989788008",
@@ -144,8 +204,13 @@
         "reach",
         "medium"
       ],
-      "passed": false,
-      "error": "BadRequestError"
+      "career_fit": "reach",
+      "recommendation": "reach",
+      "input_hash": "4ee924f9cf01e0b1e119f7622f6faf6d181d8b6e1534fe6c985eb5e27d272c1d",
+      "passed": true,
+      "evidence_complete": true,
+      "direct_count": 7,
+      "critical_count": 12
     },
     {
       "job_key": "greenhouse:anthropic:5380377008",
@@ -154,8 +219,13 @@
       "expected": [
         "not"
       ],
-      "passed": false,
-      "error": "BadRequestError"
+      "career_fit": "not",
+      "recommendation": "not",
+      "input_hash": "e4cf7ec8b8fd40cb6b73507ab9ae507deaf3e401fc22defc1ef378270af58661",
+      "passed": true,
+      "evidence_complete": true,
+      "direct_count": 2,
+      "critical_count": 8
     },
     {
       "job_key": "greenhouse:anthropic:5453262008",
@@ -164,8 +234,13 @@
       "expected": [
         "reach"
       ],
-      "passed": false,
-      "error": "BadRequestError"
+      "career_fit": "reach",
+      "recommendation": "reach",
+      "input_hash": "98d7a4bf5ce446f5f3128435115d9c528ef30cd17be8ccf59fb769f9b401acee",
+      "passed": true,
+      "evidence_complete": true,
+      "direct_count": 3,
+      "critical_count": 9
     },
     {
       "job_key": "apple:apple:200648818",
@@ -174,8 +249,13 @@
       "expected": [
         "strong"
       ],
-      "passed": false,
-      "error": "BadRequestError"
+      "career_fit": "strong",
+      "recommendation": "medium",
+      "input_hash": "4f8df74f3f809a9b9036e0da1c6aa89343fac3026ad780070e348b6046af99d2",
+      "passed": true,
+      "evidence_complete": true,
+      "direct_count": 7,
+      "critical_count": 9
     },
     {
       "job_key": "google:google:93972202474349254",
@@ -184,8 +264,13 @@
       "expected": [
         "not"
       ],
-      "passed": false,
-      "error": "BadRequestError"
+      "career_fit": "not",
+      "recommendation": "not",
+      "input_hash": "2a4e3b663a7654cb089c1751693ce0e9f5d6e739424f1a290b583f5ffe295523",
+      "passed": true,
+      "evidence_complete": true,
+      "direct_count": 3,
+      "critical_count": 9
     },
     {
       "job_key": "amazon_jobs:amazon:10576212",
@@ -195,8 +280,13 @@
         "not",
         "reach"
       ],
-      "passed": false,
-      "error": "BadRequestError"
+      "career_fit": "reach",
+      "recommendation": "reach",
+      "input_hash": "13e125758924a49424df12d0090e72728eade5901556d847cf8ec161c6c0ecac",
+      "passed": true,
+      "evidence_complete": true,
+      "direct_count": 8,
+      "critical_count": 12
     },
     {
       "job_key": "apple:apple:200688511",
@@ -206,8 +296,13 @@
         "reach",
         "medium"
       ],
-      "passed": false,
-      "error": "BadRequestError"
+      "career_fit": "reach",
+      "recommendation": "reach",
+      "input_hash": "1264de2fcb6c7672d15e1cd2acaa16256b837c1ab8448f49455f25229e0fa750",
+      "passed": true,
+      "evidence_complete": true,
+      "direct_count": 5,
+      "critical_count": 8
     },
     {
       "job_key": "greenhouse:doordashusa:7611520",
@@ -216,8 +311,13 @@
       "expected": [
         "reach"
       ],
-      "passed": false,
-      "error": "BadRequestError"
+      "career_fit": "reach",
+      "recommendation": "reach",
+      "input_hash": "885d51c2007eecc6547c0dac8a7809a4df2148d9ab65174ddb66810703c7f631",
+      "passed": true,
+      "evidence_complete": true,
+      "direct_count": 9,
+      "critical_count": 13
     },
     {
       "job_key": "ashby:crusoe:56852412-28e0-4d5a-b62c-dcc616d3c99f",
@@ -227,8 +327,13 @@
         "reach",
         "medium"
       ],
-      "passed": false,
-      "error": "BadRequestError"
+      "career_fit": "reach",
+      "recommendation": "reach",
+      "input_hash": "06142ff1f76a014a2b1affb7f39ecd1f60c763ee3563fc5f7e6fc7d734c5da14",
+      "passed": true,
+      "evidence_complete": true,
+      "direct_count": 7,
+      "critical_count": 12
     },
     {
       "job_key": "amazon_jobs:amazon:10522022",
@@ -237,8 +342,13 @@
       "expected": [
         "strong"
       ],
-      "passed": false,
-      "error": "BadRequestError"
+      "career_fit": "strong",
+      "recommendation": "medium",
+      "input_hash": "c32acc2f7644813f9161d47ccf8d8ff6e6b67a0684d2c48c6992ab45cbbbfad5",
+      "passed": true,
+      "evidence_complete": true,
+      "direct_count": 5,
+      "critical_count": 7
     },
     {
       "job_key": "greenhouse:anthropic:5256303008",
@@ -248,8 +358,13 @@
         "reach",
         "medium"
       ],
-      "passed": false,
-      "error": "BadRequestError"
+      "career_fit": "reach",
+      "recommendation": "reach",
+      "input_hash": "7c856d9b97625dc0ce874d6206659bf8056730c699a888f42edcd0c5ce894b0e",
+      "passed": true,
+      "evidence_complete": true,
+      "direct_count": 9,
+      "critical_count": 12
     },
     {
       "job_key": "greenhouse:anthropic:5251609008",
@@ -258,8 +373,13 @@
       "expected": [
         "strong"
       ],
+      "career_fit": "medium",
+      "recommendation": "medium",
+      "input_hash": "b6b9ac281b3348c9eacce983794e22d6bf303d8868d60c2f5c53975fbfb5a780",
       "passed": false,
-      "error": "BadRequestError"
+      "evidence_complete": true,
+      "direct_count": 13,
+      "critical_count": 13
     }
   ]
 }
