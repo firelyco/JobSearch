@@ -38,9 +38,15 @@ def run(*,jobs,profile,existing,rules,max_jobs,rescore,fake_client,jd_text_for,s
             if os.environ.get('FIT_RESUME_PIPELINE')=='true':
                 from src.evidence_pipeline import assess
                 checkpoint_key='checkpoint:'+job_key
+                read_started=time.monotonic()
                 resume=load_private(checkpoint_key,input_hash=fingerprint)
+                log.info('Evidence checkpoint read seconds=%.3f hit=%s',time.monotonic()-read_started,resume is not None)
+                def checkpoint(payload):
+                    checkpoint_started=time.monotonic()
+                    save_private(payload,job_key=checkpoint_key)
+                    log.info('Evidence checkpoint write seconds=%.3f',time.monotonic()-checkpoint_started)
                 verdict=assess(profile,job,jd,client=client,model=model,rules=rules,resume=resume,
-                    checkpoint=lambda payload:save_private(payload,job_key=checkpoint_key))
+                    checkpoint=checkpoint)
             else:
                 verdict=fit_scorer.score_fit(profile,job,jd,client=client,model=model,rules=rules)
             storage_started=time.monotonic()

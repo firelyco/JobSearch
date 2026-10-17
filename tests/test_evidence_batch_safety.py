@@ -27,3 +27,22 @@ class PrivatePublicationSafety(unittest.TestCase):
         with patch('src.evidence_batch.fit_scorer.score_fit') as scorer:
             self.assertEqual(self.execute(max_jobs=0),{})
             scorer.assert_not_called()
+
+class ResumablePublicationSafety(unittest.TestCase):
+    execute=PrivatePublicationSafety.execute
+    def test_checkpoint_namespace_is_private_and_exact_input_is_requested(self):
+        from src.evidence_batch import input_hash
+        verdict=EvidenceVerdict('medium','Reviewed','capability',{}, {'inventory':[]})
+        def assess(*args,**kwargs):
+            kwargs['checkpoint']({'inventory':[],'input_hash':'checkpoint'})
+            return verdict
+        with patch.dict('os.environ',{'FIT_RESUME_PIPELINE':'true'}),patch('src.evidence_batch.load_private',return_value=None) as load,patch('src.evidence_pipeline.assess',side_effect=assess),patch('src.evidence_batch.save_private') as save:
+            scores=self.execute()
+        self.assertEqual(load.call_args.args,('checkpoint:'+KEY,))
+        self.assertIn('input_hash',load.call_args.kwargs)
+        self.assertEqual([c.kwargs['job_key'] for c in save.call_args_list],['checkpoint:'+KEY,KEY])
+        self.assertEqual(scores[KEY]['recommendation'],'medium')
+    def test_failed_checkpoint_read_does_not_repeat_model_calls(self):
+        with patch.dict('os.environ',{'FIT_RESUME_PIPELINE':'true'}),patch('src.evidence_batch.load_private',side_effect=RuntimeError('storage unavailable')),patch('src.evidence_pipeline.assess') as assess:
+            self.assertNotIn(KEY,self.execute())
+            assess.assert_not_called()
