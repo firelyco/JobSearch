@@ -35,3 +35,14 @@ class TestAshbyLocation(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+class AshbySalaryCapture(unittest.TestCase):
+    def test_detail_requests_and_includes_annual_salary_separately(self):
+        from unittest.mock import patch,MagicMock
+        from src.adapters import ashby
+        response=MagicMock(status_code=200)
+        response.json.return_value={'jobs':[{'id':'1','descriptionHtml':'<p>Program work</p>','compensation':{'summaryComponents':[{'compensationType':'Salary','currencyCode':'USD','interval':'1 YEAR','minValue':200000,'maxValue':275000}]}}]}
+        with patch.object(ashby.requests,'get',return_value=response) as get:
+            detail=ashby.fetch_detail({'id':'1','company':'example'})
+        self.assertEqual(get.call_args.kwargs['params']['includeCompensation'],'true')
+        self.assertIn('Annual USD base salary',detail);self.assertIn('275,000',detail)

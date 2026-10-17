@@ -82,6 +82,12 @@ class TestApple(unittest.TestCase):
         self.assertIn("Summary\nS", text)
         self.assertIn("Minimum Qualifications\nQ", text)
 
+    def test_detail_includes_separate_pay_and_benefits_footer(self):
+        details={"jobDetails":{"jobsData":{"jobSummary":"S","postingFooters":[{"localizations":{"en_US":[{"name":"Pay & Benefits","content":"Base pay is between $212,600 and $319,800."},{"name":"EEO","content":"Boilerplate"}]}}]}}}
+        with patch("src.adapters.apple.requests.get",return_value=_html_resp(details)):
+            text=apple.fetch_detail({"id":"1","url":"https://jobs.apple.com/en-us/details/1/x"})
+        self.assertIn("$319,800",text);self.assertIn("Pay & Benefits",text);self.assertNotIn("Boilerplate",text)
+
 
 if __name__ == "__main__":
     unittest.main()

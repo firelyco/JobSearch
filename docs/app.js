@@ -180,6 +180,17 @@ function matchesPostingWindow(job, days, now = Date.now()) {
   return Number.isFinite(timestamp) && timestamp <= now && timestamp >= now - Number(days) * 86400000;
 }
 function baseSalaryLabel(fit) {
+  const status=baseSalaryStatus(fit),check=fit?.salary_check;
+  if (status!=='unknown' && check?.bands?.length && check.status===status) {
+    const min=Math.min(...check.bands.map(b=>b.min)),max=Math.max(...check.bands.map(b=>b.max));
+    const money=n=>'$'+n.toLocaleString('en-US',{maximumFractionDigits:0});
+    return `${money(min)}${min===max?'':'?'+money(max)} USD base`;
+  }
+  if (status==='unknown' && check) {
+    if (check.verification==='not_found_in_capture') return 'Pay not found in captured posting';
+    if (check.verification==='base_and_variable_combined') return 'Base / variable pay not separated';
+    if (check.verification==='ambiguous_salary') return 'Pay details need verification';
+  }
   return {meets_floor: 'Base above $250K', potentially_meets_floor: 'Base range reaches $250K',
     below_floor: 'Base maximum below $250K', unknown: 'Base pay unverified'}[baseSalaryStatus(fit)] || 'Base pay unverified';
 }
@@ -1074,7 +1085,9 @@ async function showFitEvidence(key) {
     const response=await fetch(`${HISTORY_API}?${query}`,{headers:{Authorization:`Bearer ${getHistorySession()}`},cache:'no-store'});
     const body=await response.json();if(!response.ok)throw new Error(body.error || 'Could not load assessment');
     const data=body.assessment;const facts=Object.fromEntries(data.inventory.map(fact=>[fact.id,fact]));
-    content.innerHTML=`<h3>${escapeHtml(data.job.title)}</h3><p>Career fit: ${escapeHtml(data.public.career_fit)} · Posted pay: ${escapeHtml(data.public.comp_status)} · Location: ${escapeHtml(data.public.location_status)}</p>`+
+    content.innerHTML=`<h3>${escapeHtml(data.job.title)}</h3><p>Career fit: ${escapeHtml(data.public.career_fit)} · Posted pay: ${escapeHtml(fit.comp_status || data.public.comp_status)} · Location: ${escapeHtml(data.public.location_status)}</p>`+
+      (fit.salary_check ? `<p>Salary checked: ${escapeHtml(new Date(fit.salary_check.checked_at).toLocaleString())}. ${escapeHtml(baseSalaryLabel(fit))}. <a href="${escapeAttr(fit.salary_check.source_url)}" target="_blank" rel="noopener">Employer posting</a></p>`+
+       (fit.salary_check.bands || []).map(b=>`<blockquote>${escapeHtml(b.quote)}</blockquote>`).join('') : '')+
       data.requirements.map(requirement=>`<details><summary>${escapeHtml(requirement.match)} — ${escapeHtml(requirement.quote)}</summary><p>${escapeHtml(requirement.explanation)}</p><ul>${requirement.evidence_ids.map(id=>{const fact=facts[id];return fact?`<li>${escapeHtml(fact.text)}<br><small>${escapeHtml(fact.company)} · ${escapeHtml(fact.period)} · ${escapeHtml(fact.source)}</small></li>`:'';}).join('')}</ul></details>`).join('')+
       `<p>Validation notes: ${escapeHtml((data.validation_errors || []).join('; ') || 'Requirement citations checked and matches independently reviewed.')}</p>`;
   }catch(error){content.textContent=error.message;}

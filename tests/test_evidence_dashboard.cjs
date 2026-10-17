@@ -71,6 +71,11 @@ vm.runInContext(code.slice(code.indexOf('async function loadData()'),code.indexO
  assert(!ctx.matchesLocation('2 Locations','us',{...workday,url:'https://nvidia.wd5.myworkdayjobs.com/job/CA-Toronto/TPM'}));
  assert(!ctx.matchesLocation('2 Locations','us',{...workday,url:'not a URL'}));
  assert(ctx.matchesLocation('Boston, MA','us'));
+ vm.runInContext(code.slice(code.indexOf('function baseSalaryLabel('),code.indexOf('function matchesWorkmode(')),ctx);
+ assert.equal(ctx.baseSalaryLabel({...fresh,salary_check:{status:'meets_floor',bands:[{min:260000,max:300000}]}}),'$260,000?$300,000 USD base');
+ assert.equal(ctx.baseSalaryLabel({...fresh,comp_status:'unknown',salary_check:{verification:'not_found_in_capture'}}),'Pay not found in captured posting');
+ assert.equal(ctx.baseSalaryLabel({...fresh,comp_status:'unknown',salary_check:{verification:'base_and_variable_combined'}}),'Base / variable pay not separated');
+ assert(ctx.baseSalaryLabel({...fresh,comp_status:'unknown',salary_check:{verification:'ambiguous_salary'}}).includes('verification'));
  const now=Date.parse('2026-10-16T18:00:00Z');
  assert(ctx.matchesPostingWindow({posted_at:'2026-10-15T12:00:00Z'},7,now));
  assert(!ctx.matchesPostingWindow({posted_at:'2026-06-01',first_seen_at:'2026-10-15'},7,now));

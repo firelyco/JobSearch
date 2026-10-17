@@ -92,7 +92,7 @@ def fetch_detail(job: Job) -> str:
         return ""
     url = f"{BASE}/{tenant}"
     try:
-        r = requests.get(url, timeout=TIMEOUT)
+        r = requests.get(url, timeout=TIMEOUT, params={"includeCompensation":"true"})
         if r.status_code != 200:
             log.warning("ashby detail %s HTTP %d", tenant, r.status_code)
             return ""
@@ -103,5 +103,8 @@ def fetch_detail(job: Job) -> str:
     raw_jobs = data.get("jobs", []) if isinstance(data, dict) else []
     for j in raw_jobs:
         if isinstance(j, dict) and safe_str(j.get("id")) == job_id:
-            return safe_str(j.get("descriptionHtml") or j.get("descriptionPlain"))
+            from src.compensation import ashby_salary
+            text=safe_str(j.get("descriptionHtml") or j.get("descriptionPlain"))
+            pay=ashby_salary(j)
+            return text+("\n"+pay if pay else "")
     return ""

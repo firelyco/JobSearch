@@ -90,7 +90,8 @@ def assess(profile,job,jd_text,*,client,model,rules,resume=None,checkpoint=None)
     started=time.monotonic()
     inventory=core.build_inventory(profile,rules);jd=salary_text(jd_text)
     fingerprint=core.input_hash(profile,job,jd_text,rules,model)
-    comp=verified_base_comp_status(jd_text,'',float(rules.get('comp_floor_usd',0)))
+    from src.compensation import parse_salary
+    comp=parse_salary(jd_text,job,float(rules.get('comp_floor_usd',0)))['status']
     job_facts={k:job.get(k) for k in ('title','company','location','url')}
     state={'pipeline_version':PIPELINE_VERSION,'input_hash':fingerprint,'inventory':inventory,
            'job':job_facts,'model':model,'review_model':rules.get('evidence_review_model') or model,

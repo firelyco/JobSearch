@@ -1,0 +1,58 @@
+name: Verify published base salaries
+
+on:
+  workflow_run:
+    workflows: ["Poll job boards"]
+    types: [completed]
+  schedule:
+    - cron: "43 */6 * * *"
+  workflow_dispatch:
+    inputs:
+      force:
+        description: "Refresh even if checked within the last 24 hours"
+        type: boolean
+        default: false
+
+# Shares the fit writer lock; this job never calls an AI provider.
+concurrency:
+  group: fit
+  cancel-in-progress: false
+permissions:
+  contents: write
+
+jobs:
+  salaries:
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: Verify employer salary evidence
+        env:
+          FORCE: ${{ inputs.force }}
+        run: |
+          if [ "$FORCE" = "true" ]; then
+            python -m src.refresh_salaries --max 100 --force
+          else
+            python -m src.refresh_salaries --max 100
+          fi
+      - name: Publish salary checks
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/fit_scores.json
+          if [ -f docs/fit_backfill.json ]; then git add docs/fit_backfill.json; fi
+          if ! git diff --cached --quiet; then
+            git commit -m "salary: refresh published base-pay evidence"
+            git pull --rebase origin main
+            git push
+          fi

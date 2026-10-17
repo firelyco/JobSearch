@@ -125,4 +125,13 @@ def fetch_detail(job: Job) -> str:
         value = safe_str(data.get(key))
         if value:
             parts.append(f"{label}\n{value}")
+    for footer in data.get("postingFooters") or []:
+        for locale,sections in (footer.get("localizations") or {}).items():
+            if not str(locale).lower().startswith('en'):continue
+            for section in sections if isinstance(sections,list) else []:
+                label=safe_str(section.get('name') or section.get('label'))
+                content=safe_str(section.get('content'))
+                if content and re.search(r'pay|salary|compensation',label,re.I):
+                    entry=f"{label}\n{content}"
+                    if entry not in parts:parts.append(entry)
     return "\n\n".join(parts)
