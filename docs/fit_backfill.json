@@ -249,18 +249,20 @@
       "pipeline_version": "resume-v1"
     },
     "greenhouse:bevicareers:4453157009": {
-      "count": 2,
+      "count": 1,
       "context_hash": "ffa8b8073fbe157283666253f21abe08fb502584e5b33d0ee890c29433d2a187",
       "job_snapshot_hash": "1d169c8d8ec867df3b185764193dcf3143ddff2328a306df310563d04716fd3e",
-      "last_attempt_at": "2026-10-17T04:13:37.881813+00:00",
-      "last_outcome": "failed"
+      "last_attempt_at": "2026-10-17T13:52:04.244905+00:00",
+      "last_outcome": "in_progress",
+      "pipeline_version": "resume-v1"
     },
     "greenhouse:stripe:8282859": {
-      "count": 2,
+      "count": 1,
       "context_hash": "ffa8b8073fbe157283666253f21abe08fb502584e5b33d0ee890c29433d2a187",
       "job_snapshot_hash": "fd4913e719304868d08ad480574f7112e848991b959f8393c22684bf45ba4d7c",
-      "last_attempt_at": "2026-10-17T04:13:37.881813+00:00",
-      "last_outcome": "review"
+      "last_attempt_at": "2026-10-17T13:52:04.244905+00:00",
+      "last_outcome": "in_progress",
+      "pipeline_version": "resume-v1"
     },
     "google:google:124090581180654278": {
       "count": 1,
@@ -690,13 +692,13 @@
       "last_outcome": "review"
     }
   },
-  "batches": 40,
+  "batches": 41,
   "created_at": "2026-10-17T03:02:40.652228+00:00",
   "counts": {
     "assessed": 76,
-    "pending": 23,
+    "pending": 21,
     "unresolved": 1,
-    "in_progress": 0,
+    "in_progress": 2,
     "total": 100,
     "strong": 20
   },
@@ -737,9 +739,9 @@
       "end": "2026-10-15T15:02:40.652228+00:00",
       "total": 6,
       "assessed": 4,
-      "pending": 2,
+      "pending": 0,
       "unresolved": 0,
-      "in_progress": 0
+      "in_progress": 2
     },
     {
       "index": 4,
@@ -845,15 +847,16 @@
   "phase": "windows",
   "current_window": 3,
   "windows_processed": 8,
-  "updated_at": "2026-10-17T13:51:37.779707+00:00",
+  "updated_at": "2026-10-17T13:52:04.244905+00:00",
   "context_hash": "ffa8b8073fbe157283666253f21abe08fb502584e5b33d0ee890c29433d2a187",
   "current_batch": {
-    "started_at": "2026-10-17T13:51:34.229567+00:00",
+    "started_at": "2026-10-17T13:52:04.244905+00:00",
     "job_keys": [
-      "greenhouse:airbnb:8286207"
+      "greenhouse:bevicareers:4453157009",
+      "greenhouse:stripe:8282859"
     ],
     "phase": "windows",
-    "window": 2
+    "window": 3
   },
-  "run_url": "https://github.com/firelyco/JobSearch/actions/runs/39038269630"
+  "run_url": "https://github.com/firelyco/JobSearch/actions/runs/39038304096"
 }
