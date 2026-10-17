@@ -161,7 +161,13 @@ def _call_anthropic(client, model, system, user, max_tokens, temperature, cache_
 
 
 def _call_openai(client, model, system, user, max_tokens, temperature) -> LLMResponse:
+    # Structured extraction/review does not need a generated reasoning trace.
+    # This flag is specific to Nemotron 3.5 Lightning's documented API.
+    options = {}
+    if model == "nvidia/nemotron-3.5-lightning-30b-a3b":
+        options["extra_body"] = {"chat_template_kwargs": {"enable_thinking": False}}
     resp = client.chat.completions.create(
+        **options,
         model=model,
         max_tokens=max_tokens,
         temperature=temperature,

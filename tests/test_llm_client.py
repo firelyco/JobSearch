@@ -81,6 +81,11 @@ class TestProviderDispatch(unittest.TestCase):
         resp = llm_client.call(client, model="m", system="s", user="u")
         self.assertEqual(resp.text, "actual answer")
 
+    def test_nemotron_structured_calls_disable_thinking(self):
+        client = FakeOpenAIClient(['{"ok": true}'])
+        llm_client.call(client, model="nvidia/nemotron-3.5-lightning-30b-a3b", system="s", user="u")
+        self.assertFalse(client.calls[0]["extra_body"]["chat_template_kwargs"]["enable_thinking"])
+
     def test_openai_ignores_cache_system_flag(self):
         # cache_system is Anthropic-only; OpenAI path must not choke on it
         client = FakeOpenAIClient(["ok"])
