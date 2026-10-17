@@ -120,6 +120,15 @@ def review_result(extraction,review,inventory,jd,job,comp_status,rules=None):
         rule_supported=rule_key in {'hard_domain_gates','never_claim','rejected_disciplines'} and exclusion and exclusion in (rules or {}).get(rule_key,[])
         hard_gate=bool(check.get('hard_gate_supported') is True and required and critical and status=='gap' and (valid_ids or rule_supported))
         if status=='gap' and not hard_gate and not valid_ids:status='unknown'
+        # An explicit user exclusion outranks a model's claimed direct match.
+        # Limit this to unambiguous, required technical-architecture ownership;
+        # coordination, trade-off discussions and preferred exposure do not qualify.
+        architecture_rule=next((value for value in (rules or {}).get('never_claim',[]) if isinstance(value,str) and re.match(r'^architecture ownership\b',value,re.I)),None)
+        owns_architecture=re.match(r"^(?:(?:you will|you'll|you)\s+)?own(?:ing)?\s+(?:the|our)\s+(?:(?:agent|software|platform|system|technical)\s+){1,3}architecture\b",str(item.get('quote','')).strip(),re.I)
+        if architecture_rule and owns_architecture and critical and required:
+            item['category']='domain'
+            status='gap';hard_gate=True
+            item.update(exclusion_rule_key='never_claim',exclusion_quote=architecture_rule)
         item.update(match=status,evidence_ids=valid_ids,critical=critical,required=required,hard_gate=hard_gate,
             explanation=str(check.get('explanation') or item.get('explanation') or 'Evidence needs review'))
         requirements.append(item)

@@ -71,7 +71,7 @@ jobs:
     env:
       HISTORY_SCORER_TOKEN: ${{ secrets.HISTORY_SCORER_TOKEN }}
       LLM_PROVIDER: ${{ (inputs.provider != 'default' && inputs.provider) || vars.JOBSEARCH_LLM_PROVIDER || 'anthropic' }}
-      NVIDIA_MODEL: ${{ vars.JOBSEARCH_NVIDIA_MODEL || 'nvidia/nemotron-3.5-lightning-30b-a3b' }}
+      NVIDIA_MODEL: ${{ vars.JOBSEARCH_NVIDIA_MODEL || 'nvidia/nemotron-3-super-120b-a12b' }}
       NVIDIA_API_KEY: ${{ secrets.NVIDIA_API_KEY }}
       ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
     steps:

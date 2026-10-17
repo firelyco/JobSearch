@@ -153,3 +153,25 @@ class ProviderUnavailable(unittest.TestCase):
    with patch.object(fit,'PROFILE_FILE',root/'profile.json'),patch.object(fit,'FIT_RULES_FILE',root/'rules.json'),patch.object(fit,'DOCS_DIR',root),patch.object(fit,'run') as scorer:
     self.assertEqual(fit.main([]),0);scorer.assert_not_called()
    policy=json.loads((root/'fit_policy.json').read_text());self.assertTrue(policy['calibration_pending']);self.assertEqual(policy['provider_status'],'insufficient_credits')
+
+
+class ExplicitArchitectureExclusion(unittest.TestCase):
+ def evaluate(self, quote, *, excluded=True, required=True):
+  p=proposal();r=review()
+  p['requirements'][0].update(quote=quote,category='program',required=required)
+  r['requirements'][0].update(required=required)
+  rules={'never_claim':['Architecture ownership (engages on trade-offs only)']} if excluded else {}
+  return review_result(p,r,FACTS,JD+' '+quote,JOB,'meets_floor',rules)
+ def test_explicit_required_ownership_overrides_model_direct_match(self):
+  result=self.evaluate('Own the agent platform architecture: orchestration and production deployment.')
+  self.assertEqual(result.recommendation,'not')
+  self.assertEqual(result.private['requirements'][0]['exclusion_rule_key'],'never_claim')
+ def test_coordination_is_not_architecture_ownership(self):
+  result=self.evaluate('Coordinate with engineers who own the agent platform architecture.')
+  self.assertEqual(result.recommendation,'strong')
+ def test_program_architecture_is_not_technical_architecture(self):
+  self.assertEqual(self.evaluate('Own the program architecture and delivery mechanisms.').recommendation,'strong')
+ def test_preferred_ownership_is_not_a_hard_gate(self):
+  self.assertNotEqual(self.evaluate('Own the agent platform architecture.',required=False).recommendation,'not')
+ def test_no_implicit_exclusion_without_explicit_user_rule(self):
+  self.assertEqual(self.evaluate('Own the agent platform architecture.',excluded=False).recommendation,'strong')

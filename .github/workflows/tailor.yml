@@ -34,7 +34,7 @@ jobs:
       JOB_KEY: ${{ github.event.client_payload.job_key || inputs.job_key }}
       NO_COVER_LETTER: ${{ github.event.client_payload.no_cover_letter || inputs.no_cover_letter || 'false' }}
       LLM_PROVIDER: ${{ vars.JOBSEARCH_LLM_PROVIDER || 'anthropic' }}
-      NVIDIA_MODEL: ${{ vars.JOBSEARCH_NVIDIA_MODEL || 'nvidia/nemotron-3.5-lightning-30b-a3b' }}
+      NVIDIA_MODEL: ${{ vars.JOBSEARCH_NVIDIA_MODEL || 'nvidia/nemotron-3-super-120b-a12b' }}
       NVIDIA_API_KEY: ${{ secrets.NVIDIA_API_KEY }}
       ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
     steps:

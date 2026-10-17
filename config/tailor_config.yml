@@ -1,15 +1,12 @@
 # Tunable knobs for the resume tailoring + fit-scoring pipelines (JOBSEARCH-002).
 # Loaded by src/tailor.py and src/fit.py at runtime.
 
-# Provider is selected by the LLM_PROVIDER env var (set in the workflows):
-#   "anthropic" -> Claude, needs ANTHROPIC_API_KEY   (current)
-#   "nvidia"    -> OpenAI-compatible NVIDIA NIM endpoint, needs NVIDIA_API_KEY
-# The model strings below must match the ACTIVE provider. Switched back to
-# Claude 2026-10-05: NVIDIA's free tier timed out on every call. To go back,
-# set LLM_PROVIDER=nvidia in fit.yml/tailor.yml and use a NIM slug from
-# https://integrate.api.nvidia.com/v1/models (e.g. deepseek-ai/deepseek-v4.1-flash).
-#
-# Haiku for the cheap, high-volume classification calls; Sonnet for writing.
+# Local CLI defaults below use Anthropic unless explicitly overridden.
+# GitHub Actions selects the provider through JOBSEARCH_LLM_PROVIDER and
+# overrides every active task model at runtime when using NVIDIA.
+# JOBSEARCH_NVIDIA_MODEL selects the validated NVIDIA-hosted model; the
+# current production selection is nvidia/nemotron-3-super-120b-a12b.
+# Keys remain GitHub Actions secrets, never repository configuration.
 models:
   tailor: "claude-sonnet-5-5"
   verify: "claude-haiku-4-5"
