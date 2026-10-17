@@ -11,12 +11,13 @@ scores['test:Example:job_changed'].job_snapshot_hash='outdated';
 scores['test:Example:profile_changed'].context_hash='outdated';
 scores['test:Example:code_changed'].scorer_revision='outdated';
 jobs.push({source:'test',company:'Example',id:'unassessed',title:'New startup TPM',location:'Boston, MA'});
+let backfill={};
 const nodes={};
 const ctx={Date,Object,console,Uint8Array,TextEncoder,crypto:crypto.webcrypto,
  $:id=>nodes[id]??={textContent:'',innerHTML:''},
  fitScores:{},allJobs:[],metaData:{},tailoredJobs:{},jobsByKey:{},
  jobKey:j=>`${j.source}:${j.company}:${j.id}`,loadStatuses:()=>({}),loadInFlight:()=>({}),render:()=>{},syncPrivateHistory:()=>{},
- fetch:async url=>({ok:true,json:async()=>url.startsWith('jobs.json')?jobs:url.startsWith('fit_scores.json')?structuredClone(scores):url.startsWith('fit_policy.json')?{version:'v1',evidence_required:true,context_hash:'profile1',scorer_revision:'code1'}:{}}),
+ fetch:async url=>({ok:true,json:async()=>url.startsWith('fit_backfill.json')?backfill:url.startsWith('jobs.json')?jobs:url.startsWith('fit_scores.json')?structuredClone(scores):url.startsWith('fit_policy.json')?{version:'v1',evidence_required:true,context_hash:'profile1',scorer_revision:'code1'}:{}}),
 };
 vm.createContext(ctx);
 vm.runInContext(code.slice(code.indexOf('async function sha256Hex('),code.indexOf('function loadStatuses(')),ctx);
@@ -29,6 +30,14 @@ vm.runInContext(code.slice(code.indexOf('async function loadData()'),code.indexO
  }
  assert(nodes['fit-status'].textContent.includes('1 of 6 roles have current assessments; 5 await assessment or reassessment'));
  assert.equal(ctx.fitScores['test:Example:unassessed'],undefined);
+ backfill={enabled:true,status:'running',phase:'windows',current_window:2,counts:{assessed:7,total:20,pending:10,in_progress:2,unresolved:1}};
+ await ctx.loadData();
+ assert(nodes['fit-backfill-status'].textContent.includes('7/20 assessed; 10 pending; 2 in progress; 1 unresolved'));
+ assert(nodes['fit-backfill-status'].textContent.includes('window 3 of 14'));
+ backfill.status='completed_with_issues';await ctx.loadData();
+ assert(nodes['fit-backfill-status'].textContent.includes('unresolved roles still need review'));
+ assert(!nodes['fit-backfill-status'].textContent.includes('All seven days assessed'));
+
  const html=fs.readFileSync(path.join(root,'docs/index.html'),'utf8');
  assert(html.includes('<option value="strong" selected>strong</option>'));
  assert(html.includes('<option value="us" selected>US</option>'));

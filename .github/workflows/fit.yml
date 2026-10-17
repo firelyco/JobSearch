@@ -6,6 +6,10 @@ on:
     types: [completed]
   workflow_dispatch:
     inputs:
+      backfill:
+        description: "Continue the saved seven-day backfill"
+        type: boolean
+        default: false
       provider:
         description: "Optional provider override for validation"
         type: choice
@@ -61,6 +65,7 @@ concurrency:
 
 permissions:
   contents: write
+  actions: write
 
 jobs:
   fit:
@@ -164,11 +169,19 @@ jobs:
           PY
 
       - name: Check provider before scoring
+        id: provider_check
         if: inputs.provider_health != true && inputs.inventory_only != true && inputs.publish_benchmark != true
         run: python -m src.fit_provider_health
 
+      - name: Record provider interruption
+        if: failure() && steps.provider_check.outcome == 'failure' && inputs.validate_only != true
+        run: python -m src.fit_backfill --provider-error
+
       - name: Score fit for new jobs
         env:
+          FIT_BACKFILL: ${{ inputs.backfill }}
+          FIT_EXPLICIT_JOB_KEYS: ${{ inputs.job_keys }}
+          FIT_VALIDATE_ONLY: ${{ inputs.validate_only }}
           FIT_PROVIDER_HEALTH: ${{ inputs.provider_health }}
           FIT_PUBLISH_BENCHMARK: ${{ inputs.publish_benchmark }}
           FIT_JOB_KEYS: ${{ inputs.job_keys || vars.JOBSEARCH_PRIORITY_JOB_KEYS }}
@@ -192,6 +205,10 @@ jobs:
           if [ "$FIT_INVENTORY_ONLY" = "true" ]; then
             python -m src.fit --inventory-only
             exit 0
+          fi
+          if [ "$FIT_BACKFILL" = "true" ] || ( [ "$FIT_VALIDATE_ONLY" != "true" ] && [ -z "$FIT_EXPLICIT_JOB_KEYS" ] && python -m src.fit_backfill --enabled ); then
+            FIT_BACKFILL_PUBLISH=true python -m src.fit_backfill --max "${{ inputs.max || '6' }}"
+            exit $?
           fi
           ARGS="--max ${{ inputs.max || '6' }}"
           if [ "${{ inputs.rescore }}" = "true" ]; then
@@ -238,6 +255,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add docs/fit_scores.json
+          if [ -f docs/fit_backfill.json ]; then git add docs/fit_backfill.json; fi
           if [ -f docs/fit_benchmark.json ]; then git add docs/fit_benchmark.json; fi
           if [ -f docs/fit_policy.json ]; then git add docs/fit_policy.json; fi
           if git diff --staged --quiet; then
@@ -256,4 +274,13 @@ jobs:
               GIT_EDITOR=true git rebase --continue
             fi
             git push
+          fi
+
+      - name: Continue seven-day backfill
+        if: success() && inputs.validate_only != true && inputs.provider_health != true && inputs.benchmark != true && inputs.inventory_only != true && inputs.publish_benchmark != true && inputs.job_keys == ''
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if python -m src.fit_backfill --should-continue; then
+            gh workflow run fit.yml --repo "$GITHUB_REPOSITORY" --ref main -f backfill=true -f max=6
           fi

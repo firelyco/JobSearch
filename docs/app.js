@@ -206,12 +206,13 @@ function markTailoringFinished(jobKey) {
 async function loadData() {
   let calibrationPending=false,providerUnavailable=false;
   try {
-    const [jobsResp, metaResp, tailoredResp, fitResp, policyResp] = await Promise.all([
+    const [jobsResp, metaResp, tailoredResp, fitResp, policyResp, backfillResp] = await Promise.all([
       fetch(`jobs.json?t=${Date.now()}`),
       fetch(`meta.json?t=${Date.now()}`).catch(() => null),
       fetch(`tailored_jobs.json?t=${Date.now()}`).catch(() => null),
       fetch(`fit_scores.json?t=${Date.now()}`).catch(() => null),
       fetch(`fit_policy.json?t=${Date.now()}`).catch(() => null),
+      fetch(`fit_backfill.json?t=${Date.now()}`).catch(() => null),
     ]);
     if (!jobsResp.ok) throw new Error(`jobs.json HTTP ${jobsResp.status}`);
     allJobs = await jobsResp.json();
@@ -243,6 +244,23 @@ async function loadData() {
           }
         }
       }
+    }
+    const backfillNotice = $('fit-backfill-status');
+    if (backfillNotice) {
+      backfillNotice.textContent = '';
+      try {
+        const progress = backfillResp?.ok ? await backfillResp.json() : null;
+        if (progress?.enabled && progress.counts) {
+          const c = progress.counts;
+          const phase = progress.status === 'waiting_for_provider' ? 'Waiting for provider availability.'
+            : progress.status === 'completed' ? 'All seven days assessed.'
+            : progress.status === 'completed_with_issues' ? 'All 14 windows processed; unresolved roles still need review.'
+            : progress.phase === 'original_cohort' ? 'Finishing the original cohort.'
+            : `Processing 12-hour window ${(progress.current_window ?? 0)+1} of 14, newest first.`;
+          const updated = progress.updated_at ? ` Updated ${new Date(progress.updated_at).toLocaleString()}.` : '';
+          backfillNotice.textContent = `Seven-day backfill: ${c.assessed}/${c.total} assessed; ${c.pending} pending; ${c.in_progress} in progress; ${c.unresolved} unresolved. ${phase}${updated}`;
+        }
+      } catch { /* Progress availability must not hide the jobs. */ }
     }
     const refreshCount = allJobs.filter(job=>!fitScores[jobKey(job)] || fitScores[jobKey(job)].refresh_pending).length;
     const fitNotice = $('fit-status');
