@@ -60,6 +60,8 @@ vm.runInContext(code.slice(code.indexOf('async function loadData()'),code.indexO
  assert(!ctx.matchesBaseSalary({...fresh,comp_status:'potentially_meets_floor'},'confirmed'));
  assert(!ctx.matchesBaseSalary(undefined,'possible'));
  vm.runInContext(code.slice(code.indexOf('const ROLE_CATEGORIES ='),code.indexOf('let allJobs =')),ctx);
+ assert(vm.runInContext("ROLE_CATEGORIES.find(r=>r.id==='principal').pattern.test('Staff Glasses Technical Program Manager, XR')",ctx));
+ assert(vm.runInContext("!ROLE_CATEGORIES.find(r=>r.id==='principal').pattern.test('Staffing Technical Program Manager')",ctx));
  assert(vm.runInContext("ROLE_CATEGORIES.find(r=>r.id==='senior_ic').pattern.test('Senior Leadership Technical Program Manager, Product Development Ecosystem')",ctx));
  assert(vm.runInContext("!ROLE_CATEGORIES.find(r=>r.id==='senior_ic').pattern.test('Junior Technical Program Manager')",ctx));
  vm.runInContext(code.slice(code.indexOf('const LOCATION_MATCHERS ='),code.indexOf('// Salary eligibility')),ctx);

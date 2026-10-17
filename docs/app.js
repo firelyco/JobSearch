@@ -113,7 +113,7 @@ const ROLE_CATEGORIES = [
   { id: 'director',   pattern: /\bdirector\b.*(\btpm\b|technical\s+program|program\s+management)/i },
   { id: 'sr_manager', pattern: /(sr\.?\s*manager|senior\s+manager).*(\btpm\b|technical\s+program|program\s+management)/i },
   { id: 'manager',    pattern: /\bmanager\b.*(\btpm\b|technical\s+program|program\s+management)|\b(?:tpm|technical\s+program\s+management)\s+manager\b/i },
-  { id: 'principal',  pattern: /(principal|staff|distinguished)[\s,]+(technical\s+program\s+manager|tpm)/i },
+  { id: 'principal',  pattern: /\b(principal|staff|distinguished)\b.*\b(technical\s+program\s+manager|tpm)\b/i },
   { id: 'senior_ic', pattern: /\b(?:senior|sr\.?|lead|leadership)\b.*\b(?:technical\s+program\s+manager|tpm)\b/i },
   { id: 'epm',        pattern: /engineering\s+program\s+manage/i },
   // Adjacent disciplines kept by role_config.yml: eng ops and AI program/delivery leadership
