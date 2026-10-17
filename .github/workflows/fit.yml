@@ -76,7 +76,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: ${{ inputs.benchmark && 45 || 30 }}
     # On the workflow_run trigger, only proceed if the poll actually succeeded.
-    if: ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' }}
+    if: ${{ github.event_name == 'workflow_dispatch' || (github.event.workflow_run.conclusion == 'success' && vars.JOBSEARCH_FIT_VALIDATING != 'true') }}
     env:
       FIT_RESUME_PIPELINE: ${{ inputs.resume_pipeline && 'true' || vars.JOBSEARCH_RESUME_PIPELINE || 'false' }}
       NVIDIA_FIT_JSON_SCHEMA: ${{ vars.JOBSEARCH_NVIDIA_JSON_SCHEMA || 'false' }}
