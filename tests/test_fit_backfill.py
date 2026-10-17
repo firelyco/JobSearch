@@ -1,5 +1,8 @@
 import copy
 import unittest
+import tempfile
+from pathlib import Path
+from types import SimpleNamespace
 from datetime import datetime, timedelta, timezone
 from unittest.mock import patch
 from src import fit_backfill as b
@@ -115,6 +118,38 @@ class BackfillTests(unittest.TestCase):
         self.assertEqual(seen[0]['counts']['in_progress'],1)
         self.assertEqual(self.state['counts']['assessed'],0)
         self.assertEqual(self.state['counts']['pending'],1)
+    def test_terminal_and_provider_error_do_not_dispatch_more_work(self):
+        with tempfile.TemporaryDirectory() as directory:
+            statefile=Path(directory)/'state.json'
+            import json
+            with patch.object(b,'STATE_FILE',statefile):
+                for status in ('completed','completed_with_issues','waiting_for_provider'):
+                    statefile.write_text(json.dumps({'enabled':True,'status':status}))
+                    self.assertEqual(b.main(['--should-continue']),1)
+                statefile.write_text(json.dumps({'enabled':True,'status':'running'}))
+                self.assertEqual(b.main(['--should-continue']),0)
+                b.main(['--provider-error'])
+                self.assertEqual(b.main(['--should-continue']),1)
+    def test_checkpoint_stages_only_public_files_and_restores_model_override(self):
+        with tempfile.TemporaryDirectory() as directory:
+            config=Path(directory)/'config.yml';config.write_text('NVIDIA runtime override')
+            commands=[]
+            def git(command,**kwargs):
+                commands.append(command)
+                if command[1]=='restore':config.write_text('tracked default')
+                return SimpleNamespace(returncode=1 if command[1]=='diff' else 0)
+            with patch.object(b.fit,'TAILOR_CONFIG_FILE',config),patch.object(b.subprocess,'run',side_effect=git):
+                b.publish_checkpoint()
+            self.assertEqual(config.read_text(),'NVIDIA runtime override')
+            staged=next(c for c in commands if c[1]=='add')
+            self.assertEqual(staged[2:],['docs/fit_scores.json','docs/fit_policy.json','docs/fit_backfill.json'])
+            self.assertTrue(any(c[1]=='push' for c in commands))
+    def test_failed_checkpoint_restores_runtime_configuration(self):
+        with tempfile.TemporaryDirectory() as directory:
+            config=Path(directory)/'config.yml';config.write_text('NVIDIA runtime override')
+            with patch.object(b.fit,'TAILOR_CONFIG_FILE',config),patch.object(b.subprocess,'run',side_effect=RuntimeError('git failed')):
+                with self.assertRaises(RuntimeError): b.publish_checkpoint()
+            self.assertEqual(config.read_text(),'NVIDIA runtime override')
     def test_reject_zero_batch_size(self):
         with self.assertRaises(ValueError): self.run_batch([],max_jobs=0)
 
