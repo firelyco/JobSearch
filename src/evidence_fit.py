@@ -128,7 +128,7 @@ def review_result(extraction,review,inventory,jd,job,comp_status,rules=None):
             explanation=str(check.get('explanation') or item.get('explanation') or 'Evidence needs review'))
         requirements.append(item)
     categories={r['category'] for r in requirements if r['critical'] and r['required']}
-    complete=bool(type(extraction.get('coverage_complete')) is bool and review.get('coverage_complete') is True and not review.get('missing_critical_requirements') and 'program' in categories and not errors)
+    complete=bool(type(extraction.get('coverage_complete')) is bool and review.get('coverage_complete') is True and not review.get('missing_critical_requirements') and ('program' in categories or (rules or {}).get('_fitment_skill')) and not errors)
     critical=[r for r in requirements if r['critical'] and r['required'] and r['category']!='logistics']
     domain_gaps=[r for r in critical if r['category']=='domain' and r['match']!='direct']
     direct_program=any(r['category']=='program' and r['critical'] and r['required'] and r['match']=='direct' for r in requirements)
@@ -174,8 +174,20 @@ def review_result(extraction,review,inventory,jd,job,comp_status,rules=None):
             return isinstance(quote,str) and len(quote.strip())>=8 and clean(quote) in clean(source)
         from src.fitment_skill import named_exclusions
         named=named_exclusions(rules['_fitment_skill'],job,jd)
-        if named and vote!='pass':
-            errors.append('Explicit skill exclusions match the job context: '+', '.join(item['example'] for item in named));complete=False
+        file_exclusions=[]
+        for rule in named:
+            for item in requirements:
+                compact=re.sub(r'[^a-z0-9]','',item['quote'].casefold())
+                matching=[term for term in rule['domain_terms'] if term in compact]
+                if item['critical'] and item['required'] and len(matching)>=2:
+                    item.update(match='gap',hard_gate=True,category='domain',exclusion_rule_key='fitment_skill',
+                                exclusion_quote=rule['policy_quote'],explanation='Explicit named skill exclusion matches central required work.')
+                    if item not in gates:gates.append(item)
+                    file_exclusions.append({'example':rule['example'],'policy_quote':rule['policy_quote'],
+                                            'requirement_id':item['id'],'job_quote':item['quote']})
+        if file_exclusions:vote='pass'
+        elif named and vote!='pass':
+            errors.append('Explicit skill exclusions match job context but centrality needs review: '+', '.join(item['example'] for item in named));complete=False
         checks=review.get('policy_steps') or []
         if [check.get('step') for check in checks]!=['0','1','1.5','2','3','4','5','6','7']:
             errors.append('Not all skill steps were assessed');complete=False
@@ -186,7 +198,7 @@ def review_result(extraction,review,inventory,jd,job,comp_status,rules=None):
                 errors.append('Skill exclusion contradicts final verdict');complete=False
         if vote=='strong' and not direct_edges:
             errors.append('Strong lacks a relevant supported differentiator');complete=False
-        gate_ids=review.get('gate_requirement_ids') or []
+        gate_ids=([item['requirement_id'] for item in file_exclusions] if file_exclusions else review.get('gate_requirement_ids')) or []
         if vote not in VERDICTS or not isinstance(review.get('decisive_reason'),str) or not review['decisive_reason'].strip():
             errors.append('Missing skill verdict or rationale');complete=False
         if vote=='pass' and (not gate_ids or not all(rid in {g['id'] for g in gates} for rid in gate_ids)):
@@ -221,7 +233,7 @@ def review_result(extraction,review,inventory,jd,job,comp_status,rules=None):
     if (rules or {}).get('_fitment_skill'):
         public.update(fitment_skill_hash=rules['fitment_skill_hash'],verdict={'strong':'strong','medium':'middle','not':'pass'}.get(recommendation),assessment_status='pending' if recommendation=='review' else 'complete')
     private={'requirements':requirements,'inventory':inventory,'differentiators':sorted(direct_edges),'scope':scope,
-        'policy_steps':review.get('policy_steps',[]),'skill_verdict':review.get('skill_verdict'),'decisive_reason':review.get('decisive_reason'),'location':location,'extraction':extraction,'independent_review':review,'validation_errors':errors,'missing_critical_requirements':review.get('missing_critical_requirements',[]),'public':public}
+        'explicit_skill_exclusions':file_exclusions if (rules or {}).get('_fitment_skill') else [],'policy_steps':review.get('policy_steps',[]),'skill_verdict':vote if (rules or {}).get('_fitment_skill') else review.get('skill_verdict'),'decisive_reason':('Explicit skill exclusion matches central required work: '+', '.join(sorted({item['example'] for item in file_exclusions}))) if (rules or {}).get('_fitment_skill') and file_exclusions else review.get('decisive_reason'),'location':location,'extraction':extraction,'independent_review':review,'validation_errors':errors,'missing_critical_requirements':review.get('missing_critical_requirements',[]),'public':public}
     return EvidenceVerdict(recommendation,reason,step,public,private)
 
 def assess(profile,job,jd_text,*,client,model,rules):

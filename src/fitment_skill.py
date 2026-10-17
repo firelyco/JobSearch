@@ -37,10 +37,10 @@ def prompt(phase,rules):
 
 
 def named_exclusions(skill,job,jd):
-    """Surface literal named examples from the file, not a second company list.
+    """Read explicit named domain exclusions directly from the Markdown.
 
-    This is an ambiguity guard, not an automatic Pass. The reviewer still has
-    to cite a central job requirement and the actual exclusion before Pass.
+    A name match alone is insufficient to exclude. The decision validator also
+    requires two domain terms in a quoted central required responsibility.
     """
     import re
     body=str(job.get('company',''))+' '+str(job.get('title',''))+' '+jd
@@ -48,9 +48,14 @@ def named_exclusions(skill,job,jd):
     found=[]
     for line in skill.splitlines():
         if not line.startswith('- **Specialized domain AS THE JOB ITSELF'):continue
-        for group in re.findall(r'\(([^()]*)\)',line):
-            for example in group.split(','):
+        body=line.split('**:',1)[-1]
+        for group in re.finditer(r'([^(),]+)\(([^()]*)\)',body):
+            domain=group.group(1).strip().lstrip(',').strip()
+            terms=set(re.findall(r'[a-z0-9]{4,}',domain.casefold()))
+            for example in group.group(2).split(','):
                 tokens=re.findall(r'[a-z0-9]+',example.casefold())
                 if len(tokens)<2 or any(len(t)<3 for t in tokens):continue
-                if all(t in compact for t in tokens):found.append({'example':example.strip(),'policy_quote':line})
+                if all(t in compact for t in tokens):
+                    found.append({'example':example.strip(),'policy_quote':group.group(0).strip(),
+                                  'domain_terms':sorted(terms)})
     return found

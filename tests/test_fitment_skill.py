@@ -58,3 +58,53 @@ class ExplicitSkillChecks(unittest.TestCase):
   r=review();r['policy_steps']=r['policy_steps'][:-1]
   result=review_result(proposal(),r,FACTS,JD,JOB,'unknown',SKILL_RULES)
   self.assertEqual(result.recommendation,'review');self.assertIsNone(result.public['verdict'])
+
+class EvidenceReuse(unittest.TestCase):
+ def prior(self):
+  return {'inventory':FACTS,'job_text':JD,'job':{k:JOB.get(k) for k in ('title','company','location','url')},'extraction':proposal(),'input_hash':'old-policy','independent_review':{'skill_verdict':'strong'}}
+ def seed(self,prior=None,jd=JD):
+  from src.evidence_batch import reusable_extraction
+  with patch('src.evidence_batch.build_inventory',return_value=FACTS):
+   return reusable_extraction(prior or self.prior(),{},JOB,jd,SKILL_RULES,'test','new-policy')
+ def test_unchanged_evidence_reuses_extraction_but_never_old_verdict(self):
+  seed=self.seed();self.assertEqual(seed['stage'],'review');self.assertEqual(seed['input_hash'],'new-policy')
+  self.assertNotIn('independent_review',seed);self.assertNotIn('skill_verdict',seed)
+ def test_changed_job_text_requires_new_extraction(self):
+  self.assertIsNone(self.seed(jd=JD+' Added mandatory technical qualification.'))
+ def test_changed_inventory_requires_new_extraction(self):
+  prior=self.prior();prior['inventory']=[];self.assertIsNone(self.seed(prior))
+ def test_changed_job_identity_requires_new_extraction(self):
+  prior=self.prior();prior['job']['url']='https://different.example';self.assertIsNone(self.seed(prior))
+
+class ExplicitDomainInterpretation(unittest.TestCase):
+ def test_named_exclusion_requires_matching_central_work(self):
+  skill=SKILL_RULES['_fitment_skill']+'\n- **Specialized domain AS THE JOB ITSELF:** platform infrastructure (Example Campus/Controls).'
+  p=proposal();p['requirements'][1]['quote']='Manage platform infrastructure in Campus Controls.'
+  jd=JD+' Manage platform infrastructure in Campus Controls.'
+  r=review();r['skill_verdict']='middle'
+  result=review_result(p,r,FACTS,jd,JOB,'unknown',{**SKILL_RULES,'_fitment_skill':skill})
+  self.assertEqual(result.public['verdict'],'pass')
+  self.assertEqual(result.private['explicit_skill_exclusions'][0]['requirement_id'],'R2')
+ def test_a_preferred_domain_is_not_a_deterministic_exclusion(self):
+  skill=SKILL_RULES['_fitment_skill']+'\n- **Specialized domain AS THE JOB ITSELF:** platform infrastructure (Example Campus/Controls).'
+  p=proposal();p['requirements'][1].update(quote='Manage platform infrastructure in Campus Controls.',required=False)
+  r=review();r['requirements'][1]['required']=False;r['skill_verdict']='middle'
+  result=review_result(p,r,FACTS,JD+' Manage platform infrastructure in Campus Controls.',JOB,'unknown',{**SKILL_RULES,'_fitment_skill':skill})
+  self.assertNotEqual(result.public.get('verdict'),'pass')
+
+class SameSkillReviewReuse(unittest.TestCase):
+ def audit(self):
+  return {'inventory':FACTS,'job_text':JD,'job':{k:JOB.get(k) for k in ('title','company','location','url')},'extraction':proposal(),'input_hash':'before-code-fix','independent_review':review(),'public':{'fitment_skill_hash':'test-skill'},'model':'test','review_model':'test'}
+ def replay(self,audit):
+  from src.evidence_batch import replay_same_skill
+  with patch('src.evidence_batch.build_inventory',return_value=FACTS):
+   return replay_same_skill(audit,{},JOB,JD,SKILL_RULES,'test','after-code-fix')
+ def test_same_policy_review_is_revalidated_without_model_calls(self):
+  result=self.replay(self.audit());self.assertEqual(result.public['verdict'],'strong')
+  self.assertEqual(result.private['execution']['calls_this_attempt'],0)
+ def test_changed_skill_cannot_replay_old_review(self):
+  audit=self.audit();audit['public']['fitment_skill_hash']='previous-file';self.assertIsNone(self.replay(audit))
+ def test_invalid_review_cannot_replay(self):
+  audit=self.audit();audit['independent_review']['policy_steps']=[];self.assertIsNone(self.replay(audit))
+ def test_changed_model_cannot_replay(self):
+  audit=self.audit();audit['review_model']='different';self.assertIsNone(self.replay(audit))

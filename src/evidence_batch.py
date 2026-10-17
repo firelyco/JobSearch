@@ -13,6 +13,53 @@ def key(job):return ':'.join(str(job.get(k)) for k in ('source','company','id'))
 def snapshot_hash(job):return digest({k:job.get(k) for k in ('title','company','location','url','description','updated_at')})
 def context_hash(profile,rules,model):return digest({'revision':scorer_revision(),'inventory':build_inventory(profile,rules),'rules':rules,'model':model})
 
+def replay_same_skill(prior,profile,job,jd,rules,model,fingerprint):
+    """Revalidate a full saved skill review only when its source inputs match.
+
+    A new skill, model, evidence inventory, JD or role always needs new review.
+    Decision/transport fixes can revalidate existing citations without another
+    paid inference. Invalid reviews fall through to a fresh model assessment.
+    """
+    if not isinstance(prior,dict) or prior.get('public',{}).get('fitment_skill_hash')!=rules.get('fitment_skill_hash'):return None
+    if prior.get('model')!=model or prior.get('review_model')!=(rules.get('evidence_review_model') or model):return None
+    seed=reusable_extraction(prior,profile,job,jd,rules,model,fingerprint)
+    if seed is None:return None
+    review=prior.get('independent_review') or {}
+    if [r.get('step') for r in review.get('policy_steps',[])]!=['0','1','1.5','2','3','4','5','6','7']:return None
+    from src.evidence_fit import review_result,ENGINE_VERSION
+    from src.compensation import parse_salary
+    from src.fit_scorer import salary_text
+    comp=parse_salary(jd,job,rules['comp_floor_usd'])['status']
+    verdict=review_result(seed['extraction'],review,seed['inventory'],salary_text(jd),job,comp,rules)
+    if verdict.recommendation=='review':return None
+    verdict.public['input_hash']=fingerprint
+    verdict.private.update(job=seed['job'],job_text=salary_text(jd),input_hash=fingerprint,
+        engine_version=ENGINE_VERSION,model=model,review_model=rules.get('evidence_review_model') or model,
+        rules_version=rules.get('fit_policy_version'),review_replayed_from=prior.get('input_hash'),
+        execution={'pipeline':'skill-review-revalidation','calls_this_attempt':0})
+    return verdict
+
+
+def reusable_extraction(prior,profile,job,jd,rules,model,fingerprint):
+    """Reuse factual extraction only with identical evidence, full JD and role.
+
+    The previous verdict/review is never reused across policies. The complete
+    JD and original inventory go through a new skill review and bounded repair.
+    """
+    if not isinstance(prior,dict):return None
+    from src.evidence_pipeline import validate_proposal,PIPELINE_VERSION
+    from src.fit_scorer import salary_text
+    inventory=build_inventory(profile,rules)
+    facts={k:job.get(k) for k in ('title','company','location','url')}
+    if prior.get('inventory')!=inventory or prior.get('job_text')!=salary_text(jd) or prior.get('job')!=facts:return None
+    try:validate_proposal(prior.get('extraction'))
+    except (ValueError,TypeError,KeyError):return None
+    return {'pipeline_version':PIPELINE_VERSION,'input_hash':fingerprint,'inventory':inventory,
+        'job':facts,'model':model,'review_model':rules.get('evidence_review_model') or model,
+        'stage':'review','extraction':prior['extraction'],'metrics':[],
+        'extraction_reused_from':prior.get('input_hash')}
+
+
 def run(*,jobs,profile,existing,rules,max_jobs,rescore,fake_client,jd_text_for,stamp,model,on_scored,job_keys):
     current={key(j) for j in jobs};scores={k:v for k,v in existing.items() if k in current}
     context=context_hash(profile,rules,model)
@@ -34,21 +81,28 @@ def run(*,jobs,profile,existing,rules,max_jobs,rescore,fake_client,jd_text_for,s
             fingerprint=input_hash(profile,job,jd,rules,model)
             if not rescore and scores.get(job_key,{}).get('input_hash')==fingerprint and scores.get(job_key,{}).get('recommendation')!='review':
                 return job_key,{**scores[job_key],'jd_checked_at':stamp}
-            client=llm_client.build_client(fake=fake_client) if fake_client else llm_client.build_client()
-            if rules.get('_fitment_skill') or os.environ.get('FIT_RESUME_PIPELINE')=='true':
-                from src.evidence_pipeline import assess
-                checkpoint_key='checkpoint:'+job_key
-                read_started=time.monotonic()
-                resume=load_private(checkpoint_key,input_hash=fingerprint)
-                log.info('Evidence checkpoint read seconds=%.3f hit=%s',time.monotonic()-read_started,resume is not None)
-                def checkpoint(payload):
-                    checkpoint_started=time.monotonic()
-                    save_private(payload,job_key=checkpoint_key)
-                    log.info('Evidence checkpoint write seconds=%.3f',time.monotonic()-checkpoint_started)
-                verdict=assess(profile,job,jd,client=client,model=model,rules=rules,resume=resume,
-                    checkpoint=checkpoint)
-            else:
-                verdict=fit_scorer.score_fit(profile,job,jd,client=client,model=model,rules=rules)
+            verdict=None
+            prior=load_private(job_key) if rules.get('_fitment_skill') else None
+            if prior is not None:
+                verdict=replay_same_skill(prior,profile,job,jd,rules,model,fingerprint)
+            if verdict is None:
+                client=llm_client.build_client(fake=fake_client) if fake_client else llm_client.build_client()
+                if rules.get('_fitment_skill') or os.environ.get('FIT_RESUME_PIPELINE')=='true':
+                    from src.evidence_pipeline import assess
+                    checkpoint_key='checkpoint:'+job_key
+                    read_started=time.monotonic()
+                    resume=load_private(checkpoint_key,input_hash=fingerprint)
+                    if resume is None and rules.get('_fitment_skill'):
+                        resume=reusable_extraction(prior,profile,job,jd,rules,model,fingerprint)
+                    log.info('Evidence checkpoint read seconds=%.3f hit=%s',time.monotonic()-read_started,resume is not None)
+                    def checkpoint(payload):
+                        checkpoint_started=time.monotonic()
+                        save_private(payload,job_key=checkpoint_key)
+                        log.info('Evidence checkpoint write seconds=%.3f',time.monotonic()-checkpoint_started)
+                    verdict=assess(profile,job,jd,client=client,model=model,rules=rules,resume=resume,
+                        checkpoint=checkpoint)
+                else:
+                    verdict=fit_scorer.score_fit(profile,job,jd,client=client,model=model,rules=rules)
             if verdict.public.get('career_fit')=='strong' and verdict.public.get('validated') is True:
                 # Verify new shortlist entries before publication, independently of AI.
                 from src.refresh_salaries import retrieve,apply_check
