@@ -112,15 +112,57 @@
       "job_snapshot_hash": "b5eb71f64fa3b82df0d137f09741077cac05fb62fcf97b053086052e7f20eba2",
       "last_attempt_at": "2026-10-17T03:33:05.407892+00:00",
       "last_outcome": "strong"
+    },
+    "amazon_jobs:amazon:10581367": {
+      "count": 1,
+      "context_hash": "ffa8b8073fbe157283666253f21abe08fb502584e5b33d0ee890c29433d2a187",
+      "job_snapshot_hash": "76278da9317eb764f1a8131bb63636ac523d1f868bf465ed9b57e82ce7db0030",
+      "last_attempt_at": "2026-10-17T03:35:32.247558+00:00",
+      "last_outcome": "in_progress"
+    },
+    "oracle_cloud:oracle:347726": {
+      "count": 1,
+      "context_hash": "ffa8b8073fbe157283666253f21abe08fb502584e5b33d0ee890c29433d2a187",
+      "job_snapshot_hash": "5f83301d836f773f4319df2120bfd0360cba0d10639cf06df7e12159f2493860",
+      "last_attempt_at": "2026-10-17T03:35:32.247558+00:00",
+      "last_outcome": "in_progress"
+    },
+    "oracle_cloud:oracle:347695": {
+      "count": 1,
+      "context_hash": "ffa8b8073fbe157283666253f21abe08fb502584e5b33d0ee890c29433d2a187",
+      "job_snapshot_hash": "a768c7f61881556c365b555f0295da53152b2bd1215ca097731d0e9bb9a8f7c5",
+      "last_attempt_at": "2026-10-17T03:35:32.247558+00:00",
+      "last_outcome": "in_progress"
+    },
+    "oracle_cloud:oracle:347824": {
+      "count": 1,
+      "context_hash": "ffa8b8073fbe157283666253f21abe08fb502584e5b33d0ee890c29433d2a187",
+      "job_snapshot_hash": "576ec3ae58afda33788d730ea974ae94ceb45c6256b469e8f1a62290b2037ecf",
+      "last_attempt_at": "2026-10-17T03:35:32.247558+00:00",
+      "last_outcome": "in_progress"
+    },
+    "amazon_jobs:amazon:10581021": {
+      "count": 1,
+      "context_hash": "ffa8b8073fbe157283666253f21abe08fb502584e5b33d0ee890c29433d2a187",
+      "job_snapshot_hash": "532a4cb5365f26f7c138dabd285a3b42762e8377e0ad482bcc5a2a2bc7d441cb",
+      "last_attempt_at": "2026-10-17T03:35:32.247558+00:00",
+      "last_outcome": "in_progress"
+    },
+    "workday:intel:/job/US-Oregon-Hillsboro/Principal-Technical-Program-Manager---DTCO---Design-Technology-Integration_JR0288271": {
+      "count": 1,
+      "context_hash": "ffa8b8073fbe157283666253f21abe08fb502584e5b33d0ee890c29433d2a187",
+      "job_snapshot_hash": "7b24081746fcdaf2f4f290021e1c6fb11e1345072a10ae0b40d1f98a8c8698d1",
+      "last_attempt_at": "2026-10-17T03:35:32.247558+00:00",
+      "last_outcome": "in_progress"
     }
   },
-  "batches": 6,
+  "batches": 7,
   "created_at": "2026-10-17T03:02:40.652228+00:00",
   "counts": {
     "assessed": 15,
-    "pending": 81,
+    "pending": 75,
     "unresolved": 5,
-    "in_progress": 0,
+    "in_progress": 6,
     "total": 101,
     "strong": 1
   },
@@ -151,9 +193,9 @@
       "end": "2026-10-16T03:02:40.652228+00:00",
       "total": 18,
       "assessed": 0,
-      "pending": 18,
+      "pending": 12,
       "unresolved": 0,
-      "in_progress": 0
+      "in_progress": 6
     },
     {
       "index": 3,
@@ -269,15 +311,20 @@
   "phase": "windows",
   "current_window": 2,
   "windows_processed": 4,
-  "updated_at": "2026-10-17T03:35:11.999124+00:00",
+  "updated_at": "2026-10-17T03:35:32.247558+00:00",
   "context_hash": "ffa8b8073fbe157283666253f21abe08fb502584e5b33d0ee890c29433d2a187",
   "current_batch": {
-    "started_at": "2026-10-17T03:33:05.407892+00:00",
+    "started_at": "2026-10-17T03:35:32.247558+00:00",
     "job_keys": [
-      "greenhouse:databricks:8823193002"
+      "amazon_jobs:amazon:10581367",
+      "oracle_cloud:oracle:347726",
+      "oracle_cloud:oracle:347695",
+      "oracle_cloud:oracle:347824",
+      "amazon_jobs:amazon:10581021",
+      "workday:intel:/job/US-Oregon-Hillsboro/Principal-Technical-Program-Manager---DTCO---Design-Technology-Integration_JR0288271"
     ],
     "phase": "windows",
-    "window": 1
+    "window": 2
   },
-  "run_url": "https://github.com/firelyco/JobSearch/actions/runs/38999193398"
+  "run_url": "https://github.com/firelyco/JobSearch/actions/runs/38999358880"
 }
