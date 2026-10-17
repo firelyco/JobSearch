@@ -34,3 +34,23 @@ def prompt(phase,rules):
     from src.evidence_fit import EXTRACT_PROMPT,REVIEW_PROMPT
     if not rules.get('_fitment_skill'):raise RuntimeError('No fitment skill loaded')
     return EXTRACT_PROMPT if phase=='extraction' else REVIEW_PROMPT
+
+
+def named_exclusions(skill,job,jd):
+    """Surface literal named examples from the file, not a second company list.
+
+    This is an ambiguity guard, not an automatic Pass. The reviewer still has
+    to cite a central job requirement and the actual exclusion before Pass.
+    """
+    import re
+    body=str(job.get('company',''))+' '+str(job.get('title',''))+' '+jd
+    compact=re.sub(r'[^a-z0-9]','',body.casefold())
+    found=[]
+    for line in skill.splitlines():
+        if not line.startswith('- **Specialized domain AS THE JOB ITSELF'):continue
+        for group in re.findall(r'\(([^()]*)\)',line):
+            for example in group.split(','):
+                tokens=re.findall(r'[a-z0-9]+',example.casefold())
+                if len(tokens)<2 or any(len(t)<3 for t in tokens):continue
+                if all(t in compact for t in tokens):found.append({'example':example.strip(),'policy_quote':line})
+    return found

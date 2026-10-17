@@ -31,7 +31,7 @@ EXTRACTION_SCHEMA=object_schema({'requirements':{'type':'array','items':REQUIREM
 CHECK=object_schema({'id':STRING,'category':{'enum':sorted(core.CATEGORIES),'type':'string'},
     'match':{'enum':sorted(core.MATCHES),'type':'string'},'critical':BOOL,'required':BOOL,
     'hard_gate_supported':BOOL,'evidence_ids':STRINGS,'exclusion_rule_key':STRING,'exclusion_quote':STRING,'explanation':STRING})
-POLICY_STEP=object_schema({'step':STRING,'finding':{'type':'string','enum':['clear','bridge','excluded']},'policy_quote':STRING,'requirement_ids':STRINGS,'explanation':STRING})
+POLICY_STEP=object_schema({'step':{'type':'string','enum':['0','1','1.5','2','3','4','5','6','7']},'finding':{'type':'string','enum':['clear','bridge','excluded']},'policy_quote':STRING,'requirement_ids':STRINGS,'explanation':STRING})
 REVIEW_SCHEMA=object_schema({'coverage_complete':BOOL,'missing_critical_requirements':STRINGS,
     'requirements':{'type':'array','items':CHECK},'accepted_differentiators':STRINGS,
     'accepted_differentiator_evidence':{'type':'array','items':EDGE},'scope_supported':BOOL,
@@ -146,7 +146,7 @@ def assess(profile,job,jd_text,*,client,model,rules,resume=None,checkpoint=None)
                     validate_proposal(extraction)
                     state.update(extraction=extraction,stage='review');save()
                 elif phase in {'review','repair_review'}:
-                    review=request(phase,core.REVIEW_PROMPT,{'job_text':jd,'job':job_facts,'proposal':extraction},REVIEW_SCHEMA,6000)
+                    review=request(phase,core.REVIEW_PROMPT,{'job_text':jd,'job':job_facts,'proposal':extraction,'validation_errors_to_correct':state.get('repair_errors',[]),'explicit_skill_exclusion_matches':__import__('src.fitment_skill',fromlist=['named_exclusions']).named_exclusions(rules['_fitment_skill'],job_facts,jd)},REVIEW_SCHEMA,6000)
                     if not isinstance(review.get('requirements'),list) or type(review.get('coverage_complete')) is not bool:
                         raise ValueError('Invalid review structure')
                     state.update(review=review,stage='decision');save()

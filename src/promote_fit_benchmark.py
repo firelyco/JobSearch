@@ -35,8 +35,10 @@ def prepare(report,config,profile,rules,jobs,existing,*,fetch=jd_fetch.get_jd_te
     return scores,policy
 
 def main():
+    from src.fitment_skill import attach
+    rules=attach(fit.load_json(fit.FIT_RULES_FILE,{}))
     scores,policy=prepare(fit.load_json(fit.DOCS_DIR/'fit_benchmark.json',{}),fit.load_json(fit.CONFIG_DIR/'fit_benchmark.json',{}),
-        fit.load_json(fit.PROFILE_FILE,{}),fit.load_json(fit.FIT_RULES_FILE,{}),fit.load_json(fit.JOBS_FILE,[]),fit.load_json(fit.FIT_FILE,{}))
+        fit.load_json(fit.PROFILE_FILE,{}),rules,fit.load_json(fit.JOBS_FILE,[]),fit.load_json(fit.FIT_FILE,{}))
     fit.save(scores)
     (fit.DOCS_DIR/'fit_policy.json').write_text(json.dumps(policy)+'\n',encoding='utf-8')
     print('Published the current private calibration assessments; other roles remain pending reassessment.')

@@ -16,7 +16,7 @@ def main():
     rules=attach(rules)
     # Operational pause flags must match their absence after activation.
     rules.pop('fit_api_blocked',None);rules.pop('calibration_pending',None)
-    rules={**rules,'evidence_required':True,'fit_policy_version':'evidence-v1'}
+    rules={**rules,'evidence_required':True,'fit_policy_version':'skill-three-v1'}
     jobs={fit._key(j):j for j in fit.load_json(fit.JOBS_FILE,[])}
     selected=set(json.loads(os.environ['FIT_JOB_KEYS'])) if os.environ.get('FIT_JOB_KEYS') else None
     prior=fit.load_json(fit.DOCS_DIR/'fit_benchmark.json',{})

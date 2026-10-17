@@ -1,24 +1,4 @@
-"""Profile-fit scoring entrypoint, run by .github/workflows/fit.yml.
-
-Flow:
-  1. Load docs/jobs.json, config/profile.json, docs/fit_scores.json
-  2. Prune fit scores for jobs no longer in jobs.json
-  3. Find jobs without a cached fit score (incremental — cheap steady state)
-  4. For each (capped at MAX_JOBS_PER_RUN), fetch the JD and score with Haiku
-  5. Write docs/fit_scores.json for the dashboard to read
-
-State shape (docs/fit_scores.json):
-  {
-    "greenhouse:stripe:12345": {
-      "recommendation": "strong",
-      "reason": "20y TPM + fintech AI directly matches platform role",
-      "scored_at": "2026-05-21T22:00:00+00:00"
-    }
-  }
-
-CLI:
-  python -m src.fit [--max N] [--rescore]
-"""
+"""Skill-based fit scoring with private evidence, bounded execution and cached results."""
 from __future__ import annotations
 import argparse
 import json
@@ -42,9 +22,8 @@ JOBS_FILE = DOCS_DIR / "jobs.json"
 PROFILE_FILE = CONFIG_DIR / "profile.json"
 TAILOR_CONFIG_FILE = CONFIG_DIR / "tailor_config.yml"
 FIT_FILE = DOCS_DIR / "fit_scores.json"
-# Candidate-specific screening rules. Gitignored (the repo is public); fit.yml
-# writes it from the FIT_RULES_JSON secret. Optional: without it the scorer
-# falls back to the generic method alone.
+# Supplemental private evidence and execution settings. Assessment policy comes
+# exclusively from config/fitment_skill.md, loaded from its Actions secret.
 FIT_RULES_FILE = CONFIG_DIR / "fit_rules.json"
 
 # Haiku answers in seconds, so 40 jobs fit well inside the job timeout and
