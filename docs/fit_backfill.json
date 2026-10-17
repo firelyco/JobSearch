@@ -280,16 +280,58 @@
       "job_snapshot_hash": "537eef23778f703bfe2e86357d61d475ea1986ddc24c100ea1236f235573e4a5",
       "last_attempt_at": "2026-10-17T04:06:42.448885+00:00",
       "last_outcome": "strong"
+    },
+    "lever:jobgether:4823997c-d715-4246-9ef1-f25a7ccfb714": {
+      "count": 1,
+      "context_hash": "ffa8b8073fbe157283666253f21abe08fb502584e5b33d0ee890c29433d2a187",
+      "job_snapshot_hash": "738af69033dbdef129af223a6be03f1e09799c1e2122606dcef2e9928b8981c1",
+      "last_attempt_at": "2026-10-17T04:21:41.393680+00:00",
+      "last_outcome": "in_progress"
+    },
+    "greenhouse:anthropic:5453262008": {
+      "count": 1,
+      "context_hash": "ffa8b8073fbe157283666253f21abe08fb502584e5b33d0ee890c29433d2a187",
+      "job_snapshot_hash": "13eb11b5c834703ce64a7f98b135357796fb0b9d705055c790694a17f7f6e03c",
+      "last_attempt_at": "2026-10-17T04:21:41.393680+00:00",
+      "last_outcome": "in_progress"
+    },
+    "apple:apple:200689111": {
+      "count": 1,
+      "context_hash": "ffa8b8073fbe157283666253f21abe08fb502584e5b33d0ee890c29433d2a187",
+      "job_snapshot_hash": "ed03e8bcee2bc0018cef2f09600ccf7d342e36458a998f0a452f8aa0ff5882ff",
+      "last_attempt_at": "2026-10-17T04:21:41.393680+00:00",
+      "last_outcome": "in_progress"
+    },
+    "oracle_cloud:oracle:347707": {
+      "count": 1,
+      "context_hash": "ffa8b8073fbe157283666253f21abe08fb502584e5b33d0ee890c29433d2a187",
+      "job_snapshot_hash": "95fa44b7bf7ebcaba9d48b5cb7a15c4dce1b9e3bc2a07ee9175b16428ca211ec",
+      "last_attempt_at": "2026-10-17T04:21:41.393680+00:00",
+      "last_outcome": "in_progress"
+    },
+    "oracle_cloud:oracle:346982": {
+      "count": 1,
+      "context_hash": "ffa8b8073fbe157283666253f21abe08fb502584e5b33d0ee890c29433d2a187",
+      "job_snapshot_hash": "03fd610063167aa6a66cb7bc05bba320fccd9a8f82ebb2a1141c7740547407ed",
+      "last_attempt_at": "2026-10-17T04:21:41.393680+00:00",
+      "last_outcome": "in_progress"
+    },
+    "workday:blueorigin:/job/Greater-Seattle-Area/Principal-Technical-Program-Manager--Customer-Terminal-and-RF-Ground-Stations_R73419": {
+      "count": 1,
+      "context_hash": "ffa8b8073fbe157283666253f21abe08fb502584e5b33d0ee890c29433d2a187",
+      "job_snapshot_hash": "b7702476c4967e4adedb0d35eef6c3289b78f7a83f74f29e38809572fc7167aa",
+      "last_attempt_at": "2026-10-17T04:21:41.393680+00:00",
+      "last_outcome": "in_progress"
     }
   },
-  "batches": 13,
+  "batches": 14,
   "created_at": "2026-10-17T03:02:40.652228+00:00",
   "counts": {
     "assessed": 32,
-    "pending": 57,
-    "unresolved": 12,
-    "in_progress": 0,
-    "total": 101,
+    "pending": 51,
+    "unresolved": 11,
+    "in_progress": 6,
+    "total": 100,
     "strong": 5
   },
   "windows": [
@@ -307,10 +349,10 @@
       "index": 1,
       "start": "2026-10-16T03:02:40.652228+00:00",
       "end": "2026-10-16T15:02:40.652228+00:00",
-      "total": 8,
+      "total": 7,
       "assessed": 7,
       "pending": 0,
-      "unresolved": 1,
+      "unresolved": 0,
       "in_progress": 0
     },
     {
@@ -339,9 +381,9 @@
       "end": "2026-10-15T03:02:40.652228+00:00",
       "total": 20,
       "assessed": 0,
-      "pending": 20,
+      "pending": 14,
       "unresolved": 0,
-      "in_progress": 0
+      "in_progress": 6
     },
     {
       "index": 5,
@@ -437,16 +479,20 @@
   "phase": "windows",
   "current_window": 4,
   "windows_processed": 6,
-  "updated_at": "2026-10-17T04:21:18.923663+00:00",
+  "updated_at": "2026-10-17T04:21:41.393680+00:00",
   "context_hash": "ffa8b8073fbe157283666253f21abe08fb502584e5b33d0ee890c29433d2a187",
   "current_batch": {
-    "started_at": "2026-10-17T04:13:37.881813+00:00",
+    "started_at": "2026-10-17T04:21:41.393680+00:00",
     "job_keys": [
-      "greenhouse:bevicareers:4453157009",
-      "greenhouse:stripe:8282859"
+      "lever:jobgether:4823997c-d715-4246-9ef1-f25a7ccfb714",
+      "greenhouse:anthropic:5453262008",
+      "apple:apple:200689111",
+      "oracle_cloud:oracle:347707",
+      "oracle_cloud:oracle:346982",
+      "workday:blueorigin:/job/Greater-Seattle-Area/Principal-Technical-Program-Manager--Customer-Terminal-and-RF-Ground-Stations_R73419"
     ],
     "phase": "windows",
-    "window": 3
+    "window": 4
   },
-  "run_url": "https://github.com/firelyco/JobSearch/actions/runs/39001730145"
+  "run_url": "https://github.com/firelyco/JobSearch/actions/runs/39001999227"
 }
