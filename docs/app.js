@@ -123,6 +123,7 @@ const ROLE_CATEGORIES = [
   { id: 'unleveled',  match: (j) => (j.score_reasons || []).some(r => r.startsWith('level not in title')) },
 ];
 
+let backfillIsActive = false;
 let allJobs = [];
 let jobsByKey = {};          // jobKey -> job, for snapshotting on apply
 let metaData = {};
@@ -245,12 +246,14 @@ async function loadData() {
         }
       }
     }
+    backfillIsActive = false;
     const backfillNotice = $('fit-backfill-status');
     if (backfillNotice) {
       backfillNotice.textContent = '';
       try {
         const progress = backfillResp?.ok ? await backfillResp.json() : null;
         if (progress?.enabled && progress.counts) {
+          backfillIsActive = ['running','waiting_for_provider'].includes(progress.status);
           const c = progress.counts;
           const phase = progress.status === 'waiting_for_provider' ? 'Waiting for provider availability.'
             : progress.status === 'completed' ? 'All seven days assessed.'
@@ -1077,3 +1080,6 @@ setInterval(() => { if (document.visibilityState === 'visible') syncPrivateHisto
   const passed = await gateCheck();
   if (passed) loadData();
 })();
+
+// Refresh saved backfill progress and new verdicts while the dashboard is open.
+setInterval(() => { if (backfillIsActive && document.visibilityState === 'visible') loadData(); }, 60000);
