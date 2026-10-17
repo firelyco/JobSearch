@@ -42,6 +42,10 @@ vm.runInContext(code.slice(code.indexOf('async function loadData()'),code.indexO
  assert(html.includes('<option value="strong" selected>strong</option>'));
  assert(html.includes('<option value="us" selected>US</option>'));
  assert(!html.includes('TITLE MATCH'));
+ assert(!html.includes('<option value="reach"'));
+ assert(!html.includes('<option value="review"'));
+ assert(!code.includes("label: 'Reach'"));
+ assert(!code.includes("? 'Top tier'"));
  assert(html.includes('<option value="7" selected>posted: last 7 days</option>'));
  vm.runInContext(code.slice(code.indexOf('function baseSalaryStatus('),code.indexOf('function matchesWorkmode(')),ctx);
  const fresh={engine_version:'evidence-v1',comp_status:'meets_floor'};

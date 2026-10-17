@@ -154,6 +154,19 @@ jobs:
         env:
           FIT_RULES_JSON: ${{ secrets.FIT_RULES_JSON }}
 
+      - name: Load required private fitment skill
+        env:
+          FITMENT_SKILL_TEXT: ${{ secrets.JOBSEARCH_FITMENT_SKILL }}
+        run: |
+          python - <<'PY'
+          import os
+          from pathlib import Path
+          from src.fitment_skill import load_text
+          text = load_text()
+          Path('config/fitment_skill.md').write_text(text, encoding='utf-8')
+          print('Private three-verdict fitment skill loaded.')
+          PY
+
       - name: Configure NVIDIA assessment models
         if: env.LLM_PROVIDER == 'nvidia'
         run: |
@@ -216,7 +229,7 @@ jobs:
             python -m src.fit --inventory-only
             exit 0
           fi
-          if [ "$FIT_BACKFILL" = "true" ] || ( [ "$FIT_VALIDATE_ONLY" != "true" ] && [ -z "$FIT_EXPLICIT_JOB_KEYS" ] && python -m src.fit_backfill --enabled ); then
+          if [ "$FIT_BACKFILL" = "true" ] || ( [ "$FIT_VALIDATE_ONLY" != "true" ] && [ -z "$FIT_EXPLICIT_JOB_KEYS" ] && python -m src.fit_backfill --should-continue ); then
             FIT_BACKFILL_PUBLISH=true python -m src.fit_backfill --max "${{ inputs.max || '6' }}"
             exit $?
           fi
@@ -245,7 +258,7 @@ jobs:
           for key in keys:
               score = scores.get(key, {})
               age = (datetime.now(timezone.utc) - datetime.fromisoformat(score.get('scored_at', '1970-01-01T00:00:00+00:00'))).total_seconds()
-              assert age < 1800 and score.get('recommendation') in ('strong','medium','reach','not'), 'No completed assessment for ' + key
+              assert age < 1800 and score.get('recommendation') in ('strong','medium','not'), 'No completed assessment for ' + key
               print(key, score['recommendation'])
           benchmark = json.loads(Path('config/fit_benchmark.json').read_text())
           for case in benchmark.get('cases', []):

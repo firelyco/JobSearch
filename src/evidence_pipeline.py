@@ -6,9 +6,10 @@ import logging
 import os
 import time
 from src import evidence_fit as core, llm_client
+from src.fitment_skill import context as skill_context
 
 log = logging.getLogger(__name__)
-PIPELINE_VERSION = 'resume-v1'
+PIPELINE_VERSION = 'skill-resume-v2'
 COMPACT = '\nKeep JSON compact. Explanations: at most 12 words. Use short exact contiguous quotes sufficient to establish each requirement. Never omit distinct required capabilities to shorten output. Do not repeat evidence text.'
 
 
@@ -33,7 +34,8 @@ CHECK=object_schema({'id':STRING,'category':{'enum':sorted(core.CATEGORIES),'typ
 REVIEW_SCHEMA=object_schema({'coverage_complete':BOOL,'missing_critical_requirements':STRINGS,
     'requirements':{'type':'array','items':CHECK},'accepted_differentiators':STRINGS,
     'accepted_differentiator_evidence':{'type':'array','items':EDGE},'scope_supported':BOOL,
-    'scope_kind':STRING,'scope_quote':STRING,'location_supported':BOOL,'location':LOCATION})
+    'scope_kind':STRING,'scope_quote':STRING,'location_supported':BOOL,'location':LOCATION,
+    'skill_verdict':{'type':'string','enum':['strong','middle','pass']},'decisive_reason':STRING,'gate_requirement_ids':STRINGS})
 
 
 def decode(text):
@@ -87,6 +89,7 @@ def merge_repair(original,delta,allowed_ids,missing_quotes):
 
 def assess(profile,job,jd_text,*,client,model,rules,resume=None,checkpoint=None):
     from src.fit_scorer import salary_text,verified_base_comp_status
+    if not rules.get('_fitment_skill'):raise RuntimeError('Private fitment skill required')
     started=time.monotonic()
     inventory=core.build_inventory(profile,rules);jd=salary_text(jd_text)
     fingerprint=core.input_hash(profile,job,jd_text,rules,model)
@@ -111,7 +114,7 @@ def assess(profile,job,jd_text,*,client,model,rules,resume=None,checkpoint=None)
         before=time.monotonic();metric={'stage':phase}
         try:
             response=llm_client.call(client,model=state['review_model'] if phase in {'review','repair_review'} else model,
-                system=prompt+COMPACT+'\nPRIVATE EVIDENCE AND RULES:\n'+core.canonical({'inventory':inventory,'rules':rules}),
+                system=prompt+COMPACT+'\nPRIVATE EVIDENCE AND SKILL:\n'+core.canonical(skill_context(inventory,rules)),
                 user=core.canonical(user),max_tokens=budget,temperature=0.0,cache_system=True,structured_json=True,
                 response_schema=schema if os.environ.get('NVIDIA_FIT_JSON_SCHEMA')=='true' else None)
             metric.update(input_tokens=response.input_tokens,output_tokens=response.output_tokens,

@@ -13,7 +13,7 @@ from src.evidence_fit import scorer_revision
 from src.scorer import _is_us_or_remote
 
 STATE_FILE = fit.DOCS_DIR / 'fit_backfill.json'
-FINAL = {'strong', 'medium', 'reach', 'not'}
+FINAL = {'strong', 'medium', 'not'}
 
 def pipeline_version():
     return 'resume-v1' if os.environ.get('FIT_RESUME_PIPELINE') == 'true' else 'legacy'
@@ -215,12 +215,13 @@ def main(argv=None):
     if not state.get('enabled'): raise RuntimeError('Initialize the backfill before running it')
     import yaml
     profile = fit.load_json(fit.PROFILE_FILE,{})
-    rules = fit.load_json(fit.FIT_RULES_FILE,{})
+    from src.fitment_skill import attach
+    rules = attach(fit.load_json(fit.FIT_RULES_FILE,{}))
     if not profile or not rules.get('evidence_required'): raise RuntimeError('Private evidence scoring is required')
     model = fit._fit_model()
     policy = {'version':rules.get('fit_policy_version',''), 'evidence_required':True,
               'engine_version':'evidence-v1', 'scorer_revision':scorer_revision(),
-              'context_hash':context_hash(profile,rules,model)}
+              'context_hash':context_hash(profile,rules,model),'fitment_skill_hash':rules['fitment_skill_hash'],'verdicts':['strong','middle','pass']}
     (fit.DOCS_DIR/'fit_policy.json').write_text(json.dumps(policy)+'\n',encoding='utf-8')
     role_config = yaml.safe_load((fit.CONFIG_DIR/'role_config.yml').read_text(encoding='utf-8'))
     jobs = fit.load_json(fit.JOBS_FILE,[]); scores = fit.load_json(fit.FIT_FILE,{})

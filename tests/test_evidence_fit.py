@@ -15,15 +15,17 @@ def proposal():
  requirements=[{'id':f'R{i+1}','quote':q,'category':category,'critical':True,'required':True,'match':'direct','evidence_ids':[eid],'explanation':'Comparable delivery','hard_gate':False} for i,(q,category,eid) in enumerate(zip(QUOTES,['program','domain','scope'],['E1','E3','E2']))]
  return {'requirements':requirements,'differentiators':[{'kind':'org_builder','evidence_ids':['E2'],'requirement_ids':['R3']},{'kind':'ai_platform_delivery','evidence_ids':['E3'],'requirement_ids':['R2']}],
  'scope':{'kind':'senior_ic','quote':QUOTES[2]},'location':{'status':'eligible','quote':JOB['location']},'coverage_complete':True}
+SKILL_RULES={'_fitment_skill':'THREE VERDICTS ONLY Strong Middle Pass', 'fitment_skill_hash':'test-skill','comp_floor_usd':250000}
+
 def review():
- return {'requirements':[{'id':f'R{i+1}','match':'direct','critical':True,'required':True,'hard_gate_supported':False,'explanation':'Original evidence supports this match.'} for i in range(3)],'accepted_differentiators':['org_builder','ai_platform_delivery'],'scope_supported':True,'location_supported':True,'coverage_complete':True,'missing_critical_requirements':[]}
+ return {'skill_verdict':'strong','decisive_reason':'Comparable program delivery and relevant differentiated experience.','gate_requirement_ids':[],'requirements':[{'id':f'R{i+1}','match':'direct','critical':True,'required':True,'hard_gate_supported':False,'explanation':'Original evidence supports this match.'} for i in range(3)],'accepted_differentiators':['org_builder','ai_platform_delivery'],'scope_supported':True,'location_supported':True,'coverage_complete':True,'missing_critical_requirements':[]}
 
 class EvidenceDecision(unittest.TestCase):
  def evaluate(self,p=None,r=None,facts=None,comp='meets_floor',rules=None):return review_result(p or proposal(),r or review(),facts or FACTS,JD,JOB,comp,rules)
  def test_strong_requires_direct_reviewed_requirements(self):
-  result=self.evaluate();self.assertEqual(result.recommendation,'strong');self.assertEqual(result.public['tier'],'top_tier')
+  result=self.evaluate();self.assertEqual(result.recommendation,'strong');self.assertEqual(result.public['tier'],'strong')
  def test_two_edges_cannot_cover_unknown_domain(self):
-  r=review();r['requirements'][1]['match']='unknown';result=self.evaluate(r=r);self.assertEqual(result.recommendation,'reach')
+  r=review();r['requirements'][1]['match']='unknown';result=self.evaluate(r=r);self.assertEqual(result.recommendation,'medium')
  def test_one_direct_edge_is_strong_not_top_tier(self):
   r=review();r['accepted_differentiators']=['org_builder'];self.assertEqual(self.evaluate(r=r).public['tier'],'strong')
  def test_zero_edges_is_middle(self):
@@ -35,10 +37,10 @@ class EvidenceDecision(unittest.TestCase):
  def test_invented_evidence_blocks_strong(self):
   p=proposal();p['requirements'][0]['evidence_ids']=['invented'];self.assertEqual(self.evaluate(p=p).recommendation,'review')
  def test_skills_list_is_not_direct_delivery_proof(self):
-  facts=copy.deepcopy(FACTS);facts[2]['kind']='skill';self.assertEqual(self.evaluate(facts=facts).recommendation,'reach')
+  facts=copy.deepcopy(FACTS);facts[2]['kind']='skill';self.assertEqual(self.evaluate(facts=facts).recommendation,'medium')
  def test_missing_evidence_is_not_hard_gate(self):
   p=proposal();r=review();p['requirements'][1].update(hard_gate=True,evidence_ids=[]);r['requirements'][1].update(match='gap',hard_gate_supported=True)
-  self.assertEqual(self.evaluate(p=p,r=r).recommendation,'reach')
+  self.assertEqual(self.evaluate(p=p,r=r).recommendation,'medium')
  def test_confirmed_exclusion_is_hard_gate(self):
   p=proposal();r=review();p['requirements'][1].update(hard_gate=True,evidence_ids=[],exclusion_rule_key='hard_domain_gates',exclusion_quote='Specialized silicon design');r['requirements'][1].update(match='gap',hard_gate_supported=True)
   self.assertEqual(self.evaluate(p=p,r=r,rules={'hard_domain_gates':['Specialized silicon design']}).recommendation,'not')
@@ -59,7 +61,7 @@ class EvidenceDecision(unittest.TestCase):
  def test_public_payload_contains_no_candidate_sources(self):
   result=self.evaluate();public=json.dumps(result.public);self.assertNotIn(FACTS[0]['text'],public);self.assertNotIn('evidence_ids',public)
  def test_missing_jd_is_review_without_model_call(self):
-  result=assess({'experience':[{'achievements':[{'details':'Delivered a shared platform program.'}]}]},JOB,'',client=FakeClient([]),model='test',rules={});self.assertEqual(result.recommendation,'review')
+  result=assess({'experience':[{'achievements':[{'details':'Delivered a shared platform program.'}]}]},JOB,'',client=FakeClient([]),model='test',rules=SKILL_RULES);self.assertEqual(result.recommendation,'review')
 
 class ReviewerCorrections(unittest.TestCase):
  def test_review_can_correct_primary_coverage_without_weakening_matches(self):
@@ -67,7 +69,7 @@ class ReviewerCorrections(unittest.TestCase):
   result=review_result(p,review(),FACTS,JD,JOB,'meets_floor')
   self.assertEqual(result.recommendation,'strong')
   r=review();r['requirements'][1]['match']='unknown'
-  self.assertEqual(review_result(p,r,FACTS,JD,JOB,'meets_floor').recommendation,'reach')
+  self.assertEqual(review_result(p,r,FACTS,JD,JOB,'meets_floor').recommendation,'medium')
  def test_review_can_correct_generic_leadership_miscategorized_as_domain(self):
   p=proposal();p['requirements'][0]['category']='domain';r=review();r['requirements'][0]['category']='program'
   self.assertEqual(review_result(p,r,FACTS,JD,JOB,'meets_floor').recommendation,'strong')
@@ -91,7 +93,7 @@ class FinalReviewSafety(unittest.TestCase):
  def test_reviewer_can_restore_a_substantive_required_technical_qualification(self):
   p=proposal();p['requirements'][1].update(critical=False,required=False)
   r=review();r['requirements'][1].update(critical=True,required=True,category='domain',match='unknown')
-  self.assertEqual(review_result(p,r,FACTS,JD,JOB,'meets_floor').recommendation,'reach')
+  self.assertEqual(review_result(p,r,FACTS,JD,JOB,'meets_floor').recommendation,'medium')
  def test_differentiator_can_include_a_skill_when_concrete_achievement_also_cited(self):
   facts=copy.deepcopy(FACTS)+[{'id':'skill','kind':'skill','text':'Program leadership'}]
   p=proposal();p['differentiators'][0]['evidence_ids'].append('skill');r=review();r['accepted_differentiators']=['org_builder']
@@ -103,17 +105,17 @@ class FinalReviewSafety(unittest.TestCase):
  def test_repair_is_reviewed_and_bounded(self):
   r=review();r['coverage_complete']=False;r['missing_critical_requirements']=['A required responsibility was omitted']
   for final_review,expected in [(review(),'strong'),(r,'review')]:
-   fake=FakeClient([json.dumps(proposal()),json.dumps(r),json.dumps(proposal()),json.dumps(final_review)])
+   fake=FakeClient([json.dumps(proposal()),json.dumps(r),json.dumps(final_review)])
    with patch('src.evidence_fit.build_inventory',return_value=FACTS):
-    result=assess({},JOB,JD*3,client=fake,model='extractor',rules={'comp_floor_usd':250000,'evidence_review_model':'reviewer'})
+    result=assess({},JOB,JD*3,client=fake,model='extractor',rules={**SKILL_RULES,'evidence_review_model':'reviewer'})
    self.assertEqual(result.public['career_fit'],expected)
-   self.assertTrue(result.private['repair_attempted']);self.assertEqual(len(fake.calls),4)
+   self.assertTrue(result.private['repair_attempted']);self.assertEqual(len(fake.calls),3)
    self.assertEqual(fake.calls[1]['model'],'reviewer')
 
 class StructuredOutputSafety(unittest.TestCase):
  def test_malformed_model_output_is_private_review_not_strong(self):
   profile={'experience':[{'achievements':[{'details':'Delivered a shared software platform program.'}]}]}
-  result=assess(profile,JOB,JD*3,client=FakeClient(['malformed private model output']),model='test',rules={})
+  result=assess(profile,JOB,JD*3,client=FakeClient(['malformed private model output']),model='test',rules=SKILL_RULES)
   self.assertEqual(result.recommendation,'review')
   self.assertEqual(result.private['model_error']['phase'],'extraction')
   self.assertNotIn('malformed private model output',json.dumps(result.public))

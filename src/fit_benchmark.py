@@ -12,6 +12,8 @@ def main():
     config=fit.load_json(fit.CONFIG_DIR/'fit_benchmark.json',{})
     profile=fit.load_json(fit.PROFILE_FILE,{})
     rules=fit.load_json(fit.FIT_RULES_FILE,{})
+    from src.fitment_skill import attach
+    rules=attach(rules)
     # Operational pause flags must match their absence after activation.
     rules.pop('fit_api_blocked',None);rules.pop('calibration_pending',None)
     rules={**rules,'evidence_required':True,'fit_policy_version':'evidence-v1'}
@@ -38,7 +40,7 @@ def main():
             if cached:cached['inventory']=build_inventory(profile,rules)
             if cached and cached.get('extraction') and hashlib.sha256(cached['job_text'].encode()).hexdigest()==case['jd_hash']:
                 if refresh and os.environ.get('FIT_BENCHMARK_REVIEW')=='true':
-                    response=llm_client.call(client,model=rules.get('evidence_review_model') or fit._fit_model(),system=REVIEW_PROMPT+'\nPRIVATE EVIDENCE AND RULES:\n'+canonical({'inventory':cached['inventory'],'rules':rules}),user=canonical({'job_text':cached['job_text'],'job':{k:job.get(k) for k in ('title','company','location')},'proposal':cached['extraction']}),max_tokens=6000,temperature=0.0,cache_system=True)
+                    response=llm_client.call(client,model=rules.get('evidence_review_model') or fit._fit_model(),system=REVIEW_PROMPT+'\nPRIVATE EVIDENCE AND RULES:\n'+canonical({'inventory':cached['inventory'],'fitment_skill':rules['_fitment_skill']}),user=canonical({'job_text':cached['job_text'],'job':{k:job.get(k) for k in ('title','company','location')},'proposal':cached['extraction']}),max_tokens=6000,temperature=0.0,cache_system=True)
                     text=response.text
                     cached['independent_review']=json.loads(text[text.find('{'):text.rfind('}')+1])
                 verdict=review_result(cached['extraction'],cached['independent_review'],cached['inventory'],cached['job_text'],job,verified_base_comp_status(jd,'',float(rules.get('comp_floor_usd',0))),rules)

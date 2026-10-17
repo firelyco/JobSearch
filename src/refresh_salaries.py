@@ -56,6 +56,8 @@ def apply_check(score,check):
         eligible=check['status']!='below_floor' and score.get('location_status')=='eligible'
         updated.update(eligible=eligible,recommendation='strong' if eligible else 'medium',
                        step='none' if eligible else 'comp' if check['status']=='below_floor' else 'location')
+    if 'verdict' in updated:
+        updated['verdict']={'strong':'strong','medium':'middle','not':'pass'}.get(updated.get('recommendation'))
     return updated
 
 

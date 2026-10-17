@@ -35,7 +35,7 @@ def run(*,jobs,profile,existing,rules,max_jobs,rescore,fake_client,jd_text_for,s
             if not rescore and scores.get(job_key,{}).get('input_hash')==fingerprint and scores.get(job_key,{}).get('recommendation')!='review':
                 return job_key,{**scores[job_key],'jd_checked_at':stamp}
             client=llm_client.build_client(fake=fake_client) if fake_client else llm_client.build_client()
-            if os.environ.get('FIT_RESUME_PIPELINE')=='true':
+            if rules.get('_fitment_skill') or os.environ.get('FIT_RESUME_PIPELINE')=='true':
                 from src.evidence_pipeline import assess
                 checkpoint_key='checkpoint:'+job_key
                 read_started=time.monotonic()

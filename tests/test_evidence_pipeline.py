@@ -1,7 +1,7 @@
 import copy,json,os,unittest
 from unittest.mock import patch
 from src import evidence_pipeline as p,llm_client
-from tests.test_evidence_fit import FACTS,JOB,JD,proposal,review
+from tests.test_evidence_fit import FACTS,JOB,JD,proposal,review,SKILL_RULES
 from tests.test_verify import FakeClient
 
 class ResumePipeline(unittest.TestCase):
@@ -11,7 +11,7 @@ class ResumePipeline(unittest.TestCase):
   self.inventory.start();self.addCleanup(self.inventory.stop)
  def run_assessment(self,responses,resume=None):
   client=FakeClient([json.dumps(r) if isinstance(r,dict) else r for r in responses])
-  result=p.assess({},JOB,JD*3,client=client,model='test',rules={},resume=resume,checkpoint=self.saved.append)
+  result=p.assess({},JOB,JD*3,client=client,model='test',rules=SKILL_RULES,resume=resume,checkpoint=self.saved.append)
   return result,client
  def test_normal_path_two_calls_and_same_decision(self):
   result,client=self.run_assessment([proposal(),review()])
@@ -74,14 +74,14 @@ class ResumePipeline(unittest.TestCase):
   self.assertEqual(again.recommendation,'review');self.assertEqual(len(client.calls),0)
  def test_checkpoint_storage_failure_prevents_new_rating(self):
   with self.assertRaises(RuntimeError):
-   p.assess({},JOB,JD*3,client=FakeClient([json.dumps(proposal())]),model='test',rules={},
+   p.assess({},JOB,JD*3,client=FakeClient([json.dumps(proposal())]),model='test',rules=SKILL_RULES,
             checkpoint=lambda state:(_ for _ in ()).throw(RuntimeError('storage offline')))
  def test_invented_evidence_still_cannot_be_strong(self):
   bad=proposal();bad['requirements'][0]['evidence_ids']=['invented']
   result,_=self.run_assessment([bad,review(),review()])
   self.assertNotEqual(result.recommendation,'strong')
  def test_missing_jd_does_not_call_model(self):
-  result=p.assess({},JOB,'',client=FakeClient([]),model='test',rules={})
+  result=p.assess({},JOB,'',client=FakeClient([]),model='test',rules=SKILL_RULES)
   self.assertEqual(result.recommendation,'review')
  def test_no_private_information_in_public_metrics(self):
   result,_=self.run_assessment([proposal(),review()])

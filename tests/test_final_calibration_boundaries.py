@@ -25,4 +25,4 @@ class LocationAndEvidenceCorrections(unittest.TestCase):
   self.assertEqual(review_result(p,r,FACTS,JD,JOB,'meets_floor').recommendation,'medium')
  def test_corrected_edge_never_overrides_specialist_gap(self):
   r=review();r['requirements'][1]['match']='unknown';r['accepted_differentiator_evidence']=[{'kind':'ai_platform_delivery','evidence_ids':['E1'],'requirement_ids':['R1']}]
-  self.assertEqual(review_result(proposal(),r,FACTS,JD,JOB,'meets_floor').recommendation,'reach')
+  self.assertEqual(review_result(proposal(),r,FACTS,JD,JOB,'meets_floor').recommendation,'medium')

@@ -119,64 +119,7 @@ def run(
         from src.evidence_batch import run as run_evidence
         return run_evidence(jobs=jobs,profile=profile,existing=scores,rules=rules,max_jobs=max_jobs,rescore=rescore,
             fake_client=fake_client,jd_text_for=jd_text_for,stamp=stamp,model=_fit_model(),on_scored=on_scored,job_keys=job_keys)
-    current_keys = {_key(j) for j in jobs}
-    scores = prune(scores, current_keys)
-
-    version = rules.get("fit_policy_version")
-    to_score = [j for j in jobs if (job_keys is None or _key(j) in job_keys)
-                and (rescore or _key(j) not in scores or version and scores[_key(j)].get("policy_version") != version)]
-    if not to_score:
-        log.info("no jobs need fit scoring (%d already cached)", len(scores))
-        return scores
-
-    # Recheck previously Strong roles first when private criteria change.
-    # Preserve stable order within groups and existing cache identities.
-    to_score.sort(key=lambda j: not (scores.get(_key(j), {}).get("recommendation") == "strong" or scores.get(_key(j), {}).get("step") == "comp"))
-    capped = to_score[:max_jobs]
-    if len(to_score) > max_jobs:
-        log.warning("capping fit scoring at %d/%d jobs this run; rest next cycle",
-                    max_jobs, len(to_score))
-
-    client = llm_client.build_client(fake=fake_client)
-    condensed = fit_scorer.condense_profile(profile)
-    model = _fit_model()
-
-    scored_count = 0
-    for job in capped:
-        k = _key(job)
-        if jd_text_for is not None:
-            jd_text = jd_text_for.get(k, "")
-        else:
-            try:
-                jd_text = jd_fetch.get_jd_text(job)
-            except Exception as e:
-                log.warning("jd fetch failed for %s: %s", k, e)
-                jd_text = ""
-        try:
-            verdict = fit_scorer.score_fit(
-                profile, job, jd_text, client=client, condensed=condensed, model=model,
-                rules=rules,
-            )
-        except Exception as e:
-            # A slow/flaky provider (e.g. NVIDIA free-tier timeouts) must not
-            # crash the whole run and lose already-scored jobs. Skip this one;
-            # it stays uncached and gets retried next cycle.
-            log.warning("fit scoring failed for %s: %s — skipping, will retry next run", k, e)
-            continue
-        scores[k] = {
-            "recommendation": verdict.recommendation,
-            "reason": verdict.reason,
-            "step": verdict.step,
-            "scored_at": stamp,
-            **({"policy_version": version} if version else {}),
-        }
-        scored_count += 1
-        if on_scored is not None:
-            on_scored(scores)
-        log.info("fit %-7s %s | %s", verdict.recommendation, k, verdict.reason)
-
-    log.info("scored %d new jobs; %d total cached", scored_count, len(scores))
-    return scores
+    raise RuntimeError('Private skill evidence assessment is required; generic scoring is retired')
 
 
 def save(scores: dict) -> None:
@@ -201,8 +144,9 @@ def main(argv: list[str] | None = None) -> int:
         return 1
 
     if not FIT_RULES_FILE.exists():
-        log.warning("config/fit_rules.json missing — scoring with the generic method only")
-    rules = load_json(FIT_RULES_FILE, {})
+        log.info("Using the required private fitment skill")
+    from src.fitment_skill import attach
+    rules = attach(load_json(FIT_RULES_FILE, {}))
     if args.inventory_only:
         from src.evidence_fit import build_inventory
         from src.private_fit_store import save_private
@@ -216,7 +160,7 @@ def main(argv: list[str] | None = None) -> int:
         from src.evidence_batch import context_hash
         from src.evidence_fit import ENGINE_VERSION,scorer_revision
         policy.update(evidence_required=True,engine_version=ENGINE_VERSION,scorer_revision=scorer_revision(),
-            context_hash=context_hash(load_json(PROFILE_FILE,{}),rules,_fit_model()))
+            context_hash=context_hash(load_json(PROFILE_FILE,{}),rules,_fit_model()),fitment_skill_hash=rules['fitment_skill_hash'],verdicts=['strong','middle','pass'])
     DOCS_DIR.mkdir(parents=True, exist_ok=True)
     (DOCS_DIR / "fit_policy.json").write_text(json.dumps(policy) + "\n", encoding="utf-8")
     if rules.get("fit_api_blocked"):

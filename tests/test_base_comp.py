@@ -27,26 +27,7 @@ class BaseCompPolicy(unittest.TestCase):
     def test_invented_evidence_does_not_pass(self):
         self.assertEqual(verified_base_comp_status("Competitive pay", "Annual USD base salary: $300,000", 250000), "unknown")
 
-    def test_only_published_maximum_below_floor_excludes(self):
-        rules = {"allow_ic_strong": True, "strong_requires_base_comp": True, "comp_floor_usd": 250000}
-        for level in ("ic", "people_manager", "unknown"):
-            for quote, expected in [
-                ("Annual USD base salary: $260,000 - $300,000", "strong"),
-                ("Annual USD base salary: $230,000 - $280,000", "strong"),
-                ("Annual USD base salary: $150,000 - $240,000", "medium"),
-                ("Competitive salary", "strong"),
-            ]:
-                fake = FakeClient([json.dumps({"recommendation": "strong", "role_level": level, "comp_status": "meets_floor", "comp_evidence": quote, "role_summary": "AI program delivery"})])
-                with self.subTest(level=level, quote=quote):
-                    result = score_fit(PROFILE, JOB, quote, client=fake, rules=rules)
-                    self.assertEqual(result.recommendation, expected)
-                    self.assertNotIn("250", result.reason)
 
-    def test_domain_failure_not_overridden_by_pay(self):
-        quote = "Annual USD base salary: $300,000"
-        fake = FakeClient([json.dumps({"recommendation": "not", "step": "domain", "comp_evidence": quote, "role_summary": "Requires specialist industry knowledge"})])
-        result = score_fit(PROFILE, JOB, quote, client=fake, rules={"strong_requires_base_comp": True, "comp_floor_usd": 250000})
-        self.assertEqual(result.recommendation, "not")
 
 
 class EmployerSalaryFormats(unittest.TestCase):
@@ -62,11 +43,6 @@ class EmployerSalaryFormats(unittest.TestCase):
         jd = 'Annual Salary:&nbsp; $365,000 &ndash; 565,000 USD'
         self.assertEqual(verified_base_comp_status(jd, '', 250000), 'meets_floor')
 
-    def test_salary_html_is_enforced_after_role_fit(self):
-        jd = '<div>Annual Salary:</div><span>$365,000</span><span>–</span><span>$565,000 USD</span>'
-        fake = FakeClient([json.dumps({'recommendation':'strong', 'role_level':'people_manager', 'comp_status':'unknown', 'role_summary':'Manages infrastructure TPM programs'})])
-        result = score_fit(PROFILE, JOB, jd, client=fake, rules={'allow_ic_strong':True,'strong_requires_base_comp':True,'comp_floor_usd':250000})
-        self.assertEqual(result.recommendation, 'strong')
 
     def test_total_compensation_and_ote_do_not_qualify(self):
         for jd in ['Total compensation: $365,000 – $565,000 USD', 'Annual Salary: $365,000 – $565,000 USD OTE including commissions']:

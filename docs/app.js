@@ -243,6 +243,11 @@ async function loadData() {
     }
     if (fitResp && fitResp.ok) {
       try { fitScores = await fitResp.json(); } catch { fitScores = {}; }
+      for (const fit of Object.values(fitScores)) {
+        if (fit.recommendation==='reach') fit.recommendation='medium'; // historical data only
+        if (fit.career_fit==='reach') fit.career_fit='medium';
+        if (fit.tier==='top_tier') fit.tier='strong';
+      }
       if (policyResp && policyResp.ok) {
         const policy = await policyResp.json();
         calibrationPending=policy.calibration_pending===true;providerUnavailable=policy.provider_status==='insufficient_credits';
@@ -576,8 +581,7 @@ function renderAppliedHistory() {
 
 const FIT_LABELS = {
   strong: { label: 'Strong', cls: 'fit-strong' },
-  reach: { label: 'Reach', cls: 'fit-medium' },
-  review: { label: 'Needs review', cls: 'fit-pending' },
+  review: { label: 'Pending', cls: 'fit-pending' },
   medium: { label: 'Middle', cls: 'fit-medium' },
   not:    { label: 'Pass', cls: 'fit-not' },
 };
@@ -589,7 +593,7 @@ function fitCellHtml(fit, key) {
   const meta = FIT_LABELS[fit.recommendation] || FIT_LABELS.medium;
   const pending = !!fit.refresh_pending;
   const reason = escapeAttr((pending ? 'Previous rating: reassessment under the current rubric is pending. ' : '') + (fit.reason || ''));
-  const label=fit.recommendation==='strong' && fit.tier==='top_tier' ? 'Top tier' : meta.label;
+  const label=meta.label;
   const why=fit.engine_version==='evidence-v1' && key ? `<button type="button" class="btn-ghost-sm fit-evidence-btn" data-job-key="${escapeAttr(key)}">Why?</button>` : '';
   return `<span class="fit-pill ${meta.cls}" title="${reason}">${label}${pending ? ' (previous)' : ''}</span>${why}`;
 }
@@ -1085,7 +1089,7 @@ async function showFitEvidence(key) {
     const response=await fetch(`${HISTORY_API}?${query}`,{headers:{Authorization:`Bearer ${getHistorySession()}`},cache:'no-store'});
     const body=await response.json();if(!response.ok)throw new Error(body.error || 'Could not load assessment');
     const data=body.assessment;const facts=Object.fromEntries(data.inventory.map(fact=>[fact.id,fact]));
-    content.innerHTML=`<h3>${escapeHtml(data.job.title)}</h3><p>Career fit: ${escapeHtml(data.public.career_fit)} · Posted pay: ${escapeHtml(fit.comp_status || data.public.comp_status)} · Location: ${escapeHtml(data.public.location_status)}</p>`+
+    content.innerHTML=`<h3>${escapeHtml(data.job.title)}</h3>${data.decisive_reason ? `<p>${escapeHtml(data.decisive_reason)}</p>` : ''}<p>Career fit: ${escapeHtml((FIT_LABELS[data.public.career_fit==='reach'?'medium':data.public.career_fit]||FIT_LABELS.review).label)} · Posted pay: ${escapeHtml(fit.comp_status || data.public.comp_status)} · Location: ${escapeHtml(data.public.location_status)}</p>`+
       (fit.salary_check ? `<p>Salary checked: ${escapeHtml(new Date(fit.salary_check.checked_at).toLocaleString())}. ${escapeHtml(baseSalaryLabel(fit))}. <a href="${escapeAttr(fit.salary_check.source_url)}" target="_blank" rel="noopener">Employer posting</a></p>`+
        (fit.salary_check.bands || []).map(b=>`<blockquote>${escapeHtml(b.quote)}</blockquote>`).join('') : '')+
       data.requirements.map(requirement=>`<details><summary>${escapeHtml(requirement.match)} — ${escapeHtml(requirement.quote)}</summary><p>${escapeHtml(requirement.explanation)}</p><ul>${requirement.evidence_ids.map(id=>{const fact=facts[id];return fact?`<li>${escapeHtml(fact.text)}<br><small>${escapeHtml(fact.company)} · ${escapeHtml(fact.period)} · ${escapeHtml(fact.source)}</small></li>`:'';}).join('')}</ul></details>`).join('')+
