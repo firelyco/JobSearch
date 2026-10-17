@@ -73,6 +73,12 @@ jobs:
             fi
           fi
 
+      - name: Require approval for private evidence transfer to NVIDIA
+        if: env.LLM_PROVIDER == 'nvidia' && vars.JOBSEARCH_NVIDIA_DATA_APPROVED != 'true'
+        run: |
+          echo "::error::NVIDIA connectivity is available, but private career-data transfer awaits explicit approval."
+          exit 1
+
       - name: Write profile.json from secret
         run: |
           if [ -z "$PROFILE_JSON" ]; then
