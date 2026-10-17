@@ -150,6 +150,15 @@ class BackfillTests(unittest.TestCase):
             with patch.object(b.fit,'TAILOR_CONFIG_FILE',config),patch.object(b.subprocess,'run',side_effect=RuntimeError('git failed')):
                 with self.assertRaises(RuntimeError): b.publish_checkpoint()
             self.assertEqual(config.read_text(),'NVIDIA runtime override')
+    def test_new_pipeline_retries_only_unresolved_and_keeps_completed_scores(self):
+        j=job('failed');done=job('done')
+        self.run_batch([j],runner=lambda **kw:kw['existing'])
+        self.run_batch([j],runner=lambda **kw:kw['existing'])
+        self.assertEqual(b.outcome(j,{},self.state,'context'),'unresolved')
+        with patch.dict(b.os.environ,{'FIT_RESUME_PIPELINE':'true'}):
+            self.assertEqual(b.outcome(j,{},self.state,'context'),'pending')
+            self.assertEqual(b.outcome(done,{b.key(done):verdict(done)},self.state,'context'),'assessed')
+
     def test_reject_zero_batch_size(self):
         with self.assertRaises(ValueError): self.run_batch([],max_jobs=0)
 

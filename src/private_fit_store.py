@@ -13,10 +13,10 @@ def save_private(payload, *, job_key=None):
     if response.status_code!=200:raise RuntimeError(f'Private evidence storage HTTP {response.status_code}')
 
 
-def load_private(job_key):
+def load_private(job_key, *, input_hash=None):
     token=os.environ.get('HISTORY_SCORER_TOKEN')
     if not token:raise RuntimeError('Private evidence storage is not configured')
-    response=requests.get(URL,headers={'Authorization':'Bearer '+token},params={'action':'assessment','job_key':job_key},timeout=40)
+    response=requests.get(URL,headers={'Authorization':'Bearer '+token},params={'action':'assessment','job_key':job_key,**({'input_hash':input_hash} if input_hash else {})},timeout=40)
     if response.status_code==404:return None
     if response.status_code!=200:raise RuntimeError('Private assessment read failed')
     return response.json()['assessment']

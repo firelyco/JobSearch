@@ -15,6 +15,10 @@ from src.scorer import _is_us_or_remote
 STATE_FILE = fit.DOCS_DIR / 'fit_backfill.json'
 FINAL = {'strong', 'medium', 'reach', 'not'}
 
+def pipeline_version():
+    return 'resume-v1' if os.environ.get('FIT_RESUME_PIPELINE') == 'true' else 'legacy'
+
+
 
 def timestamp(value):
     try:
@@ -64,7 +68,8 @@ def outcome(job, scores, state, context):
     if fresh(job, score, context) and score.get('recommendation') in FINAL:
         return 'assessed'
     attempt = state.get('attempts', {}).get(key(job), {})
-    same = attempt.get('context_hash') == context and attempt.get('job_snapshot_hash') == snapshot_hash(job)
+    same = (attempt.get('context_hash') == context and attempt.get('job_snapshot_hash') == snapshot_hash(job)
+            and attempt.get('pipeline_version','legacy') == pipeline_version())
     if same and attempt.get('last_outcome') == 'in_progress':
         return 'in_progress'
     if same and attempt.get('count', 0) >= state['max_attempts']:
@@ -132,10 +137,11 @@ def run_batch(*, jobs, profile, rules, scores, state, model, role_config, max_jo
         return scores
     for job in selected:
         previous = state['attempts'].get(key(job), {})
-        same = previous.get('context_hash') == context and previous.get('job_snapshot_hash') == snapshot_hash(job)
+        same = (previous.get('context_hash') == context and previous.get('job_snapshot_hash') == snapshot_hash(job)
+                and previous.get('pipeline_version','legacy') == pipeline_version())
         state['attempts'][key(job)] = {'count': (previous.get('count',0) if same else 0)+1,
             'context_hash': context, 'job_snapshot_hash': snapshot_hash(job),
-            'last_attempt_at': now.isoformat(), 'last_outcome': 'in_progress'}
+            'last_attempt_at': now.isoformat(), 'last_outcome': 'in_progress','pipeline_version':pipeline_version()}
     state['batches'] += 1
     state['current_batch'] = {'started_at': now.isoformat(), 'job_keys': [key(j) for j in selected],
                              'phase': result['phase'], 'window': result['current_window']}

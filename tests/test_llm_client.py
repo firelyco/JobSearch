@@ -90,6 +90,7 @@ class TestProviderDispatch(unittest.TestCase):
         client = FakeOpenAIClient(['{"ok": true}'])
         llm_client.call(client, model="nvidia/nemotron-3-super-120b-a12b", system="s", user="u")
         self.assertFalse(client.calls[0]["extra_body"]["chat_template_kwargs"]["enable_thinking"])
+        self.assertEqual(client.calls[0]["extra_body"]["reasoning_effort"], "none")
 
     def test_json_mode_is_explicit_for_structured_calls(self):
         client = FakeOpenAIClient(['{"ok": true}', 'OK'])
@@ -97,6 +98,25 @@ class TestProviderDispatch(unittest.TestCase):
         self.assertEqual(client.calls[0]["response_format"], {"type": "json_object"})
         llm_client.call(client, model="m", system="Reply OK", user="u")
         self.assertNotIn("response_format", client.calls[1])
+
+    def test_schema_is_explicit_and_does_not_replace_plain_calls(self):
+        client=FakeOpenAIClient(['{"ok":true}'])
+        schema={"type":"object","properties":{"ok":{"type":"boolean"}},"required":["ok"]}
+        llm_client.call(client,model="m",system="s",user="u",response_schema=schema)
+        self.assertEqual(client.calls[0]["response_format"]["json_schema"]["schema"],schema)
+        self.assertTrue(client.calls[0]["response_format"]["json_schema"]["strict"])
+
+    def test_latency_finish_reason_and_reasoning_usage_are_retained(self):
+        from types import SimpleNamespace
+        from unittest.mock import patch
+        response=_OpenAIResp('{"ok":true}')
+        response.choices[0].finish_reason='length'
+        response.usage.completion_tokens_details=SimpleNamespace(reasoning_tokens=123)
+        client=FakeOpenAIClient([])
+        with patch.object(client.chat.completions,'create',return_value=response):
+            result=llm_client.call(client,model='m',system='s',user='u')
+        self.assertEqual(result.finish_reason,'length');self.assertEqual(result.reasoning_tokens,123)
+        self.assertGreaterEqual(result.elapsed_seconds,0)
 
     def test_openai_ignores_cache_system_flag(self):
         # cache_system is Anthropic-only; OpenAI path must not choke on it

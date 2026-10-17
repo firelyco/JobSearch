@@ -6,6 +6,10 @@ on:
     types: [completed]
   workflow_dispatch:
     inputs:
+      resume_pipeline:
+        description: "Validate resumable assessment execution"
+        type: boolean
+        default: false
       backfill:
         description: "Continue the saved seven-day backfill"
         type: boolean
@@ -74,6 +78,8 @@ jobs:
     # On the workflow_run trigger, only proceed if the poll actually succeeded.
     if: ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' }}
     env:
+      FIT_RESUME_PIPELINE: ${{ inputs.resume_pipeline && 'true' || vars.JOBSEARCH_RESUME_PIPELINE || 'false' }}
+      NVIDIA_FIT_JSON_SCHEMA: ${{ vars.JOBSEARCH_NVIDIA_JSON_SCHEMA || 'false' }}
       HISTORY_SCORER_TOKEN: ${{ secrets.HISTORY_SCORER_TOKEN }}
       LLM_PROVIDER: ${{ (inputs.provider != 'default' && inputs.provider) || vars.JOBSEARCH_LLM_PROVIDER || 'anthropic' }}
       NVIDIA_MODEL: ${{ vars.JOBSEARCH_NVIDIA_MODEL || 'nvidia/nemotron-3-super-120b-a12b' }}
@@ -191,7 +197,11 @@ jobs:
           FIT_BENCHMARK_REVIEW: ${{ inputs.benchmark_review }}
         run: |
           if [ "$FIT_PROVIDER_HEALTH" = "true" ]; then
-            python -m src.fit_provider_health
+            if [ "$FIT_RESUME_PIPELINE" = "true" ]; then
+              python -m src.fit_provider_health --schema-probe
+            else
+              python -m src.fit_provider_health
+            fi
             exit $?
           fi
           if [ "$FIT_PUBLISH_BENCHMARK" = "true" ]; then

@@ -1,10 +1,12 @@
 """Bounded parallel scoring with private persistence before public publication."""
 import logging
+import os
+import time
 from concurrent.futures import ThreadPoolExecutor,as_completed
 from datetime import datetime
 from src import fit_scorer,jd_fetch,llm_client
 from src.evidence_fit import build_inventory,digest,scorer_revision,input_hash
-from src.private_fit_store import save_private
+from src.private_fit_store import save_private,load_private
 log=logging.getLogger(__name__)
 
 def key(job):return ':'.join(str(job.get(k)) for k in ('source','company','id'))
@@ -26,13 +28,24 @@ def run(*,jobs,profile,existing,rules,max_jobs,rescore,fake_client,jd_text_for,s
     def evaluate(job):
         job_key=key(job)
         try:
+            fetch_started=time.monotonic()
             jd=jd_text_for.get(job_key,'') if jd_text_for is not None else jd_fetch.get_jd_text(job)
+            log.info('Evidence JD fetch seconds=%.3f',time.monotonic()-fetch_started)
             fingerprint=input_hash(profile,job,jd,rules,model)
             if not rescore and scores.get(job_key,{}).get('input_hash')==fingerprint and scores.get(job_key,{}).get('recommendation')!='review':
                 return job_key,{**scores[job_key],'jd_checked_at':stamp}
             client=llm_client.build_client(fake=fake_client) if fake_client else llm_client.build_client()
-            verdict=fit_scorer.score_fit(profile,job,jd,client=client,model=model,rules=rules)
+            if os.environ.get('FIT_RESUME_PIPELINE')=='true':
+                from src.evidence_pipeline import assess
+                checkpoint_key='checkpoint:'+job_key
+                resume=load_private(checkpoint_key,input_hash=fingerprint)
+                verdict=assess(profile,job,jd,client=client,model=model,rules=rules,resume=resume,
+                    checkpoint=lambda payload:save_private(payload,job_key=checkpoint_key))
+            else:
+                verdict=fit_scorer.score_fit(profile,job,jd,client=client,model=model,rules=rules)
+            storage_started=time.monotonic()
             save_private(verdict.private,job_key=job_key)
+            log.info('Evidence final storage seconds=%.3f',time.monotonic()-storage_started)
             return job_key,{**verdict.public,'recommendation':verdict.recommendation,'reason':verdict.reason,'step':verdict.step,
                 'policy_version':rules.get('fit_policy_version'),'context_hash':context,'job_snapshot_hash':snapshot_hash(job),
                 'jd_checked_at':stamp,'scored_at':stamp,'scorer_revision':scorer_revision()}

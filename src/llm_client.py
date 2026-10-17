@@ -21,6 +21,7 @@ from __future__ import annotations
 import logging
 import os
 import re
+import time
 from dataclasses import dataclass
 from typing import Any
 
@@ -40,6 +41,9 @@ class LLMResponse:
     input_tokens: int
     output_tokens: int
     model: str
+    elapsed_seconds: float = 0.0
+    finish_reason: str = ""
+    reasoning_tokens: int = 0
 
 
 def active_provider() -> str:
@@ -95,6 +99,7 @@ def call(
     temperature: float = 0.4,
     cache_system: bool = False,
     structured_json: bool = False,
+    response_schema: dict | None = None,
 ) -> LLMResponse:
     """One-shot completion. Returns text + token usage.
 
@@ -105,9 +110,19 @@ def call(
       - Anthropic (has .messages): Claude path. cache_system marks the system
         prompt for ephemeral prompt caching.
     """
-    if hasattr(client, "chat"):
-        return _call_openai(client, model, system, user, max_tokens, temperature, structured_json)
-    return _call_anthropic(client, model, system, user, max_tokens, temperature, cache_system)
+    started = time.monotonic()
+    try:
+        if hasattr(client, "chat"):
+            result = _call_openai(client, model, system, user, max_tokens, temperature, structured_json, response_schema)
+        else:
+            result = _call_anthropic(client, model, system, user, max_tokens, temperature, cache_system)
+    except Exception as error:
+        log.warning('LLM call model=%s seconds=%.2f error=%s', model, time.monotonic()-started, type(error).__name__)
+        raise
+    result.elapsed_seconds = round(time.monotonic()-started, 3)
+    log.info('LLM call model=%s seconds=%.3f input_tokens=%d output_tokens=%d reasoning_tokens=%d finish=%s',
+             model, result.elapsed_seconds, result.input_tokens, result.output_tokens, result.reasoning_tokens, result.finish_reason)
+    return result
 
 
 # Newer Claude models reject non-default sampling params (temperature) with a
@@ -161,13 +176,18 @@ def _call_anthropic(client, model, system, user, max_tokens, temperature, cache_
     )
 
 
-def _call_openai(client, model, system, user, max_tokens, temperature, structured_json=False) -> LLMResponse:
+def _call_openai(client, model, system, user, max_tokens, temperature, structured_json=False, response_schema=None) -> LLMResponse:
     # Structured extraction/review does not need a generated reasoning trace.
     # This flag is supported by these documented Nemotron APIs.
     options = {}
     if model in {"nvidia/nemotron-3.5-lightning-30b-a3b", "nvidia/nemotron-3-super-120b-a12b"}:
         options["extra_body"] = {"chat_template_kwargs": {"enable_thinking": False}}
-    if structured_json:
+    if model == "nvidia/nemotron-3-super-120b-a12b":
+        # Documented hosted-API switch; do not rely solely on a template flag.
+        options.setdefault("extra_body", {})["reasoning_effort"] = "none"
+    if response_schema:
+        options["response_format"] = {"type":"json_schema", "json_schema":{"name":"assessment", "strict":True, "schema":response_schema}}
+    elif structured_json:
         options["response_format"] = {"type": "json_object"}
     resp = client.chat.completions.create(
         **options,
@@ -191,4 +211,7 @@ def _call_openai(client, model, system, user, max_tokens, temperature, structure
         input_tokens=getattr(usage, "prompt_tokens", 0) if usage else 0,
         output_tokens=getattr(usage, "completion_tokens", 0) if usage else 0,
         model=model,
+        finish_reason=str(getattr(choices[0], "finish_reason", "") or "") if choices else "",
+        reasoning_tokens=getattr(getattr(usage, "completion_tokens_details", None), "reasoning_tokens", 0) or 0,
+
     )
