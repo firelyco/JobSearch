@@ -113,6 +113,12 @@ jobs:
           echo "::error::NVIDIA connectivity is available, but private career-data transfer awaits explicit approval."
           exit 1
 
+      - name: Require NVIDIA assessment validation before production
+        if: env.LLM_PROVIDER == 'nvidia' && vars.JOBSEARCH_NVIDIA_VALIDATED != 'true' && inputs.provider_health != true && inputs.validate_only != true
+        run: |
+          echo "::error::NVIDIA production processing is waiting for the reviewed sample validation to pass."
+          exit 1
+
       - name: Write profile.json from secret
         run: |
           if [ -z "$PROFILE_JSON" ]; then
