@@ -22,7 +22,10 @@ def attach(rules):
     result['fitment_skill_hash']=hashlib.sha256(result['_fitment_skill'].encode()).hexdigest()
     result['evidence_required']=True
     result['fit_policy_version']='skill-three-v1'
-    result['comp_floor_usd']=250000
+    import re
+    threshold=re.search(r'Target annual USD base salary is \$(\d[\d,]*)',result['_fitment_skill'])
+    if not threshold:raise RuntimeError('Skill must state the annual USD base salary threshold')
+    result['comp_floor_usd']=int(threshold.group(1).replace(',',''))
     return result
 
 def context(inventory,rules):

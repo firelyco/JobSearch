@@ -13,7 +13,7 @@ class SkillPolicy(unittest.TestCase):
    with self.assertRaisesRegex(RuntimeError,'must define'):fitment_skill.attach({})
  def test_skill_edits_invalidate_cached_assessment(self):
   hashes=[]
-  for text in ['THREE VERDICTS ONLY Strong Middle Pass version one','THREE VERDICTS ONLY Strong Middle Pass version two']:
+  for text in ['THREE VERDICTS ONLY Strong Middle Pass version one Target annual USD base salary is $250,000','THREE VERDICTS ONLY Strong Middle Pass version two Target annual USD base salary is $250,000']:
    with patch.dict(os.environ,{'FITMENT_SKILL_TEXT':text},clear=True):
     rules=fitment_skill.attach({});hashes.append(input_hash({},JOB,JD,rules,'test'))
   self.assertNotEqual(*hashes)

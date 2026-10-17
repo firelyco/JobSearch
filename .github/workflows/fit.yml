@@ -79,6 +79,7 @@ jobs:
     if: ${{ github.event_name == 'workflow_dispatch' || (github.event.workflow_run.conclusion == 'success' && vars.JOBSEARCH_FIT_VALIDATING != 'true') }}
     env:
       FIT_RESUME_PIPELINE: ${{ inputs.resume_pipeline && 'true' || vars.JOBSEARCH_RESUME_PIPELINE || 'false' }}
+      FIT_WORKERS: ${{ vars.JOBSEARCH_FIT_WORKERS || '3' }}
       NVIDIA_FIT_JSON_SCHEMA: ${{ vars.JOBSEARCH_NVIDIA_JSON_SCHEMA || 'false' }}
       HISTORY_SCORER_TOKEN: ${{ secrets.HISTORY_SCORER_TOKEN }}
       LLM_PROVIDER: ${{ (inputs.provider != 'default' && inputs.provider) || vars.JOBSEARCH_LLM_PROVIDER || 'anthropic' }}

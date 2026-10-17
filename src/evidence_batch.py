@@ -123,7 +123,7 @@ def run(*,jobs,profile,existing,rules,max_jobs,rescore,fake_client,jd_text_for,s
         except Exception as error:
             log.warning('Assessment pending for %s (%s); no unpersisted verdict published',job_key,type(error).__name__)
             return job_key,None
-    with ThreadPoolExecutor(max_workers=min(3,len(selected))) as pool:
+    with ThreadPoolExecutor(max_workers=min(max(1,min(6,int(os.environ.get('FIT_WORKERS','3')))),len(selected))) as pool:
         for future in as_completed([pool.submit(evaluate,j) for j in selected]):
             job_key,verdict=future.result()
             if verdict is None:continue
