@@ -34,7 +34,7 @@ jobs:
       JOB_KEY: ${{ github.event.client_payload.job_key || inputs.job_key }}
       NO_COVER_LETTER: ${{ github.event.client_payload.no_cover_letter || inputs.no_cover_letter || 'false' }}
       LLM_PROVIDER: ${{ vars.JOBSEARCH_LLM_PROVIDER || 'anthropic' }}
-      NVIDIA_MODEL: ${{ vars.JOBSEARCH_NVIDIA_MODEL || 'deepseek-ai/deepseek-v4.1-flash' }}
+      NVIDIA_MODEL: ${{ vars.JOBSEARCH_NVIDIA_MODEL || 'nvidia/nemotron-3.5-lightning-30b-a3b' }}
       NVIDIA_API_KEY: ${{ secrets.NVIDIA_API_KEY }}
       ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
     steps:
@@ -135,6 +135,8 @@ jobs:
 
       - name: Commit updated tailored_jobs.json
         run: |
+          # Runtime model overrides must not be committed or block the rebase.
+          git restore -- config/tailor_config.yml
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add docs/tailored_jobs.json

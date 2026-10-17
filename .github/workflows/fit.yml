@@ -49,10 +49,10 @@ on:
         type: boolean
         default: false
       max:
-        description: "Max jobs to score this run (default 40)"
+        description: "Max jobs to score this run (default 6)"
         required: false
         type: string
-        default: "40"
+        default: "6"
 
 # Serialize fit runs; never run two at once (they both write fit_scores.json).
 concurrency:
@@ -71,7 +71,7 @@ jobs:
     env:
       HISTORY_SCORER_TOKEN: ${{ secrets.HISTORY_SCORER_TOKEN }}
       LLM_PROVIDER: ${{ (inputs.provider != 'default' && inputs.provider) || vars.JOBSEARCH_LLM_PROVIDER || 'anthropic' }}
-      NVIDIA_MODEL: ${{ vars.JOBSEARCH_NVIDIA_MODEL || 'deepseek-ai/deepseek-v4.1-flash' }}
+      NVIDIA_MODEL: ${{ vars.JOBSEARCH_NVIDIA_MODEL || 'nvidia/nemotron-3.5-lightning-30b-a3b' }}
       NVIDIA_API_KEY: ${{ secrets.NVIDIA_API_KEY }}
       ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
     steps:
@@ -181,7 +181,7 @@ jobs:
             python -m src.fit --inventory-only
             exit 0
           fi
-          ARGS="--max ${{ inputs.max || '40' }}"
+          ARGS="--max ${{ inputs.max || '6' }}"
           if [ "${{ inputs.rescore }}" = "true" ]; then
             ARGS="$ARGS --rescore"
           fi
@@ -221,6 +221,8 @@ jobs:
         # so whatever finished is still worth committing.
         if: always() && inputs.validate_only != true && inputs.provider_health != true
         run: |
+          # Runtime model overrides must not be committed or block the rebase.
+          git restore -- config/tailor_config.yml
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add docs/fit_scores.json
