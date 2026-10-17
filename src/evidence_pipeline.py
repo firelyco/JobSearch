@@ -23,7 +23,7 @@ STRINGS={'type':'array','items':STRING}
 REQUIREMENT=object_schema({'id':STRING,'quote':STRING,'category':{'enum':sorted(core.CATEGORIES),'type':'string'},
     'critical':BOOL,'required':BOOL,'match':{'enum':sorted(core.MATCHES),'type':'string'},
     'evidence_ids':STRINGS,'explanation':STRING,'hard_gate':BOOL,'exclusion_rule_key':STRING,'exclusion_quote':STRING})
-EDGE=object_schema({'kind':STRING,'evidence_ids':STRINGS,'requirement_ids':STRINGS})
+EDGE=object_schema({'kind':{'type':'string','enum':sorted(core.DIFFERENTIATORS|{'industry_bridge'})},'evidence_ids':STRINGS,'requirement_ids':STRINGS})
 SCOPE=object_schema({'kind':STRING,'quote':STRING})
 LOCATION=object_schema({'status':STRING,'quote':STRING,'reason':STRING})
 EXTRACTION_SCHEMA=object_schema({'requirements':{'type':'array','items':REQUIREMENT},
@@ -31,11 +31,12 @@ EXTRACTION_SCHEMA=object_schema({'requirements':{'type':'array','items':REQUIREM
 CHECK=object_schema({'id':STRING,'category':{'enum':sorted(core.CATEGORIES),'type':'string'},
     'match':{'enum':sorted(core.MATCHES),'type':'string'},'critical':BOOL,'required':BOOL,
     'hard_gate_supported':BOOL,'evidence_ids':STRINGS,'exclusion_rule_key':STRING,'exclusion_quote':STRING,'explanation':STRING})
+POLICY_STEP=object_schema({'step':STRING,'finding':{'type':'string','enum':['clear','bridge','excluded']},'policy_quote':STRING,'requirement_ids':STRINGS,'explanation':STRING})
 REVIEW_SCHEMA=object_schema({'coverage_complete':BOOL,'missing_critical_requirements':STRINGS,
     'requirements':{'type':'array','items':CHECK},'accepted_differentiators':STRINGS,
     'accepted_differentiator_evidence':{'type':'array','items':EDGE},'scope_supported':BOOL,
     'scope_kind':STRING,'scope_quote':STRING,'location_supported':BOOL,'location':LOCATION,
-    'skill_verdict':{'type':'string','enum':['strong','middle','pass']},'decisive_reason':STRING,'gate_requirement_ids':STRINGS})
+    'policy_steps':{'type':'array','items':POLICY_STEP},'skill_verdict':{'type':'string','enum':['strong','middle','pass']},'decisive_reason':STRING,'gate_requirement_ids':STRINGS})
 
 
 def decode(text):

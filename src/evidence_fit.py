@@ -68,7 +68,8 @@ Return JSON with requirements (id, quote, category, critical, required, match, e
 
 REVIEW_PROMPT='''Independently apply the private FITMENT SKILL as the sole assessment policy, running every step in order. Audit the extraction against full JOB TEXT and original EVIDENCE INVENTORY. Correct requirement categories, matches, citations, centrality and gates. A valid citation may still be irrelevant. All substantive required capabilities must be represented, including specialized technical work inside program responsibilities. Direct means comparable demonstrated capability, not identical vocabulary. Never invent evidence or weaken a required capability to obtain Strong. Missing experience alone is not proof of an incompatible background. Skill exclusions must be quoted exactly with exclusion_rule_key=fitment_skill and attached to central required job text. Classify supported non-bridgeable discipline/domain/guardrail exclusions as Pass; uncertainty or bridgeable gaps as Middle, following the skill.
 coverage_complete means all central requirements are extracted, not that the candidate qualifies. missing_critical_requirements contains only exact job quotes OMITTED from the extraction, never existing IDs or candidate shortcomings. Correct every requirement and accepted differentiator, citing original evidence IDs and requirement IDs. Keep explanations under 35 words. Confirm scope/location using contiguous literal job quotes. Never penalize undisclosed compensation or treat total compensation as base.
-Return the review JSON schema including skill_verdict (strong, middle or pass), decisive_reason, and gate_requirement_ids. gate_requirement_ids references independently validated central required exclusions for Pass, empty otherwise. Include requirements (id, category, match, critical, required, hard_gate_supported, evidence_ids, exclusion_rule_key, exclusion_quote, explanation), accepted_differentiators, accepted_differentiator_evidence, scope_supported, scope_kind, scope_quote, location_supported, location, coverage_complete, missing_critical_requirements.'''
+Return policy_steps with exactly one finding for each step 0, 1, 1.5, 2, 3, 4, 5, 6, 7 in that order. Every finding includes the exact policy_quote from the skill, requirement_ids, finding (clear, bridge or excluded), and a concise explanation. Explicit named exclusions in the skill MUST be checked against the actual employer, organization and central job duties, including exclusions stated in role responsibilities rather than minimum qualifications. A domain may not be called clear merely because generic program leadership transfers. If a central required duty falls under an explicit skill exclusion, mark excluded and cite its requirement IDs, then set those requirement matches to gap with hard_gate_supported=true, exclusion_rule_key=fitment_skill and the exact exclusion_quote. All excluded findings require Pass. Bridge findings justify Middle, except preferences or recency alone that the skill permits. Capability evidence must establish the precise required depth. Differentiator kinds must use only org_builder, people_leadership, ai_platform_delivery, privacy_governance, hardware_npi, ai_devtools or industry_bridge. Scope quotes must be copied exactly from job text. Do not issue Strong with no accepted relevant differentiator.
+Return the review JSON schema including policy_steps, skill_verdict (strong, middle or pass), decisive_reason, and gate_requirement_ids. gate_requirement_ids references independently validated central required exclusions for Pass, empty otherwise. Include requirements (id, category, match, critical, required, hard_gate_supported, evidence_ids, exclusion_rule_key, exclusion_quote, explanation), accepted_differentiators, accepted_differentiator_evidence, scope_supported, scope_kind, scope_quote, location_supported, location, coverage_complete, missing_critical_requirements.'''
 
 @dataclass
 class EvidenceVerdict:
@@ -168,6 +169,16 @@ def review_result(extraction,review,inventory,jd,job,comp_status,rules=None):
     if (rules or {}).get('_fitment_skill'):
         from src.fitment_skill import VERDICTS
         vote=review.get('skill_verdict')
+        checks=review.get('policy_steps') or []
+        if [check.get('step') for check in checks]!=['0','1','1.5','2','3','4','5','6','7']:
+            errors.append('Not all skill steps were assessed');complete=False
+        for check in checks:
+            if check.get('finding') not in {'clear','bridge','excluded'} or not quoted(check.get('policy_quote'),rules['_fitment_skill']):
+                errors.append('Unsupported skill step citation');complete=False
+            if check.get('finding')=='excluded' and vote!='pass':
+                errors.append('Skill exclusion contradicts final verdict');complete=False
+        if vote=='strong' and not direct_edges:
+            errors.append('Strong lacks a relevant supported differentiator');complete=False
         gate_ids=review.get('gate_requirement_ids') or []
         if vote not in VERDICTS or not isinstance(review.get('decisive_reason'),str) or not review['decisive_reason'].strip():
             errors.append('Missing skill verdict or rationale');complete=False
@@ -203,7 +214,7 @@ def review_result(extraction,review,inventory,jd,job,comp_status,rules=None):
     if (rules or {}).get('_fitment_skill'):
         public.update(fitment_skill_hash=rules['fitment_skill_hash'],verdict={'strong':'strong','medium':'middle','not':'pass'}.get(recommendation),assessment_status='pending' if recommendation=='review' else 'complete')
     private={'requirements':requirements,'inventory':inventory,'differentiators':sorted(direct_edges),'scope':scope,
-        'skill_verdict':review.get('skill_verdict'),'decisive_reason':review.get('decisive_reason'),'location':location,'extraction':extraction,'independent_review':review,'validation_errors':errors,'missing_critical_requirements':review.get('missing_critical_requirements',[]),'public':public}
+        'policy_steps':review.get('policy_steps',[]),'skill_verdict':review.get('skill_verdict'),'decisive_reason':review.get('decisive_reason'),'location':location,'extraction':extraction,'independent_review':review,'validation_errors':errors,'missing_critical_requirements':review.get('missing_critical_requirements',[]),'public':public}
     return EvidenceVerdict(recommendation,reason,step,public,private)
 
 def assess(profile,job,jd_text,*,client,model,rules):

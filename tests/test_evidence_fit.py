@@ -18,7 +18,7 @@ def proposal():
 SKILL_RULES={'_fitment_skill':'THREE VERDICTS ONLY Strong Middle Pass', 'fitment_skill_hash':'test-skill','comp_floor_usd':250000}
 
 def review():
- return {'skill_verdict':'strong','decisive_reason':'Comparable program delivery and relevant differentiated experience.','gate_requirement_ids':[],'requirements':[{'id':f'R{i+1}','match':'direct','critical':True,'required':True,'hard_gate_supported':False,'explanation':'Original evidence supports this match.'} for i in range(3)],'accepted_differentiators':['org_builder','ai_platform_delivery'],'scope_supported':True,'location_supported':True,'coverage_complete':True,'missing_critical_requirements':[]}
+ return {'policy_steps':[{'step':s,'finding':'clear','policy_quote':'THREE VERDICTS ONLY','requirement_ids':[],'explanation':'Supported.'} for s in ['0','1','1.5','2','3','4','5','6','7']], 'skill_verdict':'strong','decisive_reason':'Comparable program delivery and relevant differentiated experience.','gate_requirement_ids':[],'requirements':[{'id':f'R{i+1}','match':'direct','critical':True,'required':True,'hard_gate_supported':False,'explanation':'Original evidence supports this match.'} for i in range(3)],'accepted_differentiators':['org_builder','ai_platform_delivery'],'scope_supported':True,'location_supported':True,'coverage_complete':True,'missing_critical_requirements':[]}
 
 class EvidenceDecision(unittest.TestCase):
  def evaluate(self,p=None,r=None,facts=None,comp='meets_floor',rules=None):return review_result(p or proposal(),r or review(),facts or FACTS,JD,JOB,comp,rules)
