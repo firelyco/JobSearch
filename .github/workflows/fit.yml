@@ -171,7 +171,7 @@ jobs:
         env:
           FIT_PROVIDER_HEALTH: ${{ inputs.provider_health }}
           FIT_PUBLISH_BENCHMARK: ${{ inputs.publish_benchmark }}
-          FIT_JOB_KEYS: ${{ inputs.job_keys }}
+          FIT_JOB_KEYS: ${{ inputs.job_keys || vars.JOBSEARCH_PRIORITY_JOB_KEYS }}
           FIT_INVENTORY_ONLY: ${{ inputs.inventory_only }}
           FIT_BENCHMARK: ${{ inputs.benchmark }}
           FIT_BENCHMARK_REPLAY: ${{ inputs.benchmark_replay }}
