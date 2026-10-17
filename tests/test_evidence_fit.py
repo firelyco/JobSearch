@@ -1,4 +1,4 @@
-import copy,json,unittest
+import copy,json,unittest,os
 from datetime import datetime,timezone,timedelta
 from unittest.mock import patch
 from src import fit
@@ -152,7 +152,7 @@ class ProviderUnavailable(unittest.TestCase):
   from pathlib import Path
   with tempfile.TemporaryDirectory() as tmp:
    root=Path(tmp);(root/'profile.json').write_text('{}');(root/'rules.json').write_text(json.dumps({'fit_api_blocked':True,'calibration_pending':True,'fit_policy_version':'previous'}))
-   with patch.object(fit,'PROFILE_FILE',root/'profile.json'),patch.object(fit,'FIT_RULES_FILE',root/'rules.json'),patch.object(fit,'DOCS_DIR',root),patch.object(fit,'run') as scorer:
+   with patch.dict(os.environ,{'FITMENT_SKILL_TEXT':'THREE VERDICTS ONLY: Strong / Middle / Pass. Target annual USD base salary is $250,000'}),patch.object(fit,'PROFILE_FILE',root/'profile.json'),patch.object(fit,'FIT_RULES_FILE',root/'rules.json'),patch.object(fit,'DOCS_DIR',root),patch.object(fit,'run') as scorer:
     self.assertEqual(fit.main([]),0);scorer.assert_not_called()
    policy=json.loads((root/'fit_policy.json').read_text());self.assertTrue(policy['calibration_pending']);self.assertEqual(policy['provider_status'],'insufficient_credits')
 
