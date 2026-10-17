@@ -31,7 +31,9 @@ def replay_same_skill(prior,profile,job,jd,rules,model,fingerprint):
     from src.fit_scorer import salary_text
     comp=parse_salary(jd,job,rules['comp_floor_usd'])['status']
     verdict=review_result(seed['extraction'],review,seed['inventory'],salary_text(jd),job,comp,rules)
-    if verdict.recommendation=='review':return None
+    if verdict.recommendation=='review':
+        prior['_revalidation_errors']=verdict.private.get('validation_errors',[])
+        return None
     verdict.public['input_hash']=fingerprint
     verdict.private.update(job=seed['job'],job_text=salary_text(jd),input_hash=fingerprint,
         engine_version=ENGINE_VERSION,model=model,review_model=rules.get('evidence_review_model') or model,
@@ -57,7 +59,8 @@ def reusable_extraction(prior,profile,job,jd,rules,model,fingerprint):
     return {'pipeline_version':PIPELINE_VERSION,'input_hash':fingerprint,'inventory':inventory,
         'job':facts,'model':model,'review_model':rules.get('evidence_review_model') or model,
         'stage':'review','extraction':prior['extraction'],'metrics':[],
-        'extraction_reused_from':prior.get('input_hash')}
+        'extraction_reused_from':prior.get('input_hash'),
+        'repair_errors':(prior.get('_revalidation_errors') or prior.get('validation_errors',[])) if prior.get('public',{}).get('fitment_skill_hash')==rules.get('fitment_skill_hash') else []}
 
 
 def run(*,jobs,profile,existing,rules,max_jobs,rescore,fake_client,jd_text_for,stamp,model,on_scored,job_keys):
@@ -84,6 +87,12 @@ def run(*,jobs,profile,existing,rules,max_jobs,rescore,fake_client,jd_text_for,s
             verdict=None
             prior=load_private(job_key) if rules.get('_fitment_skill') else None
             if prior is not None:
+                if not prior.get('extraction') or not prior.get('independent_review'):
+                    previous=load_private('checkpoint:'+job_key)
+                    if previous and previous.get('input_hash')==prior.get('input_hash') and previous.get('inventory')==prior.get('inventory'):
+                        prior=dict(prior)
+                        if previous.get('extraction'):prior['extraction']=previous['extraction']
+                        if previous.get('review'):prior['independent_review']=previous['review']
                 verdict=replay_same_skill(prior,profile,job,jd,rules,model,fingerprint)
             if verdict is None:
                 client=llm_client.build_client(fake=fake_client) if fake_client else llm_client.build_client()

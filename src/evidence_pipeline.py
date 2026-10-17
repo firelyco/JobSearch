@@ -20,17 +20,18 @@ def object_schema(properties):
 STRING={'type':'string'}
 BOOL={'type':'boolean'}
 STRINGS={'type':'array','items':STRING}
+EVIDENCE_IDS={'type':'array','items':STRING,'maxItems':4}
 REQUIREMENT=object_schema({'id':STRING,'quote':STRING,'category':{'enum':sorted(core.CATEGORIES),'type':'string'},
     'critical':BOOL,'required':BOOL,'match':{'enum':sorted(core.MATCHES),'type':'string'},
-    'evidence_ids':STRINGS,'explanation':STRING,'hard_gate':BOOL,'exclusion_rule_key':STRING,'exclusion_quote':STRING})
-EDGE=object_schema({'kind':{'type':'string','enum':sorted(core.DIFFERENTIATORS|{'industry_bridge'})},'evidence_ids':STRINGS,'requirement_ids':STRINGS})
+    'evidence_ids':EVIDENCE_IDS,'explanation':STRING,'hard_gate':BOOL,'exclusion_rule_key':{'type':'string','enum':['','fitment_skill']},'exclusion_quote':STRING})
+EDGE=object_schema({'kind':{'type':'string','enum':sorted(core.DIFFERENTIATORS|{'industry_bridge'})},'evidence_ids':EVIDENCE_IDS,'requirement_ids':STRINGS})
 SCOPE=object_schema({'kind':STRING,'quote':STRING})
 LOCATION=object_schema({'status':STRING,'quote':STRING,'reason':STRING})
 EXTRACTION_SCHEMA=object_schema({'requirements':{'type':'array','items':REQUIREMENT},
     'differentiators':{'type':'array','items':EDGE},'scope':SCOPE,'location':LOCATION,'coverage_complete':BOOL})
 CHECK=object_schema({'id':STRING,'category':{'enum':sorted(core.CATEGORIES),'type':'string'},
     'match':{'enum':sorted(core.MATCHES),'type':'string'},'critical':BOOL,'required':BOOL,
-    'hard_gate_supported':BOOL,'evidence_ids':STRINGS,'exclusion_rule_key':STRING,'exclusion_quote':STRING,'explanation':STRING})
+    'hard_gate_supported':BOOL,'evidence_ids':EVIDENCE_IDS,'exclusion_rule_key':{'type':'string','enum':['','fitment_skill']},'exclusion_quote':STRING,'explanation':STRING})
 POLICY_STEP=object_schema({'step':{'type':'string','enum':['0','1','1.5','2','3','4','5','6','7']},'finding':{'type':'string','enum':['clear','bridge','excluded']},'policy_quote':STRING,'requirement_ids':STRINGS,'explanation':STRING})
 REVIEW_SCHEMA=object_schema({'coverage_complete':BOOL,'missing_critical_requirements':STRINGS,
     'requirements':{'type':'array','items':CHECK},'accepted_differentiators':STRINGS,
@@ -142,11 +143,11 @@ def assess(profile,job,jd_text,*,client,model,rules,resume=None,checkpoint=None)
             while state['stage']!='complete':
                 phase=state['stage']
                 if phase=='extraction':
-                    extraction=request(phase,core.EXTRACT_PROMPT,{'job':job_facts,'job_text':jd},EXTRACTION_SCHEMA,8000)
+                    extraction=request(phase,core.EXTRACT_PROMPT,{'job':job_facts,'job_text':jd},EXTRACTION_SCHEMA,12000)
                     validate_proposal(extraction)
                     state.update(extraction=extraction,stage='review');save()
                 elif phase in {'review','repair_review'}:
-                    review=request(phase,core.REVIEW_PROMPT,{'job_text':jd,'job':job_facts,'proposal':extraction,'validation_errors_to_correct':state.get('repair_errors',[]),'explicit_skill_exclusion_matches':__import__('src.fitment_skill',fromlist=['named_exclusions']).named_exclusions(rules['_fitment_skill'],job_facts,jd)},REVIEW_SCHEMA,6000)
+                    review=request(phase,core.REVIEW_PROMPT,{'job_text':jd,'job':job_facts,'proposal':extraction,'validation_errors_to_correct':state.get('repair_errors',[]),'explicit_skill_exclusion_matches':__import__('src.fitment_skill',fromlist=['named_exclusions']).named_exclusions(rules['_fitment_skill'],job_facts,jd)},REVIEW_SCHEMA,10000)
                     if not isinstance(review.get('requirements'),list) or type(review.get('coverage_complete')) is not bool:
                         raise ValueError('Invalid review structure')
                     state.update(review=review,stage='decision');save()
@@ -170,7 +171,7 @@ def assess(profile,job,jd_text,*,client,model,rules,resume=None,checkpoint=None)
                         'repair_instructions':'Return the extraction JSON shape, but ONLY replacement rows for broken IDs and new rows covering the exact omitted requirements. Keep all other rows out of requirements; they are retained by code. Preserve broken row IDs; give new requirements unique IDs. Copy the original scope and location unless correcting them.',
                         'broken_requirements':[r for r in extraction['requirements'] if r['id'] in broken],
                         'omitted_requirements':missing,'existing_ids':[r['id'] for r in extraction['requirements']],
-                        'scope':extraction['scope'],'location':extraction['location']},EXTRACTION_SCHEMA,8000)
+                        'scope':extraction['scope'],'location':extraction['location']},EXTRACTION_SCHEMA,12000)
                     extraction=merge_repair(extraction,delta,set(broken),missing)
                     state.update(extraction=extraction,repair_attempted=True,stage='repair_review');save()
                 else:raise ValueError('Invalid checkpoint stage')

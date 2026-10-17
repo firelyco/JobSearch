@@ -108,3 +108,45 @@ class SameSkillReviewReuse(unittest.TestCase):
   audit=self.audit();audit['independent_review']['policy_steps']=[];self.assertIsNone(self.replay(audit))
  def test_changed_model_cannot_replay(self):
   audit=self.audit();audit['review_model']='different';self.assertIsNone(self.replay(audit))
+
+class CompletedMiddleWithoutEdge(unittest.TestCase):
+ def test_valid_review_with_no_supported_edge_is_middle_not_pending(self):
+  r=review();r['accepted_differentiators']=[];r['accepted_differentiator_evidence']=[]
+  result=review_result(proposal(),r,FACTS,JD,JOB,'unknown',SKILL_RULES)
+  self.assertEqual(result.public['verdict'],'middle');self.assertTrue(result.public['validated'])
+  self.assertEqual(result.private['independent_review']['skill_verdict'],'strong')
+ def test_stakeholder_influence_is_not_a_people_management_gate(self):
+  p=proposal();p['requirements'][0]['category']='people'
+  r=review();r['requirements'][0].update(category='people',match='transferable')
+  result=review_result(p,r,FACTS,JD,JOB,'unknown',SKILL_RULES)
+  self.assertEqual(result.public['verdict'],'strong')
+ def test_supported_bridge_is_decided_by_skill_review_not_legacy_domain_cap(self):
+  r=review();r['requirements'][1]['match']='transferable'
+  result=review_result(proposal(),r,FACTS,JD,JOB,'unknown',SKILL_RULES)
+  self.assertEqual(result.public['verdict'],'strong')
+ def test_unknown_central_capability_still_cannot_be_strong(self):
+  r=review();r['requirements'][1]['match']='unknown'
+  result=review_result(proposal(),r,FACTS,JD,JOB,'unknown',SKILL_RULES)
+  self.assertEqual(result.public['verdict'],'middle')
+
+class GateProofFromSkill(unittest.TestCase):
+ def test_mandatory_independent_architecture_respects_file_guardrail(self):
+  line='- **Architecture ownership** (engages on trade-offs, does not own design).'
+  rules={**SKILL_RULES,'_fitment_skill':SKILL_RULES['_fitment_skill']+'\n'+line}
+  p=proposal();q='Experience in architectural design or system design independent of an architect.'
+  p['requirements'][0]['quote']=q
+  result=review_result(p,review(),FACTS,JD+' '+q,JOB,'unknown',rules)
+  self.assertEqual(result.public['verdict'],'pass')
+ def test_architecture_discussion_is_not_design_ownership(self):
+  line='- **Architecture ownership** (engages on trade-offs, does not own design).'
+  rules={**SKILL_RULES,'_fitment_skill':SKILL_RULES['_fitment_skill']+'\n'+line}
+  p=proposal();q='Facilitate architecture discussions with engineers.';p['requirements'][0]['quote']=q
+  result=review_result(p,review(),FACTS,JD+' '+q,JOB,'unknown',rules)
+  self.assertEqual(result.public['verdict'],'strong')
+ def test_cited_step_zero_exclusion_does_not_need_duplicate_gate_boolean(self):
+  line='Reject non-TPM disciplines.';rules={**SKILL_RULES,'_fitment_skill':SKILL_RULES['_fitment_skill']+' '+line}
+  p=proposal();q='Own the R&D finance budget.';p['requirements'][0]['quote']=q
+  r=review();r['policy_steps'][0].update(finding='excluded',policy_quote=line,requirement_ids=['R1'])
+  r.update(skill_verdict='pass',gate_requirement_ids=['R1'])
+  result=review_result(p,r,FACTS,JD+' '+q,JOB,'unknown',rules)
+  self.assertEqual(result.public['verdict'],'pass')
