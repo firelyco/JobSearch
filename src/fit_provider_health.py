@@ -8,11 +8,12 @@ def main(argv=()):
     model=rules.get('evidence_review_model') or fit._fit_model()
     started=time.monotonic()
     try:
-        schema={'type':'object','properties':{'ok':{'type':'boolean'}},'required':['ok'],'additionalProperties':False} if args.schema_probe else None
+        schema={'type':'object','properties':{'ok':{'type':'boolean'}},'required':['ok'],'additionalProperties':False} if args.schema_probe or (os.environ.get('LLM_PROVIDER')=='nvidia' and os.environ.get('NVIDIA_FIT_JSON_SCHEMA')=='true') else None
         response=llm_client.call(llm_client.build_client(),model=model,system='Reply with JSON containing ok=true.' if schema else 'Reply OK.',user='Check API connectivity.',max_tokens=256,temperature=0.0,response_schema=schema)
         if schema and json.loads(response.text)!={'ok':True}:raise RuntimeError('Schema probe did not return the required object')
+        if response.finish_reason=='length':raise RuntimeError('Provider health response was truncated')
         if not response.text.strip():raise RuntimeError('Provider returned no usable text')
-        print(json.dumps({'model':model,'status':'ok','seconds':round(time.monotonic()-started,2),'input_tokens':response.input_tokens,'output_tokens':response.output_tokens,'reasoning_tokens':response.reasoning_tokens,'finish_reason':response.finish_reason,'schema_probe':args.schema_probe}))
+        print(json.dumps({'model':model,'status':'ok','seconds':round(time.monotonic()-started,2),'input_tokens':response.input_tokens,'output_tokens':response.output_tokens,'reasoning_tokens':response.reasoning_tokens,'finish_reason':response.finish_reason,'schema_probe':bool(schema)}))
         return 0
     except Exception as error:
         message=str(error)
