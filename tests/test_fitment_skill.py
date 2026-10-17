@@ -43,3 +43,18 @@ class SkillPolicy(unittest.TestCase):
   r=review();r['decisive_reason']='Private career evidence belongs only in authenticated storage.'
   result=review_result(proposal(),r,FACTS,JD,JOB,'unknown',SKILL_RULES)
   self.assertNotIn('Private career evidence',str(result.public));self.assertNotIn('_fitment_skill',str(result.public))
+
+class ExplicitSkillChecks(unittest.TestCase):
+ def test_named_exclusions_are_derived_from_file_not_a_company_list(self):
+  text='- **Specialized domain AS THE JOB ITSELF:** controls (Example Campus/Controls).'
+  matches=fitment_skill.named_exclusions(text,{'company':'Example'},'Campus Controls program leadership')
+  self.assertEqual(matches[0]['example'],'Example Campus/Controls')
+  self.assertFalse(fitment_skill.named_exclusions(text,{'company':'Example'},'Consumer software platform'))
+ def test_a_named_exclusion_cannot_be_silently_called_strong(self):
+  rules={**SKILL_RULES,'_fitment_skill':SKILL_RULES['_fitment_skill']+'\n- **Specialized domain AS THE JOB ITSELF:** controls (example platform).'}
+  result=review_result(proposal(),review(),FACTS,JD,JOB,'unknown',rules)
+  self.assertEqual(result.recommendation,'review')
+ def test_missing_skill_steps_are_processing_failure_not_middle(self):
+  r=review();r['policy_steps']=r['policy_steps'][:-1]
+  result=review_result(proposal(),r,FACTS,JD,JOB,'unknown',SKILL_RULES)
+  self.assertEqual(result.recommendation,'review');self.assertIsNone(result.public['verdict'])
