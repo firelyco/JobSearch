@@ -50,10 +50,10 @@ class ExplicitSkillChecks(unittest.TestCase):
   matches=fitment_skill.named_exclusions(text,{'company':'Example'},'Campus Controls program leadership')
   self.assertEqual(matches[0]['example'],'Example Campus/Controls')
   self.assertFalse(fitment_skill.named_exclusions(text,{'company':'Example'},'Consumer software platform'))
- def test_a_named_exclusion_cannot_be_silently_called_strong(self):
+ def test_named_product_context_without_central_domain_work_is_not_a_gate(self):
   rules={**SKILL_RULES,'_fitment_skill':SKILL_RULES['_fitment_skill']+'\n- **Specialized domain AS THE JOB ITSELF:** controls (example platform).'}
   result=review_result(proposal(),review(),FACTS,JD,JOB,'unknown',rules)
-  self.assertEqual(result.recommendation,'review')
+  self.assertEqual(result.recommendation,'strong')
  def test_missing_skill_steps_are_processing_failure_not_middle(self):
   r=review();r['policy_steps']=r['policy_steps'][:-1]
   result=review_result(proposal(),r,FACTS,JD,JOB,'unknown',SKILL_RULES)

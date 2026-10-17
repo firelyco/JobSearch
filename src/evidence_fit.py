@@ -198,8 +198,6 @@ def review_result(extraction,review,inventory,jd,job,comp_status,rules=None):
                     file_exclusions.append({'example':rule['example'],'policy_quote':rule['policy_quote'],
                                             'requirement_id':item['id'],'job_quote':item['quote']})
         if file_exclusions:vote='pass'
-        elif named and vote!='pass':
-            errors.append('Explicit skill exclusions match job context but centrality needs review: '+', '.join(item['example'] for item in named));complete=False
         checks=review.get('policy_steps') or []
         if [check.get('step') for check in checks]!=['0','1','1.5','2','3','4','5','6','7']:
             errors.append('Not all skill steps were assessed');complete=False

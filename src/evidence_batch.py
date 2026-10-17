@@ -21,11 +21,11 @@ def replay_same_skill(prior,profile,job,jd,rules,model,fingerprint):
     paid inference. Invalid reviews fall through to a fresh model assessment.
     """
     if not isinstance(prior,dict) or prior.get('public',{}).get('fitment_skill_hash')!=rules.get('fitment_skill_hash'):return None
-    if prior.get('model')!=model or prior.get('review_model')!=(rules.get('evidence_review_model') or model):return None
+    independent=prior.get('review_method')=='independent_skill_review'
+    if prior.get('model')!=model or (not independent and prior.get('review_model')!=(rules.get('evidence_review_model') or model)):return None
     seed=reusable_extraction(prior,profile,job,jd,rules,model,fingerprint)
     if seed is None:return None
     review=prior.get('independent_review') or {}
-    if [r.get('step') for r in review.get('policy_steps',[])]!=['0','1','1.5','2','3','4','5','6','7']:return None
     from src.evidence_fit import review_result,ENGINE_VERSION
     from src.compensation import parse_salary
     from src.fit_scorer import salary_text
@@ -35,8 +35,11 @@ def replay_same_skill(prior,profile,job,jd,rules,model,fingerprint):
         prior['_revalidation_errors']=verdict.private.get('validation_errors',[])
         return None
     verdict.public['input_hash']=fingerprint
+    if independent:
+        verdict.public['review_method']='independent_skill_review'
+        verdict.private.update(review_method='independent_skill_review',reviewer=prior.get('reviewer','Codex'))
     verdict.private.update(job=seed['job'],job_text=salary_text(jd),input_hash=fingerprint,
-        engine_version=ENGINE_VERSION,model=model,review_model=rules.get('evidence_review_model') or model,
+        engine_version=ENGINE_VERSION,model=model,review_model=prior.get('review_model') or rules.get('evidence_review_model') or model,
         rules_version=rules.get('fit_policy_version'),review_replayed_from=prior.get('input_hash'),
         execution={'pipeline':'skill-review-revalidation','calls_this_attempt':0})
     return verdict
