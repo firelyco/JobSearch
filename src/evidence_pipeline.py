@@ -74,9 +74,15 @@ def merge_repair(original,delta,allowed_ids,missing_quotes):
     normalized=lambda value:' '.join(value.casefold().split())
     for row in delta['requirements']:
         rid=row['id']
-        if rid in rows:
-            if rid not in allowed_ids:raise ValueError('Repair changed an intact requirement')
-        elif not any(normalized(q) in normalized(row['quote']) or normalized(row['quote']) in normalized(q) for q in missing_quotes):
+        is_missing=any(normalized(q) in normalized(row['quote']) or normalized(row['quote']) in normalized(q) for q in missing_quotes)
+        if rid in rows and rid not in allowed_ids:
+            if normalized(row['quote'])==normalized(rows[rid]['quote']):
+                continue  # Ignore redundant intact rows; preserve the original.
+            if not is_missing:raise ValueError('Repair changed an intact requirement')
+            index=1
+            while 'R'+str(index) in rows:index+=1
+            rid='R'+str(index);row={**row,'id':rid}
+        elif rid not in rows and not is_missing:
             raise ValueError('Repair added an unrequested requirement')
         rows[rid]=row
     result['requirements']=list(rows.values())

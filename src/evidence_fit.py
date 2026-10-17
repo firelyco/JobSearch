@@ -177,7 +177,7 @@ def review_result(extraction,review,inventory,jd,job,comp_status,rules=None):
             return isinstance(quote,str) and len(quote.strip())>=8 and clean(quote) in clean(source)
         from src.fitment_skill import named_exclusions
         named=named_exclusions(rules['_fitment_skill'],job,jd)
-        file_exclusions=[{'example':'Declared skill guardrail','policy_quote':g.get('exclusion_quote',''),'requirement_id':g['id'],'job_quote':g['quote']} for g in gates if g.get('exclusion_rule_key')=='fitment_skill']
+        file_exclusions=[{'example':'Declared skill guardrail','policy_quote':g.get('exclusion_quote',''),'requirement_id':g['id'],'job_quote':g['quote']} for g in gates if g.get('exclusion_rule_key')=='fitment_skill' and policy_quoted(g.get('exclusion_quote'),rules['_fitment_skill'])]
         checks=review.get('policy_steps') or []
         for check in checks:
             if check.get('step') not in {'0','1','1.5','2'} or check.get('finding')!='excluded' or not policy_quoted(check.get('policy_quote'),rules['_fitment_skill']):continue
@@ -215,6 +215,12 @@ def review_result(extraction,review,inventory,jd,job,comp_status,rules=None):
             errors.append('Missing skill verdict or rationale');complete=False
         if vote=='pass' and (not gate_ids or not all(rid in {g['id'] for g in gates} for rid in gate_ids)):
             errors.append('Pass lacks a validated central skill exclusion');complete=False
+        stopped_after_exclusion=bool(file_exclusions)
+        non_decisive_notes=list(errors) if stopped_after_exclusion else []
+        if stopped_after_exclusion:
+            # The skill explicitly says one proved central exclusion ends the
+            # assessment. Unneeded later steps cannot invalidate that proof.
+            errors=[];complete=True
         if not complete:career,tier,step='review','needs_review','evidence'
         elif gates:career,tier,step='not','pass','domain'
         else:
@@ -245,7 +251,7 @@ def review_result(extraction,review,inventory,jd,job,comp_status,rules=None):
     if (rules or {}).get('_fitment_skill'):
         public.update(fitment_skill_hash=rules['fitment_skill_hash'],verdict={'strong':'strong','medium':'middle','not':'pass'}.get(recommendation),assessment_status='pending' if recommendation=='review' else 'complete')
     private={'requirements':requirements,'inventory':inventory,'differentiators':sorted(direct_edges),'scope':scope,
-        'explicit_skill_exclusions':file_exclusions if (rules or {}).get('_fitment_skill') else [],'policy_steps':review.get('policy_steps',[]),'skill_verdict':vote if (rules or {}).get('_fitment_skill') else review.get('skill_verdict'),'decisive_reason':('Explicit skill exclusion matches central required work: '+', '.join(sorted({item['example'] for item in file_exclusions}))) if (rules or {}).get('_fitment_skill') and file_exclusions else ('No relevant documented differentiator is established for this role.' if (rules or {}).get('_fitment_skill') and no_supported_edge else review.get('decisive_reason')),'location':location,'extraction':extraction,'independent_review':review,'validation_errors':errors,'missing_critical_requirements':review.get('missing_critical_requirements',[]),'public':public}
+        'stopped_after_skill_exclusion':stopped_after_exclusion if (rules or {}).get('_fitment_skill') else False,'non_decisive_validation_notes':non_decisive_notes if (rules or {}).get('_fitment_skill') else [],'explicit_skill_exclusions':file_exclusions if (rules or {}).get('_fitment_skill') else [],'policy_steps':review.get('policy_steps',[]),'skill_verdict':vote if (rules or {}).get('_fitment_skill') else review.get('skill_verdict'),'decisive_reason':('Explicit skill exclusion matches central required work: '+', '.join(sorted({item['example'] for item in file_exclusions}))) if (rules or {}).get('_fitment_skill') and file_exclusions else ('No relevant documented differentiator is established for this role.' if (rules or {}).get('_fitment_skill') and no_supported_edge else review.get('decisive_reason')),'location':location,'extraction':extraction,'independent_review':review,'validation_errors':errors,'missing_critical_requirements':review.get('missing_critical_requirements',[]),'public':public}
     return EvidenceVerdict(recommendation,reason,step,public,private)
 
 def assess(profile,job,jd_text,*,client,model,rules):

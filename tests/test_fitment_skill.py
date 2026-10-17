@@ -150,3 +150,21 @@ class GateProofFromSkill(unittest.TestCase):
   r.update(skill_verdict='pass',gate_requirement_ids=['R1'])
   result=review_result(p,r,FACTS,JD+' '+q,JOB,'unknown',rules)
   self.assertEqual(result.public['verdict'],'pass')
+
+class EarlySkillPass(unittest.TestCase):
+ def setup_gate(self):
+  line='Reject non-TPM disciplines.';rules={**SKILL_RULES,'_fitment_skill':SKILL_RULES['_fitment_skill']+' '+line}
+  p=proposal();q='Own the R&D finance budget.';p['requirements'][0]['quote']=q
+  r=review();r.update(coverage_complete=False,skill_verdict='pass',gate_requirement_ids=['R1'])
+  r['policy_steps']=[{'step':'0','finding':'excluded','policy_quote':line,'requirement_ids':['R1'],'explanation':'Finance ownership is the central discipline.'}]
+  return p,r,rules,JD+' '+q
+ def test_proved_gate_does_not_require_unnecessary_later_steps(self):
+  p,r,rules,jd=self.setup_gate()
+  result=review_result(p,r,FACTS,jd,JOB,'unknown',rules)
+  self.assertEqual(result.public['verdict'],'pass');self.assertTrue(result.public['validated'])
+  self.assertTrue(result.private['stopped_after_skill_exclusion'])
+  self.assertTrue(result.private['non_decisive_validation_notes'])
+ def test_invented_decisive_quote_cannot_short_circuit(self):
+  p,r,rules,jd=self.setup_gate();p['requirements'][0]['quote']='Invented financial job requirement.'
+  result=review_result(p,r,FACTS,jd,JOB,'unknown',rules)
+  self.assertEqual(result.recommendation,'review')

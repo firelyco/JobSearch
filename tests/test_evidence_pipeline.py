@@ -88,4 +88,16 @@ class ResumePipeline(unittest.TestCase):
   public=json.dumps(result.public)
   self.assertNotIn(FACTS[0]['text'],public);self.assertNotIn('metrics',public)
 
+
+ def test_redundant_intact_rows_do_not_overwrite_originals(self):
+  delta=proposal();delta['requirements'][1]['match']='unknown'
+  result=p.merge_repair(proposal(),delta,{'R1'},[])
+  self.assertEqual(result['requirements'][1],proposal()['requirements'][1])
+ def test_new_missing_quote_with_colliding_id_gets_a_new_id(self):
+  delta=proposal();delta['requirements']=[{**delta['requirements'][0],'quote':'A genuinely omitted mandatory requirement.'}]
+  result=p.merge_repair(proposal(),delta,set(),['A genuinely omitted mandatory requirement.'])
+  self.assertEqual(len(result['requirements']),4)
+  self.assertEqual(result['requirements'][0],proposal()['requirements'][0])
+  self.assertEqual(result['requirements'][-1]['id'],'R4')
+
 if __name__=='__main__':unittest.main()
