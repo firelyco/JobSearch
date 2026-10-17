@@ -49,6 +49,17 @@ def run(*,jobs,profile,existing,rules,max_jobs,rescore,fake_client,jd_text_for,s
                     checkpoint=checkpoint)
             else:
                 verdict=fit_scorer.score_fit(profile,job,jd,client=client,model=model,rules=rules)
+            if verdict.public.get('career_fit')=='strong' and verdict.public.get('validated') is True:
+                # Verify new shortlist entries before publication, independently of AI.
+                from src.refresh_salaries import retrieve,apply_check
+                check=retrieve(job)
+                updated=apply_check({**verdict.public,'recommendation':verdict.recommendation,
+                    'reason':verdict.reason,'step':verdict.step},check)
+                verdict.recommendation=updated.pop('recommendation')
+                verdict.reason=updated.pop('reason');verdict.step=updated.pop('step')
+                verdict.public.update(updated)
+                verdict.private['public']=dict(verdict.public)
+                verdict.private['salary_check']=check
             storage_started=time.monotonic()
             save_private(verdict.private,job_key=job_key)
             log.info('Evidence final storage seconds=%.3f',time.monotonic()-storage_started)

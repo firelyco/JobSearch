@@ -46,3 +46,15 @@ class ResumablePublicationSafety(unittest.TestCase):
         with patch.dict('os.environ',{'FIT_RESUME_PIPELINE':'true'}),patch('src.evidence_batch.load_private',side_effect=RuntimeError('storage unavailable')),patch('src.evidence_pipeline.assess') as assess:
             self.assertNotIn(KEY,self.execute())
             assess.assert_not_called()
+
+class NewShortlistSalarySafety(unittest.TestCase):
+    execute=PrivatePublicationSafety.execute
+    def test_published_low_base_is_excluded_before_new_strong_is_published(self):
+        verdict=EvidenceVerdict('strong','Reviewed','none',{'career_fit':'strong','validated':True,'location_status':'eligible','comp_status':'unknown'},{'inventory':[]})
+        check={'status':'below_floor','verification':'verified','bands':[{'min':154000,'max':180000}]}
+        with patch('src.evidence_batch.fit_scorer.score_fit',return_value=verdict),patch('src.refresh_salaries.retrieve',return_value=check),patch('src.evidence_batch.save_private') as save:
+            scores=self.execute()
+        self.assertEqual(scores[KEY]['recommendation'],'medium')
+        self.assertEqual(scores[KEY]['career_fit'],'strong')
+        self.assertEqual(scores[KEY]['comp_status'],'below_floor')
+        self.assertEqual(save.call_args.args[0]['public']['comp_status'],'below_floor')
