@@ -201,12 +201,12 @@ def assess(profile,job,jd_text,*,client,model,rules):
         user=canonical({'job':{k:job.get(k) for k in ('title','company','location')},'job_text':jd})
         phase='extraction';raw=''
         try:
-            first=llm_client.call(client,model=model,system=EXTRACT_PROMPT+'\nPRIVATE EVIDENCE AND RULES:\n'+evidence_context,user=user,max_tokens=8000,temperature=0.0,cache_system=True)
+            first=llm_client.call(client,model=model,system=EXTRACT_PROMPT+'\nPRIVATE EVIDENCE AND RULES:\n'+evidence_context,user=user,max_tokens=8000,temperature=0.0,cache_system=True,structured_json=True)
             raw=first.text
             extraction=json.loads(raw[raw.find('{'):raw.rfind('}')+1])
             if not isinstance(extraction,dict):raise ValueError('Invalid extraction object')
             phase='review'
-            second=llm_client.call(client,model=rules.get('evidence_review_model') or model,system=REVIEW_PROMPT+'\nPRIVATE EVIDENCE AND RULES:\n'+evidence_context,user=canonical({'job_text':jd,'job':{k:job.get(k) for k in ('title','company','location')},'proposal':extraction}),max_tokens=6000,temperature=0.0,cache_system=True)
+            second=llm_client.call(client,model=rules.get('evidence_review_model') or model,system=REVIEW_PROMPT+'\nPRIVATE EVIDENCE AND RULES:\n'+evidence_context,user=canonical({'job_text':jd,'job':{k:job.get(k) for k in ('title','company','location')},'proposal':extraction}),max_tokens=6000,temperature=0.0,cache_system=True,structured_json=True)
             raw=second.text
             review=json.loads(raw[raw.find('{'):raw.rfind('}')+1])
             if not isinstance(review,dict):raise ValueError('Invalid review object')
@@ -217,10 +217,10 @@ def assess(profile,job,jd_text,*,client,model,rules):
                 repair_user=canonical({'job':{k:job.get(k) for k in ('title','company','location')},'job_text':jd,
                     'repair_instructions':'Re-extract the complete job. Include the omitted requirements and fix quotations. Do not invent candidate evidence or weaken requirements to improve the verdict.',
                     'omitted_requirements':result.private['missing_critical_requirements'],'validation_errors':result.private['validation_errors']})
-                first=llm_client.call(client,model=model,system=EXTRACT_PROMPT+'\nPRIVATE EVIDENCE AND RULES:\n'+evidence_context,user=repair_user,max_tokens=8000,temperature=0.0,cache_system=True)
+                first=llm_client.call(client,model=model,system=EXTRACT_PROMPT+'\nPRIVATE EVIDENCE AND RULES:\n'+evidence_context,user=repair_user,max_tokens=8000,temperature=0.0,cache_system=True,structured_json=True)
                 raw=first.text;extraction=json.loads(raw[raw.find('{'):raw.rfind('}')+1])
                 phase='repair_review'
-                second=llm_client.call(client,model=rules.get('evidence_review_model') or model,system=REVIEW_PROMPT+'\nPRIVATE EVIDENCE AND RULES:\n'+evidence_context,user=canonical({'job_text':jd,'job':{k:job.get(k) for k in ('title','company','location')},'proposal':extraction}),max_tokens=6000,temperature=0.0,cache_system=True)
+                second=llm_client.call(client,model=rules.get('evidence_review_model') or model,system=REVIEW_PROMPT+'\nPRIVATE EVIDENCE AND RULES:\n'+evidence_context,user=canonical({'job_text':jd,'job':{k:job.get(k) for k in ('title','company','location')},'proposal':extraction}),max_tokens=6000,temperature=0.0,cache_system=True,structured_json=True)
                 raw=second.text;review=json.loads(raw[raw.find('{'):raw.rfind('}')+1])
                 result=review_result(extraction,review,inventory,jd,job,comp,rules)
                 result.private['repair_attempted']=True

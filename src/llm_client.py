@@ -94,6 +94,7 @@ def call(
     max_tokens: int = 2000,
     temperature: float = 0.4,
     cache_system: bool = False,
+    structured_json: bool = False,
 ) -> LLMResponse:
     """One-shot completion. Returns text + token usage.
 
@@ -105,7 +106,7 @@ def call(
         prompt for ephemeral prompt caching.
     """
     if hasattr(client, "chat"):
-        return _call_openai(client, model, system, user, max_tokens, temperature)
+        return _call_openai(client, model, system, user, max_tokens, temperature, structured_json)
     return _call_anthropic(client, model, system, user, max_tokens, temperature, cache_system)
 
 
@@ -160,12 +161,14 @@ def _call_anthropic(client, model, system, user, max_tokens, temperature, cache_
     )
 
 
-def _call_openai(client, model, system, user, max_tokens, temperature) -> LLMResponse:
+def _call_openai(client, model, system, user, max_tokens, temperature, structured_json=False) -> LLMResponse:
     # Structured extraction/review does not need a generated reasoning trace.
     # This flag is supported by these documented Nemotron APIs.
     options = {}
     if model in {"nvidia/nemotron-3.5-lightning-30b-a3b", "nvidia/nemotron-3-super-120b-a12b"}:
         options["extra_body"] = {"chat_template_kwargs": {"enable_thinking": False}}
+    if structured_json:
+        options["response_format"] = {"type": "json_object"}
     resp = client.chat.completions.create(
         **options,
         model=model,

@@ -91,6 +91,13 @@ class TestProviderDispatch(unittest.TestCase):
         llm_client.call(client, model="nvidia/nemotron-3-super-120b-a12b", system="s", user="u")
         self.assertFalse(client.calls[0]["extra_body"]["chat_template_kwargs"]["enable_thinking"])
 
+    def test_json_mode_is_explicit_for_structured_calls(self):
+        client = FakeOpenAIClient(['{"ok": true}', 'OK'])
+        llm_client.call(client, model="m", system="Return JSON", user="u", structured_json=True)
+        self.assertEqual(client.calls[0]["response_format"], {"type": "json_object"})
+        llm_client.call(client, model="m", system="Reply OK", user="u")
+        self.assertNotIn("response_format", client.calls[1])
+
     def test_openai_ignores_cache_system_flag(self):
         # cache_system is Anthropic-only; OpenAI path must not choke on it
         client = FakeOpenAIClient(["ok"])
