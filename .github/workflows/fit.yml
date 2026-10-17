@@ -56,7 +56,7 @@ on:
 
 # Serialize fit runs; never run two at once (they both write fit_scores.json).
 concurrency:
-  group: ${{ inputs.benchmark && 'fit-benchmark' || 'fit' }}
+  group: ${{ inputs.provider_health && 'fit-provider-health' || inputs.validate_only && 'fit-validation' || inputs.benchmark && 'fit-benchmark' || 'fit' }}
   cancel-in-progress: false
 
 permissions:
