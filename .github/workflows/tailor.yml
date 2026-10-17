@@ -33,7 +33,8 @@ jobs:
     env:
       JOB_KEY: ${{ github.event.client_payload.job_key || inputs.job_key }}
       NO_COVER_LETTER: ${{ github.event.client_payload.no_cover_letter || inputs.no_cover_letter || 'false' }}
-      LLM_PROVIDER: anthropic
+      LLM_PROVIDER: ${{ vars.JOBSEARCH_LLM_PROVIDER || 'anthropic' }}
+      NVIDIA_MODEL: ${{ vars.JOBSEARCH_NVIDIA_MODEL || 'deepseek-ai/deepseek-v4.1-flash' }}
       NVIDIA_API_KEY: ${{ secrets.NVIDIA_API_KEY }}
       ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
     steps:
@@ -93,6 +94,20 @@ jobs:
             echo "::error::config/profile.json is missing. Author it from profile.json.example first."
             exit 1
           fi
+
+      - name: Configure NVIDIA writing models
+        if: env.LLM_PROVIDER == 'nvidia'
+        run: |
+          python - <<'PY'
+          import os
+          from pathlib import Path
+          import yaml
+          path = Path('config/tailor_config.yml')
+          config = yaml.safe_load(path.read_text())
+          for task in ('tailor', 'verify', 'cover_letter', 'fit'):
+              config['models'][task] = os.environ['NVIDIA_MODEL']
+          path.write_text(yaml.safe_dump(config))
+          PY
 
       - name: Run tailor
         id: tailor

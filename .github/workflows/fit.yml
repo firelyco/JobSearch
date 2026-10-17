@@ -6,6 +6,15 @@ on:
     types: [completed]
   workflow_dispatch:
     inputs:
+      provider:
+        description: "Optional provider override for validation"
+        type: choice
+        options: [default, nvidia, anthropic]
+        default: default
+      validate_only:
+        description: "Assess selected jobs without publishing dashboard changes"
+        type: boolean
+        default: false
       provider_health:
         description: "Check API availability without sending career evidence"
         type: boolean
@@ -61,7 +70,8 @@ jobs:
     if: ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' }}
     env:
       HISTORY_SCORER_TOKEN: ${{ secrets.HISTORY_SCORER_TOKEN }}
-      LLM_PROVIDER: anthropic
+      LLM_PROVIDER: ${{ (inputs.provider != 'default' && inputs.provider) || vars.JOBSEARCH_LLM_PROVIDER || 'anthropic' }}
+      NVIDIA_MODEL: ${{ vars.JOBSEARCH_NVIDIA_MODEL || 'deepseek-ai/deepseek-v4.1-flash' }}
       NVIDIA_API_KEY: ${{ secrets.NVIDIA_API_KEY }}
       ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
     steps:
@@ -121,6 +131,30 @@ jobs:
         env:
           FIT_RULES_JSON: ${{ secrets.FIT_RULES_JSON }}
 
+      - name: Configure NVIDIA assessment models
+        if: env.LLM_PROVIDER == 'nvidia'
+        run: |
+          python - <<'PY'
+          import json, os
+          from pathlib import Path
+          import yaml
+          model = os.environ['NVIDIA_MODEL']
+          path = Path('config/tailor_config.yml')
+          config = yaml.safe_load(path.read_text())
+          config['models']['fit'] = model
+          path.write_text(yaml.safe_dump(config))
+          path = Path('config/fit_rules.json')
+          rules = json.loads(path.read_text()) if path.exists() else {}
+          rules['evidence_review_model'] = model
+          rules.pop('fit_api_blocked', None)
+          path.write_text(json.dumps(rules))
+          print('Assessment extraction and review provider: NVIDIA; model:', model)
+          PY
+
+      - name: Check provider before scoring
+        if: inputs.provider_health != true && inputs.inventory_only != true && inputs.publish_benchmark != true
+        run: python -m src.fit_provider_health
+
       - name: Score fit for new jobs
         env:
           FIT_PROVIDER_HEALTH: ${{ inputs.provider_health }}
@@ -157,10 +191,29 @@ jobs:
             python -m src.fit $ARGS
           fi
 
+      - name: Verify selected assessment results
+        if: inputs.validate_only == true && inputs.provider_health != true
+        env:
+          FIT_JOB_KEYS: ${{ inputs.job_keys }}
+        run: |
+          python - <<'PY'
+          import json, os
+          from datetime import datetime, timezone
+          from pathlib import Path
+          keys = json.loads(os.environ.get('FIT_JOB_KEYS') or '[]')
+          assert keys, 'Validation requires explicit job keys'
+          scores = json.loads(Path('docs/fit_scores.json').read_text())
+          for key in keys:
+              score = scores.get(key, {})
+              age = (datetime.now(timezone.utc) - datetime.fromisoformat(score.get('scored_at', '1970-01-01T00:00:00+00:00'))).total_seconds()
+              assert age < 1800 and score.get('recommendation') in ('strong','medium','weak'), 'No completed assessment for ' + key
+              print(key, score['recommendation'])
+          PY
+
       - name: Commit updated fit_scores.json
         # Run even if scoring died part-way: fit.py saves after each verdict,
         # so whatever finished is still worth committing.
-        if: always()
+        if: always() && inputs.validate_only != true && inputs.provider_health != true
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
