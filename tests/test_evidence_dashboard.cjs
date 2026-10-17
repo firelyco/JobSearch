@@ -13,7 +13,7 @@ scores['test:Example:code_changed'].scorer_revision='outdated';
 jobs.push({source:'test',company:'Example',id:'unassessed',title:'New startup TPM',location:'Boston, MA'});
 let backfill={};
 const nodes={};
-const ctx={Date,Object,console,Uint8Array,TextEncoder,crypto:crypto.webcrypto,
+const ctx={Date,Object,console,URL,Uint8Array,TextEncoder,crypto:crypto.webcrypto,
  $:id=>nodes[id]??={textContent:'',innerHTML:''},
  fitScores:{},allJobs:[],metaData:{},tailoredJobs:{},jobsByKey:{},
  jobKey:j=>`${j.source}:${j.company}:${j.id}`,loadStatuses:()=>({}),loadInFlight:()=>({}),render:()=>{},syncPrivateHistory:()=>{},
@@ -58,6 +58,19 @@ vm.runInContext(code.slice(code.indexOf('async function loadData()'),code.indexO
  vm.runInContext(code.slice(code.indexOf('const ROLE_CATEGORIES ='),code.indexOf('let allJobs =')),ctx);
  assert(vm.runInContext("ROLE_CATEGORIES.find(r=>r.id==='senior_ic').pattern.test('Senior Leadership Technical Program Manager, Product Development Ecosystem')",ctx));
  assert(vm.runInContext("!ROLE_CATEGORIES.find(r=>r.id==='senior_ic').pattern.test('Junior Technical Program Manager')",ctx));
+ vm.runInContext(code.slice(code.indexOf('const LOCATION_MATCHERS ='),code.indexOf('// Salary eligibility')),ctx);
+ const workday={source:'workday',url:'https://nvidia.wd5.myworkdayjobs.com/en-US/NVIDIAExternalCareerSite/job/US-CA-Santa-Clara/TPM_JR123'};
+ assert(ctx.matchesLocation('2 Locations','us',workday));
+ assert(ctx.matchesLocation('','us',workday));
+ assert(!ctx.matchesLocation('2 Locations','us'));
+ assert(!ctx.matchesLocation('London, UK','us',workday));
+ assert(!ctx.matchesLocation('Remote','us',workday));
+ assert(!ctx.matchesLocation('2 Locations','canada',workday));
+ assert(!ctx.matchesLocation('2 Locations','us',{...workday,source:'other'}));
+ assert(!ctx.matchesLocation('2 Locations','us',{...workday,url:'https://example.com/job/US-CA-Santa-Clara/TPM'}));
+ assert(!ctx.matchesLocation('2 Locations','us',{...workday,url:'https://nvidia.wd5.myworkdayjobs.com/job/CA-Toronto/TPM'}));
+ assert(!ctx.matchesLocation('2 Locations','us',{...workday,url:'not a URL'}));
+ assert(ctx.matchesLocation('Boston, MA','us'));
  const now=Date.parse('2026-10-16T18:00:00Z');
  assert(ctx.matchesPostingWindow({posted_at:'2026-10-15T12:00:00Z'},7,now));
  assert(!ctx.matchesPostingWindow({posted_at:'2026-06-01',first_seen_at:'2026-10-15'},7,now));

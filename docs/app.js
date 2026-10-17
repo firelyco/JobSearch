@@ -145,9 +145,18 @@ const LOCATION_MATCHERS = {
   uae: (loc) => /\b(uae|united arab emirates|dubai|abu dhabi)\b/i.test(loc),
 };
 
-function matchesLocation(loc, region) {
+function matchesLocation(loc, region, job = null) {
   const m = LOCATION_MATCHERS[region];
-  return m ? m(loc || '') : true;
+  if (!m || m(loc || '')) return true;
+  // Workday sometimes supplies only "2 Locations". Its employer posting URL
+  // still identifies the primary location; use that evidence for the US filter.
+  // Never override an explicit foreign location or infer US from "Remote".
+  if (region !== 'us' || job?.source !== 'workday' || !/^(?:\d+\s+locations?)?$/i.test((loc || '').trim())) return false;
+  try {
+    const url = new URL(job.url);
+    return url.protocol === 'https:' && /\.myworkdayjobs\.com$/i.test(url.hostname)
+      && /\/job\/US-[A-Z]{2}(?:-|\/|$)/i.test(url.pathname);
+  } catch { return false; }
 }
 
 // Salary eligibility is separate from role fit; stale or absent evidence is unknown.
@@ -418,7 +427,7 @@ function renderTable() {
     const viewingApplied = isAppliedStatus(status) || quickFilter === 'applied' || quickFilter === 'interviewing';
     if (hideApplied() && isAppliedStatus(curStatus) && !viewingApplied) return false;
     if (quickFilter && !matchesQuickFilter(j, curStatus)) return false;
-    if (locationFilter && !matchesLocation(j.location, locationFilter)) return false;
+    if (locationFilter && !matchesLocation(j.location, locationFilter, j)) return false;
     if (workmodeFilter && !matchesWorkmode(j.location, workmodeFilter)) return false;
     const title = (j.title || '').toLowerCase();
     if (!selectedRoles.some(r => r.match ? r.match(j) : r.pattern.test(title))) return false;
