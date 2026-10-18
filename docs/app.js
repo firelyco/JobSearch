@@ -281,12 +281,12 @@ async function loadData() {
           backfillIsActive = ['running','waiting_for_provider'].includes(progress.status);
           const c = progress.counts;
           const phase = progress.status === 'waiting_for_provider' ? 'Waiting for provider availability.'
-            : progress.status === 'completed' ? 'All seven days assessed.'
-            : progress.status === 'completed_with_issues' ? 'All 14 windows processed; unresolved roles still need review.'
+            : progress.status === 'completed' ? 'All jobs in the selected assessment period assessed.'
+            : progress.status === 'completed_with_issues' ? 'Assessment period processed; unresolved roles still need review.'
             : progress.phase === 'original_cohort' ? 'Finishing the original cohort.'
-            : `Processing 12-hour window ${(progress.current_window ?? 0)+1} of 14, newest first.`;
+            : `Processing 12-hour window ${(progress.current_window ?? 0)+1} of ${progress.window_count || 14}, newest first.`;
           const updated = progress.updated_at ? ` Updated ${new Date(progress.updated_at).toLocaleString()}.` : '';
-          backfillNotice.textContent = `Seven-day backfill: ${c.assessed}/${c.total} assessed; ${c.pending} pending; ${c.in_progress} in progress; ${c.unresolved} unresolved. ${phase}${updated}`;
+          backfillNotice.textContent = `Assessments since ${(progress.cutoff || "").slice(0,10)}: ${c.assessed}/${c.total} assessed; ${c.pending} pending; ${c.in_progress} in progress; ${c.unresolved} unresolved. ${phase}${updated}`;
         }
       } catch { /* Progress availability must not hide the jobs. */ }
     }

@@ -11,7 +11,7 @@ on:
         type: boolean
         default: false
       backfill:
-        description: "Continue the saved seven-day backfill"
+        description: "Continue the saved assessment period"
         type: boolean
         default: false
       provider:
@@ -300,7 +300,7 @@ jobs:
             git push
           fi
 
-      - name: Continue seven-day backfill
+      - name: Continue assessment backfill
         if: success() && inputs.validate_only != true && inputs.provider_health != true && inputs.benchmark != true && inputs.inventory_only != true && inputs.publish_benchmark != true && inputs.job_keys == ''
         env:
           GH_TOKEN: ${{ github.token }}

@@ -1,843 +1,160 @@
 {
   "schema": 1,
-  "enabled": false,
-  "status": "archived",
-  "as_of": "2026-10-17T03:02:40.652228+00:00",
-  "cutoff": "2026-10-10T03:02:40.652228+00:00",
+  "enabled": true,
+  "status": "running",
+  "as_of": "2026-10-18T00:07:58.448444+00:00",
+  "cutoff": "2026-10-01T04:00:00+00:00",
   "window_hours": 12,
-  "window_count": 14,
+  "window_count": 34,
+  "all_jobs": true,
   "max_attempts": 2,
-  "priority_job_keys": [
-    "google:google:115916210444346054",
-    "ashby:vultr:1b938851-4e27-45e0-b761-1f92136b8008",
-    "ashby:ramp:8be55ffc-d512-4ef3-a14d-3a4cb29a60d4",
-    "greenhouse:anthropic:5455454008",
-    "apple:apple:200688162",
-    "workday:nvidia:/job/US-CA-Santa-Clara/Senior-Technical-Program-Manager---Autonomous-Vehicles-Platform_JR2027852",
-    "lever:matchgroup:4a1ba25e-109a-44b8-b330-6f6ef31e9171",
-    "google:google:83723197177832134",
-    "greenhouse:astranis:4722722006",
-    "workday:nvidia:/job/US-WA-Redmond/Senior-Technical-Program-Manager--GPU-Software_JR2024381-1",
-    "greenhouse:andurilindustries:5267484007",
-    "greenhouse:wonderschool:7792214003"
-  ],
-  "attempts": {
-    "greenhouse:anthropic:5455454008": {
-      "count": 1,
-      "context_hash": "ffa8b8073fbe157283666253f21abe08fb502584e5b33d0ee890c29433d2a187",
-      "job_snapshot_hash": "982fc4a460ba4f82c23d31df16e976ce787681e8fb95ca16e4ee50cf2ee93a3c",
-      "last_attempt_at": "2026-10-17T13:43:51.742667+00:00",
-      "last_outcome": "reach",
-      "pipeline_version": "resume-v1"
-    },
-    "greenhouse:wonderschool:7792214003": {
-      "count": 2,
-      "context_hash": "ffa8b8073fbe157283666253f21abe08fb502584e5b33d0ee890c29433d2a187",
-      "job_snapshot_hash": "95db462adc8112336f3a63b310de656d2edeb79e593c0e54f1c0f44b42729968",
-      "last_attempt_at": "2026-10-17T13:46:46.580494+00:00",
-      "last_outcome": "strong",
-      "pipeline_version": "resume-v1"
-    },
-    "ashby:ramp:8be55ffc-d512-4ef3-a14d-3a4cb29a60d4": {
-      "count": 1,
-      "context_hash": "ffa8b8073fbe157283666253f21abe08fb502584e5b33d0ee890c29433d2a187",
-      "job_snapshot_hash": "2b11cba9d422369c063b58afbcb0437afe6caf18718eed16830912afe259e94f",
-      "last_attempt_at": "2026-10-17T13:43:51.742667+00:00",
-      "last_outcome": "reach",
-      "pipeline_version": "resume-v1"
-    },
-    "google:google:83723197177832134": {
-      "count": 2,
-      "context_hash": "ffa8b8073fbe157283666253f21abe08fb502584e5b33d0ee890c29433d2a187",
-      "job_snapshot_hash": "02fb9f1d96fd6f0c8b232e041317a2ffca5e4900e2ae258c52a6129c4a00b526",
-      "last_attempt_at": "2026-10-17T03:12:03.602700+00:00",
-      "last_outcome": "reach"
-    },
-    "apple:apple:200688162": {
-      "count": 2,
-      "context_hash": "ffa8b8073fbe157283666253f21abe08fb502584e5b33d0ee890c29433d2a187",
-      "job_snapshot_hash": "94a84a222533f19ef6979a14cdc06e535281b6ab4b547f4e7b55641818c0f593",
-      "last_attempt_at": "2026-10-17T13:46:46.580494+00:00",
-      "last_outcome": "medium",
-      "pipeline_version": "resume-v1"
-    },
-    "workday:blueorigin:/job/Van-Horn-TX/Senior-Technical-Program-Manager_R74365": {
-      "count": 1,
-      "context_hash": "ffa8b8073fbe157283666253f21abe08fb502584e5b33d0ee890c29433d2a187",
-      "job_snapshot_hash": "6fa2395de766612fde7e6e9407e2b5509d88875df931c3dce72d2162da06b21f",
-      "last_attempt_at": "2026-10-17T03:20:30.386620+00:00",
-      "last_outcome": "medium"
-    },
-    "arbeitnow:Altoslabs:manager-senior-manager-genomics-hub-cambridge-93682": {
-      "count": 2,
-      "context_hash": "ffa8b8073fbe157283666253f21abe08fb502584e5b33d0ee890c29433d2a187",
-      "job_snapshot_hash": "eeda3ecd3baeca8a0facdeed06eb1b3e35013bb33b53d8b815f438d2554e7b14",
-      "last_attempt_at": "2026-10-17T03:29:04.731799+00:00",
-      "last_outcome": "review"
-    },
-    "google:google:97190737149338310": {
-      "count": 1,
-      "context_hash": "ffa8b8073fbe157283666253f21abe08fb502584e5b33d0ee890c29433d2a187",
-      "job_snapshot_hash": "372c81e5c713f46461ca18cf908fe193819215029e56901eb95ff1c6f509e950",
-      "last_attempt_at": "2026-10-17T03:22:07.316179+00:00",
-      "last_outcome": "medium"
-    },
-    "google:google:138494990958371526": {
-      "count": 1,
-      "context_hash": "ffa8b8073fbe157283666253f21abe08fb502584e5b33d0ee890c29433d2a187",
-      "job_snapshot_hash": "d5ced1d992ea66c336547c1edb1ace0a0858209059b4bde86c88c44f75657dae",
-      "last_attempt_at": "2026-10-17T03:22:07.316179+00:00",
-      "last_outcome": "medium"
-    },
-    "google:google:121961909489410758": {
-      "count": 1,
-      "context_hash": "ffa8b8073fbe157283666253f21abe08fb502584e5b33d0ee890c29433d2a187",
-      "job_snapshot_hash": "c7e7845851d7e907620ba089d4870bd0c5a21211374157595c6a238842a7b534",
-      "last_attempt_at": "2026-10-17T03:22:07.316179+00:00",
-      "last_outcome": "reach"
-    },
-    "google:google:142267827670131398": {
-      "count": 1,
-      "context_hash": "ffa8b8073fbe157283666253f21abe08fb502584e5b33d0ee890c29433d2a187",
-      "job_snapshot_hash": "e4e13f6ee1e16b8e66d8deb34e46e00d2e3b21826f39863693d02804e1161c65",
-      "last_attempt_at": "2026-10-17T03:22:07.316179+00:00",
-      "last_outcome": "medium"
-    },
-    "greenhouse:databricks:8823191002": {
-      "count": 1,
-      "context_hash": "ffa8b8073fbe157283666253f21abe08fb502584e5b33d0ee890c29433d2a187",
-      "job_snapshot_hash": "6efaecc90f6272f7ba37fbd9c2728f778ca9b55c0d779315de822585d0eb682e",
-      "last_attempt_at": "2026-10-17T03:22:07.316179+00:00",
-      "last_outcome": "medium"
-    },
-    "greenhouse:databricks:8823193002": {
-      "count": 2,
-      "context_hash": "ffa8b8073fbe157283666253f21abe08fb502584e5b33d0ee890c29433d2a187",
-      "job_snapshot_hash": "b5eb71f64fa3b82df0d137f09741077cac05fb62fcf97b053086052e7f20eba2",
-      "last_attempt_at": "2026-10-17T03:33:05.407892+00:00",
-      "last_outcome": "strong"
-    },
-    "amazon_jobs:amazon:10581367": {
-      "count": 1,
-      "context_hash": "ffa8b8073fbe157283666253f21abe08fb502584e5b33d0ee890c29433d2a187",
-      "job_snapshot_hash": "76278da9317eb764f1a8131bb63636ac523d1f868bf465ed9b57e82ce7db0030",
-      "last_attempt_at": "2026-10-17T03:35:32.247558+00:00",
-      "last_outcome": "reach"
-    },
-    "oracle_cloud:oracle:347726": {
-      "count": 1,
-      "context_hash": "ffa8b8073fbe157283666253f21abe08fb502584e5b33d0ee890c29433d2a187",
-      "job_snapshot_hash": "5f83301d836f773f4319df2120bfd0360cba0d10639cf06df7e12159f2493860",
-      "last_attempt_at": "2026-10-17T03:35:32.247558+00:00",
-      "last_outcome": "strong"
-    },
-    "oracle_cloud:oracle:347695": {
-      "count": 1,
-      "context_hash": "ffa8b8073fbe157283666253f21abe08fb502584e5b33d0ee890c29433d2a187",
-      "job_snapshot_hash": "a768c7f61881556c365b555f0295da53152b2bd1215ca097731d0e9bb9a8f7c5",
-      "last_attempt_at": "2026-10-17T03:35:32.247558+00:00",
-      "last_outcome": "strong"
-    },
-    "oracle_cloud:oracle:347824": {
-      "count": 1,
-      "context_hash": "ffa8b8073fbe157283666253f21abe08fb502584e5b33d0ee890c29433d2a187",
-      "job_snapshot_hash": "576ec3ae58afda33788d730ea974ae94ceb45c6256b469e8f1a62290b2037ecf",
-      "last_attempt_at": "2026-10-17T03:35:32.247558+00:00",
-      "last_outcome": "reach"
-    },
-    "amazon_jobs:amazon:10581021": {
-      "count": 1,
-      "context_hash": "ffa8b8073fbe157283666253f21abe08fb502584e5b33d0ee890c29433d2a187",
-      "job_snapshot_hash": "532a4cb5365f26f7c138dabd285a3b42762e8377e0ad482bcc5a2a2bc7d441cb",
-      "last_attempt_at": "2026-10-17T03:35:32.247558+00:00",
-      "last_outcome": "medium"
-    },
-    "workday:intel:/job/US-Oregon-Hillsboro/Principal-Technical-Program-Manager---DTCO---Design-Technology-Integration_JR0288271": {
-      "count": 1,
-      "context_hash": "ffa8b8073fbe157283666253f21abe08fb502584e5b33d0ee890c29433d2a187",
-      "job_snapshot_hash": "7b24081746fcdaf2f4f290021e1c6fb11e1345072a10ae0b40d1f98a8c8698d1",
-      "last_attempt_at": "2026-10-17T03:35:32.247558+00:00",
-      "last_outcome": "reach"
-    },
-    "workday:nvidia:/job/US-CA-Santa-Clara/Senior-Technical-Program-Manager--Data-Center---Engineering-Operations_JR2001987-1": {
-      "count": 1,
-      "context_hash": "ffa8b8073fbe157283666253f21abe08fb502584e5b33d0ee890c29433d2a187",
-      "job_snapshot_hash": "4582bdb24abcbc2f7471d7d50de8210047e82b2c15f4a26715ba826750efe634",
-      "last_attempt_at": "2026-10-17T03:42:29.871429+00:00",
-      "last_outcome": "strong"
-    },
-    "workday:nvidia:/job/US-CA-Santa-Clara/Senior-Technical-Program-Manager--Cloud-Infrastructure_JR2025890": {
-      "count": 1,
-      "context_hash": "ffa8b8073fbe157283666253f21abe08fb502584e5b33d0ee890c29433d2a187",
-      "job_snapshot_hash": "0bfea8d61b3682c6c726e44cf5e847a776a8a921ecf5734568412a6f975bd387",
-      "last_attempt_at": "2026-10-17T03:42:29.871429+00:00",
-      "last_outcome": "medium"
-    },
-    "greenhouse:anthropic:5453550008": {
-      "count": 1,
-      "context_hash": "ffa8b8073fbe157283666253f21abe08fb502584e5b33d0ee890c29433d2a187",
-      "job_snapshot_hash": "5cc876c5462655ca1a82f6c7dfc0b8ea1fe3199171fb08c2015c4faaa2ba0510",
-      "last_attempt_at": "2026-10-17T13:47:15.998537+00:00",
-      "last_outcome": "reach",
-      "pipeline_version": "resume-v1"
-    },
-    "greenhouse:anthropic:5453548008": {
-      "count": 1,
-      "context_hash": "ffa8b8073fbe157283666253f21abe08fb502584e5b33d0ee890c29433d2a187",
-      "job_snapshot_hash": "f8c6aa3ff9a189a19fc2de8eded6116ffa39e805de5afe10009f21c112cb4078",
-      "last_attempt_at": "2026-10-17T03:42:29.871429+00:00",
-      "last_outcome": "reach"
-    },
-    "workday:bostondynamics:/job/Waltham-MA/Sr-Staff-Technical-Program-Manager_R3281": {
-      "count": 1,
-      "context_hash": "ffa8b8073fbe157283666253f21abe08fb502584e5b33d0ee890c29433d2a187",
-      "job_snapshot_hash": "db863672190a00f64bb12fa19d806c040e6744ca6563aa618e83aab9103c4d09",
-      "last_attempt_at": "2026-10-17T13:47:15.998537+00:00",
-      "last_outcome": "strong",
-      "pipeline_version": "resume-v1"
-    },
-    "apple:apple:200655895": {
-      "count": 1,
-      "context_hash": "ffa8b8073fbe157283666253f21abe08fb502584e5b33d0ee890c29433d2a187",
-      "job_snapshot_hash": "086789fc9eb5ffa1ee5f9a2185e941cf537326115cb78c723103e96f0228d11f",
-      "last_attempt_at": "2026-10-17T03:42:29.871429+00:00",
-      "last_outcome": "not"
-    },
-    "lever:shieldai:719f5182-d264-4369-937b-5052de493ee3": {
-      "count": 1,
-      "context_hash": "ffa8b8073fbe157283666253f21abe08fb502584e5b33d0ee890c29433d2a187",
-      "job_snapshot_hash": "5e6bac8bd43edbab219bab08e1004069ad54d86a9938b1e545227fc9c74ccc7f",
-      "last_attempt_at": "2026-10-17T03:49:00.233515+00:00",
-      "last_outcome": "medium"
-    },
-    "apple:apple:200689198": {
-      "count": 1,
-      "context_hash": "ffa8b8073fbe157283666253f21abe08fb502584e5b33d0ee890c29433d2a187",
-      "job_snapshot_hash": "4bd34cdd52f6826c0ba3d9c596f6adacd541d4c6f5ea3621cab6aa95bdffb3ab",
-      "last_attempt_at": "2026-10-17T03:49:00.233515+00:00",
-      "last_outcome": "medium"
-    },
-    "greenhouse:airbnb:8286207": {
-      "count": 2,
-      "context_hash": "ffa8b8073fbe157283666253f21abe08fb502584e5b33d0ee890c29433d2a187",
-      "job_snapshot_hash": "1a05987a9662f77a5a35793bc18cb3730df46414c2dfa5e49710799d3883ab30",
-      "last_attempt_at": "2026-10-17T13:51:34.229567+00:00",
-      "last_outcome": "review",
-      "pipeline_version": "resume-v1"
-    },
-    "apple:apple:200680996": {
-      "count": 1,
-      "context_hash": "ffa8b8073fbe157283666253f21abe08fb502584e5b33d0ee890c29433d2a187",
-      "job_snapshot_hash": "f9a8e59c0a150931c95fe247b7e867d8f796d13e2aed211c377cddf7d8feea28",
-      "last_attempt_at": "2026-10-17T13:47:15.998537+00:00",
-      "last_outcome": "medium",
-      "pipeline_version": "resume-v1"
-    },
-    "greenhouse:datadog:8268065": {
-      "count": 2,
-      "context_hash": "ffa8b8073fbe157283666253f21abe08fb502584e5b33d0ee890c29433d2a187",
-      "job_snapshot_hash": "dde3e2ab977643cb66d8313f64f97517a5421b6a63a607c4fad13ce2a186fec4",
-      "last_attempt_at": "2026-10-17T03:59:51.042153+00:00",
-      "last_outcome": "medium"
-    },
-    "greenhouse:andurilindustries:5262878007": {
-      "count": 1,
-      "context_hash": "ffa8b8073fbe157283666253f21abe08fb502584e5b33d0ee890c29433d2a187",
-      "job_snapshot_hash": "b4626bb0afb98e8fcfbcb94646b65a9f4849dc88a32bf989a5962de212b2a150",
-      "last_attempt_at": "2026-10-17T13:47:15.998537+00:00",
-      "last_outcome": "reach",
-      "pipeline_version": "resume-v1"
-    },
-    "greenhouse:bevicareers:4453157009": {
-      "count": 1,
-      "context_hash": "ffa8b8073fbe157283666253f21abe08fb502584e5b33d0ee890c29433d2a187",
-      "job_snapshot_hash": "1d169c8d8ec867df3b185764193dcf3143ddff2328a306df310563d04716fd3e",
-      "last_attempt_at": "2026-10-17T13:52:04.244905+00:00",
-      "last_outcome": "strong",
-      "pipeline_version": "resume-v1"
-    },
-    "greenhouse:stripe:8282859": {
-      "count": 1,
-      "context_hash": "ffa8b8073fbe157283666253f21abe08fb502584e5b33d0ee890c29433d2a187",
-      "job_snapshot_hash": "fd4913e719304868d08ad480574f7112e848991b959f8393c22684bf45ba4d7c",
-      "last_attempt_at": "2026-10-17T13:52:04.244905+00:00",
-      "last_outcome": "strong",
-      "pipeline_version": "resume-v1"
-    },
-    "google:google:124090581180654278": {
-      "count": 1,
-      "context_hash": "ffa8b8073fbe157283666253f21abe08fb502584e5b33d0ee890c29433d2a187",
-      "job_snapshot_hash": "d3ae529ae8f21e4113d80be950d1fd636a83158710b8da54a5b2e4019b864b3c",
-      "last_attempt_at": "2026-10-17T04:06:42.448885+00:00",
-      "last_outcome": "reach"
-    },
-    "google:google:81380051999695558": {
-      "count": 1,
-      "context_hash": "ffa8b8073fbe157283666253f21abe08fb502584e5b33d0ee890c29433d2a187",
-      "job_snapshot_hash": "378f3926c3ce7b16ef3b867971114a2255e7cb3c60f44d07619b818998cb8d29",
-      "last_attempt_at": "2026-10-17T04:06:42.448885+00:00",
-      "last_outcome": "reach"
-    },
-    "google:google:136694832725664454": {
-      "count": 1,
-      "context_hash": "ffa8b8073fbe157283666253f21abe08fb502584e5b33d0ee890c29433d2a187",
-      "job_snapshot_hash": "6a9551fe0c359798a84b0891c479520a73961c5eeb26ad3a9611d3c15e407347",
-      "last_attempt_at": "2026-10-17T04:06:42.448885+00:00",
-      "last_outcome": "reach"
-    },
-    "google:google:86717081440920262": {
-      "count": 1,
-      "context_hash": "ffa8b8073fbe157283666253f21abe08fb502584e5b33d0ee890c29433d2a187",
-      "job_snapshot_hash": "537eef23778f703bfe2e86357d61d475ea1986ddc24c100ea1236f235573e4a5",
-      "last_attempt_at": "2026-10-17T04:06:42.448885+00:00",
-      "last_outcome": "strong"
-    },
-    "lever:jobgether:4823997c-d715-4246-9ef1-f25a7ccfb714": {
-      "count": 1,
-      "context_hash": "ffa8b8073fbe157283666253f21abe08fb502584e5b33d0ee890c29433d2a187",
-      "job_snapshot_hash": "738af69033dbdef129af223a6be03f1e09799c1e2122606dcef2e9928b8981c1",
-      "last_attempt_at": "2026-10-17T04:21:41.393680+00:00",
-      "last_outcome": "strong"
-    },
-    "greenhouse:anthropic:5453262008": {
-      "count": 1,
-      "context_hash": "ffa8b8073fbe157283666253f21abe08fb502584e5b33d0ee890c29433d2a187",
-      "job_snapshot_hash": "13eb11b5c834703ce64a7f98b135357796fb0b9d705055c790694a17f7f6e03c",
-      "last_attempt_at": "2026-10-17T13:55:21.002143+00:00",
-      "last_outcome": "reach",
-      "pipeline_version": "resume-v1"
-    },
-    "apple:apple:200689111": {
-      "count": 2,
-      "context_hash": "ffa8b8073fbe157283666253f21abe08fb502584e5b33d0ee890c29433d2a187",
-      "job_snapshot_hash": "ed03e8bcee2bc0018cef2f09600ccf7d342e36458a998f0a452f8aa0ff5882ff",
-      "last_attempt_at": "2026-10-17T13:59:43.460847+00:00",
-      "last_outcome": "review",
-      "pipeline_version": "resume-v1"
-    },
-    "oracle_cloud:oracle:347707": {
-      "count": 1,
-      "context_hash": "ffa8b8073fbe157283666253f21abe08fb502584e5b33d0ee890c29433d2a187",
-      "job_snapshot_hash": "95fa44b7bf7ebcaba9d48b5cb7a15c4dce1b9e3bc2a07ee9175b16428ca211ec",
-      "last_attempt_at": "2026-10-17T04:21:41.393680+00:00",
-      "last_outcome": "medium"
-    },
-    "oracle_cloud:oracle:346982": {
-      "count": 2,
-      "context_hash": "ffa8b8073fbe157283666253f21abe08fb502584e5b33d0ee890c29433d2a187",
-      "job_snapshot_hash": "03fd610063167aa6a66cb7bc05bba320fccd9a8f82ebb2a1141c7740547407ed",
-      "last_attempt_at": "2026-10-17T04:27:53.099452+00:00",
-      "last_outcome": "strong"
-    },
-    "workday:blueorigin:/job/Greater-Seattle-Area/Principal-Technical-Program-Manager--Customer-Terminal-and-RF-Ground-Stations_R73419": {
-      "count": 1,
-      "context_hash": "ffa8b8073fbe157283666253f21abe08fb502584e5b33d0ee890c29433d2a187",
-      "job_snapshot_hash": "b7702476c4967e4adedb0d35eef6c3289b78f7a83f74f29e38809572fc7167aa",
-      "last_attempt_at": "2026-10-17T04:21:41.393680+00:00",
-      "last_outcome": "reach"
-    },
-    "amazon_jobs:amazon:10580797": {
-      "count": 1,
-      "context_hash": "ffa8b8073fbe157283666253f21abe08fb502584e5b33d0ee890c29433d2a187",
-      "job_snapshot_hash": "51382ee5cfc306adbfaed59ed74eafc723f1b905760bd5bd6f7c889c7b31d372",
-      "last_attempt_at": "2026-10-17T04:27:53.099452+00:00",
-      "last_outcome": "medium"
-    },
-    "workday:nvidia:/job/US-CA-Santa-Clara/Senior-Technical-Program-Manager---Tegra_JR2024717": {
-      "count": 1,
-      "context_hash": "ffa8b8073fbe157283666253f21abe08fb502584e5b33d0ee890c29433d2a187",
-      "job_snapshot_hash": "6950353035530aa01a01f25a3207f68de87db85611101bcc0c0663a659198b1a",
-      "last_attempt_at": "2026-10-17T04:27:53.099452+00:00",
-      "last_outcome": "medium"
-    },
-    "workday:nvidia:/job/US-CA-Santa-Clara/Senior-Technical-Program-Manager---DFX-Software-Methodology_JR2026353": {
-      "count": 1,
-      "context_hash": "ffa8b8073fbe157283666253f21abe08fb502584e5b33d0ee890c29433d2a187",
-      "job_snapshot_hash": "a2b60d62862c6c5b902df891672903fe276cf4bc1a5493db46f1d1a9ab53a000",
-      "last_attempt_at": "2026-10-17T14:02:21.077282+00:00",
-      "last_outcome": "reach",
-      "pipeline_version": "resume-v1"
-    },
-    "workday:nvidia:/job/US-CA-Santa-Clara/Senior-Technical-Program-Manager---VLSI_JR2013354": {
-      "count": 1,
-      "context_hash": "ffa8b8073fbe157283666253f21abe08fb502584e5b33d0ee890c29433d2a187",
-      "job_snapshot_hash": "850be3f233f7552fdd1f41724473aebbb7f64a88dd0510afb9952a7db25130d7",
-      "last_attempt_at": "2026-10-17T14:02:21.077282+00:00",
-      "last_outcome": "not",
-      "pipeline_version": "resume-v1"
-    },
-    "amazon_jobs:amazon:10579866": {
-      "count": 1,
-      "context_hash": "ffa8b8073fbe157283666253f21abe08fb502584e5b33d0ee890c29433d2a187",
-      "job_snapshot_hash": "6ac185ad5029d97d734c407eac2f34507a197433be1713e59b9c894392c7b6fe",
-      "last_attempt_at": "2026-10-17T13:55:21.002143+00:00",
-      "last_outcome": "strong",
-      "pipeline_version": "resume-v1"
-    },
-    "workday:nvidia:/job/US-CA-Santa-Clara/Senior-Customer-Technical-Program-Manager---Data-Center-Quality-and-Sustaining_JR2005084": {
-      "count": 1,
-      "context_hash": "ffa8b8073fbe157283666253f21abe08fb502584e5b33d0ee890c29433d2a187",
-      "job_snapshot_hash": "d464b831ca822c4d6f6254226cf2d65f714ae958ec939c22711349e782c8da54",
-      "last_attempt_at": "2026-10-17T14:02:21.077282+00:00",
-      "last_outcome": "strong",
-      "pipeline_version": "resume-v1"
-    },
-    "google:google:81588615611589318": {
-      "count": 2,
-      "context_hash": "ffa8b8073fbe157283666253f21abe08fb502584e5b33d0ee890c29433d2a187",
-      "job_snapshot_hash": "2f12a9002d55db241cb7f5cdf95f9dba26a0e567f4dea0abd8b68d3c7df4cd1a",
-      "last_attempt_at": "2026-10-17T13:59:43.460847+00:00",
-      "last_outcome": "review",
-      "pipeline_version": "resume-v1"
-    },
-    "remotive:Mitre Media:2069746": {
-      "count": 2,
-      "context_hash": "ffa8b8073fbe157283666253f21abe08fb502584e5b33d0ee890c29433d2a187",
-      "job_snapshot_hash": "cf1c886e7461c2afde5d6cd45bba9fce1e899ea68b615777fdb2b34d30d4045d",
-      "last_attempt_at": "2026-10-17T13:59:43.460847+00:00",
-      "last_outcome": "review",
-      "pipeline_version": "resume-v1"
-    },
-    "apple:apple:200678199": {
-      "count": 2,
-      "context_hash": "ffa8b8073fbe157283666253f21abe08fb502584e5b33d0ee890c29433d2a187",
-      "job_snapshot_hash": "359bdf025cd5605d0daded3d436caa543878a0d9fed39f83ca70515c9be456aa",
-      "last_attempt_at": "2026-10-17T13:59:43.460847+00:00",
-      "last_outcome": "review",
-      "pipeline_version": "resume-v1"
-    },
-    "google:google:76152905001771718": {
-      "count": 1,
-      "context_hash": "ffa8b8073fbe157283666253f21abe08fb502584e5b33d0ee890c29433d2a187",
-      "job_snapshot_hash": "9bfa82485729e49bde82b7e1845d0d6d2d73c51fa3ec21608ac7e235e5969906",
-      "last_attempt_at": "2026-10-17T04:54:12.588153+00:00",
-      "last_outcome": "medium"
-    },
-    "lever:rezotx:5a99ca20-0b66-4a12-b5fc-3ec6e01f6016": {
-      "count": 2,
-      "context_hash": "ffa8b8073fbe157283666253f21abe08fb502584e5b33d0ee890c29433d2a187",
-      "job_snapshot_hash": "0b1f2a89af8f78b9c5ff1ff2d399e4c1f72c45499aa45d8947b9b3843bb9e714",
-      "last_attempt_at": "2026-10-17T14:01:45.980548+00:00",
-      "last_outcome": "review",
-      "pipeline_version": "resume-v1"
-    },
-    "apple:apple:200683305": {
-      "count": 1,
-      "context_hash": "ffa8b8073fbe157283666253f21abe08fb502584e5b33d0ee890c29433d2a187",
-      "job_snapshot_hash": "3a1b6fcb32c5128b8ce24255389e110df51055c9f49d2c36d7364f810bbb4fb7",
-      "last_attempt_at": "2026-10-17T04:54:12.588153+00:00",
-      "last_outcome": "strong"
-    },
-    "ashby:applied:c1833a0e-c868-439d-a3aa-e1f2dddd7b21": {
-      "count": 1,
-      "context_hash": "ffa8b8073fbe157283666253f21abe08fb502584e5b33d0ee890c29433d2a187",
-      "job_snapshot_hash": "fa7916bf5423cdb77ea5038fa52f0075fc318fffdce57fc44c35a320c98ebdbf",
-      "last_attempt_at": "2026-10-17T04:54:12.588153+00:00",
-      "last_outcome": "reach"
-    },
-    "workday:bostondynamics:/job/Waltham-MA/Staff-Technical-Program-Manager---AI-Resources_R3056": {
-      "count": 1,
-      "context_hash": "ffa8b8073fbe157283666253f21abe08fb502584e5b33d0ee890c29433d2a187",
-      "job_snapshot_hash": "7c0118d2fd4b675a7b57f094d66d2c8e59da4395fbafd10477ff20509a21be38",
-      "last_attempt_at": "2026-10-17T13:59:43.460847+00:00",
-      "last_outcome": "medium",
-      "pipeline_version": "resume-v1"
-    },
-    "google:google:83019664354878150": {
-      "count": 1,
-      "context_hash": "ffa8b8073fbe157283666253f21abe08fb502584e5b33d0ee890c29433d2a187",
-      "job_snapshot_hash": "41f550bf20ece0e67e33025a61d03db093c6dbbbf7e39a638b06db0549372217",
-      "last_attempt_at": "2026-10-17T05:07:05.722172+00:00",
-      "last_outcome": "not"
-    },
-    "google:google:89433665435509446": {
-      "count": 1,
-      "context_hash": "ffa8b8073fbe157283666253f21abe08fb502584e5b33d0ee890c29433d2a187",
-      "job_snapshot_hash": "cb97aef1f7c8c54ce7b163a9a284123180224468a9a38adb76556cf7af7d2408",
-      "last_attempt_at": "2026-10-17T05:07:05.722172+00:00",
-      "last_outcome": "medium"
-    },
-    "apple:apple:200688827": {
-      "count": 1,
-      "context_hash": "ffa8b8073fbe157283666253f21abe08fb502584e5b33d0ee890c29433d2a187",
-      "job_snapshot_hash": "d2571df56f0776df0203446436a8c7221bc30651837158ae02c64c36c7c78dca",
-      "last_attempt_at": "2026-10-17T14:02:21.077282+00:00",
-      "last_outcome": "not",
-      "pipeline_version": "resume-v1"
-    },
-    "workday:nvidia:/job/US-CA-Santa-Clara/Senior-Technical-Program-Manager---Nemotron_JR2027696": {
-      "count": 1,
-      "context_hash": "ffa8b8073fbe157283666253f21abe08fb502584e5b33d0ee890c29433d2a187",
-      "job_snapshot_hash": "a6fb109aaf7126b7881d4a0f871bc49557ad2f388c715b816842a67444127c27",
-      "last_attempt_at": "2026-10-17T05:10:11.533714+00:00",
-      "last_outcome": "medium"
-    },
-    "amazon_jobs:amazon:10578154": {
-      "count": 1,
-      "context_hash": "ffa8b8073fbe157283666253f21abe08fb502584e5b33d0ee890c29433d2a187",
-      "job_snapshot_hash": "67ae2bb5e32a592dc47a25f63797ec414291dfa395a189af531ed9238b776df2",
-      "last_attempt_at": "2026-10-17T05:10:11.533714+00:00",
-      "last_outcome": "strong"
-    },
-    "amazon_jobs:amazon:10578819": {
-      "count": 1,
-      "context_hash": "ffa8b8073fbe157283666253f21abe08fb502584e5b33d0ee890c29433d2a187",
-      "job_snapshot_hash": "dc3af8ba47fabe4f295630fbc1470184aba504bc884fef080e1e1812cb8440ce",
-      "last_attempt_at": "2026-10-17T05:10:11.533714+00:00",
-      "last_outcome": "strong"
-    },
-    "amazon_jobs:amazon:10578814": {
-      "count": 1,
-      "context_hash": "ffa8b8073fbe157283666253f21abe08fb502584e5b33d0ee890c29433d2a187",
-      "job_snapshot_hash": "a113489e0cbfb20825e2c917e76a056f4cc27f705a485635e29be2b001b070b7",
-      "last_attempt_at": "2026-10-17T05:10:11.533714+00:00",
-      "last_outcome": "strong"
-    },
-    "amazon_jobs:amazon:10579061": {
-      "count": 2,
-      "context_hash": "ffa8b8073fbe157283666253f21abe08fb502584e5b33d0ee890c29433d2a187",
-      "job_snapshot_hash": "3a0bc0591ac2e2a335ca35f9a7c9a34d4f5dd8547368f19d2762f03aa88677a6",
-      "last_attempt_at": "2026-10-17T05:19:17.227381+00:00",
-      "last_outcome": "reach"
-    },
-    "lever:zoox:d82e1f4a-a2db-4374-957b-95c5c4cf7826": {
-      "count": 1,
-      "context_hash": "ffa8b8073fbe157283666253f21abe08fb502584e5b33d0ee890c29433d2a187",
-      "job_snapshot_hash": "1a875b0aa65d2242ddef77be5515f64e42f7a9e6831319a10065779447058663",
-      "last_attempt_at": "2026-10-17T05:19:17.227381+00:00",
-      "last_outcome": "medium"
-    },
-    "ashby:harvey:9ea6dcda-7869-4181-b493-2822bbc14097": {
-      "count": 1,
-      "context_hash": "ffa8b8073fbe157283666253f21abe08fb502584e5b33d0ee890c29433d2a187",
-      "job_snapshot_hash": "6d3b0bac282dcb0c993d30600eb9c0802ddccedb1a921616d87f979fdd71b7fd",
-      "last_attempt_at": "2026-10-17T14:02:21.077282+00:00",
-      "last_outcome": "strong",
-      "pipeline_version": "resume-v1"
-    },
-    "apple:apple:200686899": {
-      "count": 1,
-      "context_hash": "ffa8b8073fbe157283666253f21abe08fb502584e5b33d0ee890c29433d2a187",
-      "job_snapshot_hash": "aaf3ee8b0267d1b8f68675dd4d39f512bfab181303c9d3f565b2d28eb9b4ef22",
-      "last_attempt_at": "2026-10-17T05:19:17.227381+00:00",
-      "last_outcome": "medium"
-    },
-    "apple:apple:200674415": {
-      "count": 2,
-      "context_hash": "ffa8b8073fbe157283666253f21abe08fb502584e5b33d0ee890c29433d2a187",
-      "job_snapshot_hash": "1ce173e5c04d3a79d6950b5cf53b92d943a7cf7edf49941c81ba12dd5709e27a",
-      "last_attempt_at": "2026-10-17T14:08:56.661290+00:00",
-      "last_outcome": "review",
-      "pipeline_version": "resume-v1"
-    },
-    "greenhouse:tenstorrent:5265014007": {
-      "count": 1,
-      "context_hash": "ffa8b8073fbe157283666253f21abe08fb502584e5b33d0ee890c29433d2a187",
-      "job_snapshot_hash": "617046b4e23e2bb2d4c8be8bb172aed68868e02758c1c74f3f68ff0c0eccadad",
-      "last_attempt_at": "2026-10-17T05:24:53.632797+00:00",
-      "last_outcome": "strong"
-    },
-    "apple:apple:200688814": {
-      "count": 1,
-      "context_hash": "ffa8b8073fbe157283666253f21abe08fb502584e5b33d0ee890c29433d2a187",
-      "job_snapshot_hash": "4d3866317ccca08730116573c6b66c7639cc3d62ca1b6a0bfd6fbbf002593e6d",
-      "last_attempt_at": "2026-10-17T05:24:53.632797+00:00",
-      "last_outcome": "strong"
-    },
-    "ashby:lambda:9a8b0df2-63e0-4641-9503-59f56fbe195e": {
-      "count": 1,
-      "context_hash": "ffa8b8073fbe157283666253f21abe08fb502584e5b33d0ee890c29433d2a187",
-      "job_snapshot_hash": "1bccda08f3af34a665bd931568653e85babcc16fd0cd43728e4bf3782aee3615",
-      "last_attempt_at": "2026-10-17T05:24:53.632797+00:00",
-      "last_outcome": "reach"
-    },
-    "greenhouse:andurilindustries:5230655007": {
-      "count": 1,
-      "context_hash": "ffa8b8073fbe157283666253f21abe08fb502584e5b33d0ee890c29433d2a187",
-      "job_snapshot_hash": "d70c7e9d03147db3c91e057aa8f271d1db354ab0ddf8b85721928da6c78e62d6",
-      "last_attempt_at": "2026-10-17T05:24:53.632797+00:00",
-      "last_outcome": "reach"
-    },
-    "apple:apple:200685795": {
-      "count": 1,
-      "context_hash": "ffa8b8073fbe157283666253f21abe08fb502584e5b33d0ee890c29433d2a187",
-      "job_snapshot_hash": "8b5ef71d53eb33890a8715cf888daea5d245a92e99fbf42c9fd5aeaa283781bc",
-      "last_attempt_at": "2026-10-17T14:08:56.661290+00:00",
-      "last_outcome": "medium",
-      "pipeline_version": "resume-v1"
-    },
-    "amazon_jobs:amazon:10576764": {
-      "count": 1,
-      "context_hash": "ffa8b8073fbe157283666253f21abe08fb502584e5b33d0ee890c29433d2a187",
-      "job_snapshot_hash": "eccda578bf7b59e7cc72c6fa8284108e8f8844c955f90bbe9cecfccbb3c53543",
-      "last_attempt_at": "2026-10-17T14:12:31.522071+00:00",
-      "last_outcome": "strong",
-      "pipeline_version": "resume-v1"
-    },
-    "oracle_cloud:oracle:347435": {
-      "count": 1,
-      "context_hash": "ffa8b8073fbe157283666253f21abe08fb502584e5b33d0ee890c29433d2a187",
-      "job_snapshot_hash": "c99fc6eecf38526c9c7216e11f6a2d24f531cb59a2a28fd0505f7cc28960aa0c",
-      "last_attempt_at": "2026-10-17T05:38:46.759869+00:00",
-      "last_outcome": "reach"
-    },
-    "amazon_jobs:amazon:10577152": {
-      "count": 2,
-      "context_hash": "ffa8b8073fbe157283666253f21abe08fb502584e5b33d0ee890c29433d2a187",
-      "job_snapshot_hash": "90c297e7834a7fec166fa60a6c7bbefc85867bdc11002280083b325736ab6035",
-      "last_attempt_at": "2026-10-17T05:47:03.087422+00:00",
-      "last_outcome": "reach"
-    },
-    "amazon_jobs:amazon:10578112": {
-      "count": 2,
-      "context_hash": "ffa8b8073fbe157283666253f21abe08fb502584e5b33d0ee890c29433d2a187",
-      "job_snapshot_hash": "dfdd415427106a5769291163d3ebb372620915d86b008478f785a1ddacbd182f",
-      "last_attempt_at": "2026-10-17T05:47:03.087422+00:00",
-      "last_outcome": "reach"
-    },
-    "oracle_cloud:oracle:347547": {
-      "count": 2,
-      "context_hash": "ffa8b8073fbe157283666253f21abe08fb502584e5b33d0ee890c29433d2a187",
-      "job_snapshot_hash": "b58cabadade11f73574de339d9c8adc930d818f98f64d3a9de065644a9e1d024",
-      "last_attempt_at": "2026-10-17T14:15:44.828465+00:00",
-      "last_outcome": "review",
-      "pipeline_version": "resume-v1"
-    },
-    "apple:apple:200688511": {
-      "count": 1,
-      "context_hash": "ffa8b8073fbe157283666253f21abe08fb502584e5b33d0ee890c29433d2a187",
-      "job_snapshot_hash": "e6580cb017325a54728d70778cf1e286822a22bdcc7e87995751a1e540811553",
-      "last_attempt_at": "2026-10-17T14:12:31.522071+00:00",
-      "last_outcome": "reach",
-      "pipeline_version": "resume-v1"
-    },
-    "apple:apple:200687638": {
-      "count": 1,
-      "context_hash": "ffa8b8073fbe157283666253f21abe08fb502584e5b33d0ee890c29433d2a187",
-      "job_snapshot_hash": "a6fb0be1177f8a9ddc9048ae38fe69a20b56f0665134964e49c65640873deb62",
-      "last_attempt_at": "2026-10-17T05:47:03.087422+00:00",
-      "last_outcome": "medium"
-    },
-    "greenhouse:coreweave:4721022006": {
-      "count": 1,
-      "context_hash": "ffa8b8073fbe157283666253f21abe08fb502584e5b33d0ee890c29433d2a187",
-      "job_snapshot_hash": "62965047960db710f1fc65bac32faad749d50e72703e4af37657d7239568c3f9",
-      "last_attempt_at": "2026-10-17T05:53:59.329835+00:00",
-      "last_outcome": "reach"
-    },
-    "lever:jobgether:88a6f24c-8f70-45b4-be19-6de0a96a7ff6": {
-      "count": 1,
-      "context_hash": "ffa8b8073fbe157283666253f21abe08fb502584e5b33d0ee890c29433d2a187",
-      "job_snapshot_hash": "72d0fbe565ca4a7ccc5e362c11a39fc53dccc2d9dbf9cc411e7695a6bddee6d3",
-      "last_attempt_at": "2026-10-17T05:57:22.688156+00:00",
-      "last_outcome": "strong"
-    },
-    "amazon_jobs:amazon:10576523": {
-      "count": 1,
-      "context_hash": "ffa8b8073fbe157283666253f21abe08fb502584e5b33d0ee890c29433d2a187",
-      "job_snapshot_hash": "b4088efc17d4c2890a72fafb59ea9c9784c91d4239f5a575cc05815f9da2ef45",
-      "last_attempt_at": "2026-10-17T05:58:21.128403+00:00",
-      "last_outcome": "strong"
-    },
-    "amazon_jobs:amazon:10576212": {
-      "count": 1,
-      "context_hash": "ffa8b8073fbe157283666253f21abe08fb502584e5b33d0ee890c29433d2a187",
-      "job_snapshot_hash": "15f9ae058f8d1790f9fca50948419e7696946f34c67588175e0f0385bb32b4c6",
-      "last_attempt_at": "2026-10-17T05:58:21.128403+00:00",
-      "last_outcome": "strong"
-    },
-    "oracle_cloud:oracle:347348": {
-      "count": 1,
-      "context_hash": "ffa8b8073fbe157283666253f21abe08fb502584e5b33d0ee890c29433d2a187",
-      "job_snapshot_hash": "d239f6acb3ea3ac47c4f39ed47f65ee66fda197592e826f5f56b33b66073eda8",
-      "last_attempt_at": "2026-10-17T05:58:21.128403+00:00",
-      "last_outcome": "reach"
-    },
-    "amazon_jobs:amazon:10575824": {
-      "count": 2,
-      "context_hash": "ffa8b8073fbe157283666253f21abe08fb502584e5b33d0ee890c29433d2a187",
-      "job_snapshot_hash": "97e74806f2c43c1e4ad7ce8690f0ce8b42096505868d1d8dee2d4b195c5f4246",
-      "last_attempt_at": "2026-10-17T06:06:20.374769+00:00",
-      "last_outcome": "not"
-    },
-    "amazon_jobs:amazon:10576290": {
-      "count": 2,
-      "context_hash": "ffa8b8073fbe157283666253f21abe08fb502584e5b33d0ee890c29433d2a187",
-      "job_snapshot_hash": "a467e167c27afccaac1986e8b9f5e074f5b4bc0bb686fb6cb82afadc8b68e48d",
-      "last_attempt_at": "2026-10-17T06:06:20.374769+00:00",
-      "last_outcome": "reach"
-    },
-    "amazon_jobs:amazon:10576213": {
-      "count": 1,
-      "context_hash": "ffa8b8073fbe157283666253f21abe08fb502584e5b33d0ee890c29433d2a187",
-      "job_snapshot_hash": "c39222d74c715998b7b7b11785bc838aeb5bd6b1f440cdb6d61362b240f0dfa4",
-      "last_attempt_at": "2026-10-17T05:58:21.128403+00:00",
-      "last_outcome": "strong"
-    },
-    "amazon_jobs:amazon:10575917": {
-      "count": 2,
-      "context_hash": "ffa8b8073fbe157283666253f21abe08fb502584e5b33d0ee890c29433d2a187",
-      "job_snapshot_hash": "40ec76743e5796757ecae6ae48fcfebb66ccc75164f633a42ca9029c47e18b77",
-      "last_attempt_at": "2026-10-17T06:10:44.333910+00:00",
-      "last_outcome": "strong"
-    },
-    "workday:nvidia:/job/US-CA-Santa-Clara/Datacenter-Technical-Program-Manager_JR2011480": {
-      "count": 2,
-      "context_hash": "ffa8b8073fbe157283666253f21abe08fb502584e5b33d0ee890c29433d2a187",
-      "job_snapshot_hash": "af19f6e01ca0dba72803ae787a876e8125be3396f7b2fcea704c5bc1a525a5e7",
-      "last_attempt_at": "2026-10-17T14:19:12.951488+00:00",
-      "last_outcome": "review",
-      "pipeline_version": "resume-v1"
-    },
-    "amazon_jobs:amazon:10575977": {
-      "count": 1,
-      "context_hash": "ffa8b8073fbe157283666253f21abe08fb502584e5b33d0ee890c29433d2a187",
-      "job_snapshot_hash": "89f3ba9ea480339932ec8ec67f8abf7a0ac88b4d3bcdfd8f66a08fcb661cee9c",
-      "last_attempt_at": "2026-10-17T06:06:20.374769+00:00",
-      "last_outcome": "reach"
-    },
-    "ashby:snowflake:2d66e411-c782-43d5-9ad5-389c4407f9c6": {
-      "count": 2,
-      "context_hash": "ffa8b8073fbe157283666253f21abe08fb502584e5b33d0ee890c29433d2a187",
-      "job_snapshot_hash": "4e74dc5501691336a4b32802357ed6083e63f86edec62155b493a68c54578bc9",
-      "last_attempt_at": "2026-10-17T14:19:12.951488+00:00",
-      "last_outcome": "review",
-      "pipeline_version": "resume-v1"
-    },
-    "lever:waabi:3acdfa36-848c-4720-b7a0-f80a6c30cbe6": {
-      "count": 1,
-      "context_hash": "ffa8b8073fbe157283666253f21abe08fb502584e5b33d0ee890c29433d2a187",
-      "job_snapshot_hash": "5d345e8faacf59ac5ba1ded42986a9501e16452bb64d26c93582610ba7400ec7",
-      "last_attempt_at": "2026-10-17T14:19:43.418766+00:00",
-      "last_outcome": "reach",
-      "pipeline_version": "resume-v1"
-    }
-  },
-  "batches": 51,
-  "created_at": "2026-10-17T03:02:40.652228+00:00",
+  "priority_job_keys": [],
+  "attempts": {},
+  "batches": 0,
+  "created_at": "2026-10-18T00:07:58.448444+00:00",
   "counts": {
-    "assessed": 89,
-    "pending": 0,
-    "unresolved": 10,
+    "assessed": 16,
+    "pending": 251,
+    "unresolved": 0,
     "in_progress": 0,
-    "total": 99,
-    "strong": 4
+    "total": 267,
+    "strong": 5
   },
   "windows": [
     {
       "index": 0,
-      "start": "2026-10-16T15:02:40.652228+00:00",
-      "end": "2026-10-17T03:02:40.652228+00:00",
-      "total": 9,
-      "assessed": 9,
-      "pending": 0,
+      "start": "2026-10-17T12:07:58.448444+00:00",
+      "end": "2026-10-18T00:07:58.448444+00:00",
+      "total": 5,
+      "assessed": 0,
+      "pending": 5,
       "unresolved": 0,
       "in_progress": 0
     },
     {
       "index": 1,
-      "start": "2026-10-16T03:02:40.652228+00:00",
-      "end": "2026-10-16T15:02:40.652228+00:00",
-      "total": 7,
-      "assessed": 7,
-      "pending": 0,
+      "start": "2026-10-17T00:07:58.448444+00:00",
+      "end": "2026-10-17T12:07:58.448444+00:00",
+      "total": 18,
+      "assessed": 0,
+      "pending": 18,
       "unresolved": 0,
       "in_progress": 0
     },
     {
       "index": 2,
-      "start": "2026-10-15T15:02:40.652228+00:00",
-      "end": "2026-10-16T03:02:40.652228+00:00",
-      "total": 18,
-      "assessed": 17,
-      "pending": 0,
-      "unresolved": 1,
+      "start": "2026-10-16T12:07:58.448444+00:00",
+      "end": "2026-10-17T00:07:58.448444+00:00",
+      "total": 20,
+      "assessed": 1,
+      "pending": 19,
+      "unresolved": 0,
       "in_progress": 0
     },
     {
       "index": 3,
-      "start": "2026-10-15T03:02:40.652228+00:00",
-      "end": "2026-10-15T15:02:40.652228+00:00",
-      "total": 6,
-      "assessed": 6,
-      "pending": 0,
+      "start": "2026-10-16T00:07:58.448444+00:00",
+      "end": "2026-10-16T12:07:58.448444+00:00",
+      "total": 10,
+      "assessed": 1,
+      "pending": 9,
       "unresolved": 0,
       "in_progress": 0
     },
     {
       "index": 4,
-      "start": "2026-10-14T15:02:40.652228+00:00",
-      "end": "2026-10-15T03:02:40.652228+00:00",
-      "total": 18,
-      "assessed": 13,
-      "pending": 0,
-      "unresolved": 5,
+      "start": "2026-10-15T12:07:58.448444+00:00",
+      "end": "2026-10-16T00:07:58.448444+00:00",
+      "total": 26,
+      "assessed": 3,
+      "pending": 23,
+      "unresolved": 0,
       "in_progress": 0
     },
     {
       "index": 5,
-      "start": "2026-10-14T03:02:40.652228+00:00",
-      "end": "2026-10-14T15:02:40.652228+00:00",
-      "total": 2,
+      "start": "2026-10-15T00:07:58.448444+00:00",
+      "end": "2026-10-15T12:07:58.448444+00:00",
+      "total": 10,
       "assessed": 2,
-      "pending": 0,
+      "pending": 8,
       "unresolved": 0,
       "in_progress": 0
     },
     {
       "index": 6,
-      "start": "2026-10-13T15:02:40.652228+00:00",
-      "end": "2026-10-14T03:02:40.652228+00:00",
-      "total": 19,
-      "assessed": 18,
-      "pending": 0,
-      "unresolved": 1,
+      "start": "2026-10-14T12:07:58.448444+00:00",
+      "end": "2026-10-15T00:07:58.448444+00:00",
+      "total": 18,
+      "assessed": 3,
+      "pending": 15,
+      "unresolved": 0,
       "in_progress": 0
     },
     {
       "index": 7,
-      "start": "2026-10-13T03:02:40.652228+00:00",
-      "end": "2026-10-13T15:02:40.652228+00:00",
-      "total": 0,
+      "start": "2026-10-14T00:07:58.448444+00:00",
+      "end": "2026-10-14T12:07:58.448444+00:00",
+      "total": 3,
       "assessed": 0,
-      "pending": 0,
+      "pending": 3,
       "unresolved": 0,
       "in_progress": 0
     },
     {
       "index": 8,
-      "start": "2026-10-12T15:02:40.652228+00:00",
-      "end": "2026-10-13T03:02:40.652228+00:00",
-      "total": 8,
-      "assessed": 7,
-      "pending": 0,
-      "unresolved": 1,
+      "start": "2026-10-13T12:07:58.448444+00:00",
+      "end": "2026-10-14T00:07:58.448444+00:00",
+      "total": 21,
+      "assessed": 4,
+      "pending": 17,
+      "unresolved": 0,
       "in_progress": 0
     },
     {
       "index": 9,
-      "start": "2026-10-12T03:02:40.652228+00:00",
-      "end": "2026-10-12T15:02:40.652228+00:00",
-      "total": 1,
-      "assessed": 1,
+      "start": "2026-10-13T00:07:58.448444+00:00",
+      "end": "2026-10-13T12:07:58.448444+00:00",
+      "total": 0,
+      "assessed": 0,
       "pending": 0,
       "unresolved": 0,
       "in_progress": 0
     },
     {
       "index": 10,
-      "start": "2026-10-11T15:02:40.652228+00:00",
-      "end": "2026-10-12T03:02:40.652228+00:00",
-      "total": 8,
-      "assessed": 8,
-      "pending": 0,
+      "start": "2026-10-12T12:07:58.448444+00:00",
+      "end": "2026-10-13T00:07:58.448444+00:00",
+      "total": 11,
+      "assessed": 0,
+      "pending": 11,
       "unresolved": 0,
       "in_progress": 0
     },
     {
       "index": 11,
-      "start": "2026-10-11T03:02:40.652228+00:00",
-      "end": "2026-10-11T15:02:40.652228+00:00",
+      "start": "2026-10-12T00:07:58.448444+00:00",
+      "end": "2026-10-12T12:07:58.448444+00:00",
+      "total": 2,
+      "assessed": 0,
+      "pending": 2,
+      "unresolved": 0,
+      "in_progress": 0
+    },
+    {
+      "index": 12,
+      "start": "2026-10-11T12:07:58.448444+00:00",
+      "end": "2026-10-12T00:07:58.448444+00:00",
+      "total": 10,
+      "assessed": 1,
+      "pending": 9,
+      "unresolved": 0,
+      "in_progress": 0
+    },
+    {
+      "index": 13,
+      "start": "2026-10-11T00:07:58.448444+00:00",
+      "end": "2026-10-11T12:07:58.448444+00:00",
       "total": 0,
       "assessed": 0,
       "pending": 0,
@@ -845,41 +162,209 @@
       "in_progress": 0
     },
     {
-      "index": 12,
-      "start": "2026-10-10T15:02:40.652228+00:00",
-      "end": "2026-10-11T03:02:40.652228+00:00",
+      "index": 14,
+      "start": "2026-10-10T12:07:58.448444+00:00",
+      "end": "2026-10-11T00:07:58.448444+00:00",
       "total": 2,
       "assessed": 0,
-      "pending": 0,
-      "unresolved": 2,
+      "pending": 2,
+      "unresolved": 0,
       "in_progress": 0
     },
     {
-      "index": 13,
-      "start": "2026-10-10T03:02:40.652228+00:00",
-      "end": "2026-10-10T15:02:40.652228+00:00",
+      "index": 15,
+      "start": "2026-10-10T00:07:58.448444+00:00",
+      "end": "2026-10-10T12:07:58.448444+00:00",
       "total": 1,
+      "assessed": 0,
+      "pending": 1,
+      "unresolved": 0,
+      "in_progress": 0
+    },
+    {
+      "index": 16,
+      "start": "2026-10-09T12:07:58.448444+00:00",
+      "end": "2026-10-10T00:07:58.448444+00:00",
+      "total": 5,
+      "assessed": 0,
+      "pending": 5,
+      "unresolved": 0,
+      "in_progress": 0
+    },
+    {
+      "index": 17,
+      "start": "2026-10-09T00:07:58.448444+00:00",
+      "end": "2026-10-09T12:07:58.448444+00:00",
+      "total": 3,
+      "assessed": 0,
+      "pending": 3,
+      "unresolved": 0,
+      "in_progress": 0
+    },
+    {
+      "index": 18,
+      "start": "2026-10-08T12:07:58.448444+00:00",
+      "end": "2026-10-09T00:07:58.448444+00:00",
+      "total": 12,
+      "assessed": 0,
+      "pending": 12,
+      "unresolved": 0,
+      "in_progress": 0
+    },
+    {
+      "index": 19,
+      "start": "2026-10-08T00:07:58.448444+00:00",
+      "end": "2026-10-08T12:07:58.448444+00:00",
+      "total": 0,
+      "assessed": 0,
+      "pending": 0,
+      "unresolved": 0,
+      "in_progress": 0
+    },
+    {
+      "index": 20,
+      "start": "2026-10-07T12:07:58.448444+00:00",
+      "end": "2026-10-08T00:07:58.448444+00:00",
+      "total": 15,
+      "assessed": 0,
+      "pending": 15,
+      "unresolved": 0,
+      "in_progress": 0
+    },
+    {
+      "index": 21,
+      "start": "2026-10-07T00:07:58.448444+00:00",
+      "end": "2026-10-07T12:07:58.448444+00:00",
+      "total": 6,
+      "assessed": 0,
+      "pending": 6,
+      "unresolved": 0,
+      "in_progress": 0
+    },
+    {
+      "index": 22,
+      "start": "2026-10-06T12:07:58.448444+00:00",
+      "end": "2026-10-07T00:07:58.448444+00:00",
+      "total": 17,
+      "assessed": 0,
+      "pending": 17,
+      "unresolved": 0,
+      "in_progress": 0
+    },
+    {
+      "index": 23,
+      "start": "2026-10-06T00:07:58.448444+00:00",
+      "end": "2026-10-06T12:07:58.448444+00:00",
+      "total": 4,
       "assessed": 1,
+      "pending": 3,
+      "unresolved": 0,
+      "in_progress": 0
+    },
+    {
+      "index": 24,
+      "start": "2026-10-05T12:07:58.448444+00:00",
+      "end": "2026-10-06T00:07:58.448444+00:00",
+      "total": 14,
+      "assessed": 0,
+      "pending": 14,
+      "unresolved": 0,
+      "in_progress": 0
+    },
+    {
+      "index": 25,
+      "start": "2026-10-05T00:07:58.448444+00:00",
+      "end": "2026-10-05T12:07:58.448444+00:00",
+      "total": 1,
+      "assessed": 0,
+      "pending": 1,
+      "unresolved": 0,
+      "in_progress": 0
+    },
+    {
+      "index": 26,
+      "start": "2026-10-04T12:07:58.448444+00:00",
+      "end": "2026-10-05T00:07:58.448444+00:00",
+      "total": 13,
+      "assessed": 0,
+      "pending": 13,
+      "unresolved": 0,
+      "in_progress": 0
+    },
+    {
+      "index": 27,
+      "start": "2026-10-04T00:07:58.448444+00:00",
+      "end": "2026-10-04T12:07:58.448444+00:00",
+      "total": 1,
+      "assessed": 0,
+      "pending": 1,
+      "unresolved": 0,
+      "in_progress": 0
+    },
+    {
+      "index": 28,
+      "start": "2026-10-03T12:07:58.448444+00:00",
+      "end": "2026-10-04T00:07:58.448444+00:00",
+      "total": 2,
+      "assessed": 0,
+      "pending": 2,
+      "unresolved": 0,
+      "in_progress": 0
+    },
+    {
+      "index": 29,
+      "start": "2026-10-03T00:07:58.448444+00:00",
+      "end": "2026-10-03T12:07:58.448444+00:00",
+      "total": 1,
+      "assessed": 0,
+      "pending": 1,
+      "unresolved": 0,
+      "in_progress": 0
+    },
+    {
+      "index": 30,
+      "start": "2026-10-02T12:07:58.448444+00:00",
+      "end": "2026-10-03T00:07:58.448444+00:00",
+      "total": 8,
+      "assessed": 0,
+      "pending": 8,
+      "unresolved": 0,
+      "in_progress": 0
+    },
+    {
+      "index": 31,
+      "start": "2026-10-02T00:07:58.448444+00:00",
+      "end": "2026-10-02T12:07:58.448444+00:00",
+      "total": 3,
+      "assessed": 0,
+      "pending": 3,
+      "unresolved": 0,
+      "in_progress": 0
+    },
+    {
+      "index": 32,
+      "start": "2026-10-01T12:07:58.448444+00:00",
+      "end": "2026-10-02T00:07:58.448444+00:00",
+      "total": 5,
+      "assessed": 0,
+      "pending": 5,
+      "unresolved": 0,
+      "in_progress": 0
+    },
+    {
+      "index": 33,
+      "start": "2026-10-01T04:00:00+00:00",
+      "end": "2026-10-01T12:07:58.448444+00:00",
+      "total": 0,
+      "assessed": 0,
       "pending": 0,
       "unresolved": 0,
       "in_progress": 0
     }
   ],
   "phase": "windows",
-  "current_window": null,
-  "windows_processed": 14,
-  "updated_at": "2026-10-17T20:56:21.742866+00:00",
-  "context_hash": "ffa8b8073fbe157283666253f21abe08fb502584e5b33d0ee890c29433d2a187",
-  "current_batch": {
-    "started_at": "2026-10-17T14:19:43.418766+00:00",
-    "job_keys": [
-      "lever:waabi:3acdfa36-848c-4720-b7a0-f80a6c30cbe6"
-    ],
-    "phase": "windows",
-    "window": 13
-  },
-  "run_url": "https://github.com/firelyco/JobSearch/actions/runs/39068780667",
-  "salary_checked_at": "2026-10-17T21:49:52.560041+00:00",
-  "archived_at": "2026-10-17T22:06:33.189197+00:00",
-  "archive_reason": "Completed under the previous assessment policy; current fit status reflects the canonical skill."
+  "current_window": 0,
+  "windows_processed": 4,
+  "updated_at": "2026-10-18T00:07:58.456448+00:00",
+  "context_hash": "23b2dd855e5670ef88f21dec11af27293bfd7034de17046c2850678d81a00790"
 }

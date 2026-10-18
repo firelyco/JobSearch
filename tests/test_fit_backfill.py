@@ -38,6 +38,18 @@ class BackfillTests(unittest.TestCase):
         windows=b.plan([],{},self.state,'context',CFG)['windows']
         self.assertEqual(windows[0]['start'],windows[1]['end'])
         self.assertEqual(windows[-1]['start'],self.state['cutoff'])
+    def test_custom_start_covers_all_tracked_roles_and_locations(self):
+        since=datetime(2026,10,1,4,tzinfo=timezone.utc)
+        state=b.initialize(NOW,since=since,all_jobs=True)
+        included=job('foreign-sales',posted_at=since.isoformat(),title='Sales',location='London, UK')
+        before=job('before',posted_at=(since-timedelta(seconds=1)).isoformat())
+        result=b.plan([included,before],{},state,'context',CFG)
+        self.assertEqual(result['counts']['total'],1)
+        self.assertEqual(state['window_count'],32)
+        self.assertEqual(result['windows'][-1]['start'],since.isoformat())
+        self.assertEqual(result['selected'],[included])
+        self.assertIsNone(b.window_index(before,state))
+
     def test_actual_posting_date_takes_precedence_over_discovery(self):
         j=job('old',200,first_seen_at=NOW.isoformat())
         self.assertIsNone(b.window_index(j,self.state))

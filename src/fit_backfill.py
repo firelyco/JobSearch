@@ -1,6 +1,7 @@
 """Resumable, finite seven-day assessment backfill. Public state contains no career evidence."""
 from __future__ import annotations
 import argparse
+import math
 import json
 import os
 import re
@@ -43,10 +44,13 @@ def in_scope(job, role_config):
     return bool(us and role)
 
 
-def initialize(as_of, priority_keys=()):
+def initialize(as_of, priority_keys=(), *, since=None, all_jobs=False):
+    cutoff = since or (as_of-timedelta(days=7))
+    if cutoff > as_of: raise ValueError('Start date must not be after end date')
+    windows = max(1, math.ceil((as_of-cutoff).total_seconds()/(12*3600)))
     return {'schema': 1, 'enabled': True, 'status': 'running', 'as_of': as_of.isoformat(),
-            'cutoff': (as_of-timedelta(days=7)).isoformat(), 'window_hours': 12,
-            'window_count': 14, 'max_attempts': 2, 'priority_job_keys': list(dict.fromkeys(priority_keys)),
+            'cutoff': cutoff.isoformat(), 'window_hours': 12,
+            'window_count': windows, 'all_jobs': all_jobs, 'max_attempts': 2, 'priority_job_keys': list(dict.fromkeys(priority_keys)),
             'attempts': {}, 'batches': 0, 'created_at': as_of.isoformat()}
 
 
@@ -55,7 +59,7 @@ def window_index(job, state):
     end = timestamp(state['as_of']); start = timestamp(state['cutoff'])
     if posted is None or not start <= posted <= end:
         return None
-    return min(13, int((end-posted).total_seconds() // (12*3600)))
+    return min(state.get('window_count',14)-1, int((end-posted).total_seconds() // (12*3600)))
 
 
 def fresh(job, score, context):
@@ -79,17 +83,17 @@ def outcome(job, scores, state, context):
 
 def plan(jobs, scores, state, context, role_config):
     priority = set(state.get('priority_job_keys', []))
-    chosen = [j for j in jobs if key(j) in priority or (in_scope(j, role_config) and window_index(j, state) is not None)]
+    chosen = [j for j in jobs if key(j) in priority or ((state.get('all_jobs') or in_scope(j, role_config)) and window_index(j, state) is not None)]
     statuses = {key(j): outcome(j, scores, state, context) for j in chosen}
     counts = {name: sum(value == name for value in statuses.values()) for name in ('assessed', 'pending', 'unresolved', 'in_progress')}
     counts['total'] = len(chosen)
     counts['strong'] = sum(statuses[key(j)] == 'assessed' and scores[key(j)]['recommendation'] == 'strong' for j in chosen)
     windows = []
     end = timestamp(state['as_of'])
-    for index in range(14):
+    for index in range(state.get('window_count',14)):
         members = [j for j in chosen if window_index(j, state) == index]
         window_end = end-timedelta(hours=12*index)
-        windows.append({'index': index, 'start': (window_end-timedelta(hours=12)).isoformat(),
+        windows.append({'index': index, 'start': max(timestamp(state['cutoff']),window_end-timedelta(hours=12)).isoformat(),
                         'end': window_end.isoformat(), 'total': len(members),
                         **{name: sum(statuses[key(j)] == name for j in members) for name in ('assessed','pending','unresolved','in_progress')}})
     pending_priority = [j for j in chosen if key(j) in priority and statuses[key(j)] == 'pending']
@@ -179,7 +183,7 @@ def publish_checkpoint():
         git('add', 'docs/fit_scores.json', 'docs/fit_policy.json', 'docs/fit_backfill.json')
         if git('diff', '--cached', '--quiet', check=False).returncode == 0: return
         git('-c','user.name=github-actions[bot]','-c','user.email=41898282+github-actions[bot]@users.noreply.github.com',
-            'commit','-m','fit: checkpoint seven-day backfill')
+            'commit','-m','fit: checkpoint assessment backfill')
         for attempt in range(3):
             git('pull', '--rebase', 'origin', 'main')
             if git('push', check=False).returncode == 0: return
@@ -192,6 +196,8 @@ def main(argv=None):
     parser = argparse.ArgumentParser()
     parser.add_argument('--init', action='store_true')
     parser.add_argument('--as-of')
+    parser.add_argument('--since')
+    parser.add_argument('--all-jobs', action='store_true')
     parser.add_argument('--priority-json', default='[]')
     parser.add_argument('--enabled', action='store_true')
     parser.add_argument('--should-continue', action='store_true')
@@ -204,7 +210,9 @@ def main(argv=None):
     if args.init:
         anchor = timestamp(args.as_of) if args.as_of else datetime.now(timezone.utc)
         if anchor is None: parser.error('Invalid --as-of timestamp')
-        state = initialize(anchor, json.loads(args.priority_json))
+        since = timestamp(args.since) if args.since else None
+        if args.since and since is None: parser.error('Invalid --since timestamp')
+        state = initialize(anchor, json.loads(args.priority_json), since=since, all_jobs=args.all_jobs)
         STATE_FILE.write_text(json.dumps(state, indent=2)+'\n', encoding='utf-8')
         return 0
     if args.provider_error:
@@ -235,7 +243,7 @@ def main(argv=None):
     print(json.dumps({'status':state['status'], 'counts':state['counts'], 'windows_processed':state['windows_processed']}))
     if os.environ.get('GITHUB_STEP_SUMMARY'):
         with open(os.environ['GITHUB_STEP_SUMMARY'],'a',encoding='utf-8') as out:
-            out.write('Seven-day backfill: '+json.dumps(state['counts'])+'; status: '+state['status']+'\n')
+            out.write('Assessment backfill: '+json.dumps(state['counts'])+'; status: '+state['status']+'\n')
     return 0
 
 if __name__ == '__main__': raise SystemExit(main())
