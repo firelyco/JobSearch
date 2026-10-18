@@ -1323,19 +1323,19 @@
       "pipeline_version": "resume-v1"
     },
     "oracle_cloud:oracle:342218": {
-      "count": 0,
+      "count": 1,
       "context_hash": "23b2dd855e5670ef88f21dec11af27293bfd7034de17046c2850678d81a00790",
       "job_snapshot_hash": "d49d123cbc52a7f82e953737a842ce56b838a68d93e3876d1e1e525ae16326c8",
-      "last_attempt_at": "2026-10-18T02:31:25.061962+00:00",
-      "last_outcome": "explicit_retry",
+      "last_attempt_at": "2026-10-18T16:50:08.381235+00:00",
+      "last_outcome": "in_progress",
       "pipeline_version": "resume-v1"
     },
     "oracle_cloud:oracle:346912": {
-      "count": 0,
+      "count": 1,
       "context_hash": "23b2dd855e5670ef88f21dec11af27293bfd7034de17046c2850678d81a00790",
       "job_snapshot_hash": "15a65f842075acb748931c36abebc84e84c38f854cb09e8942c12c4f3d406f73",
-      "last_attempt_at": "2026-10-18T02:31:25.061962+00:00",
-      "last_outcome": "explicit_retry",
+      "last_attempt_at": "2026-10-18T16:50:08.381235+00:00",
+      "last_outcome": "in_progress",
       "pipeline_version": "resume-v1"
     },
     "amazon_jobs:amazon:10572812": {
@@ -1371,19 +1371,19 @@
       "pipeline_version": "resume-v1"
     },
     "amazon_jobs:amazon:10573727": {
-      "count": 0,
+      "count": 1,
       "context_hash": "23b2dd855e5670ef88f21dec11af27293bfd7034de17046c2850678d81a00790",
       "job_snapshot_hash": "34a45553b3c27d80113e73f40942e573a2f9bc5224309b33b8acbb9d5878ecf1",
-      "last_attempt_at": "2026-10-18T02:36:10.692591+00:00",
-      "last_outcome": "explicit_retry",
+      "last_attempt_at": "2026-10-18T16:50:08.381235+00:00",
+      "last_outcome": "in_progress",
       "pipeline_version": "resume-v1"
     },
     "greenhouse:reddit:7995207": {
-      "count": 0,
+      "count": 1,
       "context_hash": "23b2dd855e5670ef88f21dec11af27293bfd7034de17046c2850678d81a00790",
       "job_snapshot_hash": "89046d6bfacb152a3a4f83e1b7e1f8c4e4f60a86c3f9210c2ea5846fb9c0def7",
-      "last_attempt_at": "2026-10-18T02:36:10.692591+00:00",
-      "last_outcome": "explicit_retry",
+      "last_attempt_at": "2026-10-18T16:50:08.381235+00:00",
+      "last_outcome": "in_progress",
       "pipeline_version": "resume-v1"
     },
     "ashby:openai:fe7039ce-51e2-4cfa-9ea5-507eb7a0eee1": {
@@ -1395,11 +1395,11 @@
       "pipeline_version": "resume-v1"
     },
     "google:google:124691202292228806": {
-      "count": 0,
+      "count": 1,
       "context_hash": "23b2dd855e5670ef88f21dec11af27293bfd7034de17046c2850678d81a00790",
       "job_snapshot_hash": "3095b3355c33b8e117086a420b7381d731ba703b182b09ba7f6ff51ff2efc7d6",
-      "last_attempt_at": "2026-10-18T02:39:02.139238+00:00",
-      "last_outcome": "explicit_retry",
+      "last_attempt_at": "2026-10-18T16:50:08.381235+00:00",
+      "last_outcome": "in_progress",
       "pipeline_version": "resume-v1"
     },
     "greenhouse:duolingo:8875080002": {
@@ -2115,13 +2115,13 @@
       "pipeline_version": "resume-v1"
     }
   },
-  "batches": 109,
+  "batches": 110,
   "created_at": "2026-10-18T00:07:58.448444+00:00",
   "counts": {
     "assessed": 206,
-    "pending": 18,
+    "pending": 13,
     "unresolved": 38,
-    "in_progress": 0,
+    "in_progress": 5,
     "total": 262,
     "strong": 43
   },
@@ -2332,9 +2332,9 @@
       "end": "2026-10-08T00:07:58.448444+00:00",
       "total": 14,
       "assessed": 9,
-      "pending": 5,
+      "pending": 0,
       "unresolved": 0,
-      "in_progress": 0
+      "in_progress": 5
     },
     {
       "index": 21,
@@ -2470,17 +2470,21 @@
   "phase": "windows",
   "current_window": 20,
   "windows_processed": 26,
-  "updated_at": "2026-10-18T16:49:43.344848+00:00",
+  "updated_at": "2026-10-18T16:50:08.381235+00:00",
   "context_hash": "23b2dd855e5670ef88f21dec11af27293bfd7034de17046c2850678d81a00790",
   "current_batch": {
-    "started_at": "2026-10-18T16:47:15.570861+00:00",
+    "started_at": "2026-10-18T16:50:08.381235+00:00",
     "job_keys": [
-      "oracle_cloud:oracle:347142"
+      "oracle_cloud:oracle:342218",
+      "oracle_cloud:oracle:346912",
+      "amazon_jobs:amazon:10573727",
+      "greenhouse:reddit:7995207",
+      "google:google:124691202292228806"
     ],
     "phase": "windows",
-    "window": 18
+    "window": 20
   },
-  "run_url": "https://github.com/firelyco/JobSearch/actions/runs/39146571238",
+  "run_url": "https://github.com/firelyco/JobSearch/actions/runs/39146781113",
   "salary_checked_at": "2026-10-18T16:08:27.647138+00:00",
   "retry_history": [
     {
