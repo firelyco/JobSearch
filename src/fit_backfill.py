@@ -1,4 +1,4 @@
-"""Resumable, finite seven-day assessment backfill. Public state contains no career evidence."""
+"""Resumable, finite date-range assessment backfill. Public state contains no career evidence."""
 from __future__ import annotations
 import argparse
 import math
@@ -125,6 +125,34 @@ def refresh(state, jobs, scores, context, role_config, now):
     return result
 
 
+def continuation_needed(state, jobs, scores, context, role_config, now):
+    """Reconcile completed batches against refreshed postings without resetting retries."""
+    if not state.get('enabled') or state.get('status') in {'archived','waiting_for_provider'}:
+        return False
+    if not context or not state.get('cutoff') or not state.get('as_of'):
+        return False
+    refresh(state,jobs,scores,context,role_config,now)
+    return state['status'] == 'running'
+
+
+def retry_unfinished(state, jobs, scores, context, role_config, now):
+    """Explicitly renew exhausted attempts, preserving valid ratings and retry history."""
+    if not state.get('enabled'): raise RuntimeError('No enabled assessment period')
+    reset=[]
+    for job in jobs:
+        if window_index(job,state) is None and key(job) not in state.get('priority_job_keys',[]): continue
+        if not state.get('all_jobs') and not in_scope(job,role_config) and key(job) not in state.get('priority_job_keys',[]): continue
+        if outcome(job,scores,state,context) != 'unresolved': continue
+        attempt=state['attempts'][key(job)]
+        state.setdefault('retry_history',[]).append({'job_key':key(job), 'attempt':dict(attempt), 'resumed_at':now.isoformat()})
+        attempt['count']=0
+        attempt['last_outcome']='explicit_retry'
+        reset.append(key(job))
+    state['status']='running'
+    refresh(state,jobs,scores,context,role_config,now)
+    return reset
+
+
 def run_batch(*, jobs, profile, rules, scores, state, model, role_config, max_jobs=6,
               now=None, runner=None, persist=None):
     if max_jobs < 1: raise ValueError('max_jobs must be positive')
@@ -201,12 +229,24 @@ def main(argv=None):
     parser.add_argument('--priority-json', default='[]')
     parser.add_argument('--enabled', action='store_true')
     parser.add_argument('--should-continue', action='store_true')
+    parser.add_argument('--retry-unfinished', action='store_true')
     parser.add_argument('--provider-error', action='store_true')
     parser.add_argument('--max', type=int, default=6)
     args = parser.parse_args(argv)
     state = fit.load_json(STATE_FILE, {})
     if args.enabled: return 0 if state.get('enabled') else 1
-    if args.should_continue: return 0 if state.get('enabled') and state.get('status') == 'running' else 1
+    if args.should_continue or args.retry_unfinished:
+        import yaml
+        policy=fit.load_json(fit.DOCS_DIR/'fit_policy.json',{})
+        jobs=fit.load_json(fit.JOBS_FILE,[]); scores=fit.load_json(fit.FIT_FILE,{})
+        role_config=yaml.safe_load((fit.CONFIG_DIR/'role_config.yml').read_text(encoding='utf-8'))
+        now=datetime.now(timezone.utc)
+        if args.retry_unfinished:
+            reset=retry_unfinished(state,jobs,scores,policy.get('context_hash'),role_config,now)
+            print(json.dumps({'reset_unfinished':len(reset),'counts':state['counts']}))
+        needed=continuation_needed(state,jobs,scores,policy.get('context_hash'),role_config,now)
+        STATE_FILE.write_text(json.dumps(state,indent=2)+'\n',encoding='utf-8')
+        return 0 if needed else 1
     if args.init:
         anchor = timestamp(args.as_of) if args.as_of else datetime.now(timezone.utc)
         if anchor is None: parser.error('Invalid --as-of timestamp')

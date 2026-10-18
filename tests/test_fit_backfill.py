@@ -130,18 +130,40 @@ class BackfillTests(unittest.TestCase):
         self.assertEqual(seen[0]['counts']['in_progress'],1)
         self.assertEqual(self.state['counts']['assessed'],0)
         self.assertEqual(self.state['counts']['pending'],1)
-    def test_terminal_and_provider_error_do_not_dispatch_more_work(self):
-        with tempfile.TemporaryDirectory() as directory:
-            statefile=Path(directory)/'state.json'
-            import json
-            with patch.object(b,'STATE_FILE',statefile):
-                for status in ('completed','completed_with_issues','waiting_for_provider'):
-                    statefile.write_text(json.dumps({'enabled':True,'status':status}))
-                    self.assertEqual(b.main(['--should-continue']),1)
-                statefile.write_text(json.dumps({'enabled':True,'status':'running'}))
-                self.assertEqual(b.main(['--should-continue']),0)
-                b.main(['--provider-error'])
-                self.assertEqual(b.main(['--should-continue']),1)
+    def test_continuation_reopens_completed_period_for_new_or_changed_jobs(self):
+        done=job('done');new=job('late');scores={b.key(done):verdict(done)}
+        for status in ('completed','completed_with_issues'):
+            self.state['status']=status
+            self.assertTrue(b.continuation_needed(self.state,[done,new],scores,'context',CFG,NOW))
+            self.assertEqual(self.state['counts']['assessed'],1)
+        self.assertFalse(b.continuation_needed(self.state,[done],scores,'context',CFG,NOW))
+        done['description']='Updated job requirements'
+        self.assertTrue(b.continuation_needed(self.state,[done],scores,'context',CFG,NOW))
+
+    def test_retry_unfinished_preserves_completed_scores_and_stops_after_budget(self):
+        done=job('done');failed=job('failed');scores={b.key(done):verdict(done)}
+        self.run_batch([failed],runner=lambda **kw:kw['existing'])
+        self.run_batch([failed],runner=lambda **kw:kw['existing'])
+        self.assertFalse(b.continuation_needed(self.state,[done,failed],scores,'context',CFG,NOW))
+        reset=b.retry_unfinished(self.state,[done,failed],scores,'context',CFG,NOW)
+        self.assertEqual(reset,[b.key(failed)])
+        self.assertEqual(self.state['retry_history'][0]['attempt']['count'],2)
+        self.assertEqual(b.outcome(done,scores,self.state,'context'),'assessed')
+        self.assertEqual(b.outcome(failed,scores,self.state,'context'),'pending')
+        def runner(**kw):
+            self.assertEqual(kw['job_keys'],[b.key(failed)])
+            return kw['existing']
+        self.run_batch([done,failed],scores,runner)
+        self.run_batch([done,failed],scores,runner)
+        self.assertFalse(b.continuation_needed(self.state,[done,failed],scores,'context',CFG,NOW))
+
+    def test_provider_pause_and_disabled_period_do_not_continue(self):
+        for status in ('archived','waiting_for_provider'):
+            self.state['status']=status
+            self.assertFalse(b.continuation_needed(self.state,[job('new')],{},'context',CFG,NOW))
+        self.state.update(status='running',enabled=False)
+        self.assertFalse(b.continuation_needed(self.state,[job('new')],{},'context',CFG,NOW))
+
     def test_checkpoint_stages_only_public_files_and_restores_model_override(self):
         with tempfile.TemporaryDirectory() as directory:
             config=Path(directory)/'config.yml';config.write_text('NVIDIA runtime override')
