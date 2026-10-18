@@ -1875,11 +1875,11 @@
       "pipeline_version": "resume-v1"
     },
     "apple:apple:200679027": {
-      "count": 1,
+      "count": 2,
       "context_hash": "23b2dd855e5670ef88f21dec11af27293bfd7034de17046c2850678d81a00790",
       "job_snapshot_hash": "8b6f6607c08ba275164984066335b1811e3d17c292607afb29a96bc39dec58cb",
-      "last_attempt_at": "2026-10-18T03:21:04.488509+00:00",
-      "last_outcome": "review",
+      "last_attempt_at": "2026-10-18T03:26:04.926803+00:00",
+      "last_outcome": "in_progress",
       "pipeline_version": "resume-v1"
     },
     "ashby:sesame:da94ca35-deb2-40cc-af7a-3238e0246a1e": {
@@ -1907,11 +1907,11 @@
       "pipeline_version": "resume-v1"
     },
     "greenhouse:cloudflare:8248873": {
-      "count": 1,
+      "count": 2,
       "context_hash": "23b2dd855e5670ef88f21dec11af27293bfd7034de17046c2850678d81a00790",
       "job_snapshot_hash": "f87b7c47bac893878123b9fd6292d6896dd41396e8112296f51746de7983d662",
-      "last_attempt_at": "2026-10-18T03:21:04.488509+00:00",
-      "last_outcome": "review",
+      "last_attempt_at": "2026-10-18T03:26:04.926803+00:00",
+      "last_outcome": "in_progress",
       "pipeline_version": "resume-v1"
     },
     "lever:shieldai:361f2b96-d28b-45df-afb6-109643d33d18": {
@@ -1921,15 +1921,31 @@
       "last_attempt_at": "2026-10-18T03:21:04.488509+00:00",
       "last_outcome": "medium",
       "pipeline_version": "resume-v1"
+    },
+    "greenhouse:databricks:8864290002": {
+      "count": 1,
+      "context_hash": "23b2dd855e5670ef88f21dec11af27293bfd7034de17046c2850678d81a00790",
+      "job_snapshot_hash": "5c2b2c6d7e83d960304507ad6fa098ec01a853655a4161569b9f4d665823460a",
+      "last_attempt_at": "2026-10-18T03:26:04.926803+00:00",
+      "last_outcome": "in_progress",
+      "pipeline_version": "resume-v1"
+    },
+    "greenhouse:databricks:8864285002": {
+      "count": 1,
+      "context_hash": "23b2dd855e5670ef88f21dec11af27293bfd7034de17046c2850678d81a00790",
+      "job_snapshot_hash": "ed5dfc9b516cc3696189f938f370c56618b940966eb62d3f6b1398fa2b7e421f",
+      "last_attempt_at": "2026-10-18T03:26:04.926803+00:00",
+      "last_outcome": "in_progress",
+      "pipeline_version": "resume-v1"
     }
   },
-  "batches": 75,
+  "batches": 76,
   "created_at": "2026-10-18T00:07:58.448444+00:00",
   "counts": {
     "assessed": 198,
-    "pending": 12,
+    "pending": 8,
     "unresolved": 54,
-    "in_progress": 0,
+    "in_progress": 4,
     "total": 264,
     "strong": 40
   },
@@ -2240,9 +2256,9 @@
       "end": "2026-10-03T00:07:58.448444+00:00",
       "total": 8,
       "assessed": 4,
-      "pending": 4,
+      "pending": 0,
       "unresolved": 0,
-      "in_progress": 0
+      "in_progress": 4
     },
     {
       "index": 31,
@@ -2278,20 +2294,18 @@
   "phase": "windows",
   "current_window": 30,
   "windows_processed": 31,
-  "updated_at": "2026-10-18T03:25:40.175463+00:00",
+  "updated_at": "2026-10-18T03:26:04.926803+00:00",
   "context_hash": "23b2dd855e5670ef88f21dec11af27293bfd7034de17046c2850678d81a00790",
   "current_batch": {
-    "started_at": "2026-10-18T03:21:04.488509+00:00",
+    "started_at": "2026-10-18T03:26:04.926803+00:00",
     "job_keys": [
       "apple:apple:200679027",
-      "ashby:sesame:da94ca35-deb2-40cc-af7a-3238e0246a1e",
-      "ashby:sesame:cf5cb1db-5470-4966-970c-b90ff51b3fe4",
-      "ashby:openai:3ae71c21-60dd-42b2-a913-58df05988976",
       "greenhouse:cloudflare:8248873",
-      "lever:shieldai:361f2b96-d28b-45df-afb6-109643d33d18"
+      "greenhouse:databricks:8864290002",
+      "greenhouse:databricks:8864285002"
     ],
     "phase": "windows",
     "window": 30
   },
-  "run_url": "https://github.com/firelyco/JobSearch/actions/runs/39093290456"
+  "run_url": "https://github.com/firelyco/JobSearch/actions/runs/39093581175"
 }
