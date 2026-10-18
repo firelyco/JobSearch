@@ -1051,27 +1051,27 @@
       "pipeline_version": "resume-v1"
     },
     "oracle_cloud:oracle:347348": {
-      "count": 0,
+      "count": 1,
       "context_hash": "23b2dd855e5670ef88f21dec11af27293bfd7034de17046c2850678d81a00790",
       "job_snapshot_hash": "d239f6acb3ea3ac47c4f39ed47f65ee66fda197592e826f5f56b33b66073eda8",
-      "last_attempt_at": "2026-10-18T01:59:28.658258+00:00",
-      "last_outcome": "explicit_retry",
+      "last_attempt_at": "2026-10-18T15:12:33.872682+00:00",
+      "last_outcome": "in_progress",
       "pipeline_version": "resume-v1"
     },
     "amazon_jobs:amazon:10575824": {
-      "count": 0,
+      "count": 1,
       "context_hash": "23b2dd855e5670ef88f21dec11af27293bfd7034de17046c2850678d81a00790",
       "job_snapshot_hash": "97e74806f2c43c1e4ad7ce8690f0ce8b42096505868d1d8dee2d4b195c5f4246",
-      "last_attempt_at": "2026-10-18T01:59:28.658258+00:00",
-      "last_outcome": "explicit_retry",
+      "last_attempt_at": "2026-10-18T15:12:33.872682+00:00",
+      "last_outcome": "in_progress",
       "pipeline_version": "resume-v1"
     },
     "amazon_jobs:amazon:10576290": {
-      "count": 0,
+      "count": 1,
       "context_hash": "23b2dd855e5670ef88f21dec11af27293bfd7034de17046c2850678d81a00790",
       "job_snapshot_hash": "a467e167c27afccaac1986e8b9f5e074f5b4bc0bb686fb6cb82afadc8b68e48d",
-      "last_attempt_at": "2026-10-18T01:59:28.658258+00:00",
-      "last_outcome": "explicit_retry",
+      "last_attempt_at": "2026-10-18T15:12:33.872682+00:00",
+      "last_outcome": "in_progress",
       "pipeline_version": "resume-v1"
     },
     "amazon_jobs:amazon:10576213": {
@@ -2115,13 +2115,13 @@
       "pipeline_version": "resume-v1"
     }
   },
-  "batches": 103,
+  "batches": 104,
   "created_at": "2026-10-18T00:07:58.448444+00:00",
   "counts": {
     "assessed": 206,
-    "pending": 24,
+    "pending": 21,
     "unresolved": 32,
-    "in_progress": 0,
+    "in_progress": 3,
     "total": 262,
     "strong": 43
   },
@@ -2252,9 +2252,9 @@
       "end": "2026-10-12T00:07:58.448444+00:00",
       "total": 9,
       "assessed": 6,
-      "pending": 3,
+      "pending": 0,
       "unresolved": 0,
-      "in_progress": 0
+      "in_progress": 3
     },
     {
       "index": 13,
@@ -2470,17 +2470,19 @@
   "phase": "windows",
   "current_window": 12,
   "windows_processed": 23,
-  "updated_at": "2026-10-18T15:12:10.420795+00:00",
+  "updated_at": "2026-10-18T15:12:33.872682+00:00",
   "context_hash": "23b2dd855e5670ef88f21dec11af27293bfd7034de17046c2850678d81a00790",
   "current_batch": {
-    "started_at": "2026-10-18T15:12:05.296788+00:00",
+    "started_at": "2026-10-18T15:12:33.872682+00:00",
     "job_keys": [
-      "greenhouse:andurilindustries:5263066007"
+      "oracle_cloud:oracle:347348",
+      "amazon_jobs:amazon:10575824",
+      "amazon_jobs:amazon:10576290"
     ],
     "phase": "windows",
-    "window": 11
+    "window": 12
   },
-  "run_url": "https://github.com/firelyco/JobSearch/actions/runs/39139374456",
+  "run_url": "https://github.com/firelyco/JobSearch/actions/runs/39139409529",
   "salary_checked_at": "2026-10-18T13:59:03.267241+00:00",
   "retry_history": [
     {
