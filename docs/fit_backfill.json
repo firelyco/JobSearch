@@ -619,11 +619,11 @@
       "pipeline_version": "resume-v1"
     },
     "google:google:124090581180654278": {
-      "count": 1,
+      "count": 2,
       "context_hash": "23b2dd855e5670ef88f21dec11af27293bfd7034de17046c2850678d81a00790",
       "job_snapshot_hash": "d3ae529ae8f21e4113d80be950d1fd636a83158710b8da54a5b2e4019b864b3c",
-      "last_attempt_at": "2026-10-18T01:15:49.494878+00:00",
-      "last_outcome": "failed",
+      "last_attempt_at": "2026-10-18T01:18:53.801044+00:00",
+      "last_outcome": "in_progress",
       "pipeline_version": "resume-v1"
     },
     "google:google:81380051999695558": {
@@ -665,15 +665,23 @@
       "last_attempt_at": "2026-10-18T01:15:49.494878+00:00",
       "last_outcome": "not",
       "pipeline_version": "resume-v1"
+    },
+    "apple:apple:200689111": {
+      "count": 1,
+      "context_hash": "23b2dd855e5670ef88f21dec11af27293bfd7034de17046c2850678d81a00790",
+      "job_snapshot_hash": "ed03e8bcee2bc0018cef2f09600ccf7d342e36458a998f0a452f8aa0ff5882ff",
+      "last_attempt_at": "2026-10-18T01:18:53.801044+00:00",
+      "last_outcome": "in_progress",
+      "pipeline_version": "resume-v1"
     }
   },
-  "batches": 21,
+  "batches": 22,
   "created_at": "2026-10-18T00:07:58.448444+00:00",
   "counts": {
     "assessed": 75,
-    "pending": 168,
+    "pending": 166,
     "unresolved": 21,
-    "in_progress": 0,
+    "in_progress": 2,
     "total": 264,
     "strong": 13
   },
@@ -734,9 +742,9 @@
       "end": "2026-10-15T12:07:58.448444+00:00",
       "total": 8,
       "assessed": 6,
-      "pending": 2,
+      "pending": 0,
       "unresolved": 0,
-      "in_progress": 0
+      "in_progress": 2
     },
     {
       "index": 6,
@@ -1022,20 +1030,16 @@
   "phase": "windows",
   "current_window": 5,
   "windows_processed": 9,
-  "updated_at": "2026-10-18T01:18:32.301576+00:00",
+  "updated_at": "2026-10-18T01:18:53.801044+00:00",
   "context_hash": "23b2dd855e5670ef88f21dec11af27293bfd7034de17046c2850678d81a00790",
   "current_batch": {
-    "started_at": "2026-10-18T01:15:49.494878+00:00",
+    "started_at": "2026-10-18T01:18:53.801044+00:00",
     "job_keys": [
       "google:google:124090581180654278",
-      "google:google:81380051999695558",
-      "greenhouse:databricks:8884751002",
-      "google:google:136694832725664454",
-      "greenhouse:anthropic:5453262008",
-      "arbeitnow:Samsara:senior-security-operations-engineer-netherlands-276669"
+      "apple:apple:200689111"
     ],
     "phase": "windows",
     "window": 5
   },
-  "run_url": "https://github.com/firelyco/JobSearch/actions/runs/39085819372"
+  "run_url": "https://github.com/firelyco/JobSearch/actions/runs/39086013257"
 }
