@@ -1609,15 +1609,39 @@
       "last_attempt_at": "2026-10-18T02:54:08.423641+00:00",
       "last_outcome": "review",
       "pipeline_version": "resume-v1"
+    },
+    "google:google:114160286079820486": {
+      "count": 1,
+      "context_hash": "23b2dd855e5670ef88f21dec11af27293bfd7034de17046c2850678d81a00790",
+      "job_snapshot_hash": "1600f4086fc5e82a96c9d8fb6ed41a1cb1262bd33eef9c0ba90f68d661ae3ced",
+      "last_attempt_at": "2026-10-18T02:54:33.875844+00:00",
+      "last_outcome": "in_progress",
+      "pipeline_version": "resume-v1"
+    },
+    "google:google:72585552410354374": {
+      "count": 1,
+      "context_hash": "23b2dd855e5670ef88f21dec11af27293bfd7034de17046c2850678d81a00790",
+      "job_snapshot_hash": "5ea7f3aaae50ad71fef0c0e8373ae4d417c7f5600893d02b8fc6249cafdaffb3",
+      "last_attempt_at": "2026-10-18T02:54:33.875844+00:00",
+      "last_outcome": "in_progress",
+      "pipeline_version": "resume-v1"
+    },
+    "greenhouse:stripe:8231202": {
+      "count": 1,
+      "context_hash": "23b2dd855e5670ef88f21dec11af27293bfd7034de17046c2850678d81a00790",
+      "job_snapshot_hash": "c55817afe2a3d98875fe91cdabdc1c17de2e9304de1b4b82d9957c692c1ba616",
+      "last_attempt_at": "2026-10-18T02:54:33.875844+00:00",
+      "last_outcome": "in_progress",
+      "pipeline_version": "resume-v1"
     }
   },
-  "batches": 60,
+  "batches": 61,
   "created_at": "2026-10-18T00:07:58.448444+00:00",
   "counts": {
     "assessed": 166,
-    "pending": 49,
+    "pending": 46,
     "unresolved": 49,
-    "in_progress": 0,
+    "in_progress": 3,
     "total": 264,
     "strong": 37
   },
@@ -1858,9 +1882,9 @@
       "end": "2026-10-06T12:07:58.448444+00:00",
       "total": 4,
       "assessed": 1,
-      "pending": 3,
+      "pending": 0,
       "unresolved": 0,
-      "in_progress": 0
+      "in_progress": 3
     },
     {
       "index": 24,
@@ -1966,15 +1990,17 @@
   "phase": "windows",
   "current_window": 23,
   "windows_processed": 24,
-  "updated_at": "2026-10-18T02:54:12.445009+00:00",
+  "updated_at": "2026-10-18T02:54:33.875844+00:00",
   "context_hash": "23b2dd855e5670ef88f21dec11af27293bfd7034de17046c2850678d81a00790",
   "current_batch": {
-    "started_at": "2026-10-18T02:54:08.423641+00:00",
+    "started_at": "2026-10-18T02:54:33.875844+00:00",
     "job_keys": [
-      "google:google:100929312906977990"
+      "google:google:114160286079820486",
+      "google:google:72585552410354374",
+      "greenhouse:stripe:8231202"
     ],
     "phase": "windows",
-    "window": 22
+    "window": 23
   },
-  "run_url": "https://github.com/firelyco/JobSearch/actions/runs/39091697729"
+  "run_url": "https://github.com/firelyco/JobSearch/actions/runs/39091722568"
 }
