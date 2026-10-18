@@ -9,14 +9,55 @@
   "all_jobs": true,
   "max_attempts": 2,
   "priority_job_keys": [],
-  "attempts": {},
-  "batches": 0,
+  "attempts": {
+    "arbeitnow:Monzo:model-validation-senior-manager-cardiff-155388": {
+      "count": 1,
+      "context_hash": "23b2dd855e5670ef88f21dec11af27293bfd7034de17046c2850678d81a00790",
+      "job_snapshot_hash": "12fc463a91c4af670bfabf9519308fef3d97afce0b1f4946b4a114aeaecf012e",
+      "last_attempt_at": "2026-10-18T00:08:24.385689+00:00",
+      "last_outcome": "in_progress",
+      "pipeline_version": "resume-v1"
+    },
+    "arbeitnow:Addepar1:staff-software-engineer-reference-data-ai-ml-uk-edinburgh-465630": {
+      "count": 1,
+      "context_hash": "23b2dd855e5670ef88f21dec11af27293bfd7034de17046c2850678d81a00790",
+      "job_snapshot_hash": "94ede15494b1c0a0c54b471344154889463bfd5e07574694f0fe38f69f139ff8",
+      "last_attempt_at": "2026-10-18T00:08:24.385689+00:00",
+      "last_outcome": "in_progress",
+      "pipeline_version": "resume-v1"
+    },
+    "arbeitnow:Lilasciences:staff-software-engineer-ai-safety-london-158476": {
+      "count": 1,
+      "context_hash": "23b2dd855e5670ef88f21dec11af27293bfd7034de17046c2850678d81a00790",
+      "job_snapshot_hash": "532607b3f27794c7984bc8927f341eb8f3cdd8eecd324d058d272de24196a214",
+      "last_attempt_at": "2026-10-18T00:08:24.385689+00:00",
+      "last_outcome": "in_progress",
+      "pipeline_version": "resume-v1"
+    },
+    "arbeitnow:Lilasciences:senior-specialist-manager-ai-safety-data-and-evaluation-program-london-366152": {
+      "count": 1,
+      "context_hash": "23b2dd855e5670ef88f21dec11af27293bfd7034de17046c2850678d81a00790",
+      "job_snapshot_hash": "187762d3975c44afa06772e253e5eb80035a191f525632dc67f91cb8d81dedb9",
+      "last_attempt_at": "2026-10-18T00:08:24.385689+00:00",
+      "last_outcome": "in_progress",
+      "pipeline_version": "resume-v1"
+    },
+    "arbeitnow:Trainline:senior-engineering-manager-customer-growth-london-464131": {
+      "count": 1,
+      "context_hash": "23b2dd855e5670ef88f21dec11af27293bfd7034de17046c2850678d81a00790",
+      "job_snapshot_hash": "bcf93ef4451f549ef9bb143b2c62cd87fdcea925ee154bd6e1723f8b541066b1",
+      "last_attempt_at": "2026-10-18T00:08:24.385689+00:00",
+      "last_outcome": "in_progress",
+      "pipeline_version": "resume-v1"
+    }
+  },
+  "batches": 1,
   "created_at": "2026-10-18T00:07:58.448444+00:00",
   "counts": {
     "assessed": 16,
-    "pending": 251,
+    "pending": 246,
     "unresolved": 0,
-    "in_progress": 0,
+    "in_progress": 5,
     "total": 267,
     "strong": 5
   },
@@ -27,9 +68,9 @@
       "end": "2026-10-18T00:07:58.448444+00:00",
       "total": 5,
       "assessed": 0,
-      "pending": 5,
+      "pending": 0,
       "unresolved": 0,
-      "in_progress": 0
+      "in_progress": 5
     },
     {
       "index": 1,
@@ -365,6 +406,19 @@
   "phase": "windows",
   "current_window": 0,
   "windows_processed": 4,
-  "updated_at": "2026-10-18T00:07:58.456448+00:00",
-  "context_hash": "23b2dd855e5670ef88f21dec11af27293bfd7034de17046c2850678d81a00790"
+  "updated_at": "2026-10-18T00:08:24.385689+00:00",
+  "context_hash": "23b2dd855e5670ef88f21dec11af27293bfd7034de17046c2850678d81a00790",
+  "current_batch": {
+    "started_at": "2026-10-18T00:08:24.385689+00:00",
+    "job_keys": [
+      "arbeitnow:Monzo:model-validation-senior-manager-cardiff-155388",
+      "arbeitnow:Addepar1:staff-software-engineer-reference-data-ai-ml-uk-edinburgh-465630",
+      "arbeitnow:Lilasciences:staff-software-engineer-ai-safety-london-158476",
+      "arbeitnow:Lilasciences:senior-specialist-manager-ai-safety-data-and-evaluation-program-london-366152",
+      "arbeitnow:Trainline:senior-engineering-manager-customer-growth-london-464131"
+    ],
+    "phase": "windows",
+    "window": 0
+  },
+  "run_url": "https://github.com/firelyco/JobSearch/actions/runs/39081633400"
 }
