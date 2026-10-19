@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "enabled": true,
-  "status": "completed_with_issues",
+  "status": "running",
   "as_of": "2026-10-18T00:07:58.448444+00:00",
   "cutoff": "2026-10-01T04:00:00+00:00",
   "window_hours": 12,
@@ -2265,15 +2265,23 @@
       "last_attempt_at": "2026-10-18T23:36:00.934090+00:00",
       "last_outcome": "strong",
       "pipeline_version": "resume-v1"
+    },
+    "amazon_jobs:amazon:10581424": {
+      "count": 1,
+      "context_hash": "6a5525e4202abc860663314cd92e08a97f3be0d6dfbaf300c9c34e0397893ad8",
+      "job_snapshot_hash": "d3549b7bc501140f8dc2bde006835c7a5b5a9ddad1992c9b39a5a5464d20fd56",
+      "last_attempt_at": "2026-10-19T20:34:32.684645+00:00",
+      "last_outcome": "in_progress",
+      "pipeline_version": "resume-v1"
     }
   },
-  "batches": 203,
+  "batches": 204,
   "created_at": "2026-10-18T00:07:58.448444+00:00",
   "counts": {
-    "assessed": 179,
+    "assessed": 178,
     "pending": 0,
     "unresolved": 47,
-    "in_progress": 0,
+    "in_progress": 1,
     "total": 226,
     "strong": 32
   },
@@ -2322,18 +2330,18 @@
       "index": 4,
       "start": "2026-10-15T12:07:58.448444+00:00",
       "end": "2026-10-16T00:07:58.448444+00:00",
-      "total": 21,
+      "total": 22,
       "assessed": 14,
       "pending": 0,
       "unresolved": 7,
-      "in_progress": 0
+      "in_progress": 1
     },
     {
       "index": 5,
       "start": "2026-10-15T00:07:58.448444+00:00",
       "end": "2026-10-15T12:07:58.448444+00:00",
-      "total": 9,
-      "assessed": 8,
+      "total": 8,
+      "assessed": 7,
       "pending": 0,
       "unresolved": 1,
       "in_progress": 0
@@ -2620,19 +2628,19 @@
     }
   ],
   "phase": "windows",
-  "current_window": null,
-  "windows_processed": 34,
-  "updated_at": "2026-10-19T15:05:10.585124+00:00",
+  "current_window": 4,
+  "windows_processed": 33,
+  "updated_at": "2026-10-19T20:34:32.684645+00:00",
   "context_hash": "6a5525e4202abc860663314cd92e08a97f3be0d6dfbaf300c9c34e0397893ad8",
   "current_batch": {
-    "started_at": "2026-10-19T15:05:06.051375+00:00",
+    "started_at": "2026-10-19T20:34:32.684645+00:00",
     "job_keys": [
-      "greenhouse:cloudflare:8248873"
+      "amazon_jobs:amazon:10581424"
     ],
     "phase": "windows",
-    "window": 30
+    "window": 4
   },
-  "run_url": "https://github.com/firelyco/JobSearch/actions/runs/39274739572",
+  "run_url": "https://github.com/firelyco/JobSearch/actions/runs/39320396426",
   "salary_checked_at": "2026-10-19T13:56:47.742392+00:00",
   "retry_history": [
     {
