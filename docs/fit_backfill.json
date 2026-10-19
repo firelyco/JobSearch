@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "enabled": true,
-  "status": "completed_with_issues",
+  "status": "running",
   "as_of": "2026-10-18T00:07:58.448444+00:00",
   "cutoff": "2026-10-01T04:00:00+00:00",
   "window_hours": 12,
@@ -515,11 +515,11 @@
       "pipeline_version": "resume-v1"
     },
     "arbeitnow:Kraken:remote-client-delivery-lead-payments-276415": {
-      "count": 2,
+      "count": 1,
       "context_hash": "6a5525e4202abc860663314cd92e08a97f3be0d6dfbaf300c9c34e0397893ad8",
-      "job_snapshot_hash": "64492860c4911d108eff7a0026e31e4767243ab2eff41591cf562e6cb6c97fa6",
-      "last_attempt_at": "2026-10-18T22:11:42.412950+00:00",
-      "last_outcome": "review",
+      "job_snapshot_hash": "216095a7ed6bd9aa7be580348d21c490149151a67f18cc9aab98339749c39d4c",
+      "last_attempt_at": "2026-10-19T15:02:51.804613+00:00",
+      "last_outcome": "in_progress",
       "pipeline_version": "resume-v1"
     },
     "greenhouse:anthropic:5453550008": {
@@ -2267,14 +2267,14 @@
       "pipeline_version": "resume-v1"
     }
   },
-  "batches": 200,
+  "batches": 201,
   "created_at": "2026-10-18T00:07:58.448444+00:00",
   "counts": {
-    "assessed": 179,
-    "pending": 0,
-    "unresolved": 48,
-    "in_progress": 0,
-    "total": 227,
+    "assessed": 176,
+    "pending": 2,
+    "unresolved": 47,
+    "in_progress": 1,
+    "total": 226,
     "strong": 32
   },
   "windows": [
@@ -2312,8 +2312,8 @@
       "index": 3,
       "start": "2026-10-16T00:07:58.448444+00:00",
       "end": "2026-10-16T12:07:58.448444+00:00",
-      "total": 7,
-      "assessed": 5,
+      "total": 6,
+      "assessed": 4,
       "pending": 0,
       "unresolved": 2,
       "in_progress": 0
@@ -2325,8 +2325,8 @@
       "total": 21,
       "assessed": 13,
       "pending": 0,
-      "unresolved": 8,
-      "in_progress": 0
+      "unresolved": 7,
+      "in_progress": 1
     },
     {
       "index": 5,
@@ -2523,8 +2523,8 @@
       "start": "2026-10-05T12:07:58.448444+00:00",
       "end": "2026-10-06T00:07:58.448444+00:00",
       "total": 16,
-      "assessed": 13,
-      "pending": 0,
+      "assessed": 12,
+      "pending": 1,
       "unresolved": 3,
       "in_progress": 0
     },
@@ -2583,8 +2583,8 @@
       "start": "2026-10-02T12:07:58.448444+00:00",
       "end": "2026-10-03T00:07:58.448444+00:00",
       "total": 8,
-      "assessed": 6,
-      "pending": 0,
+      "assessed": 5,
+      "pending": 1,
       "unresolved": 2,
       "in_progress": 0
     },
@@ -2620,19 +2620,19 @@
     }
   ],
   "phase": "windows",
-  "current_window": null,
-  "windows_processed": 34,
-  "updated_at": "2026-10-19T07:50:12.421131+00:00",
+  "current_window": 4,
+  "windows_processed": 31,
+  "updated_at": "2026-10-19T15:02:51.804613+00:00",
   "context_hash": "6a5525e4202abc860663314cd92e08a97f3be0d6dfbaf300c9c34e0397893ad8",
   "current_batch": {
-    "started_at": "2026-10-19T07:50:08.370310+00:00",
+    "started_at": "2026-10-19T15:02:51.804613+00:00",
     "job_keys": [
-      "arbeitnow:EverAI:product-manager-trust-safety-full-remote-netherlands-94007"
+      "arbeitnow:Kraken:remote-client-delivery-lead-payments-276415"
     ],
     "phase": "windows",
-    "window": 3
+    "window": 4
   },
-  "run_url": "https://github.com/firelyco/JobSearch/actions/runs/39218518746",
+  "run_url": "https://github.com/firelyco/JobSearch/actions/runs/39274415669",
   "salary_checked_at": "2026-10-19T13:56:47.742392+00:00",
   "retry_history": [
     {
