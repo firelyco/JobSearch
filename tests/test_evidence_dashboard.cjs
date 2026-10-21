@@ -76,6 +76,11 @@ vm.runInContext(code.slice(code.indexOf('async function loadData()'),code.indexO
  assert(!ctx.matchesLocation('2 Locations','us',{...workday,url:'https://example.com/job/US-CA-Santa-Clara/TPM'}));
  assert(!ctx.matchesLocation('2 Locations','us',{...workday,url:'https://nvidia.wd5.myworkdayjobs.com/job/CA-Toronto/TPM'}));
  assert(!ctx.matchesLocation('2 Locations','us',{...workday,url:'not a URL'}));
+ assert(ctx.matchesLocation('2 Locations','us',{...workday,url:'https://capitalone.wd12.myworkdayjobs.com/en-US/Capital_One/job/McLean-VA/Director_R123'}));
+ assert(ctx.matchesLocation('2 Locations','us',{...workday,url:'https://capitalone.wd12.myworkdayjobs.com/en-US/Capital_One/job/Richmond-VA/Director_R123'}));
+ assert(!ctx.matchesLocation('2 Locations','us',{...workday,url:'https://example.wd5.myworkdayjobs.com/en-US/Careers/job/London-ON/TPM'}));
+ assert(!ctx.matchesLocation('2 Locations','us',{...workday,url:'https://example.wd5.myworkdayjobs.com/en-US/Careers/job/Toronto-CA/TPM'}));
+ assert(!ctx.matchesLocation('2 Locations','us',{...workday,url:'https://example.wd5.myworkdayjobs.com/en-US/Careers/job/Remote-CA/TPM'}));
  assert(ctx.matchesLocation('Boston, MA','us'));
  vm.runInContext(code.slice(code.indexOf('function baseSalaryLabel('),code.indexOf('function matchesWorkmode(')),ctx);
  assert.equal(ctx.baseSalaryLabel({...fresh,salary_check:{status:'meets_floor',bands:[{min:260000,max:300000}]}}),'$260,000?$300,000 USD base');

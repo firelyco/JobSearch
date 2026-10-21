@@ -154,8 +154,16 @@ function matchesLocation(loc, region, job = null) {
   if (region !== 'us' || job?.source !== 'workday' || !/^(?:\d+\s+locations?)?$/i.test((loc || '').trim())) return false;
   try {
     const url = new URL(job.url);
-    return url.protocol === 'https:' && /\.myworkdayjobs\.com$/i.test(url.hostname)
-      && /\/job\/US-[A-Z]{2}(?:-|\/|$)/i.test(url.pathname);
+    if (url.protocol !== 'https:' || !/\.myworkdayjobs\.com$/i.test(url.hostname)) return false;
+    if (/\/job\/US-[A-Z]{2}(?:-|\/|$)/i.test(url.pathname)) return true;
+    const primary = decodeURIComponent(url.pathname.match(/\/job\/([^/]+)/i)?.[1] || '');
+    // Some US tenants use city-state paths such as McLean-VA, without US-.
+    // A locale such as en-US and ambiguous Remote-CA are not country evidence.
+    if (!primary || /^remote(?:-|$)/i.test(primary)
+        || /(?:^|-)(?:canada|uk|united-kingdom|england|australia|india|germany|france|singapore)(?:-|$)/i.test(primary)) return false;
+    const label = primary.replace(/-/g, ', ');
+    if (LOCATION_MATCHERS.canada(label)) return false;
+    return /-[A-Z]{2}$/i.test(primary) && m(label);
   } catch { return false; }
 }
 
