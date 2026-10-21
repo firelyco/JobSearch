@@ -1,7 +1,7 @@
 """Real-posting calibration. Candidate evidence stays in private PostgreSQL."""
 import hashlib,json,logging,concurrent.futures,os
 from datetime import datetime,timezone
-from src import fit,jd_fetch,llm_client
+from src import fit,jd_fetch,llm_client,assessment_scope
 from src.evidence_fit import assess,review_result,digest,scorer_revision,REVIEW_PROMPT,canonical,build_inventory,input_hash
 from src.fit_scorer import salary_text,verified_base_comp_status
 from src.private_fit_store import save_private,load_private
@@ -23,11 +23,12 @@ def main():
     prior_cases={case['job_key']:case for case in prior.get('cases',[])}
     def evaluate(pair):
         index,case=pair
-        client=llm_client.build_client()
         job=jobs.get(case['job_key'])
         result={'job_key':case['job_key'],'title':case['title'],'url':case['url'],'expected':case['allowed_career_fit']}
         try:
             if not job:raise ValueError('Posting is no longer in the current snapshot')
+            if not assessment_scope.allowed(job):raise ValueError('Posting predates the assessment cutoff')
+            client=llm_client.build_client()
             jd=jd_fetch.get_jd_text(job)
             current_hash=hashlib.sha256(salary_text(jd).encode()).hexdigest()
             if current_hash!=case['jd_hash']:raise ValueError('Posting changed since manual benchmark review')

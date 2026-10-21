@@ -7,7 +7,7 @@ import logging
 import re
 import time
 import requests
-from src import fit,jd_fetch
+from src import fit,jd_fetch,assessment_scope
 from src.compensation import VERSION,parse_salary,page_salary_metadata
 from src.evidence_batch import key,snapshot_hash
 
@@ -71,7 +71,7 @@ def needs_check(job,score,now):
 
 def run(jobs,scores,policy,*,max_jobs=100,force=False,fetcher=retrieve,on_saved=None):
     now=datetime.now(timezone.utc)
-    candidates=[j for j in jobs if (scores.get(key(j),{}).get('career_fit')=='strong' or scores.get(key(j),{}).get('recommendation')=='strong')
+    candidates=[j for j in jobs if assessment_scope.allowed(j) and (scores.get(key(j),{}).get('career_fit')=='strong' or scores.get(key(j),{}).get('recommendation')=='strong')
         and scores[key(j)].get('context_hash')==policy.get('context_hash')
         and scores[key(j)].get('scorer_revision')==policy.get('scorer_revision')
         and scores[key(j)].get('job_snapshot_hash')==snapshot_hash(j)

@@ -7,7 +7,7 @@ from datetime import datetime
 from src import fit_scorer,jd_fetch,llm_client
 from src.evidence_fit import build_inventory,digest,scorer_revision,input_hash
 from src.private_fit_store import save_private,load_private
-from src import assessment_cache as cache
+from src import assessment_cache as cache,assessment_scope
 log=logging.getLogger(__name__)
 
 def key(job):return ':'.join(str(job.get(k)) for k in ('source','company','id'))
@@ -69,6 +69,7 @@ def reusable_extraction(prior,profile,job,jd,rules,model,fingerprint):
 def run(*,jobs,profile,existing,rules,max_jobs,rescore,fake_client,jd_text_for,stamp,model,on_scored,job_keys):
     # Keep completed records when a posting leaves the feed; reappearance is not a new assessment.
     scores=dict(existing)
+    jobs=[j for j in jobs if assessment_scope.allowed(j)]
     context=context_hash(profile,rules,model)
     def needs(job):
         cached=scores.get(key(job),{})

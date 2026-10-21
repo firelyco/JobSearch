@@ -132,7 +132,8 @@ def main(argv: list[str] | None = None) -> int:
         save_private({'inventory':build_inventory(load_json(PROFILE_FILE,{}),rules)})
         log.info('Private evidence inventory saved')
         return 0
-    policy = {"version": rules.get("fit_policy_version", "")}
+    from src import assessment_scope
+    policy = {"version": rules.get("fit_policy_version", ""),"assessment_not_before":assessment_scope.cutoff().isoformat()}
     if rules.get("calibration_pending"):policy["calibration_pending"]=True
     if rules.get("fit_api_blocked"):policy["provider_status"]="insufficient_credits"
     if rules.get('evidence_required'):

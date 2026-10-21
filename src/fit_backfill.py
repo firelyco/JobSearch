@@ -8,7 +8,7 @@ import re
 import subprocess
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
-from src import fit
+from src import fit,assessment_scope
 from src.evidence_batch import context_hash, key, snapshot_hash
 from src.evidence_fit import scorer_revision
 from src.scorer import _is_us_or_remote
@@ -82,6 +82,7 @@ def outcome(job, scores, state, context):
 
 
 def plan(jobs, scores, state, context, role_config):
+    jobs=[j for j in jobs if assessment_scope.allowed(j)]
     priority = set(state.get('priority_job_keys', []))
     chosen = [j for j in jobs if key(j) in priority or ((state.get('all_jobs') or in_scope(j, role_config)) and window_index(j, state) is not None)]
     if state.get('requested_job_keys'):
@@ -140,7 +141,7 @@ def continuation_needed(state, jobs, scores, context, role_config, now):
         return False
     if not context or not state.get('cutoff') or not state.get('as_of'):
         return False
-    if state.get('status')=='waiting_for_provider' and not any(scores.get(key(j),{}).get('recommendation')=='strong' and scores.get(key(j),{}).get('validated') is True and outcome(j,scores,state,context)=='pending' for j in jobs):
+    if state.get('status')=='waiting_for_provider' and not any(scores.get(key(j),{}).get('recommendation')=='strong' and scores.get(key(j),{}).get('validated') is True and outcome(j,scores,state,context)=='pending' and assessment_scope.allowed(j) for j in jobs):
         return False
     refresh(state,jobs,scores,context,role_config,now)
     return state['status'] == 'running'
@@ -151,6 +152,7 @@ def retry_unfinished(state, jobs, scores, context, role_config, now):
     if not state.get('enabled'): raise RuntimeError('No enabled assessment period')
     reset=[]
     for job in jobs:
+        if not assessment_scope.allowed(job):continue
         if window_index(job,state) is None and key(job) not in state.get('priority_job_keys',[]): continue
         if not state.get('all_jobs') and not in_scope(job,role_config) and key(job) not in state.get('priority_job_keys',[]): continue
         if outcome(job,scores,state,context) != 'unresolved': continue
@@ -285,7 +287,7 @@ def main(argv=None):
     model = fit._fit_model()
     policy = {'version':rules.get('fit_policy_version',''), 'evidence_required':True,
               'engine_version':'evidence-v1', 'scorer_revision':scorer_revision(),
-              'context_hash':context_hash(profile,rules,model),'fitment_skill_hash':rules['fitment_skill_hash'],'verdicts':['strong','middle','pass']}
+              'context_hash':context_hash(profile,rules,model),'fitment_skill_hash':rules['fitment_skill_hash'],'verdicts':['strong','middle','pass'],'assessment_not_before':assessment_scope.cutoff().isoformat()}
     (fit.DOCS_DIR/'fit_policy.json').write_text(json.dumps(policy)+'\n',encoding='utf-8')
     role_config = yaml.safe_load((fit.CONFIG_DIR/'role_config.yml').read_text(encoding='utf-8'))
     jobs = fit.load_json(fit.JOBS_FILE,[]); scores = fit.load_json(fit.FIT_FILE,{})
