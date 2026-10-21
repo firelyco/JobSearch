@@ -44,6 +44,13 @@ class PaidAssessmentCache(unittest.TestCase):
   with patch('src.evidence_batch.llm_client.build_client') as client,patch('src.evidence_batch.cache.reserve') as reserve:
    result=batch.run(jobs=[JOB],profile={},existing=old,rules=RULES,max_jobs=1,rescore=False,fake_client=None,jd_text_for={KEY:''},stamp='2026-10-21',model='test',on_scored=None,job_keys=None)
    self.assertEqual(result,old);client.assert_not_called();reserve.assert_not_called()
+ def test_pending_strong_precedes_new_jobs_and_freshness_only_checks(self):
+  strong={**JOB,'id':'strong'};new={**JOB,'id':'new'};current={**JOB,'id':'current'}
+  existing={batch.key(strong):{'recommendation':'strong','validated':True,'context_hash':'old'},batch.key(current):{'recommendation':'strong','validated':True,'context_hash':cache.context({},RULES),'job_snapshot_hash':batch.snapshot_hash(current),'jd_checked_at':'2020-01-01'}}
+  v=EvidenceVerdict('medium','Reviewed','evidence',{'validated':True},{'inventory':[]})
+  with patch('src.evidence_batch.fit_scorer.score_fit',return_value=v) as assess,patch('src.evidence_batch.save_private'):
+   batch.run(jobs=[current,new,strong],profile={},existing=existing,rules=RULES,max_jobs=1,rescore=False,fake_client=object(),jd_text_for={batch.key(j):JD for j in [current,new,strong]},stamp='2026-10-21T00:00:00+00:00',model='test',on_scored=None,job_keys=None)
+   self.assertEqual(assess.call_args.args[1]['id'],'strong')
  def test_removed_posting_does_not_delete_completed_record(self):
   result=batch.run(jobs=[],profile={},existing={KEY:{'recommendation':'strong'}},rules=RULES,max_jobs=0,rescore=False,fake_client=None,jd_text_for={},stamp='2026-10-21',model='test',on_scored=None,job_keys=None)
   self.assertIn(KEY,result)

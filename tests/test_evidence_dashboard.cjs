@@ -36,6 +36,7 @@ vm.runInContext(code.slice(code.indexOf('async function loadData()'),code.indexO
  await ctx.loadData();
  assert(nodes['fit-backfill-status'].textContent.includes('7/20 assessed; 10 pending; 2 in progress; 1 unresolved'));
  assert(nodes['fit-backfill-status'].textContent.includes('window 3 of 14'));
+ backfill.phase='strong_reassessment';backfill.strong_refresh_pending=4;await ctx.loadData();assert(nodes['fit-backfill-status'].textContent.includes('Prioritizing 4 previously Strong roles before new jobs'));
  backfill.status='completed_with_issues';await ctx.loadData();
  assert(nodes['fit-backfill-status'].textContent.includes('unresolved roles still need review'));
  assert(!nodes['fit-backfill-status'].textContent.includes('All seven days assessed'));

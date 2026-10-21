@@ -299,6 +299,7 @@ async function loadData() {
           const phase = progress.status === 'waiting_for_provider' ? 'Waiting for provider availability.'
             : progress.status === 'completed' ? 'All jobs in the selected assessment period assessed.'
             : progress.status === 'completed_with_issues' ? 'Assessment period processed; unresolved roles still need review.'
+            : progress.phase === 'strong_reassessment' ? `Prioritizing ${(progress.strong_refresh_pending || 0)+(progress.strong_refresh_in_progress || 0)} previously Strong roles before new jobs.`
             : progress.phase === 'original_cohort' ? 'Finishing the original cohort.'
             : `Processing 12-hour window ${(progress.current_window ?? 0)+1} of ${progress.window_count || 14}, newest first.`;
           const updated = progress.updated_at ? ` Updated ${new Date(progress.updated_at).toLocaleString()}.` : '';

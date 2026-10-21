@@ -70,6 +70,32 @@ class BackfillTests(unittest.TestCase):
         p=b.plan([oldest,newer,older],{b.key(older):verdict(older)},self.state,'context',CFG)
         self.assertEqual(p['current_window'],0)
         self.assertEqual([b.key(j) for j in p['selected']],[b.key(newer)])
+    def test_strong_refresh_precedes_fixed_cohort_without_changing_its_counts(self):
+        old=job('strong-outside',200);new=job('new',1)
+        self.state['requested_job_keys']=[b.key(new)]
+        self.state['priority_job_keys']=[b.key(new)]
+        scores={b.key(old):{**verdict(old),'context_hash':'old-context','validated':True}}
+        result=b.plan([new,old],scores,self.state,'context',CFG)
+        self.assertEqual(result['selected'],[old]);self.assertEqual(result['phase'],'strong_reassessment')
+        self.assertEqual(result['counts']['total'],1);self.assertEqual(result['strong_refresh_pending'],1)
+        self.state['status']='completed'
+        self.assertTrue(b.continuation_needed(self.state,[new,old],scores,'context',CFG,NOW))
+    def test_strong_refresh_orders_newest_first_and_skips_completed_and_exhausted(self):
+        older=job('older',200);newer=job('newer',190);done=job('done',180);failed=job('failed',170);new=job('new')
+        scores={b.key(j):{**verdict(j),'context_hash':'old-context','validated':True} for j in [older,newer,failed]}
+        scores[b.key(done)]={**verdict(done),'validated':True}
+        self.state['attempts'][b.key(failed)]={'context_hash':'context','job_snapshot_hash':b.snapshot_hash(failed),'count':2,'last_outcome':'failed','pipeline_version':b.pipeline_version()}
+        result=b.plan([new,older,newer,done,failed],scores,self.state,'context',CFG)
+        self.assertEqual(result['selected'],[newer,older]);self.assertEqual(result['strong_refresh_unresolved'],1)
+        self.assertEqual(self.state['attempts'][b.key(failed)]['count'],2)
+    def test_strong_refresh_outside_cohort_stays_running_until_worker_finishes(self):
+        old=job('strong-outside',200)
+        scores={b.key(old):{**verdict(old),'context_hash':'old-context','validated':True}}
+        self.state['attempts'][b.key(old)]={'context_hash':'context','job_snapshot_hash':b.snapshot_hash(old),'count':1,'last_outcome':'in_progress','pipeline_version':b.pipeline_version()}
+        self.state['current_batch']={'phase':'strong_reassessment','window':None}
+        b.refresh(self.state,[old],scores,'context',CFG,NOW)
+        self.assertEqual(self.state['status'],'running');self.assertEqual(self.state['strong_refresh_in_progress'],1)
+
     def test_reuses_completed_ratings_even_after_six_hours(self):
         j=job('cached');score=verdict(j);score['jd_checked_at']='2020-01-01'
         def forbidden(**kw): self.fail('Completed job was reassessed')

@@ -99,9 +99,14 @@ def plan(jobs, scores, state, context, role_config):
         windows.append({'index': index, 'start': max(timestamp(state['cutoff']),window_end-timedelta(hours=12)).isoformat(),
                         'end': window_end.isoformat(), 'total': len(members),
                         **{name: sum(statuses[key(j)] == name for j in members) for name in ('assessed','pending','unresolved','in_progress')}})
+    # Strong refresh is a separate queue: a frozen date cohort must not hide it.
+    strong_refresh = [j for j in jobs if scores.get(key(j),{}).get('recommendation')=='strong' and scores.get(key(j),{}).get('validated') is True and not fresh(j,scores[key(j)],context)]
+    strong_pending = [j for j in strong_refresh if outcome(j,scores,state,context)=='pending']
+    strong_in_progress = sum(outcome(j,scores,state,context)=='in_progress' for j in strong_refresh)
+    strong_unresolved = sum(outcome(j,scores,state,context)=='unresolved' for j in strong_refresh)
     pending_priority = [j for j in chosen if key(j) in priority and statuses[key(j)] == 'pending']
-    selected = pending_priority
-    phase = 'original_cohort' if selected else 'windows'
+    selected = strong_pending or pending_priority
+    phase = 'strong_reassessment' if strong_pending else 'original_cohort' if selected else 'windows'
     current_window = None
     if not selected:
         for window in windows:
@@ -110,19 +115,20 @@ def plan(jobs, scores, state, context, role_config):
                 current_window = window['index']; break
     selected.sort(key=lambda j: posting_time(j) or datetime.min.replace(tzinfo=timezone.utc), reverse=True)
     return {'counts': counts, 'windows': windows, 'selected': selected, 'phase': phase,
+            'strong_refresh_pending':len(strong_pending),'strong_refresh_unresolved':strong_unresolved,'strong_refresh_in_progress':strong_in_progress,
             'current_window': current_window, 'windows_processed': sum(w['pending'] == 0 and w['in_progress'] == 0 for w in windows)}
 
 
 def refresh(state, jobs, scores, context, role_config, now):
     result = plan(jobs, scores, state, context, role_config)
-    state.update({name: result[name] for name in ('counts','windows','phase','current_window','windows_processed')})
-    if result['counts']['in_progress'] and state.get('current_batch'):
+    state.update({name: result[name] for name in ('counts','windows','phase','current_window','windows_processed','strong_refresh_pending','strong_refresh_unresolved','strong_refresh_in_progress')})
+    if (result['counts']['in_progress'] or result['strong_refresh_in_progress']) and state.get('current_batch'):
         state['phase'] = state['current_batch']['phase']
         state['current_window'] = state['current_batch']['window']
     state['updated_at'] = now.isoformat()
     state['context_hash'] = context
-    if not result['counts']['pending'] and not result['counts']['in_progress']:
-        state['status'] = 'completed_with_issues' if result['counts']['unresolved'] else 'completed'
+    if not result['counts']['pending'] and not result['counts']['in_progress'] and not result['strong_refresh_pending'] and not result['strong_refresh_in_progress']:
+        state['status'] = 'completed_with_issues' if result['counts']['unresolved'] or result['strong_refresh_unresolved'] else 'completed'
     else:
         state['status'] = 'running'
     return result
@@ -130,9 +136,11 @@ def refresh(state, jobs, scores, context, role_config, now):
 
 def continuation_needed(state, jobs, scores, context, role_config, now):
     """Reconcile completed batches against refreshed postings without resetting retries."""
-    if not state.get('enabled') or state.get('status') in {'archived','waiting_for_provider'}:
+    if not state.get('enabled') or state.get('status') == 'archived':
         return False
     if not context or not state.get('cutoff') or not state.get('as_of'):
+        return False
+    if state.get('status')=='waiting_for_provider' and not any(scores.get(key(j),{}).get('recommendation')=='strong' and scores.get(key(j),{}).get('validated') is True and outcome(j,scores,state,context)=='pending' for j in jobs):
         return False
     refresh(state,jobs,scores,context,role_config,now)
     return state['status'] == 'running'

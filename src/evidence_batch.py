@@ -76,7 +76,14 @@ def run(*,jobs,profile,existing,rules,max_jobs,rescore,fake_client,jd_text_for,s
         try:return (datetime.fromisoformat(stamp)-datetime.fromisoformat(cached.get('jd_checked_at',''))).total_seconds()>=6*3600
         except (ValueError,TypeError):return True
     pending=[j for j in jobs if (job_keys is None or key(j) in job_keys) and needs(j)]
-    pending.sort(key=lambda j:not(scores.get(key(j),{}).get('recommendation')=='strong' or scores.get(key(j),{}).get('step')=='comp'))
+    def priority(job):
+        score=scores.get(key(job),{})
+        changed=score.get('context_hash')!=context or score.get('job_snapshot_hash')!=snapshot_hash(job)
+        if changed and score.get('recommendation')=='strong' and score.get('validated') is True:return 0
+        if score.get('recommendation') not in cache.FINAL:return 1
+        return 2 if changed else 3  # Freshness-only source checks follow real assessment work.
+    pending.sort(key=lambda j:j.get('posted_at') or j.get('first_seen_at') or '',reverse=True)
+    pending.sort(key=priority)
     selected=pending[:max(0,max_jobs)]
     if not selected:return scores
     def evaluate(job):
