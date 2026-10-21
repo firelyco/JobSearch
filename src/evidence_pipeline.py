@@ -115,6 +115,13 @@ def assess(profile,job,jd_text,*,client,model,rules,resume=None,checkpoint=None)
             if candidate.get('stage')!='extraction':validate_proposal(candidate.get('extraction'))
             state=candidate
         except (ValueError,TypeError):pass
+    if state.get('stage')=='complete':
+        previous=core.review_result(state.get('extraction',{}),state.get('review',{}),inventory,jd,job,comp,rules)
+        if previous.recommendation=='review':
+            # A bounded outer job retry must make progress, not replay an invalid final checkpoint.
+            state.update(stage='repair',repair_attempted=False,
+                         repair_errors=previous.private.get('validation_errors',[]),
+                         missing_requirements=previous.private.get('missing_critical_requirements',[]))
     resumed_stage=state['stage'];metrics_start=len(state.get('metrics',[]))
     def save():
         if checkpoint:checkpoint(copy.deepcopy(state))

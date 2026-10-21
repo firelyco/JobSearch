@@ -180,7 +180,7 @@ def _call_openai(client, model, system, user, max_tokens, temperature, structure
     # Structured extraction/review does not need a generated reasoning trace.
     # This flag is supported by these documented Nemotron APIs.
     options = {}
-    if model in {"nvidia/nemotron-3.5-lightning-30b-a3b", "nvidia/nemotron-3-super-120b-a12b"}:
+    if model in {"nvidia/nemotron-3.5-lightning-30b-a3b", "nvidia/nemotron-3-super-120b-a12b", "nvidia/nemotron-3.5-super-vl-120b-a12b"}:
         options["extra_body"] = {"chat_template_kwargs": {"enable_thinking": False}}
     if model == "nvidia/nemotron-3-super-120b-a12b":
         # Documented hosted-API switch; do not rely solely on a template flag.

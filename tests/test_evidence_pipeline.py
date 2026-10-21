@@ -70,8 +70,8 @@ class ResumePipeline(unittest.TestCase):
   bad=review();bad.update(coverage_complete=False,missing_critical_requirements=['R1'])
   result,client=self.run_assessment([proposal(),bad,bad])
   self.assertEqual(result.recommendation,'review');self.assertEqual(len(client.calls),3)
-  again,client=self.run_assessment([],self.saved[-1])
-  self.assertEqual(again.recommendation,'review');self.assertEqual(len(client.calls),0)
+  again,client=self.run_assessment([review()],self.saved[-1])
+  self.assertEqual(again.recommendation,'strong');self.assertEqual(len(client.calls),1)
  def test_checkpoint_storage_failure_prevents_new_rating(self):
   with self.assertRaises(RuntimeError):
    p.assess({},JOB,JD*3,client=FakeClient([json.dumps(proposal())]),model='test',rules=SKILL_RULES,
