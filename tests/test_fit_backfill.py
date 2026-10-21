@@ -193,6 +193,13 @@ class BackfillTests(unittest.TestCase):
             self.assertEqual(b.outcome(j,{},self.state,'context'),'pending')
             self.assertEqual(b.outcome(done,{b.key(done):verdict(done)},self.state,'context'),'assessed')
 
+    def test_fixed_requested_cohort_does_not_expand_to_unrequested_jobs(self):
+        requested=job('requested');other=job('other')
+        self.state['requested_job_keys']=[b.key(requested)]
+        p=b.plan([requested,other],{},self.state,'context',CFG)
+        self.assertEqual(p['counts']['total'],1)
+        self.assertEqual(p['selected'],[requested])
+
     def test_reject_zero_batch_size(self):
         with self.assertRaises(ValueError): self.run_batch([],max_jobs=0)
 

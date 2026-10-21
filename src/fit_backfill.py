@@ -84,6 +84,9 @@ def outcome(job, scores, state, context):
 def plan(jobs, scores, state, context, role_config):
     priority = set(state.get('priority_job_keys', []))
     chosen = [j for j in jobs if key(j) in priority or ((state.get('all_jobs') or in_scope(j, role_config)) and window_index(j, state) is not None)]
+    if state.get('requested_job_keys'):
+        requested=set(state['requested_job_keys'])
+        chosen=[j for j in chosen if key(j) in requested]
     statuses = {key(j): outcome(j, scores, state, context) for j in chosen}
     counts = {name: sum(value == name for value in statuses.values()) for name in ('assessed', 'pending', 'unresolved', 'in_progress')}
     counts['total'] = len(chosen)
