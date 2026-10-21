@@ -87,6 +87,8 @@ class ResumePipeline(unittest.TestCase):
   self.assertEqual(schema['gate_requirement_ids']['items']['enum'],['R1','R2','R3'])
   self.assertEqual(schema['policy_steps']['items']['properties']['policy_quote']['enum'],['Required hardware experience must be established.'])
   self.assertNotIn('enum',p.REVIEW_SCHEMA['properties']['requirements']['items']['properties']['id'])
+  self.assertNotIn('enum',schema['missing_critical_requirements']['items'])
+  self.assertNotIn('enum',schema['accepted_differentiators']['items'])
  def test_checkpoint_storage_failure_prevents_new_rating(self):
   with self.assertRaises(RuntimeError):
    p.assess({},JOB,JD*3,client=FakeClient([json.dumps(proposal())]),model='test',rules=SKILL_RULES,

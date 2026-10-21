@@ -105,7 +105,7 @@ def policy_quote_options(skill):
 
 def review_schema_for(extraction, skill):
     """Constrain references to source IDs and literal policy; no verdict is inferred."""
-    schema=copy.deepcopy(REVIEW_SCHEMA)
+    schema=json.loads(json.dumps(REVIEW_SCHEMA))
     props=schema['properties']
     ids=[row['id'] for row in extraction.get('requirements',[])]
     if ids:
