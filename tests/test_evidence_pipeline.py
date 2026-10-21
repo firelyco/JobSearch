@@ -80,6 +80,13 @@ class ResumePipeline(unittest.TestCase):
   self.assertEqual(options['1'],['Required hardware experience must be established.'])
   self.assertEqual(options['2'],['Keep permitted alternatives.'])
   self.assertNotIn('Not a step.',str(options))
+ def test_review_schema_references_only_real_ids_and_literal_skill_quotes(self):
+  skill='## STEP 1 - gates\nRequired hardware experience must be established.'
+  schema=p.review_schema_for(proposal(),skill)['properties']
+  self.assertEqual(schema['requirements']['items']['properties']['id']['enum'],['R1','R2','R3'])
+  self.assertEqual(schema['gate_requirement_ids']['items']['enum'],['R1','R2','R3'])
+  self.assertEqual(schema['policy_steps']['items']['properties']['policy_quote']['enum'],['Required hardware experience must be established.'])
+  self.assertNotIn('enum',p.REVIEW_SCHEMA['properties']['requirements']['items']['properties']['id'])
  def test_checkpoint_storage_failure_prevents_new_rating(self):
   with self.assertRaises(RuntimeError):
    p.assess({},JOB,JD*3,client=FakeClient([json.dumps(proposal())]),model='test',rules=SKILL_RULES,
