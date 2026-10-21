@@ -80,9 +80,19 @@ class ResumePipeline(unittest.TestCase):
   self.assertEqual(options['1'],['Required hardware experience must be established.'])
   self.assertEqual(options['2'],['Keep permitted alternatives.'])
   self.assertNotIn('Not a step.',str(options))
+ def test_compact_policy_references_expand_exactly_and_reject_unknown_sources(self):
+  skill='## STEP 1\nRequired hardware experience must be established.\n'
+  references=p.policy_quote_references(skill)
+  schema=p.review_schema_for(proposal(),skill)['properties']['policy_steps']
+  self.assertEqual(schema['maxItems'],9)
+  self.assertEqual(schema['items']['properties']['policy_quote_ref']['enum'],['P1'])
+  self.assertNotIn('policy_quote',schema['items']['properties'])
+  result=p.expand_policy_references({'policy_steps':[{'step':'1','policy_quote_ref':'P1'}]},references)
+  self.assertEqual(result['policy_steps'][0]['policy_quote'],'Required hardware experience must be established.')
+  with self.assertRaises(ValueError):p.expand_policy_references({'policy_steps':[{'policy_quote_ref':'P999'}]},references)
  def test_review_schema_references_only_real_ids_and_literal_skill_quotes(self):
   skill='## STEP 1 - gates\nRequired hardware experience must be established.'
-  schema=p.review_schema_for(proposal(),skill)['properties']
+  schema=p.review_schema_for(proposal(),skill,compact=False)['properties']
   self.assertEqual(schema['requirements']['items']['properties']['id']['enum'],['R1','R2','R3'])
   self.assertEqual(schema['gate_requirement_ids']['items']['enum'],['R1','R2','R3'])
   self.assertEqual(schema['policy_steps']['items']['properties']['policy_quote']['enum'],['Required hardware experience must be established.'])

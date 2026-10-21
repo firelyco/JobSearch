@@ -103,22 +103,45 @@ def policy_quote_options(skill):
             for match in re.finditer(r'^## STEP (0|1\.5|1|2|3|4|5|6|7)\b[^\n]*\n(.*?)(?=^## |\Z)',skill,re.M|re.S)}
 
 
-def review_schema_for(extraction, skill):
-    """Constrain references to source IDs and literal policy; no verdict is inferred."""
+def policy_quote_references(skill):
+    quotes=list(dict.fromkeys(quote for lines in policy_quote_options(skill).values() for quote in lines
+                            if re.search(r'[A-Za-z]{3}',quote)))
+    return {'P'+str(index):quote for index,quote in enumerate(quotes,1)}
+
+
+def expand_policy_references(review, references):
+    result=copy.deepcopy(review)
+    for step in result.get('policy_steps',[]):
+        if 'policy_quote_ref' in step:
+            reference=step.pop('policy_quote_ref')
+            if reference not in references:raise ValueError('Unknown policy source reference')
+            step['policy_quote']=references[reference]
+    return result
+
+
+def review_schema_for(extraction, skill, *, compact=True):
+    """Keep the wire grammar small; audit full literal source quotes after decoding."""
     schema=json.loads(json.dumps(REVIEW_SCHEMA))
     props=schema['properties']
     ids=[row['id'] for row in extraction.get('requirements',[])]
     if ids:
         ref={'type':'string','enum':ids}
         props['requirements']['items']['properties']['id']=ref
+        props['requirements'].update(minItems=len(ids),maxItems=len(ids))
         props['gate_requirement_ids']['items']=ref
         props['accepted_differentiator_evidence']['items']['properties']['requirement_ids']['items']=ref
         props['policy_steps']['items']['properties']['requirement_ids']['items']=ref
-    quotes=list(dict.fromkeys(quote for lines in policy_quote_options(skill).values() for quote in lines
-                            if re.search(r'[A-Za-z]{3}',quote)))
-    if quotes:
-        props['policy_steps']['items']['properties']['policy_quote']={'type':'string','enum':quotes}
+    props['policy_steps'].update(minItems=9,maxItems=9)
+    references=policy_quote_references(skill)
+    if references:
+        step=props['policy_steps']['items']
+        if compact:
+            step['properties'].pop('policy_quote')
+            step['properties']['policy_quote_ref']={'type':'string','enum':list(references)}
+            step['required']=['policy_quote_ref' if name=='policy_quote' else name for name in step['required']]
+        else:step['properties']['policy_quote']={'type':'string','enum':list(references.values())}
     return schema
+
 
 
 def assess(profile,job,jd_text,*,client,model,rules,resume=None,checkpoint=None):
@@ -186,7 +209,8 @@ def assess(profile,job,jd_text,*,client,model,rules,resume=None,checkpoint=None)
                     validate_proposal(extraction)
                     state.update(extraction=extraction,stage='review');save()
                 elif phase in {'review','repair_review'}:
-                    review=request(phase,core.REVIEW_PROMPT,{'job_text':jd,'job':job_facts,'proposal':extraction,'validation_errors_to_correct':state.get('repair_errors',[]),'literal_policy_quote_options':policy_quote_options(rules['_fitment_skill']) if state.get('repair_errors') else {},'citation_instruction':'Copy a literal policy_quote from the skill or the provided source excerpts. Preserve qualifiers and permitted alternatives.','explicit_skill_exclusion_matches':__import__('src.fitment_skill',fromlist=['named_exclusions']).named_exclusions(rules['_fitment_skill'],job_facts,jd)},review_schema_for(extraction,rules['_fitment_skill']),10000)
+                    review=request(phase,core.REVIEW_PROMPT+'\nWire format: in policy_steps return policy_quote_ref using the supplied policy_quote_references table instead of policy_quote. The application expands the selected reference into the exact original skill text before validating. Do not rewrite source quotes.',{'job_text':jd,'job':job_facts,'proposal':extraction,'validation_errors_to_correct':state.get('repair_errors',[]),'policy_quote_references':policy_quote_references(rules['_fitment_skill']),'literal_policy_quote_options':{},'citation_instruction':'Copy a literal policy_quote from the skill or the provided source excerpts. Preserve qualifiers and permitted alternatives.','explicit_skill_exclusion_matches':__import__('src.fitment_skill',fromlist=['named_exclusions']).named_exclusions(rules['_fitment_skill'],job_facts,jd)},review_schema_for(extraction,rules['_fitment_skill']),10000)
+                    review=expand_policy_references(review,policy_quote_references(rules['_fitment_skill']))
                     if not isinstance(review.get('requirements'),list) or type(review.get('coverage_complete')) is not bool:
                         raise ValueError('Invalid review structure')
                     state.update(review=review,stage='decision');save()
