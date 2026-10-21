@@ -60,6 +60,14 @@ class ResumePipeline(unittest.TestCase):
   self.assertEqual(len(client.calls),4)
   request=json.loads(client.calls[2]['messages'][0]['content'])
   self.assertEqual(len(request['broken_requirements']),1)
+ def test_targeted_repair_cleans_only_verbatim_terminal_punctuation(self):
+  original=proposal();original['requirements'][0]['quote']='An invented quote.'
+  fixed=proposal();fixed['requirements']=fixed['requirements'][:1]
+  source=JD.replace('Lead cross-functional platform delivery programs.','Lead cross-functional platform delivery programs, including team coordination.')
+  client=FakeClient([json.dumps(r) for r in [original,review(),fixed,review()]])
+  result=p.assess({},JOB,source*3,client=client,model='test',rules=SKILL_RULES)
+  self.assertEqual(result.recommendation,'strong');self.assertEqual(len(client.calls),4)
+  self.assertEqual(result.private['requirements'][0]['quote'],'Lead cross-functional platform delivery programs')
  def test_repair_cannot_remove_or_change_intact_requirements(self):
   delta=proposal();delta['requirements'][1]['quote']='Different requirement'
   merged=p.merge_repair(proposal(),delta,{'R1'},[])

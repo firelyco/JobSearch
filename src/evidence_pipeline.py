@@ -250,7 +250,7 @@ def assess(profile,job,jd_text,*,client,model,rules,resume=None,checkpoint=None)
                         'broken_requirements':[r for r in extraction['requirements'] if r['id'] in broken],
                         'omitted_requirements':missing,'existing_ids':[r['id'] for r in extraction['requirements']],
                         'scope':extraction['scope'],'location':extraction['location']},EXTRACTION_SCHEMA,12000)
-                    extraction=merge_repair(extraction,delta,set(broken),missing)
+                    extraction=normalize_literal_quotes(merge_repair(extraction,delta,set(broken),missing),jd)
                     state.update(extraction=extraction,repair_attempted=True,stage='repair_review');save()
                 else:raise ValueError('Invalid checkpoint stage')
             result=core.review_result(extraction,review,inventory,jd,job,comp,rules)
