@@ -188,7 +188,7 @@ def run_batch(*, jobs, profile, rules, scores, state, model, role_config, max_jo
         scores = updated
         for job in selected:
             score = updated.get(key(job), {})
-            if fresh(job, score, context) and timestamp(score.get('scored_at')) and timestamp(score['scored_at']) >= now:
+            if fresh(job, score, context) and any(timestamp(score.get(field)) and timestamp(score[field]) >= now for field in ('scored_at','jd_checked_at')):
                 state['attempts'][key(job)]['last_outcome'] = score.get('recommendation', 'review')
         refresh(state, jobs, updated, context, role_config, datetime.now(timezone.utc))
         if persist: persist(state, updated)

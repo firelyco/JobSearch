@@ -92,8 +92,9 @@ def run(*,jobs,profile,existing,rules,max_jobs,rescore,fake_client,jd_text_for,s
             if not rescore and previous.get('assessment_cache_key')==semantic_key and previous.get('validated') is True and previous.get('recommendation') in cache.FINAL:
                 log.info('Assessment cache hit %s; zero AI calls',job_key)
                 return job_key,{**previous,'context_hash':context,'job_snapshot_hash':snapshot_hash(job),'jd_checked_at':stamp,'cache_status':'reused'}
-            if not rescore and scores.get(job_key,{}).get('input_hash')==fingerprint and scores.get(job_key,{}).get('recommendation')!='review':
-                return job_key,{**scores[job_key],'jd_checked_at':stamp}
+            if not rescore and previous.get('input_hash')==fingerprint and previous.get('validated') is True and previous.get('recommendation') in cache.FINAL:
+                log.info('Legacy assessment cache migrated %s; zero AI calls',job_key)
+                return job_key,{**previous,'context_hash':context,'job_snapshot_hash':snapshot_hash(job),'assessment_cache_key':semantic_key,'jd_checked_at':stamp,'cache_status':'reused'}
             verdict=None
             prior=load_private(job_key) if rules.get('_fitment_skill') and not rescore else None
             if prior is not None:

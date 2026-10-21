@@ -132,7 +132,7 @@ class EvidenceCache(unittest.TestCase):
  def test_profile_and_jd_changes_invalidate_cache(self):
   profile={'experience':[{'achievements':[{'details':'Delivered a shared software platform program.'}]}]};rules={'evidence_required':True,'fit_policy_version':'test'};key='test:example:1';now=datetime(2026,10,15,tzinfo=timezone.utc)
   def score(profile,job,jd,**kwargs):
-   return EvidenceVerdict('strong','Reviewed','none',{'input_hash':input_hash(profile,job,jd,rules,fit._fit_model())},{'inventory':FACTS})
+   return EvidenceVerdict('strong','Reviewed','none',{'validated':True,'input_hash':input_hash(profile,job,jd,rules,fit._fit_model())},{'inventory':FACTS})
   with patch('src.fit_scorer.score_fit',side_effect=score) as scorer,patch('src.evidence_batch.save_private'):
    first=fit.run(jobs=[JOB],profile=profile,existing={},rules=rules,jd_text_for={key:JD},fake_client=FakeClient([]),now=now)
    fit.run(jobs=[JOB],profile=profile,existing=first,rules=rules,jd_text_for={key:JD},fake_client=FakeClient([]),now=now+timedelta(hours=1));self.assertEqual(scorer.call_count,1)

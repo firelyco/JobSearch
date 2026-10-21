@@ -30,6 +30,12 @@ class PaidAssessmentCache(unittest.TestCase):
    client.assert_not_called()
   self.assertEqual(second[KEY]['cache_status'],'reused');self.assertEqual(third[KEY]['job_snapshot_hash'],batch.snapshot_hash({**JOB,'updated_at':'2026-10-23'}))
   self.assertEqual(first[KEY]['scored_at'],third[KEY]['scored_at'])
+ def test_legacy_exact_fingerprint_migration_does_not_repeat_or_change_assessment_date(self):
+  old={'validated':True,'recommendation':'medium','context_hash':'legacy-model-context','input_hash':batch.input_hash({},JOB,JD,RULES,'model-a'),'scored_at':'2026-10-15T00:00:00+00:00'}
+  with patch('src.evidence_batch.llm_client.build_client',side_effect=AssertionError('Paid call forbidden')):
+   result=self.run_jobs({KEY:old})[KEY]
+  self.assertEqual(result['scored_at'],old['scored_at']);self.assertEqual(result['context_hash'],cache.context({},RULES))
+  self.assertEqual(result['assessment_cache_key'],cache.identity({},JOB,JD,RULES));self.assertEqual(result['cache_status'],'reused')
  def test_cache_only_validation_cannot_create_client_or_reserve_paid_attempt(self):
   with patch.dict('os.environ',{'FIT_CACHE_ONLY':'true'}),patch('src.evidence_batch.cache.reserve') as reserve,patch('src.evidence_batch.llm_client.build_client') as client:
    self.assertEqual(self.run_jobs(),{});reserve.assert_not_called();client.assert_not_called()

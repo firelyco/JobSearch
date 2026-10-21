@@ -264,7 +264,11 @@ jobs:
           scores = json.loads(Path('docs/fit_scores.json').read_text())
           for key in keys:
               score = scores.get(key, {})
-              age = (datetime.now(timezone.utc) - datetime.fromisoformat(score.get('scored_at', '1970-01-01T00:00:00+00:00'))).total_seconds()
+              # Cache hits retain the original assessment date. Validate the source/cache check separately.
+              checked = score.get('jd_checked_at') or score.get('scored_at', '1970-01-01T00:00:00+00:00')
+              age = (datetime.now(timezone.utc) - datetime.fromisoformat(checked)).total_seconds()
+              if os.environ.get('FIT_CACHE_ONLY') == 'true':
+                  assert score.get('cache_status') in ('reused','revalidated_without_ai'), 'Not a verified zero-AI cache hit: '+key
               assert age < 1800 and score.get('recommendation') in ('strong','medium','not'), 'No completed assessment for ' + key
               print(key, score['recommendation'])
           benchmark = json.loads(Path('config/fit_benchmark.json').read_text())

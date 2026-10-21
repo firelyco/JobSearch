@@ -164,6 +164,17 @@ class BackfillTests(unittest.TestCase):
         self.state.update(status='running',enabled=False)
         self.assertFalse(b.continuation_needed(self.state,[job('new')],{},'context',CFG,NOW))
 
+    def test_continuation_does_not_force_paid_rescore_and_accepts_cache_hits(self):
+        j=job('cached')
+        def runner(**kwargs):
+            self.assertFalse(kwargs['rescore'])
+            updated={b.key(j):{**verdict(j),'scored_at':(NOW-timedelta(days=2)).isoformat(),'jd_checked_at':NOW.isoformat()}}
+            kwargs['on_scored'](updated)
+            return updated
+        self.run_batch([j],runner=runner)
+        self.assertEqual(self.state['attempts'][b.key(j)]['last_outcome'],'strong')
+        self.assertEqual(self.state['counts']['assessed'],1)
+
     def test_checkpoint_stages_only_public_files_and_restores_model_override(self):
         with tempfile.TemporaryDirectory() as directory:
             config=Path(directory)/'config.yml';config.write_text('NVIDIA runtime override')
