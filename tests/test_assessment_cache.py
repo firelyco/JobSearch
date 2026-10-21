@@ -39,6 +39,11 @@ class PaidAssessmentCache(unittest.TestCase):
  def test_cache_only_validation_cannot_create_client_or_reserve_paid_attempt(self):
   with patch.dict('os.environ',{'FIT_CACHE_ONLY':'true'}),patch('src.evidence_batch.cache.reserve') as reserve,patch('src.evidence_batch.llm_client.build_client') as client:
    self.assertEqual(self.run_jobs(),{});reserve.assert_not_called();client.assert_not_called()
+ def test_unavailable_posting_never_spends_or_overwrites_prior_assessment(self):
+  old={KEY:{'recommendation':'medium','validated':True}}
+  with patch('src.evidence_batch.llm_client.build_client') as client,patch('src.evidence_batch.cache.reserve') as reserve:
+   result=batch.run(jobs=[JOB],profile={},existing=old,rules=RULES,max_jobs=1,rescore=False,fake_client=None,jd_text_for={KEY:''},stamp='2026-10-21',model='test',on_scored=None,job_keys=None)
+   self.assertEqual(result,old);client.assert_not_called();reserve.assert_not_called()
  def test_removed_posting_does_not_delete_completed_record(self):
   result=batch.run(jobs=[],profile={},existing={KEY:{'recommendation':'strong'}},rules=RULES,max_jobs=0,rescore=False,fake_client=None,jd_text_for={},stamp='2026-10-21',model='test',on_scored=None,job_keys=None)
   self.assertIn(KEY,result)

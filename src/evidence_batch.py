@@ -86,6 +86,9 @@ def run(*,jobs,profile,existing,rules,max_jobs,rescore,fake_client,jd_text_for,s
             fetch_started=time.monotonic()
             jd=jd_text_for.get(job_key,'') if jd_text_for is not None else jd_fetch.get_jd_text(job)
             log.info('Evidence JD fetch seconds=%.3f',time.monotonic()-fetch_started)
+            if not str(jd or '').strip():
+                log.warning('Employer description unavailable for %s; keeping previous assessment and spending no AI calls',job_key)
+                return job_key,None
             fingerprint=input_hash(profile,job,jd,rules,model)
             semantic_key=cache.identity(profile,job,jd,rules)
             previous=scores.get(job_key,{})
