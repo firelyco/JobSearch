@@ -5,7 +5,7 @@ const code=fs.readFileSync(path.join(root,'docs/app.js'),'utf8');
 const digest=value=>crypto.createHash('sha256').update(JSON.stringify(value)).digest('hex');
 const jobs=['current','legacy','job_changed','profile_changed','code_changed'].map(id=>({source:'test',company:'Example',id,title:'Principal TPM — AI',location:'Boston, MA',url:'https://example.com/'+id}));
 const snapshot=job=>({company:job.company??null,description:job.description??null,location:job.location??null,title:job.title??null,updated_at:job.updated_at??null,url:job.url??null});
-const scores=Object.fromEntries(jobs.map(job=>['test:Example:'+job.id,{recommendation:'strong',policy_version:'v1',engine_version:'evidence-v1',job_snapshot_hash:digest(snapshot(job)),context_hash:'profile1',scorer_revision:'code1'}]));
+const scores=Object.fromEntries(jobs.map(job=>['test:Example:'+job.id,{recommendation:'strong',policy_version:'v1',engine_version:'evidence-v1',job_snapshot_hash:digest(snapshot(job)),context_hash:'profile1',scorer_revision:'code1',validated:true,fitment_skill_hash:'skill1'}]));
 scores['test:Example:legacy'].policy_version='old';
 scores['test:Example:job_changed'].job_snapshot_hash='outdated';
 scores['test:Example:profile_changed'].context_hash='outdated';
@@ -17,7 +17,7 @@ const ctx={Date,Object,console,URL,Uint8Array,TextEncoder,crypto:crypto.webcrypt
  $:id=>nodes[id]??={textContent:'',innerHTML:''},
  fitScores:{},allJobs:[],metaData:{},tailoredJobs:{},jobsByKey:{},
  jobKey:j=>`${j.source}:${j.company}:${j.id}`,loadStatuses:()=>({}),loadInFlight:()=>({}),render:()=>{},syncPrivateHistory:()=>{},
- fetch:async url=>({ok:true,json:async()=>url.startsWith('fit_backfill.json')?backfill:url.startsWith('jobs.json')?jobs:url.startsWith('fit_scores.json')?structuredClone(scores):url.startsWith('fit_policy.json')?{version:'v1',evidence_required:true,context_hash:'profile1',scorer_revision:'code1'}:{}}),
+ fetch:async url=>({ok:true,json:async()=>url.startsWith('fit_backfill.json')?backfill:url.startsWith('jobs.json')?jobs:url.startsWith('fit_scores.json')?structuredClone(scores):url.startsWith('fit_policy.json')?{version:'v1',evidence_required:true,context_hash:'profile1',scorer_revision:'code1',fitment_skill_hash:'skill1'}:{}}),
 };
 vm.createContext(ctx);
 vm.runInContext(code.slice(code.indexOf('async function sha256Hex('),code.indexOf('function loadStatuses(')),ctx);
@@ -25,9 +25,11 @@ vm.runInContext(code.slice(code.indexOf('async function loadData()'),code.indexO
 (async()=>{
  await ctx.loadData();
  assert.equal(ctx.fitScores['test:Example:current'].recommendation,'strong');
- for(const id of ['legacy','job_changed','profile_changed','code_changed']){
+ for(const id of ['legacy','job_changed','code_changed']){
   const rating=ctx.fitScores['test:Example:'+id];assert.equal(rating.recommendation,'review',id);assert.equal(rating.refresh_pending,true,id);
  }
+ assert.equal(ctx.fitScores['test:Example:profile_changed'].recommendation,'strong');
+ assert.equal(ctx.fitScores['test:Example:profile_changed'].refresh_pending,true);
  assert(nodes['fit-status'].textContent.includes('1 of 6 roles have current assessments; 5 await assessment or reassessment'));
  assert.equal(ctx.fitScores['test:Example:unassessed'],undefined);
  backfill={enabled:true,status:'running',phase:'windows',current_window:2,counts:{assessed:7,total:20,pending:10,in_progress:2,unresolved:1}};

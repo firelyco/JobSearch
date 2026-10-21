@@ -214,12 +214,14 @@ def publish_checkpoint():
         git('config','user.name','github-actions[bot]')
         git('config','user.email','41898282+github-actions[bot]@users.noreply.github.com')
         git('restore', '--', 'config/tailor_config.yml')
-        git('add', 'docs/fit_scores.json', 'docs/fit_policy.json', 'docs/fit_backfill.json')
+        subprocess.run(['node','src/validate_shortlist.cjs'],cwd=fit.ROOT,check=True)
+        git('add', 'docs/fit_scores.json', 'docs/fit_policy.json', 'docs/fit_backfill.json', 'docs/shortlist_validation.json')
         if git('diff', '--cached', '--quiet', check=False).returncode == 0: return
         git('-c','user.name=github-actions[bot]','-c','user.email=41898282+github-actions[bot]@users.noreply.github.com',
             'commit','-m','fit: checkpoint assessment backfill')
         for attempt in range(3):
             git('pull', '--rebase', 'origin', 'main')
+            subprocess.run(['node','src/validate_shortlist.cjs','--check-only'],cwd=fit.ROOT,check=True)
             if git('push', check=False).returncode == 0: return
         raise RuntimeError('Could not publish backfill checkpoint')
     finally:

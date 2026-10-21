@@ -176,8 +176,10 @@ class BackfillTests(unittest.TestCase):
                 b.publish_checkpoint()
             self.assertEqual(config.read_text(),'NVIDIA runtime override')
             staged=next(c for c in commands if c[1]=='add')
-            self.assertEqual(staged[2:],['docs/fit_scores.json','docs/fit_policy.json','docs/fit_backfill.json'])
+            self.assertEqual(staged[2:],['docs/fit_scores.json','docs/fit_policy.json','docs/fit_backfill.json','docs/shortlist_validation.json'])
             self.assertTrue(any(c[1]=='push' for c in commands))
+            self.assertIn(['node','src/validate_shortlist.cjs'],commands)
+            self.assertIn(['node','src/validate_shortlist.cjs','--check-only'],commands)
             self.assertIn(['git','config','user.name','github-actions[bot]'],commands)
             self.assertLess(next(i for i,c in enumerate(commands) if c[1]=='config'),next(i for i,c in enumerate(commands) if c[1]=='pull'))
     def test_failed_checkpoint_restores_runtime_configuration(self):

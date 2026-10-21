@@ -17,6 +17,23 @@ async function sha256Hex(s) {
   return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('');
 }
 
+// A model/context refresh must not erase a reviewed shortlist while its replacements run.
+function applyFitFreshness(verdict, policy, hash) {
+  verdict.inputs_stale = verdict.job_snapshot_hash !== hash || verdict.context_hash !== policy.context_hash || verdict.scorer_revision !== policy.scorer_revision || verdict.fitment_skill_hash !== policy.fitment_skill_hash;
+  verdict.refresh_pending = policy.calibration_pending === true || verdict.policy_version !== policy.version || verdict.inputs_stale;
+  if (policy.evidence_required && (verdict.refresh_pending || verdict.engine_version !== 'evidence-v1')) {
+    verdict.previous_rating = verdict.recommendation;
+    const retained = verdict.recommendation === 'strong' && verdict.validated === true &&
+      verdict.engine_version === 'evidence-v1' && verdict.policy_version === policy.version &&
+      !!policy.fitment_skill_hash && verdict.fitment_skill_hash === policy.fitment_skill_hash &&
+      verdict.scorer_revision === policy.scorer_revision && verdict.job_snapshot_hash === hash;
+    verdict.recommendation = retained ? 'strong' : 'review';
+    verdict.reason = retained ? 'Previously reviewed Strong under the same skill; reassessment is pending. ' + (verdict.reason || '')
+      : 'Awaiting the current requirement-to-evidence assessment.';
+  }
+  return verdict;
+}
+
 function loadStatuses() {
   try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}'); }
   catch { return {}; }
@@ -264,19 +281,10 @@ async function loadData() {
             const verdict=fitScores[jobKey(job)];if(!verdict)return;
             const snapshot={company:job.company??null,description:job.description??null,location:job.location??null,title:job.title??null,updated_at:job.updated_at??null,url:job.url??null};
             const hash=await sha256Hex(JSON.stringify(snapshot));
-            verdict.inputs_stale=verdict.job_snapshot_hash!==hash || verdict.context_hash!==policy.context_hash || verdict.scorer_revision!==policy.scorer_revision;
+            applyFitFreshness(verdict, policy, hash);
           }));
         }
-        if (policy.version) {
-          for (const [key, verdict] of Object.entries(fitScores)) {
-            verdict.refresh_pending = calibrationPending || verdict.policy_version !== policy.version || !!verdict.inputs_stale;
-            if (policy.evidence_required && (verdict.refresh_pending || verdict.engine_version !== 'evidence-v1')) {
-              verdict.previous_rating=verdict.recommendation;
-              verdict.recommendation='review';
-              verdict.reason='Awaiting the current requirement-to-evidence assessment.';
-            }
-          }
-        }
+
       }
     }
     backfillIsActive = false;
@@ -298,13 +306,14 @@ async function loadData() {
         }
       } catch { /* Progress availability must not hide the jobs. */ }
     }
+    const priorStrongCount = allJobs.filter(job=>fitScores[jobKey(job)]?.recommendation==='strong' && fitScores[jobKey(job)].refresh_pending).length;
     const refreshCount = allJobs.filter(job=>!fitScores[jobKey(job)] || fitScores[jobKey(job)].refresh_pending).length;
     const fitNotice = $('fit-status');
     if (fitNotice) fitNotice.textContent = providerUnavailable
       ? 'Updated fit scoring is waiting for Anthropic API credits. Displayed ratings are previous assessments.'
       : calibrationPending ? 'The revised rubric is still being validated. Displayed ratings are previous assessments.'
       : refreshCount
-      ? `${allJobs.length-refreshCount} of ${allJobs.length} roles have current assessments; ${refreshCount} await assessment or reassessment. Strong results require reviewed evidence and location eligibility. Only a published base maximum below $250K is excluded; undisclosed pay remains unverified.`
+      ? `${allJobs.length-refreshCount} of ${allJobs.length} roles have current assessments; ${refreshCount} await assessment or reassessment. ${priorStrongCount} previously Strong roles remain visible with reassessment labels; they are not current confirmations. Only a published base maximum below $250K is excluded; undisclosed pay remains unverified.`
       : 'Fit ratings use the current criteria. Posted pay is not a confirmed offer; verify salary and benefits before applying.';
     jobsByKey = Object.fromEntries(allJobs.map(j => [jobKey(j), j]));
     // Backfill: jobs marked applied before snapshots existed get one now,
@@ -463,7 +472,8 @@ function renderTable() {
   });
 
   const tbody = $('jobs-tbody');
-  if ($('results-count')) $('results-count').textContent = `${filtered.length} matching roles${postingDays ? ` in the last ${postingDays} days` : ''}. Dates use employer posting dates; first discovery is used when missing. Salary excludes bonus, equity and benefits.`;
+  const previousCount = filtered.filter(j=>fitScores[jobKey(j)]?.recommendation==='strong' && fitScores[jobKey(j)].refresh_pending).length;
+  if ($('results-count')) $('results-count').textContent = `${filtered.length} matching roles${postingDays ? ` in the last ${postingDays} days` : ''}.${previousCount ? ` Includes ${previousCount} previously Strong roles awaiting reassessment.` : ''} Dates use employer posting dates; first discovery is used when missing. Salary excludes bonus, equity and benefits.`;
   if (filtered.length === 0) {
     tbody.innerHTML = `<tr><td colspan="7" class="empty">No jobs match these filters. Select all fit or broaden the base-salary or posting-date filter to see more roles.</td></tr>`;
     return;
@@ -605,9 +615,9 @@ function fitCellHtml(fit, key) {
   const meta = FIT_LABELS[fit.recommendation] || FIT_LABELS.medium;
   const pending = !!fit.refresh_pending;
   const reason = escapeAttr((pending ? 'Previous rating: reassessment under the current rubric is pending. ' : '') + (fit.reason || ''));
-  const label=meta.label;
+  const label=pending && fit.recommendation==='strong' ? 'Strong — reassessment pending' : meta.label;
   const why=fit.engine_version==='evidence-v1' && key ? `<button type="button" class="btn-ghost-sm fit-evidence-btn" data-job-key="${escapeAttr(key)}">Why?</button>` : '';
-  return `<span class="fit-pill ${meta.cls}" title="${reason}">${label}${pending ? ' (previous)' : ''}</span>${why}`;
+  return `<span class="fit-pill ${meta.cls}" title="${reason}">${label}${pending && fit.recommendation!=='strong' ? ' (previous)' : ''}</span>${why}`;
 }
 
 function tailorCellHtml(key, tailored, inflight) {

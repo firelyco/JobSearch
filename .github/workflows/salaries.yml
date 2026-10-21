@@ -49,10 +49,13 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          node src/validate_shortlist.cjs
+          git add docs/shortlist_validation.json
           git add docs/fit_scores.json
           if [ -f docs/fit_backfill.json ]; then git add docs/fit_backfill.json; fi
           if ! git diff --cached --quiet; then
             git commit -m "salary: refresh published base-pay evidence"
             git pull --rebase origin main
+            node src/validate_shortlist.cjs --check-only
             git push
           fi
