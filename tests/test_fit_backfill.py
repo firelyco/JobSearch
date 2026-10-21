@@ -96,6 +96,22 @@ class BackfillTests(unittest.TestCase):
         b.refresh(self.state,[old],scores,'context',CFG,NOW)
         self.assertEqual(self.state['status'],'running');self.assertEqual(self.state['strong_refresh_in_progress'],1)
 
+    def test_rolling_relevant_scope_advances_and_excludes_only_current_low_salary(self):
+        state=b.initialize(NOW-timedelta(days=1),since=NOW-timedelta(days=7))
+        state['scope_mode']='rolling_relevant'
+        new=job('new');low=job('low');stale=job('stale');foreign=job('foreign',location='London, UK')
+        scores={b.key(low):{**verdict(low),'comp_status':'below_floor'},b.key(stale):{**verdict(stale),'context_hash':'old','comp_status':'below_floor'}}
+        result=b.refresh(state,[new,low,stale,foreign],scores,'context',CFG,NOW)
+        self.assertEqual(state['as_of'],NOW.isoformat());self.assertEqual(result['counts']['total'],2)
+        self.assertEqual({b.key(j) for j in result['selected']},{b.key(new),b.key(stale)})
+    def test_queue_covers_staff_qualifiers_and_workday_city_state_without_foreign_guess(self):
+        for title in ['Staff TPM, Security','Staff Glasses Technical Program Manager, XR','Staff Systems Technical Program Manager (Hardware)']:
+            self.assertTrue(b.in_scope(job('role',title=title),CFG),title)
+        workday=job('multi',source='workday',location='2 Locations',url='https://capitalone.wd12.myworkdayjobs.com/en-US/jobs/job/McLean-VA/Director_R1')
+        self.assertTrue(b.in_scope(workday,CFG))
+        for place in ['Toronto-CA','London-ON','Remote-CA']:
+            self.assertFalse(b.in_scope({**workday,'url':workday['url'].replace('McLean-VA',place)},CFG),place)
+
     def test_reuses_completed_ratings_even_after_six_hours(self):
         j=job('cached');score=verdict(j);score['jd_checked_at']='2020-01-01'
         def forbidden(**kw): self.fail('Completed job was reassessed')

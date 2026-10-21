@@ -36,12 +36,25 @@ def posting_time(job):
 def in_scope(job, role_config):
     location = re.sub(r'\bremote\b', '', job.get('location') or '', flags=re.I)
     us = _is_us_or_remote(location) or bool(re.search(r'/job/US-', job.get('url') or '', re.I))
+    if not us and re.fullmatch(r'(?:\d+\s+locations?)?',location.strip(),re.I) and job.get('source')=='workday':
+        from urllib.parse import urlparse,unquote
+        url=urlparse(job.get('url') or '')
+        part=re.search(r'/job/([^/]+)',url.path,re.I)
+        primary=unquote(part.group(1)) if part else ''
+        foreign=re.search(r'(?:^|-)(?:remote|canada|toronto|vancouver|montreal|ottawa|ontario|quebec|calgary|waterloo|uk|united-kingdom|england|australia|india|germany|france|singapore)(?:-|$)',primary,re.I)
+        us=bool(url.scheme=='https' and (url.hostname or '').endswith('.myworkdayjobs.com') and not foreign and re.search(r'-[A-Z]{2}$',primary,re.I) and _is_us_or_remote(primary.replace('-',', ')))
     reasons = job.get('score_reasons') or []
-    role = any(str(r).startswith(('broader responsibility match', 'level not in title')) for r in reasons)
-    title = job.get('title') or ''
-    role = role or any(re.search(p, title, re.I) for p in role_config.get('title_patterns', []))
-    role = role or bool(re.search(r'\b(?:senior|sr\.?|lead|leadership)\b.*\b(?:technical\s+program\s+manager|tpm)\b', title, re.I))
-    return bool(us and role)
+    role=any(str(r).startswith(('broader responsibility match','level not in title')) for r in reasons)
+    title=job.get('title') or ''
+    patterns=[r'\b(vp|vice\s+president|head\s+of)\b.*\bprogram',
+      r'\bdirector\b.*(\btpm\b|technical\s+program|program\s+management)',
+      r'(sr\.?\s*manager|senior\s+manager).*(\btpm\b|technical\s+program|program\s+management)',
+      r'\bmanager\b.*(\btpm\b|technical\s+program|program\s+management)|\b(?:tpm|technical\s+program\s+management)\s+manager\b',
+      r'\b(principal|staff|distinguished)\b.*\b(technical\s+program\s+manager|tpm)\b',
+      r'\b(?:senior|sr\.?|lead|leadership)\b.*\b(?:technical\s+program\s+manager|tpm)\b',
+      r'engineering\s+program\s+manage',
+      r'\b(head\s+of|director|vp|vice\s+president)\b.*(engineering\s+operations|\bai\b.*(program|delivery))']
+    return bool(us and (role or any(re.search(pattern,title,re.I) for pattern in patterns)))
 
 
 def initialize(as_of, priority_keys=(), *, since=None, all_jobs=False):
@@ -83,6 +96,8 @@ def outcome(job, scores, state, context):
 
 def plan(jobs, scores, state, context, role_config):
     jobs=[j for j in jobs if assessment_scope.allowed(j)]
+    if state.get('scope_mode')=='rolling_relevant':
+        jobs=[j for j in jobs if in_scope(j,role_config) and not (fresh(j,scores.get(key(j),{}),context) and scores.get(key(j),{}).get('comp_status')=='below_floor')]
     priority = set(state.get('priority_job_keys', []))
     chosen = [j for j in jobs if key(j) in priority or ((state.get('all_jobs') or in_scope(j, role_config)) and window_index(j, state) is not None)]
     if state.get('requested_job_keys'):
@@ -121,6 +136,9 @@ def plan(jobs, scores, state, context, role_config):
 
 
 def refresh(state, jobs, scores, context, role_config, now):
+    if state.get('scope_mode')=='rolling_relevant':
+        state['as_of']=now.isoformat()
+        state['window_count']=max(1,math.ceil((now-timestamp(state['cutoff'])).total_seconds()/(12*3600)))
     result = plan(jobs, scores, state, context, role_config)
     state.update({name: result[name] for name in ('counts','windows','phase','current_window','windows_processed','strong_refresh_pending','strong_refresh_unresolved','strong_refresh_in_progress')})
     if (result['counts']['in_progress'] or result['strong_refresh_in_progress']) and state.get('current_batch'):
