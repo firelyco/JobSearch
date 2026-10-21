@@ -1,6 +1,6 @@
-﻿# JobSearch publication rules
+# JobSearch publication rules
 
-Before publishing code or job/fit data, compare the proposed shortlist with the last published `origin/main` snapshot using `node src/validate_shortlist.cjs`. Run it again with `--check-only` after rebasing and before pushing. Publish `docs/shortlist_validation.json` with the update.
+Before publishing code or job/fit data, compare the proposed shortlist with the last published `origin/main` snapshot using `node src/validate_shortlist.cjs`. Run it again with `--check-only` after rebasing and before pushing. Publish `docs/shortlist_validation.json` with fit/salary updates; poll updates use `--report=docs/shortlist_validation_poll.json` to avoid concurrent writers conflicting on the audit file.
 
 Do not silently remove a previously reviewed Strong role because an assessment provider/model or context changed. Retain its prior verdict with a visible reassessment label only while the same skill, scoring rules and employer job inputs still match. A newer completed assessment takes precedence. A changed skill or posting requires fresh review; never present a stale result as currently validated.
 
