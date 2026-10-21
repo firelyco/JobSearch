@@ -210,6 +210,9 @@ def publish_checkpoint():
     def git(*args, check=True):
         return subprocess.run(['git', *args], cwd=fit.ROOT, check=check, capture_output=True, text=True)
     try:
+        # Rebase creates commits too; identity must persist beyond the initial commit.
+        git('config','user.name','github-actions[bot]')
+        git('config','user.email','41898282+github-actions[bot]@users.noreply.github.com')
         git('restore', '--', 'config/tailor_config.yml')
         git('add', 'docs/fit_scores.json', 'docs/fit_policy.json', 'docs/fit_backfill.json')
         if git('diff', '--cached', '--quiet', check=False).returncode == 0: return

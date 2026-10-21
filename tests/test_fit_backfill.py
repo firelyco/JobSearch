@@ -178,6 +178,8 @@ class BackfillTests(unittest.TestCase):
             staged=next(c for c in commands if c[1]=='add')
             self.assertEqual(staged[2:],['docs/fit_scores.json','docs/fit_policy.json','docs/fit_backfill.json'])
             self.assertTrue(any(c[1]=='push' for c in commands))
+            self.assertIn(['git','config','user.name','github-actions[bot]'],commands)
+            self.assertLess(next(i for i,c in enumerate(commands) if c[1]=='config'),next(i for i,c in enumerate(commands) if c[1]=='pull'))
     def test_failed_checkpoint_restores_runtime_configuration(self):
         with tempfile.TemporaryDirectory() as directory:
             config=Path(directory)/'config.yml';config.write_text('NVIDIA runtime override')
