@@ -133,7 +133,8 @@ def run(*,jobs,profile,existing,rules,max_jobs,rescore,fake_client,jd_text_for,s
                 'policy_version':rules.get('fit_policy_version'),'context_hash':context,'job_snapshot_hash':snapshot_hash(job),
                 'jd_checked_at':stamp,'scored_at':stamp,'scorer_revision':scorer_revision()}
         except Exception as error:
-            log.warning('Assessment pending for %s (%s); no unpersisted verdict published',job_key,type(error).__name__)
+            category=str(error) if isinstance(error,RuntimeError) and str(error).startswith(('Private assessment read HTTP ','Private evidence storage HTTP ')) else type(error).__name__
+            log.warning('Assessment pending for %s (%s); no unpersisted verdict published',job_key,category)
             return job_key,None
     with ThreadPoolExecutor(max_workers=min(max(1,min(6,int(os.environ.get('FIT_WORKERS','3')))),len(selected))) as pool:
         for future in as_completed([pool.submit(evaluate,j) for j in selected]):
