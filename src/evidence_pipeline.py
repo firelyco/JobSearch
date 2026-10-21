@@ -4,6 +4,7 @@ import copy
 import json
 import logging
 import os
+import re
 import time
 from src import evidence_fit as core, llm_client
 from src.fitment_skill import context as skill_context
@@ -78,12 +79,12 @@ def merge_repair(original,delta,allowed_ids,missing_quotes):
         if rid in rows and rid not in allowed_ids:
             if normalized(row['quote'])==normalized(rows[rid]['quote']):
                 continue  # Ignore redundant intact rows; preserve the original.
-            if not is_missing:raise ValueError('Repair changed an intact requirement')
+            if not is_missing:continue  # Discard unrequested edits; never change the intact requirement.
             index=1
             while 'R'+str(index) in rows:index+=1
             rid='R'+str(index);row={**row,'id':rid}
         elif rid not in rows and not is_missing:
-            raise ValueError('Repair added an unrequested requirement')
+            continue  # Discard unsolicited additions; independent review rechecks coverage.
         rows[rid]=row
     result['requirements']=list(rows.values())
     # Repairs can correct role facts, but never remove previously proposed edges.
@@ -93,6 +94,13 @@ def merge_repair(original,delta,allowed_ids,missing_quotes):
         if edge not in edges:edges.append(edge)
     validate_proposal(result)
     return result
+
+
+def policy_quote_options(skill):
+    """Literal source excerpts for correcting paraphrased citations, not another rubric."""
+    return {match.group(1):[line.strip() for line in match.group(2).splitlines()
+                            if len(line.strip())>=8 and not line.startswith('#')]
+            for match in re.finditer(r'^## STEP (0|1\.5|1|2|3|4|5|6|7)\b[^\n]*\n(.*?)(?=^## |\Z)',skill,re.M|re.S)}
 
 
 def assess(profile,job,jd_text,*,client,model,rules,resume=None,checkpoint=None):
@@ -160,7 +168,7 @@ def assess(profile,job,jd_text,*,client,model,rules,resume=None,checkpoint=None)
                     validate_proposal(extraction)
                     state.update(extraction=extraction,stage='review');save()
                 elif phase in {'review','repair_review'}:
-                    review=request(phase,core.REVIEW_PROMPT,{'job_text':jd,'job':job_facts,'proposal':extraction,'validation_errors_to_correct':state.get('repair_errors',[]),'explicit_skill_exclusion_matches':__import__('src.fitment_skill',fromlist=['named_exclusions']).named_exclusions(rules['_fitment_skill'],job_facts,jd)},REVIEW_SCHEMA,10000)
+                    review=request(phase,core.REVIEW_PROMPT,{'job_text':jd,'job':job_facts,'proposal':extraction,'validation_errors_to_correct':state.get('repair_errors',[]),'literal_policy_quote_options':policy_quote_options(rules['_fitment_skill']) if state.get('repair_errors') else {},'citation_instruction':'Copy a literal policy_quote from the skill or the provided source excerpts. Preserve qualifiers and permitted alternatives.','explicit_skill_exclusion_matches':__import__('src.fitment_skill',fromlist=['named_exclusions']).named_exclusions(rules['_fitment_skill'],job_facts,jd)},REVIEW_SCHEMA,10000)
                     if not isinstance(review.get('requirements'),list) or type(review.get('coverage_complete')) is not bool:
                         raise ValueError('Invalid review structure')
                     state.update(review=review,stage='decision');save()
@@ -190,7 +198,7 @@ def assess(profile,job,jd_text,*,client,model,rules,resume=None,checkpoint=None)
                 else:raise ValueError('Invalid checkpoint stage')
             result=core.review_result(extraction,review,inventory,jd,job,comp,rules)
         except (ValueError,TypeError,AttributeError,KeyError) as error:
-            failure={'phase':state['stage'],'type':type(error).__name__}
+            failure={'phase':state['stage'],'type':type(error).__name__,'detail':str(error)[:200]}
             result=core.review_result({}, {},inventory,jd,job,comp,rules)
             result.private['validation_errors'].append('Invalid model structure in '+state['stage'])
             result.private['model_error']=failure

@@ -62,16 +62,24 @@ class ResumePipeline(unittest.TestCase):
   self.assertEqual(len(request['broken_requirements']),1)
  def test_repair_cannot_remove_or_change_intact_requirements(self):
   delta=proposal();delta['requirements'][1]['quote']='Different requirement'
-  with self.assertRaises(ValueError):p.merge_repair(proposal(),delta,{'R1'},[])
+  merged=p.merge_repair(proposal(),delta,{'R1'},[])
+  self.assertEqual(merged['requirements'][1],proposal()['requirements'][1])
  def test_repair_cannot_add_unrequested_requirements(self):
   delta=proposal();delta['requirements']=[{**delta['requirements'][0],'id':'R99'}]
-  with self.assertRaises(ValueError):p.merge_repair(proposal(),delta,set(),['An actually omitted requirement'])
+  merged=p.merge_repair(proposal(),delta,set(),['An actually omitted requirement'])
+  self.assertEqual(merged['requirements'],proposal()['requirements'])
  def test_repair_is_independently_reviewed_and_bounded(self):
   bad=review();bad.update(coverage_complete=False,missing_critical_requirements=['R1'])
   result,client=self.run_assessment([proposal(),bad,bad])
   self.assertEqual(result.recommendation,'review');self.assertEqual(len(client.calls),3)
   again,client=self.run_assessment([review()],self.saved[-1])
   self.assertEqual(again.recommendation,'strong');self.assertEqual(len(client.calls),1)
+ def test_policy_quote_options_preserve_literal_source_and_step(self):
+  skill='## STEP 1 - gates\nRequired hardware experience must be established.\n\n## STEP 2 - domain\nKeep permitted alternatives.\n\n## OVERALL\nNot a step.'
+  options=p.policy_quote_options(skill)
+  self.assertEqual(options['1'],['Required hardware experience must be established.'])
+  self.assertEqual(options['2'],['Keep permitted alternatives.'])
+  self.assertNotIn('Not a step.',str(options))
  def test_checkpoint_storage_failure_prevents_new_rating(self):
   with self.assertRaises(RuntimeError):
    p.assess({},JOB,JD*3,client=FakeClient([json.dumps(proposal())]),model='test',rules=SKILL_RULES,
