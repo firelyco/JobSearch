@@ -406,8 +406,8 @@ function renderMetrics() {
 
   $('m-today').textContent = newToday;
   $('m-week').textContent = newWeek;
-  $('m-applied').textContent = applied;
-  $('m-interviewing').textContent = interviewing;
+  $('m-applied').textContent = applied || historyLoaded ? applied : '—';
+  $('m-interviewing').textContent = interviewing || historyLoaded ? interviewing : '—';
 }
 
 function getSelectedRoles() {
@@ -541,7 +541,11 @@ function renderAppliedHistory() {
     const timestamp = Date.parse(entry.applied_at || '');
     return Number.isFinite(timestamp) && timestamp >= cutoff && timestamp <= now;
   }).sort((a, b) => (b[1].applied_at || '').localeCompare(a[1].applied_at || ''));
-  $('applied-count').textContent = rows.length;
+  $('applied-count').textContent = rows.length || historyLoaded ? rows.length : 'not loaded';
+  if (!historyLoaded && !Object.keys(applied).length) {
+    tbody.innerHTML = '<tr><td colspan="6" class="empty">History has not loaded. Sign in / refresh history to read your private database.</td></tr>';
+    return;
+  }
   if (rows.length === 0) {
     tbody.innerHTML = `<tr><td colspan="6" class="empty">${period === 'all' ? 'No saved applications yet.' : 'No applications in the last 30 days. Select All history to see older records.'}</td></tr>`;
     return;
@@ -938,6 +942,7 @@ function bindControls() {
 // Application history is stored in PostgreSQL through a private API.
 // Browser storage is only an offline cache and migration source.
 const CLOUD_HISTORY_KEY = 'jobsearch.cloudHistory.v1';
+let historyLoaded = false;
 let historySyncRunning = false;
 let historySyncTimer = null;
 let historyMutationClock = 0;
@@ -1077,6 +1082,7 @@ async function syncPrivateHistory() {
     }
     const finalRecords = mergeHistoryRecords(written,loadCloudHistory());
     applySharedHistory(finalRecords);
+    historyLoaded = true;
     if (JSON.stringify(finalRecords)!==JSON.stringify(written)) {
       setHistorySyncStatus('New changes pending save…');scheduleHistorySync();
     } else setHistorySyncStatus('Saved to your private database. Available on any device after sign-in.');

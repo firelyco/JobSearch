@@ -47,13 +47,14 @@ def apply_check(score,check):
     updated.update(comp_status=check['status'],salary_check=check)
     if score.get('career_fit')=='strong':
         reason=str(score.get('reason') or 'Reviewed evidence supports the role.')
-        for marker in (' Base salary is unverified;', ' The published base range reaches', ' Posted base salary is below'):
+        for marker in (' Base salary is unverified;', ' The published base range reaches', ' Posted base salary is below', ' Base salary remains unverified from the captured employer posting.', ' Published base salary range verified;', ' Published base maximum is below'):
             reason=reason.split(marker)[0]
         updated['reason']=reason+(' Published base maximum is below the salary threshold.' if check['status']=='below_floor' else
             ' Published base salary range verified; bonus, equity and benefits are additional.' if check['status']!='unknown' else
             ' Base salary remains unverified from the captured employer posting.')
     if score.get('career_fit')=='strong' and score.get('validated') is True:
-        eligible=check['status']!='below_floor' and score.get('location_status')=='eligible'
+        location_ok=score.get('location_status')=='eligible' or bool(score.get('fitment_skill_hash') and score.get('location_status')=='conditional')
+        eligible=check['status']!='below_floor' and location_ok
         updated.update(eligible=eligible,recommendation='strong' if eligible else 'medium',
                        step='none' if eligible else 'comp' if check['status']=='below_floor' else 'location')
     if 'verdict' in updated:

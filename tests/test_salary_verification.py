@@ -64,6 +64,14 @@ class SalaryRefresh(unittest.TestCase):
   for text in ['Annual USD base salary $212,600-$319,800','No pay information in this capture']:
    after=refresh.apply_check(self.score(),c.parse_salary(text,JOB))
    self.assertEqual(after['recommendation'],'strong')
+ def test_skill_conditional_location_is_preserved_by_salary_refresh(self):
+  score={**self.score(),'fitment_skill_hash':'current-skill','location_status':'conditional'}
+  for text in ['Annual USD base salary $230,400-$263,000','No published pay']:
+   after=refresh.apply_check(score,c.parse_salary(text,JOB))
+   self.assertEqual(after['recommendation'],'strong');self.assertTrue(after['eligible'])
+  self.assertEqual(refresh.apply_check(score,c.parse_salary('Annual USD base salary $200,000-$240,000',JOB))['recommendation'],'medium')
+  for location in ['unknown','ineligible']:
+   self.assertEqual(refresh.apply_check({**score,'location_status':location},c.parse_salary('No published pay',JOB))['recommendation'],'medium')
  def test_source_failure_keeps_previous_published_evidence(self):
   score={**self.score(),'comp_status':'potentially_meets_floor'}
   after=refresh.apply_check(score,{'status':'unknown','verification':'source_unavailable'})

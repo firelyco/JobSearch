@@ -13,6 +13,12 @@ function device(initial={}){
  };vm.createContext(ctx);vm.runInContext(code,ctx);vm.runInContext('render=()=>{}',ctx);return {ctx,storage,session,nodes,run:s=>vm.runInContext(s,ctx)};
 }
 async function main(){
+ const empty=device();empty.session.clear();empty.ctx.renderAppliedHistory();empty.ctx.renderMetrics();
+ assert.strictEqual(empty.nodes['applied-count'].textContent,'not loaded');assert.strictEqual(empty.nodes['m-applied'].textContent,'—');
+ empty.session.set('jobsearch.historySession.v1',JSON.stringify({token:'test-session',expires_at:Date.now()+3600000}));
+ await empty.ctx.syncPrivateHistory();empty.ctx.renderAppliedHistory();empty.ctx.renderMetrics();
+ assert.strictEqual(empty.nodes['applied-count'].textContent,0);assert.strictEqual(empty.nodes['m-applied'].textContent,0);
+
  const key='example:example:1',application={title:'Example role',applied_at:'2026-10-01T12:00:00Z'};
  const a=device({'jobsearch.status.v1':JSON.stringify({[key]:'applied'}),'jobsearch.applied.v1':JSON.stringify({[key]:application})});await a.ctx.syncPrivateHistory();assert.deepStrictEqual(records[key].application,application);
  const b=device();await b.ctx.syncPrivateHistory();assert.deepStrictEqual(JSON.parse(b.storage.get('jobsearch.applied.v1'))[key],application);
