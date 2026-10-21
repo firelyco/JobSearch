@@ -104,6 +104,12 @@ class BackfillTests(unittest.TestCase):
         result=b.refresh(state,[new,low,stale,foreign],scores,'context',CFG,NOW)
         self.assertEqual(state['as_of'],NOW.isoformat());self.assertEqual(result['counts']['total'],2)
         self.assertEqual({b.key(j) for j in result['selected']},{b.key(new),b.key(stale)})
+    def test_rolling_scope_fills_batches_across_sparse_windows_newest_first(self):
+        self.state['scope_mode']='rolling_relevant'
+        old=job('old',30);new=job('new',1);middle=job('middle',14)
+        result=b.plan([old,new,middle],{},self.state,'context',CFG)
+        self.assertEqual(result['selected'],[new,middle,old]);self.assertEqual(result['current_window'],0)
+
     def test_queue_covers_staff_qualifiers_and_workday_city_state_without_foreign_guess(self):
         for title in ['Staff TPM, Security','Staff Glasses Technical Program Manager, XR','Staff Systems Technical Program Manager (Hardware)']:
             self.assertTrue(b.in_scope(job('role',title=title),CFG),title)

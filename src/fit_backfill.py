@@ -125,10 +125,15 @@ def plan(jobs, scores, state, context, role_config):
     phase = 'strong_reassessment' if strong_pending else 'original_cohort' if selected else 'windows'
     current_window = None
     if not selected:
-        for window in windows:
-            selected = [j for j in chosen if window_index(j, state) == window['index'] and statuses[key(j)] == 'pending']
-            if selected:
-                current_window = window['index']; break
+        if state.get('scope_mode')=='rolling_relevant':
+            # Fill a batch across dates instead of booting one workflow per sparse window.
+            selected=[j for j in chosen if statuses[key(j)]=='pending']
+            if selected:current_window=min(window_index(j,state) for j in selected)
+        else:
+            for window in windows:
+                selected = [j for j in chosen if window_index(j, state) == window['index'] and statuses[key(j)] == 'pending']
+                if selected:
+                    current_window = window['index']; break
     selected.sort(key=lambda j: posting_time(j) or datetime.min.replace(tzinfo=timezone.utc), reverse=True)
     return {'counts': counts, 'windows': windows, 'selected': selected, 'phase': phase,
             'strong_refresh_pending':len(strong_pending),'strong_refresh_unresolved':strong_unresolved,'strong_refresh_in_progress':strong_in_progress,
