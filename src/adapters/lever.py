@@ -66,8 +66,8 @@ def fetch_detail(job: Job) -> str:
     """Fetch the full JD body for a single Lever posting.
 
     Endpoint: GET /v0/postings/{tenant}/{posting_id}?mode=json
-    Returns the `descriptionPlain` field (plain text) when present,
-    else falls back to `description` (HTML). Returns "" on failure.
+    Includes the opening description, all named lists, closing text, and
+    employer salary fields. Returns "" on failure.
     """
     tenant = job.get("company", "")
     posting_id = job.get("id", "")
@@ -85,4 +85,19 @@ def fetch_detail(job: Job) -> str:
         return ""
     if not isinstance(data, dict):
         return ""
-    return safe_str(data.get("descriptionPlain") or data.get("description"))
+    # Lever separates required qualifications from the opening description.
+    # Returning only descriptionPlain silently omits the actual hiring gates.
+    parts = [safe_str(data.get("descriptionPlain") or data.get("description"))]
+    for section in data.get("lists") or []:
+        if isinstance(section, dict):
+            parts.extend([safe_str(section.get("text")), safe_str(section.get("content"))])
+    parts.append(safe_str(data.get("additionalPlain") or data.get("additional")))
+    salary = data.get("salaryRange")
+    if isinstance(salary, dict):
+        low, high = salary.get("min"), salary.get("max")
+        currency, interval = salary.get("currency"), salary.get("interval")
+        if all(value is not None for value in (low, high, currency, interval)):
+            # Keep the employer's unit and currency; never infer annual base.
+            parts.append(f"Published salary range: {currency} {low} to {high} {interval}")
+    parts.append(safe_str(data.get("salaryDescriptionPlain") or data.get("salaryDescription")))
+    return "\n".join(part for part in parts if part)
