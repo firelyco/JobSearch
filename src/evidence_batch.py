@@ -52,7 +52,7 @@ def reusable_extraction(prior,profile,job,jd,rules,model,fingerprint):
     JD and original inventory go through a new skill review and bounded repair.
     """
     if not isinstance(prior,dict):return None
-    from src.evidence_pipeline import validate_proposal,PIPELINE_VERSION
+    from src.evidence_pipeline import validate_proposal,normalize_literal_quotes,PIPELINE_VERSION
     from src.fit_scorer import salary_text
     inventory=build_inventory(profile,rules)
     facts={k:job.get(k) for k in ('title','company','location','url')}
@@ -61,7 +61,7 @@ def reusable_extraction(prior,profile,job,jd,rules,model,fingerprint):
     except (ValueError,TypeError,KeyError):return None
     return {'pipeline_version':PIPELINE_VERSION,'input_hash':fingerprint,'inventory':inventory,
         'job':facts,'model':model,'review_model':rules.get('evidence_review_model') or model,
-        'stage':'review','extraction':prior['extraction'],'metrics':[],
+        'stage':'review','extraction':normalize_literal_quotes(prior['extraction'],salary_text(jd)),'metrics':[],
         'extraction_reused_from':prior.get('input_hash'),
         'repair_errors':(prior.get('_revalidation_errors') or prior.get('validation_errors',[])) if prior.get('public',{}).get('fitment_skill_hash')==rules.get('fitment_skill_hash') else []}
 

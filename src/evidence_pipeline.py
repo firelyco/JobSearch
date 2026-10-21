@@ -48,6 +48,17 @@ def decode(text):
     return value
 
 
+def normalize_literal_quotes(extraction,jd):
+    """Remove invented terminal punctuation only when the remaining text is verbatim."""
+    result=copy.deepcopy(extraction)
+    for row in result.get('requirements',[]):
+        quote=row.get('quote')
+        if not isinstance(quote,str) or quote in jd:continue
+        trimmed=quote.rstrip('.,;:')
+        if len(trimmed)>=8 and trimmed!=quote and trimmed in jd:row['quote']=trimmed
+    return result
+
+
 def validate_proposal(value):
     if not isinstance(value,dict) or type(value.get('coverage_complete')) is not bool:
         raise ValueError('Invalid extraction coverage')
@@ -164,6 +175,7 @@ def assess(profile,job,jd_text,*,client,model,rules,resume=None,checkpoint=None)
             if candidate.get('stage')!='extraction':validate_proposal(candidate.get('extraction'))
             state=candidate
         except (ValueError,TypeError):pass
+    if state.get('extraction'):state['extraction']=normalize_literal_quotes(state['extraction'],jd)
     if state.get('stage')=='complete':
         previous=core.review_result(state.get('extraction',{}),state.get('review',{}),inventory,jd,job,comp,rules)
         if previous.recommendation=='review':
@@ -195,6 +207,8 @@ def assess(profile,job,jd_text,*,client,model,rules,resume=None,checkpoint=None)
             state.setdefault('metrics',[]).append(metric)
             log.info('Evidence stage=%s seconds=%.3f output_tokens=%s finish=%s error=%s',phase,
                      metric['seconds'],metric.get('output_tokens',0),metric.get('finish_reason',''),metric.get('error',''))
+    if state.get('extraction'):
+        state['extraction']=normalize_literal_quotes(state['extraction'],jd)
     extraction=state.get('extraction',{});review=state.get('review',{})
     failure=None
     if len(jd)<200 or len(jd)>70000 or not inventory:
@@ -206,6 +220,7 @@ def assess(profile,job,jd_text,*,client,model,rules,resume=None,checkpoint=None)
                 phase=state['stage']
                 if phase=='extraction':
                     extraction=request(phase,core.EXTRACT_PROMPT,{'job':job_facts,'job_text':jd},EXTRACTION_SCHEMA,12000)
+                    extraction=normalize_literal_quotes(extraction,jd)
                     validate_proposal(extraction)
                     state.update(extraction=extraction,stage='review');save()
                 elif phase in {'review','repair_review'}:

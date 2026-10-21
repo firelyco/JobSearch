@@ -80,6 +80,14 @@ class ResumePipeline(unittest.TestCase):
   self.assertEqual(options['1'],['Required hardware experience must be established.'])
   self.assertEqual(options['2'],['Keep permitted alternatives.'])
   self.assertNotIn('Not a step.',str(options))
+ def test_literal_quote_punctuation_normalization_never_invents_or_fuzzy_matches(self):
+  value={'requirements':[{'quote':'Drive the build plan.'},{'quote':'Rewrite the build plan.'},{'quote':'Preserve this sentence.'}]}
+  source='Drive the build plan, and coordinate dependencies. Preserve this sentence.'
+  result=p.normalize_literal_quotes(value,source)
+  self.assertEqual(result['requirements'][0]['quote'],'Drive the build plan')
+  self.assertEqual(result['requirements'][1]['quote'],'Rewrite the build plan.')
+  self.assertEqual(result['requirements'][2]['quote'],'Preserve this sentence.')
+  self.assertEqual(value['requirements'][0]['quote'],'Drive the build plan.')
  def test_compact_policy_references_expand_exactly_and_reject_unknown_sources(self):
   skill='## STEP 1\nRequired hardware experience must be established.\n'
   references=p.policy_quote_references(skill)
