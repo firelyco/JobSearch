@@ -231,7 +231,7 @@ jobs:
             exit 0
           fi
           if [ "$FIT_BACKFILL" = "true" ] || ( [ "$FIT_VALIDATE_ONLY" != "true" ] && [ -z "$FIT_EXPLICIT_JOB_KEYS" ] && python -m src.fit_backfill --should-continue ); then
-            FIT_BACKFILL_PUBLISH=true python -m src.fit_backfill --max "${{ inputs.max || '6' }}"
+            FIT_BACKFILL_PUBLISH=true python -m src.fit_backfill --max "${{ vars.JOBSEARCH_BACKFILL_BATCH_SIZE || inputs.max || '6' }}"
             exit $?
           fi
           ARGS="--max ${{ inputs.max || '6' }}"
@@ -306,5 +306,5 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           if python -m src.fit_backfill --should-continue; then
-            gh workflow run fit.yml --repo "$GITHUB_REPOSITORY" --ref main -f backfill=true -f max=6
+            gh workflow run fit.yml --repo "$GITHUB_REPOSITORY" --ref main -f backfill=true -f max=${{ vars.JOBSEARCH_BACKFILL_BATCH_SIZE || '6' }}
           fi
