@@ -194,7 +194,7 @@ def run_batch(*, jobs, profile, rules, scores, state, model, role_config, max_jo
         if persist: persist(state, updated)
     try:
         scores = (runner or fit.run)(jobs=jobs, profile=profile, rules=rules, existing=scores,
-            max_jobs=len(selected), rescore=True, job_keys=[key(j) for j in selected], on_scored=on_scored)
+            max_jobs=len(selected), rescore=False, job_keys=[key(j) for j in selected], on_scored=on_scored)
     finally:
         for job in selected:
             attempt = state['attempts'][key(job)]

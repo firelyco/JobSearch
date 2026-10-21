@@ -6,6 +6,10 @@ on:
     types: [completed]
   workflow_dispatch:
     inputs:
+      cache_only:
+        description: "Verify cache reuse with all paid AI calls disabled"
+        type: boolean
+        default: false
       resume_pipeline:
         description: "Validate resumable assessment execution"
         type: boolean
@@ -78,6 +82,7 @@ jobs:
     # On the workflow_run trigger, only proceed if the poll actually succeeded.
     if: ${{ github.event_name == 'workflow_dispatch' || (github.event.workflow_run.conclusion == 'success' && vars.JOBSEARCH_FIT_VALIDATING != 'true') }}
     env:
+      FIT_CACHE_ONLY: ${{ inputs.cache_only && 'true' || 'false' }}
       FIT_RESUME_PIPELINE: ${{ inputs.resume_pipeline && 'true' || vars.JOBSEARCH_RESUME_PIPELINE || 'false' }}
       FIT_WORKERS: ${{ vars.JOBSEARCH_FIT_WORKERS || '3' }}
       NVIDIA_FIT_JSON_SCHEMA: ${{ vars.JOBSEARCH_NVIDIA_JSON_SCHEMA || 'false' }}
@@ -190,7 +195,8 @@ jobs:
 
       - name: Check provider before scoring
         id: provider_check
-        if: inputs.provider_health != true && inputs.inventory_only != true && inputs.publish_benchmark != true
+        # Automatic cached/free replay must not depend on a paid health probe.
+        if: inputs.rescore == true && inputs.cache_only != true && inputs.provider_health != true && inputs.inventory_only != true && inputs.publish_benchmark != true
         run: python -m src.fit_provider_health
 
       - name: Record provider interruption

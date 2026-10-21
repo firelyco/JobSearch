@@ -106,8 +106,10 @@ class SameSkillReviewReuse(unittest.TestCase):
   audit=self.audit();audit['public']['fitment_skill_hash']='previous-file';self.assertIsNone(self.replay(audit))
  def test_invalid_review_cannot_replay(self):
   audit=self.audit();audit['independent_review']['policy_steps']=[];self.assertIsNone(self.replay(audit))
- def test_changed_model_cannot_replay(self):
-  audit=self.audit();audit['review_model']='different';self.assertIsNone(self.replay(audit))
+ def test_changed_model_replays_without_inference_and_retains_original_attribution(self):
+  audit=self.audit();audit['model']='original';audit['review_model']='different'
+  result=self.replay(audit);self.assertEqual(result.private['execution']['calls_this_attempt'],0)
+  self.assertEqual(result.private['model'],'original');self.assertEqual(result.private['review_model'],'different')
 
 class CompletedMiddleWithoutEdge(unittest.TestCase):
  def test_valid_review_with_no_supported_edge_is_middle_not_pending(self):

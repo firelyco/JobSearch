@@ -7,22 +7,22 @@ from datetime import datetime
 from src import fit_scorer,jd_fetch,llm_client
 from src.evidence_fit import build_inventory,digest,scorer_revision,input_hash
 from src.private_fit_store import save_private,load_private
+from src import assessment_cache as cache
 log=logging.getLogger(__name__)
 
 def key(job):return ':'.join(str(job.get(k)) for k in ('source','company','id'))
 def snapshot_hash(job):return digest({k:job.get(k) for k in ('title','company','location','url','description','updated_at')})
-def context_hash(profile,rules,model):return digest({'revision':scorer_revision(),'inventory':build_inventory(profile,rules),'rules':rules,'model':model})
+def context_hash(profile,rules,model):return cache.context(profile,rules)
 
 def replay_same_skill(prior,profile,job,jd,rules,model,fingerprint):
     """Revalidate a full saved skill review only when its source inputs match.
 
-    A new skill, model, evidence inventory, JD or role always needs new review.
+    A new skill, evidence inventory, JD or role needs review; a model switch alone does not.
     Decision/transport fixes can revalidate existing citations without another
     paid inference. Invalid reviews fall through to a fresh model assessment.
     """
     if not isinstance(prior,dict) or prior.get('public',{}).get('fitment_skill_hash')!=rules.get('fitment_skill_hash'):return None
     independent=prior.get('review_method')=='independent_skill_review'
-    if prior.get('model')!=model or (not independent and prior.get('review_model')!=(rules.get('evidence_review_model') or model)):return None
     seed=reusable_extraction(prior,profile,job,jd,rules,model,fingerprint)
     if seed is None:return None
     review=prior.get('independent_review') or {}
@@ -39,7 +39,7 @@ def replay_same_skill(prior,profile,job,jd,rules,model,fingerprint):
         verdict.public['review_method']='independent_skill_review'
         verdict.private.update(review_method='independent_skill_review',reviewer=prior.get('reviewer','Codex'))
     verdict.private.update(job=seed['job'],job_text=salary_text(jd),input_hash=fingerprint,
-        engine_version=ENGINE_VERSION,model=model,review_model=prior.get('review_model') or rules.get('evidence_review_model') or model,
+        engine_version=ENGINE_VERSION,model=prior.get('model') or model,review_model=prior.get('review_model') or prior.get('model') or model,cache_reused_with_model=model,
         rules_version=rules.get('fit_policy_version'),review_replayed_from=prior.get('input_hash'),
         execution={'pipeline':'skill-review-revalidation','calls_this_attempt':0})
     return verdict
@@ -67,11 +67,12 @@ def reusable_extraction(prior,profile,job,jd,rules,model,fingerprint):
 
 
 def run(*,jobs,profile,existing,rules,max_jobs,rescore,fake_client,jd_text_for,stamp,model,on_scored,job_keys):
-    current={key(j) for j in jobs};scores={k:v for k,v in existing.items() if k in current}
+    # Keep completed records when a posting leaves the feed; reappearance is not a new assessment.
+    scores=dict(existing)
     context=context_hash(profile,rules,model)
     def needs(job):
         cached=scores.get(key(job),{})
-        if rescore or cached.get('context_hash')!=context or cached.get('job_snapshot_hash')!=snapshot_hash(job):return True
+        if rescore or cached.get('recommendation') not in cache.FINAL or cached.get('validated') is not True or cached.get('context_hash')!=context or cached.get('job_snapshot_hash')!=snapshot_hash(job):return True
         try:return (datetime.fromisoformat(stamp)-datetime.fromisoformat(cached.get('jd_checked_at',''))).total_seconds()>=6*3600
         except (ValueError,TypeError):return True
     pending=[j for j in jobs if (job_keys is None or key(j) in job_keys) and needs(j)]
@@ -80,15 +81,21 @@ def run(*,jobs,profile,existing,rules,max_jobs,rescore,fake_client,jd_text_for,s
     if not selected:return scores
     def evaluate(job):
         job_key=key(job)
+        attempt=None
         try:
             fetch_started=time.monotonic()
             jd=jd_text_for.get(job_key,'') if jd_text_for is not None else jd_fetch.get_jd_text(job)
             log.info('Evidence JD fetch seconds=%.3f',time.monotonic()-fetch_started)
             fingerprint=input_hash(profile,job,jd,rules,model)
+            semantic_key=cache.identity(profile,job,jd,rules)
+            previous=scores.get(job_key,{})
+            if not rescore and previous.get('assessment_cache_key')==semantic_key and previous.get('validated') is True and previous.get('recommendation') in cache.FINAL:
+                log.info('Assessment cache hit %s; zero AI calls',job_key)
+                return job_key,{**previous,'context_hash':context,'job_snapshot_hash':snapshot_hash(job),'jd_checked_at':stamp,'cache_status':'reused'}
             if not rescore and scores.get(job_key,{}).get('input_hash')==fingerprint and scores.get(job_key,{}).get('recommendation')!='review':
                 return job_key,{**scores[job_key],'jd_checked_at':stamp}
             verdict=None
-            prior=load_private(job_key) if rules.get('_fitment_skill') else None
+            prior=load_private(job_key) if rules.get('_fitment_skill') and not rescore else None
             if prior is not None:
                 if not prior.get('extraction') or not prior.get('independent_review'):
                     previous=load_private('checkpoint:'+job_key)
@@ -98,6 +105,10 @@ def run(*,jobs,profile,existing,rules,max_jobs,rescore,fake_client,jd_text_for,s
                         if previous.get('review'):prior['independent_review']=previous['review']
                 verdict=replay_same_skill(prior,profile,job,jd,rules,model,fingerprint)
             if verdict is None:
+                if os.environ.get('FIT_CACHE_ONLY')=='true':
+                    raise RuntimeError('Cache-only validation: paid inference is disabled')
+                if fake_client is None:
+                    attempt=cache.reserve(job_key,semantic_key,build_inventory(profile,rules),stamp,force=rescore)
                 client=llm_client.build_client(fake=fake_client) if fake_client else llm_client.build_client()
                 if rules.get('_fitment_skill') or os.environ.get('FIT_RESUME_PIPELINE')=='true':
                     from src.evidence_pipeline import assess
@@ -127,12 +138,19 @@ def run(*,jobs,profile,existing,rules,max_jobs,rescore,fake_client,jd_text_for,s
                 verdict.private['public']=dict(verdict.public)
                 verdict.private['salary_check']=check
             storage_started=time.monotonic()
+            verdict.private.update(assessment_cache_key=semantic_key,semantic_context_hash=context)
             save_private(verdict.private,job_key=job_key)
+            cache.finish(job_key,attempt,'complete' if verdict.recommendation in cache.FINAL else 'incomplete')
             log.info('Evidence final storage seconds=%.3f',time.monotonic()-storage_started)
             return job_key,{**verdict.public,'recommendation':verdict.recommendation,'reason':verdict.reason,'step':verdict.step,
                 'policy_version':rules.get('fit_policy_version'),'context_hash':context,'job_snapshot_hash':snapshot_hash(job),
-                'jd_checked_at':stamp,'scored_at':stamp,'scorer_revision':scorer_revision()}
+                'jd_checked_at':stamp,'scored_at':stamp,'scorer_revision':scorer_revision(),
+                'assessment_cache_key':semantic_key,'cache_status':'revalidated_without_ai' if verdict.private.get('execution',{}).get('calls_this_attempt')==0 else 'assessed',
+                'paid_attempts':(attempt or {}).get('paid_attempts',0)}
         except Exception as error:
+            if attempt is not None:
+                try:cache.finish(job_key,attempt,'failed')
+                except Exception:log.warning('Could not finalize attempt ledger for %s; reserved attempt remains counted',job_key)
             category=str(error) if isinstance(error,RuntimeError) and str(error).startswith(('Private assessment read HTTP ','Private evidence storage HTTP ')) else type(error).__name__
             log.warning('Assessment pending for %s (%s); no unpersisted verdict published',job_key,category)
             return job_key,None
