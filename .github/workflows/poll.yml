@@ -2,16 +2,10 @@ name: Poll job boards
 
 on:
   schedule:
-    # Off the :00/:15 marks: GitHub delays or drops scheduled runs at peak
-    # minutes, and in practice this fired only ~4-8 times a day at */15.
-    - cron: "7,22,37,52 * * * *"
+    # Once daily at 6 AM New York local time, including daylight-saving changes.
+    - cron: "0 6 * * *"
+      timezone: "America/New_York"
   workflow_dispatch: {}
-  push:
-    branches: [main]
-    paths:
-      - "config/**"
-      - "src/**"
-      - ".github/workflows/poll.yml"
 
 concurrency:
   group: poll

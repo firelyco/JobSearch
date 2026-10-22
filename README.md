@@ -1,13 +1,13 @@
 # JobSearch
 
-A free, self-hosted job posting monitor that pulls fresh openings from public ATS APIs (Greenhouse, Lever, Ashby, Workday) every 15 minutes and surfaces them on a static GitHub Pages dashboard.
+A free, self-hosted job posting monitor that pulls fresh openings from public ATS APIs (Greenhouse, Lever, Ashby, Workday) once daily at 6:00 AM Eastern (America/New_York, following daylight-saving changes) and surfaces them on a static GitHub Pages dashboard.
 
 Built to solve "notify me the instant a matching role is posted" without scraping LinkedIn, paying for a job board, or running infrastructure.
 
 ## How it works
 
 ```
-GitHub Actions cron (every 15 min)
+GitHub Actions cron (daily, 6 AM Eastern)
   → Python poller hits 4 ATS APIs concurrently
   → Filters and scores matches against your role config
   → Writes jobs.json to docs/
@@ -17,6 +17,12 @@ GitHub Actions cron (every 15 min)
 
 The dashboard is a single HTML page. Status tracking (applied / interviewing / rejected) lives in your browser's localStorage so your job-search state isn't in the repo.
 
+## Daily refresh and assessment
+
+The scheduled job pull starts once each day at **6:00 AM Eastern**, using `America/New_York` so it stays at 6 AM in EST and EDT. GitHub may delay scheduled starts. Code pushes do not trigger extra job pulls; manual refresh remains available in Actions.
+
+Each successful pull triggers profile-fit assessment and salary verification. Assessment batches continue automatically while eligible pending jobs remain, reusing completed results. The September 15, 2026 cutoff and existing paid-attempt limits still apply; exhausted failures remain unresolved for inspection rather than triggering unlimited paid retries. Salary verification follows the pull and has no separate recurring schedule.
+
 ## Setup
 
 1. Clone this repo locally
@@ -24,7 +30,7 @@ The dashboard is a single HTML page. Status tracking (applied / interviewing / r
 3. Edit `config/role_config.yml` to tune your role keywords, locations, and score weights
 4. Push to GitHub
 5. Enable GitHub Pages: Settings → Pages → Source: "Deploy from a branch" → Branch: `main`, folder: `/docs`
-6. The Actions workflow runs automatically every 15 minutes (or trigger manually under the Actions tab)
+6. The Actions workflow runs automatically once daily at 6:00 AM Eastern (America/New_York, following daylight-saving changes) (or trigger manually under the Actions tab)
 7. Visit `https://<your-username>.github.io/JobSearch/`
 
 ## Architecture decisions (and why)

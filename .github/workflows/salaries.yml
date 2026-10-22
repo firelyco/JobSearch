@@ -4,8 +4,6 @@ on:
   workflow_run:
     workflows: ["Poll job boards"]
     types: [completed]
-  schedule:
-    - cron: "43 */6 * * *"
   workflow_dispatch:
     inputs:
       force:
