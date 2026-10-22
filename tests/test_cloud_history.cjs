@@ -10,7 +10,7 @@ function device(initial={}){
   document:{getElementById:key=>nodes[key]||={textContent:'',value:''}},
   localStorage:{getItem:key=>storage.get(key)||null,setItem:(key,value)=>storage.set(key,value)},sessionStorage:{getItem:key=>session.get(key)||null,setItem:(key,value)=>session.set(key,value),removeItem:key=>session.delete(key)},
   fetch:async(url,options={})=>{assert.strictEqual(url,'https://jobsearch-history.vercel.app/api/history');if(offline)throw new Error('Offline');if(expired)return {ok:false,status:401,json:async()=>({error:'Sign in'})};assert.strictEqual(options.headers.Authorization,'Bearer test-session');if(options.method==='POST')records=merge(records,JSON.parse(options.body).records);const snapshot=clone(records);return {ok:true,status:200,json:async()=>({version:1,records:snapshot})};}
- };vm.createContext(ctx);vm.runInContext(code,ctx);vm.runInContext('render=()=>{}',ctx);return {ctx,storage,session,nodes,run:s=>vm.runInContext(s,ctx)};
+ };vm.createContext(ctx);vm.runInContext(code,ctx);vm.runInContext('render=()=>{};toast=()=>{};openHistoryLogin=()=>{globalThis.loginRequested=true}',ctx);return {ctx,storage,session,nodes,run:s=>vm.runInContext(s,ctx)};
 }
 async function main(){
  const empty=device();empty.session.clear();empty.ctx.renderAppliedHistory();empty.ctx.renderMetrics();
@@ -24,8 +24,18 @@ async function main(){
  const b=device();await b.ctx.syncPrivateHistory();assert.deepStrictEqual(JSON.parse(b.storage.get('jobsearch.applied.v1'))[key],application);
  b.run(`changeStatus('${key}','interviewing')`);await b.ctx.syncPrivateHistory();await a.ctx.syncPrivateHistory();assert.strictEqual(JSON.parse(a.storage.get('jobsearch.status.v1'))[key],'interviewing');
  offline=true;a.run(`changeStatus('${key}','rejected')`);await a.ctx.syncPrivateHistory();assert(a.nodes['history-sync-status'].textContent.includes('not saved'));offline=false;await a.ctx.syncPrivateHistory();assert.strictEqual(records[key].status,'rejected');
+ a.run(`setJobIgnored('${key}',true)`);await a.ctx.syncPrivateHistory();await b.ctx.syncPrivateHistory();
+ assert.strictEqual(records[key].status,'not-interested');assert.strictEqual(records[key].deleted,false);
+ assert.strictEqual(JSON.parse(b.storage.get('jobsearch.status.v1'))[key],'not-interested');
+ assert.strictEqual(records[key].application.applied_at,application.applied_at,'Ignoring must preserve application history');
+ b.run(`setJobIgnored('${key}',false)`);await b.ctx.syncPrivateHistory();await a.ctx.syncPrivateHistory();
+ assert.strictEqual(records[key].status,'rejected','Restore must preserve the original application status');
+ assert.strictEqual(records[key].application.applied_at,application.applied_at);
+ const signedOut=device();signedOut.session.clear();signedOut.run(`setJobIgnored('${key}',true)`);
+ assert(signedOut.ctx.loginRequested,'Ignoring requires account sign-in, not browser-only persistence');
+ assert(!signedOut.storage.has('jobsearch.status.v1'),'No ignored state before sign-in');
  a.run(`changeStatus('${key}','new')`);await a.ctx.syncPrivateHistory();await b.ctx.syncPrivateHistory();assert(records[key].deleted);assert(!JSON.parse(b.storage.get('jobsearch.applied.v1'))[key]);
  expired=true;await b.ctx.syncPrivateHistory();assert(!b.session.has('jobsearch.historySession.v1'));assert(b.nodes['history-sync-status'].textContent.includes('expired'));
- console.log('Database sync tests passed: migration, second-device restoration, status updates, offline retry, removal, session expiry.');
+ console.log('Database sync tests passed: migration, second-device restoration, status updates, offline retry, ignore/restore across devices, application preservation, sign-in requirement, removal, session expiry.');
 }
 main().catch(error=>{console.error(error);process.exitCode=1;});

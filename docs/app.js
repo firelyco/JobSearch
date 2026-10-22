@@ -86,10 +86,34 @@ function forgetApplied(key) {
 }
 // One place for status changes so the snapshot always follows the status.
 function changeStatus(key, status) {
+  const previous = loadStatuses()[key] || 'new';
+  const applications = loadApplied();
+  if (applications[key]) {
+    if (status === 'not-interested' && isAppliedStatus(previous)) applications[key].ignored_previous_status = previous;
+    else if (status !== 'not-interested') delete applications[key].ignored_previous_status;
+    saveApplied(applications);
+  }
   setStatus(key, status === 'new' ? null : status);
   if (isAppliedStatus(status)) recordApplied(key, jobsByKey[key]);
-  else forgetApplied(key);
+  else if (status !== 'not-interested') forgetApplied(key);
 }
+// Reuse the database-backed dismissal status; no browser-only ignore list.
+let pendingJobVisibilityAction = null;
+function isIgnoredStatus(status) { return status === 'not-interested'; }
+function setJobIgnored(key, ignored) {
+  if (!getHistorySession()) {
+    pendingJobVisibilityAction = { key, ignored };
+    render();
+    openHistoryLogin();
+    return;
+  }
+  const application = loadApplied()[key];
+  const restoredStatus = application?.ignored_previous_status || (application ? 'applied' : 'new');
+  changeStatus(key, ignored ? 'not-interested' : restoredStatus);
+  render();
+  toast(ignored ? 'Job ignored. Saving to your account.' : 'Job restored. Saving to your account.', 'success');
+}
+
 function hideApplied() { return $('hide-applied') ? $('hide-applied').checked : true; }
 
 function relativeTime(iso) {
@@ -457,6 +481,7 @@ function renderTable() {
       if (rec !== fitFilter) return false;
     }
     const curStatus = statuses[jobKey(j)] || 'new';
+    if (isIgnoredStatus(curStatus) && status !== 'not-interested') return false;
     if (status && curStatus !== status) return false;
     const viewingApplied = isAppliedStatus(status) || quickFilter === 'applied' || quickFilter === 'interviewing';
     if (hideApplied() && isAppliedStatus(curStatus) && !viewingApplied) return false;
@@ -502,23 +527,29 @@ function renderTable() {
             <option value="applied" ${curStatus==='applied'?'selected':''}>Applied</option>
             <option value="interviewing" ${curStatus==='interviewing'?'selected':''}>Interviewing</option>
             <option value="rejected" ${curStatus==='rejected'?'selected':''}>Rejected</option>
-            <option value="not-interested" ${curStatus==='not-interested'?'selected':''}>Not interested</option>
+            <option value="not-interested" ${curStatus==='not-interested'?'selected':''}>Ignored</option>
           </select>
+          <button type="button" class="btn-ghost-sm ignore-job-btn" aria-label="${isIgnoredStatus(curStatus) ? 'Restore' : 'Ignore'} ${escapeAttr(j.title)}">${isIgnoredStatus(curStatus) ? 'Restore' : 'Ignore'}</button>
         </td>
         <td>${tailorCellHtml(key, tailoredJobs[key], inFlight[key])}</td>
       </tr>
     `;
   }).join('');
 
+  tbody.querySelectorAll('.ignore-job-btn').forEach(button => button.addEventListener('click', () => {
+    const key = button.closest('tr').getAttribute('data-key');
+    setJobIgnored(key, !isIgnoredStatus(loadStatuses()[key]));
+  }));
   tbody.querySelectorAll('.fit-evidence-btn').forEach(button=>button.addEventListener('click',()=>showFitEvidence(button.dataset.jobKey)));
   tbody.querySelectorAll('.status-select').forEach(sel => {
     sel.addEventListener('change', (e) => {
       const row = e.target.closest('tr');
       const key = row.getAttribute('data-key');
+      if (isIgnoredStatus(e.target.value)) { setJobIgnored(key, true); return; }
       changeStatus(key, e.target.value);
       renderMetrics();
       renderAppliedHistory();
-      if (hideApplied() && isAppliedStatus(e.target.value)) renderTable();
+      renderTable();
     });
   });
 
@@ -577,8 +608,8 @@ function renderAppliedHistory() {
         <td>${escapeHtml(fit)}</td>
         <td>
           <select class="status-select applied-status">
-            ${['applied', 'interviewing', 'rejected'].map(v =>
-              `<option value="${v}" ${st === v ? 'selected' : ''}>${v[0].toUpperCase() + v.slice(1)}</option>`).join('')}
+            ${['applied', 'interviewing', 'rejected', ...(isIgnoredStatus(st) ? ['not-interested'] : [])].map(v =>
+              `<option value="${v}" ${st === v ? 'selected' : ''}>${isIgnoredStatus(v) ? 'Ignored' : v[0].toUpperCase() + v.slice(1)}</option>`).join('')}
           </select>
         </td>
         <td>
@@ -945,7 +976,7 @@ function bindControls() {
   document.querySelectorAll('[data-close-fit-evidence]').forEach(node=>node.addEventListener('click',()=>$('fit-evidence-modal').classList.add('hidden')));
   $('history-login-submit')?.addEventListener('click',loginHistory);
   $('history-password')?.addEventListener('keydown',event=>{if(event.key==='Enter')loginHistory();});
-  document.querySelectorAll('[data-close-history]').forEach(node=>node.addEventListener('click',()=>$('history-login-modal').classList.add('hidden')));
+  document.querySelectorAll('[data-close-history]').forEach(node=>node.addEventListener('click',()=>{ pendingJobVisibilityAction = null; $('history-login-modal').classList.add('hidden'); }));
   $('history-range')?.addEventListener('change', renderAppliedHistory);
   updatePatButtonLabel();
 }
@@ -1060,6 +1091,11 @@ async function loginHistory() {
     $('history-password').value = '';
     $('history-login-modal').classList.add('hidden');
     await syncPrivateHistory();
+    if (pendingJobVisibilityAction && getHistorySession()) {
+      const action = pendingJobVisibilityAction;
+      pendingJobVisibilityAction = null;
+      setJobIgnored(action.key, action.ignored);
+    }
     if(pendingFitEvidence){const key=pendingFitEvidence;pendingFitEvidence=null;await showFitEvidence(key);}
   } catch (error) {
     $('history-login-error').textContent = error.message;
