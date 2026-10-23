@@ -187,6 +187,7 @@ const LOCATION_MATCHERS = {
 };
 
 function matchesLocation(loc, region, job = null) {
+  loc = job?.resolved_locations || loc;
   const m = LOCATION_MATCHERS[region];
   if (!m || m(loc || '')) return true;
   // Workday sometimes supplies only "2 Locations". Its employer posting URL
@@ -516,7 +517,7 @@ function renderTable() {
   tbody.innerHTML = filtered.map(j => {
     const key = jobKey(j);
     const curStatus = statuses[key] || 'new';
-    const meta = [j.location, j.source, (j.discovery_sources || []).map(s=>DISCOVERY_LABELS[s]).filter(Boolean).map(s=>'via '+s).join(', '), j.open_status === 'unverified_source_failure' ? 'open status unverified: source unavailable' : ''].filter(Boolean).join(' · ');
+    const meta = [j.resolved_locations || j.location, j.source, (j.discovery_sources || []).map(s=>DISCOVERY_LABELS[s]).filter(Boolean).map(s=>'via '+s).join(', '), j.open_status === 'unverified_source_failure' ? 'open status unverified: source unavailable' : ''].filter(Boolean).join(' · ');
     return `
       <tr data-key="${escapeAttr(key)}">
         <td class="col-applied"><input type="checkbox" class="applied-cb" title="Mark as applied" ${isAppliedStatus(curStatus) ? 'checked' : ''}></td>

@@ -34,7 +34,7 @@ def posting_time(job):
 
 
 def in_scope(job, role_config):
-    location = re.sub(r'\bremote\b', '', job.get('location') or '', flags=re.I)
+    location = re.sub(r'\bremote\b', '', job.get('resolved_locations') or job.get('location') or '', flags=re.I)
     us = _is_us_or_remote(location) or bool(re.search(r'/job/US-', job.get('url') or '', re.I))
     if not us and re.fullmatch(r'(?:\d+\s+locations?)?',location.strip(),re.I) and job.get('source')=='workday':
         from urllib.parse import urlparse,unquote

@@ -166,3 +166,34 @@ class PollFailureAndLocationRegressionTests(unittest.TestCase):
             for label in ('Salesforce Growth, SF','Salesforce Growth, Seattle','Slack Growth, Seattle','Slack Growth, NYC'):
                 row=next(r for r in report['watchlist'] if r['label']==label)
                 self.assertTrue(row['matches']);self.assertTrue(row['matches'][0]['published'])
+
+
+class LocationDisplayCacheTests(unittest.TestCase):
+    def example(self):
+        from src.evidence_batch import snapshot_hash
+        job={'source':'workday','company':'example','id':'1','title':'Director Technical Program Manager','location':'3 Locations','url':'https://example.wd1.myworkdayjobs.com/en-US/jobs/job/Seattle-WA/1'}
+        policy={'context_hash':'context','scorer_revision':'rules','fitment_skill_hash':'skill','version':'policy'}
+        verdict={'validated':True,'assessment_status':'complete','location_status':'eligible','job_snapshot_hash':snapshot_hash(job),**{k:v for k,v in policy.items() if k!='version'},'policy_version':'policy'}
+        return job,policy,verdict
+
+    def test_verified_display_expansion_preserves_assessment_identity_without_ai(self):
+        from src.location_metadata import enrich
+        from src.evidence_batch import snapshot_hash
+        from src.fit_backfill import in_scope
+        job,policy,verdict=self.example();before=dict(job)
+        self.assertTrue(enrich(job,before,verdict,policy,'Seattle, WA | San Francisco, CA'))
+        self.assertEqual(snapshot_hash(job),verdict['job_snapshot_hash'])
+        self.assertEqual(job['location'],'3 Locations')
+        self.assertIn('Seattle',job['resolved_locations']);self.assertTrue(in_scope(job,{}))
+        self.assertTrue(enrich(job,before,verdict,policy,'Seattle, WA | San Francisco, CA'))
+
+    def test_changed_job_or_unknown_eligibility_is_not_silently_reused(self):
+        from src.location_metadata import enrich
+        for mode in ('title','policy','foreign','unassessed'):
+            job,policy,verdict=self.example();before=dict(job);resolved='Seattle, WA'
+            if mode=='title':job['title']='Principal Technical Program Manager'
+            if mode=='policy':policy['fitment_skill_hash']='changed'
+            if mode=='foreign':resolved='Toronto, Canada'
+            if mode=='unassessed':verdict={}
+            self.assertFalse(enrich(job,before,verdict,policy,resolved),mode)
+            self.assertEqual(job['location'],resolved)

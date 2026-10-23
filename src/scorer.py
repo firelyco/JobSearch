@@ -114,7 +114,7 @@ def _score_broad_role(job, config):
 
 def _score_matched_job(job, config, reasons, unleveled_match):
     title=job.get("title", "") or ""
-    location=job.get("location", "") or ""
+    location=job.get("resolved_locations") or job.get("location", "") or ""
     weights=config.get("score_weights", {}) or {}
     score = int(weights.get("title_match", 30))
     reasons.append(f"title match (+{weights.get('title_match', 30)})")

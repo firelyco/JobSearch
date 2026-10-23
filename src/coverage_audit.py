@@ -17,9 +17,9 @@ def audit(raw, published, watchlist, role, health):
                 match=str(j.get('id'))==wanted['id']
             else:
                 match=bool(re.search(wanted['title_pattern'],j.get('title',''),re.I)
-                           and re.search(wanted['location_pattern'],j.get('location',''),re.I))
+                           and re.search(wanted['location_pattern'],(j.get('resolved_locations') or j.get('location','')),re.I))
             if match:matches.append({'key':k,'title':j['title'],'url':j.get('url',''),
-                'location':j.get('location',''),'published':k in published,
+                'location':j.get('resolved_locations') or j.get('location',''),'published':k in published,
                 'open_status':j.get('open_status','listed_in_feed'),
                 'assessment_date_eligible':assessment_scope.allowed(j)})
         status='collected' if matches and wanted.get('id') else 'candidate_match_needs_exact_link' if matches else 'discovery_gap'

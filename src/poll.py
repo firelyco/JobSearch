@@ -172,6 +172,10 @@ def main() -> int:
                 discovery_health.append({"source":board["source"],"label":discovery.board_key(board),"status":"deferred","jobs":0})
         cache["board_cursor"] = cursor + cap
     all_jobs = discovery.merge_jobs(all_jobs, new_jobs)
+    from src.location_metadata import enrich as enrich_location
+    prior_by_key={f"{j['source']}:{j['company']}:{j['id']}":j for j in previous}
+    saved_scores=read_state(DOCS_DIR / "fit_scores.json",{})
+    saved_policy=read_state(DOCS_DIR / "fit_policy.json",{})
     ambiguous = [j for j in all_jobs if j.get("source")=="workday"
                  and re.fullmatch(r"\d+\s+locations?",j.get("location", ""),re.I)
                  and scorer.score_job(j, role)[0]>0]
@@ -183,7 +187,8 @@ def main() -> int:
             return value
         try:
             value,status=discovery.cached_call(cache,"locations:"+job["url"],24,fetch_location)
-            job["location"]=value
+            identity=f"{job['source']}:{job['company']}:{job['id']}"
+            enrich_location(job,prior_by_key.get(identity),saved_scores.get(identity,{}),saved_policy,value)
             return {"source":"location_check","url":job["url"],"status":status}
         except Exception:
             return {"source":"location_check","url":job["url"],"status":"failed"}
