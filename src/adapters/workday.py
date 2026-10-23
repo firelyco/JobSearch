@@ -16,12 +16,12 @@ from datetime import datetime, timezone, timedelta
 import re
 from urllib.parse import urlparse
 import requests
-from . import Job, safe_str
+from . import Job, JobBatch, safe_str
 
 log = logging.getLogger(__name__)
 
 LIMIT = 20
-PAGE_CAP = 10
+PAGE_CAP = 200
 TIMEOUT = 20
 
 HEADERS = {
@@ -88,8 +88,12 @@ def fetch(config: dict) -> list[Job]:
 
     results: list[Job] = []
     offset = 0
-    for _ in range(PAGE_CAP):
-        body = {"appliedFacets": {}, "limit": LIMIT, "offset": offset, "searchText": search}
+    total = None
+    seen = set()
+    complete = False
+    pages = 0
+    for _ in range(int(config.get("max_pages", PAGE_CAP))):
+        body = {"appliedFacets": config.get("applied_facets", {}), "limit": LIMIT, "offset": offset, "searchText": search}
         try:
             r = requests.post(api_url, json=body, headers=headers, timeout=TIMEOUT)
         except requests.RequestException as e:
@@ -107,7 +111,12 @@ def fetch(config: dict) -> list[Job]:
             log.warning("workday %s returned invalid JSON", tenant)
             break
 
-        postings = data.get("jobPostings", []) if isinstance(data, dict) else []
+        if not isinstance(data, dict) or not isinstance(data.get("jobPostings"), list):
+            log.warning("workday %s: listing schema changed", tenant)
+            break
+        pages += 1
+        postings = data["jobPostings"]
+        before = len(results)
         # Many tenants report `total` only on the first page and 0 after it;
         # re-reading it every page stopped pagination at 40 jobs.
         page_total = int(data.get("total", 0) or 0) if isinstance(data, dict) else 0
@@ -119,8 +128,9 @@ def fetch(config: dict) -> list[Job]:
                 continue
             external_path = safe_str(j.get("externalPath"))
             job_id = external_path or safe_str(j.get("bulletFields", [""])[0] if j.get("bulletFields") else "")
-            if not job_id:
+            if not job_id or job_id in seen:
                 continue
+            seen.add(job_id)
             full_url = f"{base_host}/en-US/{site}{external_path}" if external_path else ""
             results.append(Job(
                 id=job_id,
@@ -133,16 +143,23 @@ def fetch(config: dict) -> list[Job]:
                 updated_at="",
             ))
 
-        offset += LIMIT
-        if offset >= total or not postings:
+        offset += len(postings)
+        if total is not None and len(results) >= total:
+            complete = True
+            break
+        if not postings or len(results) == before:
+            log.warning("workday %s: pagination stopped before reported total", tenant)
             break
 
+    if total is not None and not complete:
+        log.warning("workday %s: incomplete enumeration, collected %d of %d", tenant, len(results), total)
     log.info("workday %s: %d jobs", tenant, len(results))
-    return results
+    return JobBatch(results, reported_total=total, collected=len(results), pages=pages,
+                    enumeration_complete=complete, query=search)
 
 
-def fetch_detail(job: Job) -> str:
-    """Fetch the full HTML JD body for a single Workday job.
+def fetch_info(job: Job) -> dict:
+    """Fetch public metadata and the full HTML JD for a single Workday job.
 
     Requires a second API call to:
       GET {base_host}/wday/cxs/{tenant}/{site}{externalPath}
@@ -150,7 +167,7 @@ def fetch_detail(job: Job) -> str:
     already starts with '/job/'. The response shape is
     {jobPostingInfo: {jobDescription: "<html>...</html>", ...}}.
 
-    Returns "" on failure. The host (which carries the wd1/wd5/wd12 data
+    Returns an empty value on failure. The host (which carries the wd1/wd5/wd12 data
     center) and the site aren't in the normalized Job dict, so both are
     recovered from the stored public url.
     """
@@ -179,7 +196,21 @@ def fetch_detail(job: Job) -> str:
         log.warning("workday detail %s failed: %s", tenant, e)
         return ""
     info = data.get("jobPostingInfo", {}) if isinstance(data, dict) else {}
-    return safe_str(info.get("jobDescription"))
+    return info if isinstance(info, dict) else {}
+
+
+def fetch_detail(job: Job) -> str:
+    return safe_str((fetch_info(job) or {}).get("jobDescription"))
+
+
+def location_from_info(info):
+    places = []
+    for value in [info.get("location", ""), *info.get("additionalLocations", [])]:
+        if isinstance(value, dict):
+            value = value.get("descriptor") or value.get("location") or ""
+        if value:
+            places.append(str(value))
+    return " | ".join(dict.fromkeys(places))
 
 
 def _extract_site_from_url(url: str) -> str:

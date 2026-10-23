@@ -19,8 +19,10 @@ def fetch_with_health(source, label, fn, arg):
     try:
         jobs = fn(arg)
         status = "partial" if jobs and diagnostics.failed else "failed" if diagnostics.failed else "ok" if jobs else "empty"
-        if source == "workday" and len(jobs) >= 200 and status == "ok": status = "limit_reached"
-        return jobs, {"source": source, "label": label, "status": status, "jobs": len(jobs)}
+        measured = getattr(jobs, "coverage", {})
+        if measured.get("enumeration_complete") is False and status not in {"failed", "partial"}:
+            status = "partial" if jobs else "failed"
+        return jobs, {"source": source, "label": label, "status": status, "jobs": len(jobs), **measured}
     except Exception:
         return [], {"source": source, "label": label, "status": "failed", "jobs": 0}
     finally:

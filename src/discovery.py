@@ -155,14 +155,21 @@ def discover(config, cache):
     if not key:
         health.append({"source": "web_search", "status": "not_configured", "jobs": 0})
     else:
-        for query in config.get("queries", [])[:12]:
+        for query in config.get("queries", []):
             try:
-                data, status = cached_call(cache, "search:" + query, 6, lambda: get_json(
-                    "https://api.search.brave.com/res/v1/web/search", params={"q": query, "count": 20},
-                    headers={"X-Subscription-Token": key, "Accept": "application/json"}))
-                results = data.get("web", {}).get("results", [])
-                urls.extend(r["url"] for r in results if "url" in r)
-                health.append({"source": "web_search", "query": query, "status": status, "leads": len(results)})
+                leads=0; more=False; pages=0
+                for offset in range(int(config.get("search_pages_per_query", 3))):
+                    cache_key="search:"+query if offset==0 else "search:"+query+":page:"+str(offset)
+                    data,status=cached_call(cache,cache_key,6,lambda offset=offset:get_json(
+                        "https://api.search.brave.com/res/v1/web/search",params={"q":query,"count":20,"offset":offset},
+                        headers={"X-Subscription-Token":key,"Accept":"application/json"}))
+                    results=data.get("web",{}).get("results",[])
+                    urls.extend(r["url"] for r in results if "url" in r)
+                    leads+=len(results);pages+=1
+                    more=data.get("query",{}).get("more_results_available",len(results)==20)
+                    if not more:break
+                health.append({"source":"web_search","query":query,"status":"limit_reached" if more else status,
+                               "leads":leads,"pages":pages,"scope":"search_index_only"})
             except (requests.RequestException, ValueError, KeyError, TypeError, AttributeError):
                 health.append({"source": "web_search", "query": query, "status": "failed"})
     for url in dict.fromkeys(urls):

@@ -14,10 +14,17 @@ queries:
   - '"technical program" site:jobs.lever.co'
   - '"program management" site:job-boards.greenhouse.io'
   - '"technical program" site:myworkdayjobs.com'
+  - '"technical program" "manager" careers United States'
+  - '"engineering program" "manager" careers United States'
+  - '"technical program" site:github.careers'
+  - '"technical program" site:apply.careers.microsoft.com'
+  - '"technical program" site:careers.walmart.com'
 # A missing posting can seed employer discovery without maintaining an allowlist.
 seed_urls:
+  - https://verily.wd1.myworkdayjobs.com/Verily_Careers
   - https://expedia.wd108.myworkdayjobs.com/search/job/Washington---Seattle-Campus/Director-Technical-Program-Management---Planning--_R-107898
-max_discovered_boards_per_poll: 24
+max_discovered_boards_per_poll: 300
+search_pages_per_query: 3
 
 # Discover startup employers from the latest public Harmonic Hot 25.
 # Cached daily; career boards still use the normal poll and fit pipeline.
@@ -34,3 +41,5 @@ startup_portfolios:
   max_employers_per_source: 8
   employer_limits:
     techstars: 30
+
+description_checks_per_poll: 200

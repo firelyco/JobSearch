@@ -22,6 +22,13 @@ from typing import TypedDict
 log = logging.getLogger(__name__)
 
 
+class JobBatch(list):
+    """List-compatible results carrying measured enumeration coverage."""
+    def __init__(self, jobs=(), **coverage):
+        super().__init__(jobs)
+        self.coverage = coverage
+
+
 class Job(TypedDict):
     id: str
     source: str

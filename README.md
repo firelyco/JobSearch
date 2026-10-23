@@ -132,3 +132,12 @@ Frozen fixtures in `tests/fixtures/baseline_*` capture the company configuration
 136 jobs and their pre-change scores. Tests assert unchanged configured fetch
 tasks, scores, reasons and identities, plus full-poll retention when adding a new
 employer. Tests use mocked network/LLM calls and do not spend API credits.
+
+
+### Collection coverage and observed-listing audit
+
+The daily 6 AM New York refresh collects supported employer feeds and discovers new employers through public directories and paginated Brave searches. GitHub and Microsoft have direct public-feed connectors; Walmart uses its current Workday host and employer-provided TPM discipline facet. Workday pages beyond 200 results. Connectors that expose a total report collected/expected counts, and incomplete enumeration is flagged rather than reported as success.
+
+`docs/coverage_audit.json` reconciles `config/coverage_watchlist.json` with each refresh, records missing observed listings and title-screened candidates, and exposes source failures. Exact requisition matches are distinguished from title/location matches needing an exact employer link. Multi-location Workday candidates resolve their locations before assessment selection. Plain TPM/EPM titles enter JD-based level review at any employer; International and Associate Director titles are not treated as interns or junior associates. Cached or deferred discovered boards never count as freshly verified.
+
+This measures coverage of specific employer queries and known postings, not every active internet listing. LinkedIn repost dates may differ from the original employer date. The September 15 assessment cutoff remains in force even when an older job is still active. Collection never implies a completed current-skill fit assessment. Existing verdicts and the two-attempt paid inference budget are preserved.

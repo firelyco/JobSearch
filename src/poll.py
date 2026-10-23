@@ -20,7 +20,7 @@ from pathlib import Path
 
 import yaml
 
-from src.adapters import greenhouse, lever, ashby, workday, amazon_jobs, oracle_cloud, netflix, apple, google
+from src.adapters import greenhouse, lever, ashby, workday, amazon_jobs, oracle_cloud, netflix, apple, google, github, microsoft
 from src import dedupe, scorer, discovery, jd_fetch
 import re
 from src.source_health import fetch_with_health
@@ -71,6 +71,9 @@ def build_fetch_tasks(companies: dict) -> list[tuple[str, str, callable, object]
     for cfg in companies.get("google", []) or []:
         label = cfg.get("query", "?") if isinstance(cfg, dict) else str(cfg)
         tasks.append(("google", label, google.fetch, cfg))
+    for source, module in (("github", github), ("microsoft", microsoft)):
+        for query in companies.get(source, []) or []:
+            tasks.append((source, str(query), module.fetch, query))
     return tasks
 
 
@@ -94,6 +97,7 @@ def fetch_all(companies: dict) -> tuple[list[dict], dict]:
         futures = {ex.submit(fetch_with_health, source, label, fn, arg): (source, label) for (source, label, fn, arg) in tasks}
         for fut in as_completed(futures):
             source, label = futures[fut]
+            stats.setdefault(source, {"ok": 0, "fail": 0, "jobs": 0})
             try:
                 jobs, health = fut.result()
                 stats[source].setdefault("sources", []).append(health)
@@ -161,9 +165,30 @@ def main() -> int:
             cached = cache.get("board:" + discovery.board_key(board), {})
             new_jobs.extend(cached.get("jobs", []))
             if cached:
-                discovery_health.append({**cached["health"], "status": "cached", "checked_at": cached["checked_at"]})
+                prior_status=cached["health"].get("status")
+                discovery_health.append({**cached["health"], "status": prior_status if prior_status in {"failed","partial","limit_reached"} else "deferred",
+                                         "checked_at": cached["checked_at"], "cached_results_retained": True})
+            else:
+                discovery_health.append({"source":board["source"],"label":discovery.board_key(board),"status":"deferred","jobs":0})
         cache["board_cursor"] = cursor + cap
     all_jobs = discovery.merge_jobs(all_jobs, new_jobs)
+    ambiguous = [j for j in all_jobs if j.get("source")=="workday"
+                 and re.fullmatch(r"\d+\s+locations?",j.get("location", ""),re.I)
+                 and scorer.score_job(j, role)[0]>0]
+    def resolve_location(job):
+        def fetch_location():
+            info=workday.fetch_info(job) or {}
+            value=workday.location_from_info(info)
+            if not value:raise ValueError("No location metadata")
+            return value
+        try:
+            value,status=discovery.cached_call(cache,"locations:"+job["url"],24,fetch_location)
+            job["location"]=value
+            return {"source":"location_check","url":job["url"],"status":status}
+        except Exception:
+            return {"source":"location_check","url":job["url"],"status":"failed"}
+    with ThreadPoolExecutor(max_workers=8) as executor:
+        discovery_health.extend(executor.map(resolve_location,ambiguous))
     # A failed source is unknown, not proof that yesterday's postings closed.
     failures = [h for info in stats.values() for h in info.get("sources", []) if h["status"] in {"failed", "partial"}]
     failures += [h for h in discovery_health if h["status"] in {"failed", "partial"}]
@@ -206,11 +231,17 @@ def main() -> int:
             return {"source": "description_check", "url": job["url"], "status": status if body else "failed"}
         except Exception:
             return {"source": "description_check", "url": job.get("url", ""), "status": "failed"}
-    enriched = min(40, len(candidates))
+    detail_limit=int(discovery_config.get("description_checks_per_poll",200))
+    detail_cursor=int(cache.get("description_cursor",0))
+    if candidates:
+        pivot=detail_cursor%len(candidates)
+        candidates=candidates[pivot:]+candidates[:pivot]
+    enriched = min(detail_limit, len(candidates))
     with ThreadPoolExecutor(max_workers=8) as executor:
-        discovery_health.extend(executor.map(enrich, candidates[:40]))
-    if len(candidates) > 40:
-        discovery_health.append({"source": "description_check", "status": "limit_reached", "deferred": len(candidates) - 40})
+        discovery_health.extend(executor.map(enrich, candidates[:detail_limit]))
+    if len(candidates) > detail_limit:
+        discovery_health.append({"source":"description_check","status":"limit_reached","deferred":len(candidates)-detail_limit})
+    cache["description_cursor"]=detail_cursor+enriched
     cache_file.write_text(json.dumps(cache), encoding="utf-8")
     scored: list[dict] = []
     seen_keys: set[str] = set()
@@ -251,6 +282,12 @@ def main() -> int:
     with open(JOBS_FILE, "w", encoding="utf-8") as f:
         json.dump(scored, f, indent=2)
 
+    from src.coverage_audit import audit
+    watchlist=read_state(CONFIG_DIR / "coverage_watchlist.json", [])
+    source_health=[h for info in stats.values() for h in info.get("sources",[])] + discovery_health
+    coverage_report=audit(all_jobs,scored,watchlist,role,source_health)
+    coverage_report["checked_at"]=start.isoformat()
+    (DOCS_DIR / "coverage_audit.json").write_text(json.dumps(coverage_report,indent=2),encoding="utf-8")
     elapsed = (datetime.now(timezone.utc) - start).total_seconds()
     meta = {
         "polled_at": start.isoformat(),
@@ -263,8 +300,9 @@ def main() -> int:
         "discovery": discovery_health,
         "discovered_boards": len(registry),
         "description_checks": enriched,
-        "description_check_limit": 40,
-        "coverage_note": "Configured feeds plus employer-independent discovery; indexing, provider availability and pagination limit coverage.",
+        "description_check_limit": detail_limit,
+        "coverage_watchlist": coverage_report["watchlist_counts"],
+        "coverage_note": "Internet-wide coverage is unknown. See coverage_audit.json for source failures, screened-out roles and observed-listing gaps.",
     }
     with open(META_FILE, "w", encoding="utf-8") as f:
         json.dump(meta, f, indent=2)

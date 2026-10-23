@@ -17,7 +17,7 @@ permissions:
 jobs:
   poll:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 30
     env:
       BRAVE_SEARCH_API_KEY: ${{ secrets.BRAVE_SEARCH_API_KEY }}
     steps:
@@ -49,7 +49,7 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           node src/validate_shortlist.cjs --report=docs/shortlist_validation_poll.json
           git add docs/shortlist_validation_poll.json
-          git add docs/jobs.json docs/meta.json state/seen_jobs.json state/discovery_cache.json state/discovered_boards.json
+          git add docs/coverage_audit.json docs/jobs.json docs/meta.json state/seen_jobs.json state/discovery_cache.json state/discovered_boards.json
           if git diff --staged --quiet; then
             echo "no changes"
           else
@@ -58,7 +58,7 @@ jobs:
             # If another poll's output landed first, this run's files are
             # newer: keep them whole (during a rebase, "theirs" is our commit)
             # rather than hunk-merging JSON.
-            OUTPUTS="docs/shortlist_validation_poll.json docs/jobs.json docs/meta.json state/seen_jobs.json state/discovery_cache.json state/discovered_boards.json"
+            OUTPUTS="docs/coverage_audit.json docs/shortlist_validation_poll.json docs/jobs.json docs/meta.json state/seen_jobs.json state/discovery_cache.json state/discovered_boards.json"
             if ! git pull --rebase origin main; then
               git checkout --theirs -- $OUTPUTS
               git add $OUTPUTS

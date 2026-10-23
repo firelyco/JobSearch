@@ -385,10 +385,17 @@ function renderMeta() {
   }
   const coverage = [...Object.values(metaData.stats || {}).flatMap(s => s.sources || []), ...(metaData.discovery || [])];
   if ($('coverage-status')) {
-    $('coverage-status').innerHTML = coverage.length ? coverage.map(s => `<div>${escapeHtml(s.label || s.query || s.url || s.source)}: <strong>${escapeHtml(s.status)}</strong> (${s.jobs ?? s.leads ?? 0})</div>`).join('') : 'Detailed source coverage becomes available after the next poll.';
+    $('coverage-status').innerHTML = coverage.length ? coverage.map(s => `<div>${escapeHtml(s.label || s.query || s.url || s.source)}: <strong>${escapeHtml(s.status)}</strong> (${s.jobs ?? s.leads ?? 0}${s.reported_total != null ? "/" + s.reported_total + " collected" : ""})</div>`).join('') : 'Detailed source coverage becomes available after the next poll.';
   }
-  const unavailable = coverage.filter(s => ['failed', 'partial', 'limit_reached', 'not_configured'].includes(s.status));
+  if ($('coverage-status') && metaData.coverage_watchlist) {
+    const counts=metaData.coverage_watchlist;
+    $('coverage-status').innerHTML += `<div>Observed-listing audit: ${counts.collected || 0} exact postings collected; ${counts.candidate_match_needs_exact_link || 0} possible matches need an exact link; ${counts.discovery_gap || 0} missing; ${counts.retained_source_unverified || 0} retained with source unverified; ${counts.screened_out || 0} screened out. <a href="coverage_audit.json" target="_blank" rel="noopener">View audit</a></div><div>Collection does not mean fit assessment is complete. Internet-wide coverage is unknown.</div>`;
+  }
+  const unavailable = coverage.filter(s => ['failed', 'partial', 'limit_reached', 'not_configured', 'deferred'].includes(s.status));
   if (unavailable.length) $('meta-line').textContent += ` ? coverage incomplete (${unavailable.length} sources/queries)`;
+  const observed=metaData.coverage_watchlist || {};
+  const gaps=(observed.discovery_gap || 0)+(observed.screened_out || 0)+(observed.retained_source_unverified || 0);
+  if (gaps) $('meta-line').textContent += ` | observed-listing issues: ${gaps} (see Source coverage)`;
   const hot = allJobs.filter(isHot).length;
   $('badge-hot').textContent = `${hot} hot`;
   $('badge-total').textContent = `${allJobs.length} total`;

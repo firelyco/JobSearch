@@ -1,6 +1,7 @@
 # Boards re-checked 2026-10-05: companies that switched ATS were moved to
 # their new source. No public board found (dropped): hashicorp, atlassian,
-# rippling, github, netflix, shopify, segment, replicate, glean, evenup.
+# rippling, shopify, segment, replicate, glean, evenup.
+# GitHub and Netflix now have dedicated public-feed adapters below.
 greenhouse:
   - stripe
   - airbnb
@@ -162,8 +163,11 @@ workday:
     search: "program manager"
   - tenant: walmart
     site: WalmartExternal
-    wd_server: wd5
-    search: "program manager"   # ~2000 postings; search surfaces relevant roles
+    wd_server: wd504
+    # Employer's Technical Program Management discipline: all levels, all locations.
+    applied_facets:
+      jobFamily: [e83ebdbd2a0a0170aca2465b47e9a7c4]
+    search: ""
   - tenant: salesforce
     site: External_Career_Site
     wd_server: wd12
@@ -208,3 +212,12 @@ oracle_cloud:
     site: careers
     site_number: CX_1001
     search: "program manager"
+
+# Public employer feeds; no search-engine indexing dependency.
+github:
+  - all
+microsoft:
+  # Enumerate the employer's full TPM discipline; avoid fuzzy semantic matches.
+  - query: ""
+    filters:
+      career_discipline: [Technical Program Management]

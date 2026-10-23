@@ -15,7 +15,7 @@ import re
 from html import unescape
 from html.parser import HTMLParser
 
-from src.adapters import greenhouse, lever, ashby, workday, amazon_jobs, oracle_cloud, netflix, apple, google
+from src.adapters import greenhouse, lever, ashby, workday, amazon_jobs, oracle_cloud, netflix, apple, google, github, microsoft
 
 log = logging.getLogger(__name__)
 
@@ -79,6 +79,8 @@ _ADAPTER_MODULES = {
     "netflix": netflix,
     "apple": apple,
     "google": google,
+    "github": github,
+    "microsoft": microsoft,
 }
 
 

@@ -90,14 +90,32 @@ def score_job(job: dict, config: dict) -> tuple[int, list[str]]:
     unleveled = company.lower() in (c.lower() for c in config.get("unleveled_title_companies", []) or [])
     unleveled_match = unleveled and _matches_any(title, config.get("unleveled_title_patterns", []) or [])
     if not _matches_any(title, title_patterns) and not unleveled_match:
-        # Broader screening keeps unusual titles for description-based fit assessment.
-        broad = config.get("broad_discovery", {}) or {}
-        body = job.get("description", "") or ""
-        leadership = _matches_any(title, broad.get("leadership_patterns", [])) or _matches_any(body, broad.get("scope_patterns", []))
-        domain = _matches_any(title + " " + body, broad.get("responsibility_patterns", []))
-        if not broad.get("enabled") or not leadership or not domain:
-            return 0, ["no title match"]
-        reasons.append("broader responsibility match; needs profile assessment")
+        if re.search(r"\b(?:technical|engineering)\s+program\s+manager\b", title, re.I):
+            # Collect the discipline at any employer; the JD establishes level.
+            reasons.append("level not in title; needs profile assessment")
+        else:
+            return _score_broad_role(job, config)
+    return _score_matched_job(job, config, reasons, unleveled_match)
+
+
+def _score_broad_role(job, config):
+    title=job.get("title", "") or ""
+    reasons=[]
+    # Broader screening keeps unusual titles for description-based fit assessment.
+    broad = config.get("broad_discovery", {}) or {}
+    body = job.get("description", "") or ""
+    leadership = _matches_any(title, broad.get("leadership_patterns", [])) or _matches_any(body, broad.get("scope_patterns", []))
+    domain = _matches_any(title + " " + body, broad.get("responsibility_patterns", []))
+    if not broad.get("enabled") or not leadership or not domain:
+        return 0, ["no title match"]
+    reasons.append("broader responsibility match; needs profile assessment")
+    return _score_matched_job(job, config, reasons, False)
+
+
+def _score_matched_job(job, config, reasons, unleveled_match):
+    title=job.get("title", "") or ""
+    location=job.get("location", "") or ""
+    weights=config.get("score_weights", {}) or {}
     score = int(weights.get("title_match", 30))
     reasons.append(f"title match (+{weights.get('title_match', 30)})")
 
@@ -124,7 +142,8 @@ def score_job(job: dict, config: dict) -> tuple[int, list[str]]:
 
     excluded_locations = config.get("excluded_locations", []) or []
     preferred_locations = config.get("preferred_locations", []) or []
-    excluded = bool(location) and _matches_substring(location, excluded_locations)
+    explicit_us = _is_us_or_remote(re.sub(r"\bremote\b", "", location, flags=re.I))
+    excluded = bool(location) and _matches_substring(location, excluded_locations) and not explicit_us
     if excluded:
         penalty = int(weights.get("excluded_location_penalty", -40))
         score += penalty

@@ -98,25 +98,26 @@ class TestScorer(unittest.TestCase):
         score, reasons = score_job(job, CONFIG)
         self.assertGreaterEqual(score, 60, f"comma-format Principal TPM should pass, got {score}: {reasons}")
 
-    def test_plain_tpm_is_dropped(self):
-        """No seniority modifier = not our target. Should not pass title gate."""
+    def test_plain_tpm_enters_jd_level_review(self):
+        """A plain title does not establish seniority at an unknown employer."""
         job = {
             "title": "Technical Program Manager",
             "location": "Remote",
             "company": "stripe",
         }
         score, reasons = score_job(job, CONFIG)
-        self.assertEqual(score, 0, f"plain TPM should drop, got {score}: {reasons}")
+        self.assertGreater(score, 0)
+        self.assertTrue(any(r.startswith("level not in title") for r in reasons))
 
-    def test_tpm_ii_is_dropped(self):
-        """Level 2 TPM is below our target tier."""
+    def test_numbered_tpm_enters_level_review(self):
+        """Employer level conventions vary; intake is not a Strong verdict."""
         job = {
             "title": "Technical Program Manager II",
             "location": "Remote",
             "company": "stripe",
         }
         score, _ = score_job(job, CONFIG)
-        self.assertEqual(score, 0)
+        self.assertGreater(score, 0)
 
     def test_intern_dropped(self):
         job = {
@@ -200,14 +201,13 @@ class TestScorer(unittest.TestCase):
 
     def test_adjacent_but_rejected_titles_dropped(self):
         for title in ["Engineering Manager, Payments", "Director, Product Management",
-                      "Account Director, AI Sales", "Director, Maintenance Programs",
-                      "Associate Director, Technical Program Management"]:
+                      "Account Director, AI Sales", "Director, Maintenance Programs"]:
             score, _ = score_job({"title": title, "location": "Boston, MA", "company": "x"}, CONFIG)
             self.assertEqual(score, 0, title)
 
-    def test_plain_tpm_kept_only_at_unleveled_companies(self):
-        # Anthropic/Netflix/Apple don't put levels in titles; others do, so a
-        # plain title there means a junior role.
+    def test_plain_tpm_kept_across_employers_without_equal_priority(self):
+        # Known senior title conventions keep their priority bonus.
+        # Other employers still enter JD-based review rather than disappearing.
         kept = [("anthropic", "Technical Program Manager, Compute"),
                 ("netflix", "Technical Program Manager 6 - Infrastructure, AI"),
                 ("apple", "Engineering Program Manager (ANE/ML/AI)")]
@@ -217,7 +217,7 @@ class TestScorer(unittest.TestCase):
             self.assertTrue(any(r.startswith("level not in title") for r in reasons), reasons)
         score, _ = score_job({"title": "Technical Program Manager, Payments", "location": "Remote, US",
                               "company": "stripe"}, CONFIG)
-        self.assertEqual(score, 0)
+        self.assertGreater(score, 0)
 
     def test_tpm_manager_and_qualified_senior_titles(self):
         for title in ["TPM Manager, Infrastructure", "Senior Software Technical Program Manager"]:
