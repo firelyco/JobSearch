@@ -57,8 +57,8 @@ class BackfillTests(unittest.TestCase):
         self.assertEqual(b.window_index(j,self.state),0)
     def test_us_scope_and_relevant_roles(self):
         self.assertTrue(b.in_scope(job('yes'),CFG))
-        self.assertFalse(b.in_scope(job('foreign',location='Remote; London, UK'),CFG))
-        self.assertFalse(b.in_scope(job('unknown',location='Remote'),CFG))
+        self.assertTrue(b.in_scope(job('foreign',location='Remote; London, UK'),CFG))
+        self.assertTrue(b.in_scope(job('unknown',location='Remote'),CFG))
         self.assertTrue(b.in_scope(job('url',location='3 Locations',url='https://example.com/job/US-CA'),CFG))
         self.assertFalse(b.in_scope(job('other',title='Sales Representative'),CFG))
         self.assertTrue(b.in_scope(job('adjacent',title='AI Operations Lead',score_reasons=['broader responsibility match']),CFG))

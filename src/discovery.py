@@ -117,7 +117,7 @@ def remotive_jobs():
     data = get_json("https://remotive.com/api/remote-jobs")
     if not isinstance(data.get("jobs"), list): raise ValueError("Remotive schema changed")
     return [{"source": "remotive", "company": j["company_name"], "id": str(j["id"]),
-             "title": j["title"], "location": j.get("candidate_required_location", ""),
+             "title": j["title"], "location": j.get("candidate_required_location", ""), "is_remote": True,
              "url": j["url"], "posted_at": j.get("publication_date", ""), "updated_at": "",
              "description": j.get("description", ""), "open_status": "listed"} for j in data["jobs"]]
 
@@ -129,6 +129,7 @@ def arbeitnow_jobs():
         for j in data["data"]:
             jobs.append({"source": "arbeitnow", "company": j["company_name"], "id": j["slug"],
                          "title": j["title"], "location": j.get("location", ""), "url": j["url"],
+                         "is_remote": j.get("remote") is True,
                          "posted_at": datetime.fromtimestamp(j["created_at"], timezone.utc).isoformat(),
                          "updated_at": "", "description": j.get("description", ""), "open_status": "listed"})
         if not data.get("links", {}).get("next"): break

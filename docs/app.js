@@ -188,6 +188,7 @@ const LOCATION_MATCHERS = {
 
 function matchesLocation(loc, region, job = null) {
   loc = job?.resolved_locations || loc;
+  if (region === 'remote_outside_us') return isRemoteJob(job || {location: loc}) && !matchesLocation(loc, 'us', job);
   const m = LOCATION_MATCHERS[region];
   if (!m || m(loc || '')) return true;
   // Workday sometimes supplies only "2 Locations". Its employer posting URL
@@ -245,8 +246,20 @@ function baseSalaryLabel(fit) {
     below_floor: 'Base maximum below $250K', unknown: 'Base pay unverified'}[baseSalaryStatus(fit)] || 'Base pay unverified';
 }
 
-function matchesWorkmode(loc, mode) {
-  const isRemote = /\bremote\b/i.test(loc || '');
+function isRemoteJob(job) {
+  if (typeof job?.is_remote === 'boolean') return job.is_remote;
+  if (job?.workplace_type) return job.workplace_type.toLowerCase() === 'remote';
+  const location = job?.resolved_locations || job?.location || '';
+  if (/\b(?:not\s+remote|non[- ]remote|hybrid|on[- ]?site)\b/i.test(location)) return false;
+  return /\bremote\b/i.test(location) || job?.source === 'remotive';
+}
+function remotePriority(job, fit) {
+  if (!isRemoteJob(job)) return 0;
+  if (!fit?.validated || fit.refresh_pending || fit.inputs_stale) return 1;
+  return {strong: 4, medium: 3, review: 1, not: 0}[fit.recommendation] ?? 1;
+}
+function matchesWorkmode(loc, mode, job = null) {
+  const isRemote = isRemoteJob(job || {location: loc});
   if (mode === 'remote') return isRemote;
   if (mode === 'onsite') return !isRemote;
   return true;
@@ -473,6 +486,10 @@ function renderTable() {
   const selectedRoles = getSelectedRoles();
 
   const sortedJobs = [...allJobs].sort((a, b) => {
+    if (locationFilter && locationFilter !== 'us') {
+      const priority = remotePriority(b, fitScores[jobKey(b)]) - remotePriority(a, fitScores[jobKey(a)]);
+      if (priority) return priority;
+    }
     const aDate = a.posted_at || a.first_seen_at || '';
     const bDate = b.posted_at || b.first_seen_at || '';
     return bDate.localeCompare(aDate);  // newest opened first
@@ -495,7 +512,7 @@ function renderTable() {
     if (hideApplied() && isAppliedStatus(curStatus) && !viewingApplied) return false;
     if (quickFilter && !matchesQuickFilter(j, curStatus)) return false;
     if (locationFilter && !matchesLocation(j.location, locationFilter, j)) return false;
-    if (workmodeFilter && !matchesWorkmode(j.location, workmodeFilter)) return false;
+    if (workmodeFilter && !matchesWorkmode(j.location, workmodeFilter, j)) return false;
     const title = (j.title || '').toLowerCase();
     if (!selectedRoles.some(r => r.match ? r.match(j) : r.pattern.test(title))) return false;
     if (search) {
@@ -517,7 +534,7 @@ function renderTable() {
   tbody.innerHTML = filtered.map(j => {
     const key = jobKey(j);
     const curStatus = statuses[key] || 'new';
-    const meta = [j.resolved_locations || j.location, j.source, (j.discovery_sources || []).map(s=>DISCOVERY_LABELS[s]).filter(Boolean).map(s=>'via '+s).join(', '), j.open_status === 'unverified_source_failure' ? 'open status unverified: source unavailable' : ''].filter(Boolean).join(' · ');
+    const meta = [j.resolved_locations || j.location, isRemoteJob(j) && !matchesLocation(j.location, 'us', j) ? 'Remote outside US / geography unverified: confirm permitted work country' : '', j.source, (j.discovery_sources || []).map(s=>DISCOVERY_LABELS[s]).filter(Boolean).map(s=>'via '+s).join(', '), j.open_status === 'unverified_source_failure' ? 'open status unverified: source unavailable' : ''].filter(Boolean).join(' · ');
     return `
       <tr data-key="${escapeAttr(key)}">
         <td class="col-applied"><input type="checkbox" class="applied-cb" title="Mark as applied" ${isAppliedStatus(curStatus) ? 'checked' : ''}></td>

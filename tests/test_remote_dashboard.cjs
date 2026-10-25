@@ -1,0 +1,14 @@
+const fs=require('fs'),vm=require('vm'),assert=require('assert');
+const code=fs.readFileSync('docs/app.js','utf8'),ctx={URL};vm.createContext(ctx);
+vm.runInContext(code.slice(code.indexOf('const LOCATION_MATCHERS'),code.indexOf('// ---------- PAT management')),ctx);
+const uk={location:'Remote; London, UK'},us={location:'Remote; Boston, MA'};
+assert(ctx.matchesLocation(uk.location,'remote_outside_us',uk));
+assert(!ctx.matchesLocation(uk.location,'us',uk));
+assert(!ctx.matchesLocation(us.location,'remote_outside_us',us));
+assert(ctx.matchesLocation(us.location,'us',us));
+assert(!ctx.matchesLocation('Hybrid; London, UK','remote_outside_us',{location:'Hybrid; London, UK'}));
+assert(ctx.matchesLocation('Berlin','remote_outside_us',{location:'Berlin',is_remote:true}));
+assert(ctx.remotePriority(uk,{validated:true,recommendation:'strong'}) > ctx.remotePriority(uk,{validated:true,recommendation:'medium'}));
+assert(ctx.remotePriority(uk,{validated:true,recommendation:'strong',refresh_pending:true}) < ctx.remotePriority(uk,{validated:true,recommendation:'medium'}));
+assert(fs.readFileSync('docs/index.html','utf8').includes('value="us" selected'));
+console.log('Remote dashboard: US default retained; overseas remote selection and reviewed-fit ordering passed.');

@@ -54,6 +54,7 @@ def fetch(tenant: str) -> list[Job]:
             company=tenant,
             title=safe_str(j.get("text")),
             location=location,
+            workplace_type=safe_str(j.get("workplaceType")),
             url=safe_str(j.get("hostedUrl")),
             posted_at=posted_at,
             updated_at=posted_at,

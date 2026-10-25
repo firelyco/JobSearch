@@ -10,6 +10,7 @@ and learn what the regex misses, then upgrade to AI scoring in v0.1.
 from __future__ import annotations
 import re
 from typing import Any
+from src.remote_jobs import is_remote
 
 
 def _matches_any(text: str, patterns: list[str]) -> bool:
@@ -143,7 +144,9 @@ def _score_matched_job(job, config, reasons, unleveled_match):
     excluded_locations = config.get("excluded_locations", []) or []
     preferred_locations = config.get("preferred_locations", []) or []
     explicit_us = _is_us_or_remote(re.sub(r"\bremote\b", "", location, flags=re.I))
-    excluded = bool(location) and _matches_substring(location, excluded_locations) and not explicit_us
+    excluded = bool(location) and _matches_substring(location, excluded_locations) and not explicit_us and not is_remote(job)
+    if is_remote(job) and not explicit_us:
+        reasons.append("remote opportunity; US work eligibility unverified")
     if excluded:
         penalty = int(weights.get("excluded_location_penalty", -40))
         score += penalty
@@ -153,7 +156,7 @@ def _score_matched_job(job, config, reasons, unleveled_match):
         score += bonus
         reasons.append(f"preferred location: {location} (+{bonus})")
     # No US/remote bonus for excluded locations ("Remote - India").
-    if location and not excluded and _is_us_or_remote(location):
+    if location and not excluded and explicit_us:
         bonus = int(weights.get("remote_or_us", 20))
         score += bonus
         reasons.append(f"remote/US eligible (+{bonus})")

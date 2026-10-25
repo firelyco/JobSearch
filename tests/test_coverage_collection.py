@@ -119,7 +119,7 @@ class ObservedPostingRegressionTests(unittest.TestCase):
         from src.scorer import score_job
         base={'company':'new-employer','title':'Staff Technical Program Manager'}
         self.assertGreater(score_job({**base,'location':'Seattle, WA, USA | Bengaluru, India'},self.role())[0],0)
-        self.assertEqual(score_job({**base,'location':'Remote - Bengaluru, India'},self.role())[0],0)
+        self.assertGreater(score_job({**base,'location':'Remote - Bengaluru, India'},self.role())[0],0)
 
     def test_exact_posting_dropped_by_screening_is_not_reported_as_collected(self):
         job={'company':'example','source':'workday','id':'123','title':'Director Technical Program Management'}

@@ -49,5 +49,6 @@ jobs:
         run: |
           node --check docs/app.js
           node tests/test_evidence_dashboard.cjs
+          node tests/test_remote_dashboard.cjs
           node tests/test_cloud_history.cjs
           node tests/test_shortlist_validation.cjs

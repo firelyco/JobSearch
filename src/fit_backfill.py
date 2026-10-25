@@ -12,6 +12,7 @@ from src import fit,assessment_scope
 from src.evidence_batch import context_hash, key, snapshot_hash
 from src.evidence_fit import scorer_revision
 from src.scorer import _is_us_or_remote
+from src.remote_jobs import is_remote
 
 STATE_FILE = fit.DOCS_DIR / 'fit_backfill.json'
 FINAL = {'strong', 'medium', 'not'}
@@ -54,7 +55,7 @@ def in_scope(job, role_config):
       r'\b(?:senior|sr\.?|lead|leadership)\b.*\b(?:technical\s+program\s+manager|tpm)\b',
       r'engineering\s+program\s+manage',
       r'\b(head\s+of|director|vp|vice\s+president)\b.*(engineering\s+operations|\bai\b.*(program|delivery))']
-    return bool(us and (role or any(re.search(pattern,title,re.I) for pattern in patterns)))
+    return bool((us or is_remote(job)) and (role or any(re.search(pattern,title,re.I) for pattern in patterns)))
 
 
 def initialize(as_of, priority_keys=(), *, since=None, all_jobs=False):
@@ -134,7 +135,12 @@ def plan(jobs, scores, state, context, role_config):
                 selected = [j for j in chosen if window_index(j, state) == window['index'] and statuses[key(j)] == 'pending']
                 if selected:
                     current_window = window['index']; break
-    selected.sort(key=lambda j: posting_time(j) or datetime.min.replace(tzinfo=timezone.utc), reverse=True)
+    # Keep US work first; within the international lane prefer explicit remote
+    # opportunities. A title screen never assigns a Strong fit verdict.
+    selected.sort(key=lambda j: (
+        phase != 'strong_reassessment' and _is_us_or_remote(re.sub(r'\bremote\b', '', j.get('resolved_locations') or j.get('location') or '', flags=re.I)),
+        phase != 'strong_reassessment' and is_remote(j),
+        posting_time(j) or datetime.min.replace(tzinfo=timezone.utc)), reverse=True)
     return {'counts': counts, 'windows': windows, 'selected': selected, 'phase': phase,
             'strong_refresh_pending':len(strong_pending),'strong_refresh_unresolved':strong_unresolved,'strong_refresh_in_progress':strong_in_progress,
             'current_window': current_window, 'windows_processed': sum(w['pending'] == 0 and w['in_progress'] == 0 for w in windows)}

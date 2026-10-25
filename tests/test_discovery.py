@@ -50,7 +50,17 @@ class SnapshotRegression(unittest.TestCase):
         self.assertEqual(len(jobs), 136)
         for job in jobs:
             key = f"{job['source']}:{job['company']}:{job['id']}"
-            self.assertEqual(list(scorer.score_job(job, config)), expected[key], key)
+            actual = list(scorer.score_job(job, config))
+            from src.remote_jobs import is_remote
+            import re
+            explicit_us = scorer._is_us_or_remote(re.sub(r'\bremote\b', '', job.get('location') or '', flags=re.I))
+            if is_remote(job) and not explicit_us:
+                # Intentional policy change: remote is no longer proof of US
+                # eligibility. Preserve collection, remove the misleading bonus.
+                self.assertIn('remote opportunity; US work eligibility unverified', actual[1])
+                self.assertFalse(any('remote/US eligible' in r for r in actual[1]))
+            else:
+                self.assertEqual(actual, expected[key], key)
             self.assertGreater(scorer.score_job(job, config)[0], 0)
         self.assertEqual(discovery.merge_jobs(jobs, []), jobs)
         self.assertEqual(config["max_posted_age_days"], 0)
