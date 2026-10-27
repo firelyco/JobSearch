@@ -21,4 +21,5 @@ assert.equal(m.analyze([...events,complete],{start:'2026-10-27',end:'2026-10-27'
 assert.equal(m.safeURL('javascript:alert(1)'),'');assert.equal(m.safeURL(job.url),job.url);
 assert.equal(m.analyze(events,{start:'2026-10-01',end:'2026-10-01'}).partial,true);
 const repeated={...complete,id:'c2',at:'2026-10-27T16:00:00Z'};r=m.analyze([...events,complete,repeated],{start:'2026-10-27',end:'2026-10-27'});assert.equal(r.completed.size,1);assert.equal(r.buckets[0].completed,1);
+const priorStrong={...complete,id:'earlier',at:'2026-10-23T10:00:00Z'};r=m.analyze([...events,priorStrong,complete],{start:'2026-10-27',end:'2026-10-27'});assert.equal(r.newlyStrong.size,0);assert.equal(r.verdictChanged.size,0);const downgrade={...complete,id:'downgrade',verdict:'medium'};r=m.analyze([...events,priorStrong,downgrade],{start:'2026-10-27',end:'2026-10-27'});assert.equal(r.verdictChanged.size,1);
 console.log('Metrics checks passed: NY/DST periods, deduplication, two timeouts/one job, backlog vs discovery, cache reuse, original links and missing history.');
