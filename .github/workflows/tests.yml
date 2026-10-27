@@ -48,6 +48,8 @@ jobs:
       - name: Check dashboard and history behavior
         run: |
           node --check docs/app.js
+          node --check docs/metrics.js
+          node tests/test_metrics_dashboard.cjs
           node tests/test_evidence_dashboard.cjs
           node tests/test_remote_dashboard.cjs
           node tests/test_pmo_dashboard.cjs

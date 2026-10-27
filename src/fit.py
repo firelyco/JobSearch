@@ -102,9 +102,11 @@ def run(
 
 
 def save(scores: dict) -> None:
+    from src.metrics_history import capture_fit
     DOCS_DIR.mkdir(parents=True, exist_ok=True)
     with open(FIT_FILE, "w", encoding="utf-8") as f:
         json.dump(scores, f, indent=2, ensure_ascii=False, sort_keys=True)
+    capture_fit(load_json(JOBS_FILE,[]),scores)
 
 
 def main(argv: list[str] | None = None) -> int:

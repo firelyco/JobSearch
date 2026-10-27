@@ -82,6 +82,7 @@ jobs:
     # On the workflow_run trigger, only proceed if the poll actually succeeded.
     if: ${{ github.event_name == 'workflow_dispatch' || (github.event.workflow_run.conclusion == 'success' && vars.JOBSEARCH_FIT_VALIDATING != 'true') }}
     env:
+      JOBSEARCH_METRICS: '1'
       FIT_CACHE_ONLY: ${{ inputs.cache_only && 'true' || 'false' }}
       FIT_RESUME_PIPELINE: ${{ inputs.resume_pipeline && 'true' || vars.JOBSEARCH_RESUME_PIPELINE || 'false' }}
       FIT_WORKERS: ${{ vars.JOBSEARCH_FIT_WORKERS || '3' }}
@@ -290,6 +291,7 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           node src/validate_shortlist.cjs
           git add docs/shortlist_validation.json
+          git add docs/metrics
           git add docs/fit_scores.json
           if [ -f docs/fit_backfill.json ]; then git add docs/fit_backfill.json; fi
           if [ -f docs/fit_benchmark.json ]; then git add docs/fit_benchmark.json; fi
@@ -305,8 +307,9 @@ jobs:
             if ! git pull --rebase origin main; then
               git checkout --ours -- docs/fit_scores.json   # during a rebase, "ours" is upstream main
               python -m src.merge_json docs/fit_scores.json "$RUNNER_TEMP/ours.json"
+              git add docs/metrics
               git add docs/fit_scores.json
-          if [ -f docs/fit_policy.json ]; then git add docs/fit_policy.json; fi
+              if [ -f docs/fit_policy.json ]; then git add docs/fit_policy.json; fi
               GIT_EDITOR=true git rebase --continue
             fi
             node src/validate_shortlist.cjs --check-only

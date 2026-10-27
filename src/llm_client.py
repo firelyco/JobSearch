@@ -117,8 +117,12 @@ def call(
         else:
             result = _call_anthropic(client, model, system, user, max_tokens, temperature, cache_system)
     except Exception as error:
+        from src.metrics_history import call_usage
+        call_usage(error=type(error).__name__)
         log.warning('LLM call model=%s seconds=%.2f error=%s', model, time.monotonic()-started, type(error).__name__)
         raise
+    from src.metrics_history import call_usage
+    call_usage(response=result)
     result.elapsed_seconds = round(time.monotonic()-started, 3)
     log.info('LLM call model=%s seconds=%.3f input_tokens=%d output_tokens=%d reasoning_tokens=%d finish=%s',
              model, result.elapsed_seconds, result.input_tokens, result.output_tokens, result.reasoning_tokens, result.finish_reason)

@@ -142,7 +142,7 @@ def plan(jobs, scores, state, context, role_config):
         phase != 'strong_reassessment' and _is_us_or_remote(re.sub(r'\bremote\b', '', j.get('resolved_locations') or j.get('location') or '', flags=re.I)),
         phase != 'strong_reassessment' and is_remote(j),
         posting_time(j) or datetime.min.replace(tzinfo=timezone.utc)), reverse=True)
-    return {'counts': counts, 'windows': windows, 'selected': selected, 'phase': phase,
+    return {'counts': counts, 'windows': windows, 'selected': selected, 'phase': phase, 'cohort_keys':[key(j) for j in chosen],
             'strong_refresh_pending':len(strong_pending),'strong_refresh_unresolved':strong_unresolved,'strong_refresh_in_progress':strong_in_progress,
             'current_window': current_window, 'windows_processed': sum(w['pending'] == 0 and w['in_progress'] == 0 for w in windows)}
 
@@ -256,6 +256,7 @@ def publish_checkpoint():
         git('restore', '--', 'config/tailor_config.yml')
         subprocess.run(['node','src/validate_shortlist.cjs'],cwd=fit.ROOT,check=True)
         git('add', 'docs/fit_scores.json', 'docs/fit_policy.json', 'docs/fit_backfill.json', 'docs/shortlist_validation.json')
+        git('add', 'docs/metrics')
         if git('diff', '--cached', '--quiet', check=False).returncode == 0: return
         git('-c','user.name=github-actions[bot]','-c','user.email=41898282+github-actions[bot]@users.noreply.github.com',
             'commit','-m','fit: checkpoint assessment backfill')
@@ -324,6 +325,8 @@ def main(argv=None):
     def persist(progress, results):
         progress['run_url'] = 'https://github.com/'+os.environ.get('GITHUB_REPOSITORY','firelyco/JobSearch')+'/actions/runs/'+os.environ.get('GITHUB_RUN_ID','')
         fit.save(results)
+        from src.metrics_history import capture_fit
+        capture_fit(jobs,results,progress)
         STATE_FILE.write_text(json.dumps(progress,indent=2)+'\n',encoding='utf-8')
         if os.environ.get('FIT_BACKFILL_PUBLISH') == 'true': publish_checkpoint()
     run_batch(jobs=jobs,profile=profile,rules=rules,scores=scores,state=state,model=model,

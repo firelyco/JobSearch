@@ -312,6 +312,8 @@ def main() -> int:
     with open(META_FILE, "w", encoding="utf-8") as f:
         json.dump(meta, f, indent=2)
 
+    from src.metrics_history import poll_snapshot
+    poll_snapshot(all_jobs,scored,meta,role)
     log.info("done in %.1fs — wrote %s and %s", elapsed, JOBS_FILE, META_FILE)
     return 0
 

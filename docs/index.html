@@ -20,6 +20,11 @@
 
   <main id="app" class="hidden">
 
+    <nav class="dashboard-tabs" role="tablist" aria-label="Dashboard views">
+      <button id="jobs-tab" type="button" role="tab" aria-controls="jobs-view" aria-selected="true">Jobs</button>
+      <button id="metrics-tab" type="button" role="tab" aria-controls="metrics-view-panel" aria-selected="false">Metrics</button>
+    </nav>
+    <div id="jobs-view" role="tabpanel" aria-labelledby="jobs-tab">
     <header>
       <div class="title-row">
         <div>
@@ -211,6 +216,36 @@
       </details>
     </section>
 
+    </div>
+    <section id="metrics-view-panel" class="hidden metrics-panel" role="tabpanel" aria-labelledby="metrics-tab">
+      <div class="metrics-heading"><div><h1>Metrics</h1><p>Follow discoveries, assessments, and unfinished work. Every job keeps its original posting link.</p></div><button id="metrics-refresh" type="button">Refresh history</button></div>
+      <div class="metrics-controls">
+        <label>Period<select id="metrics-period"><option value="daily">Daily</option><option value="weekly">Weekly (Monday–Sunday)</option><option value="monthly">Monthly</option><option value="custom">Custom range</option></select></label>
+        <button id="metrics-previous" type="button" aria-label="Previous period">← Previous</button>
+        <label>Anchor / start date<input id="metrics-date" type="date" required></label>
+        <label id="metrics-end-label" class="hidden">End date<input id="metrics-end" type="date"></label>
+        <button id="metrics-next" type="button" aria-label="Next period">Next →</button>
+        <label>Company<input id="metrics-company" type="search" placeholder="Any company"></label>
+        <label>Role / title<input id="metrics-role" type="search" placeholder="TPM, PMO, portfolio…"></label>
+        <label>Source<select id="metrics-source"><option value="">All sources</option></select></label>
+        <label>Location<select id="metrics-location"><option value="">All locations</option><option value="us">Explicit US location</option><option value="remote">Remote mentioned</option></select></label>
+      </div>
+      <p id="metrics-range-label" class="muted"></p>
+      <p id="metrics-status" role="status">Select Metrics to load saved history.</p>
+      <p id="metrics-updated" class="muted"></p>
+      <div id="metrics-cards" class="metrics-cards"></div>
+      <p id="metrics-funnel" class="metrics-callout"></p>
+      <p id="metrics-health" class="muted"></p>
+      <details class="metrics-section"><summary>Daily discovery and completion trend</summary><div class="metrics-table-scroll"><table><thead><tr><th>Date (New York)</th><th>Jobs discovered</th><th>Unique jobs completed</th></tr></thead><tbody id="metrics-trend"></tbody></table></div></details>
+      <div class="metrics-section">
+        <div class="metrics-controls"><label>Job list<select id="metrics-view"><option value="discovery">Jobs first discovered in period</option><option value="activity">Assessment activity, including older backlog</option></select></label><button id="metrics-export" type="button">Export period jobs CSV</button></div>
+        <p>Click a metric card to inspect its jobs; click it again to return to the selected list. Verdict counts include each verdict a job received during the period. Salary is shown separately from fit.</p>
+        <div class="metrics-pagination"><p id="metrics-jobs-label"></p><button id="metrics-prev-page" type="button">Previous page</button><button id="metrics-next-page" type="button">Next page</button></div>
+        <div class="metrics-table-scroll"><table><thead><tr><th>Job / employer posting link</th><th>Posted / discovered</th><th>Assessment status</th><th>Verdict / salary</th><th>Timeline</th></tr></thead><tbody id="metrics-jobs"></tbody></table></div>
+      </div>
+      <details class="metrics-section"><summary>Source health and refresh runs</summary><p>Source volumes include unrelated and repeated postings. These are not unique profile matches. Original employer links can stop working after a posting closes.</p><div id="metrics-sources"></div></details>
+    </section>
+
     <footer>
       <p>JobSearch · <a href="https://github.com/firelyco/JobSearch" target="_blank" rel="noopener">source on GitHub</a></p>
     </footer>
@@ -267,5 +302,6 @@
   <div id="toasts" class="toasts"></div>
 
   <script src="app.js"></script>
+  <script src="metrics.js"></script>
 </body>
 </html>

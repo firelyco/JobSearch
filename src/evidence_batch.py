@@ -90,21 +90,26 @@ def run(*,jobs,profile,existing,rules,max_jobs,rescore,fake_client,jd_text_for,s
     def evaluate(job):
         job_key=key(job)
         attempt=None
+        from src import metrics_history as metrics
+        metrics_token=None
         try:
             fetch_started=time.monotonic()
             jd=jd_text_for.get(job_key,'') if jd_text_for is not None else jd_fetch.get_jd_text(job)
             log.info('Evidence JD fetch seconds=%.3f',time.monotonic()-fetch_started)
             if not str(jd or '').strip():
                 log.warning('Employer description unavailable for %s; keeping previous assessment and spending no AI calls',job_key)
+                metrics.blocked(job,'Employer description unavailable')
                 return job_key,None
             fingerprint=input_hash(profile,job,jd,rules,model)
             semantic_key=cache.identity(profile,job,jd,rules)
             previous=scores.get(job_key,{})
             if not rescore and previous.get('assessment_cache_key')==semantic_key and previous.get('validated') is True and previous.get('recommendation') in cache.FINAL:
                 log.info('Assessment cache hit %s; zero AI calls',job_key)
+                metrics.reused(job,'cache_hit')
                 return job_key,{**previous,'context_hash':context,'job_snapshot_hash':snapshot_hash(job),'jd_checked_at':stamp,'cache_status':'reused'}
             if not rescore and previous.get('input_hash')==fingerprint and previous.get('validated') is True and previous.get('recommendation') in cache.FINAL:
                 log.info('Legacy assessment cache migrated %s; zero AI calls',job_key)
+                metrics.reused(job,'legacy_cache_migrated')
                 return job_key,{**previous,'context_hash':context,'job_snapshot_hash':snapshot_hash(job),'assessment_cache_key':semantic_key,'jd_checked_at':stamp,'cache_status':'reused'}
             verdict=None
             prior=load_private(job_key) if rules.get('_fitment_skill') and not rescore else None
@@ -121,6 +126,7 @@ def run(*,jobs,profile,existing,rules,max_jobs,rescore,fake_client,jd_text_for,s
                     raise RuntimeError('Cache-only validation: paid inference is disabled')
                 if fake_client is None:
                     attempt=cache.reserve(job_key,semantic_key,build_inventory(profile,rules),stamp,force=rescore)
+                metrics_token=metrics.begin(job,model)
                 client=llm_client.build_client(fake=fake_client) if fake_client else llm_client.build_client()
                 if rules.get('_fitment_skill') or os.environ.get('FIT_RESUME_PIPELINE')=='true':
                     from src.evidence_pipeline import assess
@@ -154,7 +160,10 @@ def run(*,jobs,profile,existing,rules,max_jobs,rescore,fake_client,jd_text_for,s
             save_private(verdict.private,job_key=job_key)
             cache.finish(job_key,attempt,'complete' if verdict.recommendation in cache.FINAL else 'incomplete')
             log.info('Evidence final storage seconds=%.3f',time.monotonic()-storage_started)
-            return job_key,{**verdict.public,'recommendation':verdict.recommendation,'reason':verdict.reason,'step':verdict.step,
+            if metrics_token is None:metrics.reused(job,'revalidated_without_ai')
+            metrics.finish(metrics_token,'complete' if verdict.recommendation in cache.FINAL else 'incomplete',verdict=verdict.recommendation)
+            metrics_token=None
+            return job_key,{'metrics_completed_at':metrics.now(),**verdict.public,'recommendation':verdict.recommendation,'reason':verdict.reason,'step':verdict.step,
                 'policy_version':rules.get('fit_policy_version'),'context_hash':context,'job_snapshot_hash':snapshot_hash(job),
                 'jd_checked_at':stamp,'scored_at':stamp,'scorer_revision':scorer_revision(),
                 'assessment_cache_key':semantic_key,'cache_status':'revalidated_without_ai' if verdict.private.get('execution',{}).get('calls_this_attempt')==0 else 'assessed',
@@ -164,6 +173,8 @@ def run(*,jobs,profile,existing,rules,max_jobs,rescore,fake_client,jd_text_for,s
                 try:cache.finish(job_key,attempt,'failed')
                 except Exception:log.warning('Could not finalize attempt ledger for %s; reserved attempt remains counted',job_key)
             category=str(error) if isinstance(error,RuntimeError) and str(error).startswith(('Private assessment read HTTP ','Private evidence storage HTTP ')) else type(error).__name__
+            metrics.finish(metrics_token,'failed',error=category)
+            if metrics_token is None:metrics.blocked(job,category)
             log.warning('Assessment pending for %s (%s); no unpersisted verdict published',job_key,category)
             return job_key,None
     with ThreadPoolExecutor(max_workers=min(max(1,min(6,int(os.environ.get('FIT_WORKERS','3')))),len(selected))) as pool:

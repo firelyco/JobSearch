@@ -19,6 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 30
     env:
+      JOBSEARCH_METRICS: '1'
       BRAVE_SEARCH_API_KEY: ${{ secrets.BRAVE_SEARCH_API_KEY }}
     steps:
       - name: Checkout
@@ -49,6 +50,7 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           node src/validate_shortlist.cjs --report=docs/shortlist_validation_poll.json
           git add docs/shortlist_validation_poll.json
+          git add docs/metrics
           git add docs/coverage_audit.json docs/jobs.json docs/meta.json state/seen_jobs.json state/discovery_cache.json state/discovered_boards.json
           if git diff --staged --quiet; then
             echo "no changes"

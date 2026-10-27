@@ -515,3 +515,32 @@ td.col-applied input { width: 16px; height: 16px; cursor: pointer; }
 .applied-remove { border: 0.5px solid var(--border); border-radius: var(--radius); padding: 3px 8px; font-size: 12px; cursor: pointer; }
 /* Title-match pill when the fit check passed on the job: the title looked right, the job wasn't. */
 .score-muted { opacity: 0.4; text-decoration: line-through; }
+
+/* Metrics uses the dashboard's existing light/dark theme and typography. */
+.dashboard-tabs { display:flex; gap:.5rem; margin:1rem 0 1.5rem; }
+.dashboard-tabs [aria-selected="true"] { background:var(--accent-bg); color:var(--accent); border-color:var(--accent); font-weight:600; }
+.metrics-panel { padding-bottom:2rem; }
+.metrics-heading,.metrics-pagination { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:.75rem; }
+.metrics-heading h1 { margin-bottom:.25rem; }
+.metrics-controls { display:flex; flex-wrap:wrap; gap:.75rem; align-items:end; margin:1rem 0; }
+.metrics-controls label { display:flex; flex-direction:column; gap:.3rem; font-size:.85rem; }
+.metrics-controls input,.metrics-controls select { min-width:150px; max-width:100%; padding:.6rem; border:1px solid var(--border-strong); border-radius:var(--radius); background:var(--surface); color:var(--text); font:inherit; }
+.metrics-cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(170px,1fr)); gap:.75rem; }
+.metrics-stat { display:flex; flex-direction:column; text-align:left; padding:1rem; gap:.4rem; color:var(--text); background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); cursor:pointer; }
+.metrics-stat strong { font-size:1.65rem; line-height:1.2; }
+.metrics-stat small { color:var(--accent); }
+.metrics-stat.selected { outline:2px solid var(--accent); background:var(--accent-bg); }
+.metrics-callout { padding:1rem; background:var(--accent-bg); border-radius:var(--radius); }
+.metrics-section { margin:1.25rem 0; border:1px solid var(--border); border-radius:var(--radius); padding:1rem; background:var(--surface); }
+.metrics-section > summary { font-weight:600; cursor:pointer; }
+.metrics-table-scroll { overflow-x:auto; width:100%; }
+.metrics-table-scroll table { width:100%; min-width:650px; }
+.metrics-table-scroll td { vertical-align:top; white-space:normal; }
+.metrics-table-scroll td:first-child { min-width:230px; }
+.metrics-timeline { min-width:290px; padding-left:1.1rem; max-height:340px; overflow:auto; }
+.metrics-timeline li { margin:.6rem 0; }
+.metrics-bar { display:inline-block; background:var(--accent-bg); height:.7rem; margin-right:.4rem; min-width:0; max-width:80%; }
+.metrics-bar.completed { background:var(--success-bg); }
+.metrics-pagination { justify-content:flex-start; }
+.metrics-pagination p { margin-right:auto; }
+@media(max-width:600px) { .metrics-cards { grid-template-columns:repeat(2,minmax(0,1fr)); } .metrics-controls label { width:100%; } .metrics-controls input,.metrics-controls select { width:100%; } .metrics-stat { padding:.7rem; } }
