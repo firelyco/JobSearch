@@ -28,7 +28,7 @@ def audit(raw, published, watchlist, role, health):
         checks.append({'label':wanted['label'],'status':status,'matches':matches})
     dropped=[]
     for k,j in raw.items():
-        if k in published or not re.search(r'technical.*program|engineering.*program|program.*management|\btpm\b',j.get('title',''),re.I):continue
+        if k in published or not re.search(r'technical.*program|engineering.*program|\bpmo\b|(?:program|project|portfolio)\s+management\s+office|program.*management|\btpm\b',j.get('title',''),re.I):continue
         score,reasons=scorer.score_job(j,role)
         dropped.append({'key':k,'title':j.get('title'),'location':j.get('location'),'reasons':reasons,'score':score})
     incomplete=[h for h in health if h.get('status') in {'failed','partial','limit_reached','not_configured','deferred'}]

@@ -226,7 +226,7 @@ def main() -> int:
     for job in all_jobs:
         if job.get("description") or scorer.score_job(job, role)[0] > 0: continue
         if scorer._matches_any(job.get("title", ""), role.get("excluded_title_patterns", [])): continue
-        if not re.search(r"technical.*program|engineering.*program|\btpm\b|portfolio|engineering.*operations", job.get("title", ""), re.I): continue
+        if not re.search(r"technical.*program|engineering.*program|\bpmo\b|(?:program|project|portfolio)\s+management\s+office|\btpm\b|portfolio|engineering.*operations", job.get("title", ""), re.I): continue
         if job.get("url") in candidate_urls: continue
         candidate_urls.add(job.get("url")); candidates.append(job)
     def enrich(job):

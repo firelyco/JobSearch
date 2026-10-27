@@ -11,6 +11,7 @@ from __future__ import annotations
 import re
 from typing import Any
 from src.remote_jobs import is_remote
+from src.role_intake import pmo_leadership
 
 
 def _matches_any(text: str, patterns: list[str]) -> bool:
@@ -90,6 +91,9 @@ def score_job(job: dict, config: dict) -> tuple[int, list[str]]:
     # check, which reads the JD, judges the level.
     unleveled = company.lower() in (c.lower() for c in config.get("unleveled_title_companies", []) or [])
     unleveled_match = unleveled and _matches_any(title, config.get("unleveled_title_patterns", []) or [])
+    if pmo_leadership(title) and not _matches_any(title, title_patterns) and not unleveled_match:
+        reasons.append("broader responsibility match: PMO leadership; needs profile assessment")
+        return _score_matched_job(job, config, reasons, unleveled_match)
     if not _matches_any(title, title_patterns) and not unleveled_match:
         if re.search(r"\b(?:technical|engineering)\s+program\s+manager\b", title, re.I):
             # Collect the discipline at any employer; the JD establishes level.

@@ -13,6 +13,7 @@ from src.evidence_batch import context_hash, key, snapshot_hash
 from src.evidence_fit import scorer_revision
 from src.scorer import _is_us_or_remote
 from src.remote_jobs import is_remote
+from src.role_intake import pmo_leadership
 
 STATE_FILE = fit.DOCS_DIR / 'fit_backfill.json'
 FINAL = {'strong', 'medium', 'not'}
@@ -55,7 +56,7 @@ def in_scope(job, role_config):
       r'\b(?:senior|sr\.?|lead|leadership)\b.*\b(?:technical\s+program\s+manager|tpm)\b',
       r'engineering\s+program\s+manage',
       r'\b(head\s+of|director|vp|vice\s+president)\b.*(engineering\s+operations|\bai\b.*(program|delivery))']
-    return bool((us or is_remote(job)) and (role or any(re.search(pattern,title,re.I) for pattern in patterns)))
+    return bool((us or is_remote(job)) and (role or pmo_leadership(title) or any(re.search(pattern,title,re.I) for pattern in patterns)))
 
 
 def initialize(as_of, priority_keys=(), *, since=None, all_jobs=False):
