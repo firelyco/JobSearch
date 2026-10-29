@@ -47,6 +47,18 @@ class MetricsHistoryTests(unittest.TestCase):
         self.assertEqual(next(e for e in rows if e['type']=='queue_observed')['status'],'unresolved')
         self.assertEqual(next(e for e in rows if e['type']=='completed')['job']['url'],self.job['url'])
         self.assertFalse(any(e['type']=='attempt_started' for e in rows))
+    def test_authoritative_queue_snapshot_matches_saved_retry_budget_without_ai(self):
+        from src import fit_backfill as backfill
+        job={**self.job,'posted_at':'2026-10-22T19:00:00Z'}
+        state={'updated_at':'2026-10-29T18:00:00+00:00','context_hash':'ctx','max_attempts':2,
+            'attempts':{m.key(job):{'count':2,'last_outcome':'failed','pipeline_version':'resume-v1',
+                'context_hash':'ctx','job_snapshot_hash':backfill.snapshot_hash(job)}}}
+        with patch.dict(os.environ,{'FIT_RESUME_PIPELINE':'true'}),patch('src.llm_client.build_client',side_effect=AssertionError('No AI in metrics')):
+            m.capture_fit([job],{},state)
+        snapshot=next(e for e in self.events() if e['type']=='queue_snapshot')
+        self.assertEqual(snapshot['jobs'],[{'job_key':m.key(job),'status':'unresolved','verdict':None}])
+        self.assertFalse(any(e['type']=='attempt_started' for e in self.events()))
+
     def test_opt_in_and_cache_reuse_never_count_as_attempt(self):
         with patch.dict(os.environ,{'JOBSEARCH_METRICS':'0'}):m.append([m.event('blocked',self.job)])
         self.assertEqual(self.events(),[])

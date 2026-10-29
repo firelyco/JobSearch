@@ -544,3 +544,23 @@ td.col-applied input { width: 16px; height: 16px; cursor: pointer; }
 .metrics-pagination { justify-content:flex-start; }
 .metrics-pagination p { margin-right:auto; }
 @media(max-width:600px) { .metrics-cards { grid-template-columns:repeat(2,minmax(0,1fr)); } .metrics-controls label { width:100%; } .metrics-controls input,.metrics-controls select { width:100%; } .metrics-stat { padding:.7rem; } }
+
+/* Discovery-cohort metrics: identical counts in cards, progress and pivots. */
+.metrics-panel button { font:inherit; }
+.metrics-section h2 { font-size:1.05rem; margin:0 0 .8rem; }
+.metrics-progress-heading { display:flex; justify-content:space-between; gap:1rem; }
+#metrics-progress progress { display:block; width:100%; height:18px; margin:1rem 0; accent-color:var(--success); }
+.metrics-queue { display:flex; flex-wrap:wrap; gap:.65rem; margin-top:.85rem; }
+.metrics-queue-count { display:flex; align-items:center; gap:.75rem; border:1px solid var(--border-strong); border-radius:var(--radius); color:var(--text); background:var(--bg); padding:.65rem .9rem; cursor:pointer; }
+.metrics-queue-count strong { font-size:1.2rem; }
+.metrics-queue-count.selected { outline:2px solid var(--accent); }
+.metrics-backlog > span { display:block; color:var(--text-muted); margin-top:.4rem; }
+.metrics-number { border:0; background:transparent; color:var(--accent); text-decoration:underline; text-underline-offset:3px; cursor:pointer; min-width:32px; padding:.4rem; }
+.metrics-total { font-weight:700; border-top:2px solid var(--border-strong); }
+#metrics-source-pivot th,#metrics-role-pivot th { text-align:left; min-width:190px; }
+#metrics-view-panel .metrics-table-scroll { overscroll-behavior-x:contain; }
+@media(min-width:1050px) { .metrics-cards { grid-template-columns:repeat(5,minmax(0,1fr)); } }
+
+.metrics-panel button:not(.metrics-stat):not(.metrics-number):not(.metrics-queue-count) { border:1px solid var(--border-strong); border-radius:var(--radius); background:var(--surface); color:var(--text); padding:.5rem .75rem; cursor:pointer; }
+.metrics-panel button:disabled { opacity:.5; cursor:default; }
+.metrics-panel button:focus-visible { outline:2px solid var(--accent); outline-offset:2px; }

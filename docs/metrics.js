@@ -27,7 +27,7 @@
     for(const e of events){
       if(!e.job_key||day(e.at)>period.end)continue;
       const s=states.get(e.job_key)||{key:e.job_key,job:{},status:'waiting',verdict:'',salary:'unknown',eligible:null,reason:'',attempt_count:null};
-      s.job={...s.job,...e.job};s.latest=e.at;
+      s.job={...s.job,...Object.fromEntries(Object.entries(e.job||{}).filter(([key,value])=>value!==null&&value!==undefined&&value!==''&&!(key==='title'&&value==='Posting details not recorded')))};s.latest=e.at;
       if(e.type==='discovered'&&!s.discovered)s.discovered=e.at;
       if(['screened','eligibility_observed'].includes(e.type)){s.eligible=e.eligible;s.retained=e.retained;s.screening_reason=e.reason;if(!e.retained)s.status='excluded';else if(s.status==='excluded')s.status=s.verdict?'completed':'waiting';}
       if(e.type==='attempt_started'){s.status='processing';s.last_attempt=e.at;}
@@ -83,10 +83,79 @@
       median:durations.length?(durations[Math.floor((durations.length-1)/2)]+durations[Math.ceil((durations.length-1)/2)])/2:null,
       buckets,recordedFrom:baseline};
   }
-  const API={day,range,shift,unique,safeURL,analyze};root.JobMetrics=API;
+  function postingURL(value){
+    const url=safeURL(value);if(!url)return '';
+    const u=new URL(url);u.hash='';u.hostname=u.hostname.replace(/^www\./,'');
+    for(const name of [...u.searchParams.keys()])if(/^(utm_|trk$|tracking|ref$|source$|gh_src$)/i.test(name))u.searchParams.delete(name);
+    u.searchParams.sort();return u.href.replace(/\/$/,'');
+  }
+  function canonicalEvents(input){
+    const events=unique(input),parent=new Map(),byURL=new Map();
+    function find(key){if(!parent.has(key))parent.set(key,key);const p=parent.get(key);if(p!==key)parent.set(key,find(p));return parent.get(key);}
+    for(const e of events){if(!e.job_key)continue;find(e.job_key);const url=postingURL(e.job?.url);if(url){if(byURL.has(url))parent.set(find(e.job_key),find(byURL.get(url)));else byURL.set(url,e.job_key);}}
+    return events.map(e=>e.job_key?{...e,job_key:find(e.job_key)}:e);
+  }
+  function roleCategory(title=''){
+    if(/\bpmo\b|portfolio|program management office|project management office/i.test(title))return 'PMO / Portfolio Leadership';
+    if(/\b(?:director|head|vice president|vp|chief)\b/i.test(title))return 'Director / Head of TPM';
+    if(/manager.*(?:program management|program managers|tpms)|people manager/i.test(title))return 'TPM Manager';
+    if(/\b(?:principal|staff|distinguished)\b/i.test(title))return 'Principal / Staff TPM';
+    if(/\b(?:senior|sr\.?|lead)\b/i.test(title)&&/program|\btpm\b/i.test(title))return 'Senior TPM';
+    return 'Other';
+  }
+  const sourceNames={greenhouse:'Company careers (Greenhouse)',lever:'Company careers (Lever)',ashby:'Company careers (Ashby)',workday:'Company careers (Workday)',apple:'Apple careers',google:'Google careers',amazon_jobs:'Amazon careers',github:'GitHub careers',web_discovery:'Web search',remotive:'Remotive',arbeitnow:'Arbeitnow',linkedin_email:'LinkedIn email',a16z:'a16z portfolio',sequoia:'Sequoia portfolio',greylock:'Greylock portfolio',yc:'Y Combinator',techstars:'Techstars portfolio',harmonic:'Harmonic'};
+  function sourceCategory(job={}){const value=job.discovery_source||(job.discovery_sources||[])[0]||job.source||'Not recorded';return sourceNames[value]||value;}
+  function stateCategory(s){
+    if(s.eligible===false||s.status==='excluded')return 'excluded';
+    if(s.status==='completed'&&labels[s.verdict])return 'completed';
+    if(s.status==='processing')return 'processing';
+    if(['failed','unresolved'].includes(s.status)||s.error||s.eligible!==true&&s.in_queue!==true)return 'blocked';
+    return 'waiting';
+  }
+  function overview(input,period,filter={}){
+    const events=canonicalEvents(input),r=analyze(events,period,filter),cohort=new Set(),groups={};
+    for(const name of ['discovered','completed','strong','medium','not','waiting','processing','blocked','excluded','backlogWaiting','backlogProcessing','backlogBlocked'])groups[name]=new Set();
+    const snapshot=events.filter(e=>e.type==='queue_snapshot'&&day(e.at)<=period.end).at(-1);
+    const queue=snapshot?new Map(snapshot.jobs.map(row=>[row.job_key,row])):null;
+    // Resolve snapshot keys through the same alias mapping as job events.
+    const aliases=new Map(events.filter(e=>e.job_key).map(e=>[e.job?.url&&postingURL(e.job.url),e.job_key]));
+    const originalAliases=new Map();for(const e of input)if(e.job_key&&e.job?.url&&aliases.has(postingURL(e.job.url)))originalAliases.set(e.job_key,aliases.get(postingURL(e.job.url)));
+    if(queue)for(const [key,value] of [...queue])if(originalAliases.has(key)&&originalAliases.get(key)!==key){queue.delete(key);queue.set(originalAliases.get(key),value);}
+    const firstSources=new Map();for(const e of events)if(e.type==='discovered'&&!firstSources.has(e.job_key))firstSources.set(e.job_key,sourceCategory(e.job));
+    for(const s of r.states.values()){
+      if(!matches(s.job,filter))continue;
+      const observation=queue?.get(s.key);
+      if(observation&&s.latest<=snapshot.at){
+        s.status={assessed:'completed',pending:'waiting',in_progress:'processing',unresolved:'unresolved'}[observation.status]||s.status;
+        if(observation.verdict)s.verdict=observation.verdict;
+        s.eligible=true;s.in_queue=true;
+        if(['assessed','pending','in_progress'].includes(observation.status))s.error='';
+        if(observation.status==='unresolved')s.reason='Retry limit reached';
+      }
+      if(queue&&!observation&&s.latest<=snapshot.at&&s.status!=='completed'){
+        s.eligible=false;s.in_queue=false;s.screening_reason='Not in active assessment scope at this checkpoint';
+      }
+      const category=stateCategory(s);s.category=category;
+      s.discoverySource=firstSources.get(s.key)||sourceCategory(s.job);s.roleCategory=roleCategory(s.job.title);
+      if(!s.discovered||day(s.discovered)<period.start||day(s.discovered)>period.end){
+        if((!queue||queue.has(s.key)||s.latest>snapshot.at)&&s.in_queue!==false&&s.retained!==false&&(s.eligible===true||s.in_queue===true)&&['waiting','processing','blocked'].includes(category))groups['backlog'+category[0].toUpperCase()+category.slice(1)].add(s.key);
+        continue;
+      }
+      cohort.add(s.key);groups.discovered.add(s.key);groups[category].add(s.key);
+      if(category==='completed')groups[s.verdict].add(s.key);
+    }
+    function pivot(field){
+      const rows=new Map();
+      for(const key of cohort){const state=r.states.get(key),name=state[field];if(!rows.has(name))rows.set(name,{name,groups:Object.fromEntries(['discovered','completed','strong','medium','not','waiting','processing','blocked','excluded'].map(k=>[k,new Set()]))});const row=rows.get(name);row.groups.discovered.add(key);row.groups[state.category].add(key);if(state.category==='completed')row.groups[state.verdict].add(key);}
+      return [...rows.values()].sort((a,b)=>b.groups.discovered.size-a.groups.discovered.size||a.name.localeCompare(b.name));
+    }
+    const total=cohort.size,eligible=total-groups.excluded.size,completed=groups.completed.size;
+    return {analysis:r,groups,total,eligible,completed,queueAsOf:snapshot?.at,percent:eligible?Math.round(100*completed/eligible):0,sourceRows:pivot('discoverySource'),roleRows:pivot('roleCategory')};
+  }
+  const API={day,range,shift,unique,safeURL,analyze,overview,canonicalEvents,roleCategory,sourceCategory};root.JobMetrics=API;
   if(typeof document==='undefined')return;
   const $=id=>document.getElementById(id),esc=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-  let history=[],loaded=false,loading=false,loadFailed=false,activeMetric='',page=0,current=null;
+  let history=[],loaded=false,loading=false,loadFailed=false,activeMetric='',page=0,current=null,pivotSelection=null,currentKeys=new Set(),emailReport=null;
   const PAGE_SIZE=50;
   function selectedRange(){return range($('metrics-period').value,$('metrics-date').value,$('metrics-end').value);}
   function stamp(value){return value?new Intl.DateTimeFormat('en-US',{timeZone:TZ,dateStyle:'medium',timeStyle:'short'}).format(new Date(value)):'Not recorded';}
@@ -95,41 +164,47 @@
   function render(){
     if(!loaded)return;
     const period=selectedRange();
-    if(!period.start||!period.end||period.end<period.start){$('metrics-status').textContent='Choose a valid start and end date.';return;}
+    if(!period.start||!period.end||period.end<period.start){$('metrics-status').textContent='Choose a valid date range.';return;}
     if((new Date(period.end)-new Date(period.start))/86400000>366){$('metrics-status').textContent='Choose a period of 366 days or less.';return;}
     const filters={company:$('metrics-company').value.trim(),role:$('metrics-role').value.trim(),source:$('metrics-source').value,location:$('metrics-location').value};
-    const r=analyze(history,period,filters);current=r;
-    $('metrics-range-label').textContent=`${period.start} through ${period.end} · America/New_York · ${history.length.toLocaleString()} saved events`;
-    $('metrics-status').textContent=loadFailed?'Some history files could not be loaded. Counts are incomplete. Retry loading.':r.partial?'Recovered history is partial. Saved discovery and completion dates are included; earlier attempt, screening, source and usage details may not have been recorded. Missing history is not zero.':'Detailed events are recorded for this period. Job filters affect job counts; source checks describe the entire refresh.';
-    const activityMode=$('metrics-view').value==='activity';
-    const cards=[['discovered','New jobs discovered',r.discovered.size],['eligible','Eligible in discovery cohort',[...r.discovered].some(k=>r.states.get(k)?.eligible!==null)?r.eligible.size:'Not recorded'],['attempted','Unique jobs attempted',r.partial&&!r.attempts?'Not recorded':r.attempted.size],['completed','Unique jobs completed',r.completed.size],['reused','Saved reviews reused',r.reused.size],['strong','Strong results',r.verdictSets.strong.size],['newlyStrong','First Strong in recorded history',r.newlyStrong.size],['verdictChanged','Jobs with verdict changes',r.verdictChanged.size],['medium','Middle results',r.verdictSets.medium.size],['not','Pass results',r.verdictSets.not.size],['failedJobs','Failed attempts',r.partial&&!r.attempts?'Not recorded':r.failedAttempts],['unresolved','Unresolved active queue at period end',r.unresolved.size],['waiting','Waiting eligible jobs',r.waiting.size],['processing','Processing',r.processing.size],['excluded','Outside scope / excluded observations',r.activity.some(e=>['screened','eligibility_observed'].includes(e.type))?r.excluded.size:'Not recorded']];
-    $('metrics-cards').innerHTML=cards.map(([id,label,value])=>`<button type="button" class="metrics-stat ${activeMetric===id?'selected':''}" data-metric="${id}" aria-pressed="${activeMetric===id}"><span>${label}</span><strong>${esc(typeof value==='number'?value.toLocaleString():value)}</strong><small>View jobs</small></button>`).join('');
-    $('metrics-cards').querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>{activeMetric=activeMetric===b.dataset.metric?'':b.dataset.metric;page=0;render();}));
-    const sourceChecks=r.refreshes.flatMap(e=>e.sources||[]);
-    const failedSources=sourceChecks.filter(s=>s.status==='failed').length;
-    const partialSources=sourceChecks.filter(s=>['partial','limit_reached','deferred','not_configured'].includes(s.status)).length;
-    const oldestWaiting=[...r.waiting].map(k=>r.states.get(k)?.discovered).filter(Boolean).sort()[0];
-    const wholeRefresh=r.refreshes.length?`${r.refreshes.length} refresh runs; ${r.refreshes.reduce((n,e)=>n+(e.raw_fetched||0),0).toLocaleString()} source postings fetched across those runs (includes repeated postings).`:'Source refresh history not recorded for this period.';
-    const speed=r.average===null?'Timing not recorded.':`Average recorded attempt ${Math.round(r.average)}s; median ${Math.round(r.median)}s.`;
-    $('metrics-health').textContent=`${wholeRefresh} ${sourceChecks.length} recorded source/query checks: ${failedSources} failed, ${partialSources} incomplete or deferred. ${speed} ${r.attempts} recorded attempts across ${r.attempted.size} jobs. ${r.reused.size} saved reviews reused; ${r.calls} recorded model calls; ${r.timeouts} timeouts among ${r.activity.filter(e=>e.type==='attempt_finished').length} finished attempts${r.activity.some(e=>e.type==='attempt_finished')?' ('+Math.round(100*r.timeouts/r.activity.filter(e=>e.type==='attempt_finished').length)+'%)':''}; ${r.tokens.toLocaleString()} reported tokens${r.unknownUsage?`; usage unavailable for ${r.unknownUsage} failed calls`:''}. ${oldestWaiting?'Oldest waiting job first discovered '+day(oldestWaiting)+'. ':''}Cost not available from billing data.`;
-    const discoveryStates=[...r.discovered].map(k=>r.states.get(k));
-    const funnel={discovered:r.discovered.size,eligible:discoveryStates.filter(s=>s.eligible===true).length,unknown:discoveryStates.filter(s=>s.eligible===null).length,excluded:discoveryStates.filter(s=>s.eligible===false).length,completed:discoveryStates.filter(s=>s.status==='completed').length,unfinished:discoveryStates.filter(s=>s.status!=='completed'&&s.eligible!==false).length};
-    $('metrics-funnel').textContent=`Discovery cohort: ${funnel.discovered} found → ${funnel.eligible} eligible / ${funnel.excluded} excluded / ${funnel.unknown} eligibility not recorded. ${funnel.completed} have completed assessments by period end; ${funnel.unfinished} remain unfinished or unverified. Assessment activity below may include older backlog.`;
-    const max=Math.max(1,...r.buckets.flatMap(b=>[b.discovered,b.completed]));
-    $('metrics-trend').innerHTML=r.buckets.map(b=>`<tr><th scope="row">${b.date}</th><td><span class="metrics-bar" style="width:${100*b.discovered/max}%"></span>${b.discovered}</td><td><span class="metrics-bar completed" style="width:${100*b.completed/max}%"></span>${b.completed}</td></tr>`).join('');
-    let keys=activeMetric?(r.verdictSets[activeMetric]||r[activeMetric]||new Set()):(activityMode?r.activityKeys:r.discovered);
-    if(!(keys instanceof Set))keys=new Set();
-    const rows=[...keys].map(k=>r.states.get(k)).filter(Boolean).sort((a,b)=>b.latest.localeCompare(a.latest));
+    const summary=overview(history,period,filters),r=summary.analysis;current=r;
+    const groups=summary.groups;
+    $('metrics-range-label').textContent=`${period.start===period.end?period.start:period.start+' through '+period.end} · Eastern time`;
+    $('metrics-status').textContent=loadFailed?'Some history files could not be loaded. Counts are incomplete; refresh to retry.':r.partial?'Historical records are incomplete for this period. Counts show recorded jobs only.':'Jobs first found in this period. Status is shown as of the selected period end; today updates automatically.';
+    const cardNames={discovered:'New jobs found',completed:'Assessment completed',strong:'Strong',medium:'Middle',not:'Pass',waiting:'Waiting',processing:'Processing',blocked:'Blocked',excluded:'Excluded',backlogWaiting:'Earlier backlog: waiting',backlogProcessing:'Earlier backlog: processing',backlogBlocked:'Earlier backlog: blocked'};
+    function button(key,label=cardNames[key],cls='metrics-queue-count'){return `<button type="button" class="${cls} ${activeMetric===key&&!pivotSelection?'selected':''}" data-metric="${key}" aria-pressed="${activeMetric===key&&!pivotSelection}"><span>${esc(label)}</span><strong>${groups[key].size.toLocaleString()}</strong>${cls==='metrics-stat'?'<small>View jobs</small>':''}</button>`;}
+    $('metrics-cards').innerHTML=['discovered','completed','strong','medium','not'].map(k=>button(k,cardNames[k],'metrics-stat')).join('');
+    $('metrics-progress').innerHTML=`<div class="metrics-progress-heading"><strong>${summary.completed} / ${summary.eligible} jobs completed</strong><span>${summary.eligible?summary.percent+'%':'No eligible jobs'}</span></div><progress aria-label="Assessment completion for jobs found in selected period" max="${summary.eligible||1}" value="${summary.completed}"></progress><div class="metrics-queue">${['waiting','processing','blocked','excluded'].map(k=>button(k)).join('')}</div><p class="muted">Excluded jobs are outside your criteria and do not enter the progress total. Blocked includes jobs awaiting eligibility confirmation.</p>`;
+    const overall={waiting:groups.waiting.size+groups.backlogWaiting.size,processing:groups.processing.size+groups.backlogProcessing.size,blocked:groups.blocked.size+groups.backlogBlocked.size};
+    $('metrics-backlog').innerHTML=`<strong>Overall outstanding queue: ${overall.waiting+overall.processing+overall.blocked}</strong><span>${overall.waiting} waiting · ${overall.processing} processing · ${overall.blocked} blocked${summary.queueAsOf?' · Queue updated '+esc(stamp(summary.queueAsOf)):''}</span><div class="metrics-queue">${['backlogWaiting','backlogProcessing','backlogBlocked'].map(k=>button(k)).join('')}</div>`;
+    const columns=['discovered','completed','strong','medium','not','waiting','processing','blocked','excluded'];
+    function pivot(rows,type){
+      const cell=(keys,index,key)=>`<td><button type="button" class="metrics-number" data-pivot="${type}" data-row="${index}" data-column="${key}" aria-label="${esc((index<0?'Total':rows[index].name)+': '+cardNames[key]+', '+keys.size+' jobs')}">${keys.size}</button></td>`;
+      return rows.map((row,index)=>`<tr><th scope="row">${esc(row.name)}</th>${columns.map(key=>cell(row.groups[key],index,key)).join('')}</tr>`).join('')+`<tr class="metrics-total"><th scope="row">Total</th>${columns.map(key=>cell(groups[key],-1,key)).join('')}</tr>`;
+    }
+    $('metrics-source-pivot').innerHTML=pivot(summary.sourceRows,'source');
+    $('metrics-role-pivot').innerHTML=pivot(summary.roleRows,'role');
+    $('metrics-view-panel').querySelectorAll('[data-metric]').forEach(b=>b.addEventListener('click',()=>{activeMetric=activeMetric===b.dataset.metric&&!pivotSelection?'':b.dataset.metric;pivotSelection=null;page=0;render();$('metrics-job-section').scrollIntoView({block:'start',behavior:'smooth'});}));
+    $('metrics-view-panel').querySelectorAll('[data-pivot]').forEach(b=>b.addEventListener('click',()=>{const rows=b.dataset.pivot==='source'?summary.sourceRows:summary.roleRows,index=Number(b.dataset.row);pivotSelection={kind:b.dataset.pivot,name:index<0?'Total':rows[index].name,column:b.dataset.column};activeMetric='';page=0;render();$('metrics-job-section').scrollIntoView({block:'start',behavior:'smooth'});}));
+    let keys=groups[activeMetric]||groups.discovered,label=cardNames[activeMetric]||'New jobs found';
+    if(pivotSelection){const rows=pivotSelection.kind==='source'?summary.sourceRows:summary.roleRows;keys=pivotSelection.name==='Total'?groups[pivotSelection.column]:rows.find(row=>row.name===pivotSelection.name)?.groups[pivotSelection.column]||new Set();label=pivotSelection.name+' · '+cardNames[pivotSelection.column];}
+    const rows=[...keys].map(k=>r.states.get(k)).filter(Boolean).sort((a,b)=>b.latest.localeCompare(a.latest));currentKeys=keys;
     const totalPages=Math.max(1,Math.ceil(rows.length/PAGE_SIZE));page=Math.min(page,totalPages-1);
-    $('metrics-jobs-label').textContent=`${activeMetric?cards.find(c=>c[0]===activeMetric)?.[1]:activityMode?'Assessment activity':'Discovery cohort'} · ${rows.length} jobs · page ${page+1} of ${totalPages}`;
+    $('metrics-jobs-label').textContent=`${label} · ${rows.length} jobs · page ${page+1} of ${totalPages}`;
     $('metrics-prev-page').disabled=page===0;$('metrics-next-page').disabled=page>=totalPages-1;
     $('metrics-jobs').innerHTML=rows.slice(page*PAGE_SIZE,(page+1)*PAGE_SIZE).map(s=>{
-      const link=safeURL(s.job.url),reason=[s.error,s.reason,s.status==='excluded'||s.eligible===false?s.screening_reason:''].filter(Boolean).join(' · ');
+      const link=safeURL(s.job.url),reason=s.category==='excluded'?s.screening_reason||'Outside current criteria':s.category==='blocked'?[s.error,s.reason,s.eligible!==true?'Eligibility not confirmed':''].filter(Boolean).join(' · '):'';
       const events=(r.timeline.get(s.key)||[]).slice().reverse();
-      const timeline=events.map(e=>`<li><time>${esc(stamp(e.at))}</time> — ${esc(e.type.replaceAll('_',' '))}${e.verdict?' · '+esc(labels[e.verdict]||e.verdict):''}${e.error?' · '+esc(e.error):''}${e.reason?' · '+esc(e.reason):''}${e.provenance==='recovered'?' (recovered)':''}${e.run_url?` · <a href="${esc(safeURL(e.run_url))}" target="_blank" rel="noopener">Run</a>`:''}</li>`).join('');
-      return `<tr data-metrics-key="${esc(s.key)}"><td>${link?`<a href="${esc(link)}" target="_blank" rel="noopener">${esc(s.job.title||'Open posting')}</a>`:esc(s.job.title||'Posting details not recorded')}<div class="muted">${esc(s.job.company||s.key.split(':')[1])} · ${esc(s.job.source||s.key.split(':')[0])}</div><div class="muted">${esc(s.job.location||'Location not recorded')}</div></td><td>${esc(s.job.posted_at?day(s.job.posted_at):'Not recorded')}<br><small>Found ${esc(s.discovered?day(s.discovered):'not recorded')}</small></td><td>${esc(statusLabel(s.status))}<div class="muted">${esc(reason)}</div><small>${s.attempt_count===null?'':`${s.attempt_count} attempts observed; last ${esc(stamp(s.last_attempt))}`}</small></td><td>${esc(labels[s.verdict]||'No completed verdict')}<div class="muted">${esc(salaryLabel(s.salary))}</div></td><td><details><summary>History (${events.length})</summary><ol class="metrics-timeline">${timeline}</ol>${s.recovered?'<p>Older attempt counts were recovered; individual attempt timestamps and error details may be unavailable.</p>':''}</details></td></tr>`;
-    }).join('')||'<tr><td colspan="5" class="empty">No recorded jobs in this view. Missing historical records do not prove that no work occurred.</td></tr>';
-    $('metrics-sources').innerHTML=r.refreshes.slice().reverse().map(e=>`<details><summary>${esc(stamp(e.at))}: ${(e.raw_fetched||0).toLocaleString()} fetched, ${(e.retained||0).toLocaleString()} retained, ${e.new_reported??'unknown'} new, ${Number.isFinite(e.new_reported)&&Number.isFinite(e.retained)?Math.max(0,e.retained-e.new_reported):'unknown'} known retained${e.provenance==='recovered'?' (recovered)':''}</summary><div class="metrics-table-scroll"><table><thead><tr><th>Source / query</th><th>Status</th><th>Collected / reported</th></tr></thead><tbody>${(e.sources||[]).map(s=>`<tr><td>${esc(s.label||s.query||s.source)}</td><td>${esc(s.status)}</td><td>${esc(s.collected??s.jobs??'Not recorded')} / ${esc(s.reported_total??'Not recorded')}</td></tr>`).join('')}</tbody></table></div></details>`).join('')||'<p class="muted">No source run details were recorded for this period.</p>';
+      const timeline=events.map(e=>`<li><time>${esc(stamp(e.at))}</time> — ${esc(e.type.replaceAll('_',' '))}${e.verdict?' · '+esc(labels[e.verdict]||e.verdict):''}${e.error?' · '+esc(e.error):''}${e.reason?' · '+esc(e.reason):''}${e.run_url&&safeURL(e.run_url)?` · <a href="${esc(safeURL(e.run_url))}" target="_blank" rel="noopener">Run</a>`:''}</li>`).join('');
+      return `<tr data-metrics-key="${esc(s.key)}"><td>${link?`<a href="${esc(link)}" target="_blank" rel="noopener">${esc(s.job.title||'Open posting')}</a>`:esc(s.job.title||'Posting details not recorded')}<div class="muted">${esc(s.job.company||s.key.split(':')[1])} · ${esc(s.discoverySource)}</div><div class="muted">${esc(s.job.location||'Location not recorded')}</div><small>Employer source: ${esc(s.job.source||'Not recorded')}${s.job.discovery_sources?.length?' · Also found via '+esc(s.job.discovery_sources.join(', ')):''}</small></td><td>${esc(s.discovered?day(s.discovered):'Not recorded')}<br><small>Posted ${esc(s.job.posted_at?day(s.job.posted_at):'not recorded')}</small></td><td>${esc({completed:'Completed',blocked:'Blocked',waiting:'Waiting',processing:'Processing',excluded:'Excluded'}[s.category]||statusLabel(s.status))}<div class="muted">${esc(reason)}</div></td><td>${esc(s.category==='completed'?labels[s.verdict]:'—')}<div class="muted">${esc(salaryLabel(s.salary))}</div></td><td><details><summary>History (${events.length})</summary><ol class="metrics-timeline">${timeline}</ol></details></td></tr>`;
+    }).join('')||'<tr><td colspan="5" class="empty">No jobs in this view.</td></tr>';
+    renderEmailLinks(period);
+  }
+  function renderEmailLinks(period){
+    if(!emailReport){$('metrics-email-label').textContent='Job links awaiting verification: unavailable';$('metrics-email-jobs').innerHTML='';return;}
+    const rows=(emailReport.rows||[]).filter(row=>!['tracked','screened_out'].includes(row.collection)&&day(row.first_alert_at)>=period.start&&day(row.first_alert_at)<=period.end);
+    $('metrics-email-label').textContent=`Job links awaiting verification: ${rows.length} (separate from confirmed jobs)`;
+    $('metrics-email-jobs').innerHTML=rows.map(row=>`<tr><td>${safeURL(row.url)?`<a href="${esc(safeURL(row.url))}" target="_blank" rel="noopener">${esc(row.title||'LinkedIn job '+row.linkedin_id)}</a>`:'Job link unavailable'}<div class="muted">${esc(row.company||'Employer not identified')}</div></td><td>${row.collection==='possible_match'?'Confirm employer requisition':'Find employer posting'}</td></tr>`).join('')||'<tr><td colspan="2">No unverified links recorded for this discovery period.</td></tr>';
   }
   async function load(){
     if(loading)return;loading=true;$('metrics-status').textContent='Loading saved history…';
@@ -139,6 +214,7 @@
       const next=[];let failures=0,cursor=0;
       await Promise.all(Array.from({length:Math.min(6,paths.length)},async()=>{while(cursor<paths.length){const p=paths[cursor++];try{const r=await fetch('metrics/'+p+'?t='+Date.now());if(!r.ok)throw Error();const d=await r.json();if(!Array.isArray(d.events))throw Error();next.push(...d.events);}catch{failures++;}}}));
       history=unique(next);loaded=true;loadFailed=failures>0;
+      try{const response=await fetch('email_alerts.json?t='+Date.now());emailReport=response.ok?await response.json():null;}catch{emailReport=null;}
       const previous=$('metrics-source').value,sources=[...new Set(history.map(e=>e.job?.source).filter(Boolean))].sort();
       $('metrics-source').innerHTML='<option value="">All sources</option>'+sources.map(s=>`<option value="${esc(s)}">${esc(s)}</option>`).join('');$('metrics-source').value=previous;
       $('metrics-updated').textContent='History loaded '+stamp(new Date().toISOString());render();
@@ -147,14 +223,16 @@
   }
   function init(){
     $('metrics-tab').tabIndex=-1;const today=day(new Date());$('metrics-date').value=today;$('metrics-end').value=today;
-    function show(metrics){$('jobs-view').classList.toggle('hidden',metrics);$('metrics-view-panel').classList.toggle('hidden',!metrics);$('jobs-tab').setAttribute('aria-selected',String(!metrics));$('jobs-tab').tabIndex=metrics?-1:0;$('metrics-tab').tabIndex=metrics?0:-1;$('metrics-tab').setAttribute('aria-selected',String(metrics));if(metrics&&!loaded)load();}
+    function show(metrics){$('jobs-view').classList.toggle('hidden',metrics);$('metrics-view-panel').classList.toggle('hidden',!metrics);$('jobs-tab').setAttribute('aria-selected',String(!metrics));$('jobs-tab').tabIndex=metrics?-1:0;$('metrics-tab').tabIndex=metrics?0:-1;$('metrics-tab').setAttribute('aria-selected',String(metrics));if(metrics)load();}
     $('jobs-tab').addEventListener('click',()=>show(false));$('metrics-tab').addEventListener('click',()=>show(true));
     document.querySelector('.dashboard-tabs').addEventListener('keydown',e=>{if(['ArrowLeft','ArrowRight'].includes(e.key)){e.preventDefault();const metrics=$('metrics-tab').getAttribute('aria-selected')!=='true';show(metrics);$(metrics?'metrics-tab':'jobs-tab').focus();}});
     $('metrics-refresh').addEventListener('click',load);
-    ['metrics-period','metrics-date','metrics-end','metrics-view','metrics-company','metrics-role','metrics-source','metrics-location'].forEach(id=>$(id).addEventListener('input',()=>{page=0;activeMetric='';$('metrics-end-label').classList.toggle('hidden',$('metrics-period').value!=='custom');render();}));
-    for(const [id,direction] of [['metrics-previous',-1],['metrics-next',1]])$(id).addEventListener('click',()=>{const mode=$('metrics-period').value;if(mode==='monthly'){const d=new Date($('metrics-date').value.slice(0,7)+'-01T12:00:00Z');d.setUTCMonth(d.getUTCMonth()+direction);$('metrics-date').value=d.toISOString().slice(0,10);}else $('metrics-date').value=shift($('metrics-date').value,direction*(mode==='weekly'?7:1));page=0;activeMetric='';render();});
+    ['metrics-period','metrics-date','metrics-end','metrics-company','metrics-role','metrics-source','metrics-location'].forEach(id=>$(id).addEventListener('input',()=>{page=0;activeMetric='';pivotSelection=null;$('metrics-end-label').classList.toggle('hidden',$('metrics-period').value!=='custom');render();}));
+    for(const [id,direction] of [['metrics-previous',-1],['metrics-next',1]])$(id).addEventListener('click',()=>{const mode=$('metrics-period').value;if(mode==='monthly'){const d=new Date($('metrics-date').value.slice(0,7)+'-01T12:00:00Z');d.setUTCMonth(d.getUTCMonth()+direction);$('metrics-date').value=d.toISOString().slice(0,10);}else $('metrics-date').value=shift($('metrics-date').value,direction*(mode==='weekly'?7:1));page=0;activeMetric='';pivotSelection=null;render();});
     $('metrics-prev-page').addEventListener('click',()=>{page--;render();});$('metrics-next-page').addEventListener('click',()=>{page++;render();});
-    $('metrics-export').addEventListener('click',()=>{if(!current)return;const rows=[['Company','Title','URL','Status','Verdict','First discovered','Last attempt'],...[...current.states.values()].filter(s=>current.activityKeys.has(s.key)||current.discovered.has(s.key)).map(s=>[s.job.company,s.job.title,safeURL(s.job.url),s.status,labels[s.verdict]||'',s.discovered,s.last_attempt])];const csv=rows.map(row=>row.map(v=>'"'+String(v??'').replace(/^[=+@-]/,m=>"'"+m).replace(/"/g,'""')+'"').join(',')).join('\r\n');const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));a.download='jobsearch-metrics-'+selectedRange().start+'.csv';a.click();URL.revokeObjectURL(a.href);});
+    $('metrics-clear').addEventListener('click',()=>{activeMetric='';pivotSelection=null;page=0;render();});
+    $('metrics-export').addEventListener('click',()=>{if(!current)return;const rows=[['Company','Title','URL','Status','Verdict','First discovered','Source'],...[...currentKeys].map(k=>current.states.get(k)).filter(Boolean).map(s=>[s.job.company,s.job.title,safeURL(s.job.url),s.category,s.category==='completed'?labels[s.verdict]:'',s.discovered,s.discoverySource])];const csv=rows.map(row=>row.map(v=>'"'+String(v??'').replace(/^[=+@-]/,m=>"'"+m).replace(/"/g,'""')+'"').join(',')).join('\r\n');const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));a.download='jobsearch-metrics-'+selectedRange().start+'.csv';a.click();URL.revokeObjectURL(a.href);});
+    setInterval(()=>{if(!document.hidden&&!$('metrics-view-panel').classList.contains('hidden'))load();},60000);
   }
   init();
 })(globalThis);

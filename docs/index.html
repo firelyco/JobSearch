@@ -220,7 +220,7 @@
 
     </div>
     <section id="metrics-view-panel" class="hidden metrics-panel" role="tabpanel" aria-labelledby="metrics-tab">
-      <div class="metrics-heading"><div><h1>Metrics</h1><p>Follow discoveries, assessments, and unfinished work. Every job keeps its original posting link.</p></div><button id="metrics-refresh" type="button">Refresh history</button></div>
+      <div class="metrics-heading"><div><h1>Metrics</h1><p>New jobs, completed assessments, and the queue — in one view.</p></div><button id="metrics-refresh" type="button">Refresh history</button></div>
       <div class="metrics-controls">
         <label>Period<select id="metrics-period"><option value="daily">Daily</option><option value="weekly">Weekly (Monday–Sunday)</option><option value="monthly">Monthly</option><option value="custom">Custom range</option></select></label>
         <button id="metrics-previous" type="button" aria-label="Previous period">← Previous</button>
@@ -236,16 +236,17 @@
       <p id="metrics-status" role="status">Select Metrics to load saved history.</p>
       <p id="metrics-updated" class="muted"></p>
       <div id="metrics-cards" class="metrics-cards"></div>
-      <p id="metrics-funnel" class="metrics-callout"></p>
-      <p id="metrics-health" class="muted"></p>
-      <details class="metrics-section"><summary>Daily discovery and completion trend</summary><div class="metrics-table-scroll"><table><thead><tr><th>Date (New York)</th><th>Jobs discovered</th><th>Unique jobs completed</th></tr></thead><tbody id="metrics-trend"></tbody></table></div></details>
-      <div class="metrics-section">
-        <div class="metrics-controls"><label>Job list<select id="metrics-view"><option value="discovery">Jobs first discovered in period</option><option value="activity">Assessment activity, including older backlog</option></select></label><button id="metrics-export" type="button">Export period jobs CSV</button></div>
-        <p>Click a metric card to inspect its jobs; click it again to return to the selected list. Verdict counts include each verdict a job received during the period. Salary is shown separately from fit.</p>
-        <div class="metrics-pagination"><p id="metrics-jobs-label"></p><button id="metrics-prev-page" type="button">Previous page</button><button id="metrics-next-page" type="button">Next page</button></div>
-        <div class="metrics-table-scroll"><table><thead><tr><th>Job / employer posting link</th><th>Posted / discovered</th><th>Assessment status</th><th>Verdict / salary</th><th>Timeline</th></tr></thead><tbody id="metrics-jobs"></tbody></table></div>
-      </div>
-      <details class="metrics-section"><summary>Source health and refresh runs</summary><p>Source volumes include unrelated and repeated postings. These are not unique profile matches. Original employer links can stop working after a posting closes.</p><div id="metrics-sources"></div></details>
+      <section id="metrics-progress" class="metrics-section" aria-label="Selected period progress"></section>
+      <section id="metrics-backlog" class="metrics-section metrics-backlog" aria-label="Overall outstanding backlog"></section>
+      <section class="metrics-section"><h2>By source</h2><p class="muted">Each job is counted once under its first recorded discovery source. Where the original discovery source was not recorded, the employer source is shown.</p><div class="metrics-table-scroll"><table><thead><tr><th>Source</th><th>New jobs</th><th>Completed</th><th>Strong</th><th>Middle</th><th>Pass</th><th>Waiting</th><th>Processing</th><th>Blocked</th><th>Excluded</th></tr></thead><tbody id="metrics-source-pivot"></tbody></table></div></section>
+      <section class="metrics-section"><h2>By role</h2><div class="metrics-table-scroll"><table><thead><tr><th>Role category</th><th>New jobs</th><th>Completed</th><th>Strong</th><th>Middle</th><th>Pass</th><th>Waiting</th><th>Processing</th><th>Blocked</th><th>Excluded</th></tr></thead><tbody id="metrics-role-pivot"></tbody></table></div></section>
+      <details class="metrics-section"><summary id="metrics-email-label">Job links awaiting verification</summary><p class="muted">Email links need a confirmed employer posting before they can enter the job and assessment totals.</p><div class="metrics-table-scroll"><table><thead><tr><th>Job link</th><th>Next step</th></tr></thead><tbody id="metrics-email-jobs"></tbody></table></div></details>
+      <section id="metrics-job-section" class="metrics-section">
+        <div class="metrics-heading"><h2>Jobs</h2><div><button id="metrics-clear" type="button">Show all new jobs</button> <button id="metrics-export" type="button">Export these jobs</button></div></div>
+        <p class="muted">Select any count above to see its jobs and original posting links.</p>
+        <div class="metrics-pagination"><p id="metrics-jobs-label" aria-live="polite"></p><button id="metrics-prev-page" type="button">Previous page</button><button id="metrics-next-page" type="button">Next page</button></div>
+        <div class="metrics-table-scroll"><table><thead><tr><th>Job / employer posting link</th><th>Discovered / posted</th><th>Status / blocker</th><th>Verdict / salary</th><th>History</th></tr></thead><tbody id="metrics-jobs"></tbody></table></div>
+      </section>
     </section>
 
     <footer>

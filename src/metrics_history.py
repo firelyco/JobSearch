@@ -9,7 +9,7 @@ DOCS=ROOT/'docs'
 LOCK=threading.RLock()
 ACTIVE=contextvars.ContextVar('jobsearch_metrics_attempt',default=None)
 KNOWN={}
-FIELDS=('source','company','id','title','url','location','posted_at','first_seen_at')
+FIELDS=('source','company','id','title','url','location','posted_at','first_seen_at','discovery_source','discovery_sources','is_remote')
 
 def now():return datetime.now(timezone.utc).isoformat()
 def enabled():return os.environ.get('JOBSEARCH_METRICS')=='1'
@@ -107,6 +107,14 @@ def capture_fit(jobs,scores,state=None,force=False,provenance='recorded'):
         role=yaml.safe_load((ROOT/'config/role_config.yml').read_text(encoding='utf-8'))
         active=set(backfill.plan(jobs,scores,state,state.get('context_hash',''),role)['cohort_keys']) if state.get('cutoff') else set(by_key)
         observed=state.get('updated_at') or now()
+        # The live queue is authoritative: historical waiting records from jobs
+        # no longer in scope must not inflate today's outstanding backlog.
+        queue_rows=[]
+        for k in sorted(active):
+            if k not in by_key:continue
+            status=backfill.outcome(by_key[k],scores,state,state.get('context_hash',''))
+            queue_rows.append({'job_key':k,'status':status,'verdict':scores.get(k,{}).get('recommendation') if status=='assessed' else None})
+        rows.append(event('queue_snapshot',at=observed,identity=[observed,queue_rows],jobs=queue_rows))
         from src import assessment_scope
         for k,j in by_key.items():
             eligible=k in active
