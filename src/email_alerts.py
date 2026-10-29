@@ -196,7 +196,7 @@ class MailAccessError(RuntimeError):
             'authentication_rejected' if phase=='sign_in' else 'operation_failed')
         super().__init__(phase)
 
-def fetch_yahoo(state,*,now=None,factory=None,max_messages=200,lookback_days=14):
+def fetch_yahoo(state,*,now=None,factory=None,max_messages=200,lookback_days=14,bootstrap_since=None):
     now=now or datetime.now(timezone.utc)
     lookback_days=min(14,max(1,int(lookback_days)))
     counters={'messages_checked':0,'alerts_with_jobs':0,'job_references_found':0,'failed_messages':0,'alerts_without_job_links':0}
@@ -214,19 +214,21 @@ def fetch_yahoo(state,*,now=None,factory=None,max_messages=200,lookback_days=14)
         phase='mailbox_identity'
         _,validity=client.response('UIDVALIDITY')
         if not validity or not validity[0]:raise RuntimeError('Mailbox identity unavailable')
-        validity=validity[0].decode('ascii');since=now-timedelta(days=lookback_days)
+        validity=validity[0].decode('ascii')
+        import hashlib
+        mailbox_key=hashlib.sha256((folder+':'+validity).encode()).hexdigest()[:16]
+        initial=state.get('bootstrap_since') or bootstrap_since or stamp(now-timedelta(days=lookback_days))
+        initial_date=datetime.fromisoformat(initial).astimezone(timezone.utc)
+        since=initial_date
+        mode='incremental' if state.get('mailbox_key')==mailbox_key and state.get('search_since') else 'initial'
+        if state.get('mailbox_key')==mailbox_key and state.get('search_since'):
+            since=max(initial_date,datetime.fromisoformat(state['search_since']).astimezone(timezone.utc))
         date=f'{since.day:02d}-{MONTHS[since.month-1]}-{since.year}'
         phase='search'
         result,data=client.uid('search',None,f'(SINCE "{date}" FROM "linkedin.com")')
         if result!='OK':raise RuntimeError('Mail search failed')
         messages=state.setdefault('messages',{});leads=state.setdefault('leads',{})
-        folder=os.environ.get('JOBSEARCH_ALERT_MAILBOX','INBOX')
-        import hashlib
-        prefix=PARSER_VERSION+':' +hashlib.sha256((folder+':'+validity).encode()).hexdigest()[:16]+':'
-        # Older parser timestamps recorded scan time. Rebuild delivery dates once.
-        if max_messages and messages and not any(k.startswith(prefix) for k in messages):
-            for row in leads.values():
-                row['first_alert_at']='';row['last_alert_at']=''
+        prefix=PARSER_VERSION+':'+mailbox_key+':'
         unseen=[uid for uid in data[0].split() if prefix+uid.decode('ascii') not in messages]
         unparsed=state.setdefault('unparsed',{})
         for uid in unseen[:max_messages]:
@@ -267,17 +269,20 @@ def fetch_yahoo(state,*,now=None,factory=None,max_messages=200,lookback_days=14)
             except (imaplib.IMAP4.error,OSError,RuntimeError,ValueError,StopIteration,TypeError):
                 counters['failed_messages']+=1
         counters['messages_deferred']=max(0,len(unseen)-max_messages)
-        cutoff=stamp(since)
-        state['leads']={k:v for k,v in leads.items() if v.get('last_alert_at','')>=cutoff}
-        unparsed={k:v for k,v in unparsed.items() if v>=cutoff}
         counters['unresolved_alert_messages']=len(unparsed)
+        if max_messages:
+            state['bootstrap_since']=initial
+            state['mailbox_key']=mailbox_key
+            # Advance only after all fetched UIDs succeeded; failures/deferred
+            # messages retain the earlier cursor and retry without refetching successes.
+            state['search_since']=stamp(max(initial_date,now-timedelta(days=1))) if not counters['failed_messages'] and not counters['messages_deferred'] else stamp(since)
         state['last_checked_at']=stamp(now)
         if not counters['failed_messages'] and not counters['messages_deferred'] and not counters['unresolved_alert_messages']:state['last_success_at']=stamp(now)
         # Message dedupe is private; old identifiers can expire after the overlap window.
-        horizon=stamp(now-timedelta(days=max(30,lookback_days+7)))
+        horizon=stamp(min(since,now-timedelta(days=30)))
         state['messages']={k:v for k,v in messages.items() if v>=horizon}
-        state['unparsed']={k:v for k,v in unparsed.items() if v>=horizon}
-        return {**counters,'status':'partial' if counters['failed_messages'] or counters['messages_deferred'] or counters['unresolved_alert_messages'] else 'ok','lookback_days':lookback_days}
+        state['unparsed']=unparsed
+        return {**counters,'status':'partial' if counters['failed_messages'] or counters['messages_deferred'] or counters['unresolved_alert_messages'] else 'ok','lookback_days':lookback_days,'mode':mode,'search_since':stamp(since)}
     except (imaplib.IMAP4.error,OSError,RuntimeError,ValueError,UnicodeError) as error:
         raise MailAccessError(phase,error) from None
     finally:
@@ -292,7 +297,7 @@ def prepare(previous,config,*,now=None):
         return None,health,[],[]
     try:
         state=load_state()
-        try:health.update(fetch_yahoo(state,now=now,max_messages=int(config.get('max_messages_per_run',200)),lookback_days=int(config.get('lookback_days',14))))
+        try:health.update(fetch_yahoo(state,now=now,max_messages=int(config.get('max_messages_per_run',200)),lookback_days=int(config.get('initial_lookback_days',14)),bootstrap_since=config.get('bootstrap_since')))
         except MailAccessError as error:
             reasons={'connection':'Yahoo IMAP could not be reached over TLS.',
                 'sign_in':'Yahoo rejected this IMAP sign-in. This does not establish that the Yahoo website credentials are incorrect; third-party authorization may be required.',
@@ -300,8 +305,6 @@ def prepare(previous,config,*,now=None):
                 'mailbox_identity':'Yahoo sign-in succeeded but mailbox UIDVALIDITY was not available.',
                 'search':'Yahoo sign-in and mailbox access succeeded but the LinkedIn alert search failed.'}
             health.update(status='failed',failure_stage=error.phase,response_code=error.response_code,failure_category=error.category,reason=reasons.get(error.phase,'Yahoo scan could not complete.'))
-        cutoff=stamp(now-timedelta(days=14))
-        state['leads']={k:v for k,v in state.get('leads',{}).items() if not v.get('last_alert_at') or v['last_alert_at']>=cutoff}
         rows=list(state.get('leads',{}).values())
         # Normalize older parsed metadata without rereading mail or calling AI.
         for row in rows:
@@ -333,9 +336,7 @@ def report(state,health,raw,published,scores,policy,role,*,previous=None,now=Non
     def company_key(value):
         value=re.sub(r'(?:\.com|\bincorporated|\binc\.?|\bcorporation|\bcorp\.?|\bllc|\bltd\.?|careers|jobs)\s*$','',str(value).lower()).strip()
         return normalize(value)
-    cutoff=stamp((now or datetime.now(timezone.utc))-timedelta(days=14))
     for lead in leads:
-        if lead.get('last_alert_at') and lead['last_alert_at']<cutoff:continue
         identifier=lead.get('linkedin_id');urls=set(lead.get('employer_urls',[]))|{lead['url']}
         exact=[j for j in raw if discovery.canonical_url(j.get('url','')) in urls or identifier and linkedin_id(j.get('url',''))==identifier]
         possible=[]
@@ -358,7 +359,7 @@ def report(state,health,raw,published,scores,policy,role,*,previous=None,now=Non
              '; '.join(scorer.score_job(exact[0],role)[1]) if collection=='screened_out' else
              'Employer URL still needs resolution; this is a lead, not an assessed job.' if not matches else ''})
     return {'schema':1,'checked_at':checked,'connection':health,'last_success_at':state.get('last_success_at') if state else (previous or {}).get('last_success_at'),
-        'scope':'Rolling last 14 days of LinkedIn alert emails only; older references expire. This does not verify all LinkedIn or in-app listings.',
+        'scope':'One-time 14-day catch-up, then new unprocessed LinkedIn emails during the daily job search. Collected references are retained; this does not verify all LinkedIn or in-app listings.',
         'counts':dict(Counter(r['collection'] for r in rows)),'rows':rows}
 
 

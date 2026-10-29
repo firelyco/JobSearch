@@ -93,11 +93,11 @@ class YahooReadOnly(unittest.TestCase):
         second=e.fetch_yahoo(state,now=NOW,factory=lambda *a,**k:FakeIMAP())
         self.assertEqual(second['messages_checked'],0)
 
-    def test_window_is_capped_and_old_leads_expire(self):
+    def test_initial_window_is_capped_and_collected_leads_are_retained(self):
         state={'schema':1,'messages':{},'leads':{'old':{'last_alert_at':'2026-10-01T10:00:00+00:00'}}}
         client=FakeIMAP()
         e.fetch_yahoo(state,now=NOW,factory=lambda *a,**k:client,lookback_days=90)
-        self.assertNotIn('old',state['leads'])
+        self.assertIn('old',state['leads'])
         search=next(c for c in client.calls if c[0]=='search')
         self.assertIn('15-Oct-2026',search[-1])
         self.assertEqual(state['leads']['4481477507']['last_alert_at'],'2026-10-29T09:00:00+00:00')
@@ -113,6 +113,29 @@ class YahooReadOnly(unittest.TestCase):
         e.fetch_yahoo(state,now=NOW,factory=lambda *a,**k:client)
         self.assertFalse(state['leads'])
         self.assertFalse(any(c[0]=='fetch' and c[-1]=='(BODY.PEEK[])' for c in client.calls))
+
+    def test_daily_scan_uses_saved_cursor_and_does_not_reread_successes(self):
+        from datetime import timedelta
+        state={'schema':1,'messages':{},'leads':{}}
+        e.fetch_yahoo(state,now=NOW,factory=lambda *a,**k:FakeIMAP())
+        client=FakeIMAP()
+        e.fetch_yahoo(state,now=NOW+timedelta(days=2),factory=lambda *a,**k:client)
+        self.assertIn('28-Oct-2026',next(c for c in client.calls if c[0]=='search')[-1])
+        self.assertFalse(any(c[0]=='fetch' for c in client.calls))
+        self.assertEqual(state['bootstrap_since'],'2026-10-15T10:00:00+00:00')
+    def test_outage_does_not_slide_initial_cutoff_or_skip_unfinished_mail(self):
+        from datetime import timedelta
+        state={'schema':1,'messages':{},'leads':{}}
+        e.fetch_yahoo(state,now=NOW,factory=lambda *a,**k:FakeIMAP(fail_uid=b'1'))
+        client=FakeIMAP()
+        e.fetch_yahoo(state,now=NOW+timedelta(days=20),factory=lambda *a,**k:client)
+        self.assertIn('15-Oct-2026',next(c for c in client.calls if c[0]=='search')[-1])
+        self.assertIn('4481477507',state['leads'])
+    def test_private_state_accepts_valid_incremental_cursor(self):
+        state={'schema':1,'messages':{},'leads':{},'bootstrap_since':NOW.isoformat(),'search_since':NOW.isoformat(),'mailbox_key':'0123456789abcdef'}
+        self.assertEqual(history.validate_email_state(state),state)
+        for invalid in ('not a date','2026-10-29'):
+            with self.assertRaises(ValueError):history.validate_email_state({**state,'search_since':invalid})
 
     def test_caps_defer_without_marking_unread_messages_processed(self):
         state={'schema':1,'messages':{},'leads':{}}

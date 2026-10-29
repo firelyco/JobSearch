@@ -4,6 +4,7 @@ import hashlib
 import hmac
 import json
 import os
+import re
 import secrets
 import time
 from http.server import BaseHTTPRequestHandler
@@ -123,9 +124,15 @@ def save_records(connection, records):
 
 def validate_email_state(state):
     """Private scan state accepts job references/opaque UIDs, never raw mail."""
-    if not isinstance(state,dict) or set(state)-{'schema','messages','unparsed','leads','last_checked_at','last_success_at'}:
+    if not isinstance(state,dict) or set(state)-{'schema','messages','unparsed','leads','last_checked_at','last_success_at','bootstrap_since','search_since','mailbox_key'}:
         raise ValueError('Invalid email state')
     if state.get('schema')!=1:raise ValueError('Invalid email state version')
+    for key in ('bootstrap_since','search_since'):
+        if key in state:
+            if not isinstance(state[key],str) or len(state[key])>40:raise ValueError('Invalid email cursor')
+            from datetime import datetime
+            if datetime.fromisoformat(state[key]).tzinfo is None:raise ValueError('Invalid email cursor')
+    if 'mailbox_key' in state and not re.fullmatch(r'[a-f0-9]{16}',state['mailbox_key']):raise ValueError('Invalid mailbox identity')
     messages=state.get('messages',{});leads=state.get('leads',{})
     if not isinstance(messages,dict) or not isinstance(leads,dict) or len(messages)>10000 or len(leads)>1500:
         raise ValueError('Email state limit')
