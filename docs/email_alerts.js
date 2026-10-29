@@ -14,7 +14,7 @@
   const collection={tracked:'Exact posting captured',possible_match:'Possible match — confirm requisition',missing:'Missing — employer link unresolved',screened_out:'Screened out — see reason'};
   function render(report,scores={},page=1){
     const rows=report.rows||[],health=report.connection||{},count=report.counts||{},size=25,pages=Math.max(1,Math.ceil(rows.length/size));page=Math.min(page,pages);
-    const status={not_configured:'Yahoo connection needs setup',failed:'Yahoo scan failed — last known results retained',partial:'Partial scan — deferred or failed messages remain',ok:'Yahoo scan completed'}[health.status]||'Waiting for first Yahoo scan';
+    const status={not_configured:'Yahoo connection needs setup',failed:'Yahoo scan failed — last known results retained',partial:'Yahoo scan needs review — see message counts below',ok:'Yahoo scan completed'}[health.status]||'Waiting for first Yahoo scan';
     const scanned=health.messages_checked!=null?` ${health.messages_checked} messages checked; ${health.messages_deferred||0} deferred; ${health.failed_messages||0} failed; ${health.unresolved_alert_messages||0} alert emails need link-format review.`:'';
     return `<p><strong>${esc(status)}.</strong>${esc(scanned)} ${esc(health.reason||'')}</p><p>${rows.length} unique job references: ${count.tracked||0} exact matches, ${count.possible_match||0} possible matches, ${count.missing||0} unresolved, ${count.screened_out||0} screened out.</p>
       <p>Last complete scan: ${report.last_success_at?esc(new Date(report.last_success_at).toLocaleString()):'Not yet completed'}. First import checks the last 14 days. An alert date is not a job posting date.</p>
