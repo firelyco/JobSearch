@@ -192,7 +192,8 @@ class BackfillTests(unittest.TestCase):
         done=job('done');failed=job('failed');scores={b.key(done):verdict(done)}
         self.run_batch([failed],runner=lambda **kw:kw['existing'])
         self.run_batch([failed],runner=lambda **kw:kw['existing'])
-        self.assertFalse(b.continuation_needed(self.state,[done,failed],scores,'context',CFG,NOW))
+        self.assertEqual(b.plan([done,failed],scores,self.state,'context',CFG)['counts']['pending'],0)
+        self.assertTrue(b.continuation_needed(self.state,[done,failed],scores,'context',CFG,NOW))  # saved private reviews may still need recovery
         reset=b.retry_unfinished(self.state,[done,failed],scores,'context',CFG,NOW)
         self.assertEqual(reset,[b.key(failed)])
         self.assertEqual(self.state['retry_history'][0]['attempt']['count'],2)
@@ -203,11 +204,13 @@ class BackfillTests(unittest.TestCase):
             return kw['existing']
         self.run_batch([done,failed],scores,runner)
         self.run_batch([done,failed],scores,runner)
-        self.assertFalse(b.continuation_needed(self.state,[done,failed],scores,'context',CFG,NOW))
+        self.assertEqual(b.plan([done,failed],scores,self.state,'context',CFG)['counts']['pending'],0)
+        self.assertTrue(b.continuation_needed(self.state,[done,failed],scores,'context',CFG,NOW))  # saved private reviews may still need recovery
 
     def test_provider_pause_and_disabled_period_do_not_continue(self):
         for status in ('archived','waiting_for_provider'):
             self.state['status']=status
+            self.state['updated_at']=NOW.isoformat()
             self.assertFalse(b.continuation_needed(self.state,[job('new')],{},'context',CFG,NOW))
         self.state.update(status='running',enabled=False)
         self.assertFalse(b.continuation_needed(self.state,[job('new')],{},'context',CFG,NOW))
@@ -223,30 +226,68 @@ class BackfillTests(unittest.TestCase):
         self.assertEqual(self.state['attempts'][b.key(j)]['last_outcome'],'strong')
         self.assertEqual(self.state['counts']['assessed'],1)
 
-    def test_checkpoint_stages_only_public_files_and_restores_model_override(self):
+    def test_checkpoint_writer_keeps_results_when_publishing_fails(self):
+        from src.fit_backfill import CheckpointWriter
+        from unittest.mock import Mock
         with tempfile.TemporaryDirectory() as directory:
-            config=Path(directory)/'config.yml';config.write_text('NVIDIA runtime override')
-            commands=[]
-            def git(command,**kwargs):
-                commands.append(command)
-                if command[1]=='restore':config.write_text('tracked default')
-                return SimpleNamespace(returncode=1 if command[1]=='diff' else 0)
-            with patch.object(b.fit,'TAILOR_CONFIG_FILE',config),patch.object(b.subprocess,'run',side_effect=git):
-                b.publish_checkpoint()
-            self.assertEqual(config.read_text(),'NVIDIA runtime override')
-            staged=next(c for c in commands if c[1]=='add')
-            self.assertEqual(staged[2:],['docs/fit_scores.json','docs/fit_policy.json','docs/fit_backfill.json','docs/shortlist_validation.json'])
-            self.assertTrue(any(c[1]=='push' for c in commands))
-            self.assertIn(['node','src/validate_shortlist.cjs'],commands)
-            self.assertIn(['node','src/validate_shortlist.cjs','--check-only'],commands)
-            self.assertIn(['git','config','user.name','github-actions[bot]'],commands)
-            self.assertLess(next(i for i,c in enumerate(commands) if c[1]=='config'),next(i for i,c in enumerate(commands) if c[1]=='pull'))
-    def test_failed_checkpoint_restores_runtime_configuration(self):
-        with tempfile.TemporaryDirectory() as directory:
-            config=Path(directory)/'config.yml';config.write_text('NVIDIA runtime override')
-            with patch.object(b.fit,'TAILOR_CONFIG_FILE',config),patch.object(b.subprocess,'run',side_effect=RuntimeError('git failed')):
-                with self.assertRaises(RuntimeError): b.publish_checkpoint()
-            self.assertEqual(config.read_text(),'NVIDIA runtime override')
+            statefile=Path(directory)/'queue.json';publisher=Mock()
+            publisher.publish.side_effect=RuntimeError('competing push')
+            with patch.object(b,'STATE_FILE',statefile),patch.object(b.fit,'save') as save:
+                writer=CheckpointWriter([],publisher,interval=60)
+                writer(self.state,{'done':{'recommendation':'strong'}})
+                self.assertTrue(self.state['publication_pending'])
+                self.assertEqual(save.call_count,1)
+                writer(self.state,{},force=True)
+                self.assertEqual(publisher.publish.call_count,2)
+
+    def test_recover_exhausted_private_completion_before_public_retry_gate(self):
+        j=job('saved')
+        self.run_batch([j],runner=lambda **kw:kw['existing'])
+        self.run_batch([j],runner=lambda **kw:kw['existing'])
+        attempt=copy.deepcopy(self.state['attempts'])
+        self.assertEqual(b.outcome(j,{},self.state,'context'),'unresolved')
+        def replay(**kw):
+            self.assertEqual(b.os.environ['FIT_CACHE_ONLY'],'true')
+            self.assertFalse(kw['rescore'])
+            return {b.key(j):verdict(j)}
+        result=b.recover_completed(jobs=[j],profile={},rules={},scores={},state=self.state,
+            model='nvidia',role_config=CFG,runner=replay)
+        self.assertEqual(b.outcome(j,result,self.state,'context'),'assessed')
+        self.assertEqual(self.state['attempts'],attempt)
+        self.assertFalse(b.recovery_candidates([j],result,self.state,'context',CFG))
+
+    def test_private_recovery_uses_real_batch_path_with_inference_and_reservation_forbidden(self):
+        from src.evidence_fit import EvidenceVerdict
+        from src import evidence_batch
+        j=job('private-complete');k=b.key(j)
+        self.run_batch([j],runner=lambda **kw:kw['existing'])
+        self.run_batch([j],runner=lambda **kw:kw['existing'])
+        saved=EvidenceVerdict('medium','Saved review','evidence',{'validated':True},
+            {'inventory':[],'extraction':{},'independent_review':{},'execution':{'calls_this_attempt':0}})
+        with patch.object(evidence_batch,'context_hash',return_value='context'), \
+             patch.object(evidence_batch.jd_fetch,'get_jd_text',return_value='A real employer description'), \
+             patch.object(evidence_batch,'load_private',return_value={'extraction':{'saved':True},'independent_review':{'saved':True}}), \
+             patch.object(evidence_batch,'replay_same_skill',return_value=saved), \
+             patch.object(evidence_batch,'save_private'), \
+             patch.object(evidence_batch.cache,'reserve',side_effect=AssertionError('No new reservation')) as reserve, \
+             patch.object(evidence_batch.llm_client,'build_client',side_effect=AssertionError('No AI client')) as client:
+            result=b.recover_completed(jobs=[j],profile={},rules={'evidence_required':True,'_fitment_skill':'private','fitment_skill_hash':'test','comp_floor_usd':250000},
+                scores={},state=self.state,model='nvidia',role_config=CFG)
+            self.assertEqual(result[k]['recommendation'],'medium')
+            self.assertEqual(result[k]['cache_status'],'revalidated_without_ai')
+            reserve.assert_not_called();client.assert_not_called()
+            self.assertEqual(self.state['attempts'][k]['count'],2)
+
+    def test_cache_miss_does_not_reset_budget_or_repeat_unchanged_recovery(self):
+        j=job('missing')
+        self.run_batch([j],runner=lambda **kw:kw['existing'])
+        self.run_batch([j],runner=lambda **kw:kw['existing'])
+        result=b.recover_completed(jobs=[j],profile={},rules={},scores={},state=self.state,
+            model='nvidia',role_config=CFG,runner=lambda **kw:kw['existing'])
+        self.assertEqual(self.state['attempts'][b.key(j)]['count'],2)
+        self.assertFalse(b.recovery_candidates([j],result,self.state,'context',CFG))
+        self.assertEqual(b.outcome(j,result,self.state,'context'),'unresolved')
+
     def test_new_pipeline_retries_only_unresolved_and_keeps_completed_scores(self):
         j=job('failed');done=job('done')
         self.run_batch([j],runner=lambda **kw:kw['existing'])

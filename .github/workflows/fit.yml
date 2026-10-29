@@ -238,7 +238,7 @@ jobs:
             exit 0
           fi
           if [ "$FIT_BACKFILL" = "true" ] || ( [ "$FIT_VALIDATE_ONLY" != "true" ] && [ -z "$FIT_EXPLICIT_JOB_KEYS" ] && python -m src.fit_backfill --should-continue ); then
-            FIT_BACKFILL_PUBLISH=true python -m src.fit_backfill --max "${{ vars.JOBSEARCH_BACKFILL_BATCH_SIZE || inputs.max || '6' }}"
+            FIT_BACKFILL_PUBLISH=true python -m src.fit_backfill --minutes 8 --max "${{ vars.JOBSEARCH_BACKFILL_BATCH_SIZE || inputs.max || '6' }}"
             exit $?
           fi
           ARGS="--max ${{ inputs.max || '6' }}"
@@ -280,44 +280,26 @@ jobs:
                   assert actual in case['allowed_career_fit'], 'Calibration mismatch: ' + case['job_key'] + ' => ' + actual
           PY
 
-      - name: Commit updated fit_scores.json
-        # Run even if scoring died part-way: fit.py saves after each verdict,
-        # so whatever finished is still worth committing.
+      - name: Publish public assessment checkpoint
+        id: publish
         if: always() && inputs.validate_only != true && inputs.provider_health != true
-        run: |
-          # Runtime model overrides must not be committed or block the rebase.
-          git restore -- config/tailor_config.yml
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          node src/validate_shortlist.cjs
-          git add docs/shortlist_validation.json
-          git add docs/metrics
-          git add docs/fit_scores.json
-          if [ -f docs/fit_backfill.json ]; then git add docs/fit_backfill.json; fi
-          if [ -f docs/fit_benchmark.json ]; then git add docs/fit_benchmark.json; fi
-          if [ -f docs/fit_policy.json ]; then git add docs/fit_policy.json; fi
-          if git diff --staged --quiet; then
-            echo "no fit-score changes to commit"
-          else
-            # commit BEFORE rebasing — git refuses to rebase with a dirty index
-            git commit -m "fit: score profile fit $(date -u +%Y-%m-%dT%H:%MZ)"
-            # Another run may have pushed docs/fit_scores.json meanwhile; on conflict, union
-            # the two versions by key (ours wins) instead of failing.
-            cp docs/fit_scores.json "$RUNNER_TEMP/ours.json"
-            if ! git pull --rebase origin main; then
-              git checkout --ours -- docs/fit_scores.json   # during a rebase, "ours" is upstream main
-              python -m src.merge_json docs/fit_scores.json "$RUNNER_TEMP/ours.json"
-              git add docs/metrics
-              git add docs/fit_scores.json
-              if [ -f docs/fit_policy.json ]; then git add docs/fit_policy.json; fi
-              GIT_EDITOR=true git rebase --continue
-            fi
-            node src/validate_shortlist.cjs --check-only
-            git push
-          fi
+        run: python -m src.checkpoint_publisher
+
+      - name: Retain unpublished public results
+        if: failure() && inputs.validate_only != true && inputs.provider_health != true
+        uses: actions/upload-artifact@v4
+        with:
+          name: assessment-public-checkpoint-${{ github.run_id }}
+          path: |
+            docs/fit_scores.json
+            docs/fit_policy.json
+            docs/fit_backfill.json
+            docs/fit_benchmark.json
+            docs/metrics/
+          retention-days: 14
 
       - name: Continue assessment backfill
-        if: success() && inputs.validate_only != true && inputs.provider_health != true && inputs.benchmark != true && inputs.inventory_only != true && inputs.publish_benchmark != true && inputs.job_keys == ''
+        if: success() && steps.publish.outcome == 'success' && inputs.cache_only != true && inputs.validate_only != true && inputs.provider_health != true && inputs.benchmark != true && inputs.inventory_only != true && inputs.publish_benchmark != true && inputs.job_keys == ''
         env:
           GH_TOKEN: ${{ github.token }}
         run: |

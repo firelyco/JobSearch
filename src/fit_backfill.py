@@ -6,6 +6,8 @@ import json
 import os
 import re
 import subprocess
+import time
+import logging
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from src import fit,assessment_scope
@@ -171,10 +173,13 @@ def continuation_needed(state, jobs, scores, context, role_config, now):
         return False
     if not context or not state.get('cutoff') or not state.get('as_of'):
         return False
-    if state.get('status')=='waiting_for_provider' and not any(scores.get(key(j),{}).get('recommendation')=='strong' and scores.get(key(j),{}).get('validated') is True and outcome(j,scores,state,context)=='pending' and assessment_scope.allowed(j) for j in jobs):
-        return False
+    if state.get('status')=='waiting_for_provider':
+        paused=timestamp(state.get('updated_at'))
+        # Retry only remaining budget after cooldown. Exhausted inputs can only
+        # recover a saved review, never authorize another paid attempt.
+        if paused and (now-paused).total_seconds()<1800:return False
     refresh(state,jobs,scores,context,role_config,now)
-    return state['status'] == 'running'
+    return state['status'] == 'running' or bool(recovery_candidates(jobs,scores,state,context,role_config))
 
 
 def retry_unfinished(state, jobs, scores, context, role_config, now):
@@ -245,28 +250,72 @@ def run_batch(*, jobs, profile, rules, scores, state, model, role_config, max_jo
 
 
 def publish_checkpoint():
-    """Publish only public scoring/progress files; preserve runtime model overrides."""
-    active_config = fit.TAILOR_CONFIG_FILE.read_text(encoding='utf-8')
-    def git(*args, check=True):
-        return subprocess.run(['git', *args], cwd=fit.ROOT, check=check, capture_output=True, text=True)
+    """Compatibility entry point; never rebase the active assessment checkout."""
+    from src.checkpoint_publisher import main as publish
+    return publish()
+
+
+def recovery_candidates(jobs,scores,state,context,role_config):
+    """Look behind public retry gates once per unchanged attempted input. No AI."""
+    cohort=set(plan(jobs,scores,state,context,role_config)['cohort_keys'])
+    cohort.update(key(j) for j in jobs if assessment_scope.allowed(j) and in_scope(j,role_config) and scores.get(key(j),{}).get('recommendation')=='strong' and scores.get(key(j),{}).get('validated') is True)
+    rows=[]
+    for job in jobs:
+        k=key(job);attempt=state.get('attempts',{}).get(k,{})
+        if k not in cohort or not attempt or outcome(job,scores,state,context)=='assessed':continue
+        signature=[context,snapshot_hash(job),attempt.get('last_attempt_at'),attempt.get('count')]
+        if state.get('recovery_checks',{}).get(k,{}).get('signature')!=signature:
+            rows.append((job,signature))
+    rows.sort(key=lambda row:scores.get(key(row[0]),{}).get('recommendation')=='strong',reverse=True)
+    return rows
+
+
+def recover_completed(*,jobs,profile,rules,scores,state,model,role_config,persist=None,runner=None,max_jobs=12):
+    context=context_hash(profile,rules,model)
+    candidates=recovery_candidates(jobs,scores,state,context,role_config)[:max_jobs]
+    if not candidates:return scores
+    previous=os.environ.get('FIT_CACHE_ONLY')
+    os.environ['FIT_CACHE_ONLY']='true'
     try:
-        # Rebase creates commits too; identity must persist beyond the initial commit.
-        git('config','user.name','github-actions[bot]')
-        git('config','user.email','41898282+github-actions[bot]@users.noreply.github.com')
-        git('restore', '--', 'config/tailor_config.yml')
-        subprocess.run(['node','src/validate_shortlist.cjs'],cwd=fit.ROOT,check=True)
-        git('add', 'docs/fit_scores.json', 'docs/fit_policy.json', 'docs/fit_backfill.json', 'docs/shortlist_validation.json')
-        git('add', 'docs/metrics')
-        if git('diff', '--cached', '--quiet', check=False).returncode == 0: return
-        git('-c','user.name=github-actions[bot]','-c','user.email=41898282+github-actions[bot]@users.noreply.github.com',
-            'commit','-m','fit: checkpoint assessment backfill')
-        for attempt in range(3):
-            git('pull', '--rebase', 'origin', 'main')
-            subprocess.run(['node','src/validate_shortlist.cjs','--check-only'],cwd=fit.ROOT,check=True)
-            if git('push', check=False).returncode == 0: return
-        raise RuntimeError('Could not publish backfill checkpoint')
+        def saved(updated):
+            if persist:persist(state,updated)
+        scores=(runner or fit.run)(jobs=jobs,profile=profile,rules=rules,existing=scores,
+            max_jobs=len(candidates),rescore=False,job_keys=[key(j) for j,_ in candidates],on_scored=saved)
     finally:
-        fit.TAILOR_CONFIG_FILE.write_text(active_config, encoding='utf-8')
+        if previous is None:os.environ.pop('FIT_CACHE_ONLY',None)
+        else:os.environ['FIT_CACHE_ONLY']=previous
+    checked=datetime.now(timezone.utc).isoformat()
+    for job,signature in candidates:
+        state.setdefault('recovery_checks',{})[key(job)]={'signature':signature,'checked_at':checked,
+            'outcome':'recovered' if outcome(job,scores,state,context)=='assessed' else 'no_reusable_result'}
+    refresh(state,jobs,scores,context,role_config,datetime.now(timezone.utc))
+    if persist:persist(state,scores)
+    return scores
+
+
+class CheckpointWriter:
+    """Local persistence is mandatory; publication is bounded and recoverable."""
+    def __init__(self,jobs,publisher=None,interval=60):
+        self.jobs=jobs;self.publisher=publisher;self.interval=interval;self.last=0;self.pending=False
+
+    def __call__(self,progress,results,force=False):
+        progress['run_url']='https://github.com/'+os.environ.get('GITHUB_REPOSITORY','firelyco/JobSearch')+'/actions/runs/'+os.environ.get('GITHUB_RUN_ID','')
+        fit.save(results)
+        from src.metrics_history import capture_fit
+        capture_fit(self.jobs,results,progress)
+        STATE_FILE.write_text(json.dumps(progress,indent=2)+'\n',encoding='utf-8')
+        self.pending=True
+        if self.publisher and (force or time.monotonic()-self.last>=self.interval):
+            self.last=time.monotonic()
+            try:
+                self.publisher.publish()
+                progress.pop('publication_pending',None)
+                self.pending=False
+            except Exception as error:
+                # No API work is discarded or repeated because Git is unavailable.
+                progress['publication_pending']=True
+                logging.getLogger(__name__).warning('Checkpoint retained for publication retry (%s)',type(error).__name__)
+            STATE_FILE.write_text(json.dumps(progress,indent=2)+'\n',encoding='utf-8')
 
 
 def main(argv=None):
@@ -281,6 +330,7 @@ def main(argv=None):
     parser.add_argument('--retry-unfinished', action='store_true')
     parser.add_argument('--provider-error', action='store_true')
     parser.add_argument('--max', type=int, default=6)
+    parser.add_argument('--minutes',type=float,default=0,help='Start additional batches within this time budget')
     args = parser.parse_args(argv)
     state = fit.load_json(STATE_FILE, {})
     if args.enabled: return 0 if state.get('enabled') else 1
@@ -315,6 +365,8 @@ def main(argv=None):
     from src.fitment_skill import attach
     rules = attach(fit.load_json(fit.FIT_RULES_FILE,{}))
     if not profile or not rules.get('evidence_required'): raise RuntimeError('Private evidence scoring is required')
+    from src.checkpoint_publisher import Publisher
+    publisher=Publisher(fit.ROOT) if os.environ.get('FIT_BACKFILL_PUBLISH')=='true' else None
     model = fit._fit_model()
     policy = {'version':rules.get('fit_policy_version',''), 'evidence_required':True,
               'engine_version':'evidence-v1', 'scorer_revision':scorer_revision(),
@@ -322,15 +374,16 @@ def main(argv=None):
     (fit.DOCS_DIR/'fit_policy.json').write_text(json.dumps(policy)+'\n',encoding='utf-8')
     role_config = yaml.safe_load((fit.CONFIG_DIR/'role_config.yml').read_text(encoding='utf-8'))
     jobs = fit.load_json(fit.JOBS_FILE,[]); scores = fit.load_json(fit.FIT_FILE,{})
-    def persist(progress, results):
-        progress['run_url'] = 'https://github.com/'+os.environ.get('GITHUB_REPOSITORY','firelyco/JobSearch')+'/actions/runs/'+os.environ.get('GITHUB_RUN_ID','')
-        fit.save(results)
-        from src.metrics_history import capture_fit
-        capture_fit(jobs,results,progress)
-        STATE_FILE.write_text(json.dumps(progress,indent=2)+'\n',encoding='utf-8')
-        if os.environ.get('FIT_BACKFILL_PUBLISH') == 'true': publish_checkpoint()
-    run_batch(jobs=jobs,profile=profile,rules=rules,scores=scores,state=state,model=model,
-              role_config=role_config,max_jobs=args.max,persist=persist)
+    persist=CheckpointWriter(jobs,publisher)
+    started=time.monotonic()
+    scores=recover_completed(jobs=jobs,profile=profile,rules=rules,scores=scores,state=state,
+        model=model,role_config=role_config,persist=persist)
+    while os.environ.get('FIT_CACHE_ONLY')!='true':
+        before=state.get('batches',0)
+        scores=run_batch(jobs=jobs,profile=profile,rules=rules,scores=scores,state=state,model=model,
+            role_config=role_config,max_jobs=args.max,persist=persist)
+        if state.get('batches',0)==before or args.minutes<=0 or time.monotonic()-started>=args.minutes*60:break
+    persist(state,scores,force=True)
     print(json.dumps({'status':state['status'], 'counts':state['counts'], 'windows_processed':state['windows_processed']}))
     if os.environ.get('GITHUB_STEP_SUMMARY'):
         with open(os.environ['GITHUB_STEP_SUMMARY'],'a',encoding='utf-8') as out:
