@@ -232,7 +232,7 @@ class BackfillTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as directory:
             statefile=Path(directory)/'queue.json';publisher=Mock()
             publisher.publish.side_effect=RuntimeError('competing push')
-            with patch.object(b,'STATE_FILE',statefile),patch.object(b.fit,'save') as save:
+            with patch.object(b,'STATE_FILE',statefile),patch.object(b.fit,'save') as save,patch.object(b.time,'monotonic',return_value=10):
                 writer=CheckpointWriter([],publisher,interval=60)
                 writer(self.state,{'done':{'recommendation':'strong'}})
                 self.assertTrue(self.state['publication_pending'])

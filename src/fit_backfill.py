@@ -303,7 +303,7 @@ def recover_completed(*,jobs,profile,rules,scores,state,model,role_config,persis
 class CheckpointWriter:
     """Local persistence is mandatory; publication is bounded and recoverable."""
     def __init__(self,jobs,publisher=None,interval=60):
-        self.jobs=jobs;self.publisher=publisher;self.interval=interval;self.last=0;self.pending=False
+        self.jobs=jobs;self.publisher=publisher;self.interval=interval;self.last=None;self.pending=False
 
     def __call__(self,progress,results,force=False):
         progress['run_url']='https://github.com/'+os.environ.get('GITHUB_REPOSITORY','firelyco/JobSearch')+'/actions/runs/'+os.environ.get('GITHUB_RUN_ID','')
@@ -312,7 +312,7 @@ class CheckpointWriter:
         capture_fit(self.jobs,results,progress)
         STATE_FILE.write_text(json.dumps(progress,indent=2)+'\n',encoding='utf-8')
         self.pending=True
-        if self.publisher and (force or time.monotonic()-self.last>=self.interval):
+        if self.publisher and (force or self.last is None or time.monotonic()-self.last>=self.interval):
             self.last=time.monotonic()
             try:
                 self.publisher.publish()
