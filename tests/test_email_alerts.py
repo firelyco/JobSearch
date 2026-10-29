@@ -85,6 +85,14 @@ class YahooReadOnly(unittest.TestCase):
         second=e.fetch_yahoo(state,now=NOW,factory=factory)
         self.assertEqual(first['unresolved_alert_messages'],1)
         self.assertEqual(second['status'],'partial');self.assertEqual(second['unresolved_alert_messages'],1)
+    def test_sign_in_failure_exposes_stage_without_provider_text_or_secret(self):
+        client=FakeIMAP();client.login=Mock(side_effect=e.imaplib.IMAP4.error('sensitive provider text'))
+        with self.assertRaises(e.MailAccessError) as failure:
+            e.fetch_yahoo({'schema':1,'messages':{},'leads':{}},now=NOW,factory=lambda *a,**k:client)
+        self.assertEqual(failure.exception.phase,'sign_in')
+        self.assertNotIn('sensitive',str(failure.exception))
+        self.assertIn(('logout',),client.calls)
+
     def test_no_credentials_or_private_state_failure_never_opens_mail(self):
         with patch.dict(os.environ,{'YAHOO_EMAIL':'','YAHOO_APP_PASSWORD':''}),patch.object(e,'load_state') as load:
             _,health,_,_=e.prepare([],{})

@@ -175,22 +175,30 @@ def save_state(state):
     response=_send(requests.post,headers={'Authorization':'Bearer '+token},json={'action':'email_alert_write','state':state},timeout=40)
     if response.status_code!=200:raise RuntimeError('Private email state unavailable')
 
+class MailAccessError(RuntimeError):
+    """Expose only a fixed operation name, never provider text or credentials."""
+    def __init__(self,phase):self.phase=phase;super().__init__(phase)
+
 def fetch_yahoo(state,*,now=None,factory=None,max_messages=200,lookback_days=14):
     now=now or datetime.now(timezone.utc)
     counters={'messages_checked':0,'alerts_with_jobs':0,'job_references_found':0,'failed_messages':0,'alerts_without_job_links':0}
-    client=None
+    client=None;phase='connection'
     try:
         client=(factory or imaplib.IMAP4_SSL)('imap.mail.yahoo.com',993,ssl_context=ssl.create_default_context(),timeout=30)
-        client.login(os.environ['YAHOO_EMAIL'],os.environ['YAHOO_APP_PASSWORD'].replace(' ',''))
+        phase='sign_in'
+        client.login(os.environ['YAHOO_EMAIL'].strip(),''.join(os.environ['YAHOO_APP_PASSWORD'].split()))
+        phase='mailbox'
         folder=os.environ.get('JOBSEARCH_ALERT_MAILBOX','INBOX')
         if any(c in folder for c in '\r\n'):raise ValueError('Invalid mailbox')
         quoted='"'+folder.replace('\\','\\\\').replace('"','\\"')+'"'
         result,_=client.select(quoted,readonly=True)
         if result!='OK':raise RuntimeError('Mailbox unavailable')
+        phase='mailbox_identity'
         _,validity=client.response('UIDVALIDITY')
         if not validity or not validity[0]:raise RuntimeError('Mailbox identity unavailable')
         validity=validity[0].decode('ascii');since=now-timedelta(days=lookback_days)
         date=f'{since.day:02d}-{MONTHS[since.month-1]}-{since.year}'
+        phase='search'
         result,data=client.uid('search',None,f'(SINCE "{date}" FROM "linkedin.com")')
         if result!='OK':raise RuntimeError('Mail search failed')
         messages=state.setdefault('messages',{});leads=state.setdefault('leads',{})
@@ -236,6 +244,8 @@ def fetch_yahoo(state,*,now=None,factory=None,max_messages=200,lookback_days=14)
         state['messages']={k:v for k,v in messages.items() if v>=horizon}
         state['unparsed']={k:v for k,v in unparsed.items() if v>=horizon}
         return {**counters,'status':'partial' if counters['failed_messages'] or counters['messages_deferred'] or counters['unresolved_alert_messages'] else 'ok','lookback_days':lookback_days}
+    except (imaplib.IMAP4.error,OSError,RuntimeError,ValueError) as error:
+        raise MailAccessError(phase) from None
     finally:
         if client:
             try:client.logout()
@@ -249,8 +259,13 @@ def prepare(previous,config,*,now=None):
     try:
         state=load_state()
         try:health.update(fetch_yahoo(state,now=now,max_messages=int(config.get('max_messages_per_run',200)),lookback_days=int(config.get('lookback_days',14))))
-        except (imaplib.IMAP4.error,OSError,RuntimeError,ValueError):
-            health.update(status='failed',reason='Yahoo sign-in, mailbox access or connection failed. Check the app password and mailbox setting.')
+        except MailAccessError as error:
+            reasons={'connection':'Yahoo IMAP could not be reached over TLS.',
+                'sign_in':'Yahoo rejected sign-in. Verify the full Yahoo address and a newly generated Yahoo app password.',
+                'mailbox':'Yahoo sign-in succeeded but the selected mailbox could not be opened read-only.',
+                'mailbox_identity':'Yahoo sign-in succeeded but mailbox UIDVALIDITY was not available.',
+                'search':'Yahoo sign-in and mailbox access succeeded but the LinkedIn alert search failed.'}
+            health.update(status='failed',failure_stage=error.phase,reason=reasons.get(error.phase,'Yahoo scan could not complete.'))
         rows=list(state.get('leads',{}).values())
         health['jobs']=len(rows);health['last_success_at']=state.get('last_success_at')
         urls=[];queries=[];known={discovery.canonical_url(j.get('url','')) for j in previous}
