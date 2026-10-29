@@ -150,7 +150,7 @@ def parse_message(raw):
                     identifier=linkedin_id(url.rstrip(').,'))
                     if not identifier:continue
                     prior=[clean(v) for v in lines[max(0,index-3):index] if clean(v)]
-                    title=next((v for v in prior if ROLE.search(v)),'')
+                    title=next((v for v in prior if ROLE.search(v) and '@' not in v),'')
                     found.append({'linkedin_id':identifier,'url':'https://www.linkedin.com/jobs/view/'+identifier,
                         'title':title,'company':'','location':'','employer_urls':[]})
         for row in found:
@@ -324,6 +324,16 @@ def report(state,health,raw,published,scores,policy,role,*,previous=None,now=Non
 def main():
     """Manual read-only connection/import check; daily collection stays in poll."""
     from pathlib import Path
+    import argparse
+    parser=argparse.ArgumentParser();parser.add_argument('--connection-only',action='store_true');args=parser.parse_args()
+    if args.connection_only:
+        try:
+            result=fetch_yahoo({'schema':1,'messages':{},'leads':{}},max_messages=0)
+            print(json.dumps({'connection':'ok','matched_linkedin_messages':result['messages_deferred'],'message_bodies_read':0,'scan_state_saved':False}))
+            return 0
+        except MailAccessError as error:
+            print(json.dumps({'connection':'failed','failure_stage':error.phase,'message_bodies_read':0,'scan_state_saved':False}))
+            return 1
     import yaml
     root=Path(__file__).resolve().parents[1]
     def read(name,default):

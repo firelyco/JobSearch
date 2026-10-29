@@ -93,6 +93,14 @@ class YahooReadOnly(unittest.TestCase):
         self.assertNotIn('sensitive',str(failure.exception))
         self.assertIn(('logout',),client.calls)
 
+    def test_connection_only_never_fetches_headers_or_bodies_or_saves_state(self):
+        client=FakeIMAP()
+        state={'schema':1,'messages':{},'leads':{}}
+        result=e.fetch_yahoo(state,now=NOW,factory=lambda *a,**k:client,max_messages=0)
+        self.assertEqual(result['messages_deferred'],1)
+        self.assertFalse(any(call[0]=='fetch' for call in client.calls))
+        self.assertEqual(state['messages'],{})
+
     def test_no_credentials_or_private_state_failure_never_opens_mail(self):
         with patch.dict(os.environ,{'YAHOO_EMAIL':'','YAHOO_APP_PASSWORD':''}),patch.object(e,'load_state') as load:
             _,health,_,_=e.prepare([],{})

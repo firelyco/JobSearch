@@ -1,11 +1,16 @@
 name: Check LinkedIn email alerts
 
 on:
-  workflow_dispatch: {}
+  workflow_dispatch:
+    inputs:
+      connection_only:
+        description: "Check Yahoo sign-in and mailbox access without reading message bodies or saving state"
+        type: boolean
+        default: false
 
 # Share the mailbox writer lock with the daily refresh.
 concurrency:
-  group: poll
+  group: ${{ inputs.connection_only && 'email-connection-diagnostic' || 'poll' }}
   cancel-in-progress: false
 
 permissions:
@@ -30,7 +35,7 @@ jobs:
           cache: pip
       - run: pip install -r requirements.txt
       - name: Check Yahoo and import alert references without marking mail read
-        run: python -m src.email_alerts
+        run: python -m src.email_alerts ${{ inputs.connection_only && '--connection-only' || '' }}
       - name: Publish email coverage report
-        if: always()
+        if: always() && inputs.connection_only != true
         run: python -m src.checkpoint_publisher
