@@ -24,7 +24,7 @@ class FakeIMAP:
         if uid==self.fail_uid:return 'NO',[]
         raw=self.messages[uid]
         if 'HEADER.FIELDS' in query:
-            return 'OK',[(b'1 (RFC822.SIZE '+str(len(raw)).encode()+b')',b'From: jobalerts-noreply@linkedin.com\r\nSubject: Your job alert\r\n\r\n')]
+            return 'OK',[(b'1 (RFC822.SIZE '+str(len(raw)).encode()+b' INTERNALDATE "29-Oct-2026 09:00:00 +0000")',b'From: jobalerts-noreply@linkedin.com\r\nSubject: Your job alert\r\n\r\n')]
         return 'OK',[(b'1 (BODY[]',raw)]
 
 class EmailParsing(unittest.TestCase):
@@ -92,6 +92,27 @@ class YahooReadOnly(unittest.TestCase):
         self.assertEqual(first['unresolved_alert_messages'],0)
         second=e.fetch_yahoo(state,now=NOW,factory=lambda *a,**k:FakeIMAP())
         self.assertEqual(second['messages_checked'],0)
+
+    def test_window_is_capped_and_old_leads_expire(self):
+        state={'schema':1,'messages':{},'leads':{'old':{'last_alert_at':'2026-10-01T10:00:00+00:00'}}}
+        client=FakeIMAP()
+        e.fetch_yahoo(state,now=NOW,factory=lambda *a,**k:client,lookback_days=90)
+        self.assertNotIn('old',state['leads'])
+        search=next(c for c in client.calls if c[0]=='search')
+        self.assertIn('15-Oct-2026',search[-1])
+        self.assertEqual(state['leads']['4481477507']['last_alert_at'],'2026-10-29T09:00:00+00:00')
+    def test_imap_calendar_search_cannot_admit_mail_older_than_14_days(self):
+        client=FakeIMAP();original=client.uid
+        def uid(command,*args):
+            result,data=original(command,*args)
+            if command=='fetch' and 'HEADER.FIELDS' in args[-1]:
+                data=[(data[0][0].replace(b'29-Oct-2026 09:00:00',b'15-Oct-2026 09:00:00'),data[0][1])]
+            return result,data
+        client.uid=uid
+        state={'schema':1,'messages':{},'leads':{}}
+        e.fetch_yahoo(state,now=NOW,factory=lambda *a,**k:client)
+        self.assertFalse(state['leads'])
+        self.assertFalse(any(c[0]=='fetch' and c[-1]=='(BODY.PEEK[])' for c in client.calls))
 
     def test_caps_defer_without_marking_unread_messages_processed(self):
         state={'schema':1,'messages':{},'leads':{}}

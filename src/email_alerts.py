@@ -16,7 +16,7 @@ from src import discovery,assessment_scope,scorer
 
 MAX_MESSAGE=2_000_000
 MONTHS=('Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec')
-PARSER_VERSION='v2'
+PARSER_VERSION='v3'
 ROLE=re.compile(r'\b(?:jobs?|hiring|opportunit\w*|positions?|tpm|pmo)\b|program|portfolio|engineering manager',re.I)
 
 def stamp(now=None):return (now or datetime.now(timezone.utc)).isoformat()
@@ -198,6 +198,7 @@ class MailAccessError(RuntimeError):
 
 def fetch_yahoo(state,*,now=None,factory=None,max_messages=200,lookback_days=14):
     now=now or datetime.now(timezone.utc)
+    lookback_days=min(14,max(1,int(lookback_days)))
     counters={'messages_checked':0,'alerts_with_jobs':0,'job_references_found':0,'failed_messages':0,'alerts_without_job_links':0}
     client=None;phase='connection'
     try:
@@ -222,13 +223,22 @@ def fetch_yahoo(state,*,now=None,factory=None,max_messages=200,lookback_days=14)
         folder=os.environ.get('JOBSEARCH_ALERT_MAILBOX','INBOX')
         import hashlib
         prefix=PARSER_VERSION+':' +hashlib.sha256((folder+':'+validity).encode()).hexdigest()[:16]+':'
+        # Older parser timestamps recorded scan time. Rebuild delivery dates once.
+        if max_messages and messages and not any(k.startswith(prefix) for k in messages):
+            for row in leads.values():
+                row['first_alert_at']='';row['last_alert_at']=''
         unseen=[uid for uid in data[0].split() if prefix+uid.decode('ascii') not in messages]
         unparsed=state.setdefault('unparsed',{})
         for uid in unseen[:max_messages]:
             try:
-                result,parts=client.uid('fetch',uid,'(RFC822.SIZE BODY.PEEK[HEADER.FIELDS (FROM SUBJECT)])')
+                result,parts=client.uid('fetch',uid,'(RFC822.SIZE INTERNALDATE BODY.PEEK[HEADER.FIELDS (FROM SUBJECT)])')
                 if result!='OK':raise RuntimeError('Header unavailable')
                 pair=next(p for p in parts if isinstance(p,tuple));size=re.search(rb'RFC822.SIZE (\d+)',pair[0])
+                received_match=re.search(rb'INTERNALDATE "([^"]+)"',pair[0])
+                if not received_match:raise ValueError('Mail delivery date unavailable')
+                received=datetime.strptime(received_match.group(1).decode('ascii'),'%d-%b-%Y %H:%M:%S %z').astimezone(timezone.utc)
+                if received<since or received>now:
+                    messages[prefix+uid.decode('ascii')]=stamp(now);continue
                 header=email.message_from_bytes(pair[1],policy=policy.default)
                 sender=parseaddr(str(header.get('From','')))[1].lower();domain=sender.rsplit('@',1)[-1]
                 legitimate=domain=='linkedin.com' or domain.endswith('.linkedin.com')
@@ -247,15 +257,19 @@ def fetch_yahoo(state,*,now=None,factory=None,max_messages=200,lookback_days=14)
                     for key in list(unparsed):
                         if key.split(':',1)[-1]==marker.split(':',1)[-1]:unparsed.pop(key,None)
                     if found:unparsed.pop(marker,None)
-                    else:unparsed[marker]=stamp(now)
+                    else:unparsed[marker]=stamp(received)
                     for row in found:
                         old=leads.get(row['linkedin_id'],{})
                         leads[row['linkedin_id']]={**old,**row,
-                            'first_alert_at':old.get('first_alert_at',stamp(now)),'last_alert_at':stamp(now)}
+                            'first_alert_at':min(old.get('first_alert_at') or stamp(received),stamp(received)),
+                            'last_alert_at':max(old.get('last_alert_at') or stamp(received),stamp(received))}
                 messages[prefix+uid.decode('ascii')]=stamp(now);counters['messages_checked']+=1
             except (imaplib.IMAP4.error,OSError,RuntimeError,ValueError,StopIteration,TypeError):
                 counters['failed_messages']+=1
         counters['messages_deferred']=max(0,len(unseen)-max_messages)
+        cutoff=stamp(since)
+        state['leads']={k:v for k,v in leads.items() if v.get('last_alert_at','')>=cutoff}
+        unparsed={k:v for k,v in unparsed.items() if v>=cutoff}
         counters['unresolved_alert_messages']=len(unparsed)
         state['last_checked_at']=stamp(now)
         if not counters['failed_messages'] and not counters['messages_deferred'] and not counters['unresolved_alert_messages']:state['last_success_at']=stamp(now)
@@ -286,6 +300,8 @@ def prepare(previous,config,*,now=None):
                 'mailbox_identity':'Yahoo sign-in succeeded but mailbox UIDVALIDITY was not available.',
                 'search':'Yahoo sign-in and mailbox access succeeded but the LinkedIn alert search failed.'}
             health.update(status='failed',failure_stage=error.phase,response_code=error.response_code,failure_category=error.category,reason=reasons.get(error.phase,'Yahoo scan could not complete.'))
+        cutoff=stamp(now-timedelta(days=14))
+        state['leads']={k:v for k,v in state.get('leads',{}).items() if not v.get('last_alert_at') or v['last_alert_at']>=cutoff}
         rows=list(state.get('leads',{}).values())
         # Normalize older parsed metadata without rereading mail or calling AI.
         for row in rows:
@@ -317,7 +333,9 @@ def report(state,health,raw,published,scores,policy,role,*,previous=None,now=Non
     def company_key(value):
         value=re.sub(r'(?:\.com|\bincorporated|\binc\.?|\bcorporation|\bcorp\.?|\bllc|\bltd\.?|careers|jobs)\s*$','',str(value).lower()).strip()
         return normalize(value)
+    cutoff=stamp((now or datetime.now(timezone.utc))-timedelta(days=14))
     for lead in leads:
+        if lead.get('last_alert_at') and lead['last_alert_at']<cutoff:continue
         identifier=lead.get('linkedin_id');urls=set(lead.get('employer_urls',[]))|{lead['url']}
         exact=[j for j in raw if discovery.canonical_url(j.get('url','')) in urls or identifier and linkedin_id(j.get('url',''))==identifier]
         possible=[]
@@ -340,7 +358,7 @@ def report(state,health,raw,published,scores,policy,role,*,previous=None,now=Non
              '; '.join(scorer.score_job(exact[0],role)[1]) if collection=='screened_out' else
              'Employer URL still needs resolution; this is a lead, not an assessed job.' if not matches else ''})
     return {'schema':1,'checked_at':checked,'connection':health,'last_success_at':state.get('last_success_at') if state else (previous or {}).get('last_success_at'),
-        'scope':'LinkedIn job links found in alert emails; does not verify all LinkedIn or in-app listings.',
+        'scope':'Rolling last 14 days of LinkedIn alert emails only; older references expire. This does not verify all LinkedIn or in-app listings.',
         'counts':dict(Counter(r['collection'] for r in rows)),'rows':rows}
 
 
