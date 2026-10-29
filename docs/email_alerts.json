@@ -1,23 +1,25 @@
 {
   "schema": 1,
-  "checked_at": "2026-10-29T17:28:44.354572+00:00",
+  "checked_at": "2026-10-29T17:51:13.083209+00:00",
   "connection": {
     "source": "linkedin_email",
     "label": "LinkedIn job-alert emails",
     "status": "partial",
     "jobs": 526,
-    "messages_checked": 154,
-    "alerts_with_jobs": 133,
-    "job_references_found": 783,
+    "messages_checked": 0,
+    "alerts_with_jobs": 0,
+    "job_references_found": 0,
     "failed_messages": 0,
-    "alerts_without_job_links": 6,
+    "alerts_without_job_links": 0,
     "messages_deferred": 0,
     "unresolved_alert_messages": 7,
     "lookback_days": 14,
+    "mode": "initial",
+    "search_since": "2026-10-15T17:07:59+00:00",
     "last_success_at": null
   },
   "last_success_at": null,
-  "scope": "Rolling last 14 days of LinkedIn alert emails only; older references expire. This does not verify all LinkedIn or in-app listings.",
+  "scope": "One-time 14-day catch-up, then new unprocessed LinkedIn emails during the daily job search. Collected references are retained; this does not verify all LinkedIn or in-app listings.",
   "counts": {
     "missing": 423,
     "possible_match": 103
