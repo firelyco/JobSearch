@@ -366,6 +366,7 @@ async function loadData() {
     return;
   }
   render();
+  if (typeof window !== 'undefined' && window.EmailAlerts) window.EmailAlerts.load(fitScores);
   syncPrivateHistory();
   if (Object.keys(loadInFlight()).length > 0) startPolling();
 }

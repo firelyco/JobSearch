@@ -1,0 +1,36 @@
+name: Check LinkedIn email alerts
+
+on:
+  workflow_dispatch: {}
+
+# Share the mailbox writer lock with the daily refresh.
+concurrency:
+  group: poll
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      YAHOO_EMAIL: ${{ secrets.YAHOO_EMAIL }}
+      YAHOO_APP_PASSWORD: ${{ secrets.YAHOO_APP_PASSWORD }}
+      HISTORY_SCORER_TOKEN: ${{ secrets.HISTORY_SCORER_TOKEN }}
+      JOBSEARCH_ALERT_MAILBOX: ${{ vars.JOBSEARCH_ALERT_MAILBOX || 'INBOX' }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+      - run: pip install -r requirements.txt
+      - name: Check Yahoo and import alert references without marking mail read
+        run: python -m src.email_alerts
+      - name: Publish email coverage report
+        if: always()
+        run: python -m src.checkpoint_publisher

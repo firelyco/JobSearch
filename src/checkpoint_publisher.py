@@ -7,7 +7,7 @@ from __future__ import annotations
 import argparse, json, subprocess, tempfile, time, sys
 from pathlib import Path
 
-FILES=('docs/fit_scores.json','docs/fit_policy.json','docs/fit_backfill.json','docs/fit_benchmark.json')
+FILES=('docs/email_alerts.json','docs/fit_scores.json','docs/fit_policy.json','docs/fit_backfill.json','docs/fit_benchmark.json')
 FINAL={'strong','medium','not'}
 
 def read(path):

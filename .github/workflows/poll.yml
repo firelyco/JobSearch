@@ -21,6 +21,10 @@ jobs:
     env:
       JOBSEARCH_METRICS: '1'
       BRAVE_SEARCH_API_KEY: ${{ secrets.BRAVE_SEARCH_API_KEY }}
+      YAHOO_EMAIL: ${{ secrets.YAHOO_EMAIL }}
+      YAHOO_APP_PASSWORD: ${{ secrets.YAHOO_APP_PASSWORD }}
+      HISTORY_SCORER_TOKEN: ${{ secrets.HISTORY_SCORER_TOKEN }}
+      JOBSEARCH_ALERT_MAILBOX: ${{ vars.JOBSEARCH_ALERT_MAILBOX || 'INBOX' }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -51,7 +55,7 @@ jobs:
           node src/validate_shortlist.cjs --report=docs/shortlist_validation_poll.json
           git add docs/shortlist_validation_poll.json
           git add docs/metrics
-          git add docs/coverage_audit.json docs/jobs.json docs/meta.json state/seen_jobs.json state/discovery_cache.json state/discovered_boards.json
+          git add docs/email_alerts.json docs/coverage_audit.json docs/jobs.json docs/meta.json state/seen_jobs.json state/discovery_cache.json state/discovered_boards.json
           if git diff --staged --quiet; then
             echo "no changes"
           else
@@ -60,7 +64,7 @@ jobs:
             # If another poll's output landed first, this run's files are
             # newer: keep them whole (during a rebase, "theirs" is our commit)
             # rather than hunk-merging JSON.
-            OUTPUTS="docs/coverage_audit.json docs/shortlist_validation_poll.json docs/jobs.json docs/meta.json state/seen_jobs.json state/discovery_cache.json state/discovered_boards.json"
+            OUTPUTS="docs/email_alerts.json docs/coverage_audit.json docs/shortlist_validation_poll.json docs/jobs.json docs/meta.json state/seen_jobs.json state/discovery_cache.json state/discovered_boards.json"
             if ! git pull --rebase origin main; then
               git checkout --theirs -- $OUTPUTS
               git add $OUTPUTS

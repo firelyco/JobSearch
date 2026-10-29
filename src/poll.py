@@ -140,7 +140,15 @@ def main() -> int:
     cache = read_state(cache_file, {})
     registry = read_state(registry_file, [])
     discovery_config = load_yaml(CONFIG_DIR / "discovery.yml") if (CONFIG_DIR / "discovery.yml").exists() else {}
+    # Email bodies and mailbox identifiers remain outside Git/public discovery.
+    from src import email_alerts
+    email_config=read_state(CONFIG_DIR / "email_alerts.json", {})
+    email_state,email_health,email_urls,email_queries=email_alerts.prepare(previous,email_config,now=start)
+    discovery_config=dict(discovery_config)
+    discovery_config['seed_urls']=email_urls+list(discovery_config.get('seed_urls',[]))
+    discovery_config['queries']=email_queries+list(discovery_config.get('queries',[]))
     new_jobs, learned, discovery_health = discovery.discover(discovery_config, cache)
+    discovery_health.append(email_health)
     previous_board_keys = {discovery.board_key(b) for b in registry}
     fresh_board_keys = {discovery.board_key(b) for b in learned} - previous_board_keys
     registry = list({discovery.board_key(b): b for b in registry + learned}.values())
@@ -293,6 +301,9 @@ def main() -> int:
     coverage_report=audit(all_jobs,scored,watchlist,role,source_health)
     coverage_report["checked_at"]=start.isoformat()
     (DOCS_DIR / "coverage_audit.json").write_text(json.dumps(coverage_report,indent=2),encoding="utf-8")
+    email_report=email_alerts.report(email_state,email_health,all_jobs,scored,saved_scores,saved_policy,role,
+        previous=read_state(DOCS_DIR / "email_alerts.json",{}),now=start)
+    (DOCS_DIR / "email_alerts.json").write_text(json.dumps(email_report,indent=2),encoding="utf-8")
     elapsed = (datetime.now(timezone.utc) - start).total_seconds()
     meta = {
         "polled_at": start.isoformat(),
@@ -307,6 +318,7 @@ def main() -> int:
         "description_checks": enriched,
         "description_check_limit": detail_limit,
         "coverage_watchlist": coverage_report["watchlist_counts"],
+        "email_alerts": {"status":email_health["status"],"counts":email_report["counts"]},
         "coverage_note": "Internet-wide coverage is unknown. See coverage_audit.json for source failures, screened-out roles and observed-listing gaps.",
     }
     with open(META_FILE, "w", encoding="utf-8") as f:

@@ -13,6 +13,10 @@ ALLOWED_STATUSES = {'new', 'applied', 'interviewing', 'rejected', 'not-intereste
 MAX_BODY = 2_000_000
 SESSION_SECONDS = 12 * 3600
 SCHEMA = '''
+CREATE TABLE IF NOT EXISTS email_alert_state (
+ id TEXT PRIMARY KEY, payload JSONB NOT NULL, saved_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+
 CREATE TABLE IF NOT EXISTS candidate_evidence (
  inventory_hash TEXT PRIMARY KEY, payload JSONB NOT NULL, saved_at TIMESTAMPTZ NOT NULL DEFAULT now()
 );
@@ -117,6 +121,33 @@ def save_records(connection, records):
                 (key,entry['mutation_id'],Jsonb(entry)))
     return read_records(connection)
 
+def validate_email_state(state):
+    """Private scan state accepts job references/opaque UIDs, never raw mail."""
+    if not isinstance(state,dict) or set(state)-{'schema','messages','unparsed','leads','last_checked_at','last_success_at'}:
+        raise ValueError('Invalid email state')
+    if state.get('schema')!=1:raise ValueError('Invalid email state version')
+    messages=state.get('messages',{});leads=state.get('leads',{})
+    if not isinstance(messages,dict) or not isinstance(leads,dict) or len(messages)>10000 or len(leads)>1500:
+        raise ValueError('Email state limit')
+    unparsed=state.get('unparsed',{})
+    if not isinstance(unparsed,dict) or len(unparsed)>10000:raise ValueError('Invalid unparsed alert state')
+    for key,value in {**messages,**unparsed}.items():
+        if not isinstance(key,str) or len(key)>80 or not isinstance(value,str) or len(value)>40:raise ValueError('Invalid mail reference')
+    allowed={'linkedin_id','url','title','company','location','employer_urls','first_alert_at','last_alert_at','resolution_attempts','resolution_checked_at'}
+    for key,row in leads.items():
+        if not isinstance(row,dict) or set(row)-allowed or key!=row.get('linkedin_id') or not key.isdigit() or not 6<=len(key)<=20:
+            raise ValueError('Invalid job reference')
+        if row.get('url')!='https://www.linkedin.com/jobs/view/'+key:raise ValueError('Invalid LinkedIn URL')
+        for field,value in row.items():
+            if field=='employer_urls':
+                if not isinstance(value,list) or len(value)>2 or any(not isinstance(u,str) or len(u)>1000 or not u.startswith('https://') for u in value):raise ValueError('Invalid employer URL')
+            elif field=='resolution_attempts':
+                if type(value) is not int or not 0<=value<=3:raise ValueError('Invalid resolution attempts')
+            elif not isinstance(value,str) or len(value)>1000:raise ValueError('Invalid reference field')
+    if len(json.dumps(state))>1_800_000:raise ValueError('Email state limit')
+    return state
+
+
 class handler(BaseHTTPRequestHandler):
     def log_message(self,*args):
         pass  # Do not log passwords, tokens or application payloads.
@@ -162,6 +193,22 @@ class handler(BaseHTTPRequestHandler):
                 body = json.loads(self.rfile.read(size))
                 if not isinstance(body,dict):
                     raise ValueError('Invalid request')
+            action=body.get('action') or parse_qs(urlparse(self.path).query).get('action',[''])[0]
+            if action in {'email_alert_read','email_alert_write'}:
+                machine=os.environ.get('HISTORY_SCORER_TOKEN','')
+                supplied=self.headers.get('Authorization','')
+                if not machine or not hmac.compare_digest(supplied.encode(),('Bearer '+machine).encode()):
+                    self.respond(401,{'error':'Machine authentication required'});return
+                if self.command!=('GET' if action=='email_alert_read' else 'POST'):
+                    self.respond(405,{'error':'Method not allowed'});return
+                state=validate_email_state(body.get('state')) if action=='email_alert_write' else None
+                with connect() as connection:
+                    initialize(connection)
+                    if state is not None:
+                        from psycopg.types.json import Jsonb
+                        connection.execute("INSERT INTO email_alert_state(id,payload) VALUES ('linkedin',%s) ON CONFLICT(id) DO UPDATE SET payload=EXCLUDED.payload,saved_at=now()",(Jsonb(state),))
+                    row=connection.execute("SELECT payload FROM email_alert_state WHERE id='linkedin'").fetchone()
+                self.respond(200,{'state':row[0] if row else {'schema':1,'messages':{},'leads':{}}});return
             if body.get('action') in {'assessment_write','inventory_write'}:
                 machine = os.environ.get('HISTORY_SCORER_TOKEN','')
                 supplied = self.headers.get('Authorization','')

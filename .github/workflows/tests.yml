@@ -6,6 +6,8 @@ on:
     paths:
       - "src/**"
       - "docs/app.js"
+      - "docs/email_alerts.js"
+      - "history_service/**"
       - "docs/index.html"
       - "tests/**"
       - "config/**"
@@ -49,6 +51,8 @@ jobs:
         run: |
           node --check docs/app.js
           node --check docs/metrics.js
+          node --check docs/email_alerts.js
+          node tests/test_email_alerts.cjs
           node tests/test_metrics_dashboard.cjs
           node tests/test_evidence_dashboard.cjs
           node tests/test_remote_dashboard.cjs

@@ -1,0 +1,12 @@
+const assert=require('assert'),view=require('../docs/email_alerts.js');
+const report={connection:{status:'ok',messages_checked:3},counts:{tracked:1,missing:1},rows:[{linkedin_id:'4481477507',url:'https://www.linkedin.com/jobs/view/4481477507',title:'<img src=x onerror=alert(1)> TPM',company:'Example & Co',collection:'tracked',matches:[{key:'a',url:'javascript:alert(1)',title:'Employer',assessment_date_eligible:true}]},{linkedin_id:'4481477508',url:'https://www.linkedin.com/jobs/view/4481477508',collection:'missing',matches:[]}]};
+let html=view.render(report,{a:{validated:true,recommendation:'strong'}});
+assert(html.includes('Strong'));assert(html.includes('Missing — employer link unresolved'));
+assert(!html.includes('<img'));assert(!html.includes('href="javascript:'));assert(html.includes('&lt;img'));
+assert.equal(view.assessment(report.rows[0],{a:{validated:true,recommendation:'strong',refresh_pending:true}}),'Assessment pending / needs review');
+assert.equal(view.assessment({matches:[{key:'a',assessment_date_eligible:false}]},{a:{validated:true,recommendation:'strong'}}),'Outside assessment date scope');
+html=view.render({connection:{status:'not_configured'},rows:[]});assert(html.includes('Yahoo connection needs setup'));assert(html.includes('zero count does not confirm coverage'));
+const rows=Array.from({length:26},(_,i)=>({linkedin_id:String(i),title:'Job '+i,url:'https://www.linkedin.com/jobs/view/'+i,matches:[],collection:'missing'}));
+assert(view.render({rows,connection:{status:'ok'}},{},2).includes('Page 2 of 2'));
+assert(!view.render({rows,connection:{status:'ok'}},{},2).includes('>Job 0<'));
+console.log('Email alerts: original links, exact/possible distinction, current fit labels, pagination and XSS defenses passed.');
