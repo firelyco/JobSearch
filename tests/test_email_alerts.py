@@ -93,6 +93,20 @@ class YahooReadOnly(unittest.TestCase):
         self.assertNotIn('sensitive',str(failure.exception))
         self.assertIn(('logout',),client.calls)
 
+    def test_password_is_passed_exactly_as_saved(self):
+        password='leading and internal spaces '
+        client=FakeIMAP();client.login=Mock(return_value=('OK',[]))
+        with patch.dict(os.environ,{'YAHOO_APP_PASSWORD':password}):
+            e.fetch_yahoo({'schema':1,'messages':{},'leads':{}},now=NOW,factory=lambda *a,**k:client,max_messages=0)
+        client.login.assert_called_once_with('private@example.com',password)
+    def test_only_allowlisted_yahoo_diagnostics_are_exposed(self):
+        failure=e.MailAccessError('sign_in',e.imaplib.IMAP4.error('[AUTHENTICATIONFAILED] user private@example.com secret text'))
+        self.assertEqual(failure.response_code,'AUTHENTICATIONFAILED')
+        self.assertEqual(failure.category,'authentication_rejected')
+        self.assertNotIn('private',str(failure.__dict__))
+        self.assertEqual(e.MailAccessError('sign_in',Exception('Please use an app password')).category,'app_password_required')
+        self.assertEqual(e.MailAccessError('sign_in',Exception('Too many login attempts')).category,'temporarily_blocked')
+
     def test_connection_only_never_fetches_headers_or_bodies_or_saves_state(self):
         client=FakeIMAP()
         state={'schema':1,'messages':{},'leads':{}}

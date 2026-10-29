@@ -176,8 +176,16 @@ def save_state(state):
     if response.status_code!=200:raise RuntimeError('Private email state unavailable')
 
 class MailAccessError(RuntimeError):
-    """Expose only a fixed operation name, never provider text or credentials."""
-    def __init__(self,phase):self.phase=phase;super().__init__(phase)
+    """Keep only allowlisted protocol diagnostics, never raw server text."""
+    def __init__(self,phase,error=None):
+        self.phase=phase
+        text=str(error or '').upper()
+        codes={'AUTHENTICATIONFAILED','AUTHORIZATIONFAILED','UNAVAILABLE','PRIVACYREQUIRED','ALERT','LOGINDISABLED','LIMIT'}
+        self.response_code=next((code for code in sorted(codes) if '['+code+']' in text),'not_provided')
+        self.category=('app_password_required' if re.search(r'APP(?:LICATION)?[- ](?:SPECIFIC[- ])?PASSWORD',text) else
+            'temporarily_blocked' if re.search(r'TOO MANY|RATE LIMIT|TRY AGAIN|TEMPORAR',text) else
+            'authentication_rejected' if phase=='sign_in' else 'operation_failed')
+        super().__init__(phase)
 
 def fetch_yahoo(state,*,now=None,factory=None,max_messages=200,lookback_days=14):
     now=now or datetime.now(timezone.utc)
@@ -186,7 +194,7 @@ def fetch_yahoo(state,*,now=None,factory=None,max_messages=200,lookback_days=14)
     try:
         client=(factory or imaplib.IMAP4_SSL)('imap.mail.yahoo.com',993,ssl_context=ssl.create_default_context(),timeout=30)
         phase='sign_in'
-        client.login(os.environ['YAHOO_EMAIL'].strip(),''.join(os.environ['YAHOO_APP_PASSWORD'].split()))
+        client.login(os.environ['YAHOO_EMAIL'].strip(),os.environ['YAHOO_APP_PASSWORD'])
         phase='mailbox'
         folder=os.environ.get('JOBSEARCH_ALERT_MAILBOX','INBOX')
         if any(c in folder for c in '\r\n'):raise ValueError('Invalid mailbox')
@@ -244,8 +252,8 @@ def fetch_yahoo(state,*,now=None,factory=None,max_messages=200,lookback_days=14)
         state['messages']={k:v for k,v in messages.items() if v>=horizon}
         state['unparsed']={k:v for k,v in unparsed.items() if v>=horizon}
         return {**counters,'status':'partial' if counters['failed_messages'] or counters['messages_deferred'] or counters['unresolved_alert_messages'] else 'ok','lookback_days':lookback_days}
-    except (imaplib.IMAP4.error,OSError,RuntimeError,ValueError) as error:
-        raise MailAccessError(phase) from None
+    except (imaplib.IMAP4.error,OSError,RuntimeError,ValueError,UnicodeError) as error:
+        raise MailAccessError(phase,error) from None
     finally:
         if client:
             try:client.logout()
@@ -261,11 +269,11 @@ def prepare(previous,config,*,now=None):
         try:health.update(fetch_yahoo(state,now=now,max_messages=int(config.get('max_messages_per_run',200)),lookback_days=int(config.get('lookback_days',14))))
         except MailAccessError as error:
             reasons={'connection':'Yahoo IMAP could not be reached over TLS.',
-                'sign_in':'Yahoo rejected sign-in. Verify the full Yahoo address and a newly generated Yahoo app password.',
+                'sign_in':'Yahoo rejected this IMAP sign-in. This does not establish that the Yahoo website credentials are incorrect; third-party authorization may be required.',
                 'mailbox':'Yahoo sign-in succeeded but the selected mailbox could not be opened read-only.',
                 'mailbox_identity':'Yahoo sign-in succeeded but mailbox UIDVALIDITY was not available.',
                 'search':'Yahoo sign-in and mailbox access succeeded but the LinkedIn alert search failed.'}
-            health.update(status='failed',failure_stage=error.phase,reason=reasons.get(error.phase,'Yahoo scan could not complete.'))
+            health.update(status='failed',failure_stage=error.phase,response_code=error.response_code,failure_category=error.category,reason=reasons.get(error.phase,'Yahoo scan could not complete.'))
         rows=list(state.get('leads',{}).values())
         health['jobs']=len(rows);health['last_success_at']=state.get('last_success_at')
         urls=[];queries=[];known={discovery.canonical_url(j.get('url','')) for j in previous}
@@ -332,7 +340,7 @@ def main():
             print(json.dumps({'connection':'ok','matched_linkedin_messages':result['messages_deferred'],'message_bodies_read':0,'scan_state_saved':False}))
             return 0
         except MailAccessError as error:
-            print(json.dumps({'connection':'failed','failure_stage':error.phase,'message_bodies_read':0,'scan_state_saved':False}))
+            print(json.dumps({'connection':'failed','failure_stage':error.phase,'response_code':error.response_code,'failure_category':error.category,'message_bodies_read':0,'scan_state_saved':False}))
             return 1
     import yaml
     root=Path(__file__).resolve().parents[1]
