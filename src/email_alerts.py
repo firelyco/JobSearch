@@ -159,7 +159,7 @@ def parse_message(raw):
                     identifier=linkedin_id(url.rstrip(').,'))
                     if not identifier:continue
                     prior=[clean(v) for v in lines[max(0,index-3):index] if clean(v)]
-                    title=next((v for v in prior if ROLE.search(v) and '@' not in v),'')
+                    title=next((v for v in prior if job_title(v)),'')
                     found.append({'linkedin_id':identifier,'url':'https://www.linkedin.com/jobs/view/'+identifier,
                         'title':title,'company':'','location':'','employer_urls':[]})
         for row in found:
@@ -287,6 +287,9 @@ def prepare(previous,config,*,now=None):
                 'search':'Yahoo sign-in and mailbox access succeeded but the LinkedIn alert search failed.'}
             health.update(status='failed',failure_stage=error.phase,response_code=error.response_code,failure_category=error.category,reason=reasons.get(error.phase,'Yahoo scan could not complete.'))
         rows=list(state.get('leads',{}).values())
+        # Normalize older parsed metadata without rereading mail or calling AI.
+        for row in rows:
+            if row.get('title') and not job_title(row['title']):row['title']=''
         health['jobs']=len(rows);health['last_success_at']=state.get('last_success_at')
         urls=[];queries=[];known={discovery.canonical_url(j.get('url','')) for j in previous}
         for row in sorted(rows,key=lambda r:r.get('first_alert_at',''),reverse=True):

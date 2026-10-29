@@ -50,6 +50,11 @@ class EmailParsing(unittest.TestCase):
         row=e.parse_html('<a href="https://www.linkedin.com/jobs/view/4481477507">This company is actively hiring</a>')[0]
         self.assertEqual(row['title'],'')
 
+    def test_plaintext_generic_cta_cannot_override_empty_html_title(self):
+        msg=EmailMessage();msg['From']='jobs-noreply@linkedin.com'
+        msg.set_content('This company is actively hiring\nhttps://www.linkedin.com/jobs/view/4481477507')
+        self.assertEqual(e.parse_message(msg.as_bytes())[0]['title'],'')
+
     def test_wrong_sender_and_lookalike_links_are_not_imported(self):
         self.assertEqual(e.parse_message(message(sender='LinkedIn <jobs@linkedin.com.evil.com>')),[])
         for url in ('javascript:alert(1)','https://linkedin.com.evil.com/jobs/view/4481477507','https://linkedin.com@evil.com/jobs/view/4481477507','https://127.0.0.1/jobs/view/4481477507'):
