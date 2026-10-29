@@ -40,6 +40,16 @@ class EmailParsing(unittest.TestCase):
         msg.add_alternative(HTML,subtype='html')
         rows=e.parse_message(msg.as_bytes());self.assertEqual(len(rows),2)
         self.assertEqual(rows[0]['company'],'LILT')
+    def test_whole_clickable_card_uses_title_line_and_company(self):
+        body='<a href="https://www.linkedin.com/jobs/view/4481477507"><div>Director, Program Management</div><div>Expedia Group · San Jose, CA (On-site)</div><div>$231K-$324K / year</div></a>'
+        row=e.parse_html(body)[0]
+        self.assertEqual(row['title'],'Director, Program Management')
+        self.assertEqual(row['company'],'Expedia Group')
+        self.assertNotIn('$',row['title'])
+    def test_generic_hiring_cta_is_not_a_job_title(self):
+        row=e.parse_html('<a href="https://www.linkedin.com/jobs/view/4481477507">This company is actively hiring</a>')[0]
+        self.assertEqual(row['title'],'')
+
     def test_wrong_sender_and_lookalike_links_are_not_imported(self):
         self.assertEqual(e.parse_message(message(sender='LinkedIn <jobs@linkedin.com.evil.com>')),[])
         for url in ('javascript:alert(1)','https://linkedin.com.evil.com/jobs/view/4481477507','https://linkedin.com@evil.com/jobs/view/4481477507','https://127.0.0.1/jobs/view/4481477507'):
@@ -68,6 +78,16 @@ class YahooReadOnly(unittest.TestCase):
         self.assertEqual(second['messages_checked'],0)
         self.assertEqual(len(state['leads']),2)
         self.assertFalse(any(c[0] in {'store','copy','move','expunge','append'} for c in client.calls))
+    def test_new_parser_reimports_once_and_retires_old_uid_warning(self):
+        import hashlib
+        old='v1:'+hashlib.sha256(b'INBOX:1234').hexdigest()[:16]+':1'
+        state={'schema':1,'messages':{old:NOW.isoformat()},'unparsed':{old:NOW.isoformat()},'leads':{}}
+        first=e.fetch_yahoo(state,now=NOW,factory=lambda *a,**k:FakeIMAP())
+        self.assertEqual(first['messages_checked'],1)
+        self.assertEqual(first['unresolved_alert_messages'],0)
+        second=e.fetch_yahoo(state,now=NOW,factory=lambda *a,**k:FakeIMAP())
+        self.assertEqual(second['messages_checked'],0)
+
     def test_caps_defer_without_marking_unread_messages_processed(self):
         state={'schema':1,'messages':{},'leads':{}}
         result=e.fetch_yahoo(state,now=NOW,factory=lambda *a,**k:FakeIMAP({b'1':message(),b'2':message()}),max_messages=1)

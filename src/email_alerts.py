@@ -16,6 +16,7 @@ from src import discovery,assessment_scope,scorer
 
 MAX_MESSAGE=2_000_000
 MONTHS=('Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec')
+PARSER_VERSION='v2'
 ROLE=re.compile(r'\b(?:jobs?|hiring|opportunit\w*|positions?|tpm|pmo)\b|program|portfolio|engineering manager',re.I)
 
 def stamp(now=None):return (now or datetime.now(timezone.utc)).isoformat()
@@ -88,14 +89,22 @@ class AlertHTML(HTMLParser):
     def handle_data(self,text):
         if not self.skip:self.current.children.append(text)
 
+def job_title(value):
+    if not value or '@' in value or value.startswith('https://'):return False
+    if re.search(r'^(?:view|see|apply|save|this company|actively hiring|your job|recommended|jobs? (?:for|you)|hiring now)\b',value,re.I):return False
+    return bool(re.search(r'\b(?:director|manager|president|head|chief|engineer|lead|principal|staff|tpm|pmo)\b',value,re.I) or re.search(r'program|portfolio',value,re.I))
+
+
 def parse_html(text):
     parser=AlertHTML();parser.feed(text);rows={}
     for anchor in parser.root.links():
         identifier=linkedin_id(anchor.attrs.get('href',''))
         if not identifier:continue
-        title=clean(anchor.text())
-        if not ROLE.search(title):title=clean(anchor.attrs.get('aria-label') or anchor.attrs.get('title') or title)
-        if not ROLE.search(title) or title.lower() in {'view job','view jobs','see job','see jobs','apply','apply now'}:title=''
+        # LinkedIn often makes the entire card clickable; the first structured
+        # title line is the job, not the concatenated company/location/salary.
+        lines=[clean(line) for line in anchor.lines().splitlines() if clean(line)]
+        candidates=lines+[clean(anchor.attrs.get('aria-label') or anchor.attrs.get('title'))]
+        title=next((line for line in candidates if job_title(line)),'')
         card=anchor.parent;chosen=card
         while card and card.parent:
             ids={linkedin_id(a.attrs.get('href','')) for a in card.links()}-{None}
@@ -212,7 +221,7 @@ def fetch_yahoo(state,*,now=None,factory=None,max_messages=200,lookback_days=14)
         messages=state.setdefault('messages',{});leads=state.setdefault('leads',{})
         folder=os.environ.get('JOBSEARCH_ALERT_MAILBOX','INBOX')
         import hashlib
-        prefix='v1:'+hashlib.sha256((folder+':'+validity).encode()).hexdigest()[:16]+':'
+        prefix=PARSER_VERSION+':' +hashlib.sha256((folder+':'+validity).encode()).hexdigest()[:16]+':'
         unseen=[uid for uid in data[0].split() if prefix+uid.decode('ascii') not in messages]
         unparsed=state.setdefault('unparsed',{})
         for uid in unseen[:max_messages]:
@@ -234,11 +243,14 @@ def fetch_yahoo(state,*,now=None,factory=None,max_messages=200,lookback_days=14)
                     counters['alerts_with_jobs']+=bool(found);counters['job_references_found']+=len(found)
                     counters['alerts_without_job_links']+=not bool(found)
                     marker=prefix+uid.decode('ascii')
+                    # Retire older-parser warnings only after this UID was read.
+                    for key in list(unparsed):
+                        if key.split(':',1)[-1]==marker.split(':',1)[-1]:unparsed.pop(key,None)
                     if found:unparsed.pop(marker,None)
                     else:unparsed[marker]=stamp(now)
                     for row in found:
                         old=leads.get(row['linkedin_id'],{})
-                        leads[row['linkedin_id']]={**old,**{k:v for k,v in row.items() if v},
+                        leads[row['linkedin_id']]={**old,**row,
                             'first_alert_at':old.get('first_alert_at',stamp(now)),'last_alert_at':stamp(now)}
                 messages[prefix+uid.decode('ascii')]=stamp(now);counters['messages_checked']+=1
             except (imaplib.IMAP4.error,OSError,RuntimeError,ValueError,StopIteration,TypeError):
