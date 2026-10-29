@@ -201,6 +201,13 @@ def retry_unfinished(state, jobs, scores, context, role_config, now):
     return reset
 
 
+def worker_batch_size(requested):
+    """At most two waves, leaving room for slow API calls and final publication."""
+    if requested<1:raise ValueError('max_jobs must be positive')
+    workers=max(1,min(6,int(os.environ.get('FIT_WORKERS','3'))))
+    return min(requested,workers*2)
+
+
 def run_batch(*, jobs, profile, rules, scores, state, model, role_config, max_jobs=6,
               now=None, runner=None, persist=None):
     if max_jobs < 1: raise ValueError('max_jobs must be positive')
@@ -381,7 +388,7 @@ def main(argv=None):
     while os.environ.get('FIT_CACHE_ONLY')!='true':
         before=state.get('batches',0)
         scores=run_batch(jobs=jobs,profile=profile,rules=rules,scores=scores,state=state,model=model,
-            role_config=role_config,max_jobs=args.max,persist=persist)
+            role_config=role_config,max_jobs=worker_batch_size(args.max),persist=persist)
         if state.get('batches',0)==before or args.minutes<=0 or time.monotonic()-started>=args.minutes*60:break
     persist(state,scores,force=True)
     print(json.dumps({'status':state['status'], 'counts':state['counts'], 'windows_processed':state['windows_processed']}))

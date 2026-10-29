@@ -304,6 +304,14 @@ class BackfillTests(unittest.TestCase):
         self.assertEqual(p['counts']['total'],1)
         self.assertEqual(p['selected'],[requested])
 
+    def test_old_large_batch_variable_cannot_overrun_worker_timeout(self):
+        with patch.dict(b.os.environ,{'FIT_WORKERS':'3'}):
+            self.assertEqual(b.worker_batch_size(24),6)
+            self.assertEqual(b.worker_batch_size(2),2)
+        with patch.dict(b.os.environ,{'FIT_WORKERS':'6'}):
+            self.assertEqual(b.worker_batch_size(24),12)
+        with self.assertRaises(ValueError):b.worker_batch_size(0)
+
     def test_reject_zero_batch_size(self):
         with self.assertRaises(ValueError): self.run_batch([],max_jobs=0)
 
