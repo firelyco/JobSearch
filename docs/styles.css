@@ -564,3 +564,7 @@ td.col-applied input { width: 16px; height: 16px; cursor: pointer; }
 .metrics-panel button:not(.metrics-stat):not(.metrics-number):not(.metrics-queue-count) { border:1px solid var(--border-strong); border-radius:var(--radius); background:var(--surface); color:var(--text); padding:.5rem .75rem; cursor:pointer; }
 .metrics-panel button:disabled { opacity:.5; cursor:default; }
 .metrics-panel button:focus-visible { outline:2px solid var(--accent); outline-offset:2px; }
+
+#metrics-deadline[data-state="complete"] { color:var(--success); background:var(--success-bg); }
+#metrics-deadline[data-state="blocked"],#metrics-deadline[data-state="missed_deadline"],#metrics-deadline[data-state="completed_late"],#metrics-deadline[data-state="monitor_overdue"] { color:var(--danger); background:var(--danger-bg); }
+#metrics-deadline[data-state="configuration_required"],#metrics-deadline[data-state="unavailable"] { color:var(--warn); background:var(--warn-bg); }

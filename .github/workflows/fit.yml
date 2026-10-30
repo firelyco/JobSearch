@@ -280,6 +280,10 @@ jobs:
                   assert actual in case['allowed_career_fit'], 'Calibration mismatch: ' + case['job_key'] + ' => ' + actual
           PY
 
+      - name: Update daily completion record
+        if: always() && inputs.validate_only != true && inputs.provider_health != true
+        run: python -m src.daily_batch
+
       - name: Publish public assessment checkpoint
         id: publish
         if: always() && inputs.validate_only != true && inputs.provider_health != true

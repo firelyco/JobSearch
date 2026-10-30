@@ -7,12 +7,12 @@ from src import daily_refresh as d
 
 class DailyRefreshTests(unittest.TestCase):
     def now(self,value='2026-10-30T14:35:00+00:00'):return datetime.fromisoformat(value)
-    def test_missed_refresh_after_six_is_due(self):
+    def test_missed_refresh_after_one_is_due(self):
         self.assertTrue(d.needs_daily_refresh({'polled_at':'2026-10-29T18:30:43Z'},[],self.now())[0])
-    def test_not_due_before_six_including_dst_change(self):
-        for at in ('2026-10-30T09:59:00+00:00','2026-11-02T10:59:00+00:00'):
+    def test_not_due_before_one_including_dst_change(self):
+        for at in ('2026-10-30T04:59:00+00:00','2026-11-02T05:59:00+00:00'):
             self.assertFalse(d.needs_daily_refresh({},[],self.now(at))[0])
-        self.assertTrue(d.needs_daily_refresh({},[],self.now('2026-11-02T11:00:00+00:00'))[0])
+        self.assertTrue(d.needs_daily_refresh({},[],self.now('2026-11-02T06:00:00+00:00'))[0])
     def test_successful_today_or_active_worker_never_dispatches_duplicate(self):
         self.assertFalse(d.needs_daily_refresh({'polled_at':'2026-10-30T10:15:00Z'},[],self.now())[0])
         for status in d.ACTIVE:self.assertFalse(d.needs_daily_refresh({},[{'status':status}],self.now())[0])

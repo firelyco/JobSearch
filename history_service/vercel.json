@@ -10,6 +10,18 @@
     "api/history.py": {
       "maxDuration": 30,
       "excludeFiles": "{.env*,.agents/**,tests/**}"
+    },
+    "api/daily.py": {
+      "maxDuration": 60
+    },
+    "api/daily_status.py": {
+      "maxDuration": 15
     }
-  }
+  },
+  "crons": [
+    {
+      "path": "/api/daily",
+      "schedule": "*/10 5-12 * * *"
+    }
+  ]
 }

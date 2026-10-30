@@ -145,9 +145,10 @@ def main() -> int:
     email_config=read_state(CONFIG_DIR / "email_alerts.json", {})
     email_state,email_health,email_urls,email_queries=email_alerts.prepare(previous,email_config,now=start)
     discovery_config=dict(discovery_config)
-    discovery_config['seed_urls']=email_urls+list(discovery_config.get('seed_urls',[]))
-    discovery_config['queries']=email_queries+list(discovery_config.get('queries',[]))
+    email_discovery={"enabled":True,"queries":email_queries,"seed_urls":email_urls,"search_pages_per_query":1}
+    email_jobs,email_boards,email_checks=discovery.discover(email_discovery,cache)
     new_jobs, learned, discovery_health = discovery.discover(discovery_config, cache)
+    new_jobs=email_jobs+new_jobs;learned=email_boards+learned;discovery_health=email_checks+discovery_health
     discovery_health.append(email_health)
     previous_board_keys = {discovery.board_key(b) for b in registry}
     fresh_board_keys = {discovery.board_key(b) for b in learned} - previous_board_keys
@@ -301,6 +302,7 @@ def main() -> int:
     coverage_report=audit(all_jobs,scored,watchlist,role,source_health)
     coverage_report["checked_at"]=start.isoformat()
     (DOCS_DIR / "coverage_audit.json").write_text(json.dumps(coverage_report,indent=2),encoding="utf-8")
+    previous_email_report=read_state(DOCS_DIR / 'email_alerts.json',{})
     email_report=email_alerts.report(email_state,email_health,all_jobs,scored,saved_scores,saved_policy,role,
         previous=read_state(DOCS_DIR / "email_alerts.json",{}),now=start)
     (DOCS_DIR / "email_alerts.json").write_text(json.dumps(email_report,indent=2),encoding="utf-8")
@@ -324,6 +326,9 @@ def main() -> int:
     with open(META_FILE, "w", encoding="utf-8") as f:
         json.dump(meta, f, indent=2)
 
+    from src.daily_batch import safe_update as update_daily_batch
+    new_link_ids={row['linkedin_id'] for row in email_report.get('rows',[])}-{row['linkedin_id'] for row in previous_email_report.get('rows',[])}
+    update_daily_batch(root=DOCS_DIR.parent,new_link_ids=new_link_ids)
     from src.metrics_history import poll_snapshot
     poll_snapshot(all_jobs,scored,meta,role)
     log.info("done in %.1fs — wrote %s and %s", elapsed, JOBS_FILE, META_FILE)

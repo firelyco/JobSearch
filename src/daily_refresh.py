@@ -14,7 +14,7 @@ def local_day(value):
 
 def needs_daily_refresh(meta,runs,now):
     today=now.astimezone(TZ)
-    if today.hour<6:return False,'Daily refresh is not due before 6 AM Eastern.'
+    if today.hour<1:return False,'Daily refresh is not due before 1 AM Eastern.'
     if local_day(meta.get('polled_at'))==today.date():return False,'Today already has a published job refresh.'
     if any(r.get('status') in ACTIVE for r in runs):return False,'Job refresh is already queued or running.'
     latest=runs[0] if runs else None
@@ -34,7 +34,12 @@ def main():
     if args.gate:
         # Manual user runs remain available; scheduled/fallback runs are daily-only.
         daily=os.environ.get('GITHUB_EVENT_NAME')=='schedule' or os.environ.get('DAILY_ONLY')=='true'
-        run=not daily or local_day(meta.get('polled_at'))!=now.astimezone(TZ).date()
+        today=now.astimezone(TZ).date()
+        run=not daily or local_day(meta.get('polled_at'))!=today
+        if os.environ.get('RECOVERY_ONLY')=='true':
+            try:batch=json.loads((ROOT/'docs/daily_batch.json').read_text(encoding='utf-8'))
+            except (OSError,ValueError):batch={}
+            run=run or (batch.get('day')==today.isoformat() and batch.get('coverage_issues',0)>0)
         with open(os.environ['GITHUB_OUTPUT'],'a',encoding='utf-8') as out:out.write('run='+str(run).lower()+'\n')
         print('Daily refresh allowed.' if run else 'Skipped: today already has a published refresh.')
         return

@@ -7,7 +7,7 @@ from __future__ import annotations
 import argparse, json, subprocess, tempfile, time, sys
 from pathlib import Path
 
-FILES=('docs/email_alerts.json','docs/fit_scores.json','docs/fit_policy.json','docs/fit_backfill.json','docs/fit_benchmark.json')
+FILES=('docs/daily_batch.json','docs/email_alerts.json','docs/fit_scores.json','docs/fit_policy.json','docs/fit_backfill.json','docs/fit_benchmark.json')
 FINAL={'strong','medium','not'}
 
 def read(path):
@@ -71,6 +71,8 @@ class Publisher:
                             target=scratch/path; remote=read(target);base=self.baseline[path]
                             if path.endswith('fit_scores.json'):value=merge_scores(base,value,remote)
                             elif path.endswith('fit_backfill.json'):value=merge_state(base,value,remote)
+                            elif path.endswith('daily_batch.json'):
+                                if remote.get('checked_at','')>value.get('checked_at',''):value=remote
                             elif remote!=base and remote!=value:
                                 raise RuntimeError('Concurrent assessment policy/benchmark changed; retain checkpoint for recovery')
                             target.parent.mkdir(parents=True,exist_ok=True)
@@ -121,6 +123,8 @@ def reconcile():
         b.refresh(state,read(root/'docs/jobs.json'),read(root/'docs/fit_scores.json'),policy['context_hash'],role,datetime.now(timezone.utc))
         if paused and state.get('status')=='running':state.update(status='waiting_for_provider',updated_at=paused_at)
         (root/'docs/fit_backfill.json').write_text(json.dumps(state,indent=2)+'\n',encoding='utf-8')
+    from src.daily_batch import safe_update as update_daily_batch
+    update_daily_batch(root=root)
 
 def main():
     parser=argparse.ArgumentParser();parser.add_argument('--reconcile',action='store_true');args=parser.parse_args()

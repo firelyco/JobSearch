@@ -2,13 +2,18 @@ name: Poll job boards
 
 on:
   schedule:
-    # Once daily at 6 AM New York local time, including daylight-saving changes.
-    - cron: "0 6 * * *"
+    # Backup trigger at 1 AM Eastern; Vercel independently checks delivery. Finish target: 6 AM.
+    - cron: "0 1 * * *"
       timezone: "America/New_York"
   workflow_dispatch:
     inputs:
       daily_only:
         description: "Skip when today's job refresh is already published"
+        type: boolean
+        default: false
+
+      recovery_only:
+        description: "Retry incomplete sources in the same daily batch"
         type: boolean
         default: false
 
@@ -22,7 +27,7 @@ permissions:
 jobs:
   poll:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 45
     env:
       JOBSEARCH_METRICS: '1'
       BRAVE_SEARCH_API_KEY: ${{ secrets.BRAVE_SEARCH_API_KEY }}
@@ -49,6 +54,7 @@ jobs:
         id: daily
         env:
           DAILY_ONLY: ${{ inputs.daily_only && 'true' || 'false' }}
+          RECOVERY_ONLY: ${{ inputs.recovery_only && 'true' || 'false' }}
         run: python -m src.daily_refresh --gate
 
       - name: Install dependencies
@@ -69,7 +75,7 @@ jobs:
           node src/validate_shortlist.cjs --report=docs/shortlist_validation_poll.json
           git add docs/shortlist_validation_poll.json
           git add docs/metrics
-          git add docs/email_alerts.json docs/coverage_audit.json docs/jobs.json docs/meta.json state/seen_jobs.json state/discovery_cache.json state/discovered_boards.json
+          git add docs/daily_batch.json docs/email_alerts.json docs/coverage_audit.json docs/jobs.json docs/meta.json state/seen_jobs.json state/discovery_cache.json state/discovered_boards.json
           if git diff --staged --quiet; then
             echo "no changes"
           else
@@ -78,7 +84,7 @@ jobs:
             # If another poll's output landed first, this run's files are
             # newer: keep them whole (during a rebase, "theirs" is our commit)
             # rather than hunk-merging JSON.
-            OUTPUTS="docs/email_alerts.json docs/coverage_audit.json docs/shortlist_validation_poll.json docs/jobs.json docs/meta.json state/seen_jobs.json state/discovery_cache.json state/discovered_boards.json"
+            OUTPUTS="docs/daily_batch.json docs/email_alerts.json docs/coverage_audit.json docs/shortlist_validation_poll.json docs/jobs.json docs/meta.json state/seen_jobs.json state/discovery_cache.json state/discovered_boards.json"
             if ! git pull --rebase origin main; then
               git checkout --theirs -- $OUTPUTS
               git add $OUTPUTS

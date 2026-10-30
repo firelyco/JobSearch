@@ -311,6 +311,8 @@ class CheckpointWriter:
         from src.metrics_history import capture_fit
         capture_fit(self.jobs,results,progress)
         STATE_FILE.write_text(json.dumps(progress,indent=2)+'\n',encoding='utf-8')
+        from src.daily_batch import safe_update as update_daily_batch
+        update_daily_batch(root=fit.DOCS_DIR.parent)
         self.pending=True
         if self.publisher and (force or self.last is None or time.monotonic()-self.last>=self.interval):
             self.last=time.monotonic()

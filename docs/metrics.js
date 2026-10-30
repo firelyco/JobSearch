@@ -160,7 +160,7 @@
   const API={day,range,shift,unique,safeURL,analyze,overview,canonicalEvents,roleCategory,sourceCategory,refreshCoverage};root.JobMetrics=API;
   if(typeof document==='undefined')return;
   const $=id=>document.getElementById(id),esc=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-  let history=[],loaded=false,loading=false,loadFailed=false,activeMetric='',page=0,current=null,pivotSelection=null,currentKeys=new Set(),emailReport=null;
+  let history=[],loaded=false,loading=false,loadFailed=false,activeMetric='',page=0,current=null,pivotSelection=null,currentKeys=new Set(),emailReport=null,dailyHealth=null;
   const PAGE_SIZE=50;
   function selectedRange(){return range($('metrics-period').value,$('metrics-date').value,$('metrics-end').value);}
   function stamp(value){return value?new Intl.DateTimeFormat('en-US',{timeZone:TZ,dateStyle:'medium',timeStyle:'short'}).format(new Date(value)):'Not recorded';}
@@ -174,8 +174,11 @@
     const filters={company:$('metrics-company').value.trim(),role:$('metrics-role').value.trim(),source:$('metrics-source').value,location:$('metrics-location').value};
     const summary=overview(history,period,filters),r=summary.analysis;current=r;
     const groups=summary.groups,coverage=refreshCoverage(history,period),awaiting=coverage.awaitingToday&&summary.total===0;
+    const liveDay=period.start===day(new Date())&&period.end===day(new Date());
+    $('metrics-deadline').dataset.state=liveDay?dailyHealth?.status||'unavailable':'';
+    $('metrics-deadline').textContent=liveDay?(dailyHealth&&dailyHealth.day===period.start?'Daily deadline: '+dailyHealth.status.replaceAll('_',' ')+' — '+dailyHealth.reason:'Daily deadline verification unavailable; completion has not been confirmed.'):'Daily deadline status applies to today; historical job counts are below.';
     $('metrics-range-label').textContent=`${period.start===period.end?period.start:period.start+' through '+period.end} · Eastern time`;
-    $('metrics-status').textContent=loadFailed?'Some history files could not be loaded. Counts are incomplete; refresh to retry.':coverage.awaitingToday?"Today's job refresh has not completed. Scheduled for 6 AM Eastern; these are not confirmed zero results.":r.partial?'Historical records are incomplete for this period. Counts show recorded jobs only.':'Jobs first found in this period. Status is shown as of the selected period end; today updates automatically.';
+    $('metrics-status').textContent=loadFailed?'Some history files could not be loaded. Counts are incomplete; refresh to retry.':coverage.awaitingToday?"Today's job refresh has not completed. Collection starts at 1 AM Eastern; completion target is 6 AM; these are not confirmed zero results.":r.partial?'Historical records are incomplete for this period. Counts show recorded jobs only.':'Jobs first found in this period. Status is shown as of the selected period end; today updates automatically.';
     $('metrics-updated').textContent=coverage.latest?'Last completed job refresh: '+stamp(coverage.latest):'No completed job refresh recorded.';
 
     const cardNames={discovered:'New jobs found',completed:'Assessment completed',strong:'Strong',medium:'Middle',not:'Pass',waiting:'Waiting',processing:'Processing',blocked:'Blocked',excluded:'Excluded',backlogWaiting:'Earlier backlog: waiting',backlogProcessing:'Earlier backlog: processing',backlogBlocked:'Earlier backlog: blocked'};
@@ -222,7 +225,10 @@
       const next=[];let failures=0,cursor=0;
       await Promise.all(Array.from({length:Math.min(6,paths.length)},async()=>{while(cursor<paths.length){const p=paths[cursor++];try{const r=await fetch('metrics/'+p+'?t='+Date.now());if(!r.ok)throw Error();const d=await r.json();if(!Array.isArray(d.events))throw Error();next.push(...d.events);}catch{failures++;}}}));
       history=unique(next);loaded=true;loadFailed=failures>0;
-      try{const response=await fetch('email_alerts.json?t='+Date.now());emailReport=response.ok?await response.json():null;}catch{emailReport=null;}
+      await Promise.all([
+        (async()=>{try{const response=await fetch('email_alerts.json?t='+Date.now());emailReport=response.ok?await response.json():null;}catch{emailReport=null;}})(),
+        (async()=>{try{const response=await fetch('https://jobsearch-history.vercel.app/api/daily_status?t='+Date.now());dailyHealth=response.ok?await response.json():null;}catch{dailyHealth=null;}})()
+      ]);
       const previous=$('metrics-source').value,sources=[...new Set(history.map(e=>e.job?.source).filter(Boolean))].sort();
       $('metrics-source').innerHTML='<option value="">All sources</option>'+sources.map(s=>`<option value="${esc(s)}">${esc(s)}</option>`).join('');$('metrics-source').value=previous;
       render();
