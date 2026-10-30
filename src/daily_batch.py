@@ -18,8 +18,8 @@ def local_day(value):
 
 def build(jobs,scores,policy,queue,meta,email,role,previous=None,*,now=None,new_link_ids=()):
     now=now or datetime.now(timezone.utc);day=now.astimezone(TZ).date().isoformat()
-    previous=previous or {};same=previous.get('day')==day
-    old={row['key']:row for row in previous.get('members',[])} if same else {}
+    previous=previous or {};same_day=previous.get('day')==day
+    old={row['key']:row for row in previous.get('members',[])} if same_day else {}
     by_key={backfill.key(job):job for job in jobs}
     linked_keys={match['key'] for row in email.get('rows',[]) if row.get('linkedin_id') in new_link_ids and row.get('collection')=='tracked' for match in row.get('matches',[]) if match.get('key') in by_key}
     keys=set(old)|linked_keys|{key for key,job in by_key.items() if local_day(job.get('first_seen_at'))==day}
@@ -37,8 +37,8 @@ def build(jobs,scores,policy,queue,meta,email,role,previous=None,*,now=None,new_
             elif fresh:status='completed';reason='Existing validated result reused.'
             else:
                 attempt=queue.get('attempts',{}).get(key,{})
-                same=attempt.get('context_hash')==context and attempt.get('job_snapshot_hash')==row['job_snapshot_hash']
-                status='processing' if same and attempt.get('last_outcome')=='in_progress' else 'blocked' if same and attempt.get('count',0)>=queue.get('max_attempts',2) else 'waiting'
+                same_input=attempt.get('context_hash')==context and attempt.get('job_snapshot_hash')==row['job_snapshot_hash']
+                status='processing' if same_input and attempt.get('last_outcome')=='in_progress' else 'blocked' if same_input and attempt.get('count',0)>=queue.get('max_attempts',2) else 'waiting'
                 reason='Paid retry budget exhausted; review required.' if status=='blocked' else 'Unfinished assessment.'
         else:
             eligible=row.get('eligible',True)
@@ -50,7 +50,7 @@ def build(jobs,scores,policy,queue,meta,email,role,previous=None,*,now=None,new_
         members.append(row)
     # Email leads remain visibly unfinished until the employer requisition is
     # confirmed. Similar titles are never silently treated as exact matches.
-    link_ids=(set(previous.get('link_ids',[])) if same else set())|set(new_link_ids)
+    link_ids=(set(previous.get('link_ids',[])) if same_day else set())|set(new_link_ids)
     for row in email.get('rows',[]):
         if local_day(row.get('first_alert_at'))==day:link_ids.add(row['linkedin_id'])
     refs={row['linkedin_id']:row for row in email.get('rows',[])}
