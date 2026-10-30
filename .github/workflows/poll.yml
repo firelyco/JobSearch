@@ -5,7 +5,12 @@ on:
     # Once daily at 6 AM New York local time, including daylight-saving changes.
     - cron: "0 6 * * *"
       timezone: "America/New_York"
-  workflow_dispatch: {}
+  workflow_dispatch:
+    inputs:
+      daily_only:
+        description: "Skip when today's job refresh is already published"
+        type: boolean
+        default: false
 
 concurrency:
   group: poll
@@ -40,15 +45,24 @@ jobs:
           python-version: "3.12"
           cache: pip
 
+      - name: Skip duplicate scheduled daily refresh
+        id: daily
+        env:
+          DAILY_ONLY: ${{ inputs.daily_only && 'true' || 'false' }}
+        run: python -m src.daily_refresh --gate
+
       - name: Install dependencies
+        if: steps.daily.outputs.run == 'true' 
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
       - name: Run poller
+        if: steps.daily.outputs.run == 'true'
         run: python -m src.poll
 
       - name: Commit updated jobs and state
+        if: steps.daily.outputs.run == 'true'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"

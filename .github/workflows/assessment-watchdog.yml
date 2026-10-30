@@ -26,6 +26,10 @@ jobs:
           python-version: '3.12'
           cache: pip
       - run: pip install -r requirements.txt
+      - name: Recover missed daily refresh after 6 AM Eastern
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python -m src.daily_refresh
       - name: Restart only unfinished assessments
         env:
           GH_TOKEN: ${{ github.token }}

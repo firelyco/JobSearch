@@ -67,3 +67,9 @@ assert.equal(authoritative.groups.waiting.size,0);assert.equal(authoritative.gro
 assert.equal(authoritative.groups.processing.size,1);assert.equal(authoritative.groups.blocked.size,1);
 assert.equal(authoritative.groups.excluded.size,3);
 assert.equal(authoritative.groups.completed.size,1);
+
+const noRefresh=m.refreshCoverage([{id:'last-poll',type:'refresh',at:'2026-10-29T18:30:43Z'}],{start:'2026-10-30',end:'2026-10-30'},new Date('2026-10-30T14:35:00Z'));
+assert.equal(noRefresh.awaitingToday,true);assert.equal(noRefresh.latest,'2026-10-29T18:30:43Z');
+const zeroButRefreshed=m.refreshCoverage([{id:'poll',type:'refresh',at:'2026-10-30T14:35:00Z'}],{start:'2026-10-30',end:'2026-10-30'},new Date('2026-10-30T14:40:00Z'));
+assert.equal(zeroButRefreshed.awaitingToday,false);assert.equal(zeroButRefreshed.hasRefresh,true);
+assert.equal(m.refreshCoverage([],{start:'2026-10-29',end:'2026-10-29'},new Date('2026-10-30T14:35:00Z')).awaitingToday,false);

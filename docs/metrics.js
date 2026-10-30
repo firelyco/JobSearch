@@ -152,7 +152,12 @@
     const total=cohort.size,eligible=total-groups.excluded.size,completed=groups.completed.size;
     return {analysis:r,groups,total,eligible,completed,queueAsOf:snapshot?.at,percent:eligible?Math.round(100*completed/eligible):0,sourceRows:pivot('discoverySource'),roleRows:pivot('roleCategory')};
   }
-  const API={day,range,shift,unique,safeURL,analyze,overview,canonicalEvents,roleCategory,sourceCategory};root.JobMetrics=API;
+  function refreshCoverage(input,period,now=new Date()){
+    const refreshes=unique(input).filter(e=>e.type==='refresh'),latest=refreshes.at(-1)?.at;
+    const hasRefresh=refreshes.some(e=>day(e.at)>=period.start&&day(e.at)<=period.end);
+    return {latest,hasRefresh,awaitingToday:period.start===day(now)&&period.end===day(now)&&!hasRefresh};
+  }
+  const API={day,range,shift,unique,safeURL,analyze,overview,canonicalEvents,roleCategory,sourceCategory,refreshCoverage};root.JobMetrics=API;
   if(typeof document==='undefined')return;
   const $=id=>document.getElementById(id),esc=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   let history=[],loaded=false,loading=false,loadFailed=false,activeMetric='',page=0,current=null,pivotSelection=null,currentKeys=new Set(),emailReport=null;
@@ -168,18 +173,21 @@
     if((new Date(period.end)-new Date(period.start))/86400000>366){$('metrics-status').textContent='Choose a period of 366 days or less.';return;}
     const filters={company:$('metrics-company').value.trim(),role:$('metrics-role').value.trim(),source:$('metrics-source').value,location:$('metrics-location').value};
     const summary=overview(history,period,filters),r=summary.analysis;current=r;
-    const groups=summary.groups;
+    const groups=summary.groups,coverage=refreshCoverage(history,period),awaiting=coverage.awaitingToday&&summary.total===0;
     $('metrics-range-label').textContent=`${period.start===period.end?period.start:period.start+' through '+period.end} · Eastern time`;
-    $('metrics-status').textContent=loadFailed?'Some history files could not be loaded. Counts are incomplete; refresh to retry.':r.partial?'Historical records are incomplete for this period. Counts show recorded jobs only.':'Jobs first found in this period. Status is shown as of the selected period end; today updates automatically.';
+    $('metrics-status').textContent=loadFailed?'Some history files could not be loaded. Counts are incomplete; refresh to retry.':coverage.awaitingToday?"Today's job refresh has not completed. Scheduled for 6 AM Eastern; these are not confirmed zero results.":r.partial?'Historical records are incomplete for this period. Counts show recorded jobs only.':'Jobs first found in this period. Status is shown as of the selected period end; today updates automatically.';
+    $('metrics-updated').textContent=coverage.latest?'Last completed job refresh: '+stamp(coverage.latest):'No completed job refresh recorded.';
+
     const cardNames={discovered:'New jobs found',completed:'Assessment completed',strong:'Strong',medium:'Middle',not:'Pass',waiting:'Waiting',processing:'Processing',blocked:'Blocked',excluded:'Excluded',backlogWaiting:'Earlier backlog: waiting',backlogProcessing:'Earlier backlog: processing',backlogBlocked:'Earlier backlog: blocked'};
-    function button(key,label=cardNames[key],cls='metrics-queue-count'){return `<button type="button" class="${cls} ${activeMetric===key&&!pivotSelection?'selected':''}" data-metric="${key}" aria-pressed="${activeMetric===key&&!pivotSelection}"><span>${esc(label)}</span><strong>${groups[key].size.toLocaleString()}</strong>${cls==='metrics-stat'?'<small>View jobs</small>':''}</button>`;}
+    function button(key,label=cardNames[key],cls='metrics-queue-count'){return `<button type="button" class="${cls} ${activeMetric===key&&!pivotSelection?'selected':''}" data-metric="${key}" aria-pressed="${activeMetric===key&&!pivotSelection}"><span>${esc(label)}</span><strong>${awaiting&&cls==='metrics-stat'?'—':groups[key].size.toLocaleString()}</strong>${cls==='metrics-stat'?'<small>'+(awaiting?'Awaiting refresh':'View jobs')+'</small>':''}</button>`;}
     $('metrics-cards').innerHTML=['discovered','completed','strong','medium','not'].map(k=>button(k,cardNames[k],'metrics-stat')).join('');
-    $('metrics-progress').innerHTML=`<div class="metrics-progress-heading"><strong>${summary.completed} / ${summary.eligible} jobs completed</strong><span>${summary.eligible?summary.percent+'%':'No eligible jobs'}</span></div><progress aria-label="Assessment completion for jobs found in selected period" max="${summary.eligible||1}" value="${summary.completed}"></progress><div class="metrics-queue">${['waiting','processing','blocked','excluded'].map(k=>button(k)).join('')}</div><p class="muted">Excluded jobs are outside your criteria and do not enter the progress total. Blocked includes jobs awaiting eligibility confirmation.</p>`;
+    $('metrics-progress').innerHTML=`<div class="metrics-progress-heading"><strong>${awaiting?'Awaiting today’s refresh':summary.completed+' / '+summary.eligible+' jobs completed'}</strong><span>${awaiting?'Not started':summary.eligible?summary.percent+'%':'No eligible jobs'}</span></div><progress aria-label="Assessment completion for jobs found in selected period" max="${summary.eligible||1}" value="${summary.completed}"></progress><div class="metrics-queue">${['waiting','processing','blocked','excluded'].map(k=>button(k)).join('')}</div><p class="muted">Excluded jobs are outside your criteria and do not enter the progress total. Blocked includes jobs awaiting eligibility confirmation.</p>`;
     const overall={waiting:groups.waiting.size+groups.backlogWaiting.size,processing:groups.processing.size+groups.backlogProcessing.size,blocked:groups.blocked.size+groups.backlogBlocked.size};
     $('metrics-backlog').innerHTML=`<strong>Overall outstanding queue: ${overall.waiting+overall.processing+overall.blocked}</strong><span>${overall.waiting} waiting · ${overall.processing} processing · ${overall.blocked} blocked${summary.queueAsOf?' · Queue updated '+esc(stamp(summary.queueAsOf)):''}</span><div class="metrics-queue">${['backlogWaiting','backlogProcessing','backlogBlocked'].map(k=>button(k)).join('')}</div>`;
     const columns=['discovered','completed','strong','medium','not','waiting','processing','blocked','excluded'];
     function pivot(rows,type){
       const cell=(keys,index,key)=>`<td><button type="button" class="metrics-number" data-pivot="${type}" data-row="${index}" data-column="${key}" aria-label="${esc((index<0?'Total':rows[index].name)+': '+cardNames[key]+', '+keys.size+' jobs')}">${keys.size}</button></td>`;
+      if(awaiting)return '<tr><td colspan="10">Awaiting today’s job refresh. Results will appear automatically when it completes.</td></tr>';
       return rows.map((row,index)=>`<tr><th scope="row">${esc(row.name)}</th>${columns.map(key=>cell(row.groups[key],index,key)).join('')}</tr>`).join('')+`<tr class="metrics-total"><th scope="row">Total</th>${columns.map(key=>cell(groups[key],-1,key)).join('')}</tr>`;
     }
     $('metrics-source-pivot').innerHTML=pivot(summary.sourceRows,'source');
@@ -217,7 +225,7 @@
       try{const response=await fetch('email_alerts.json?t='+Date.now());emailReport=response.ok?await response.json():null;}catch{emailReport=null;}
       const previous=$('metrics-source').value,sources=[...new Set(history.map(e=>e.job?.source).filter(Boolean))].sort();
       $('metrics-source').innerHTML='<option value="">All sources</option>'+sources.map(s=>`<option value="${esc(s)}">${esc(s)}</option>`).join('');$('metrics-source').value=previous;
-      $('metrics-updated').textContent='History loaded '+stamp(new Date().toISOString());render();
+      render();
     }catch(error){$('metrics-status').textContent='Could not load saved metrics. Use Refresh history to retry; the Jobs tab remains available.';}
     finally{loading=false;}
   }
