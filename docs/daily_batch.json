@@ -12,8 +12,8 @@
     "strong": 1,
     "middle": 8,
     "pass": 6,
-    "waiting": 1,
-    "processing": 2,
+    "waiting": 2,
+    "processing": 1,
     "blocked": 0,
     "excluded": 52,
     "unverified_links": 9
@@ -730,7 +730,7 @@
       "source": "workday",
       "job_snapshot_hash": "6c7e90d6bee00ba2cc8a0439f5de10afb55067c845e7279c31114329891cf44d",
       "eligible": true,
-      "status": "processing",
+      "status": "waiting",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -1084,21 +1084,21 @@
       "status": "failed"
     }
   ],
-  "checked_at": "2026-10-30T19:46:47.541405+00:00",
+  "checked_at": "2026-10-30T19:48:17.370651+00:00",
   "legacy_backlog": {
     "assessed": 433,
-    "pending": 47,
+    "pending": 50,
     "unresolved": 0,
-    "in_progress": 5,
-    "total": 485,
+    "in_progress": 1,
+    "total": 484,
     "strong": 54
   },
-  "batch_id": "42edf7f055e6352db2629572ab402239dbadceb7822d6f76e3dfa9a7200a9290",
+  "batch_id": "385bc55e755e918ac2109f86999ebc722d0e8d65aaa1b4e0775b10a4743f0e25",
   "status": "assessing",
   "input_blobs": {
     "jobs.json": "cb07d10aabb346491256c33ff8eb7f3e3f453413",
-    "fit_scores.json": "2af65973c2ca6c51e6cfad7ef8c1c18aa4a1da03",
-    "fit_backfill.json": "06d79884791ddb764a337524ae8b70f1c78fd8cd",
+    "fit_scores.json": "c1cfbb054679472126550c73e4bb0fc2b16662be",
+    "fit_backfill.json": "e8075c5c7eeaba1c7e66da1f3601b1f9f2438047",
     "meta.json": "c22ff5a77347805a91ca4bf70b7966f9a169f5a9"
   }
 }
