@@ -12,9 +12,9 @@
     "strong": 1,
     "middle": 8,
     "pass": 6,
-    "waiting": 0,
+    "waiting": 3,
     "processing": 0,
-    "blocked": 3,
+    "blocked": 0,
     "excluded": 52,
     "unverified_links": 9
   },
@@ -686,8 +686,8 @@
       "source": "workday",
       "job_snapshot_hash": "d147e8c6a29a2860ea64b3707a5b16d3aa7e3a0f61f415a1743c95b5487ec2ef",
       "eligible": true,
-      "status": "blocked",
-      "reason": "Paid retry budget exhausted; review required.",
+      "status": "waiting",
+      "reason": "Unfinished assessment.",
       "verdict": null
     },
     {
@@ -730,8 +730,8 @@
       "source": "workday",
       "job_snapshot_hash": "6c7e90d6bee00ba2cc8a0439f5de10afb55067c845e7279c31114329891cf44d",
       "eligible": true,
-      "status": "blocked",
-      "reason": "Paid retry budget exhausted; review required.",
+      "status": "waiting",
+      "reason": "Unfinished assessment.",
       "verdict": null
     },
     {
@@ -763,8 +763,8 @@
       "source": "workday",
       "job_snapshot_hash": "2d8f61a4cd69acaa4c944b4c193eea61a0c1b499d0e8c2208c07b72e08c35961",
       "eligible": true,
-      "status": "blocked",
-      "reason": "Paid retry budget exhausted; review required.",
+      "status": "waiting",
+      "reason": "Unfinished assessment.",
       "verdict": null
     },
     {
@@ -1084,21 +1084,21 @@
       "status": "failed"
     }
   ],
-  "checked_at": "2026-10-30T15:31:20.879619+00:00",
+  "checked_at": "2026-10-30T19:45:43.521444+00:00",
   "legacy_backlog": {
     "assessed": 431,
-    "pending": 0,
-    "unresolved": 54,
+    "pending": 54,
+    "unresolved": 0,
     "in_progress": 0,
     "total": 485,
     "strong": 54
   },
-  "batch_id": "cc3e108362d57ed7bac20eeb8c37eb52980c9ec41774f8f82049f5eb7c2989ee",
-  "status": "blocked",
+  "batch_id": "2550422bed769db6173b3fd0f0ae8eaaef638ff0552b3348b22b6191b4d9f63a",
+  "status": "assessing",
   "input_blobs": {
-    "jobs.json": "7ca499f9c8ed31bd3e96e4648e56208fc52c61dd",
-    "fit_scores.json": "4a0a973817e7a0512598ccd5e98d2ee6fc120b11",
-    "fit_backfill.json": "82363173a9293dc8a9ff632bb388d40569012f81",
-    "meta.json": "a9de93664748f911431263774e02d06816a56f04"
+    "jobs.json": "cb07d10aabb346491256c33ff8eb7f3e3f453413",
+    "fit_scores.json": "6888d4ca26222f754226043b8627173679f4e35f",
+    "fit_backfill.json": "cc44d0bec9de89abb0f722595cbbf8f9687ca7f1",
+    "meta.json": "c22ff5a77347805a91ca4bf70b7966f9a169f5a9"
   }
 }
