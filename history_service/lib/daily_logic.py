@@ -48,6 +48,9 @@ def decide(batch,runs,state,now,*,published=False):
             result.update(status='completed_late',reason='Processing is complete, but completion was not verified by the 6 AM deadline.')
     else:
         result.update(status='publishing',reason='Waiting to verify this batch on the live dashboard.')
+    if local.hour==5 and local.minute>=30 and result['status']!='complete':
+        result['work_status']=result['status'];result['status']='at_risk'
+        result['reason']='Less than 30 minutes remain before the 6 AM deadline. '+result['reason']
     if local.hour>=8:result['action']=None
     if local.hour>=6 and result['status'] not in ('complete','completed_late'):
         result['work_status']=result['status'];result['status']='missed_deadline'

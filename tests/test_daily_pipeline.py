@@ -44,6 +44,9 @@ class CoordinatorDecisions(unittest.TestCase):
     def test_stale_checkpoint_cannot_claim_completion(self):
         result=decide({**batch(),'checkpoint_stale':True},{},{},NOW,published=True)
         self.assertNotEqual(result['status'],'complete');self.assertEqual(result['action'],'fit')
+    def test_five_thirty_warning_preserves_recovery_action(self):
+        result=decide(batch(waiting=1),{},{},datetime(2026,10,30,9,30,tzinfo=timezone.utc))
+        self.assertEqual(result['status'],'at_risk');self.assertEqual(result['action'],'fit')
     def test_restart_limits_do_not_loop_forever(self):
         result=decide({}, {},{'dispatches':{'poll':{'count':3}}},NOW)
         self.assertIsNone(result['action']);self.assertEqual(result['status'],'blocked')
@@ -86,6 +89,10 @@ class DailyBatchTests(unittest.TestCase):
     def test_missing_sources_prevent_false_green(self):
         self.meta['discovery']=[{'source':'brave','status':'failed'}]
         self.assertEqual(self.build({self.key:self.score()})['status'],'blocked')
+    def test_confirmed_below_floor_pay_does_not_wait_for_a_career_verdict(self):
+        score={**self.score(),'validated':False,'recommendation':'review','comp_status':'below_floor'}
+        result=self.build({self.key:score})
+        self.assertEqual(result['counts']['excluded'],1);self.assertEqual(result['counts']['waiting'],0)
     def test_progress_fingerprint_is_stable_without_new_work(self):
         first=self.build();second=self.build(previous=first)
         self.assertEqual(first['batch_id'],second['batch_id'])

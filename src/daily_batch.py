@@ -32,7 +32,7 @@ def build(jobs,scores,policy,queue,meta,email,role,previous=None,*,now=None,new_
             row.update(key=key,title=job.get('title',''),url=job.get('url',''),source=job.get('source',''),job_snapshot_hash=backfill.snapshot_hash(job))
             eligible=assessment_scope.allowed(job) and backfill.in_scope(job,role)
             fresh=bool(context and backfill.fresh(job,saved,context) and saved.get('validated') is True and saved.get('recommendation') in backfill.FINAL)
-            if fresh and saved.get('comp_status')=='below_floor':eligible=False
+            if context and backfill.fresh(job,saved,context) and saved.get('comp_status')=='below_floor':eligible=False
             if not eligible:status='excluded';reason='Outside agreed assessment criteria.'
             elif fresh:status='completed';reason='Existing validated result reused.'
             else:

@@ -568,3 +568,5 @@ td.col-applied input { width: 16px; height: 16px; cursor: pointer; }
 #metrics-deadline[data-state="complete"] { color:var(--success); background:var(--success-bg); }
 #metrics-deadline[data-state="blocked"],#metrics-deadline[data-state="missed_deadline"],#metrics-deadline[data-state="completed_late"],#metrics-deadline[data-state="monitor_overdue"] { color:var(--danger); background:var(--danger-bg); }
 #metrics-deadline[data-state="configuration_required"],#metrics-deadline[data-state="unavailable"] { color:var(--warn); background:var(--warn-bg); }
+
+#metrics-deadline[data-state="at_risk"] { color:var(--danger); background:var(--danger-bg); }

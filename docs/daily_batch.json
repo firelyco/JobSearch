@@ -7,15 +7,15 @@
   "collection_at": "2026-10-30T14:37:18.559934+00:00",
   "counts": {
     "found": 70,
-    "eligible": 19,
+    "eligible": 18,
     "completed": 15,
     "strong": 1,
     "middle": 8,
     "pass": 6,
-    "waiting": 1,
+    "waiting": 0,
     "processing": 0,
     "blocked": 3,
-    "excluded": 51,
+    "excluded": 52,
     "unverified_links": 9
   },
   "members": [
@@ -740,9 +740,9 @@
       "url": "https://kla.wd1.myworkdayjobs.com/en-US/annarbor/job/Ann-Arbor-MI/Full-Stack-AI-Engineer_2636786",
       "source": "workday",
       "job_snapshot_hash": "83abdcd48a28ff6f6c1bb1dde9fbf5d503aa0b293c22d45cc587b3e349a323f2",
-      "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -1084,7 +1084,7 @@
       "status": "failed"
     }
   ],
-  "checked_at": "2026-10-30T15:25:55.631777+00:00",
+  "checked_at": "2026-10-30T15:31:20.879619+00:00",
   "legacy_backlog": {
     "assessed": 431,
     "pending": 0,
@@ -1093,8 +1093,8 @@
     "total": 485,
     "strong": 54
   },
-  "batch_id": "d5e44459f29431c1db4c6d703e49715f2c32a9b83a6fd4054d24e2fba9b75d58",
-  "status": "assessing",
+  "batch_id": "cc3e108362d57ed7bac20eeb8c37eb52980c9ec41774f8f82049f5eb7c2989ee",
+  "status": "blocked",
   "input_blobs": {
     "jobs.json": "7ca499f9c8ed31bd3e96e4648e56208fc52c61dd",
     "fit_scores.json": "4a0a973817e7a0512598ccd5e98d2ee6fc120b11",
