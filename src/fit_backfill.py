@@ -93,7 +93,7 @@ def outcome(job, scores, state, context):
             and attempt.get('pipeline_version','legacy') == pipeline_version())
     if same and attempt.get('last_outcome') == 'in_progress':
         return 'in_progress'
-    if same and attempt.get('count', 0) >= state['max_attempts']:
+    if same and attempt.get('count', 0) >= state.get('retry_limits',{}).get(key(job),state['max_attempts']):
         return 'unresolved'
     return 'pending'
 
@@ -140,7 +140,12 @@ def plan(jobs, scores, state, context, role_config):
                     current_window = window['index']; break
     # Keep US work first; within the international lane prefer explicit remote
     # opportunities. A title screen never assigns a Strong fit verdict.
-    selected.sort(key=lambda j: (
+    if state.get('ordering')=='newest_found':
+        selected=[j for j in chosen if statuses[key(j)]=='pending']
+        phase='newest_found'
+        selected.sort(key=lambda j:(timestamp(j.get('first_seen_at')) or posting_time(j) or datetime.min.replace(tzinfo=timezone.utc),posting_time(j) or datetime.min.replace(tzinfo=timezone.utc)),reverse=True)
+    else:
+        selected.sort(key=lambda j: (
         phase != 'strong_reassessment' and _is_us_or_remote(re.sub(r'\bremote\b', '', j.get('resolved_locations') or j.get('location') or '', flags=re.I)),
         phase != 'strong_reassessment' and is_remote(j),
         posting_time(j) or datetime.min.replace(tzinfo=timezone.utc)), reverse=True)
@@ -199,6 +204,24 @@ def retry_unfinished(state, jobs, scores, context, role_config, now):
     state['status']='running'
     refresh(state,jobs,scores,context,role_config,now)
     return reset
+
+
+def prepare_drain(state,jobs,scores,context,role_config,now,campaign):
+    """One explicit, audited retry allowance; preserve counts and completed reviews."""
+    state.update(enabled=True,scope_mode='rolling_relevant',ordering='newest_found',status='running')
+    state['cutoff']=datetime.combine(assessment_scope.cutoff(),datetime.min.time(),tzinfo=timezone.utc).isoformat()
+    state.pop('requested_job_keys',None)
+    state['priority_job_keys']=[]
+    refresh(state,jobs,scores,context,role_config,now)
+    if state.get('retry_campaign')!=campaign:
+        state['retry_campaign']=campaign
+        limits=state.setdefault('retry_limits',{})
+        for job in jobs:
+            if not assessment_scope.allowed(job) or not in_scope(job,role_config):continue
+            if outcome(job,scores,state,context)!='unresolved':continue
+            limits[key(job)]=int(state['attempts'][key(job)].get('count',0))+2
+        state.setdefault('drain_history',[]).append({'campaign':campaign,'started_at':now.isoformat(),'retry_jobs':len(limits)})
+    return refresh(state,jobs,scores,context,role_config,now)
 
 
 def worker_batch_size(requested):
@@ -337,6 +360,7 @@ def main(argv=None):
     parser.add_argument('--enabled', action='store_true')
     parser.add_argument('--should-continue', action='store_true')
     parser.add_argument('--retry-unfinished', action='store_true')
+    parser.add_argument('--drain-backlog', action='store_true')
     parser.add_argument('--provider-error', action='store_true')
     parser.add_argument('--max', type=int, default=6)
     parser.add_argument('--minutes',type=float,default=0,help='Start additional batches within this time budget')
@@ -384,6 +408,13 @@ def main(argv=None):
     role_config = yaml.safe_load((fit.CONFIG_DIR/'role_config.yml').read_text(encoding='utf-8'))
     jobs = fit.load_json(fit.JOBS_FILE,[]); scores = fit.load_json(fit.FIT_FILE,{})
     persist=CheckpointWriter(jobs,publisher)
+    if args.drain_backlog:
+        prepare_drain(state,jobs,scores,policy['context_hash'],role_config,datetime.now(timezone.utc),os.environ.get('GITHUB_RUN_ID','manual'))
+        persist(state,scores,force=True)
+    campaign=state.get('retry_campaign','')
+    if campaign:
+        os.environ['FIT_RETRY_CAMPAIGN']=campaign
+        os.environ['FIT_RETRY_JOB_KEYS']=json.dumps(list(state.get('retry_limits',{})))
     started=time.monotonic()
     scores=recover_completed(jobs=jobs,profile=profile,rules=rules,scores=scores,state=state,
         model=model,role_config=role_config,persist=persist)

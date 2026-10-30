@@ -75,6 +75,20 @@ class DurableBudget(unittest.TestCase):
  def test_completed_assessment_cannot_be_charged_again(self):
   a=self.reserve();cache.finish(KEY,a,'complete')
   with self.assertRaises(cache.AttemptBudgetExhausted):self.reserve()
+ def test_explicit_campaign_allows_two_extra_attempts_once_across_workers(self):
+  self.reserve();self.reserve()
+  with patch.dict('os.environ',{'FIT_RETRY_CAMPAIGN':'one','FIT_RETRY_JOB_KEYS':'["'+KEY+'"]'}):
+   self.assertEqual(self.reserve()['paid_attempts'],3)
+   self.assertEqual(self.reserve()['paid_attempts'],4)
+   with self.assertRaises(cache.AttemptBudgetExhausted):self.reserve()
+  with self.assertRaises(cache.AttemptBudgetExhausted):self.reserve()
+ def test_campaign_cannot_repeat_completed_or_unlisted_jobs(self):
+  a=self.reserve();cache.finish(KEY,a,'complete')
+  with patch.dict('os.environ',{'FIT_RETRY_CAMPAIGN':'one','FIT_RETRY_JOB_KEYS':'["'+KEY+'"]'}):
+   with self.assertRaises(cache.AttemptBudgetExhausted):self.reserve()
+  self.reserve('other');self.reserve('other')
+  with patch.dict('os.environ',{'FIT_RETRY_CAMPAIGN':'one','FIT_RETRY_JOB_KEYS':'[]'}):
+   with self.assertRaises(cache.AttemptBudgetExhausted):self.reserve('other')
  def test_reservation_failure_aborts_before_spend(self):
   with patch('src.assessment_cache.save_private',side_effect=RuntimeError('database unavailable')):
    with self.assertRaises(RuntimeError):self.reserve()

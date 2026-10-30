@@ -14,6 +14,10 @@ on:
         description: "Validate resumable assessment execution"
         type: boolean
         default: false
+      drain_backlog:
+        description: "Drain eligible backlog newest-found first; authorize one bounded retry campaign"
+        type: boolean
+        default: false
       backfill:
         description: "Continue the saved assessment period"
         type: boolean
@@ -206,6 +210,7 @@ jobs:
 
       - name: Score fit for new jobs
         env:
+          FIT_DRAIN_BACKLOG: ${{ inputs.drain_backlog }}
           FIT_BACKFILL: ${{ inputs.backfill }}
           FIT_EXPLICIT_JOB_KEYS: ${{ inputs.job_keys }}
           FIT_VALIDATE_ONLY: ${{ inputs.validate_only }}
@@ -236,6 +241,10 @@ jobs:
           if [ "$FIT_INVENTORY_ONLY" = "true" ]; then
             python -m src.fit --inventory-only
             exit 0
+          fi
+          if [ "$FIT_DRAIN_BACKLOG" = "true" ]; then
+            FIT_BACKFILL_PUBLISH=true python -m src.fit_backfill --drain-backlog --minutes 8 --max "${{ vars.JOBSEARCH_BACKFILL_BATCH_SIZE || inputs.max || '6' }}"
+            exit $?
           fi
           if [ "$FIT_BACKFILL" = "true" ] || ( [ "$FIT_VALIDATE_ONLY" != "true" ] && [ -z "$FIT_EXPLICIT_JOB_KEYS" ] && python -m src.fit_backfill --should-continue ); then
             FIT_BACKFILL_PUBLISH=true python -m src.fit_backfill --minutes 8 --max "${{ vars.JOBSEARCH_BACKFILL_BATCH_SIZE || inputs.max || '6' }}"

@@ -28,6 +28,25 @@ class BackfillTests(unittest.TestCase):
     def run_batch(self,jobs,scores=None,runner=None,**kw):
         return b.run_batch(jobs=jobs,profile={},rules={},scores=scores or {},state=self.state,
                            model='nvidia',role_config=CFG,now=NOW,runner=runner,**kw)
+    def test_drain_newest_discovery_first_preserves_completed_and_cutoff(self):
+        newer=job('new-discovery',100,first_seen_at=NOW.isoformat())
+        older=job('old-discovery',1,first_seen_at=(NOW-timedelta(days=1)).isoformat())
+        done=job('done',2)
+        ancient=job('ancient',posted_at='2026-09-01T00:00:00+00:00')
+        attempt={'context_hash':'context','job_snapshot_hash':b.snapshot_hash(newer),'count':2,'last_outcome':'failed','pipeline_version':b.pipeline_version()}
+        self.state['attempts'][b.key(newer)]=attempt.copy()
+        scores={b.key(done):verdict(done)}
+        jobs=[older,newer,done,ancient]
+        result=b.prepare_drain(self.state,jobs,scores,'context',CFG,NOW,'campaign')
+        self.assertEqual(result['selected'],[newer,older])
+        self.assertEqual(self.state['attempts'][b.key(newer)],attempt)
+        self.assertEqual(self.state['retry_limits'][b.key(newer)],4)
+        self.state['attempts'][b.key(newer)]['count']=4
+        result=b.prepare_drain(self.state,jobs,scores,'context',CFG,NOW,'campaign')
+        self.assertEqual(self.state['retry_limits'][b.key(newer)],4)
+        self.assertEqual(result['selected'],[older])
+        self.assertEqual(result['counts']['assessed'],1)
+
     def test_windows_cover_exact_seven_days_without_overlap(self):
         for i in range(14):
             self.assertEqual(b.window_index(job(str(i),12*i),self.state),i)

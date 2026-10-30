@@ -38,7 +38,7 @@ def build(jobs,scores,policy,queue,meta,email,role,previous=None,*,now=None,new_
             else:
                 attempt=queue.get('attempts',{}).get(key,{})
                 same_input=attempt.get('context_hash')==context and attempt.get('job_snapshot_hash')==row['job_snapshot_hash']
-                status='processing' if same_input and attempt.get('last_outcome')=='in_progress' else 'blocked' if same_input and attempt.get('count',0)>=queue.get('max_attempts',2) else 'waiting'
+                status='processing' if same_input and attempt.get('last_outcome')=='in_progress' else 'blocked' if same_input and attempt.get('count',0)>=queue.get('retry_limits',{}).get(key,queue.get('max_attempts',2)) else 'waiting'
                 reason='Paid retry budget exhausted; review required.' if status=='blocked' else 'Unfinished assessment.'
         else:
             eligible=row.get('eligible',True)
