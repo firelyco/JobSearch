@@ -8,12 +8,12 @@
   "counts": {
     "found": 70,
     "eligible": 18,
-    "completed": 15,
+    "completed": 16,
     "strong": 1,
     "middle": 8,
-    "pass": 6,
+    "pass": 7,
     "waiting": 0,
-    "processing": 2,
+    "processing": 1,
     "blocked": 1,
     "excluded": 52,
     "unverified_links": 9
@@ -730,9 +730,9 @@
       "source": "workday",
       "job_snapshot_hash": "6c7e90d6bee00ba2cc8a0439f5de10afb55067c845e7279c31114329891cf44d",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "pass"
     },
     {
       "key": "workday:kla:/job/Ann-Arbor-MI/Full-Stack-AI-Engineer_2636786",
@@ -1084,21 +1084,21 @@
       "status": "failed"
     }
   ],
-  "checked_at": "2026-10-30T19:49:18.294832+00:00",
+  "checked_at": "2026-10-30T19:51:26.853631+00:00",
   "legacy_backlog": {
-    "assessed": 433,
-    "pending": 41,
-    "unresolved": 6,
-    "in_progress": 4,
+    "assessed": 434,
+    "pending": 42,
+    "unresolved": 7,
+    "in_progress": 1,
     "total": 484,
     "strong": 54
   },
-  "batch_id": "e4e98df89db0a97b886f27819116fd56fb6882c2e007ffa33f0e4aa58281c136",
+  "batch_id": "394c3e3cf207379e428d04e99a4872673e06d4251045d2c17c04d9ff7b459780",
   "status": "assessing",
   "input_blobs": {
     "jobs.json": "cb07d10aabb346491256c33ff8eb7f3e3f453413",
-    "fit_scores.json": "7dfc593d026b798ec9d667cc79774445e4a73277",
-    "fit_backfill.json": "1e0589998f52a005ad667c2a75ba3551e598d293",
+    "fit_scores.json": "b49ad9dcde557643991cdde32f193be691edef2c",
+    "fit_backfill.json": "e05430d6bdaeeff95798038930033cdebd3fadeb",
     "meta.json": "c22ff5a77347805a91ca4bf70b7966f9a169f5a9"
   }
 }
