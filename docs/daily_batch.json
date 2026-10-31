@@ -7,15 +7,15 @@
   "collection_at": "2026-10-31T05:00:50.798193+00:00",
   "counts": {
     "found": 93,
-    "eligible": 40,
-    "completed": 23,
-    "strong": 4,
-    "middle": 12,
-    "pass": 7,
+    "eligible": 36,
+    "completed": 28,
+    "strong": 5,
+    "middle": 14,
+    "pass": 9,
     "waiting": 0,
-    "processing": 9,
+    "processing": 0,
     "blocked": 8,
-    "excluded": 53,
+    "excluded": 57,
     "unverified_links": 24
   },
   "members": [
@@ -25,9 +25,9 @@
       "url": "https://www.amazon.jobs/en/jobs/10556800/sr-technical-program-manager-aurora-open-source-product",
       "source": "amazon_jobs",
       "job_snapshot_hash": "203b8464ce6aadb4d90f8471635cb2aee38c18aa73f87c7e967c286bd2df42e5",
-      "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -542,9 +542,9 @@
       "url": "https://job-boards.greenhouse.io/xometry/jobs/5241085007",
       "source": "greenhouse",
       "job_snapshot_hash": "767601bb9ac07d4763185ce16be8ceaae60ccd0d2dabdeaf07241f88c4f46314",
-      "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -675,9 +675,9 @@
       "source": "web_discovery",
       "job_snapshot_hash": "36d9db31d32d740ca576c898fe7c4436c609762e52f1b0aafd44546b74a157ea",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "strong"
     },
     {
       "key": "web_discovery:Advanced Micro Devices, Inc:1941f7008382e49a04cb",
@@ -708,9 +708,9 @@
       "source": "web_discovery",
       "job_snapshot_hash": "3c706371eaeb932ca483b3105f558fab5941304fa4325fafa14f5f013a95739c",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "pass"
     },
     {
       "key": "web_discovery:Advanced Micro Devices, Inc:aff696b61c5dd3a915e1",
@@ -939,9 +939,9 @@
       "source": "workday",
       "job_snapshot_hash": "be3b88b7e36b518d50219552d4be859d3b5e0ddc84f95c1224a30a4f9904a5e5",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "pass"
     },
     {
       "key": "workday:paloaltonetworks:/job/Office---USA---CA---Headquarters/Senior-Director--Marketing--Integrated-Programs-_JR-022967",
@@ -960,9 +960,9 @@
       "url": "https://paloaltonetworks.wd5.myworkdayjobs.com/en-US/panwexternalcareers/job/Office---USA---CA---Headquarters/Senior-Manager--Program-Management_JR-022914-1",
       "source": "workday",
       "job_snapshot_hash": "13df7e7805cf5a7895234d34a7bdfa49809660d45b95c249cc6e8d42d39db076",
-      "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -971,9 +971,9 @@
       "url": "https://paloaltonetworks.wd5.myworkdayjobs.com/en-US/panwexternalcareers/job/Office---USA---CA---Headquarters/Sr-Technical-Program-Manager-II---NetSec-_JR-023661",
       "source": "workday",
       "job_snapshot_hash": "d765f627b251a6abfc2df63eaacf15f6e476230fda25cdefbd5692af7fea438e",
-      "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -1027,9 +1027,9 @@
       "source": "workday",
       "job_snapshot_hash": "a5ec2f1113a1b962eebe4eb4bd4a9ff8303c8910b649d7853b44a130efc8a2fb",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "workday:snapchat:/job/Santa-Monica---3100-Ocean-Park-Blvd/Technical-Program-Manager--Monetization_R0046971",
@@ -1038,9 +1038,9 @@
       "source": "workday",
       "job_snapshot_hash": "de10544729c2202bd5f7915a22cd4b2f39ba3cafcb3b73a61580c02c6ea0cf3a",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     }
   ],
   "link_ids": [
@@ -1432,21 +1432,21 @@
       "status": "failed"
     }
   ],
-  "checked_at": "2026-10-31T05:26:58.176120+00:00",
+  "checked_at": "2026-10-31T05:28:48.465569+00:00",
   "legacy_backlog": {
-    "assessed": 446,
-    "pending": 24,
+    "assessed": 451,
+    "pending": 25,
     "unresolved": 33,
-    "in_progress": 11,
-    "total": 514,
-    "strong": 58
+    "in_progress": 0,
+    "total": 509,
+    "strong": 59
   },
-  "batch_id": "38c5b3bb567ecc4cb5f76907f32ae2c686ecca5a9c8d14386185ca6560fc386c",
-  "status": "assessing",
+  "batch_id": "ee823cf8804b0e86b0f54f2e31007effdcb534931ef8d26b32421e1b88d5c252",
+  "status": "blocked",
   "input_blobs": {
     "jobs.json": "2e3332a7bb0a0dcbaa040e71b4f870389f49ae10",
-    "fit_scores.json": "342e65797bfdf8b1383a77d03cd7312eb9bed8ad",
-    "fit_backfill.json": "baf213705eb182a05265a25c1f714da0d1826964",
+    "fit_scores.json": "4174cb844d7508b921aeb420f35f3d6e20721826",
+    "fit_backfill.json": "77bdd2fb5aea5af5b799c4090895cd973620395d",
     "meta.json": "882ae7c9707c1a18d13261aff61da036002774f4"
   }
 }
