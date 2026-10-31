@@ -7,15 +7,15 @@
   "collection_at": "2026-10-31T05:00:50.798193+00:00",
   "counts": {
     "found": 93,
-    "eligible": 50,
-    "completed": 0,
-    "strong": 0,
-    "middle": 0,
+    "eligible": 47,
+    "completed": 4,
+    "strong": 1,
+    "middle": 3,
     "pass": 0,
-    "waiting": 50,
-    "processing": 0,
+    "waiting": 39,
+    "processing": 4,
     "blocked": 0,
-    "excluded": 43,
+    "excluded": 46,
     "unverified_links": 24
   },
   "members": [
@@ -80,9 +80,9 @@
       "url": "https://www.amazon.jobs/en/jobs/10593927/principal-technical-program-manager-customer-terminals",
       "source": "amazon_jobs",
       "job_snapshot_hash": "d0c1cb86d10cd4337ad2c6a913e6ca6a92d17849df08d471b400f51c1012fafe",
-      "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -136,9 +136,9 @@
       "source": "arbeitnow",
       "job_snapshot_hash": "96ac26ec0f8fcced826c2eae0e8d1be35aa321566e918829a5c1944016a5f702",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "arbeitnow:Appen 2:remote-strategic-project-lead-speech-audio-ai-london-88242",
@@ -147,9 +147,9 @@
       "source": "arbeitnow",
       "job_snapshot_hash": "e710f3eb49044b1d0277bac03c9e3d20ab8fe2f27a7883ce418c6d248229f95f",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "arbeitnow:BLP Digital AG:team-lead-invoices-zurich-420009",
@@ -586,9 +586,9 @@
       "url": "https://jobs.lever.co/jobgether/a3622a4e-1e99-40c4-9a00-2a56579f89b1",
       "source": "lever",
       "job_snapshot_hash": "9cde576a72273eb95acc283a96d714ab15e5fe65cfc8d5c7fa8cb1ef85203a90",
-      "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -807,7 +807,7 @@
       "source": "workday",
       "job_snapshot_hash": "adc6ae7869f6d3953c6b748e24645d0e9fd88aff32ee40d9ebfb6ae8495cd621",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -818,7 +818,7 @@
       "source": "workday",
       "job_snapshot_hash": "b1bbc7feaceadd07db877d098ceed6c99addbfe9d4b65fac60bbed99a46f3dab",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -828,9 +828,9 @@
       "url": "https://blueorigin.wd5.myworkdayjobs.com/en-US/BlueOrigin/job/Longmont-CO/Senior-Systems-Engineer---Technical-Program-Lead_R73988",
       "source": "workday",
       "job_snapshot_hash": "c8f9de3f62f0066e17f210beca1ce08d2a3c5eea10bc1d3d2a545346d307857d",
-      "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -840,7 +840,7 @@
       "source": "workday",
       "job_snapshot_hash": "0b6c7f9d90f0232918cf86221987075329c564acf9f190bd55c76d170cac148c",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -895,9 +895,9 @@
       "source": "workday",
       "job_snapshot_hash": "8abb7092af04647ee0605dc846011c43dbda387cc8725f5ac9adb6f19228c94f",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "strong"
     },
     {
       "key": "workday:nvidia:/job/US-CA-Santa-Clara/Senior-Technical-Program-Manager---GPU-Software_JR2028929",
@@ -906,9 +906,9 @@
       "source": "workday",
       "job_snapshot_hash": "7e8be5cb98b9eedcbf8c15ba8c27867490a61f881321fffe917b16cdd12d9cfd",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "workday:paloaltonetworks:/job/Office---Israel---Tel-Aviv/Senior-Technical-Program-Manager_JR-017962-1",
@@ -1005,7 +1005,7 @@
       "source": "workday",
       "job_snapshot_hash": "a36fccce3c119e24a81e50b5c900dd3bc63df1a002008085c2dc213599d0a884",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -1432,21 +1432,21 @@
       "status": "failed"
     }
   ],
-  "checked_at": "2026-10-31T05:14:35.460468+00:00",
+  "checked_at": "2026-10-31T05:15:42.873749+00:00",
   "legacy_backlog": {
-    "assessed": 415,
-    "pending": 95,
+    "assessed": 421,
+    "pending": 76,
     "unresolved": 25,
-    "in_progress": 0,
-    "total": 535,
-    "strong": 53
+    "in_progress": 4,
+    "total": 526,
+    "strong": 55
   },
-  "batch_id": "e12eee1b46b9d086c96b53cd41127beaff45a047ebeed72c92a86fe39445c0c1",
+  "batch_id": "ad3cefa895cd4f1f5831b6aaa922088983360141a44506a1e47db486c5b140a8",
   "status": "assessing",
   "input_blobs": {
     "jobs.json": "2e3332a7bb0a0dcbaa040e71b4f870389f49ae10",
-    "fit_scores.json": "25a78d2a43a01c7e8a8e7be6b386f309dabec567",
-    "fit_backfill.json": "1d1f329bba8df8d64411322a45eb363391961082",
+    "fit_scores.json": "2c5b2acbb0238e62ada25a912be912b7fd557748",
+    "fit_backfill.json": "764f592ac83d623b0b464ba3b0cc92352c877c2a",
     "meta.json": "882ae7c9707c1a18d13261aff61da036002774f4"
   }
 }
