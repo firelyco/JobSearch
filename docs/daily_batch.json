@@ -7,15 +7,15 @@
   "collection_at": "2026-10-31T05:00:50.798193+00:00",
   "counts": {
     "found": 93,
-    "eligible": 47,
-    "completed": 8,
-    "strong": 1,
+    "eligible": 46,
+    "completed": 12,
+    "strong": 3,
     "middle": 6,
-    "pass": 1,
-    "waiting": 29,
-    "processing": 8,
+    "pass": 3,
+    "waiting": 32,
+    "processing": 0,
     "blocked": 2,
-    "excluded": 46,
+    "excluded": 47,
     "unverified_links": 24
   },
   "members": [
@@ -91,9 +91,9 @@
       "url": "https://jobs.apple.com/en-us/details/200692714/technical-program-manager",
       "source": "apple",
       "job_snapshot_hash": "c6dbf7c33278564cfa74902d3c8966e6195e64682bab02af979f002a2372f7aa",
-      "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -444,9 +444,9 @@
       "source": "google",
       "job_snapshot_hash": "0d3c8fec47aed1f25665d8564bddb2cf6324ca715c4a2e323525884eaa255c4f",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "strong"
     },
     {
       "key": "greenhouse:Alltrna:8538240002",
@@ -554,9 +554,9 @@
       "source": "lever",
       "job_snapshot_hash": "1f79389b464767ef2324dd3d4e6325913642d8d74f183d748603e5b34bd415ed",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "pass"
     },
     {
       "key": "lever:jobgether:6255d314-863f-4db5-b353-de723027601e",
@@ -565,7 +565,7 @@
       "source": "lever",
       "job_snapshot_hash": "bab3ee8ec19bfb893bf1cc4441a350ab0d96a0da092558718446bbf102385af7",
       "eligible": true,
-      "status": "processing",
+      "status": "waiting",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -576,9 +576,9 @@
       "source": "lever",
       "job_snapshot_hash": "ee6fd13eda1cfd2bc9d5a1f7a19c8f3e52f45fdd0b40d9a2a39efc9ccabc094d",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "pass"
     },
     {
       "key": "lever:jobgether:a3622a4e-1e99-40c4-9a00-2a56579f89b1",
@@ -598,9 +598,9 @@
       "source": "lever",
       "job_snapshot_hash": "55273aa914422fde22b362233712ad4067be23ad5b48049c83db3dbed38f306c",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "strong"
     },
     {
       "key": "lever:jobgether:c785d85b-cbfe-4b15-ae82-ff85420ecea9",
@@ -609,7 +609,7 @@
       "source": "lever",
       "job_snapshot_hash": "1fecb4e56757c22ed281acc6ae25acaca7ca74d707ce19b593a896bffd64ec44",
       "eligible": true,
-      "status": "processing",
+      "status": "waiting",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -631,7 +631,7 @@
       "source": "lever",
       "job_snapshot_hash": "c6fb4082e1ec724b0fb0d752c5d30c5bfc92054577f6240a1cd2df79420f4f8e",
       "eligible": true,
-      "status": "processing",
+      "status": "waiting",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -1432,21 +1432,21 @@
       "status": "failed"
     }
   ],
-  "checked_at": "2026-10-31T05:18:03.183073+00:00",
+  "checked_at": "2026-10-31T05:20:01.961493+00:00",
   "legacy_backlog": {
-    "assessed": 425,
-    "pending": 66,
+    "assessed": 429,
+    "pending": 69,
     "unresolved": 27,
-    "in_progress": 8,
-    "total": 526,
-    "strong": 55
+    "in_progress": 0,
+    "total": 525,
+    "strong": 57
   },
-  "batch_id": "0161c6672b07202f2d4f433f30d63d938a26d40f31cb269357c6ff615aa2890f",
+  "batch_id": "80934fc510f6cd7f5d2974d7b90d2f4a4105baea65d0c17cfaa5d1c351f2ca24",
   "status": "assessing",
   "input_blobs": {
     "jobs.json": "2e3332a7bb0a0dcbaa040e71b4f870389f49ae10",
-    "fit_scores.json": "90a20a6da2bc08aa01795447cb4a0fe617df6594",
-    "fit_backfill.json": "0fea900c581eed48d1a81ebbe8b52e6570a9e9ab",
+    "fit_scores.json": "4436435309b10d2dc7c599b18b194110bf6a1960",
+    "fit_backfill.json": "7bab3042bc7b1d16c4b40071d27ad75b492b9d4b",
     "meta.json": "882ae7c9707c1a18d13261aff61da036002774f4"
   }
 }
