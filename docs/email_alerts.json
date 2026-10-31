@@ -1,21 +1,21 @@
 {
   "schema": 1,
-  "checked_at": "2026-10-31T05:00:50.798193+00:00",
+  "checked_at": "2026-10-31T05:30:53.280573+00:00",
   "connection": {
     "source": "linkedin_email",
     "label": "LinkedIn job-alert emails",
     "status": "partial",
     "jobs": 582,
-    "messages_checked": 9,
-    "alerts_with_jobs": 8,
-    "job_references_found": 48,
+    "messages_checked": 0,
+    "alerts_with_jobs": 0,
+    "job_references_found": 0,
     "failed_messages": 0,
-    "alerts_without_job_links": 1,
+    "alerts_without_job_links": 0,
     "messages_deferred": 0,
     "unresolved_alert_messages": 8,
     "lookback_days": 14,
     "mode": "incremental",
-    "search_since": "2026-10-29T14:37:18.559934+00:00",
+    "search_since": "2026-10-30T05:00:50.798193+00:00",
     "last_success_at": null
   },
   "last_success_at": null,
@@ -54,6 +54,29 @@
       "verdicts": [],
       "matches": [],
       "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+    },
+    {
+      "linkedin_id": "4362645937",
+      "url": "https://www.linkedin.com/jobs/view/4362645937",
+      "title": "Chief of Staff",
+      "company": "Onehouse",
+      "location": "Sunnyvale, CA (On-site)",
+      "employer_urls": [],
+      "first_alert_at": "2026-10-30T21:57:42+00:00",
+      "last_alert_at": "2026-10-30T21:57:42+00:00",
+      "collection": "possible_match",
+      "assessment": "outside_date_scope",
+      "verdicts": [],
+      "matches": [
+        {
+          "key": "lever:Onehouse:a3f089cf-4717-4556-96bb-754611a94314",
+          "title": "Chief of Staff",
+          "company": "Onehouse",
+          "url": "https://jobs.lever.co/Onehouse/a3f089cf-4717-4556-96bb-754611a94314",
+          "assessment_date_eligible": false
+        }
+      ],
+      "reason": "Title/company similarity is not proof of the same requisition."
     },
     {
       "linkedin_id": "4375856681",
@@ -251,9 +274,9 @@
       "verdicts": [],
       "matches": [
         {
-          "key": "greenhouse:Alltrna:8538240002",
+          "key": "greenhouse:alltrna:8538240002",
           "title": "VP, Program Management & Business Operations",
-          "company": "Alltrna",
+          "company": "alltrna",
           "url": "https://job-boards.greenhouse.io/alltrna/jobs/8538240002",
           "assessment_date_eligible": false
         }
@@ -460,7 +483,7 @@
       "first_alert_at": "2026-10-19T23:54:42+00:00",
       "last_alert_at": "2026-10-20T05:57:44+00:00",
       "collection": "possible_match",
-      "assessment": "outside_date_scope",
+      "assessment": "assessed",
       "verdicts": [
         "Middle"
       ],
@@ -470,13 +493,6 @@
           "title": "Principal Technical Program Manager",
           "company": "microsoft",
           "url": "https://apply.careers.microsoft.com/careers/job/1970393557026741",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "microsoft:microsoft:1970393557042157",
-          "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557042157",
           "assessment_date_eligible": true
         },
         {
@@ -548,6 +564,13 @@
           "company": "microsoft",
           "url": "https://apply.careers.microsoft.com/careers/job/1970393556873572",
           "assessment_date_eligible": false
+        },
+        {
+          "key": "microsoft:microsoft:1970393557042157",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557042157",
+          "assessment_date_eligible": true
         }
       ],
       "reason": "Title/company similarity is not proof of the same requisition."
@@ -758,11 +781,19 @@
       "employer_urls": [],
       "first_alert_at": "2026-10-28T13:57:41+00:00",
       "last_alert_at": "2026-10-28T13:57:41+00:00",
-      "collection": "missing",
-      "assessment": "not_assessed",
+      "collection": "possible_match",
+      "assessment": "outside_date_scope",
       "verdicts": [],
-      "matches": [],
-      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+      "matches": [
+        {
+          "key": "greenhouse:billiontoone:4707633005",
+          "title": "Director of Office of the CEO, Founder in Residence",
+          "company": "billiontoone",
+          "url": "https://job-boards.greenhouse.io/billiontoone/jobs/4707633005",
+          "assessment_date_eligible": false
+        }
+      ],
+      "reason": "Title/company similarity is not proof of the same requisition."
     },
     {
       "linkedin_id": "4432353282",
@@ -1438,11 +1469,26 @@
       "employer_urls": [],
       "first_alert_at": "2026-10-28T12:43:47+00:00",
       "last_alert_at": "2026-10-28T12:43:47+00:00",
-      "collection": "missing",
-      "assessment": "not_assessed",
+      "collection": "possible_match",
+      "assessment": "outside_date_scope",
       "verdicts": [],
-      "matches": [],
-      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+      "matches": [
+        {
+          "key": "web_discovery:Gartner Careers:3a6d82435c3a45df67a7",
+          "title": "Director - IT Strategy Consulting - AI",
+          "company": "Gartner Careers",
+          "url": "https://jobs.gartner.com/jobs/job/113000-director-it-strategy-consulting-ai",
+          "assessment_date_eligible": false
+        },
+        {
+          "key": "workday:gartner:/job/Chicago-IL/Director---IT-Strategy-Consulting---AI_113000",
+          "title": "Director - IT Strategy Consulting - AI",
+          "company": "gartner",
+          "url": "https://gartner.wd5.myworkdayjobs.com/en-US/EXT/job/Chicago-IL/Director---IT-Strategy-Consulting---AI_113000",
+          "assessment_date_eligible": true
+        }
+      ],
+      "reason": "Title/company similarity is not proof of the same requisition."
     },
     {
       "linkedin_id": "4450841621",
@@ -2271,11 +2317,19 @@
       "employer_urls": [],
       "first_alert_at": "2026-10-26T23:54:41+00:00",
       "last_alert_at": "2026-10-26T23:54:41+00:00",
-      "collection": "missing",
-      "assessment": "not_assessed",
+      "collection": "possible_match",
+      "assessment": "outside_date_scope",
       "verdicts": [],
-      "matches": [],
-      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+      "matches": [
+        {
+          "key": "web_discovery:Intuit:b6ff91f39a436333f653",
+          "title": "Principal, Strategy & Business Operations",
+          "company": "Intuit",
+          "url": "https://jobs.intuit.com/job/mountain-view/principal-strategy-and-business-operations/27595/99544281152",
+          "assessment_date_eligible": false
+        }
+      ],
+      "reason": "Title/company similarity is not proof of the same requisition."
     },
     {
       "linkedin_id": "4458547687",
@@ -2306,6 +2360,36 @@
       "verdicts": [],
       "matches": [],
       "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+    },
+    {
+      "linkedin_id": "4459071892",
+      "url": "https://www.linkedin.com/jobs/view/4459071892",
+      "title": "Principal Technical Program Manager",
+      "company": "GitLab",
+      "location": "United States (Remote)",
+      "employer_urls": [],
+      "first_alert_at": "2026-10-30T15:57:43+00:00",
+      "last_alert_at": "2026-10-30T23:54:42+00:00",
+      "collection": "possible_match",
+      "assessment": "outside_date_scope",
+      "verdicts": [],
+      "matches": [
+        {
+          "key": "greenhouse:gitlab:8784056002",
+          "title": "Principal Technical Program Manager",
+          "company": "gitlab",
+          "url": "https://job-boards.greenhouse.io/gitlab/jobs/8784056002",
+          "assessment_date_eligible": false
+        },
+        {
+          "key": "greenhouse:gitlab:8693068002",
+          "title": "Principal Technical Program Manager",
+          "company": "gitlab",
+          "url": "https://job-boards.greenhouse.io/gitlab/jobs/8693068002",
+          "assessment_date_eligible": false
+        }
+      ],
+      "reason": "Title/company similarity is not proof of the same requisition."
     },
     {
       "linkedin_id": "4459243417",
@@ -3199,6 +3283,21 @@
       "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
     },
     {
+      "linkedin_id": "4468608265",
+      "url": "https://www.linkedin.com/jobs/view/4468608265",
+      "title": "Principal Business Operations Manager",
+      "company": "Intuit",
+      "location": "Mountain View, CA (On-site)",
+      "employer_urls": [],
+      "first_alert_at": "2026-10-30T21:57:42+00:00",
+      "last_alert_at": "2026-10-30T21:57:42+00:00",
+      "collection": "missing",
+      "assessment": "not_assessed",
+      "verdicts": [],
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+    },
+    {
       "linkedin_id": "4468684043",
       "url": "https://www.linkedin.com/jobs/view/4468684043",
       "title": "Director, Product Builder",
@@ -3397,6 +3496,27 @@
       ],
       "matches": [
         {
+          "key": "workday:walmart:/job/USA-BELLEVUE-SKYLINE-OFFICE-WA-BELLEVUE-Home-Office/XMLNAME--USA--Principal--Technical-Program-Manager_R-2655203-1",
+          "title": "(USA) Principal, Technical Program Manager",
+          "company": "walmart",
+          "url": "https://walmart.wd504.myworkdayjobs.com/en-US/WalmartExternal/job/USA-BELLEVUE-SKYLINE-OFFICE-WA-BELLEVUE-Home-Office/XMLNAME--USA--Principal--Technical-Program-Manager_R-2655203-1",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "workday:walmart:/job/USA-Crossman-Respect-Building-CA-SUNNYVALE-Home-Office/XMLNAME--USA--Principal--Technical-Program-Manager_R-2655207-1",
+          "title": "(USA) Principal, Technical Program Manager",
+          "company": "walmart",
+          "url": "https://walmart.wd504.myworkdayjobs.com/en-US/WalmartExternal/job/USA-Crossman-Respect-Building-CA-SUNNYVALE-Home-Office/XMLNAME--USA--Principal--Technical-Program-Manager_R-2655207-1",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "workday:walmart:/job/USA-Bentonville-Global-Tech-AR-BENTONVILLE-Home-Office/XMLNAME--USA--Principal--Technical-Program-Manager_R-2685379-2",
+          "title": "(USA) Principal, Technical Program Manager",
+          "company": "walmart",
+          "url": "https://walmart.wd504.myworkdayjobs.com/en-US/WalmartExternal/job/USA-Bentonville-Global-Tech-AR-BENTONVILLE-Home-Office/XMLNAME--USA--Principal--Technical-Program-Manager_R-2685379-2",
+          "assessment_date_eligible": true
+        },
+        {
           "key": "workday:walmart:/job/USA-Bentonville-Global-Tech-AR-BENTONVILLE-Home-Office/XMLNAME--USA--Principal--Technical-Program-Manager_R-2655222-1",
           "title": "(USA) Principal, Technical Program Manager",
           "company": "walmart",
@@ -3450,20 +3570,6 @@
           "title": "(USA) Principal, Technical Program Manager",
           "company": "walmart",
           "url": "https://walmart.wd504.myworkdayjobs.com/en-US/WalmartExternal/job/USA-ISD-Office---DGTC-AR-BENTONVILLE-Home-Office/XMLNAME--USA--Principal--Technical-Program-Manager_R-2632425-1",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "workday:walmart:/job/USA-Bentonville-Global-Tech-AR-BENTONVILLE-Home-Office/XMLNAME--USA--Principal--Technical-Program-Manager_R-2685379-2",
-          "title": "(USA) Principal, Technical Program Manager",
-          "company": "walmart",
-          "url": "https://walmart.wd504.myworkdayjobs.com/en-US/WalmartExternal/job/USA-Bentonville-Global-Tech-AR-BENTONVILLE-Home-Office/XMLNAME--USA--Principal--Technical-Program-Manager_R-2685379-2",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "workday:walmart:/job/USA-Crossman-Respect-Building-CA-SUNNYVALE-Home-Office/XMLNAME--USA--Principal--Technical-Program-Manager_R-2655207-1",
-          "title": "(USA) Principal, Technical Program Manager",
-          "company": "walmart",
-          "url": "https://walmart.wd504.myworkdayjobs.com/en-US/WalmartExternal/job/USA-Crossman-Respect-Building-CA-SUNNYVALE-Home-Office/XMLNAME--USA--Principal--Technical-Program-Manager_R-2655207-1",
           "assessment_date_eligible": true
         }
       ],
@@ -4422,7 +4528,7 @@
       "first_alert_at": "2026-10-23T05:57:41+00:00",
       "last_alert_at": "2026-10-23T05:57:41+00:00",
       "collection": "possible_match",
-      "assessment": "outside_date_scope",
+      "assessment": "assessed",
       "verdicts": [
         "Middle"
       ],
@@ -4432,13 +4538,6 @@
           "title": "Principal Technical Program Manager",
           "company": "microsoft",
           "url": "https://apply.careers.microsoft.com/careers/job/1970393557026741",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "microsoft:microsoft:1970393557042157",
-          "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557042157",
           "assessment_date_eligible": true
         },
         {
@@ -4510,6 +4609,13 @@
           "company": "microsoft",
           "url": "https://apply.careers.microsoft.com/careers/job/1970393556873572",
           "assessment_date_eligible": false
+        },
+        {
+          "key": "microsoft:microsoft:1970393557042157",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557042157",
+          "assessment_date_eligible": true
         }
       ],
       "reason": "Title/company similarity is not proof of the same requisition."
@@ -4721,6 +4827,29 @@
       "verdicts": [],
       "matches": [],
       "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+    },
+    {
+      "linkedin_id": "4474805540",
+      "url": "https://www.linkedin.com/jobs/view/4474805540",
+      "title": "Principal / Sr. Director, Strategy & AI Transformation (GCS)",
+      "company": "Palo Alto Networks",
+      "location": "Santa Clara, CA (On-site)",
+      "employer_urls": [],
+      "first_alert_at": "2026-10-30T21:57:42+00:00",
+      "last_alert_at": "2026-10-30T21:57:42+00:00",
+      "collection": "possible_match",
+      "assessment": "not_assessed",
+      "verdicts": [],
+      "matches": [
+        {
+          "key": "workday:paloaltonetworks:/job/Office---USA---CA---Headquarters/Principal---Sr-Director--Strategy---AI-Transformation--GCS-_JR-015019",
+          "title": "Principal / Sr. Director, Strategy & AI Transformation (GCS)",
+          "company": "paloaltonetworks",
+          "url": "https://paloaltonetworks.wd5.myworkdayjobs.com/en-US/panwexternalcareers/job/Office---USA---CA---Headquarters/Principal---Sr-Director--Strategy---AI-Transformation--GCS-_JR-015019",
+          "assessment_date_eligible": true
+        }
+      ],
+      "reason": "Title/company similarity is not proof of the same requisition."
     },
     {
       "linkedin_id": "4474983364",
@@ -5048,11 +5177,19 @@
       "employer_urls": [],
       "first_alert_at": "2026-10-27T19:57:42+00:00",
       "last_alert_at": "2026-10-27T21:57:41+00:00",
-      "collection": "missing",
+      "collection": "possible_match",
       "assessment": "not_assessed",
       "verdicts": [],
-      "matches": [],
-      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+      "matches": [
+        {
+          "key": "web_discovery:IDC:fbb96179adb181e5c2f7",
+          "title": "Senior Manager, AI Program Management",
+          "company": "IDC",
+          "url": "https://jobs.hireheroesusa.org/jobs/618236365-senior-manager-ai-program-management-at-idc",
+          "assessment_date_eligible": true
+        }
+      ],
+      "reason": "Title/company similarity is not proof of the same requisition."
     },
     {
       "linkedin_id": "4476100397",
@@ -5093,21 +5230,11 @@
       "employer_urls": [],
       "first_alert_at": "2026-10-29T17:57:41+00:00",
       "last_alert_at": "2026-10-29T17:57:41+00:00",
-      "collection": "possible_match",
-      "assessment": "assessed",
-      "verdicts": [
-        "Pass"
-      ],
-      "matches": [
-        {
-          "key": "web_discovery:Intuit:b6e7644c67f21d2defa0",
-          "title": "Principal, Partner Commercial Strategy & Scaled Growth (ISV)",
-          "company": "Intuit",
-          "url": "https://jobs.intuit.com/job/atlanta/principal-partner-commercial-strategy-and-scaled-growth-isv/27595/100995746736",
-          "assessment_date_eligible": true
-        }
-      ],
-      "reason": "Title/company similarity is not proof of the same requisition."
+      "collection": "missing",
+      "assessment": "not_assessed",
+      "verdicts": [],
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
     },
     {
       "linkedin_id": "4476363615",
@@ -5339,6 +5466,29 @@
       "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
     },
     {
+      "linkedin_id": "4477183550",
+      "url": "https://www.linkedin.com/jobs/view/4477183550",
+      "title": "Director, Technical Program Management (API Strategies)",
+      "company": "Capital One",
+      "location": "Cambridge, MA",
+      "employer_urls": [],
+      "first_alert_at": "2026-10-31T01:57:42+00:00",
+      "last_alert_at": "2026-10-31T01:57:42+00:00",
+      "collection": "possible_match",
+      "assessment": "reassessment_pending",
+      "verdicts": [],
+      "matches": [
+        {
+          "key": "workday:capitalone:/job/Cambridge-MA/Director--Technical-Program-Management--API-Strategies-_R1003103",
+          "title": "Director, Technical Program Management (API Strategies)",
+          "company": "capitalone",
+          "url": "https://capitalone.wd12.myworkdayjobs.com/en-US/Capital_One/job/Cambridge-MA/Director--Technical-Program-Management--API-Strategies-_R1003103",
+          "assessment_date_eligible": true
+        }
+      ],
+      "reason": "Title/company similarity is not proof of the same requisition."
+    },
+    {
       "linkedin_id": "4477309803",
       "url": "https://www.linkedin.com/jobs/view/4477309803",
       "title": "Director of Strategic Initiatives - (US Federal)",
@@ -5428,6 +5578,21 @@
         }
       ],
       "reason": "Title/company similarity is not proof of the same requisition."
+    },
+    {
+      "linkedin_id": "4477717026",
+      "url": "https://www.linkedin.com/jobs/view/4477717026",
+      "title": "AI Director, Development Global Clinical Operations",
+      "company": "GSK",
+      "location": "Rockville, MD",
+      "employer_urls": [],
+      "first_alert_at": "2026-10-30T19:57:42+00:00",
+      "last_alert_at": "2026-10-31T01:57:42+00:00",
+      "collection": "missing",
+      "assessment": "not_assessed",
+      "verdicts": [],
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
     },
     {
       "linkedin_id": "4477717714",
@@ -6106,19 +6271,11 @@
       "employer_urls": [],
       "first_alert_at": "2026-10-20T23:54:41+00:00",
       "last_alert_at": "2026-10-20T23:54:41+00:00",
-      "collection": "possible_match",
+      "collection": "missing",
       "assessment": "not_assessed",
       "verdicts": [],
-      "matches": [
-        {
-          "key": "netflix:netflix:790319022497",
-          "title": "Senior Product Operations Lead & Program Manager - Content Experience Innovation",
-          "company": "netflix",
-          "url": "https://explore.jobs.netflix.net/careers/job/790319022497",
-          "assessment_date_eligible": true
-        }
-      ],
-      "reason": "Title/company similarity is not proof of the same requisition."
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
     },
     {
       "linkedin_id": "4478650163",
@@ -6947,7 +7104,7 @@
       "first_alert_at": "2026-10-15T23:57:43+00:00",
       "last_alert_at": "2026-10-15T23:57:43+00:00",
       "collection": "possible_match",
-      "assessment": "outside_date_scope",
+      "assessment": "assessed",
       "verdicts": [
         "Middle"
       ],
@@ -6957,13 +7114,6 @@
           "title": "Principal Technical Program Manager",
           "company": "microsoft",
           "url": "https://apply.careers.microsoft.com/careers/job/1970393557026741",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "microsoft:microsoft:1970393557042157",
-          "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557042157",
           "assessment_date_eligible": true
         },
         {
@@ -7035,6 +7185,13 @@
           "company": "microsoft",
           "url": "https://apply.careers.microsoft.com/careers/job/1970393556873572",
           "assessment_date_eligible": false
+        },
+        {
+          "key": "microsoft:microsoft:1970393557042157",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557042157",
+          "assessment_date_eligible": true
         }
       ],
       "reason": "Title/company similarity is not proof of the same requisition."
@@ -8713,8 +8870,10 @@
       "first_alert_at": "2026-10-22T15:57:42+00:00",
       "last_alert_at": "2026-10-22T15:57:42+00:00",
       "collection": "possible_match",
-      "assessment": "not_assessed",
-      "verdicts": [],
+      "assessment": "assessed",
+      "verdicts": [
+        "Strong"
+      ],
       "matches": [
         {
           "key": "google:google:109335135941206726",
@@ -10778,6 +10937,51 @@
       "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
     },
     {
+      "linkedin_id": "4483026966",
+      "url": "https://www.linkedin.com/jobs/view/4483026966",
+      "title": "Sr. Director, Alliance and Program Management",
+      "company": "Ladders",
+      "location": "Cambridge, MA (On-site)",
+      "employer_urls": [],
+      "first_alert_at": "2026-10-30T19:57:42+00:00",
+      "last_alert_at": "2026-10-31T01:57:42+00:00",
+      "collection": "missing",
+      "assessment": "not_assessed",
+      "verdicts": [],
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+    },
+    {
+      "linkedin_id": "4483039471",
+      "url": "https://www.linkedin.com/jobs/view/4483039471",
+      "title": "Program Management Sr Mgr - L6",
+      "company": "Ladders",
+      "location": "United States (Remote)",
+      "employer_urls": [],
+      "first_alert_at": "2026-10-30T15:57:43+00:00",
+      "last_alert_at": "2026-10-30T15:57:43+00:00",
+      "collection": "missing",
+      "assessment": "not_assessed",
+      "verdicts": [],
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+    },
+    {
+      "linkedin_id": "4483041396",
+      "url": "https://www.linkedin.com/jobs/view/4483041396",
+      "title": "Director, Strategy and Operations - Data Cloud (Chief of Staff)",
+      "company": "Ladders",
+      "location": "Santa Clara, CA (On-site)",
+      "employer_urls": [],
+      "first_alert_at": "2026-10-30T21:57:42+00:00",
+      "last_alert_at": "2026-10-30T21:57:42+00:00",
+      "collection": "missing",
+      "assessment": "not_assessed",
+      "verdicts": [],
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+    },
+    {
       "linkedin_id": "4483055994",
       "url": "https://www.linkedin.com/jobs/view/4483055994",
       "title": "Technical Program Manager, Quantum Technology",
@@ -10786,6 +10990,21 @@
       "employer_urls": [],
       "first_alert_at": "2026-10-30T13:57:43+00:00",
       "last_alert_at": "2026-10-30T23:54:42+00:00",
+      "collection": "missing",
+      "assessment": "not_assessed",
+      "verdicts": [],
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+    },
+    {
+      "linkedin_id": "4483074283",
+      "url": "https://www.linkedin.com/jobs/view/4483074283",
+      "title": "VP, Technical Programs and Business Operations",
+      "company": "Oracle",
+      "location": "United States (Remote)",
+      "employer_urls": [],
+      "first_alert_at": "2026-10-30T15:57:43+00:00",
+      "last_alert_at": "2026-10-31T03:57:41+00:00",
       "collection": "missing",
       "assessment": "not_assessed",
       "verdicts": [],
@@ -10808,6 +11027,21 @@
       "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
     },
     {
+      "linkedin_id": "4483094596",
+      "url": "https://www.linkedin.com/jobs/view/4483094596",
+      "title": "Director, Program Management",
+      "company": "Sony Interactive Entertainment",
+      "location": "San Diego, CA (Hybrid)",
+      "employer_urls": [],
+      "first_alert_at": "2026-10-30T17:57:41+00:00",
+      "last_alert_at": "2026-10-31T03:57:41+00:00",
+      "collection": "missing",
+      "assessment": "not_assessed",
+      "verdicts": [],
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+    },
+    {
       "linkedin_id": "4483121071",
       "url": "https://www.linkedin.com/jobs/view/4483121071",
       "title": "Principal, Strategy & Business Operations - Mid-Market",
@@ -10816,11 +11050,19 @@
       "employer_urls": [],
       "first_alert_at": "2026-10-24T19:57:42+00:00",
       "last_alert_at": "2026-10-24T19:57:42+00:00",
-      "collection": "missing",
+      "collection": "possible_match",
       "assessment": "not_assessed",
       "verdicts": [],
-      "matches": [],
-      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+      "matches": [
+        {
+          "key": "web_discovery:Intuit:8b4bec0bdcba7bf8d021",
+          "title": "Principal, Strategy & Business Operations - Mid-Market",
+          "company": "Intuit",
+          "url": "https://jobs.intuit.com/job/mountain-view/principal-strategy-and-business-operations-mid-market/27595/102309320336",
+          "assessment_date_eligible": true
+        }
+      ],
+      "reason": "Title/company similarity is not proof of the same requisition."
     },
     {
       "linkedin_id": "4483122408",
@@ -10997,7 +11239,7 @@
       "first_alert_at": "2026-10-25T23:57:43+00:00",
       "last_alert_at": "2026-10-25T23:57:43+00:00",
       "collection": "possible_match",
-      "assessment": "outside_date_scope",
+      "assessment": "assessed",
       "verdicts": [
         "Middle"
       ],
@@ -11007,13 +11249,6 @@
           "title": "Principal Technical Program Manager",
           "company": "microsoft",
           "url": "https://apply.careers.microsoft.com/careers/job/1970393557026741",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "microsoft:microsoft:1970393557042157",
-          "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557042157",
           "assessment_date_eligible": true
         },
         {
@@ -11085,6 +11320,13 @@
           "company": "microsoft",
           "url": "https://apply.careers.microsoft.com/careers/job/1970393556873572",
           "assessment_date_eligible": false
+        },
+        {
+          "key": "microsoft:microsoft:1970393557042157",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557042157",
+          "assessment_date_eligible": true
         }
       ],
       "reason": "Title/company similarity is not proof of the same requisition."
@@ -11207,6 +11449,51 @@
       "employer_urls": [],
       "first_alert_at": "2026-10-25T23:54:43+00:00",
       "last_alert_at": "2026-10-25T23:54:43+00:00",
+      "collection": "missing",
+      "assessment": "not_assessed",
+      "verdicts": [],
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+    },
+    {
+      "linkedin_id": "4483400504",
+      "url": "https://www.linkedin.com/jobs/view/4483400504",
+      "title": "Director, Engineering Program Management",
+      "company": "\u014cURA",
+      "location": "San Francisco, CA (Hybrid)",
+      "employer_urls": [],
+      "first_alert_at": "2026-10-30T17:57:41+00:00",
+      "last_alert_at": "2026-10-30T23:57:43+00:00",
+      "collection": "missing",
+      "assessment": "not_assessed",
+      "verdicts": [],
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+    },
+    {
+      "linkedin_id": "4483417316",
+      "url": "https://www.linkedin.com/jobs/view/4483417316",
+      "title": "Technical Program Manager",
+      "company": "AMD",
+      "location": "Austin, TX (On-site)",
+      "employer_urls": [],
+      "first_alert_at": "2026-10-30T23:54:42+00:00",
+      "last_alert_at": "2026-10-30T23:54:42+00:00",
+      "collection": "missing",
+      "assessment": "not_assessed",
+      "verdicts": [],
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+    },
+    {
+      "linkedin_id": "4483431330",
+      "url": "https://www.linkedin.com/jobs/view/4483431330",
+      "title": "Principal Technical Program Manager, Engineering",
+      "company": "TalentHop",
+      "location": "United States (Remote)",
+      "employer_urls": [],
+      "first_alert_at": "2026-10-30T15:57:43+00:00",
+      "last_alert_at": "2026-10-30T15:57:43+00:00",
       "collection": "missing",
       "assessment": "not_assessed",
       "verdicts": [],
@@ -11558,19 +11845,11 @@
       "employer_urls": [],
       "first_alert_at": "2026-10-28T23:54:41+00:00",
       "last_alert_at": "2026-10-28T23:57:41+00:00",
-      "collection": "possible_match",
+      "collection": "missing",
       "assessment": "not_assessed",
       "verdicts": [],
-      "matches": [
-        {
-          "key": "web_discovery:Dell Technologies:cc67aeebe08e390847ea",
-          "title": "Senior Director, Transformation and Planning",
-          "company": "Dell Technologies",
-          "url": "https://jobs.managementconsulted.com/jobs/768267338-senior-director-transformation-and-planning",
-          "assessment_date_eligible": true
-        }
-      ],
-      "reason": "Title/company similarity is not proof of the same requisition."
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
     },
     {
       "linkedin_id": "4483886342",
@@ -11681,26 +11960,11 @@
       "employer_urls": [],
       "first_alert_at": "2026-10-29T03:57:46+00:00",
       "last_alert_at": "2026-10-29T03:57:46+00:00",
-      "collection": "possible_match",
+      "collection": "missing",
       "assessment": "not_assessed",
       "verdicts": [],
-      "matches": [
-        {
-          "key": "web_discovery:University of Pennsylvania:2ea15950a6a81e99c18f",
-          "title": "IT Technical Director, AI Initiatives",
-          "company": "University of Pennsylvania",
-          "url": "https://careers.insidehighered.com/job/3567532/it-technical-director-ai-initiatives?TrackID=11",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "web_discovery:University of Pennsylvania:b80379ff2c52a52b2794",
-          "title": "IT Technical Director, AI Initiatives",
-          "company": "University of Pennsylvania",
-          "url": "https://jobs.chronicle.com/job/38057963/it-technical-director-ai-initiatives?TrackID=10",
-          "assessment_date_eligible": true
-        }
-      ],
-      "reason": "Title/company similarity is not proof of the same requisition."
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
     },
     {
       "linkedin_id": "4484285564",
@@ -11771,19 +12035,11 @@
       "employer_urls": [],
       "first_alert_at": "2026-10-28T23:54:41+00:00",
       "last_alert_at": "2026-10-28T23:54:41+00:00",
-      "collection": "possible_match",
+      "collection": "missing",
       "assessment": "not_assessed",
       "verdicts": [],
-      "matches": [
-        {
-          "key": "web_discovery:Merck:83374221287949bf0379",
-          "title": "Executive Director, Digital Transformation & Delivery Excellence",
-          "company": "Merck",
-          "url": "https://jobs.merck.com/us/en/job/R423103/Executive-Director-Digital-Transformation-Delivery-Excellence",
-          "assessment_date_eligible": true
-        }
-      ],
-      "reason": "Title/company similarity is not proof of the same requisition."
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
     },
     {
       "linkedin_id": "4484411750",
@@ -12021,6 +12277,31 @@
       "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
     },
     {
+      "linkedin_id": "4484518182",
+      "url": "https://www.linkedin.com/jobs/view/4484518182",
+      "title": "Senior Technical Program Manager",
+      "company": "Google",
+      "location": "Sunnyvale, CA (On-site)",
+      "employer_urls": [],
+      "first_alert_at": "2026-10-30T23:54:42+00:00",
+      "last_alert_at": "2026-10-30T23:54:42+00:00",
+      "collection": "possible_match",
+      "assessment": "assessed",
+      "verdicts": [
+        "Pass"
+      ],
+      "matches": [
+        {
+          "key": "google:google:138366881479172806",
+          "title": "Senior Technical Program Manager",
+          "company": "google",
+          "url": "https://www.google.com/about/careers/applications/jobs/results/138366881479172806",
+          "assessment_date_eligible": true
+        }
+      ],
+      "reason": "Title/company similarity is not proof of the same requisition."
+    },
+    {
       "linkedin_id": "4484567943",
       "url": "https://www.linkedin.com/jobs/view/4484567943",
       "title": "Principal/Director, Technical Program Manager, AI Infrastructure Transformation",
@@ -12044,6 +12325,51 @@
         }
       ],
       "reason": "Title/company similarity is not proof of the same requisition."
+    },
+    {
+      "linkedin_id": "4484577612",
+      "url": "https://www.linkedin.com/jobs/view/4484577612",
+      "title": "Head of Business Operations",
+      "company": "Trail",
+      "location": "Palo Alto, CA (Hybrid)",
+      "employer_urls": [],
+      "first_alert_at": "2026-10-30T21:57:42+00:00",
+      "last_alert_at": "2026-10-30T21:57:42+00:00",
+      "collection": "missing",
+      "assessment": "not_assessed",
+      "verdicts": [],
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+    },
+    {
+      "linkedin_id": "4484586972",
+      "url": "https://www.linkedin.com/jobs/view/4484586972",
+      "title": "Senior Director, Technical Program Management (Post Silicon)",
+      "company": "Arm",
+      "location": "San Diego, CA (Hybrid)",
+      "employer_urls": [],
+      "first_alert_at": "2026-10-30T17:57:41+00:00",
+      "last_alert_at": "2026-10-31T03:57:41+00:00",
+      "collection": "missing",
+      "assessment": "not_assessed",
+      "verdicts": [],
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+    },
+    {
+      "linkedin_id": "4484595562",
+      "url": "https://www.linkedin.com/jobs/view/4484595562",
+      "title": "Senior Director, Technical Program Management (Post Silicon)",
+      "company": "Arm",
+      "location": "Austin, TX (Hybrid)",
+      "employer_urls": [],
+      "first_alert_at": "2026-10-30T17:57:41+00:00",
+      "last_alert_at": "2026-10-31T03:57:41+00:00",
+      "collection": "missing",
+      "assessment": "not_assessed",
+      "verdicts": [],
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
     },
     {
       "linkedin_id": "4484599326",
@@ -12201,6 +12527,21 @@
       "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
     },
     {
+      "linkedin_id": "4484818491",
+      "url": "https://www.linkedin.com/jobs/view/4484818491",
+      "title": "Senior Vice President, Group Delivery Lead Manager",
+      "company": "Archer",
+      "location": "Boston, MA (On-site)",
+      "employer_urls": [],
+      "first_alert_at": "2026-10-30T19:57:42+00:00",
+      "last_alert_at": "2026-10-31T03:57:41+00:00",
+      "collection": "missing",
+      "assessment": "not_assessed",
+      "verdicts": [],
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+    },
+    {
       "linkedin_id": "4484908472",
       "url": "https://www.linkedin.com/jobs/view/4484908472",
       "title": "Senior Director of Program Management",
@@ -12214,66 +12555,6 @@
       "verdicts": [],
       "matches": [],
       "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
-    },
-    {
-      "linkedin_id": "4485296746",
-      "url": "https://www.linkedin.com/jobs/view/4485296746",
-      "title": "Principal Engineer, AI Solutions",
-      "company": "Intuit",
-      "location": "Mountain View, CA (On-site)",
-      "employer_urls": [],
-      "first_alert_at": "2026-10-30T13:57:43+00:00",
-      "last_alert_at": "2026-10-30T13:57:43+00:00",
-      "collection": "missing",
-      "assessment": "not_assessed",
-      "verdicts": [],
-      "matches": [],
-      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
-    },
-    {
-      "linkedin_id": "4483074283",
-      "url": "https://www.linkedin.com/jobs/view/4483074283",
-      "title": "VP, Technical Programs and Business Operations",
-      "company": "Oracle",
-      "location": "United States (Remote)",
-      "employer_urls": [],
-      "first_alert_at": "2026-10-30T15:57:43+00:00",
-      "last_alert_at": "2026-10-31T03:57:41+00:00",
-      "collection": "missing",
-      "assessment": "not_assessed",
-      "verdicts": [],
-      "matches": [],
-      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
-    },
-    {
-      "linkedin_id": "4459071892",
-      "url": "https://www.linkedin.com/jobs/view/4459071892",
-      "title": "Principal Technical Program Manager",
-      "company": "GitLab",
-      "location": "United States (Remote)",
-      "employer_urls": [],
-      "first_alert_at": "2026-10-30T15:57:43+00:00",
-      "last_alert_at": "2026-10-30T23:54:42+00:00",
-      "collection": "possible_match",
-      "assessment": "outside_date_scope",
-      "verdicts": [],
-      "matches": [
-        {
-          "key": "greenhouse:gitlab:8784056002",
-          "title": "Principal Technical Program Manager",
-          "company": "gitlab",
-          "url": "https://job-boards.greenhouse.io/gitlab/jobs/8784056002",
-          "assessment_date_eligible": false
-        },
-        {
-          "key": "greenhouse:gitlab:8693068002",
-          "title": "Principal Technical Program Manager",
-          "company": "gitlab",
-          "url": "https://job-boards.greenhouse.io/gitlab/jobs/8693068002",
-          "assessment_date_eligible": false
-        }
-      ],
-      "reason": "Title/company similarity is not proof of the same requisition."
     },
     {
       "linkedin_id": "4485210462",
@@ -12291,14 +12572,14 @@
       "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
     },
     {
-      "linkedin_id": "4483039471",
-      "url": "https://www.linkedin.com/jobs/view/4483039471",
-      "title": "Program Management Sr Mgr - L6",
-      "company": "Ladders",
-      "location": "United States (Remote)",
+      "linkedin_id": "4485247518",
+      "url": "https://www.linkedin.com/jobs/view/4485247518",
+      "title": "Director Digital Transformation & Operational Excellence",
+      "company": "Convatec",
+      "location": "Lexington, MA (Remote)",
       "employer_urls": [],
-      "first_alert_at": "2026-10-30T15:57:43+00:00",
-      "last_alert_at": "2026-10-30T15:57:43+00:00",
+      "first_alert_at": "2026-10-30T19:57:42+00:00",
+      "last_alert_at": "2026-10-30T19:57:42+00:00",
       "collection": "missing",
       "assessment": "not_assessed",
       "verdicts": [],
@@ -12310,21 +12591,6 @@
       "url": "https://www.linkedin.com/jobs/view/4485258091",
       "title": "Director, AI and Emerging Technology",
       "company": "Emergent Holdings",
-      "location": "United States (Remote)",
-      "employer_urls": [],
-      "first_alert_at": "2026-10-30T15:57:43+00:00",
-      "last_alert_at": "2026-10-30T15:57:43+00:00",
-      "collection": "missing",
-      "assessment": "not_assessed",
-      "verdicts": [],
-      "matches": [],
-      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
-    },
-    {
-      "linkedin_id": "4483431330",
-      "url": "https://www.linkedin.com/jobs/view/4483431330",
-      "title": "Principal Technical Program Manager, Engineering",
-      "company": "TalentHop",
       "location": "United States (Remote)",
       "employer_urls": [],
       "first_alert_at": "2026-10-30T15:57:43+00:00",
@@ -12351,81 +12617,6 @@
       "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
     },
     {
-      "linkedin_id": "4484586972",
-      "url": "https://www.linkedin.com/jobs/view/4484586972",
-      "title": "Senior Director, Technical Program Management (Post Silicon)",
-      "company": "Arm",
-      "location": "San Diego, CA (Hybrid)",
-      "employer_urls": [],
-      "first_alert_at": "2026-10-30T17:57:41+00:00",
-      "last_alert_at": "2026-10-31T03:57:41+00:00",
-      "collection": "missing",
-      "assessment": "not_assessed",
-      "verdicts": [],
-      "matches": [],
-      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
-    },
-    {
-      "linkedin_id": "4484595562",
-      "url": "https://www.linkedin.com/jobs/view/4484595562",
-      "title": "Senior Director, Technical Program Management (Post Silicon)",
-      "company": "Arm",
-      "location": "Austin, TX (Hybrid)",
-      "employer_urls": [],
-      "first_alert_at": "2026-10-30T17:57:41+00:00",
-      "last_alert_at": "2026-10-31T03:57:41+00:00",
-      "collection": "missing",
-      "assessment": "not_assessed",
-      "verdicts": [],
-      "matches": [],
-      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
-    },
-    {
-      "linkedin_id": "4483094596",
-      "url": "https://www.linkedin.com/jobs/view/4483094596",
-      "title": "Director, Program Management",
-      "company": "Sony Interactive Entertainment",
-      "location": "San Diego, CA (Hybrid)",
-      "employer_urls": [],
-      "first_alert_at": "2026-10-30T17:57:41+00:00",
-      "last_alert_at": "2026-10-31T03:57:41+00:00",
-      "collection": "missing",
-      "assessment": "not_assessed",
-      "verdicts": [],
-      "matches": [],
-      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
-    },
-    {
-      "linkedin_id": "4483400504",
-      "url": "https://www.linkedin.com/jobs/view/4483400504",
-      "title": "Director, Engineering Program Management",
-      "company": "\u014cURA",
-      "location": "San Francisco, CA (Hybrid)",
-      "employer_urls": [],
-      "first_alert_at": "2026-10-30T17:57:41+00:00",
-      "last_alert_at": "2026-10-30T23:57:43+00:00",
-      "collection": "missing",
-      "assessment": "not_assessed",
-      "verdicts": [],
-      "matches": [],
-      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
-    },
-    {
-      "linkedin_id": "4477717026",
-      "url": "https://www.linkedin.com/jobs/view/4477717026",
-      "title": "AI Director, Development Global Clinical Operations",
-      "company": "GSK",
-      "location": "Rockville, MD",
-      "employer_urls": [],
-      "first_alert_at": "2026-10-30T19:57:42+00:00",
-      "last_alert_at": "2026-10-31T01:57:42+00:00",
-      "collection": "missing",
-      "assessment": "not_assessed",
-      "verdicts": [],
-      "matches": [],
-      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
-    },
-    {
       "linkedin_id": "4485281337",
       "url": "https://www.linkedin.com/jobs/view/4485281337",
       "title": "Director, Program Management",
@@ -12441,203 +12632,19 @@
       "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
     },
     {
-      "linkedin_id": "4483026966",
-      "url": "https://www.linkedin.com/jobs/view/4483026966",
-      "title": "Sr. Director, Alliance and Program Management",
-      "company": "Ladders",
-      "location": "Cambridge, MA (On-site)",
-      "employer_urls": [],
-      "first_alert_at": "2026-10-30T19:57:42+00:00",
-      "last_alert_at": "2026-10-31T01:57:42+00:00",
-      "collection": "missing",
-      "assessment": "not_assessed",
-      "verdicts": [],
-      "matches": [],
-      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
-    },
-    {
-      "linkedin_id": "4484818491",
-      "url": "https://www.linkedin.com/jobs/view/4484818491",
-      "title": "Senior Vice President, Group Delivery Lead Manager",
-      "company": "Archer",
-      "location": "Boston, MA (On-site)",
-      "employer_urls": [],
-      "first_alert_at": "2026-10-30T19:57:42+00:00",
-      "last_alert_at": "2026-10-31T03:57:41+00:00",
-      "collection": "missing",
-      "assessment": "not_assessed",
-      "verdicts": [],
-      "matches": [],
-      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
-    },
-    {
-      "linkedin_id": "4485247518",
-      "url": "https://www.linkedin.com/jobs/view/4485247518",
-      "title": "Director Digital Transformation & Operational Excellence",
-      "company": "Convatec",
-      "location": "Lexington, MA (Remote)",
-      "employer_urls": [],
-      "first_alert_at": "2026-10-30T19:57:42+00:00",
-      "last_alert_at": "2026-10-30T19:57:42+00:00",
-      "collection": "missing",
-      "assessment": "not_assessed",
-      "verdicts": [],
-      "matches": [],
-      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
-    },
-    {
-      "linkedin_id": "4483041396",
-      "url": "https://www.linkedin.com/jobs/view/4483041396",
-      "title": "Director, Strategy and Operations - Data Cloud (Chief of Staff)",
-      "company": "Ladders",
-      "location": "Santa Clara, CA (On-site)",
-      "employer_urls": [],
-      "first_alert_at": "2026-10-30T21:57:42+00:00",
-      "last_alert_at": "2026-10-30T21:57:42+00:00",
-      "collection": "missing",
-      "assessment": "not_assessed",
-      "verdicts": [],
-      "matches": [],
-      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
-    },
-    {
-      "linkedin_id": "4468608265",
-      "url": "https://www.linkedin.com/jobs/view/4468608265",
-      "title": "Principal Business Operations Manager",
+      "linkedin_id": "4485296746",
+      "url": "https://www.linkedin.com/jobs/view/4485296746",
+      "title": "Principal Engineer, AI Solutions",
       "company": "Intuit",
       "location": "Mountain View, CA (On-site)",
       "employer_urls": [],
-      "first_alert_at": "2026-10-30T21:57:42+00:00",
-      "last_alert_at": "2026-10-30T21:57:42+00:00",
+      "first_alert_at": "2026-10-30T13:57:43+00:00",
+      "last_alert_at": "2026-10-30T13:57:43+00:00",
       "collection": "missing",
       "assessment": "not_assessed",
       "verdicts": [],
       "matches": [],
       "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
-    },
-    {
-      "linkedin_id": "4474805540",
-      "url": "https://www.linkedin.com/jobs/view/4474805540",
-      "title": "Principal / Sr. Director, Strategy & AI Transformation (GCS)",
-      "company": "Palo Alto Networks",
-      "location": "Santa Clara, CA (On-site)",
-      "employer_urls": [],
-      "first_alert_at": "2026-10-30T21:57:42+00:00",
-      "last_alert_at": "2026-10-30T21:57:42+00:00",
-      "collection": "possible_match",
-      "assessment": "not_assessed",
-      "verdicts": [],
-      "matches": [
-        {
-          "key": "workday:paloaltonetworks:/job/Office---USA---CA---Headquarters/Principal---Sr-Director--Strategy---AI-Transformation--GCS-_JR-015019",
-          "title": "Principal / Sr. Director, Strategy & AI Transformation (GCS)",
-          "company": "paloaltonetworks",
-          "url": "https://paloaltonetworks.wd5.myworkdayjobs.com/en-US/panwexternalcareers/job/Office---USA---CA---Headquarters/Principal---Sr-Director--Strategy---AI-Transformation--GCS-_JR-015019",
-          "assessment_date_eligible": true
-        }
-      ],
-      "reason": "Title/company similarity is not proof of the same requisition."
-    },
-    {
-      "linkedin_id": "4484577612",
-      "url": "https://www.linkedin.com/jobs/view/4484577612",
-      "title": "Head of Business Operations",
-      "company": "Trail",
-      "location": "Palo Alto, CA (Hybrid)",
-      "employer_urls": [],
-      "first_alert_at": "2026-10-30T21:57:42+00:00",
-      "last_alert_at": "2026-10-30T21:57:42+00:00",
-      "collection": "missing",
-      "assessment": "not_assessed",
-      "verdicts": [],
-      "matches": [],
-      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
-    },
-    {
-      "linkedin_id": "4362645937",
-      "url": "https://www.linkedin.com/jobs/view/4362645937",
-      "title": "Chief of Staff",
-      "company": "Onehouse",
-      "location": "Sunnyvale, CA (On-site)",
-      "employer_urls": [],
-      "first_alert_at": "2026-10-30T21:57:42+00:00",
-      "last_alert_at": "2026-10-30T21:57:42+00:00",
-      "collection": "possible_match",
-      "assessment": "outside_date_scope",
-      "verdicts": [],
-      "matches": [
-        {
-          "key": "lever:Onehouse:a3f089cf-4717-4556-96bb-754611a94314",
-          "title": "Chief of Staff",
-          "company": "Onehouse",
-          "url": "https://jobs.lever.co/Onehouse/a3f089cf-4717-4556-96bb-754611a94314",
-          "assessment_date_eligible": false
-        }
-      ],
-      "reason": "Title/company similarity is not proof of the same requisition."
-    },
-    {
-      "linkedin_id": "4484518182",
-      "url": "https://www.linkedin.com/jobs/view/4484518182",
-      "title": "Senior Technical Program Manager",
-      "company": "Google",
-      "location": "Sunnyvale, CA (On-site)",
-      "employer_urls": [],
-      "first_alert_at": "2026-10-30T23:54:42+00:00",
-      "last_alert_at": "2026-10-30T23:54:42+00:00",
-      "collection": "possible_match",
-      "assessment": "assessed",
-      "verdicts": [
-        "Pass"
-      ],
-      "matches": [
-        {
-          "key": "google:google:138366881479172806",
-          "title": "Senior Technical Program Manager",
-          "company": "google",
-          "url": "https://www.google.com/about/careers/applications/jobs/results/138366881479172806",
-          "assessment_date_eligible": true
-        }
-      ],
-      "reason": "Title/company similarity is not proof of the same requisition."
-    },
-    {
-      "linkedin_id": "4483417316",
-      "url": "https://www.linkedin.com/jobs/view/4483417316",
-      "title": "Technical Program Manager",
-      "company": "AMD",
-      "location": "Austin, TX (On-site)",
-      "employer_urls": [],
-      "first_alert_at": "2026-10-30T23:54:42+00:00",
-      "last_alert_at": "2026-10-30T23:54:42+00:00",
-      "collection": "missing",
-      "assessment": "not_assessed",
-      "verdicts": [],
-      "matches": [],
-      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
-    },
-    {
-      "linkedin_id": "4477183550",
-      "url": "https://www.linkedin.com/jobs/view/4477183550",
-      "title": "Director, Technical Program Management (API Strategies)",
-      "company": "Capital One",
-      "location": "Cambridge, MA",
-      "employer_urls": [],
-      "first_alert_at": "2026-10-31T01:57:42+00:00",
-      "last_alert_at": "2026-10-31T01:57:42+00:00",
-      "collection": "possible_match",
-      "assessment": "reassessment_pending",
-      "verdicts": [],
-      "matches": [
-        {
-          "key": "workday:capitalone:/job/Cambridge-MA/Director--Technical-Program-Management--API-Strategies-_R1003103",
-          "title": "Director, Technical Program Management (API Strategies)",
-          "company": "capitalone",
-          "url": "https://capitalone.wd12.myworkdayjobs.com/en-US/Capital_One/job/Cambridge-MA/Director--Technical-Program-Management--API-Strategies-_R1003103",
-          "assessment_date_eligible": true
-        }
-      ],
-      "reason": "Title/company similarity is not proof of the same requisition."
     }
   ]
 }
