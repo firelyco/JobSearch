@@ -1,12 +1,13 @@
 {
   "scope": "Configured employer queries and observed listings; internet-wide completeness is unknown.",
   "internet_coverage_verified": false,
-  "raw_unique": 43738,
-  "published_unique": 1345,
+  "raw_unique": 51599,
+  "published_unique": 1397,
   "watchlist_counts": {
     "discovery_gap": 3,
     "collected": 6,
-    "candidate_match_needs_exact_link": 7
+    "retained_source_unverified": 2,
+    "candidate_match_needs_exact_link": 5
   },
   "watchlist": [
     {
@@ -66,7 +67,7 @@
     },
     {
       "label": "Walmart Distinguished TPM, Bentonville",
-      "status": "candidate_match_needs_exact_link",
+      "status": "retained_source_unverified",
       "matches": [
         {
           "key": "workday:walmart:/job/Bentonville-AR/Distinguished--Technical-Program-Manager_R-2591170",
@@ -74,7 +75,7 @@
           "url": "https://walmart.wd504.myworkdayjobs.com/en-US/WalmartExternal/job/Bentonville-AR/Distinguished--Technical-Program-Manager_R-2591170",
           "location": "Bentonville, AR | Bellevue, WA",
           "published": true,
-          "open_status": "listed_in_feed",
+          "open_status": "unverified_source_failure",
           "assessment_date_eligible": true
         },
         {
@@ -83,7 +84,7 @@
           "url": "https://walmart.wd504.myworkdayjobs.com/en-US/WalmartExternal/job/USA-Upstream-Building-AR-Bentonville-Home-Office/Distinguished--Technical-Program-Manager_R-2645661",
           "location": "(USA) Upstream Building AR Bentonville Home Office",
           "published": true,
-          "open_status": "listed_in_feed",
+          "open_status": "unverified_source_failure",
           "assessment_date_eligible": true
         },
         {
@@ -92,14 +93,14 @@
           "url": "https://walmart.wd504.myworkdayjobs.com/en-US/WalmartExternal/job/USA-Crossman-Respect-Building-CA-SUNNYVALE-Home-Office/Distinguished--Technical-Program-Manager_R-2592565",
           "location": "(USA) Crossman Respect Building CA SUNNYVALE Home Office | (USA) AR BENTONVILLE Home Office 800 SE J ST",
           "published": true,
-          "open_status": "listed_in_feed",
+          "open_status": "unverified_source_failure",
           "assessment_date_eligible": true
         }
       ]
     },
     {
       "label": "Walmart Senior Director TPM, Bellevue",
-      "status": "candidate_match_needs_exact_link",
+      "status": "retained_source_unverified",
       "matches": [
         {
           "key": "workday:walmart:/job/USA-BELLEVUE-SKYLINE-OFFICE-WA-BELLEVUE-Home-Office/XMLNAME--USA--Senior-Director--Technical-Program-Management_R-2625789",
@@ -107,7 +108,7 @@
           "url": "https://walmart.wd504.myworkdayjobs.com/en-US/WalmartExternal/job/USA-BELLEVUE-SKYLINE-OFFICE-WA-BELLEVUE-Home-Office/XMLNAME--USA--Senior-Director--Technical-Program-Management_R-2625789",
           "location": "(USA) BELLEVUE SKYLINE OFFICE WA BELLEVUE Home Office | (USA) SUNNYVALE TECH CORNERS CA SUNNYVALE Home Office",
           "published": true,
-          "open_status": "listed_in_feed",
+          "open_status": "unverified_source_failure",
           "assessment_date_eligible": true
         }
       ]
@@ -135,12 +136,12 @@
           "assessment_date_eligible": true
         },
         {
-          "key": "microsoft:microsoft:1970393556939562",
-          "title": "Principal Technical Program Manager - FDE",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393556939562",
-          "location": "United States, Multiple Locations, Multiple Locations | United States, Washington, Redmond | United States, California, Mountain View | United States, Texas, Houston | United States, Texas, Austin | United States, Illinois, Chicago | United States, Massachusetts, Cambridge | United States, New York, New York | United States, Georgia, Atlanta",
+          "key": "microsoft:microsoft:1970393557007989",
+          "title": "Principal Technical Program Manager -CTJ - TS/SCI",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557007989",
+          "location": "United States, Virginia, Reston | United States, District of Columbia, Washington D.C. | United States, Maryland, Annapolis Junction | United States, Washington, Redmond | United States, Georgia, Atlanta",
           "published": true,
-          "open_status": "unverified_source_failure",
+          "open_status": "listed_in_feed",
           "assessment_date_eligible": true
         },
         {
@@ -149,7 +150,7 @@
           "url": "https://apply.careers.microsoft.com/careers/job/1970393556983205",
           "location": "United States, Washington, Redmond",
           "published": true,
-          "open_status": "unverified_source_failure",
+          "open_status": "listed_in_feed",
           "assessment_date_eligible": true
         },
         {
@@ -158,7 +159,7 @@
           "url": "https://apply.careers.microsoft.com/careers/job/1970393557043344",
           "location": "United States, Washington, Redmond",
           "published": true,
-          "open_status": "unverified_source_failure",
+          "open_status": "listed_in_feed",
           "assessment_date_eligible": true
         },
         {
@@ -167,7 +168,7 @@
           "url": "https://apply.careers.microsoft.com/careers/job/1970393557043585",
           "location": "United States, Washington, Redmond | United States, California, Mountain View | United States, Texas, Austin | United States, Oregon, Hillsboro",
           "published": true,
-          "open_status": "unverified_source_failure",
+          "open_status": "listed_in_feed",
           "assessment_date_eligible": true
         },
         {
@@ -176,7 +177,16 @@
           "url": "https://apply.careers.microsoft.com/careers/job/1970393557041107",
           "location": "United States, Washington, Redmond | United States, Georgia, Atlanta | United States, District of Columbia, Washington D.C.",
           "published": true,
-          "open_status": "unverified_source_failure",
+          "open_status": "listed_in_feed",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "microsoft:microsoft:1970393556939562",
+          "title": "Principal Technical Program Manager - FDE",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393556939562",
+          "location": "United States, Multiple Locations, Multiple Locations | United States, Washington, Redmond | United States, California, Mountain View | United States, Texas, Houston | United States, Texas, Austin | United States, Illinois, Chicago | United States, Massachusetts, Cambridge | United States, New York, New York | United States, Georgia, Atlanta",
+          "published": true,
+          "open_status": "listed_in_feed",
           "assessment_date_eligible": true
         },
         {
@@ -185,7 +195,7 @@
           "url": "https://apply.careers.microsoft.com/careers/job/1970393557040547",
           "location": "United States, Washington, Redmond",
           "published": true,
-          "open_status": "unverified_source_failure",
+          "open_status": "listed_in_feed",
           "assessment_date_eligible": true
         },
         {
@@ -194,7 +204,7 @@
           "url": "https://apply.careers.microsoft.com/careers/job/1970393557039219",
           "location": "United States, Washington, Redmond",
           "published": true,
-          "open_status": "unverified_source_failure",
+          "open_status": "listed_in_feed",
           "assessment_date_eligible": true
         },
         {
@@ -203,7 +213,7 @@
           "url": "https://apply.careers.microsoft.com/careers/job/1970393557039003",
           "location": "United States, Washington, Redmond",
           "published": true,
-          "open_status": "unverified_source_failure",
+          "open_status": "listed_in_feed",
           "assessment_date_eligible": true
         },
         {
@@ -212,7 +222,7 @@
           "url": "https://apply.careers.microsoft.com/careers/job/1970393556998575",
           "location": "United States, Washington, Redmond | United States, California, Mountain View",
           "published": true,
-          "open_status": "unverified_source_failure",
+          "open_status": "listed_in_feed",
           "assessment_date_eligible": true
         },
         {
@@ -221,7 +231,7 @@
           "url": "https://apply.careers.microsoft.com/careers/job/1970393557008722",
           "location": "United States, Washington, Redmond | United States, California, Mountain View",
           "published": true,
-          "open_status": "unverified_source_failure",
+          "open_status": "listed_in_feed",
           "assessment_date_eligible": true
         },
         {
@@ -230,17 +240,8 @@
           "url": "https://apply.careers.microsoft.com/careers/job/1970393556873572",
           "location": "United States, Washington, Redmond",
           "published": true,
-          "open_status": "unverified_source_failure",
+          "open_status": "listed_in_feed",
           "assessment_date_eligible": false
-        },
-        {
-          "key": "microsoft:microsoft:1970393557007989",
-          "title": "Principal Technical Program Manager -CTJ - TS/SCI",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557007989",
-          "location": "United States, Virginia, Reston | United States, District of Columbia, Washington D.C. | United States, Maryland, Annapolis Junction | United States, Washington, Redmond | United States, Georgia, Atlanta",
-          "published": true,
-          "open_status": "unverified_source_failure",
-          "assessment_date_eligible": true
         }
       ]
     },
@@ -357,27 +358,18 @@
   ],
   "screened_out_role_candidates": [
     {
-      "key": "greenhouse:anthropic:5460837008",
-      "title": "International Finance Program Management",
-      "location": "Dublin, IE",
-      "reasons": [
-        "no title match"
-      ],
-      "score": 0
-    },
-    {
-      "key": "greenhouse:anthropic:5445366008",
-      "title": "Manager, Product Program Management",
-      "location": "San Francisco, CA | New York City, NY",
-      "reasons": [
-        "no title match"
-      ],
-      "score": 0
-    },
-    {
       "key": "greenhouse:airbnb:8094412",
       "title": "Product Program Manager, Roadmap Planning & Program Management",
       "location": "San Francisco, United States",
+      "reasons": [
+        "no title match"
+      ],
+      "score": 0
+    },
+    {
+      "key": "greenhouse:instacart:8337981",
+      "title": "Program Manager, Escalation Management",
+      "location": "United States - Remote",
       "reasons": [
         "no title match"
       ],
@@ -417,11 +409,13 @@
       "score": 0
     },
     {
-      "key": "greenhouse:samsara:7558150",
-      "title": "Manager, Operations Program Management",
-      "location": "Remote - US",
+      "key": "greenhouse:databricks:8648496002",
+      "title": "Technical Program Manager, FDE",
+      "location": "Munich, Germany",
       "reasons": [
-        "no title match"
+        "level not in title; needs profile assessment",
+        "title match (+25)",
+        "excluded location: Munich, Germany (-60)"
       ],
       "score": 0
     },
@@ -459,6 +453,24 @@
       "score": 0
     },
     {
+      "key": "greenhouse:anthropic:5460837008",
+      "title": "International Finance Program Management",
+      "location": "Dublin, IE",
+      "reasons": [
+        "no title match"
+      ],
+      "score": 0
+    },
+    {
+      "key": "greenhouse:anthropic:5445366008",
+      "title": "Manager, Product Program Management",
+      "location": "San Francisco, CA | New York City, NY",
+      "reasons": [
+        "no title match"
+      ],
+      "score": 0
+    },
+    {
       "key": "greenhouse:tenstorrent:5251842007",
       "title": "Technical Program Manager SOC & Digital Design",
       "location": "Tokyo, Japan",
@@ -470,13 +482,11 @@
       "score": 0
     },
     {
-      "key": "greenhouse:databricks:8648496002",
-      "title": "Technical Program Manager, FDE",
-      "location": "Munich, Germany",
+      "key": "greenhouse:samsara:7558150",
+      "title": "Manager, Operations Program Management",
+      "location": "Remote - US",
       "reasons": [
-        "level not in title; needs profile assessment",
-        "title match (+25)",
-        "excluded location: Munich, Germany (-60)"
+        "no title match"
       ],
       "score": 0
     },
@@ -501,26 +511,19 @@
       "score": 0
     },
     {
-      "key": "amazon_jobs:amazon:10591595",
-      "title": "Manager, Program Management , Relay Marketing - Relay Product Insights",
-      "location": "Bellevue, Washington, USA",
+      "key": "netflix:netflix:790318307129",
+      "title": "Technical Program Manager 5 - Content & Studio Engineering",
+      "location": "Warsaw,Poland",
       "reasons": [
-        "no title match"
+        "title match (+25)",
+        "level not in title, fit check judges it (+20)",
+        "excluded location: Warsaw,Poland (-60)"
       ],
       "score": 0
     },
     {
       "key": "amazon_jobs:amazon:10588069",
       "title": "Sr Production TPM, AMZ Leo Production Ops",
-      "location": "Bellevue, Washington, USA",
-      "reasons": [
-        "no title match"
-      ],
-      "score": 0
-    },
-    {
-      "key": "amazon_jobs:amazon:10581892",
-      "title": "Sr Program Manager - Change Management, Hub Delivery",
       "location": "Bellevue, Washington, USA",
       "reasons": [
         "no title match"
@@ -573,33 +576,6 @@
       "score": 0
     },
     {
-      "key": "amazon_jobs:amazon:10562447",
-      "title": "Senior TPM, Amazon Leo Aviation Customer Terminals",
-      "location": "Chicago, Illinois, USA",
-      "reasons": [
-        "no title match"
-      ],
-      "score": 0
-    },
-    {
-      "key": "amazon_jobs:amazon:10566210",
-      "title": "Principal TPM - Privacy, Regulation Tech & Assurance",
-      "location": "Seattle, Washington, USA",
-      "reasons": [
-        "no title match"
-      ],
-      "score": 0
-    },
-    {
-      "key": "amazon_jobs:amazon:10576724",
-      "title": "Sr. TPM, Verification Services",
-      "location": "Tempe, Arizona, USA",
-      "reasons": [
-        "no title match"
-      ],
-      "score": 0
-    },
-    {
       "key": "amazon_jobs:amazon:10558436",
       "title": "Sr. TPM \u2013 Satellite Payload Dev, Amazon Leo Antenna Development",
       "location": "Redmond, Washington, USA",
@@ -636,33 +612,6 @@
       "score": 0
     },
     {
-      "key": "amazon_jobs:amazon:10566894",
-      "title": "Technical Infrastructure Program Manager - Network Fiber Builds, Global Connectivity Infrastructure Development",
-      "location": "Denver, Colorado, USA",
-      "reasons": [
-        "no title match"
-      ],
-      "score": 0
-    },
-    {
-      "key": "amazon_jobs:amazon:10545552",
-      "title": "Sr TPM, Perception, Prime Air Vehicle Software",
-      "location": "Seattle, Washington, USA",
-      "reasons": [
-        "no title match"
-      ],
-      "score": 0
-    },
-    {
-      "key": "amazon_jobs:amazon:10552365",
-      "title": "Sr. TPM BESS, AWS Global Energy",
-      "location": "Seattle, Washington, USA",
-      "reasons": [
-        "no title match"
-      ],
-      "score": 0
-    },
-    {
       "key": "amazon_jobs:amazon:10538098",
       "title": "Technical Infrastructure Program Manager I , Data Center Power Utilization Management & Planning (PUMP - SoapStone)",
       "location": "Herndon, Virginia, USA",
@@ -675,24 +624,6 @@
       "key": "amazon_jobs:amazon:10537039",
       "title": "Technical Infrastructure Program Manager I , Data Center Power Utilization Management & Planning (PUMP - SoapStone)",
       "location": "Herndon, Virginia, USA",
-      "reasons": [
-        "no title match"
-      ],
-      "score": 0
-    },
-    {
-      "key": "amazon_jobs:amazon:10538041",
-      "title": "Principal TPM, Agentic WorkSpaces (AAWS)",
-      "location": "Seattle, Washington, USA",
-      "reasons": [
-        "no title match"
-      ],
-      "score": 0
-    },
-    {
-      "key": "amazon_jobs:amazon:10554059",
-      "title": "TPM, Memory & Storage Qualifications, Amazon Infrastructure Service",
-      "location": "Seattle, Washington, USA",
       "reasons": [
         "no title match"
       ],
@@ -726,24 +657,6 @@
       "score": 0
     },
     {
-      "key": "amazon_jobs:amazon:10553864",
-      "title": "Technical Infrastructure Program Manager II, OneMHS",
-      "location": "Bellevue, Washington, USA",
-      "reasons": [
-        "no title match"
-      ],
-      "score": 0
-    },
-    {
-      "key": "amazon_jobs:amazon:10562876",
-      "title": "Technical Program Management",
-      "location": "Sunnyvale, California, USA",
-      "reasons": [
-        "no title match"
-      ],
-      "score": 0
-    },
-    {
       "key": "amazon_jobs:amazon:10590793",
       "title": "Technical Infrastructure Program Manager, Infrasec",
       "location": "Seattle, Washington, USA",
@@ -762,126 +675,9 @@
       "score": 0
     },
     {
-      "key": "amazon_jobs:amazon:10519864",
-      "title": "Manager, Technical Infrastructure Program Management, Data Center Planning & Delivery",
-      "location": "Herndon, Virginia, USA",
-      "reasons": [
-        "no title match"
-      ],
-      "score": 0
-    },
-    {
-      "key": "amazon_jobs:amazon:10534455",
-      "title": "Sr. Technical Infrastructure Program Manager, Infra Capacity Delivery, Infra Capacity Delivery",
-      "location": "Herndon, Virginia, USA",
-      "reasons": [
-        "no title match"
-      ],
-      "score": 0
-    },
-    {
-      "key": "amazon_jobs:amazon:10525030",
-      "title": "Infrastructure TPM, Infra Capacity Delivery",
-      "location": "Herndon, Virginia, USA",
-      "reasons": [
-        "no title match"
-      ],
-      "score": 0
-    },
-    {
-      "key": "amazon_jobs:amazon:10541938",
-      "title": "Senior HW TPM, Amazon Robotics OBDA-Sortation",
-      "location": "North Reading, Massachusetts, USA",
-      "reasons": [
-        "no title match"
-      ],
-      "score": 0
-    },
-    {
-      "key": "amazon_jobs:amazon:10525025",
-      "title": "Infrastructure TPM, Infra Capacity Delivery",
-      "location": "Herndon, Virginia, USA",
-      "reasons": [
-        "no title match"
-      ],
-      "score": 0
-    },
-    {
       "key": "amazon_jobs:amazon:10565852",
       "title": "Technical Infra Program Manager, Amazon Robotics",
       "location": "Westborough, Massachusetts, USA",
-      "reasons": [
-        "no title match"
-      ],
-      "score": 0
-    },
-    {
-      "key": "amazon_jobs:amazon:10514526",
-      "title": "Technical Infrastructure Program Manager, Data Center Planning Delivery",
-      "location": "Atlanta, Georgia, USA",
-      "reasons": [
-        "no title match"
-      ],
-      "score": 0
-    },
-    {
-      "key": "amazon_jobs:amazon:10514652",
-      "title": "Principal TPM, Customer 360, Amazon Personalization",
-      "location": "Seattle, Washington, USA",
-      "reasons": [
-        "no title match"
-      ],
-      "score": 0
-    },
-    {
-      "key": "amazon_jobs:amazon:10508218",
-      "title": "Principal TPM, Leo Secure Communications, Leo Secure Communications Team",
-      "location": "Redmond, Washington, USA",
-      "reasons": [
-        "no title match"
-      ],
-      "score": 0
-    },
-    {
-      "key": "amazon_jobs:amazon:10504059",
-      "title": "Sr. Technical Program Mgr, WW Sustainability",
-      "location": "Seattle, Washington, USA",
-      "reasons": [
-        "no title match"
-      ],
-      "score": 0
-    },
-    {
-      "key": "amazon_jobs:amazon:10502620",
-      "title": "Sr TPM, Safety & Compliance, Last Mile Delivery Automation",
-      "location": "Santa Clara, California, USA",
-      "reasons": [
-        "no title match"
-      ],
-      "score": 0
-    },
-    {
-      "key": "amazon_jobs:amazon:10498060",
-      "title": "Technical Infrastructure Program Manager, Data Center Planning Delivery",
-      "location": "Herndon, Virginia, USA",
-      "reasons": [
-        "no title match"
-      ],
-      "score": 0
-    },
-    {
-      "key": "amazon_jobs:amazon:10483199",
-      "title": "Senior TPM - Hiring Our Heroes , Alexa Devices",
-      "location": "Seattle, Washington, USA",
-      "reasons": [
-        "no title match"
-      ],
-      "score": 0
-    },
-    {
-      "key": "amazon_jobs:amazon:10484071",
-      "title": "Sr. TPM - Satellite Integration & Test, Amazon Leo Technical Program Management",
-      "location": "Redmond, Washington, USA",
       "reasons": [
         "no title match"
       ],
@@ -906,64 +702,20 @@
       "score": 0
     },
     {
-      "key": "amazon_jobs:amazon:10479473",
-      "title": "Principal TPM, Leo Commerce TPM",
-      "location": "Redmond, Washington, USA",
+      "key": "amazon_jobs:amazon:10591595",
+      "title": "Manager, Program Management , Relay Marketing - Relay Product Insights",
+      "location": "Bellevue, Washington, USA",
       "reasons": [
         "no title match"
       ],
       "score": 0
     },
     {
-      "key": "amazon_jobs:amazon:10484069",
-      "title": "Senior TPM - 3GPP NTN Verification and Validation, Amazon Leo",
-      "location": "Redmond, Washington, USA",
+      "key": "amazon_jobs:amazon:10581892",
+      "title": "Sr Program Manager - Change Management, Hub Delivery",
+      "location": "Bellevue, Washington, USA",
       "reasons": [
         "no title match"
-      ],
-      "score": 0
-    },
-    {
-      "key": "workday:walmart:/job/IN-KA-BANGALORE-Home-Office-Building-10/STAFF--TECHNICAL-PROGRAM-MANAGER_R-2625851",
-      "title": "STAFF, TECHNICAL PROGRAM MANAGER",
-      "location": "IN KA BANGALORE Home Office Building 10",
-      "reasons": [
-        "title match (+25)",
-        "staff or principal (+25)",
-        "excluded location: IN KA BANGALORE Home Office Building 10 (-60)"
-      ],
-      "score": 0
-    },
-    {
-      "key": "workday:walmart:/job/IN-KA-BANGALORE-Home-Office-PTPP1/Principal--Technical-Program-Manager_R-2501316",
-      "title": "Principal, Technical Program Manager",
-      "location": "IN KA BANGALORE Home Office PTPP1",
-      "reasons": [
-        "title match (+25)",
-        "staff or principal (+25)",
-        "excluded location: IN KA BANGALORE Home Office PTPP1 (-60)"
-      ],
-      "score": 0
-    },
-    {
-      "key": "workday:walmart:/job/IN-KA-BANGALORE-Home-Office-PTPP1/PRINCIPAL--TECHNICAL-PROGRAM-MANAGER_R-2672481",
-      "title": "PRINCIPAL, TECHNICAL PROGRAM MANAGER",
-      "location": "IN KA BANGALORE Home Office PTPP1",
-      "reasons": [
-        "title match (+25)",
-        "staff or principal (+25)",
-        "excluded location: IN KA BANGALORE Home Office PTPP1 (-60)"
-      ],
-      "score": 0
-    },
-    {
-      "key": "netflix:netflix:790318307129",
-      "title": "Technical Program Manager 5 - Content & Studio Engineering",
-      "location": "Warsaw,Poland",
-      "reasons": [
-        "title match (+25)",
-        "level not in title, fit check judges it (+20)",
-        "excluded location: Warsaw,Poland (-60)"
       ],
       "score": 0
     },
@@ -1060,15 +812,6 @@
       "score": 0
     },
     {
-      "key": "oracle_cloud:dell:299151",
-      "title": "Advisor, Services Project-Program Management",
-      "location": "Singapore",
-      "reasons": [
-        "no title match"
-      ],
-      "score": 0
-    },
-    {
       "key": "oracle_cloud:dell:299384",
       "title": "Senior Advisor, Project Program Management",
       "location": "TX, United States",
@@ -1107,27 +850,27 @@
       "score": 0
     },
     {
-      "key": "apple:apple:200687148",
-      "title": "Manager, Technical SEO Programs - Cupertino",
-      "location": "Cupertino, United States",
+      "key": "workday:salesforce:/job/India---Bangalore/Salesforce-Technical-Architect--Consumer-goods--REX-or-TPM-or-CG-Cloud-exp-mandatory-_JR327810",
+      "title": "Salesforce Technical Architect, Consumer goods (REX or TPM or CG Cloud exp mandatory)",
+      "location": "2 Locations",
       "reasons": [
         "no title match"
       ],
       "score": 0
     },
     {
-      "key": "apple:apple:200670842",
-      "title": "Technical Program & Quality Manager (System-in-Package)",
-      "location": "Cupertino, United States",
+      "key": "workday:salesforce:/job/Indiana---Indianapolis/Program-Project-Management-Lead_JR363422-1",
+      "title": "Program/Project Management Lead",
+      "location": "2 Locations",
       "reasons": [
         "no title match"
       ],
       "score": 0
     },
     {
-      "key": "apple:apple:200681516",
-      "title": "Engineering Project Manager - Software Beta Program",
-      "location": "San Diego, United States",
+      "key": "workday:salesforce:/job/Illinois---Chicago/Program-Project-Management-Senior-Lead_JR364722",
+      "title": "Program/Project Management Senior Lead",
+      "location": "2 Locations",
       "reasons": [
         "no title match"
       ],
@@ -1219,6 +962,15 @@
       "score": 0
     },
     {
+      "key": "oracle_cloud:oracle:343697",
+      "title": "Business Operations Program Manager, Global Business Planning, Supply Chain Management (IC4)",
+      "location": "Nashville, TN, United States",
+      "reasons": [
+        "no title match"
+      ],
+      "score": 0
+    },
+    {
       "key": "oracle_cloud:oracle:348659",
       "title": "Principal Technical Program Manager- Data Center Infrastructure Delivery",
       "location": "Singapore",
@@ -1230,15 +982,6 @@
       "score": 0
     },
     {
-      "key": "oracle_cloud:oracle:343697",
-      "title": "Business Operations Program Manager, Global Business Planning, Supply Chain Management (IC4)",
-      "location": "Nashville, TN, United States",
-      "reasons": [
-        "no title match"
-      ],
-      "score": 0
-    },
-    {
       "key": "oracle_cloud:oracle:340013",
       "title": "Senior Technical Program Manager- Data Center Infrastructure Delivery",
       "location": "BENGALURU, KARNATAKA, India",
@@ -1246,33 +989,6 @@
         "title match (+25)",
         "senior tpm (+20)",
         "excluded location: BENGALURU, KARNATAKA, India (-60)"
-      ],
-      "score": 0
-    },
-    {
-      "key": "workday:salesforce:/job/India---Bangalore/Salesforce-Technical-Architect--Consumer-goods--REX-or-TPM-or-CG-Cloud-exp-mandatory-_JR327810",
-      "title": "Salesforce Technical Architect, Consumer goods (REX or TPM or CG Cloud exp mandatory)",
-      "location": "2 Locations",
-      "reasons": [
-        "no title match"
-      ],
-      "score": 0
-    },
-    {
-      "key": "workday:salesforce:/job/Indiana---Indianapolis/Program-Project-Management-Lead_JR363422-1",
-      "title": "Program/Project Management Lead",
-      "location": "2 Locations",
-      "reasons": [
-        "no title match"
-      ],
-      "score": 0
-    },
-    {
-      "key": "workday:salesforce:/job/Illinois---Chicago/Program-Project-Management-Senior-Lead_JR364722",
-      "title": "Program/Project Management Senior Lead",
-      "location": "2 Locations",
-      "reasons": [
-        "no title match"
       ],
       "score": 0
     },
@@ -1355,15 +1071,6 @@
       "score": 0
     },
     {
-      "key": "workday:nvidia:/job/US-CA-Santa-Clara/Chip-Engineering-Operations-Program-Manager_JR2027392",
-      "title": "Chip Engineering Operations Program Manager",
-      "location": "US, CA, Santa Clara",
-      "reasons": [
-        "no title match"
-      ],
-      "score": 0
-    },
-    {
       "key": "workday:nvidia:/job/Germany-Munich/Senior-Technical-Program-Manager---Nemotron_JR2028331",
       "title": "Senior Technical Program Manager - Nemotron",
       "location": "Germany, Munich | France, Courbevoie",
@@ -1435,29 +1142,64 @@
       "score": 0
     },
     {
-      "key": "arbeitnow:The Exploration Company:nyx-pmo-munich-germany-bordeaux-france-or-turin-italy-181718",
-      "title": "Nyx PMO",
-      "location": "Munich, Germany; Bordeaux, France; or Turin, Italy",
+      "key": "microsoft:microsoft:1970393557041801",
+      "title": "Technical Program Management",
+      "location": "Singapore, Singapore, Singapore | Malaysia, Johor, Johor Bahru",
+      "reasons": [
+        "broader responsibility match; needs profile assessment",
+        "title match (+25)",
+        "excluded location: Singapore, Singapore, Singapore | Malaysia, Johor, Johor Bahru (-60)"
+      ],
+      "score": 0
+    },
+    {
+      "key": "microsoft:microsoft:1970393557041817",
+      "title": "Technical Program Manager - Strategic Customer Engagement",
+      "location": "United Kingdom, Multiple Locations, Multiple Locations | Netherlands, Noord-Holland, Amsterdam | Spain, Madrid, Madrid",
+      "reasons": [
+        "level not in title; needs profile assessment",
+        "title match (+25)",
+        "excluded location: United Kingdom, Multiple Locations, Multiple Locations | Netherlands, Noord-Holland, Amsterdam | Spain, Madrid, Madrid (-60)"
+      ],
+      "score": 0
+    },
+    {
+      "key": "microsoft:microsoft:1970393556642449",
+      "title": "Principal Technical Program Manager - FDE",
+      "location": "Japan, Tokyo-to, Tokyo",
+      "reasons": [
+        "title match (+25)",
+        "staff or principal (+25)",
+        "excluded location: Japan, Tokyo-to, Tokyo (-60)"
+      ],
+      "score": 0
+    },
+    {
+      "key": "microsoft:microsoft:1970393557006450",
+      "title": "Principal Technical Program Manager - FDE (Strategic Partnership)",
+      "location": "Japan, Tokyo-to, Tokyo",
+      "reasons": [
+        "title match (+25)",
+        "staff or principal (+25)",
+        "excluded location: Japan, Tokyo-to, Tokyo (-60)"
+      ],
+      "score": 0
+    },
+    {
+      "key": "microsoft:microsoft:1970393556995413",
+      "title": "TPM, AI Data Infra & Systems",
+      "location": "United States, California, Mountain View | United States, Washington, Redmond",
       "reasons": [
         "no title match"
       ],
       "score": 0
     },
     {
-      "key": "arbeitnow:Limb\u00e4cher & Limb\u00e4cher GmbH:technical-professionell-programm-2027-reutlingen-88345",
-      "title": "Technical Professionell Programm 2027 (m/w/d)",
-      "location": "Reutlingen",
+      "key": "microsoft:microsoft:1970393556983238",
+      "title": "Technical Program Management Intern - CTJ - TS",
+      "location": "United States, Washington, Redmond",
       "reasons": [
-        "no title match"
-      ],
-      "score": 0
-    },
-    {
-      "key": "arbeitnow:Limb\u00e4cher & Limb\u00e4cher GmbH:technical-professionell-programm-2027-filderstadt-220131",
-      "title": "Technical Professionell Programm 2027 (m/w/d)",
-      "location": "Filderstadt",
-      "reasons": [
-        "no title match"
+        "excluded: title matches junior/intern/etc."
       ],
       "score": 0
     },
@@ -1515,87 +1257,6 @@
       "score": 0
     },
     {
-      "key": "workday:google:/job/IN-HYD-SAR1/Program-Management-Lead_JR6189",
-      "title": "Program Management Lead - Quality Assurance",
-      "location": "IN-HYD-SAR1",
-      "reasons": [
-        "no title match"
-      ],
-      "score": 0
-    },
-    {
-      "key": "workday:google:/job/IN-GUR-TIP2/Marketing---Program-Management-Senior-Specialist_JR3928",
-      "title": "Program Management Senior Specialist - Growth Lab - Email",
-      "location": "IN-GUR-TIP2",
-      "reasons": [
-        "no title match"
-      ],
-      "score": 0
-    },
-    {
-      "key": "workday:google:/job/PH-MNL-LIMA/Program-Management-Specialist---Talent-Development_JR6148-1",
-      "title": "Program Management Specialist - Talent Development",
-      "location": "PH-MNL-LIMA",
-      "reasons": [
-        "no title match"
-      ],
-      "score": 0
-    },
-    {
-      "key": "workday:google:/job/IN-HYD-SAR1/XMLNAME--Upcoming-Roles--Technical-Program-Manager_JR5684",
-      "title": "Program Management Senior Specialist - WebOps - Shared",
-      "location": "IN-HYD-SAR1",
-      "reasons": [
-        "no title match"
-      ],
-      "score": 0
-    },
-    {
-      "key": "workday:google:/job/IN-BLR-BCPV/XMLNAME--Upcoming-Roles--Technical-Program-Manager_JR5686",
-      "title": "Program Management Senior Specialist - WebOps - Shared",
-      "location": "IN-BLR-BCPV",
-      "reasons": [
-        "no title match"
-      ],
-      "score": 0
-    },
-    {
-      "key": "ashby:osmo:64356bd6-0598-40d0-b068-7e7f5b3143f0",
-      "title": "Software, TPM",
-      "location": "Remote; Elizabeth, NJ, New Jersey, United States",
-      "reasons": [
-        "no title match"
-      ],
-      "score": 0
-    },
-    {
-      "key": "greenhouse:altentechnologyusa:5253163007",
-      "title": "TPM, Multimedia and Platform (BSP)",
-      "location": "Palo Alto, California, United States",
-      "reasons": [
-        "no title match"
-      ],
-      "score": 0
-    },
-    {
-      "key": "greenhouse:altentechnologyusa:5252652007",
-      "title": "TPM, Release Management and Cloud Platform",
-      "location": "Palo Alto, California, United States",
-      "reasons": [
-        "no title match"
-      ],
-      "score": 0
-    },
-    {
-      "key": "greenhouse:rithum:8215063",
-      "title": "PMO & Portfolio Analyst",
-      "location": "United States - Remote",
-      "reasons": [
-        "no title match"
-      ],
-      "score": 0
-    },
-    {
       "key": "ashby:applied:efdef8c6-ccd6-4721-aeff-e04e63732622",
       "title": "Technical Program Manager - EMEA",
       "location": "Stockholm, Stockholm County, Sweden; Munich, Bavaria, Germany",
@@ -1607,9 +1268,36 @@
       "score": 0
     },
     {
-      "key": "workday:quantiphi:/job/Canada---Remote/TPM-RTE---French_JR10845",
-      "title": "TPM/RTE - French",
-      "location": "Canada - Remote",
+      "key": "greenhouse:purestorage:8039678",
+      "title": "Engineering Operations Program Manager",
+      "location": "Santa Clara, California",
+      "reasons": [
+        "no title match"
+      ],
+      "score": 0
+    },
+    {
+      "key": "greenhouse:purestorage:8283884",
+      "title": "Program Manager, Talent Management",
+      "location": "Santa Clara, California",
+      "reasons": [
+        "no title match"
+      ],
+      "score": 0
+    },
+    {
+      "key": "greenhouse:purestorage:8283872",
+      "title": "Program Manager, Talent Management",
+      "location": "Lehi, Utah",
+      "reasons": [
+        "no title match"
+      ],
+      "score": 0
+    },
+    {
+      "key": "lever:jobgether:9d829ffb-2d50-4dd0-afb5-25c01c8c52ca",
+      "title": "Program Management, Data & AI Applications",
+      "location": "US",
       "reasons": [
         "no title match"
       ],
@@ -1660,27 +1348,9 @@
       "score": 0
     },
     {
-      "key": "greenhouse:purestorage:8039678",
-      "title": "Engineering Operations Program Manager",
-      "location": "Santa Clara, California",
-      "reasons": [
-        "no title match"
-      ],
-      "score": 0
-    },
-    {
-      "key": "greenhouse:purestorage:8283884",
-      "title": "Program Manager, Talent Management",
-      "location": "Santa Clara, California",
-      "reasons": [
-        "no title match"
-      ],
-      "score": 0
-    },
-    {
-      "key": "greenhouse:purestorage:8283872",
-      "title": "Program Manager, Talent Management",
-      "location": "Lehi, Utah",
+      "key": "workday:bostondynamics:/job/Waltham-Office-POST/Senior-Field-Application-Engineer_R2934",
+      "title": "Technical Project Manager (TPM), Partner Ecosystems and Integration - French Speaking",
+      "location": "Waltham Office (POST)",
       "reasons": [
         "no title match"
       ],
@@ -1709,9 +1379,45 @@
       "score": 0
     },
     {
-      "key": "workday:bostondynamics:/job/Waltham-Office-POST/Senior-Field-Application-Engineer_R2934",
-      "title": "Technical Project Manager (TPM), Partner Ecosystems and Integration - French Speaking",
-      "location": "Waltham Office (POST)",
+      "key": "workday:google:/job/IN-HYD-SAR1/Program-Management-Lead_JR6189",
+      "title": "Program Management Lead - Quality Assurance",
+      "location": "IN-HYD-SAR1",
+      "reasons": [
+        "no title match"
+      ],
+      "score": 0
+    },
+    {
+      "key": "workday:google:/job/IN-GUR-TIP2/Marketing---Program-Management-Senior-Specialist_JR3928",
+      "title": "Program Management Senior Specialist - Growth Lab - Email",
+      "location": "IN-GUR-TIP2",
+      "reasons": [
+        "no title match"
+      ],
+      "score": 0
+    },
+    {
+      "key": "workday:google:/job/PH-MNL-LIMA/Program-Management-Specialist---Talent-Development_JR6148-1",
+      "title": "Program Management Specialist - Talent Development",
+      "location": "PH-MNL-LIMA",
+      "reasons": [
+        "no title match"
+      ],
+      "score": 0
+    },
+    {
+      "key": "workday:google:/job/IN-HYD-SAR1/XMLNAME--Upcoming-Roles--Technical-Program-Manager_JR5684",
+      "title": "Program Management Senior Specialist - WebOps - Shared",
+      "location": "IN-HYD-SAR1",
+      "reasons": [
+        "no title match"
+      ],
+      "score": 0
+    },
+    {
+      "key": "workday:google:/job/IN-BLR-BCPV/XMLNAME--Upcoming-Roles--Technical-Program-Manager_JR5686",
+      "title": "Program Management Senior Specialist - WebOps - Shared",
+      "location": "IN-BLR-BCPV",
       "reasons": [
         "no title match"
       ],
@@ -1721,6 +1427,177 @@
       "key": "workday:workiva:/job/USA---Remote/Senior-Partner-solution-program-manager--Financial-Reporting--Data-Management-_R12645",
       "title": "Senior Partner solution program manager (Financial Reporting, Data Management)",
       "location": "USA - Remote",
+      "reasons": [
+        "no title match"
+      ],
+      "score": 0
+    },
+    {
+      "key": "workday:msd:/job/USA---Pennsylvania---West-Point/XMLNAME-2027-Future-Talent-Program---Global-Supplier-Management-Group-Business-Ops---Co-op_R415029",
+      "title": "2027 Future Talent Program - Global Supplier Management Group Business Ops - Co-op",
+      "location": "2 Locations",
+      "reasons": [
+        "no title match"
+      ],
+      "score": 0
+    },
+    {
+      "key": "workday:msd:/job/USA---New-Jersey---Rahway/XMLNAME-2027-Future-Talent-Program---Global-Supplier-Management-Group-Direct-Advanced-Strategy-and-Procurement---Co-op_R415226",
+      "title": "2027 Future Talent Program - Global Supplier Management Group Direct Advanced Strategy and Procurement - Co-op",
+      "location": "2 Locations",
+      "reasons": [
+        "no title match"
+      ],
+      "score": 0
+    },
+    {
+      "key": "workday:msd:/job/USA---Pennsylvania---West-Point/XMLNAME-2027-Future-Talent-Program---Global-Supplier-Management-Group-Direct-Procurement-Global-Operations-Sourcing-Co-op_R415220",
+      "title": "2027 Future Talent Program - Global Supplier Management Group Direct Procurement Global Operations Sourcing Co-op",
+      "location": "2 Locations",
+      "reasons": [
+        "no title match"
+      ],
+      "score": 0
+    },
+    {
+      "key": "workday:msd:/job/USA---New-Jersey---Rahway/XMLNAME-2027-Future-Talent-Program---Global-Supplier-Management-Group-Indirect-Procurement-Marketing---Co-op_R415218",
+      "title": "2027 Future Talent Program - Global Supplier Management Group Indirect Procurement Marketing - Co-op",
+      "location": "2 Locations",
+      "reasons": [
+        "no title match"
+      ],
+      "score": 0
+    },
+    {
+      "key": "workday:msd:/job/USA---Pennsylvania---West-Point/XMLNAME-2027-Future-Talent-Program---Global-Supplier-Management-Group-Research---Development-Sourcing---Procurement-Co-op_R415231",
+      "title": "2027 Future Talent Program - Global Supplier Management Group Research & Development Sourcing & Procurement Co-op",
+      "location": "2 Locations",
+      "reasons": [
+        "no title match"
+      ],
+      "score": 0
+    },
+    {
+      "key": "workday:msd:/job/USA---New-Jersey---Rahway/XMLNAME-2027-Future-Talent-Program---Global-Supplier-Management-Group-Tech-Procurement---Co-op_R415969",
+      "title": "2027 Future Talent Program - Global Supplier Management Group Tech Procurement - Co-op",
+      "location": "USA - New Jersey - Rahway",
+      "reasons": [
+        "no title match"
+      ],
+      "score": 0
+    },
+    {
+      "key": "workday:msd:/job/USA---Pennsylvania---West-Point/XMLNAME-2027-Future-Talent-Program---Associate-Specialist-Supply-Chain-Management_R416665-1",
+      "title": "2027 Future Talent Program - Associate Specialist Supply Chain Management",
+      "location": "USA - Pennsylvania - West Point",
+      "reasons": [
+        "no title match"
+      ],
+      "score": 0
+    },
+    {
+      "key": "workday:msd:/job/USA---New-Jersey---Rahway/XMLNAME-2027-Future-Talent-Program---Marketing-Strategy---Project-Management-Co-op_R422071",
+      "title": "2027 Future Talent Program - Marketing Strategy & Project Management Co-op",
+      "location": "USA - New Jersey - Rahway",
+      "reasons": [
+        "no title match"
+      ],
+      "score": 0
+    },
+    {
+      "key": "workday:msd:/job/USA---Pennsylvania---North-Wales-Upper-Gwynedd/Associate-Principal-Scientist-Statistical-Programming--Submission-Data-Standards-Quality-Management--Hybrid-_R420678-1",
+      "title": "Associate Principal Scientist Statistical Programming, Submission Data Standards Quality Management (Hybrid)",
+      "location": "2 Locations",
+      "reasons": [
+        "no title match"
+      ],
+      "score": 0
+    },
+    {
+      "key": "workday:msd:/job/CHN---Shanghai---Shanghai-Tower-A/Assoc-Dir--Project-Management_R409152-2",
+      "title": "Asso. Dir, Business Excellence PMO",
+      "location": "CHN - Shanghai - Shanghai (Tower A)",
+      "reasons": [
+        "no title match"
+      ],
+      "score": 0
+    },
+    {
+      "key": "greenhouse:andurilindustries:5268883007",
+      "title": "2027 Early Career Technical Program Manager",
+      "location": "Costa Mesa, California, United States; Seattle, Washington, United States; Washington, District of Columbia, United States",
+      "reasons": [
+        "excluded: title matches junior/intern/etc."
+      ],
+      "score": 0
+    },
+    {
+      "key": "greenhouse:andurilindustries:5268864007",
+      "title": "2027 Technical Program Manager Intern",
+      "location": "Costa Mesa, California, United States; Honolulu, Hawaii, United States; Reston, Virginia, United States; Seattle, Washington, United States; Washington, District of Columbia, United States",
+      "reasons": [
+        "excluded: title matches junior/intern/etc."
+      ],
+      "score": 0
+    },
+    {
+      "key": "greenhouse:andurilindustries:5260675007",
+      "title": "Senior TPM, Mathematical Software",
+      "location": "Broomfield, Colorado, United States",
+      "reasons": [
+        "no title match"
+      ],
+      "score": 0
+    },
+    {
+      "key": "greenhouse:andurilindustries:5274650007",
+      "title": "Senior TPM, Mathematical Software & Algorithms",
+      "location": "Waltham, Massachusetts, United States",
+      "reasons": [
+        "no title match"
+      ],
+      "score": 0
+    },
+    {
+      "key": "greenhouse:andurilindustries:5274651007",
+      "title": "Senior TPM, Mathematical Software & Algorithms",
+      "location": "Huntsville, Alabama, United States",
+      "reasons": [
+        "no title match"
+      ],
+      "score": 0
+    },
+    {
+      "key": "greenhouse:andurilindustries:5253211007",
+      "title": "Senior TPM, Mathematical Software & Algorithms",
+      "location": "Huntsville, Alabama, United States",
+      "reasons": [
+        "no title match"
+      ],
+      "score": 0
+    },
+    {
+      "key": "greenhouse:andurilindustries:5131107007",
+      "title": "Senior TPM, Mathematical Software & Algorithms",
+      "location": "Fort Collins, Colorado, United States",
+      "reasons": [
+        "no title match"
+      ],
+      "score": 0
+    },
+    {
+      "key": "greenhouse:andurilindustries:5236483007",
+      "title": "Senior TPM, Mathematical Software & Algorithms",
+      "location": "Broomfield, Colorado, United States; Fort Collins, Colorado, United States",
+      "reasons": [
+        "no title match"
+      ],
+      "score": 0
+    },
+    {
+      "key": "greenhouse:andurilindustries:5236571007",
+      "title": "Winter 2027 Technical Program Management Co-op",
+      "location": "Washington, District of Columbia, United States",
       "reasons": [
         "no title match"
       ],
@@ -1738,11 +1615,11 @@
       "score": 0
     },
     {
-      "key": "ashby:k-id:18619df2-45d8-4732-8815-9a340d498d48",
-      "title": "Engineering Internship Program",
-      "location": "Remote; Singapore; United States",
+      "key": "workday:snapchat:/job/New-York-New-York/Lead-Program-Management--SMC-Operations_R0046960-1",
+      "title": "Lead Program Management, SMC Operations",
+      "location": "6 Locations",
       "reasons": [
-        "excluded: title matches junior/intern/etc."
+        "no title match"
       ],
       "score": 0
     },
@@ -1752,6 +1629,15 @@
       "location": "El Segundo, CA",
       "reasons": [
         "excluded: title matches junior/intern/etc."
+      ],
+      "score": 0
+    },
+    {
+      "key": "greenhouse:atoms:8767720002",
+      "title": "Senior Program Manager, Hardware Issue Management",
+      "location": "San Francisco, CA",
+      "reasons": [
+        "no title match"
       ],
       "score": 0
     },
@@ -1774,11 +1660,11 @@
       "score": 0
     },
     {
-      "key": "greenhouse:atoms:8767720002",
-      "title": "Senior Program Manager, Hardware Issue Management",
-      "location": "San Francisco, CA",
+      "key": "ashby:k-id:18619df2-45d8-4732-8815-9a340d498d48",
+      "title": "Engineering Internship Program",
+      "location": "Remote; Singapore; United States",
       "reasons": [
-        "no title match"
+        "excluded: title matches junior/intern/etc."
       ],
       "score": 0
     },
@@ -1825,6 +1711,51 @@
       "score": 0
     },
     {
+      "key": "ashby:osmo:64356bd6-0598-40d0-b068-7e7f5b3143f0",
+      "title": "Software, TPM",
+      "location": "Remote; Elizabeth, NJ, New Jersey, United States",
+      "reasons": [
+        "no title match"
+      ],
+      "score": 0
+    },
+    {
+      "key": "workday:quantiphi:/job/Canada---Remote/TPM-RTE---French_JR10845",
+      "title": "TPM/RTE - French",
+      "location": "Canada - Remote",
+      "reasons": [
+        "no title match"
+      ],
+      "score": 0
+    },
+    {
+      "key": "greenhouse:altentechnologyusa:5253163007",
+      "title": "TPM, Multimedia and Platform (BSP)",
+      "location": "Palo Alto, California, United States",
+      "reasons": [
+        "no title match"
+      ],
+      "score": 0
+    },
+    {
+      "key": "greenhouse:altentechnologyusa:5252652007",
+      "title": "TPM, Release Management and Cloud Platform",
+      "location": "Palo Alto, California, United States",
+      "reasons": [
+        "no title match"
+      ],
+      "score": 0
+    },
+    {
+      "key": "greenhouse:rithum:8215063",
+      "title": "PMO & Portfolio Analyst",
+      "location": "United States - Remote",
+      "reasons": [
+        "no title match"
+      ],
+      "score": 0
+    },
+    {
       "key": "workday:visa:/job/IN---Bengaluru-India/Senior-Manager-Program-Management-VCA-X--Visa-Consulting---Analytics_REF089302W",
       "title": "Senior Manager Program Management VCA X, Visa Consulting & Analytics",
       "location": "IN - Bengaluru, India",
@@ -1852,62 +1783,6 @@
         "title match (+25)",
         "senior tpm (+20)",
         "excluded location: SG - Singapore (-60)"
-      ],
-      "score": 0
-    },
-    {
-      "key": "workday:hp:/job/Praha-Praha-Czechia/Engineering-Program-Manager_3170289-1",
-      "title": "Engineering Program Manager",
-      "location": "Praha, Praha, Czechia | Sant Cugat del Valles, Barcelona, Spain",
-      "reasons": [
-        "level not in title; needs profile assessment",
-        "title match (+25)",
-        "excluded location: Praha, Praha, Czechia | Sant Cugat del Valles, Barcelona, Spain (-60)"
-      ],
-      "score": 0
-    },
-    {
-      "key": "workday:hp:/job/Sant-Cugat-del-Valles-Barcelona-Spain/XMLNAME-3DaaS-Program-Manager---Business-Operations-and-Process-Management_3170051-2",
-      "title": "3DaaS Program Manager \u2013 Business Operations and Process Management",
-      "location": "Sant Cugat del Valles, Barcelona, Spain",
-      "reasons": [
-        "no title match"
-      ],
-      "score": 0
-    },
-    {
-      "key": "workday:hp:/job/Taipei-Taipei-City-Taiwan-Region/Quality-Program-Manager--Commercial-PC-Quality--Cost---System-Management_3168701-1",
-      "title": "Quality Program Manager, Commercial PC Quality, Cost & System Management",
-      "location": "Taipei, Taipei City, Taiwan Region",
-      "reasons": [
-        "no title match"
-      ],
-      "score": 0
-    },
-    {
-      "key": "workday:hp:/job/Taipei-Taipei-City-Taiwan-Region/Program-Manager--Commercial-PC-Quality--Cost---System-Management_3167193-2",
-      "title": "Program Manager, Commercial PC Quality, Cost & System Management",
-      "location": "Taipei, Taipei City, Taiwan Region",
-      "reasons": [
-        "no title match"
-      ],
-      "score": 0
-    },
-    {
-      "key": "workday:hp:/job/Singapore-South-West-Singapore/Firmware-Program-Management--BIOS-EC-_3167597-1",
-      "title": "Firmware Program Management (BIOS/EC)",
-      "location": "Singapore, South West, Singapore",
-      "reasons": [
-        "no title match"
-      ],
-      "score": 0
-    },
-    {
-      "key": "workday:hp:/job/Vancouver-Washington-United-States-of-America/Solutions-Product-Management---Business-Strategy-and-Program-Management_3164738-1",
-      "title": "Solutions Product Management - Business Strategy and Program Management",
-      "location": "Vancouver, Washington, United States of America",
-      "reasons": [
-        "no title match"
       ],
       "score": 0
     },
@@ -2006,17 +1881,6 @@
       "score": 0
     },
     {
-      "key": "workday:mastercard:/job/Pune-India/Senior-Technical-Program-Manager_R-294273-1",
-      "title": "Senior Technical Program Manager",
-      "location": "Pune, India",
-      "reasons": [
-        "title match (+25)",
-        "senior tpm (+20)",
-        "excluded location: Pune, India (-60)"
-      ],
-      "score": 0
-    },
-    {
       "key": "workday:mastercard:/job/Pune-India/Technical-Program-Manager-II_R-294375",
       "title": "Technical Program Manager II",
       "location": "Pune, India",
@@ -2060,28 +1924,6 @@
     },
     {
       "key": "workday:mastercard:/job/Pune-India/Senior-Technical-Program-Manager_R-291145-1",
-      "title": "Senior Technical Program Manager",
-      "location": "Pune, India",
-      "reasons": [
-        "title match (+25)",
-        "senior tpm (+20)",
-        "excluded location: Pune, India (-60)"
-      ],
-      "score": 0
-    },
-    {
-      "key": "workday:mastercard:/job/Pune-India/Senior-Technical-Program-Manager_R-293584-1",
-      "title": "Senior Technical Program Manager",
-      "location": "Pune, India",
-      "reasons": [
-        "title match (+25)",
-        "senior tpm (+20)",
-        "excluded location: Pune, India (-60)"
-      ],
-      "score": 0
-    },
-    {
-      "key": "workday:mastercard:/job/Pune-India/Senior-Technical-Program-Manager_R-291415",
       "title": "Senior Technical Program Manager",
       "location": "Pune, India",
       "reasons": [
@@ -2170,6 +2012,15 @@
       "score": 0
     },
     {
+      "key": "workday:kla:/job/Milpitas-CA/Technical-project-and-program-manager_2638172",
+      "title": "Technical project and program manager",
+      "location": "Milpitas, CA",
+      "reasons": [
+        "no title match"
+      ],
+      "score": 0
+    },
+    {
       "key": "workday:kla:/job/Chennai-India/Associate---Technical-Lead-PLC-Programming_2640061",
       "title": "Associate / Technical Lead PLC Programming",
       "location": "Chennai, India",
@@ -2197,6 +2048,24 @@
       "score": 0
     },
     {
+      "key": "workday:jabil:/job/Elmira-NY/Engineering-Technician-III---Senior-CNC-Programmer---5-Axis-Milling_J2467878",
+      "title": "Engineering Technician III \u2013 Senior CNC Programmer \u2013 5-Axis Milling",
+      "location": "Elmira, NY",
+      "reasons": [
+        "no title match"
+      ],
+      "score": 0
+    },
+    {
+      "key": "workday:jabil:/job/Elmira-NY/Engineering-Technician-III---Senior-CNC-Programmer---5-Axis-Milling_J2467877",
+      "title": "Engineering Technician III \u2013 Senior CNC Programmer \u2013 5-Axis Milling",
+      "location": "Elmira, NY",
+      "reasons": [
+        "no title match"
+      ],
+      "score": 0
+    },
+    {
       "key": "workday:jabil:/job/Elmira-NY/Manufacturing-Engineering-Tech-II---CNC-Programmer_J2466657",
       "title": "Manufacturing Engineering Tech II - CNC Programmer",
       "location": "Elmira, NY",
@@ -2209,6 +2078,71 @@
       "key": "workday:jabil:/job/Elmira-NY/Manufacturing-Engineering-Tech-II---CNC-Programmer_J2466659",
       "title": "Manufacturing Engineering Tech II - CNC Programmer",
       "location": "Elmira, NY",
+      "reasons": [
+        "no title match"
+      ],
+      "score": 0
+    },
+    {
+      "key": "workday:hp:/job/Praha-Praha-Czechia/Engineering-Program-Manager_3170289-1",
+      "title": "Engineering Program Manager",
+      "location": "Praha, Praha, Czechia | Sant Cugat del Valles, Barcelona, Spain",
+      "reasons": [
+        "level not in title; needs profile assessment",
+        "title match (+25)",
+        "excluded location: Praha, Praha, Czechia | Sant Cugat del Valles, Barcelona, Spain (-60)"
+      ],
+      "score": 0
+    },
+    {
+      "key": "workday:hp:/job/Sant-Cugat-del-Valles-Barcelona-Spain/XMLNAME-3DaaS-Program-Manager---Business-Operations-and-Process-Management_3170051-2",
+      "title": "3DaaS Program Manager \u2013 Business Operations and Process Management",
+      "location": "Sant Cugat del Valles, Barcelona, Spain",
+      "reasons": [
+        "no title match"
+      ],
+      "score": 0
+    },
+    {
+      "key": "workday:hp:/job/Austin-Texas-United-States-of-America/SQA-Integration-TPM_3169528-2",
+      "title": "SQA Integration TPM",
+      "location": "Austin, Texas, United States of America",
+      "reasons": [
+        "no title match"
+      ],
+      "score": 0
+    },
+    {
+      "key": "workday:hp:/job/Taipei-Taipei-City-Taiwan-Region/Quality-Program-Manager--Commercial-PC-Quality--Cost---System-Management_3168701-1",
+      "title": "Quality Program Manager, Commercial PC Quality, Cost & System Management",
+      "location": "Taipei, Taipei City, Taiwan Region",
+      "reasons": [
+        "no title match"
+      ],
+      "score": 0
+    },
+    {
+      "key": "workday:hp:/job/Taipei-Taipei-City-Taiwan-Region/Program-Manager--Commercial-PC-Quality--Cost---System-Management_3167193-2",
+      "title": "Program Manager, Commercial PC Quality, Cost & System Management",
+      "location": "Taipei, Taipei City, Taiwan Region",
+      "reasons": [
+        "no title match"
+      ],
+      "score": 0
+    },
+    {
+      "key": "workday:hp:/job/Singapore-South-West-Singapore/Firmware-Program-Management--BIOS-EC-_3167597-1",
+      "title": "Firmware Program Management (BIOS/EC)",
+      "location": "Singapore, South West, Singapore",
+      "reasons": [
+        "no title match"
+      ],
+      "score": 0
+    },
+    {
+      "key": "workday:hp:/job/Vancouver-Washington-United-States-of-America/Solutions-Product-Management---Business-Strategy-and-Program-Management_3164738-1",
+      "title": "Solutions Product Management - Business Strategy and Program Management",
+      "location": "Vancouver, Washington, United States of America",
       "reasons": [
         "no title match"
       ],
@@ -2359,6 +2293,24 @@
     },
     {
       "key": "workday:amat:/job/SingaporeSGP/Technical-Project-Program-Management_R2629642",
+      "title": "Technical Project/Program Management",
+      "location": "Singapore,SGP",
+      "reasons": [
+        "no title match"
+      ],
+      "score": 0
+    },
+    {
+      "key": "workday:amat:/job/GloucesterMA/Technical-Project-Program-Management_R2632608",
+      "title": "Technical Project/Program Management",
+      "location": "Gloucester,MA",
+      "reasons": [
+        "no title match"
+      ],
+      "score": 0
+    },
+    {
+      "key": "workday:amat:/job/SingaporeSGP/Technical-Project-Program-Management_R2632623",
       "title": "Technical Project/Program Management",
       "location": "Singapore,SGP",
       "reasons": [
@@ -2636,15 +2588,166 @@
   ],
   "incomplete_sources": [
     {
-      "source": "microsoft",
-      "label": "{'query': '', 'filters': {'career_discipline': ['Technical Program Management']}}",
-      "status": "partial",
-      "jobs": 10,
-      "reported_total": 77,
-      "collected": 10,
-      "pages": 1,
+      "source": "workday",
+      "label": "walmart",
+      "status": "failed",
+      "jobs": 0,
+      "reported_total": null,
+      "collected": 0,
+      "pages": 0,
       "enumeration_complete": false,
       "query": ""
+    },
+    {
+      "source": "netflix",
+      "label": "program manager",
+      "status": "partial",
+      "jobs": 10
+    },
+    {
+      "source": "apple",
+      "label": "\"program management\"",
+      "status": "partial",
+      "jobs": 20
+    },
+    {
+      "source": "web_search",
+      "query": "\"Senior Technical Program Manager\" \"Google\" careers",
+      "status": "limit_reached",
+      "leads": 19,
+      "pages": 1,
+      "scope": "search_index_only"
+    },
+    {
+      "source": "web_search",
+      "query": "\"Technical Program Manager\" \"AMD\" careers",
+      "status": "limit_reached",
+      "leads": 20,
+      "pages": 1,
+      "scope": "search_index_only"
+    },
+    {
+      "source": "web_search",
+      "query": "\"Senior Director\" \"Visa\" careers",
+      "status": "limit_reached",
+      "leads": 20,
+      "pages": 1,
+      "scope": "search_index_only"
+    },
+    {
+      "source": "career_page",
+      "url": "https://careers.google.com/jobs/results/113210269915587270-senior-technical-program-manager/",
+      "status": "failed"
+    },
+    {
+      "source": "career_page",
+      "url": "https://careers.amd.com/careers-home/jobs/80554?lang=en-us",
+      "status": "failed"
+    },
+    {
+      "source": "career_page",
+      "url": "https://careers.amd.com/careers-home/jobs/93138?lang=en-us",
+      "status": "failed"
+    },
+    {
+      "source": "career_page",
+      "url": "https://careers.amd.com/careers-home/jobs/86904?lang=en-us",
+      "status": "failed"
+    },
+    {
+      "source": "career_page",
+      "url": "https://careers.amd.com/careers-home/jobs/88072?lang=en-us",
+      "status": "failed"
+    },
+    {
+      "source": "career_page",
+      "url": "https://careers.amd.com/careers-home/jobs/92169?lang=en-us",
+      "status": "failed"
+    },
+    {
+      "source": "career_page",
+      "url": "https://careers.amd.com/careers-home/jobs/80409?lang=en-us",
+      "status": "failed"
+    },
+    {
+      "source": "career_page",
+      "url": "https://careers.amd.com/careers-home/jobs/84865?lang=en-us",
+      "status": "failed"
+    },
+    {
+      "source": "career_page",
+      "url": "https://careers.amd.com/careers-home/jobs/84287?lang=en-us",
+      "status": "failed"
+    },
+    {
+      "source": "career_page",
+      "url": "https://careers.amd.com/careers-home/jobs/92170?lang=en-us",
+      "status": "failed"
+    },
+    {
+      "source": "career_page",
+      "url": "https://jobs.intuit.com/job/mountain-view/principal-business-operations-manager/27595/98862571504",
+      "status": "failed"
+    },
+    {
+      "source": "career_page",
+      "url": "https://jobs.intuit.com/job/san-diego/principal-business-operations-manager-customer-success-platform/27595/97239426832",
+      "status": "failed"
+    },
+    {
+      "source": "career_page",
+      "url": "https://jobs.paloaltonetworks.com/en/job/santa-clara/principal-sr-director-strategy-and-ai-transformation-gcs/47263/92187821280",
+      "status": "failed"
+    },
+    {
+      "source": "career_page",
+      "url": "https://careers.playstation.com/fr-ca/director-program-management/job/6145077004",
+      "status": "failed"
+    },
+    {
+      "source": "career_page",
+      "url": "https://careers.playstation.com/director-of-program-management-commerce/job/5706937004",
+      "status": "failed"
+    },
+    {
+      "source": "career_page",
+      "url": "https://careers.ihg.com/en/search-and-apply/?page=2&businessarea=corporate",
+      "status": "failed"
+    },
+    {
+      "source": "career_page",
+      "url": "https://jobs.weekday.works/github-staff-technical-program-manager",
+      "status": "failed"
+    },
+    {
+      "source": "career_page",
+      "url": "https://careers.walmart.com/us/en/jobs/R-2566826",
+      "status": "failed"
+    },
+    {
+      "source": "career_page",
+      "url": "https://careers.insmed.com/posting/senior-director-program-management/R3581/",
+      "status": "failed"
+    },
+    {
+      "source": "career_page",
+      "url": "https://jobs.biospace.com/job/3070396/senior-director-program-management/?TrackID=22",
+      "status": "failed"
+    },
+    {
+      "source": "career_page",
+      "url": "https://jobs.biospace.com/job/3087275/senior-director-program-management",
+      "status": "failed"
+    },
+    {
+      "source": "career_page",
+      "url": "https://careers.swe.org/jobs/non-technical/texas/hybrid/",
+      "status": "failed"
+    },
+    {
+      "source": "career_page",
+      "url": "https://jobs.jabil.com/en/job/shanghai/receptionist/626/102059042304",
+      "status": "failed"
     },
     {
       "source": "harmonic_employer",
@@ -2707,11 +2810,11 @@
       "label": "a16z startup discovery",
       "url": "https://jobs.a16z.com/jobs",
       "status": "partial",
-      "leads": 29,
-      "employers_found": 16,
+      "leads": 28,
+      "employers_found": 18,
       "employers_checked": 8,
-      "deferred": 8,
-      "unresolved": 7,
+      "deferred": 10,
+      "unresolved": 8,
       "listing_failures": 0
     },
     {
@@ -2719,11 +2822,11 @@
       "label": "Sequoia startup discovery",
       "url": "https://jobs.sequoiacap.com/jobs",
       "status": "partial",
-      "leads": 20,
+      "leads": 19,
       "employers_found": 26,
       "employers_checked": 8,
       "deferred": 18,
-      "unresolved": 6,
+      "unresolved": 3,
       "listing_failures": 0
     },
     {
@@ -2731,10 +2834,10 @@
       "label": "Greylock startup discovery",
       "url": "https://greylock.com/jobs/portfolio-jobs/",
       "status": "partial",
-      "leads": 19,
-      "employers_found": 31,
+      "leads": 25,
+      "employers_found": 42,
       "employers_checked": 8,
-      "deferred": 23,
+      "deferred": 34,
       "unresolved": 8,
       "listing_failures": 0
     },
@@ -2743,11 +2846,11 @@
       "label": "Y Combinator startup discovery",
       "url": "https://www.ycombinator.com/jobs/role/operations",
       "status": "partial",
-      "leads": 1,
-      "employers_found": 57,
+      "leads": 0,
+      "employers_found": 60,
       "employers_checked": 8,
-      "deferred": 49,
-      "unresolved": 7,
+      "deferred": 52,
+      "unresolved": 8,
       "listing_failures": 0
     },
     {
@@ -2761,14 +2864,6 @@
       "deferred": 0,
       "unresolved": 26,
       "listing_failures": 1
-    },
-    {
-      "source": "web_search",
-      "query": "\"PMO\" \"vice president\" careers",
-      "status": "limit_reached",
-      "leads": 60,
-      "pages": 3,
-      "scope": "search_index_only"
     },
     {
       "source": "web_search",
@@ -2828,16 +2923,6 @@
     },
     {
       "source": "career_page",
-      "url": "https://jobs.appliedmaterials.com/job/santa-clara/sr-director-technical-project-program-management/95/94510793808",
-      "status": "failed"
-    },
-    {
-      "source": "career_page",
-      "url": "https://jobs.intuit.com/engineering-jobs",
-      "status": "failed"
-    },
-    {
-      "source": "career_page",
       "url": "https://careers.iconplc.com/job/vice-president-project-management-in-regional-united-states-pra-jid-23643",
       "status": "failed"
     },
@@ -2853,12 +2938,7 @@
     },
     {
       "source": "career_page",
-      "url": "https://careers.rocket.com/us/en/job/RCARCAUSR083629EXTERNALENUS/Principal-Technical-Program-Manager",
-      "status": "failed"
-    },
-    {
-      "source": "career_page",
-      "url": "https://careers.oracle.com/en/job/349029",
+      "url": "https://careers.walmart.com/us/en/jobs/R-2496298",
       "status": "failed"
     },
     {
@@ -2903,22 +2983,7 @@
     },
     {
       "source": "career_page",
-      "url": "https://careers.walmart.com/us/en/jobs/R-2496298",
-      "status": "failed"
-    },
-    {
-      "source": "career_page",
       "url": "https://careers.walmart.com/us/en/jobs/R-2623275",
-      "status": "failed"
-    },
-    {
-      "source": "career_page",
-      "url": "https://careers.walmart.com/us/en/jobs/R-2570383",
-      "status": "failed"
-    },
-    {
-      "source": "career_page",
-      "url": "https://careers.walmart.com/us/jobs/WD2303259-usa-staff-technical-program-manager-ai-ml-data-platforms",
       "status": "failed"
     },
     {
@@ -2928,7 +2993,17 @@
     },
     {
       "source": "career_page",
-      "url": "https://careers.walmart.com/us/en/jobs/R-2445124",
+      "url": "https://careers.walmart.com/us/jobs/WD2303259-usa-staff-technical-program-manager-ai-ml-data-platforms",
+      "status": "failed"
+    },
+    {
+      "source": "career_page",
+      "url": "https://careers.walmart.com/us/en/jobs/R-2570383",
+      "status": "failed"
+    },
+    {
+      "source": "career_page",
+      "url": "https://careers.walmart.com/us/en/jobs/R-2404374",
       "status": "failed"
     },
     {
@@ -2938,22 +3013,12 @@
     },
     {
       "source": "career_page",
+      "url": "https://careers.walmart.com/us/en/jobs/R-2445124",
+      "status": "failed"
+    },
+    {
+      "source": "career_page",
       "url": "https://careers.walmart.com/us/jobs/wd2280676-senior-manager-technical-program-management-merchandising-tools",
-      "status": "failed"
-    },
-    {
-      "source": "career_page",
-      "url": "https://careers.walmart.com/us/en/jobs/R-2479030",
-      "status": "failed"
-    },
-    {
-      "source": "career_page",
-      "url": "https://careers.walmart.com/us/en/jobs/R-2488600",
-      "status": "failed"
-    },
-    {
-      "source": "career_page",
-      "url": "https://careers.walmart.com/us/en/jobs/R-2380655",
       "status": "failed"
     },
     {
@@ -2963,7 +3028,7 @@
     },
     {
       "source": "career_page",
-      "url": "https://careers.walmart.com/us/en/jobs/R-2404374",
+      "url": "https://careers.walmart.com/us/en/jobs/R-2380655",
       "status": "failed"
     },
     {
@@ -2977,25 +3042,52 @@
       "status": "failed"
     },
     {
+      "source": "career_page",
+      "url": "https://careers.walmart.com/us/en/jobs/R-2488600",
+      "status": "failed"
+    },
+    {
+      "source": "career_page",
+      "url": "https://careers.walmart.com/us/en/jobs/R-2479030",
+      "status": "failed"
+    },
+    {
       "source": "linkedin_email",
       "label": "LinkedIn job-alert emails",
       "status": "partial",
-      "jobs": 558,
+      "jobs": 582,
       "messages_checked": 9,
-      "alerts_with_jobs": 9,
-      "job_references_found": 54,
+      "alerts_with_jobs": 8,
+      "job_references_found": 48,
       "failed_messages": 0,
-      "alerts_without_job_links": 0,
+      "alerts_without_job_links": 1,
       "messages_deferred": 0,
-      "unresolved_alert_messages": 7,
+      "unresolved_alert_messages": 8,
       "lookback_days": 14,
       "mode": "incremental",
-      "search_since": "2026-10-28T18:30:43.738882+00:00",
+      "search_since": "2026-10-29T14:37:18.559934+00:00",
       "last_success_at": null
     },
     {
       "source": "greenhouse",
       "label": "{\"config\": \"philo\", \"source\": \"greenhouse\"}",
+      "status": "failed",
+      "jobs": 0
+    },
+    {
+      "source": "workday",
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"careers\", \"tenant\": \"gogo\", \"wd_server\": \"wd1\"}, \"source\": \"workday\"}",
+      "status": "failed",
+      "jobs": 0,
+      "reported_total": null,
+      "collected": 0,
+      "pages": 0,
+      "enumeration_complete": false,
+      "query": "program"
+    },
+    {
+      "source": "ashby",
+      "label": "{\"config\": \"whatnot\", \"source\": \"ashby\"}",
       "status": "failed",
       "jobs": 0
     },
@@ -3018,57 +3110,10 @@
       "jobs": 0
     },
     {
-      "source": "workday",
-      "label": "{\"config\": {\"search\": \"program\", \"site\": \"careers\", \"tenant\": \"gogo\", \"wd_server\": \"wd1\"}, \"source\": \"workday\"}",
-      "status": "failed",
-      "jobs": 0,
-      "reported_total": null,
-      "collected": 0,
-      "pages": 0,
-      "enumeration_complete": false,
-      "query": "program"
-    },
-    {
-      "source": "lever",
-      "label": "{\"config\": \"Instrumentl\", \"source\": \"lever\"}",
-      "status": "failed",
-      "jobs": 0
-    },
-    {
-      "source": "ashby",
-      "label": "{\"config\": \"whatnot\", \"source\": \"ashby\"}",
-      "status": "failed",
-      "jobs": 0
-    },
-    {
-      "source": "lever",
-      "label": "{\"config\": \"jobgether\", \"source\": \"lever\"}",
-      "status": "failed",
-      "jobs": 0
-    },
-    {
-      "source": "lever",
-      "label": "{\"config\": \"compassx\", \"source\": \"lever\"}",
-      "status": "failed",
-      "jobs": 0
-    },
-    {
-      "source": "lever",
-      "label": "{\"config\": \"matchgroup\", \"source\": \"lever\"}",
-      "status": "failed",
-      "jobs": 0
-    },
-    {
-      "source": "greenhouse",
-      "label": "{\"config\": \"andurilindustries\", \"source\": \"greenhouse\"}",
-      "status": "failed",
-      "jobs": 0
-    },
-    {
       "source": "description_check",
       "status": "limit_reached",
-      "deferred": 78
+      "deferred": 94
     }
   ],
-  "checked_at": "2026-10-30T14:37:18.559934+00:00"
+  "checked_at": "2026-10-31T05:00:50.798193+00:00"
 }
