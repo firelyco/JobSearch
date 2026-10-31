@@ -8,12 +8,12 @@
   "counts": {
     "found": 116,
     "eligible": 43,
-    "completed": 31,
+    "completed": 34,
     "strong": 6,
-    "middle": 15,
-    "pass": 10,
-    "waiting": 0,
-    "processing": 4,
+    "middle": 16,
+    "pass": 12,
+    "waiting": 1,
+    "processing": 0,
     "blocked": 8,
     "excluded": 73,
     "unverified_links": 24
@@ -598,9 +598,9 @@
       "source": "lever",
       "job_snapshot_hash": "8bb2a5fcd218e03c99443537659d8bd1d9f66d561a489409dc8de1da770100f7",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "pass"
     },
     {
       "key": "lever:jobgether:1a100640-0f87-4943-8ebf-e46ce4a742c0",
@@ -884,9 +884,9 @@
       "source": "web_discovery",
       "job_snapshot_hash": "72c7fd9c984afdcf5a3f9e58dcff193f700cca6fd90fccae7ada651f82f12be7",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "web_discovery:Merck:83374221287949bf0379",
@@ -917,9 +917,9 @@
       "source": "web_discovery",
       "job_snapshot_hash": "eef8f43d273e130695b6be7a26036a2da389b22ea75a9f2ab15df9cd5845d69b",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "pass"
     },
     {
       "key": "web_discovery:Rivian and Volkswagen Group Technologies:16b6ee8e1cfba46e50ac",
@@ -961,7 +961,7 @@
       "source": "web_discovery",
       "job_snapshot_hash": "18f9e120fcbcf35553035613e38182510a88ae466b693f4f0b11cdae0083d569",
       "eligible": true,
-      "status": "processing",
+      "status": "waiting",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -1735,21 +1735,21 @@
       "status": "partial"
     }
   ],
-  "checked_at": "2026-10-31T06:06:51.474532+00:00",
+  "checked_at": "2026-10-31T06:08:24.412177+00:00",
   "legacy_backlog": {
-    "assessed": 446,
-    "pending": 0,
+    "assessed": 449,
+    "pending": 1,
     "unresolved": 34,
-    "in_progress": 4,
+    "in_progress": 0,
     "total": 484,
     "strong": 57
   },
-  "batch_id": "4a3a61234dc44ba70fe1a56544d647687611a0e86870c021addd95e524a09b83",
+  "batch_id": "e5f0226d4f826e4841b8c4998ed72981c21d85e43ab52e568820bee9c030a564",
   "status": "assessing",
   "input_blobs": {
     "jobs.json": "ece325e4137efb93f8fd1a3544723112f9000a10",
-    "fit_scores.json": "fa5f0960d7b8886f51f81f91044ecc6eb4637af0",
-    "fit_backfill.json": "f87e7372ca0484e27c8c814b6a2b8eb52c958d71",
+    "fit_scores.json": "53483754107c265682899c89d5945b21deb81baa",
+    "fit_backfill.json": "a03ef533cb2f14a934343031b16bc250f69ace80",
     "meta.json": "59e310f7a969fda7816e574bc4fd001df3814f54"
   }
 }
