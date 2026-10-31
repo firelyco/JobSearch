@@ -7,15 +7,15 @@
   "collection_at": "2026-10-31T05:30:53.280573+00:00",
   "counts": {
     "found": 102,
-    "eligible": 41,
-    "completed": 28,
-    "strong": 5,
-    "middle": 14,
-    "pass": 9,
-    "waiting": 5,
+    "eligible": 39,
+    "completed": 31,
+    "strong": 6,
+    "middle": 15,
+    "pass": 10,
+    "waiting": 0,
     "processing": 0,
     "blocked": 8,
-    "excluded": 61,
+    "excluded": 63,
     "unverified_links": 24
   },
   "members": [
@@ -752,9 +752,9 @@
       "source": "web_discovery",
       "job_snapshot_hash": "e49078e335d2ae1951ed0568135beca7745cce5fe3dfbdd9535fe45caa799f5e",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "strong"
     },
     {
       "key": "web_discovery:Intuit:981ed9b7468c9e5fc1d6",
@@ -774,9 +774,9 @@
       "source": "web_discovery",
       "job_snapshot_hash": "542fff50fc1a1232764f817c6d34ec1c076f5cd6dd5d27b5a7a4f7ca9cef2b3e",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "pass"
     },
     {
       "key": "web_discovery:JABIL CIRCUIT, INC:468208a8d9396fc3d41e",
@@ -905,9 +905,9 @@
       "url": "https://gartner.wd5.myworkdayjobs.com/en-US/EXT/job/Remote---Texas/Director---CIO-Analyst--Thought-Leader-on-Technology-Implementation-and-Operations_110029",
       "source": "workday",
       "job_snapshot_hash": "c0bc9b6c2aa8318fc8b5b9a81b5d27987f2a3f8c2f86e6bae9f6189949e17a58",
-      "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -916,9 +916,9 @@
       "url": "https://gartner.wd5.myworkdayjobs.com/en-US/EXT/job/Remote---United-States/Senior-Director--Analyst-CIO-Market-and-Technology-Platforms--Infrastructure-and-Operations---Remote-US_110899",
       "source": "workday",
       "job_snapshot_hash": "c92301eedfb53544329e6acac7dba26dc5461dacc511ce5e2ff30abffc490d59",
-      "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -1137,9 +1137,9 @@
       "source": "workday",
       "job_snapshot_hash": "d78b89041009da77c5d1a6abbbf2f6d5927ac3aced0d216cdd6bb3e121370162",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     }
   ],
   "link_ids": [
@@ -1591,21 +1591,21 @@
       "status": "partial"
     }
   ],
-  "checked_at": "2026-10-31T05:46:14.452467+00:00",
+  "checked_at": "2026-10-31T05:47:14.790737+00:00",
   "legacy_backlog": {
-    "assessed": 450,
-    "pending": 7,
+    "assessed": 453,
+    "pending": 0,
     "unresolved": 32,
-    "in_progress": 0,
-    "total": 489,
-    "strong": 57
+    "in_progress": 2,
+    "total": 487,
+    "strong": 58
   },
-  "batch_id": "3c75a2b137b0f5ed4d25c49c41a45a68c489aba5e135fa5a43d78a917ddf167f",
-  "status": "assessing",
+  "batch_id": "3c145e63e06ff713c261fea15fe60e23f7b7ce65231675e916a6c383c883f8a6",
+  "status": "blocked",
   "input_blobs": {
     "jobs.json": "7e705b6ebc770b00022b12625cb776dd8e3c6fd4",
-    "fit_scores.json": "b29da16d256110762d5f075978088bac47fbc1e4",
-    "fit_backfill.json": "76a66b508c89da6239503863d23229f36c47fb5d",
+    "fit_scores.json": "31a3ab1e5a9282a99baf949d1e3c31002d8004df",
+    "fit_backfill.json": "92970e091b87b0ff74fca1b943e1a5504ac4ed4d",
     "meta.json": "3bc26abca180d2ad05639a805a9f8c6b6c33126f"
   }
 }
