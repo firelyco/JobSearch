@@ -8,12 +8,12 @@
   "counts": {
     "found": 93,
     "eligible": 47,
-    "completed": 4,
+    "completed": 7,
     "strong": 1,
-    "middle": 3,
-    "pass": 0,
+    "middle": 5,
+    "pass": 1,
     "waiting": 39,
-    "processing": 4,
+    "processing": 1,
     "blocked": 0,
     "excluded": 46,
     "unverified_links": 24
@@ -807,9 +807,9 @@
       "source": "workday",
       "job_snapshot_hash": "adc6ae7869f6d3953c6b748e24645d0e9fd88aff32ee40d9ebfb6ae8495cd621",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "pass"
     },
     {
       "key": "workday:amat:/job/Santa-ClaraCA/Technical-Project-Program-Management_R2632603",
@@ -818,9 +818,9 @@
       "source": "workday",
       "job_snapshot_hash": "b1bbc7feaceadd07db877d098ceed6c99addbfe9d4b65fac60bbed99a46f3dab",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "workday:blueorigin:/job/Longmont-CO/Senior-Systems-Engineer---Technical-Program-Lead_R73988",
@@ -840,9 +840,9 @@
       "source": "workday",
       "job_snapshot_hash": "0b6c7f9d90f0232918cf86221987075329c564acf9f190bd55c76d170cac148c",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "workday:msd:/job/IRL---Meath---Dunboyne/Associate-Director--Downstream-Technical-Operations-Lead_R410695",
@@ -1432,21 +1432,21 @@
       "status": "failed"
     }
   ],
-  "checked_at": "2026-10-31T05:15:42.873749+00:00",
+  "checked_at": "2026-10-31T05:17:02.067785+00:00",
   "legacy_backlog": {
-    "assessed": 421,
+    "assessed": 424,
     "pending": 76,
     "unresolved": 25,
-    "in_progress": 4,
+    "in_progress": 1,
     "total": 526,
     "strong": 55
   },
-  "batch_id": "ad3cefa895cd4f1f5831b6aaa922088983360141a44506a1e47db486c5b140a8",
+  "batch_id": "7a3d5cbb8086f5feb3d3aeb3d5a1492c70e04ec379e2a07ecbf427f4ea22f4a6",
   "status": "assessing",
   "input_blobs": {
     "jobs.json": "2e3332a7bb0a0dcbaa040e71b4f870389f49ae10",
-    "fit_scores.json": "2c5b2acbb0238e62ada25a912be912b7fd557748",
-    "fit_backfill.json": "764f592ac83d623b0b464ba3b0cc92352c877c2a",
+    "fit_scores.json": "449a4002cdfa03fccb0e9892e6765e2b9cd13f85",
+    "fit_backfill.json": "b3093b041f85979980664726cffaae439fa5e173",
     "meta.json": "882ae7c9707c1a18d13261aff61da036002774f4"
   }
 }
