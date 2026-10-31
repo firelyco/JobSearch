@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "checked_at": "2026-10-31T05:30:53.280573+00:00",
+  "checked_at": "2026-10-31T05:50:52.120367+00:00",
   "connection": {
     "source": "linkedin_email",
     "label": "LinkedIn job-alert emails",
@@ -15,14 +15,14 @@
     "unresolved_alert_messages": 8,
     "lookback_days": 14,
     "mode": "incremental",
-    "search_since": "2026-10-30T05:00:50.798193+00:00",
+    "search_since": "2026-10-30T05:30:53.280573+00:00",
     "last_success_at": null
   },
   "last_success_at": null,
   "scope": "One-time 14-day catch-up, then new unprocessed LinkedIn emails during the daily job search. Collected references are retained; this does not verify all LinkedIn or in-app listings.",
   "counts": {
-    "missing": 433,
-    "possible_match": 149
+    "missing": 428,
+    "possible_match": 154
   },
   "rows": [
     {
@@ -483,7 +483,7 @@
       "first_alert_at": "2026-10-19T23:54:42+00:00",
       "last_alert_at": "2026-10-20T05:57:44+00:00",
       "collection": "possible_match",
-      "assessment": "assessed",
+      "assessment": "outside_date_scope",
       "verdicts": [
         "Middle"
       ],
@@ -493,6 +493,13 @@
           "title": "Principal Technical Program Manager",
           "company": "microsoft",
           "url": "https://apply.careers.microsoft.com/careers/job/1970393557026741",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "microsoft:microsoft:1970393557042157",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557042157",
           "assessment_date_eligible": true
         },
         {
@@ -566,11 +573,11 @@
           "assessment_date_eligible": false
         },
         {
-          "key": "microsoft:microsoft:1970393557042157",
+          "key": "web_discovery:Microsoft:2d8598b6827c15ce30e2",
           "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557042157",
-          "assessment_date_eligible": true
+          "company": "Microsoft",
+          "url": "https://jobs.hardwarefyi.com/jobs/microsoft-principal-technical-program-manager",
+          "assessment_date_eligible": false
         }
       ],
       "reason": "Title/company similarity is not proof of the same requisition."
@@ -1303,11 +1310,19 @@
       "employer_urls": [],
       "first_alert_at": "2026-10-26T01:57:42+00:00",
       "last_alert_at": "2026-10-26T01:57:42+00:00",
-      "collection": "missing",
-      "assessment": "not_assessed",
+      "collection": "possible_match",
+      "assessment": "outside_date_scope",
       "verdicts": [],
-      "matches": [],
-      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+      "matches": [
+        {
+          "key": "greenhouse:arcinstitute:6129232004",
+          "title": "Chief of Staff",
+          "company": "arcinstitute",
+          "url": "https://job-boards.greenhouse.io/arcinstitute/jobs/6129232004",
+          "assessment_date_eligible": false
+        }
+      ],
+      "reason": "Title/company similarity is not proof of the same requisition."
     },
     {
       "linkedin_id": "4445812656",
@@ -1470,16 +1485,9 @@
       "first_alert_at": "2026-10-28T12:43:47+00:00",
       "last_alert_at": "2026-10-28T12:43:47+00:00",
       "collection": "possible_match",
-      "assessment": "outside_date_scope",
+      "assessment": "not_assessed",
       "verdicts": [],
       "matches": [
-        {
-          "key": "web_discovery:Gartner Careers:3a6d82435c3a45df67a7",
-          "title": "Director - IT Strategy Consulting - AI",
-          "company": "Gartner Careers",
-          "url": "https://jobs.gartner.com/jobs/job/113000-director-it-strategy-consulting-ai",
-          "assessment_date_eligible": false
-        },
         {
           "key": "workday:gartner:/job/Chicago-IL/Director---IT-Strategy-Consulting---AI_113000",
           "title": "Director - IT Strategy Consulting - AI",
@@ -2317,19 +2325,11 @@
       "employer_urls": [],
       "first_alert_at": "2026-10-26T23:54:41+00:00",
       "last_alert_at": "2026-10-26T23:54:41+00:00",
-      "collection": "possible_match",
-      "assessment": "outside_date_scope",
+      "collection": "missing",
+      "assessment": "not_assessed",
       "verdicts": [],
-      "matches": [
-        {
-          "key": "web_discovery:Intuit:b6ff91f39a436333f653",
-          "title": "Principal, Strategy & Business Operations",
-          "company": "Intuit",
-          "url": "https://jobs.intuit.com/job/mountain-view/principal-strategy-and-business-operations/27595/99544281152",
-          "assessment_date_eligible": false
-        }
-      ],
-      "reason": "Title/company similarity is not proof of the same requisition."
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
     },
     {
       "linkedin_id": "4458547687",
@@ -2375,17 +2375,17 @@
       "verdicts": [],
       "matches": [
         {
-          "key": "greenhouse:gitlab:8784056002",
-          "title": "Principal Technical Program Manager",
-          "company": "gitlab",
-          "url": "https://job-boards.greenhouse.io/gitlab/jobs/8784056002",
-          "assessment_date_eligible": false
-        },
-        {
           "key": "greenhouse:gitlab:8693068002",
           "title": "Principal Technical Program Manager",
           "company": "gitlab",
           "url": "https://job-boards.greenhouse.io/gitlab/jobs/8693068002",
+          "assessment_date_eligible": false
+        },
+        {
+          "key": "greenhouse:gitlab:8784056002",
+          "title": "Principal Technical Program Manager",
+          "company": "gitlab",
+          "url": "https://job-boards.greenhouse.io/gitlab/jobs/8784056002",
           "assessment_date_eligible": false
         }
       ],
@@ -2419,6 +2419,13 @@
       "assessment": "reassessment_pending",
       "verdicts": [],
       "matches": [
+        {
+          "key": "web_discovery:Mastercard:25307fa6060f6755317f",
+          "title": "Director, Technical Program Management",
+          "company": "Mastercard",
+          "url": "https://careers.mastercard.com/us/en/job/R-276338/Director-Technical-Program-Management",
+          "assessment_date_eligible": true
+        },
         {
           "key": "workday:mastercard:/job/Pune-India/Director--Technical-Program-Management-_R-288288",
           "title": "Director, Technical Program Management\u2019",
@@ -2861,11 +2868,19 @@
       "employer_urls": [],
       "first_alert_at": "2026-10-26T01:57:42+00:00",
       "last_alert_at": "2026-10-26T01:57:42+00:00",
-      "collection": "missing",
-      "assessment": "not_assessed",
+      "collection": "possible_match",
+      "assessment": "outside_date_scope",
       "verdicts": [],
-      "matches": [],
-      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+      "matches": [
+        {
+          "key": "web_discovery:Palo Alto Networks, Inc.:4cc2ebe587642a0acbde",
+          "title": "Lead,  NetSec Product Strategy",
+          "company": "Palo Alto Networks, Inc.",
+          "url": "https://jobs.paloaltonetworks.com/en/job/santa-clara/lead-netsec-product-strategy/47263/100461626640",
+          "assessment_date_eligible": false
+        }
+      ],
+      "reason": "Title/company similarity is not proof of the same requisition."
     },
     {
       "linkedin_id": "4463934435",
@@ -4528,7 +4543,7 @@
       "first_alert_at": "2026-10-23T05:57:41+00:00",
       "last_alert_at": "2026-10-23T05:57:41+00:00",
       "collection": "possible_match",
-      "assessment": "assessed",
+      "assessment": "outside_date_scope",
       "verdicts": [
         "Middle"
       ],
@@ -4538,6 +4553,13 @@
           "title": "Principal Technical Program Manager",
           "company": "microsoft",
           "url": "https://apply.careers.microsoft.com/careers/job/1970393557026741",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "microsoft:microsoft:1970393557042157",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557042157",
           "assessment_date_eligible": true
         },
         {
@@ -4611,11 +4633,11 @@
           "assessment_date_eligible": false
         },
         {
-          "key": "microsoft:microsoft:1970393557042157",
+          "key": "web_discovery:Microsoft:2d8598b6827c15ce30e2",
           "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557042157",
-          "assessment_date_eligible": true
+          "company": "Microsoft",
+          "url": "https://jobs.hardwarefyi.com/jobs/microsoft-principal-technical-program-manager",
+          "assessment_date_eligible": false
         }
       ],
       "reason": "Title/company similarity is not proof of the same requisition."
@@ -5072,11 +5094,19 @@
       "employer_urls": [],
       "first_alert_at": "2026-10-26T03:57:42+00:00",
       "last_alert_at": "2026-10-26T03:57:42+00:00",
-      "collection": "missing",
+      "collection": "possible_match",
       "assessment": "not_assessed",
       "verdicts": [],
-      "matches": [],
-      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+      "matches": [
+        {
+          "key": "web_discovery:Synopsys:2f76e68a7d75c19e7add",
+          "title": "R&D Engineering, Director-18881",
+          "company": "Synopsys",
+          "url": "https://careers.synopsys.com/job/sunnyvale/r-and-d-engineering-director-18881/44408/101403651200",
+          "assessment_date_eligible": true
+        }
+      ],
+      "reason": "Title/company similarity is not proof of the same requisition."
     },
     {
       "linkedin_id": "4475326805",
@@ -5102,11 +5132,19 @@
       "employer_urls": [],
       "first_alert_at": "2026-10-26T13:57:42+00:00",
       "last_alert_at": "2026-10-26T13:57:42+00:00",
-      "collection": "missing",
-      "assessment": "not_assessed",
+      "collection": "possible_match",
+      "assessment": "outside_date_scope",
       "verdicts": [],
-      "matches": [],
-      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+      "matches": [
+        {
+          "key": "greenhouse:apptronik:6121684004",
+          "title": "Staff Technical Program Manager",
+          "company": "apptronik",
+          "url": "https://boards.greenhouse.io/apptronik/jobs/6121684004?gh_jid=6121684004",
+          "assessment_date_eligible": false
+        }
+      ],
+      "reason": "Title/company similarity is not proof of the same requisition."
     },
     {
       "linkedin_id": "4475411511",
@@ -5177,19 +5215,11 @@
       "employer_urls": [],
       "first_alert_at": "2026-10-27T19:57:42+00:00",
       "last_alert_at": "2026-10-27T21:57:41+00:00",
-      "collection": "possible_match",
+      "collection": "missing",
       "assessment": "not_assessed",
       "verdicts": [],
-      "matches": [
-        {
-          "key": "web_discovery:IDC:fbb96179adb181e5c2f7",
-          "title": "Senior Manager, AI Program Management",
-          "company": "IDC",
-          "url": "https://jobs.hireheroesusa.org/jobs/618236365-senior-manager-ai-program-management-at-idc",
-          "assessment_date_eligible": true
-        }
-      ],
-      "reason": "Title/company similarity is not proof of the same requisition."
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
     },
     {
       "linkedin_id": "4476100397",
@@ -6271,11 +6301,19 @@
       "employer_urls": [],
       "first_alert_at": "2026-10-20T23:54:41+00:00",
       "last_alert_at": "2026-10-20T23:54:41+00:00",
-      "collection": "missing",
+      "collection": "possible_match",
       "assessment": "not_assessed",
       "verdicts": [],
-      "matches": [],
-      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+      "matches": [
+        {
+          "key": "netflix:netflix:790319022497",
+          "title": "Senior Product Operations Lead & Program Manager - Content Experience Innovation",
+          "company": "netflix",
+          "url": "https://explore.jobs.netflix.net/careers/job/790319022497",
+          "assessment_date_eligible": true
+        }
+      ],
+      "reason": "Title/company similarity is not proof of the same requisition."
     },
     {
       "linkedin_id": "4478650163",
@@ -7104,7 +7142,7 @@
       "first_alert_at": "2026-10-15T23:57:43+00:00",
       "last_alert_at": "2026-10-15T23:57:43+00:00",
       "collection": "possible_match",
-      "assessment": "assessed",
+      "assessment": "outside_date_scope",
       "verdicts": [
         "Middle"
       ],
@@ -7114,6 +7152,13 @@
           "title": "Principal Technical Program Manager",
           "company": "microsoft",
           "url": "https://apply.careers.microsoft.com/careers/job/1970393557026741",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "microsoft:microsoft:1970393557042157",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557042157",
           "assessment_date_eligible": true
         },
         {
@@ -7187,11 +7232,11 @@
           "assessment_date_eligible": false
         },
         {
-          "key": "microsoft:microsoft:1970393557042157",
+          "key": "web_discovery:Microsoft:2d8598b6827c15ce30e2",
           "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557042157",
-          "assessment_date_eligible": true
+          "company": "Microsoft",
+          "url": "https://jobs.hardwarefyi.com/jobs/microsoft-principal-technical-program-manager",
+          "assessment_date_eligible": false
         }
       ],
       "reason": "Title/company similarity is not proof of the same requisition."
@@ -8792,6 +8837,13 @@
       "verdicts": [],
       "matches": [
         {
+          "key": "web_discovery:Mastercard:25307fa6060f6755317f",
+          "title": "Director, Technical Program Management",
+          "company": "Mastercard",
+          "url": "https://careers.mastercard.com/us/en/job/R-276338/Director-Technical-Program-Management",
+          "assessment_date_eligible": true
+        },
+        {
           "key": "workday:mastercard:/job/Pune-India/Director--Technical-Program-Management-_R-288288",
           "title": "Director, Technical Program Management\u2019",
           "company": "mastercard",
@@ -9778,11 +9830,19 @@
       "employer_urls": [],
       "first_alert_at": "2026-10-24T17:57:43+00:00",
       "last_alert_at": "2026-10-24T23:57:41+00:00",
-      "collection": "missing",
+      "collection": "possible_match",
       "assessment": "not_assessed",
       "verdicts": [],
-      "matches": [],
-      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+      "matches": [
+        {
+          "key": "web_discovery:Fiserv:a46bb47de6460e893b28",
+          "title": "Data and AI Portfolio, Director",
+          "company": "Fiserv",
+          "url": "https://jobs.hireheroesusa.org/jobs/632297342-data-and-ai-portfolio-director-at-fiserv",
+          "assessment_date_eligible": true
+        }
+      ],
+      "reason": "Title/company similarity is not proof of the same requisition."
     },
     {
       "linkedin_id": "4481976296",
@@ -11239,7 +11299,7 @@
       "first_alert_at": "2026-10-25T23:57:43+00:00",
       "last_alert_at": "2026-10-25T23:57:43+00:00",
       "collection": "possible_match",
-      "assessment": "assessed",
+      "assessment": "outside_date_scope",
       "verdicts": [
         "Middle"
       ],
@@ -11249,6 +11309,13 @@
           "title": "Principal Technical Program Manager",
           "company": "microsoft",
           "url": "https://apply.careers.microsoft.com/careers/job/1970393557026741",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "microsoft:microsoft:1970393557042157",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557042157",
           "assessment_date_eligible": true
         },
         {
@@ -11322,11 +11389,11 @@
           "assessment_date_eligible": false
         },
         {
-          "key": "microsoft:microsoft:1970393557042157",
+          "key": "web_discovery:Microsoft:2d8598b6827c15ce30e2",
           "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557042157",
-          "assessment_date_eligible": true
+          "company": "Microsoft",
+          "url": "https://jobs.hardwarefyi.com/jobs/microsoft-principal-technical-program-manager",
+          "assessment_date_eligible": false
         }
       ],
       "reason": "Title/company similarity is not proof of the same requisition."
@@ -11386,11 +11453,19 @@
       "employer_urls": [],
       "first_alert_at": "2026-10-25T13:57:41+00:00",
       "last_alert_at": "2026-10-25T23:54:43+00:00",
-      "collection": "missing",
+      "collection": "possible_match",
       "assessment": "not_assessed",
       "verdicts": [],
-      "matches": [],
-      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+      "matches": [
+        {
+          "key": "web_discovery:Sanofi:5d50ffcedfb931a7559a",
+          "title": "Head of AI Driven Digital Customer Engagement Management Platform",
+          "company": "Sanofi",
+          "url": "https://jobs.sanofi.com/en/job/morristown/head-of-ai-driven-digital-customer-engagement-management-platform/2649/44747756352",
+          "assessment_date_eligible": true
+        }
+      ],
+      "reason": "Title/company similarity is not proof of the same requisition."
     },
     {
       "linkedin_id": "4483328392",
