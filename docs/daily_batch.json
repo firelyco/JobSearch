@@ -7,15 +7,15 @@
   "collection_at": "2026-10-31T05:50:52.120367+00:00",
   "counts": {
     "found": 116,
-    "eligible": 44,
+    "eligible": 43,
     "completed": 31,
     "strong": 6,
     "middle": 15,
     "pass": 10,
-    "waiting": 5,
-    "processing": 0,
+    "waiting": 0,
+    "processing": 4,
     "blocked": 8,
-    "excluded": 72,
+    "excluded": 73,
     "unverified_links": 24
   },
   "members": [
@@ -598,7 +598,7 @@
       "source": "lever",
       "job_snapshot_hash": "8bb2a5fcd218e03c99443537659d8bd1d9f66d561a489409dc8de1da770100f7",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -817,9 +817,9 @@
       "url": "https://jobs.hireheroesusa.org/jobs/632297342-data-and-ai-portfolio-director-at-fiserv",
       "source": "web_discovery",
       "job_snapshot_hash": "91b87094cc678cdb799743e6d6f58dd552f5348f244d369d521496dd50e879bb",
-      "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -884,7 +884,7 @@
       "source": "web_discovery",
       "job_snapshot_hash": "72c7fd9c984afdcf5a3f9e58dcff193f700cca6fd90fccae7ada651f82f12be7",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -917,7 +917,7 @@
       "source": "web_discovery",
       "job_snapshot_hash": "eef8f43d273e130695b6be7a26036a2da389b22ea75a9f2ab15df9cd5845d69b",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -961,7 +961,7 @@
       "source": "web_discovery",
       "job_snapshot_hash": "18f9e120fcbcf35553035613e38182510a88ae466b693f4f0b11cdae0083d569",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -1735,21 +1735,21 @@
       "status": "partial"
     }
   ],
-  "checked_at": "2026-10-31T06:05:40.999611+00:00",
+  "checked_at": "2026-10-31T06:06:51.474532+00:00",
   "legacy_backlog": {
     "assessed": 446,
-    "pending": 5,
+    "pending": 0,
     "unresolved": 34,
-    "in_progress": 0,
-    "total": 485,
+    "in_progress": 4,
+    "total": 484,
     "strong": 57
   },
-  "batch_id": "c8b80cf1de50758b34a0242ed8b5217f13454c8708454f7ba794afabbe9e5882",
+  "batch_id": "4a3a61234dc44ba70fe1a56544d647687611a0e86870c021addd95e524a09b83",
   "status": "assessing",
   "input_blobs": {
     "jobs.json": "ece325e4137efb93f8fd1a3544723112f9000a10",
-    "fit_scores.json": "f0db39770f187ad547ba4117a9bb423a8c0627e2",
-    "fit_backfill.json": "b2b80ee8e34aa855c0c59704f8094e80e9757714",
+    "fit_scores.json": "fa5f0960d7b8886f51f81f91044ecc6eb4637af0",
+    "fit_backfill.json": "f87e7372ca0484e27c8c814b6a2b8eb52c958d71",
     "meta.json": "59e310f7a969fda7816e574bc4fd001df3814f54"
   }
 }
