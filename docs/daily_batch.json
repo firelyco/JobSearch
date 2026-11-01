@@ -4,7 +4,7 @@
   "start_hour_eastern": 1,
   "deadline_hour_eastern": 6,
   "collection_completed": true,
-  "collection_at": "2026-11-01T05:30:49.618931+00:00",
+  "collection_at": "2026-11-01T05:50:47.829569+00:00",
   "counts": {
     "found": 58,
     "eligible": 25,
@@ -379,7 +379,7 @@
       "job_snapshot_hash": "1d931c7e7c0cb6411725dd25e770d55420852715e2f4584de1e3756f463c22e2",
       "eligible": false,
       "status": "excluded",
-      "reason": "Outside agreed assessment criteria.",
+      "reason": "Frozen daily posting is no longer available; review required.",
       "verdict": null
     },
     {
@@ -467,7 +467,7 @@
       "job_snapshot_hash": "27dde822beeeda6c3d6aed4f3d421d8f1782defb48afae6847e3414fba024adb",
       "eligible": true,
       "status": "blocked",
-      "reason": "Paid retry budget exhausted; review required.",
+      "reason": "Frozen daily posting is no longer available; review required.",
       "verdict": null
     },
     {
@@ -702,12 +702,82 @@
     "4485660982",
     "4485675358"
   ],
-  "coverage_issues": 61,
+  "coverage_issues": 76,
   "incomplete_sources": [
     {
-      "source": "netflix",
-      "label": "program manager",
-      "status": "partial"
+      "source": "career_page",
+      "label": "career_page",
+      "status": "failed"
+    },
+    {
+      "source": "career_page",
+      "label": "career_page",
+      "status": "failed"
+    },
+    {
+      "source": "career_page",
+      "label": "career_page",
+      "status": "failed"
+    },
+    {
+      "source": "career_page",
+      "label": "career_page",
+      "status": "failed"
+    },
+    {
+      "source": "career_page",
+      "label": "career_page",
+      "status": "failed"
+    },
+    {
+      "source": "career_page",
+      "label": "career_page",
+      "status": "failed"
+    },
+    {
+      "source": "career_page",
+      "label": "career_page",
+      "status": "failed"
+    },
+    {
+      "source": "career_page",
+      "label": "career_page",
+      "status": "failed"
+    },
+    {
+      "source": "career_page",
+      "label": "career_page",
+      "status": "failed"
+    },
+    {
+      "source": "career_page",
+      "label": "career_page",
+      "status": "failed"
+    },
+    {
+      "source": "career_page",
+      "label": "career_page",
+      "status": "failed"
+    },
+    {
+      "source": "career_page",
+      "label": "career_page",
+      "status": "failed"
+    },
+    {
+      "source": "career_page",
+      "label": "career_page",
+      "status": "failed"
+    },
+    {
+      "source": "career_page",
+      "label": "career_page",
+      "status": "failed"
+    },
+    {
+      "source": "career_page",
+      "label": "career_page",
+      "status": "failed"
     },
     {
       "source": "career_page",
@@ -1008,9 +1078,14 @@
       "source": "ashby",
       "label": "{\"config\": \"whatnot\", \"source\": \"ashby\"}",
       "status": "failed"
+    },
+    {
+      "source": "lever",
+      "label": "{\"config\": \"jobgether\", \"source\": \"lever\"}",
+      "status": "failed"
     }
   ],
-  "checked_at": "2026-11-01T05:49:16.604434+00:00",
+  "checked_at": "2026-11-01T05:59:51.029741+00:00",
   "legacy_backlog": {
     "assessed": 462,
     "pending": 0,
@@ -1019,12 +1094,12 @@
     "total": 498,
     "strong": 58
   },
-  "batch_id": "dba1fce8b61f5fee3b47721c3f6cdb3ae831ffa194436a86b1d2c9daa921575d",
+  "batch_id": "a397a061abc149e69f4c2e4cf4e9b64e528c898f6d3aa5d2535a8b0d1bc1a540",
   "status": "blocked",
   "input_blobs": {
-    "jobs.json": "d03167b141f757848afb2dd23b65697863534f93",
+    "jobs.json": "f6a34040764ee3eb2721cac303701c65e08df0d9",
     "fit_scores.json": "ab194794f10c31ba9326f2bf09172dd8c1f99698",
     "fit_backfill.json": "35a3ea768da1c86b61c0efa0facefdcc351e5b34",
-    "meta.json": "052fa2603aa0313cca2724c870449e125f3c05a1"
+    "meta.json": "21e4b6e1ef698517e117b52b8383303ce97dc7b2"
   }
 }

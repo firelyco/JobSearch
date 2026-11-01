@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "checked_at": "2026-11-01T05:30:49.618931+00:00",
+  "checked_at": "2026-11-01T05:50:47.829569+00:00",
   "connection": {
     "source": "linkedin_email",
     "label": "LinkedIn job-alert emails",
@@ -15,14 +15,14 @@
     "unresolved_alert_messages": 8,
     "lookback_days": 14,
     "mode": "incremental",
-    "search_since": "2026-10-31T05:00:51.322063+00:00",
+    "search_since": "2026-10-31T05:30:49.618931+00:00",
     "last_success_at": null
   },
   "last_success_at": null,
   "scope": "One-time 14-day catch-up, then new unprocessed LinkedIn emails during the daily job search. Collected references are retained; this does not verify all LinkedIn or in-app listings.",
   "counts": {
-    "missing": 456,
-    "possible_match": 168
+    "missing": 455,
+    "possible_match": 169
   },
   "rows": [
     {
@@ -1531,9 +1531,16 @@
       "first_alert_at": "2026-10-28T12:43:47+00:00",
       "last_alert_at": "2026-10-28T12:43:47+00:00",
       "collection": "possible_match",
-      "assessment": "not_assessed",
+      "assessment": "outside_date_scope",
       "verdicts": [],
       "matches": [
+        {
+          "key": "web_discovery:Gartner Careers:3a6d82435c3a45df67a7",
+          "title": "Director - IT Strategy Consulting - AI",
+          "company": "Gartner Careers",
+          "url": "https://jobs.gartner.com/jobs/job/113000-director-it-strategy-consulting-ai",
+          "assessment_date_eligible": false
+        },
         {
           "key": "workday:gartner:/job/Chicago-IL/Director---IT-Strategy-Consulting---AI_113000",
           "title": "Director - IT Strategy Consulting - AI",
@@ -2418,11 +2425,19 @@
       "employer_urls": [],
       "first_alert_at": "2026-10-26T23:54:41+00:00",
       "last_alert_at": "2026-10-26T23:54:41+00:00",
-      "collection": "missing",
-      "assessment": "not_assessed",
+      "collection": "possible_match",
+      "assessment": "outside_date_scope",
       "verdicts": [],
-      "matches": [],
-      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+      "matches": [
+        {
+          "key": "web_discovery:Intuit:b6ff91f39a436333f653",
+          "title": "Principal, Strategy & Business Operations",
+          "company": "Intuit",
+          "url": "https://jobs.intuit.com/job/mountain-view/principal-strategy-and-business-operations/27595/99544281152",
+          "assessment_date_eligible": false
+        }
+      ],
+      "reason": "Title/company similarity is not proof of the same requisition."
     },
     {
       "linkedin_id": "4458547687",
@@ -3361,11 +3376,19 @@
       "employer_urls": [],
       "first_alert_at": "2026-10-26T01:57:42+00:00",
       "last_alert_at": "2026-10-26T01:57:42+00:00",
-      "collection": "missing",
-      "assessment": "not_assessed",
+      "collection": "possible_match",
+      "assessment": "outside_date_scope",
       "verdicts": [],
-      "matches": [],
-      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+      "matches": [
+        {
+          "key": "web_discovery:Intuit:84a7aedce8c6abd4281d",
+          "title": "Principal, Business Operations & Planning - Services",
+          "company": "Intuit",
+          "url": "https://jobs.intuit.com/job/mountain-view/principal-business-operations-and-planning-services/27595/100493798432",
+          "assessment_date_eligible": false
+        }
+      ],
+      "reason": "Title/company similarity is not proof of the same requisition."
     },
     {
       "linkedin_id": "4466756536",
@@ -4882,11 +4905,19 @@
       "employer_urls": [],
       "first_alert_at": "2026-10-28T01:57:43+00:00",
       "last_alert_at": "2026-10-28T01:57:43+00:00",
-      "collection": "missing",
+      "collection": "possible_match",
       "assessment": "not_assessed",
       "verdicts": [],
-      "matches": [],
-      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+      "matches": [
+        {
+          "key": "web_discovery:ServiceNow:138a58d3a5dddcc82be4",
+          "title": "Program Director",
+          "company": "ServiceNow",
+          "url": "https://careers.servicenow.com/jobs/744000153608459/program-director",
+          "assessment_date_eligible": true
+        }
+      ],
+      "reason": "Title/company similarity is not proof of the same requisition."
     },
     {
       "linkedin_id": "4474594109",
@@ -5504,11 +5535,21 @@
       "employer_urls": [],
       "first_alert_at": "2026-10-27T19:57:42+00:00",
       "last_alert_at": "2026-10-27T21:57:41+00:00",
-      "collection": "missing",
-      "assessment": "not_assessed",
-      "verdicts": [],
-      "matches": [],
-      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+      "collection": "possible_match",
+      "assessment": "assessed",
+      "verdicts": [
+        "Strong"
+      ],
+      "matches": [
+        {
+          "key": "web_discovery:IDC:fbb96179adb181e5c2f7",
+          "title": "Senior Manager, AI Program Management",
+          "company": "IDC",
+          "url": "https://jobs.hireheroesusa.org/jobs/618236365-senior-manager-ai-program-management-at-idc",
+          "assessment_date_eligible": true
+        }
+      ],
+      "reason": "Title/company similarity is not proof of the same requisition."
     },
     {
       "linkedin_id": "4476100397",
@@ -5549,21 +5590,11 @@
       "employer_urls": [],
       "first_alert_at": "2026-10-29T17:57:41+00:00",
       "last_alert_at": "2026-10-29T17:57:41+00:00",
-      "collection": "possible_match",
-      "assessment": "assessed",
-      "verdicts": [
-        "Pass"
-      ],
-      "matches": [
-        {
-          "key": "web_discovery:Intuit:b6e7644c67f21d2defa0",
-          "title": "Principal, Partner Commercial Strategy & Scaled Growth (ISV)",
-          "company": "Intuit",
-          "url": "https://jobs.intuit.com/job/atlanta/principal-partner-commercial-strategy-and-scaled-growth-isv/27595/100995746736",
-          "assessment_date_eligible": true
-        }
-      ],
-      "reason": "Title/company similarity is not proof of the same requisition."
+      "collection": "missing",
+      "assessment": "not_assessed",
+      "verdicts": [],
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
     },
     {
       "linkedin_id": "4476363615",
@@ -5681,10 +5712,8 @@
       "first_alert_at": "2026-10-15T21:57:43+00:00",
       "last_alert_at": "2026-10-16T03:57:41+00:00",
       "collection": "possible_match",
-      "assessment": "assessed",
-      "verdicts": [
-        "Middle"
-      ],
+      "assessment": "reassessment_pending",
+      "verdicts": [],
       "matches": [
         {
           "key": "workday:entegris:/job/Chaska-MN/Senior-Director--Enterprise-Portfolio-Manamagement_REQ-14680",
@@ -9864,8 +9893,10 @@
       "first_alert_at": "2026-10-23T23:54:42+00:00",
       "last_alert_at": "2026-10-24T05:57:43+00:00",
       "collection": "possible_match",
-      "assessment": "not_assessed",
-      "verdicts": [],
+      "assessment": "assessed",
+      "verdicts": [
+        "Pass"
+      ],
       "matches": [
         {
           "key": "workday:comcast:/job/PA---Philadelphia-1701-John-F-Kennedy-Blvd/Sr-Director--Program-Management---Accelerated-Development_R446717",
@@ -11565,11 +11596,19 @@
       "employer_urls": [],
       "first_alert_at": "2026-10-24T19:57:42+00:00",
       "last_alert_at": "2026-10-24T19:57:42+00:00",
-      "collection": "missing",
+      "collection": "possible_match",
       "assessment": "not_assessed",
       "verdicts": [],
-      "matches": [],
-      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+      "matches": [
+        {
+          "key": "web_discovery:Intuit:8b4bec0bdcba7bf8d021",
+          "title": "Principal, Strategy & Business Operations - Mid-Market",
+          "company": "Intuit",
+          "url": "https://jobs.intuit.com/job/mountain-view/principal-strategy-and-business-operations-mid-market/27595/102309320336",
+          "assessment_date_eligible": true
+        }
+      ],
+      "reason": "Title/company similarity is not proof of the same requisition."
     },
     {
       "linkedin_id": "4483122408",
@@ -12406,19 +12445,11 @@
       "employer_urls": [],
       "first_alert_at": "2026-10-28T23:54:41+00:00",
       "last_alert_at": "2026-10-28T23:57:41+00:00",
-      "collection": "possible_match",
-      "assessment": "reassessment_pending",
+      "collection": "missing",
+      "assessment": "not_assessed",
       "verdicts": [],
-      "matches": [
-        {
-          "key": "web_discovery:Dell Technologies:cc67aeebe08e390847ea",
-          "title": "Senior Director, Transformation and Planning",
-          "company": "Dell Technologies",
-          "url": "https://jobs.managementconsulted.com/jobs/768267338-senior-director-transformation-and-planning",
-          "assessment_date_eligible": true
-        }
-      ],
-      "reason": "Title/company similarity is not proof of the same requisition."
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
     },
     {
       "linkedin_id": "4483886342",
@@ -12559,28 +12590,11 @@
       "employer_urls": [],
       "first_alert_at": "2026-10-29T03:57:46+00:00",
       "last_alert_at": "2026-10-29T03:57:46+00:00",
-      "collection": "possible_match",
-      "assessment": "assessed",
-      "verdicts": [
-        "Middle"
-      ],
-      "matches": [
-        {
-          "key": "web_discovery:University of Pennsylvania:2ea15950a6a81e99c18f",
-          "title": "IT Technical Director, AI Initiatives",
-          "company": "University of Pennsylvania",
-          "url": "https://careers.insidehighered.com/job/3567532/it-technical-director-ai-initiatives?TrackID=11",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "web_discovery:University of Pennsylvania:b80379ff2c52a52b2794",
-          "title": "IT Technical Director, AI Initiatives",
-          "company": "University of Pennsylvania",
-          "url": "https://jobs.chronicle.com/job/38057963/it-technical-director-ai-initiatives?TrackID=10",
-          "assessment_date_eligible": true
-        }
-      ],
-      "reason": "Title/company similarity is not proof of the same requisition."
+      "collection": "missing",
+      "assessment": "not_assessed",
+      "verdicts": [],
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
     },
     {
       "linkedin_id": "4484285564",
@@ -12651,19 +12665,11 @@
       "employer_urls": [],
       "first_alert_at": "2026-10-28T23:54:41+00:00",
       "last_alert_at": "2026-10-28T23:54:41+00:00",
-      "collection": "possible_match",
-      "assessment": "reassessment_pending",
+      "collection": "missing",
+      "assessment": "not_assessed",
       "verdicts": [],
-      "matches": [
-        {
-          "key": "web_discovery:Merck:83374221287949bf0379",
-          "title": "Executive Director, Digital Transformation & Delivery Excellence",
-          "company": "Merck",
-          "url": "https://jobs.merck.com/us/en/job/R423103/Executive-Director-Digital-Transformation-Delivery-Excellence",
-          "assessment_date_eligible": true
-        }
-      ],
-      "reason": "Title/company similarity is not proof of the same requisition."
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
     },
     {
       "linkedin_id": "4484411750",
