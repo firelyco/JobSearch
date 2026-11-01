@@ -7,15 +7,15 @@
   "collection_at": "2026-11-01T05:00:51.322063+00:00",
   "counts": {
     "found": 55,
-    "eligible": 25,
-    "completed": 5,
-    "strong": 1,
-    "middle": 0,
-    "pass": 4,
-    "waiting": 15,
-    "processing": 5,
+    "eligible": 24,
+    "completed": 12,
+    "strong": 2,
+    "middle": 3,
+    "pass": 7,
+    "waiting": 3,
+    "processing": 9,
     "blocked": 0,
-    "excluded": 30,
+    "excluded": 31,
     "unverified_links": 42
   },
   "members": [
@@ -224,9 +224,9 @@
       "source": "arbeitnow",
       "job_snapshot_hash": "b3e1e9be3785e5a2de45e6013db0c24749385eb32b277c963cd109519d9b263e",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "pass"
     },
     {
       "key": "arbeitnow:Uforce:remote-lead-engineer-air-343548",
@@ -411,7 +411,7 @@
       "source": "web_discovery",
       "job_snapshot_hash": "f2948a19fcb23f9b667dac0365e1b5245d5a6806380fab55680b2d72351f598f",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -422,7 +422,7 @@
       "source": "web_discovery",
       "job_snapshot_hash": "3668fe26f2bf0515fa8c18393c854a3c06fe5ea3df9bf34b43ade40ee18889a8",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -433,7 +433,7 @@
       "source": "web_discovery",
       "job_snapshot_hash": "0a9e1044f395257666f42ca7957e15a5f1adb0713258a59827320338d9ea2037",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -454,9 +454,9 @@
       "url": "https://careers.snowflake.com/us/en/job/SNCOUS721D7D61D4CA4AABB0DAB43A66377C91EXTERNALENUS45FD2192852D4CF4BFFEB0FCC46B7426/Senior-Technical-Program-Manager",
       "source": "web_discovery",
       "job_snapshot_hash": "34a0175a5cda1f72e519cef0c97cd237bfaf4641b280eefe027d18e0abfe0360",
-      "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -466,9 +466,9 @@
       "source": "workday",
       "job_snapshot_hash": "5462fe5b7167a25a6092d1a6e0c9555935e5558c4eae64934c1f9d8a4f579438",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "workday:boeing:/job/USA---Mesa-AZ/Quality-Engineering-and-Program-Manager_JR2026523800-1",
@@ -488,9 +488,9 @@
       "source": "workday",
       "job_snapshot_hash": "6a28803824d8c680a86ac9691bfe44f92ff8b411e3a4752f0473cc2d2591e746",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "pass"
     },
     {
       "key": "workday:cw:/job/Client-Site---USA---CA---Santa-Clara---2250-Lawson-Ln/Director--Program-Management_R334460",
@@ -499,9 +499,9 @@
       "source": "workday",
       "job_snapshot_hash": "032f2ed14b6f736a1c727af8a0ecd25ae54643fe4b814228d2e2c6a2d1c9fc57",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "pass"
     },
     {
       "key": "workday:cw:/job/Costa-Mesa-California-USA/Sr-Assistant-Project-Manager---PMO_R339954",
@@ -510,7 +510,7 @@
       "source": "workday",
       "job_snapshot_hash": "5968563fe2d485f445f06398d270d8d8090d654ddaf706697b63475960ac9ab6",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -521,7 +521,7 @@
       "source": "workday",
       "job_snapshot_hash": "26ce5e48d191f962db7acdfedcca57179a7e6018d2e18d7f258f30fba1f62904",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -532,7 +532,7 @@
       "source": "workday",
       "job_snapshot_hash": "00504d291361355cb9313947d8bbb9dccf4bdbebdb0919d02cd6078cbd14c9da",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -565,7 +565,7 @@
       "source": "workday",
       "job_snapshot_hash": "e89b46f3408a281408b76f7a202801a8898f9fb626af42e13939055d2dc5e0bb",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -576,9 +576,9 @@
       "source": "workday",
       "job_snapshot_hash": "55c2715c305d92f818779dc5d2b60293ad9a3fd212e3a2da698d705abb6e71ae",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "strong"
     },
     {
       "key": "workday:paypal:/job/San-Jose-California-United-States-of-America/Sr-Lead-Product-Manager--Enterprise-AI-Accelerations_R0137371-1",
@@ -587,9 +587,9 @@
       "source": "workday",
       "job_snapshot_hash": "d419b1a92e7dae150e1a4b8f4a79c28e04dd23e97b6e7be5bffd601536c4682c",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "workday:paypal:/job/San-Jose-California-United-States-of-America/Sr-Manager--Technical-Programs_R0138300-1",
@@ -598,7 +598,7 @@
       "source": "workday",
       "job_snapshot_hash": "74512bdf60b712e2145f1cdc384b2a0d011c1020c2c85fe3ca3a262a950d6da4",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -609,9 +609,9 @@
       "source": "workday",
       "job_snapshot_hash": "c67b316d561df4227060af1e3e12d88b51278a35d6650fcf7100201ea83676c2",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "workday:paypal:/job/Scottsdale-Arizona-United-States-of-America/Director--Head-of-Technology-Infrastructure---Operations_R0138188",
@@ -620,7 +620,7 @@
       "source": "workday",
       "job_snapshot_hash": "e467a0a3978798da34990e1493b16d06cab2af670ce65794d4581277895988c6",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     }
@@ -1082,21 +1082,21 @@
       "status": "partial"
     }
   ],
-  "checked_at": "2026-11-01T05:20:50.572835+00:00",
+  "checked_at": "2026-11-01T05:21:51.779281+00:00",
   "legacy_backlog": {
-    "assessed": 456,
-    "pending": 21,
+    "assessed": 463,
+    "pending": 9,
     "unresolved": 31,
-    "in_progress": 5,
-    "total": 513,
-    "strong": 60
+    "in_progress": 9,
+    "total": 512,
+    "strong": 61
   },
-  "batch_id": "c8233d6fdddae432b9447bd803b2a3ccb985c692a44169c5cbadee7dc4a22d6e",
+  "batch_id": "6a3698e8c5a553051e1edced2f4cae560a230133ed40b3ce07f4179f6c71861d",
   "status": "assessing",
   "input_blobs": {
     "jobs.json": "4cdb7cce560130160bf773bada593070458bbaec",
-    "fit_scores.json": "839f5ea2b2146c6f3f89cf30b4469152fb23cdf8",
-    "fit_backfill.json": "9d0c64f94f6d1b50b8de75a24c5c36d95d7be74c",
+    "fit_scores.json": "83adadb5c12b1292684faa8ba31a541a7e373b9e",
+    "fit_backfill.json": "1e632c098953cdb074a382f1ba3dd643b7623dd1",
     "meta.json": "e852a4d5332531d801ad609f528a53169315cdf6"
   }
 }
