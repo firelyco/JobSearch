@@ -8,12 +8,12 @@
   "counts": {
     "found": 58,
     "eligible": 25,
-    "completed": 21,
+    "completed": 23,
     "strong": 3,
     "middle": 7,
-    "pass": 11,
-    "waiting": 3,
-    "processing": 0,
+    "pass": 13,
+    "waiting": 0,
+    "processing": 1,
     "blocked": 1,
     "excluded": 33,
     "unverified_links": 42
@@ -466,7 +466,7 @@
       "source": "web_discovery",
       "job_snapshot_hash": "27dde822beeeda6c3d6aed4f3d421d8f1782defb48afae6847e3414fba024adb",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -499,9 +499,9 @@
       "source": "workday",
       "job_snapshot_hash": "3e10a3d502395ac67b6a1670181233d6549dfdacdbd2ee33421417fcd88f5ac1",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "pass"
     },
     {
       "key": "workday:comcast:/job/PA---Philadelphia-1701-John-F-Kennedy-Blvd/Sr-Manager--Program-Management---Talent-Experience_R446773",
@@ -510,9 +510,9 @@
       "source": "workday",
       "job_snapshot_hash": "e65599728782e9858f5193e78fd72bb3cd51f91fd9ac4c8eee8242b027d0fead",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "pass"
     },
     {
       "key": "workday:cw:/job/Chicago-Illinois-USA/Director--Portfolio-Performance---PMO_R338784",
@@ -1010,21 +1010,21 @@
       "status": "failed"
     }
   ],
-  "checked_at": "2026-11-01T05:47:00.660840+00:00",
+  "checked_at": "2026-11-01T05:48:00.648984+00:00",
   "legacy_backlog": {
-    "assessed": 460,
-    "pending": 5,
+    "assessed": 462,
+    "pending": 0,
     "unresolved": 34,
-    "in_progress": 0,
-    "total": 499,
+    "in_progress": 2,
+    "total": 498,
     "strong": 58
   },
-  "batch_id": "77c6f2de0fc879745cbfca3628170d12ab4fd1b8d262db85197574f4e2fde542",
+  "batch_id": "df821f7bacbc578ec34a1dbb76645ad4dbffda980c995622b111b57b95fc53d0",
   "status": "assessing",
   "input_blobs": {
     "jobs.json": "d03167b141f757848afb2dd23b65697863534f93",
-    "fit_scores.json": "ba866f5d48553f93f0d69ccc4765f497c6d6596b",
-    "fit_backfill.json": "7041efff55481865ef0166b40aa4099e49767ffc",
+    "fit_scores.json": "ee43a0256165422ba285154cf4a296ec8d5be01d",
+    "fit_backfill.json": "b06aafc8e547307224b82f7d184112ea34f173ef",
     "meta.json": "052fa2603aa0313cca2724c870449e125f3c05a1"
   }
 }
