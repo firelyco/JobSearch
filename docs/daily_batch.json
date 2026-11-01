@@ -7,15 +7,15 @@
   "collection_at": "2026-11-01T05:00:51.322063+00:00",
   "counts": {
     "found": 55,
-    "eligible": 27,
-    "completed": 0,
-    "strong": 0,
+    "eligible": 25,
+    "completed": 5,
+    "strong": 1,
     "middle": 0,
-    "pass": 0,
-    "waiting": 27,
-    "processing": 0,
+    "pass": 4,
+    "waiting": 15,
+    "processing": 5,
     "blocked": 0,
-    "excluded": 28,
+    "excluded": 30,
     "unverified_links": 42
   },
   "members": [
@@ -48,9 +48,9 @@
       "source": "arbeitnow",
       "job_snapshot_hash": "9c4d8b10df1d848073af0790339def2970fceb25fcdf575f74ed4a50b0b98fd0",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "pass"
     },
     {
       "key": "arbeitnow:Cara Care:remote-senior-react-native-engineer-based-in-germany-berlin-388773",
@@ -59,9 +59,9 @@
       "source": "arbeitnow",
       "job_snapshot_hash": "9f0bd8835aef00fea206b80f8c82cec3b2e6cb6be28c944a88bf371f64c97ef2",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "pass"
     },
     {
       "key": "arbeitnow:Deliveroo:senior-software-engineer-fullstack-merchant-emea-london-1521",
@@ -202,9 +202,9 @@
       "source": "arbeitnow",
       "job_snapshot_hash": "425e8fa78da31dde2080a34c49a2302d8b9da0acba8d377f7998bc69eede2ab5",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "pass"
     },
     {
       "key": "arbeitnow:Skdse:program-director-hardware-systems-all-genders-ohrdruf-thuringia-380299",
@@ -224,7 +224,7 @@
       "source": "arbeitnow",
       "job_snapshot_hash": "b3e1e9be3785e5a2de45e6013db0c24749385eb32b277c963cd109519d9b263e",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -290,9 +290,9 @@
       "source": "arbeitnow",
       "job_snapshot_hash": "443229cd219c20b07dc5d8f61459a6ad14e282828ff15f8d2b3b0b4586952627",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "pass"
     },
     {
       "key": "arbeitnow:roboyo:senior-automation-engineer-151543",
@@ -388,9 +388,9 @@
       "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/349321",
       "source": "oracle_cloud",
       "job_snapshot_hash": "d11e6922db6590529a7a96ed748284b365202d09067832bd2d01fc0105c9a486",
-      "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -444,9 +444,9 @@
       "source": "web_discovery",
       "job_snapshot_hash": "19c9a071656af17ef4f316f8756be4815b0f7f6debdab94b19be2cbcf1a791eb",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "strong"
     },
     {
       "key": "web_discovery:Snowflake:d7576b7897ead071ca19",
@@ -455,7 +455,7 @@
       "source": "web_discovery",
       "job_snapshot_hash": "34a0175a5cda1f72e519cef0c97cd237bfaf4641b280eefe027d18e0abfe0360",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -466,7 +466,7 @@
       "source": "workday",
       "job_snapshot_hash": "5462fe5b7167a25a6092d1a6e0c9555935e5558c4eae64934c1f9d8a4f579438",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -476,9 +476,9 @@
       "url": "https://boeing.wd1.myworkdayjobs.com/en-US/EXTERNAL_CAREERS/job/USA---Mesa-AZ/Quality-Engineering-and-Program-Manager_JR2026523800-1",
       "source": "workday",
       "job_snapshot_hash": "bdd0a88580bcf9788368a3cc9f2e2201ca90b5f5a5ac428bed1bba960193aef0",
-      "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -576,7 +576,7 @@
       "source": "workday",
       "job_snapshot_hash": "55c2715c305d92f818779dc5d2b60293ad9a3fd212e3a2da698d705abb6e71ae",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -587,7 +587,7 @@
       "source": "workday",
       "job_snapshot_hash": "d419b1a92e7dae150e1a4b8f4a79c28e04dd23e97b6e7be5bffd601536c4682c",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -1082,21 +1082,21 @@
       "status": "partial"
     }
   ],
-  "checked_at": "2026-11-01T05:19:48.654953+00:00",
+  "checked_at": "2026-11-01T05:20:50.572835+00:00",
   "legacy_backlog": {
-    "assessed": 451,
-    "pending": 37,
+    "assessed": 456,
+    "pending": 21,
     "unresolved": 31,
-    "in_progress": 0,
-    "total": 519,
-    "strong": 59
+    "in_progress": 5,
+    "total": 513,
+    "strong": 60
   },
-  "batch_id": "33923f59e7981abca016f3fc9bc7af1e60eb71024eb7fd3724c9251b321587c8",
+  "batch_id": "c8233d6fdddae432b9447bd803b2a3ccb985c692a44169c5cbadee7dc4a22d6e",
   "status": "assessing",
   "input_blobs": {
     "jobs.json": "4cdb7cce560130160bf773bada593070458bbaec",
-    "fit_scores.json": "920ad0e31fe9c1986361191355324a5e85e31fe2",
-    "fit_backfill.json": "d48fefc54a6bdf3cbc78be172857661349eedeb0",
+    "fit_scores.json": "839f5ea2b2146c6f3f89cf30b4469152fb23cdf8",
+    "fit_backfill.json": "9d0c64f94f6d1b50b8de75a24c5c36d95d7be74c",
     "meta.json": "e852a4d5332531d801ad609f528a53169315cdf6"
   }
 }
