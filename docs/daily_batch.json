@@ -4,15 +4,15 @@
   "start_hour_eastern": 1,
   "deadline_hour_eastern": 6,
   "collection_completed": true,
-  "collection_at": "2026-11-01T05:00:51.322063+00:00",
+  "collection_at": "2026-11-01T05:30:49.618931+00:00",
   "counts": {
-    "found": 55,
-    "eligible": 22,
+    "found": 58,
+    "eligible": 25,
     "completed": 21,
     "strong": 3,
     "middle": 7,
     "pass": 11,
-    "waiting": 0,
+    "waiting": 3,
     "processing": 0,
     "blocked": 1,
     "excluded": 33,
@@ -401,7 +401,7 @@
       "job_snapshot_hash": "afb05674de75507f9322a404bf0ef32fc77fc25cd99f00f85928604cb5ba9846",
       "eligible": true,
       "status": "completed",
-      "reason": "Existing validated result reused.",
+      "reason": "Saved result retained.",
       "verdict": "strong"
     },
     {
@@ -412,7 +412,7 @@
       "job_snapshot_hash": "f2948a19fcb23f9b667dac0365e1b5245d5a6806380fab55680b2d72351f598f",
       "eligible": true,
       "status": "completed",
-      "reason": "Existing validated result reused.",
+      "reason": "Saved result retained.",
       "verdict": "pass"
     },
     {
@@ -423,7 +423,7 @@
       "job_snapshot_hash": "3668fe26f2bf0515fa8c18393c854a3c06fe5ea3df9bf34b43ade40ee18889a8",
       "eligible": true,
       "status": "completed",
-      "reason": "Existing validated result reused.",
+      "reason": "Saved result retained.",
       "verdict": "pass"
     },
     {
@@ -434,7 +434,7 @@
       "job_snapshot_hash": "0a9e1044f395257666f42ca7957e15a5f1adb0713258a59827320338d9ea2037",
       "eligible": true,
       "status": "completed",
-      "reason": "Existing validated result reused.",
+      "reason": "Saved result retained.",
       "verdict": "middle"
     },
     {
@@ -445,7 +445,7 @@
       "job_snapshot_hash": "19c9a071656af17ef4f316f8756be4815b0f7f6debdab94b19be2cbcf1a791eb",
       "eligible": true,
       "status": "completed",
-      "reason": "Existing validated result reused.",
+      "reason": "Saved result retained.",
       "verdict": "strong"
     },
     {
@@ -456,7 +456,18 @@
       "job_snapshot_hash": "34a0175a5cda1f72e519cef0c97cd237bfaf4641b280eefe027d18e0abfe0360",
       "eligible": false,
       "status": "excluded",
-      "reason": "Outside agreed assessment criteria.",
+      "reason": "Saved result retained.",
+      "verdict": null
+    },
+    {
+      "key": "web_discovery:UnitedHealth Group:f4e876cd3ad8777d5f3b",
+      "title": "Director of AI Transformation and Business Modernization - Remote",
+      "url": "https://careers.mntech.org/jobs/631566815-director-of-ai-transformation-and-business-modernization-remote-at-unitedhealth-group",
+      "source": "web_discovery",
+      "job_snapshot_hash": "27dde822beeeda6c3d6aed4f3d421d8f1782defb48afae6847e3414fba024adb",
+      "eligible": true,
+      "status": "waiting",
+      "reason": "Unfinished assessment.",
       "verdict": null
     },
     {
@@ -467,7 +478,7 @@
       "job_snapshot_hash": "5462fe5b7167a25a6092d1a6e0c9555935e5558c4eae64934c1f9d8a4f579438",
       "eligible": true,
       "status": "completed",
-      "reason": "Existing validated result reused.",
+      "reason": "Saved result retained.",
       "verdict": "middle"
     },
     {
@@ -478,7 +489,29 @@
       "job_snapshot_hash": "bdd0a88580bcf9788368a3cc9f2e2201ca90b5f5a5ac428bed1bba960193aef0",
       "eligible": false,
       "status": "excluded",
-      "reason": "Outside agreed assessment criteria.",
+      "reason": "Saved result retained.",
+      "verdict": null
+    },
+    {
+      "key": "workday:comcast:/job/PA---Philadelphia-1701-John-F-Kennedy-Blvd/Sr-Director--Program-Management---Accelerated-Development_R446717",
+      "title": "Sr Director, Program Management - Accelerated Development",
+      "url": "https://comcast.wd115.myworkdayjobs.com/en-US/Comcast_Careers/job/PA---Philadelphia-1701-John-F-Kennedy-Blvd/Sr-Director--Program-Management---Accelerated-Development_R446717",
+      "source": "workday",
+      "job_snapshot_hash": "3e10a3d502395ac67b6a1670181233d6549dfdacdbd2ee33421417fcd88f5ac1",
+      "eligible": true,
+      "status": "waiting",
+      "reason": "Unfinished assessment.",
+      "verdict": null
+    },
+    {
+      "key": "workday:comcast:/job/PA---Philadelphia-1701-John-F-Kennedy-Blvd/Sr-Manager--Program-Management---Talent-Experience_R446773",
+      "title": "Sr. Manager, Program Management - Talent Experience",
+      "url": "https://comcast.wd115.myworkdayjobs.com/en-US/Comcast_Careers/job/PA---Philadelphia-1701-John-F-Kennedy-Blvd/Sr-Manager--Program-Management---Talent-Experience_R446773",
+      "source": "workday",
+      "job_snapshot_hash": "e65599728782e9858f5193e78fd72bb3cd51f91fd9ac4c8eee8242b027d0fead",
+      "eligible": true,
+      "status": "waiting",
+      "reason": "Unfinished assessment.",
       "verdict": null
     },
     {
@@ -669,102 +702,12 @@
     "4485660982",
     "4485675358"
   ],
-  "coverage_issues": 82,
+  "coverage_issues": 61,
   "incomplete_sources": [
     {
       "source": "netflix",
       "label": "program manager",
       "status": "partial"
-    },
-    {
-      "source": "career_page",
-      "label": "career_page",
-      "status": "failed"
-    },
-    {
-      "source": "career_page",
-      "label": "career_page",
-      "status": "failed"
-    },
-    {
-      "source": "career_page",
-      "label": "career_page",
-      "status": "failed"
-    },
-    {
-      "source": "career_page",
-      "label": "career_page",
-      "status": "failed"
-    },
-    {
-      "source": "career_page",
-      "label": "career_page",
-      "status": "failed"
-    },
-    {
-      "source": "career_page",
-      "label": "career_page",
-      "status": "failed"
-    },
-    {
-      "source": "career_page",
-      "label": "career_page",
-      "status": "failed"
-    },
-    {
-      "source": "career_page",
-      "label": "career_page",
-      "status": "failed"
-    },
-    {
-      "source": "career_page",
-      "label": "career_page",
-      "status": "failed"
-    },
-    {
-      "source": "career_page",
-      "label": "career_page",
-      "status": "failed"
-    },
-    {
-      "source": "career_page",
-      "label": "career_page",
-      "status": "failed"
-    },
-    {
-      "source": "career_page",
-      "label": "career_page",
-      "status": "failed"
-    },
-    {
-      "source": "career_page",
-      "label": "career_page",
-      "status": "failed"
-    },
-    {
-      "source": "career_page",
-      "label": "career_page",
-      "status": "failed"
-    },
-    {
-      "source": "career_page",
-      "label": "career_page",
-      "status": "failed"
-    },
-    {
-      "source": "career_page",
-      "label": "career_page",
-      "status": "failed"
-    },
-    {
-      "source": "career_page",
-      "label": "career_page",
-      "status": "failed"
-    },
-    {
-      "source": "career_page",
-      "label": "career_page",
-      "status": "failed"
     },
     {
       "source": "career_page",
@@ -1037,6 +980,11 @@
       "status": "partial"
     },
     {
+      "source": "greenhouse",
+      "label": "{\"config\": \"verkada2\", \"source\": \"greenhouse\"}",
+      "status": "failed"
+    },
+    {
       "source": "ashby",
       "label": "{\"config\": \"lime\", \"source\": \"ashby\"}",
       "status": "failed"
@@ -1060,29 +1008,9 @@
       "source": "ashby",
       "label": "{\"config\": \"whatnot\", \"source\": \"ashby\"}",
       "status": "failed"
-    },
-    {
-      "source": "greenhouse",
-      "label": "{\"config\": \"verkada2\", \"source\": \"greenhouse\"}",
-      "status": "failed"
-    },
-    {
-      "source": "lever",
-      "label": "{\"config\": \"lyrahealth\", \"source\": \"lever\"}",
-      "status": "failed"
-    },
-    {
-      "source": "workday",
-      "label": "{\"config\": {\"search\": \"program\", \"site\": \"ExternalCareerSite\", \"tenant\": \"hp\", \"wd_server\": \"wd5\"}, \"source\": \"workday\"}",
-      "status": "partial"
-    },
-    {
-      "source": "workday",
-      "label": "{\"config\": {\"search\": \"program\", \"site\": \"BlueOrigin\", \"tenant\": \"blueorigin\", \"wd_server\": \"wd5\"}, \"source\": \"workday\"}",
-      "status": "partial"
     }
   ],
-  "checked_at": "2026-11-01T05:27:38.711523+00:00",
+  "checked_at": "2026-11-01T05:45:56.592162+00:00",
   "legacy_backlog": {
     "assessed": 475,
     "pending": 0,
@@ -1091,12 +1019,12 @@
     "total": 508,
     "strong": 62
   },
-  "batch_id": "cc7a09dd85907d0317fa858acbe637503f65df910d7ecd8016db3a14d2660865",
-  "status": "blocked",
+  "batch_id": "00c67be8d7372b86177a5d6c68342085230f69f48d77fb80b1b336571740d456",
+  "status": "assessing",
   "input_blobs": {
-    "jobs.json": "4cdb7cce560130160bf773bada593070458bbaec",
+    "jobs.json": "d03167b141f757848afb2dd23b65697863534f93",
     "fit_scores.json": "0f072e7c47df0eaa4537a717d92e3bd4449a969c",
     "fit_backfill.json": "766b30a2509c161f2fcf583608824164f92719dd",
-    "meta.json": "e852a4d5332531d801ad609f528a53169315cdf6"
+    "meta.json": "052fa2603aa0313cca2724c870449e125f3c05a1"
   }
 }
