@@ -7,15 +7,15 @@
   "collection_at": "2026-11-01T05:00:51.322063+00:00",
   "counts": {
     "found": 55,
-    "eligible": 23,
-    "completed": 20,
-    "strong": 2,
+    "eligible": 22,
+    "completed": 21,
+    "strong": 3,
     "middle": 7,
     "pass": 11,
     "waiting": 0,
-    "processing": 3,
-    "blocked": 0,
-    "excluded": 32,
+    "processing": 0,
+    "blocked": 1,
+    "excluded": 33,
     "unverified_links": 42
   },
   "members": [
@@ -400,9 +400,9 @@
       "source": "web_discovery",
       "job_snapshot_hash": "afb05674de75507f9322a404bf0ef32fc77fc25cd99f00f85928604cb5ba9846",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "strong"
     },
     {
       "key": "web_discovery:Intuit:4b6f5053080fc3a685df",
@@ -543,8 +543,8 @@
       "source": "workday",
       "job_snapshot_hash": "542cfd3881f381790df444c795254564c474d9fb9b030b7f86983f2656515975",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "status": "blocked",
+      "reason": "Paid retry budget exhausted; review required.",
       "verdict": null
     },
     {
@@ -553,9 +553,9 @@
       "url": "https://paypal.wd1.myworkdayjobs.com/en-US/jobs/job/Chicago-Illinois-United-States-of-America/Manager--Technical-Programs_R0137861",
       "source": "workday",
       "job_snapshot_hash": "3a9ae1bbed25dfb32f2bbb3b8fda2b75d5ee2cee7d6f9fac1e795d7b7f959d61",
-      "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -1082,21 +1082,21 @@
       "status": "partial"
     }
   ],
-  "checked_at": "2026-11-01T05:24:22.020911+00:00",
+  "checked_at": "2026-11-01T05:26:44.368965+00:00",
   "legacy_backlog": {
-    "assessed": 471,
+    "assessed": 475,
     "pending": 0,
-    "unresolved": 31,
-    "in_progress": 8,
-    "total": 510,
-    "strong": 61
+    "unresolved": 32,
+    "in_progress": 1,
+    "total": 508,
+    "strong": 62
   },
-  "batch_id": "a67f4a10c8a5a0354d1876ba3c392302d0aa8c2b46af1ad66627404f9c13add4",
-  "status": "assessing",
+  "batch_id": "94bc57e2f81aeda4292a86173496cfb7593eae2e83e5d55911366b549439007a",
+  "status": "blocked",
   "input_blobs": {
     "jobs.json": "4cdb7cce560130160bf773bada593070458bbaec",
-    "fit_scores.json": "87934f0877f64254a736b42b0842059716764530",
-    "fit_backfill.json": "f00d3c366a1a2e5d031dbebe250a094b993cf21b",
+    "fit_scores.json": "0f072e7c47df0eaa4537a717d92e3bd4449a969c",
+    "fit_backfill.json": "e4960ebd5e602ec9c5c376eebe6e32c8ea908788",
     "meta.json": "e852a4d5332531d801ad609f528a53169315cdf6"
   }
 }
