@@ -7,15 +7,15 @@
   "collection_at": "2026-11-01T05:00:51.322063+00:00",
   "counts": {
     "found": 55,
-    "eligible": 24,
-    "completed": 12,
+    "eligible": 23,
+    "completed": 20,
     "strong": 2,
-    "middle": 3,
-    "pass": 7,
-    "waiting": 3,
-    "processing": 9,
+    "middle": 7,
+    "pass": 11,
+    "waiting": 0,
+    "processing": 3,
     "blocked": 0,
-    "excluded": 31,
+    "excluded": 32,
     "unverified_links": 42
   },
   "members": [
@@ -400,7 +400,7 @@
       "source": "web_discovery",
       "job_snapshot_hash": "afb05674de75507f9322a404bf0ef32fc77fc25cd99f00f85928604cb5ba9846",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -411,9 +411,9 @@
       "source": "web_discovery",
       "job_snapshot_hash": "f2948a19fcb23f9b667dac0365e1b5245d5a6806380fab55680b2d72351f598f",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "pass"
     },
     {
       "key": "web_discovery:Intuit:4ba1a2488c4f53563df2",
@@ -422,9 +422,9 @@
       "source": "web_discovery",
       "job_snapshot_hash": "3668fe26f2bf0515fa8c18393c854a3c06fe5ea3df9bf34b43ade40ee18889a8",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "pass"
     },
     {
       "key": "web_discovery:Intuit:d5697f51f3c8f41a7a20",
@@ -433,9 +433,9 @@
       "source": "web_discovery",
       "job_snapshot_hash": "0a9e1044f395257666f42ca7957e15a5f1adb0713258a59827320338d9ea2037",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "web_discovery:Snowflake:b651f202d9c894ddeaa8",
@@ -510,9 +510,9 @@
       "source": "workday",
       "job_snapshot_hash": "5968563fe2d485f445f06398d270d8d8090d654ddaf706697b63475960ac9ab6",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "pass"
     },
     {
       "key": "workday:cw:/job/Remote-CW-Site---USA---Flexible-United-States/Senior-Project-Manager---PMO-Lead_R339488-1",
@@ -521,9 +521,9 @@
       "source": "workday",
       "job_snapshot_hash": "26ce5e48d191f962db7acdfedcca57179a7e6018d2e18d7f258f30fba1f62904",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "pass"
     },
     {
       "key": "workday:cw:/job/Saint-Louis-Missouri-USA/Technical-Program-Manager_R340326",
@@ -532,9 +532,9 @@
       "source": "workday",
       "job_snapshot_hash": "00504d291361355cb9313947d8bbb9dccf4bdbebdb0919d02cd6078cbd14c9da",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "workday:ffive:/job/F5-Tower/Technical-Program-Manager_RP1037579",
@@ -543,7 +543,7 @@
       "source": "workday",
       "job_snapshot_hash": "542cfd3881f381790df444c795254564c474d9fb9b030b7f86983f2656515975",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -554,7 +554,7 @@
       "source": "workday",
       "job_snapshot_hash": "3a9ae1bbed25dfb32f2bbb3b8fda2b75d5ee2cee7d6f9fac1e795d7b7f959d61",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -564,9 +564,9 @@
       "url": "https://paypal.wd1.myworkdayjobs.com/en-US/jobs/job/New-York-City-New-York-United-States-of-America/Senior-Manager_R0137760",
       "source": "workday",
       "job_snapshot_hash": "e89b46f3408a281408b76f7a202801a8898f9fb626af42e13939055d2dc5e0bb",
-      "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -598,9 +598,9 @@
       "source": "workday",
       "job_snapshot_hash": "74512bdf60b712e2145f1cdc384b2a0d011c1020c2c85fe3ca3a262a950d6da4",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "workday:paypal:/job/San-Jose-California-United-States-of-America/Sr-Technical-Program-Manager--AI-Enablement-for-Enterprise_R0137368-1",
@@ -620,9 +620,9 @@
       "source": "workday",
       "job_snapshot_hash": "e467a0a3978798da34990e1493b16d06cab2af670ce65794d4581277895988c6",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     }
   ],
   "link_ids": [
@@ -1082,21 +1082,21 @@
       "status": "partial"
     }
   ],
-  "checked_at": "2026-11-01T05:21:51.779281+00:00",
+  "checked_at": "2026-11-01T05:24:22.020911+00:00",
   "legacy_backlog": {
-    "assessed": 463,
-    "pending": 9,
+    "assessed": 471,
+    "pending": 0,
     "unresolved": 31,
-    "in_progress": 9,
-    "total": 512,
+    "in_progress": 8,
+    "total": 510,
     "strong": 61
   },
-  "batch_id": "6a3698e8c5a553051e1edced2f4cae560a230133ed40b3ce07f4179f6c71861d",
+  "batch_id": "a67f4a10c8a5a0354d1876ba3c392302d0aa8c2b46af1ad66627404f9c13add4",
   "status": "assessing",
   "input_blobs": {
     "jobs.json": "4cdb7cce560130160bf773bada593070458bbaec",
-    "fit_scores.json": "83adadb5c12b1292684faa8ba31a541a7e373b9e",
-    "fit_backfill.json": "1e632c098953cdb074a382f1ba3dd643b7623dd1",
+    "fit_scores.json": "87934f0877f64254a736b42b0842059716764530",
+    "fit_backfill.json": "f00d3c366a1a2e5d031dbebe250a094b993cf21b",
     "meta.json": "e852a4d5332531d801ad609f528a53169315cdf6"
   }
 }
