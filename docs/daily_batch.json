@@ -4,15 +4,15 @@
   "start_hour_eastern": 1,
   "deadline_hour_eastern": 6,
   "collection_completed": true,
-  "collection_at": "2026-11-02T06:00:52.134459+00:00",
+  "collection_at": "2026-11-02T06:30:48.126284+00:00",
   "counts": {
-    "found": 50,
-    "eligible": 9,
+    "found": 51,
+    "eligible": 10,
     "completed": 8,
     "strong": 0,
     "middle": 5,
     "pass": 3,
-    "waiting": 0,
+    "waiting": 1,
     "processing": 0,
     "blocked": 1,
     "excluded": 41,
@@ -335,7 +335,7 @@
       "job_snapshot_hash": "8ed64676af52ce00aa04e955077c1567c561d35c3e145612508f5be4bb07f9c8",
       "eligible": false,
       "status": "excluded",
-      "reason": "Outside agreed assessment criteria.",
+      "reason": "Frozen daily posting is no longer available; review required.",
       "verdict": null
     },
     {
@@ -346,7 +346,18 @@
       "job_snapshot_hash": "41865385e5a4d0486a1d456a47e20f3b8bdf30794cd3a57e5341d418d81ea698",
       "eligible": false,
       "status": "excluded",
-      "reason": "Outside agreed assessment criteria.",
+      "reason": "Frozen daily posting is no longer available; review required.",
+      "verdict": null
+    },
+    {
+      "key": "lever:jobgether:b87ba35d-44ae-42b5-8c3c-ac0c498f200e",
+      "title": "Director of AI Operations and Insurance Domain Quality",
+      "url": "https://jobs.lever.co/jobgether/b87ba35d-44ae-42b5-8c3c-ac0c498f200e",
+      "source": "lever",
+      "job_snapshot_hash": "71fe95d5ddcdf13bce4fc786befe9f4ec71644671a0817c2459338c480d4272a",
+      "eligible": true,
+      "status": "waiting",
+      "reason": "Unfinished assessment.",
       "verdict": null
     },
     {
@@ -368,7 +379,7 @@
       "job_snapshot_hash": "ab3df0ca80f18f681e404eb4d2c55148340a93a6ab608c9be4897663c9d5f68a",
       "eligible": true,
       "status": "completed",
-      "reason": "Existing validated result reused.",
+      "reason": "Saved result retained.",
       "verdict": "pass"
     },
     {
@@ -379,7 +390,7 @@
       "job_snapshot_hash": "b00bbef5d84b33a754758017650f8aa9ca40617d116591f15e53da6c66b90255",
       "eligible": false,
       "status": "excluded",
-      "reason": "Outside agreed assessment criteria.",
+      "reason": "Saved result retained.",
       "verdict": null
     },
     {
@@ -601,82 +612,12 @@
     "4485927333",
     "4485946163"
   ],
-  "coverage_issues": 79,
+  "coverage_issues": 64,
   "incomplete_sources": [
     {
       "source": "netflix",
       "label": "program manager",
-      "status": "failed"
-    },
-    {
-      "source": "microsoft",
-      "label": "{'query': '', 'filters': {'career_discipline': ['Technical Program Management']}}",
-      "status": "failed"
-    },
-    {
-      "source": "career_page",
-      "label": "career_page",
-      "status": "failed"
-    },
-    {
-      "source": "career_page",
-      "label": "career_page",
-      "status": "failed"
-    },
-    {
-      "source": "career_page",
-      "label": "career_page",
-      "status": "failed"
-    },
-    {
-      "source": "career_page",
-      "label": "career_page",
-      "status": "failed"
-    },
-    {
-      "source": "career_page",
-      "label": "career_page",
-      "status": "failed"
-    },
-    {
-      "source": "career_page",
-      "label": "career_page",
-      "status": "failed"
-    },
-    {
-      "source": "career_page",
-      "label": "career_page",
-      "status": "failed"
-    },
-    {
-      "source": "career_page",
-      "label": "career_page",
-      "status": "failed"
-    },
-    {
-      "source": "career_page",
-      "label": "career_page",
-      "status": "failed"
-    },
-    {
-      "source": "career_page",
-      "label": "career_page",
-      "status": "failed"
-    },
-    {
-      "source": "career_page",
-      "label": "career_page",
-      "status": "failed"
-    },
-    {
-      "source": "career_page",
-      "label": "career_page",
-      "status": "failed"
-    },
-    {
-      "source": "career_page",
-      "label": "career_page",
-      "status": "failed"
+      "status": "partial"
     },
     {
       "source": "career_page",
@@ -992,14 +933,9 @@
       "source": "greenhouse",
       "label": "{\"config\": \"philo\", \"source\": \"greenhouse\"}",
       "status": "failed"
-    },
-    {
-      "source": "lever",
-      "label": "{\"config\": \"jobgether\", \"source\": \"lever\"}",
-      "status": "failed"
     }
   ],
-  "checked_at": "2026-11-02T06:25:03.931471+00:00",
+  "checked_at": "2026-11-02T06:42:22.547218+00:00",
   "legacy_backlog": {
     "assessed": 479,
     "pending": 0,
@@ -1008,12 +944,12 @@
     "total": 516,
     "strong": 62
   },
-  "batch_id": "4690c5b12fc3d3240d817c6b59635d24cd0698c5569eaaf2ccb759540675ecfb",
-  "status": "blocked",
+  "batch_id": "652f87d1a1a561b6d5d30fec141b88f8ca2b1eb3400f47f43a205f1994194e88",
+  "status": "assessing",
   "input_blobs": {
-    "jobs.json": "1ea0519c21e89d272de3fb30112bc5b7eda92c0a",
+    "jobs.json": "6d21021b3ab51e096ef460456cfeb663a41c2254",
     "fit_scores.json": "0acd4788145921ae31e7d94691ea9016718b223b",
     "fit_backfill.json": "3bb880c7efeb8b503c7f46eadec68954a2946c57",
-    "meta.json": "5dd51bf153b69e3faf9fed34ebf8a9921a2cf683"
+    "meta.json": "8549c0b101e6f8e21c9af524f4b52f79a339cf8b"
   }
 }
