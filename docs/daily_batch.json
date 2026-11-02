@@ -7,15 +7,15 @@
   "collection_at": "2026-11-02T06:00:52.134459+00:00",
   "counts": {
     "found": 50,
-    "eligible": 10,
+    "eligible": 9,
     "completed": 8,
     "strong": 0,
     "middle": 5,
     "pass": 3,
     "waiting": 0,
-    "processing": 2,
-    "blocked": 0,
-    "excluded": 40,
+    "processing": 0,
+    "blocked": 1,
+    "excluded": 41,
     "unverified_links": 29
   },
   "members": [
@@ -454,9 +454,9 @@
       "url": "https://ngc.wd1.myworkdayjobs.com/en-US/Northrop_Grumman_External_Site/job/United-States-California-Sunnyvale/Engineering-Program-Manager-Level-4_R10245596",
       "source": "workday",
       "job_snapshot_hash": "cbe4311179c8d26b242f69e2ec82678a003dd0654ac5385448d3ec551e946e5c",
-      "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -565,8 +565,8 @@
       "source": "workday",
       "job_snapshot_hash": "1b037f90f1857162da0be77872ec693d25f698718222becf27f15edae955d2fe",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "status": "blocked",
+      "reason": "Paid retry budget exhausted; review required.",
       "verdict": null
     }
   ],
@@ -999,21 +999,21 @@
       "status": "failed"
     }
   ],
-  "checked_at": "2026-11-02T06:23:26.944862+00:00",
+  "checked_at": "2026-11-02T06:24:17.950174+00:00",
   "legacy_backlog": {
     "assessed": 479,
     "pending": 0,
-    "unresolved": 32,
-    "in_progress": 6,
-    "total": 517,
+    "unresolved": 37,
+    "in_progress": 0,
+    "total": 516,
     "strong": 62
   },
-  "batch_id": "fbd0905f694abe317a559e02140e80b6bfe41c7e7e2b6b803c527d1d9a4b2513",
-  "status": "assessing",
+  "batch_id": "cd45d0b13f6229b13f0cea423a48565097c2db85f574a5b9cb085138e201f03b",
+  "status": "blocked",
   "input_blobs": {
     "jobs.json": "1ea0519c21e89d272de3fb30112bc5b7eda92c0a",
-    "fit_scores.json": "884776002ea85048ad99c563609edd53178970cd",
-    "fit_backfill.json": "70a63f80e1703684197353ba6d4d2f43a6c04bdb",
+    "fit_scores.json": "0acd4788145921ae31e7d94691ea9016718b223b",
+    "fit_backfill.json": "15fc63454b6c3b89b944de3d0af8bdb531ffcfdd",
     "meta.json": "5dd51bf153b69e3faf9fed34ebf8a9921a2cf683"
   }
 }
