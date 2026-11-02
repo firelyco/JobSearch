@@ -7,15 +7,15 @@
   "collection_at": "2026-11-02T06:00:52.134459+00:00",
   "counts": {
     "found": 50,
-    "eligible": 12,
-    "completed": 7,
+    "eligible": 10,
+    "completed": 8,
     "strong": 0,
     "middle": 5,
-    "pass": 2,
-    "waiting": 4,
-    "processing": 1,
+    "pass": 3,
+    "waiting": 0,
+    "processing": 2,
     "blocked": 0,
-    "excluded": 38,
+    "excluded": 40,
     "unverified_links": 29
   },
   "members": [
@@ -367,9 +367,9 @@
       "source": "web_discovery",
       "job_snapshot_hash": "ab3df0ca80f18f681e404eb4d2c55148340a93a6ab608c9be4897663c9d5f68a",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "pass"
     },
     {
       "key": "web_discovery:AstraZeneca:e85ee39105430529bd61",
@@ -410,9 +410,9 @@
       "url": "https://maxar.wd1.myworkdayjobs.com/en-US/Vantor/job/Westminster-CO/Technical-Program-Manager--Space-Systems_R24314-1",
       "source": "workday",
       "job_snapshot_hash": "29466db733a960ec1f0072f8f3b91883effbc1f5d580e8cbc6b58a803ee79178",
-      "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -455,7 +455,7 @@
       "source": "workday",
       "job_snapshot_hash": "cbe4311179c8d26b242f69e2ec82678a003dd0654ac5385448d3ec551e946e5c",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -553,9 +553,9 @@
       "url": "https://ngc.wd1.myworkdayjobs.com/en-US/Northrop_Grumman_External_Site/job/United-States-Utah-Roy/Sentinel---Supplier-Management-Program-Execution-Technical-Lead---19549_R10244572",
       "source": "workday",
       "job_snapshot_hash": "6c22ffb29766e2adb202385ac13565a45ebcdbdb0980a9fb5733180bc7d91ced",
-      "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -565,7 +565,7 @@
       "source": "workday",
       "job_snapshot_hash": "1b037f90f1857162da0be77872ec693d25f698718222becf27f15edae955d2fe",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     }
@@ -999,21 +999,21 @@
       "status": "failed"
     }
   ],
-  "checked_at": "2026-11-02T06:22:25.612484+00:00",
+  "checked_at": "2026-11-02T06:23:26.944862+00:00",
   "legacy_backlog": {
-    "assessed": 478,
-    "pending": 8,
+    "assessed": 479,
+    "pending": 0,
     "unresolved": 32,
-    "in_progress": 1,
-    "total": 519,
+    "in_progress": 6,
+    "total": 517,
     "strong": 62
   },
-  "batch_id": "67b989b00c44905b2983d09c50b7a108675cae38c6dd56135eb1581e7a93106b",
+  "batch_id": "fbd0905f694abe317a559e02140e80b6bfe41c7e7e2b6b803c527d1d9a4b2513",
   "status": "assessing",
   "input_blobs": {
     "jobs.json": "1ea0519c21e89d272de3fb30112bc5b7eda92c0a",
-    "fit_scores.json": "74bc9bb8d23a470ad42bb8461ab43f35e0013388",
-    "fit_backfill.json": "fb24000a4be85040eaece8bf8612cf5dd5e7c27c",
+    "fit_scores.json": "884776002ea85048ad99c563609edd53178970cd",
+    "fit_backfill.json": "70a63f80e1703684197353ba6d4d2f43a6c04bdb",
     "meta.json": "5dd51bf153b69e3faf9fed34ebf8a9921a2cf683"
   }
 }
