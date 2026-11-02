@@ -7,15 +7,15 @@
   "collection_at": "2026-11-02T06:30:48.126284+00:00",
   "counts": {
     "found": 51,
-    "eligible": 10,
+    "eligible": 9,
     "completed": 8,
     "strong": 0,
     "middle": 5,
     "pass": 3,
-    "waiting": 1,
+    "waiting": 0,
     "processing": 0,
     "blocked": 1,
-    "excluded": 41,
+    "excluded": 42,
     "unverified_links": 29
   },
   "members": [
@@ -355,9 +355,9 @@
       "url": "https://jobs.lever.co/jobgether/b87ba35d-44ae-42b5-8c3c-ac0c498f200e",
       "source": "lever",
       "job_snapshot_hash": "71fe95d5ddcdf13bce4fc786befe9f4ec71644671a0817c2459338c480d4272a",
-      "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -935,21 +935,21 @@
       "status": "failed"
     }
   ],
-  "checked_at": "2026-11-02T06:43:32.017196+00:00",
+  "checked_at": "2026-11-02T06:44:16.622177+00:00",
   "legacy_backlog": {
-    "assessed": 468,
-    "pending": 2,
+    "assessed": 469,
+    "pending": 0,
     "unresolved": 37,
     "in_progress": 0,
-    "total": 507,
+    "total": 506,
     "strong": 58
   },
-  "batch_id": "10aeb4fc27f1385b9b885de4ed98bdd7a6ea4e92e83a974f7ab87a989bb9a83a",
-  "status": "assessing",
+  "batch_id": "34951d09c2b4cc822319a3ebd7ff758f854b7818b9eb73eae5a2479b34028a89",
+  "status": "blocked",
   "input_blobs": {
     "jobs.json": "6d21021b3ab51e096ef460456cfeb663a41c2254",
-    "fit_scores.json": "74ca99962109e5c98c72f501e81eb2a0ad34801e",
-    "fit_backfill.json": "7767af0d977c85fe3324fa1914b301d05fb10474",
+    "fit_scores.json": "7d35b84032550269f20f5919e4dd7734620fa17c",
+    "fit_backfill.json": "4ace1c5e49dc51f4ed729e6a2bcbc7a5acb73130",
     "meta.json": "8549c0b101e6f8e21c9af524f4b52f79a339cf8b"
   }
 }
