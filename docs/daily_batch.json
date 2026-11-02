@@ -7,15 +7,15 @@
   "collection_at": "2026-11-02T06:00:52.134459+00:00",
   "counts": {
     "found": 50,
-    "eligible": 27,
-    "completed": 0,
+    "eligible": 24,
+    "completed": 3,
     "strong": 0,
-    "middle": 0,
+    "middle": 3,
     "pass": 0,
-    "waiting": 27,
-    "processing": 0,
+    "waiting": 15,
+    "processing": 6,
     "blocked": 0,
-    "excluded": 23,
+    "excluded": 26,
     "unverified_links": 29
   },
   "members": [
@@ -25,9 +25,9 @@
       "url": "https://www.amazon.jobs/en/jobs/10593082/technical-program-manager-iii-amz27045-1",
       "source": "amazon_jobs",
       "job_snapshot_hash": "f910a304758b9ed9210fbe4412ad899e9bbd9b06f2f0772741a8c71f81f2fea8",
-      "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -37,7 +37,7 @@
       "source": "amazon_jobs",
       "job_snapshot_hash": "43b02f10360a34c6e2cec1c335c0842c37cb508d1aad3bd7f1748c69374be02d",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -48,9 +48,9 @@
       "source": "apple",
       "job_snapshot_hash": "daef7797f5de0179dabe35610d978dbd7d29fefd22f9e7bf9d9655ffad12cf89",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "arbeitnow:Aircall:remote-senior-data-engineer-real-time-analytics-489321",
@@ -290,9 +290,9 @@
       "source": "ashby",
       "job_snapshot_hash": "72292a85445dda13825baa08beee393d91ef2598d4ea09d60ef95a7125ea418c",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "ashby:formenergy:93ccd7c4-fa6f-45c6-884e-5246c3603f14",
@@ -333,9 +333,9 @@
       "url": "https://boards.greenhouse.io/andurilindustries/jobs/5281218007?gh_jid=5281218007",
       "source": "greenhouse",
       "job_snapshot_hash": "8ed64676af52ce00aa04e955077c1567c561d35c3e145612508f5be4bb07f9c8",
-      "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -344,9 +344,9 @@
       "url": "https://boards.greenhouse.io/andurilindustries/jobs/5281219007?gh_jid=5281219007",
       "source": "greenhouse",
       "job_snapshot_hash": "41865385e5a4d0486a1d456a47e20f3b8bdf30794cd3a57e5341d418d81ea698",
-      "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -356,7 +356,7 @@
       "source": "oracle_cloud",
       "job_snapshot_hash": "f477a8da30e345c17c1ee33c2a4196f38158efabc1d2e5fb993b48fdf939b376",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -389,7 +389,7 @@
       "source": "web_discovery",
       "job_snapshot_hash": "e208e55ff53d4c8c199468aa535b2eee43ce310ad9c32c698c9416ffb6ec5ece",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -433,7 +433,7 @@
       "source": "workday",
       "job_snapshot_hash": "62735f492cea51ea1a9ec7b1a113e3e7274fa8e18c02c22d0e16c354d3c60e5d",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -488,7 +488,7 @@
       "source": "workday",
       "job_snapshot_hash": "43b0715d0b94bb8e2d5db2ba40c90364338020a50fe7774b62cfe4ff77afb208",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -532,9 +532,9 @@
       "source": "workday",
       "job_snapshot_hash": "75a0efb861d5a93c0f6b8b6dbebd950a0d535d370c13f367e02a17ed80d98902",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "workday:ngc:/job/United-States-Maryland-Baltimore/Program-Engineering-Execution-Lead_R10257542",
@@ -543,7 +543,7 @@
       "source": "workday",
       "job_snapshot_hash": "bec2ad85183c6d85f1921a633db05f1a64da0716a90393315499ccd345b49267",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -999,21 +999,21 @@
       "status": "failed"
     }
   ],
-  "checked_at": "2026-11-02T06:19:09.807232+00:00",
+  "checked_at": "2026-11-02T06:20:11.153787+00:00",
   "legacy_backlog": {
-    "assessed": 470,
-    "pending": 34,
+    "assessed": 474,
+    "pending": 19,
     "unresolved": 32,
-    "in_progress": 0,
-    "total": 536,
+    "in_progress": 6,
+    "total": 531,
     "strong": 62
   },
-  "batch_id": "708ffb03df86e0cd9e5804f9083e1fc4b6363c1a736e42628d479362415f18bc",
+  "batch_id": "7c9da3302cb1a2823971d3aad27387a51b398906c86f9358c0b642a5b2a1cd92",
   "status": "assessing",
   "input_blobs": {
     "jobs.json": "1ea0519c21e89d272de3fb30112bc5b7eda92c0a",
-    "fit_scores.json": "201cbdad879d29f26d4c7b4f26f577cb93993e81",
-    "fit_backfill.json": "9e233a3672072328e078146db7a8c7d2b25ecbcc",
+    "fit_scores.json": "bd54f74352e94d1858847fe18ab8ab5dc9d7ff7d",
+    "fit_backfill.json": "51c6798215a02ee6b9c2a21ecf195c2dd782ee82",
     "meta.json": "5dd51bf153b69e3faf9fed34ebf8a9921a2cf683"
   }
 }
