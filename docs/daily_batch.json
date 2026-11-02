@@ -7,15 +7,15 @@
   "collection_at": "2026-11-02T06:50:52.356383+00:00",
   "counts": {
     "found": 53,
-    "eligible": 11,
+    "eligible": 10,
     "completed": 8,
     "strong": 0,
     "middle": 5,
     "pass": 3,
-    "waiting": 2,
-    "processing": 0,
+    "waiting": 0,
+    "processing": 1,
     "blocked": 1,
-    "excluded": 42,
+    "excluded": 43,
     "unverified_links": 29
   },
   "members": [
@@ -301,7 +301,7 @@
       "source": "ashby",
       "job_snapshot_hash": "5e662ba347c3c1f5c309e6bc42a58472c2ed64d438e955fe966f3288cc34e17d",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -366,9 +366,9 @@
       "url": "https://boards.greenhouse.io/andurilindustries/jobs/5281220007?gh_jid=5281220007",
       "source": "greenhouse",
       "job_snapshot_hash": "82381daa2094b00b742d872bb3fef1c23e5dcb617143dad26791d0f760c412ce",
-      "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -1027,21 +1027,21 @@
       "status": "failed"
     }
   ],
-  "checked_at": "2026-11-02T07:09:16.044628+00:00",
+  "checked_at": "2026-11-02T07:10:16.144256+00:00",
   "legacy_backlog": {
     "assessed": 472,
-    "pending": 3,
+    "pending": 0,
     "unresolved": 35,
-    "in_progress": 0,
-    "total": 510,
+    "in_progress": 2,
+    "total": 509,
     "strong": 59
   },
-  "batch_id": "9b9eb871e9226f7731167dcacb4edb32dc57fe6530d01227bb43058ad0dc4254",
+  "batch_id": "e3d14a56d241b789cc4c8342fcd883fddcd86b9afa41ba0a1f3f0e59e3f30582",
   "status": "assessing",
   "input_blobs": {
     "jobs.json": "1141c5e733bf72a7b571d75f3586583c4bd4b0c8",
-    "fit_scores.json": "25116fb0b81654eed8d0b26db3949121e39783ef",
-    "fit_backfill.json": "6b89bd4685143d1dafd3964179de08f957b8e0ee",
+    "fit_scores.json": "a492e0e892403c07f0f404c6684653f1276c39d7",
+    "fit_backfill.json": "65cf76791a56c2097101f249427272dd7ff0d899",
     "meta.json": "66b9db0c01fe7b08a06fae13a2b416f84a781990"
   }
 }
