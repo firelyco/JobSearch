@@ -7,15 +7,15 @@
   "collection_at": "2026-11-02T06:00:52.134459+00:00",
   "counts": {
     "found": 50,
-    "eligible": 24,
-    "completed": 3,
+    "eligible": 20,
+    "completed": 6,
     "strong": 0,
-    "middle": 3,
-    "pass": 0,
-    "waiting": 15,
-    "processing": 6,
+    "middle": 5,
+    "pass": 1,
+    "waiting": 3,
+    "processing": 11,
     "blocked": 0,
-    "excluded": 26,
+    "excluded": 30,
     "unverified_links": 29
   },
   "members": [
@@ -36,9 +36,9 @@
       "url": "https://www.amazon.jobs/en/jobs/10593084/technical-program-manager-iii-amz26509-1",
       "source": "amazon_jobs",
       "job_snapshot_hash": "43b02f10360a34c6e2cec1c335c0842c37cb508d1aad3bd7f1748c69374be02d",
-      "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -301,7 +301,7 @@
       "source": "ashby",
       "job_snapshot_hash": "183446a4f615c3b88787136d85ede4e8f73017101ebeca9df05974d12259fa3d",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -312,7 +312,7 @@
       "source": "ashby",
       "job_snapshot_hash": "94a2d88a15f250fa27da033803b263d256e2ae7bef2e5835beed1528b748db77",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -323,9 +323,9 @@
       "source": "ashby",
       "job_snapshot_hash": "337f1f4c6e7cc3362f283fe0e663fb4c5bb22bbc832992aa3bd4dec801979edd",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "greenhouse:andurilindustries:5281218007",
@@ -356,9 +356,9 @@
       "source": "oracle_cloud",
       "job_snapshot_hash": "f477a8da30e345c17c1ee33c2a4196f38158efabc1d2e5fb993b48fdf939b376",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "web_discovery:Applied Materials:bedfb52ee27e6c9950d2",
@@ -378,7 +378,7 @@
       "source": "web_discovery",
       "job_snapshot_hash": "b00bbef5d84b33a754758017650f8aa9ca40617d116591f15e53da6c66b90255",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -389,9 +389,9 @@
       "source": "web_discovery",
       "job_snapshot_hash": "e208e55ff53d4c8c199468aa535b2eee43ce310ad9c32c698c9416ffb6ec5ece",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "pass"
     },
     {
       "key": "workday:maxar:/job/Westminster-CO/Principal-Program-Manager--Engineering-Operations_R24496",
@@ -400,7 +400,7 @@
       "source": "workday",
       "job_snapshot_hash": "2aa67b9d5105ce2883d9ba185b0a63af648eaa9a21cb78ca92225b7a4279b0d6",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -411,7 +411,7 @@
       "source": "workday",
       "job_snapshot_hash": "29466db733a960ec1f0072f8f3b91883effbc1f5d580e8cbc6b58a803ee79178",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -422,7 +422,7 @@
       "source": "workday",
       "job_snapshot_hash": "67bc511df4c8f296987352a624eb1933d106ed1c2c32cca16e7fd9f980b6ed9b",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -432,9 +432,9 @@
       "url": "https://ngc.wd1.myworkdayjobs.com/en-US/Northrop_Grumman_External_Site/job/United-States-California-Northridge/Technical-Production-Program-Manager-2_R10257233",
       "source": "workday",
       "job_snapshot_hash": "62735f492cea51ea1a9ec7b1a113e3e7274fa8e18c02c22d0e16c354d3c60e5d",
-      "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -444,7 +444,7 @@
       "source": "workday",
       "job_snapshot_hash": "d85a7e7c11ad516e6ff28f70e226365f8712acf77f357dc25bdd23d264752f7e",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -477,7 +477,7 @@
       "source": "workday",
       "job_snapshot_hash": "4840cb05a6fd7b0703e9ce6815e84b4040b17188f423bc76e23de04c0a2d1495",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -487,9 +487,9 @@
       "url": "https://ngc.wd1.myworkdayjobs.com/en-US/Northrop_Grumman_External_Site/job/United-States-Florida-Melbourne/Systems-Engineer---Technical-Data-Package-Delivery--Principal-or-Sr-Principal-Engineer-Level-_R10255618",
       "source": "workday",
       "job_snapshot_hash": "43b0715d0b94bb8e2d5db2ba40c90364338020a50fe7774b62cfe4ff77afb208",
-      "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -510,7 +510,7 @@
       "source": "workday",
       "job_snapshot_hash": "5dca825075ff07bc89fd873bed37ae1dc14fe92bbc0aaee380ed93d42099e83e",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -521,7 +521,7 @@
       "source": "workday",
       "job_snapshot_hash": "878147f373786b7656487b8e9e76922ec1dcdb280ff02d84d52ac3be92330bad",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -542,9 +542,9 @@
       "url": "https://ngc.wd1.myworkdayjobs.com/en-US/Northrop_Grumman_External_Site/job/United-States-Maryland-Baltimore/Program-Engineering-Execution-Lead_R10257542",
       "source": "workday",
       "job_snapshot_hash": "bec2ad85183c6d85f1921a633db05f1a64da0716a90393315499ccd345b49267",
-      "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -565,7 +565,7 @@
       "source": "workday",
       "job_snapshot_hash": "1b037f90f1857162da0be77872ec693d25f698718222becf27f15edae955d2fe",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     }
@@ -999,21 +999,21 @@
       "status": "failed"
     }
   ],
-  "checked_at": "2026-11-02T06:20:11.153787+00:00",
+  "checked_at": "2026-11-02T06:21:20.898503+00:00",
   "legacy_backlog": {
-    "assessed": 474,
-    "pending": 19,
+    "assessed": 477,
+    "pending": 7,
     "unresolved": 32,
-    "in_progress": 6,
-    "total": 531,
+    "in_progress": 11,
+    "total": 527,
     "strong": 62
   },
-  "batch_id": "7c9da3302cb1a2823971d3aad27387a51b398906c86f9358c0b642a5b2a1cd92",
+  "batch_id": "b02e6b8b00bd68f62206d26683da3d7a8fe09421406d6e7d6fa2a48ac7a2520b",
   "status": "assessing",
   "input_blobs": {
     "jobs.json": "1ea0519c21e89d272de3fb30112bc5b7eda92c0a",
-    "fit_scores.json": "bd54f74352e94d1858847fe18ab8ab5dc9d7ff7d",
-    "fit_backfill.json": "51c6798215a02ee6b9c2a21ecf195c2dd782ee82",
+    "fit_scores.json": "e805421bf0c09b950bb5193ce1408274d316355a",
+    "fit_backfill.json": "b92798391c9607c750d306f4f75f6ec8ffa172ea",
     "meta.json": "5dd51bf153b69e3faf9fed34ebf8a9921a2cf683"
   }
 }
