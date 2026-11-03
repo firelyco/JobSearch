@@ -4,15 +4,15 @@
   "start_hour_eastern": 1,
   "deadline_hour_eastern": 6,
   "collection_completed": true,
-  "collection_at": "2026-11-03T06:30:53.099341+00:00",
+  "collection_at": "2026-11-03T06:50:53.017348+00:00",
   "counts": {
-    "found": 83,
-    "eligible": 25,
+    "found": 84,
+    "eligible": 26,
     "completed": 23,
     "strong": 2,
     "middle": 11,
     "pass": 10,
-    "waiting": 0,
+    "waiting": 1,
     "processing": 0,
     "blocked": 2,
     "excluded": 58,
@@ -735,6 +735,17 @@
       "verdict": "pass"
     },
     {
+      "key": "web_discovery:eBay:0d7325f645a020ee71d9",
+      "title": "Director & Chief of Staff-Design",
+      "url": "https://jobs.ebayinc.com/us/en/job/R0076969/Director-Chief-of-Staff-Design",
+      "source": "web_discovery",
+      "job_snapshot_hash": "a521be400477bd2d59ed6f47ee22dde618e65cfe48f48362da2bc0e504097ff4",
+      "eligible": true,
+      "status": "waiting",
+      "reason": "Unfinished assessment.",
+      "verdict": null
+    },
+    {
       "key": "workday:astrazeneca:/job/UK---Macclesfield/Learning-Transformation-Portfolio-Delivery-Lead--18-months-FTC-_R-260711",
       "title": "Learning Transformation Portfolio Delivery Lead (18 months FTC)",
       "url": "https://astrazeneca.wd3.myworkdayjobs.com/en-US/Careers/job/UK---Macclesfield/Learning-Transformation-Portfolio-Delivery-Lead--18-months-FTC-_R-260711",
@@ -929,7 +940,7 @@
       "job_snapshot_hash": "a9692338feb2fcf9cf4b7751b4a4888428e41bd13be39cb1e8cd692916eb4446",
       "eligible": false,
       "status": "excluded",
-      "reason": "Outside agreed assessment criteria.",
+      "reason": "Frozen daily posting is no longer available; review required.",
       "verdict": null
     }
   ],
@@ -961,23 +972,8 @@
     "4486122028",
     "4486129071"
   ],
-  "coverage_issues": 74,
+  "coverage_issues": 80,
   "incomplete_sources": [
-    {
-      "source": "netflix",
-      "label": "program manager",
-      "status": "partial"
-    },
-    {
-      "source": "microsoft",
-      "label": "{'query': '', 'filters': {'career_discipline': ['Technical Program Management']}}",
-      "status": "failed"
-    },
-    {
-      "source": "career_page",
-      "label": "career_page",
-      "status": "failed"
-    },
     {
       "source": "career_page",
       "label": "career_page",
@@ -1314,27 +1310,72 @@
       "status": "failed"
     },
     {
+      "source": "workday",
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"External\", \"tenant\": \"amat\", \"wd_server\": \"wd1\"}, \"source\": \"workday\"}",
+      "status": "partial"
+    },
+    {
+      "source": "workday",
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"BlueOrigin\", \"tenant\": \"blueorigin\", \"wd_server\": \"wd5\"}, \"source\": \"workday\"}",
+      "status": "partial"
+    },
+    {
+      "source": "workday",
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"Jabil_Careers\", \"tenant\": \"jabil\", \"wd_server\": \"wd5\"}, \"source\": \"workday\"}",
+      "status": "partial"
+    },
+    {
+      "source": "workday",
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"Northrop_Grumman_External_Site\", \"tenant\": \"ngc\", \"wd_server\": \"wd1\"}, \"source\": \"workday\"}",
+      "status": "partial"
+    },
+    {
+      "source": "workday",
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"jabil_careers\", \"tenant\": \"jabil\", \"wd_server\": \"wd5\"}, \"source\": \"workday\"}",
+      "status": "partial"
+    },
+    {
+      "source": "workday",
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"ExternalCareerSite\", \"tenant\": \"hp\", \"wd_server\": \"wd5\"}, \"source\": \"workday\"}",
+      "status": "partial"
+    },
+    {
+      "source": "workday",
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"External\", \"tenant\": \"cw\", \"wd_server\": \"wd1\"}, \"source\": \"workday\"}",
+      "status": "partial"
+    },
+    {
       "source": "greenhouse",
       "label": "{\"config\": \"philo\", \"source\": \"greenhouse\"}",
       "status": "failed"
     },
     {
-      "source": "lever",
-      "label": "{\"config\": \"jobgether\", \"source\": \"lever\"}",
+      "source": "location_check",
+      "label": "location_check",
       "status": "failed"
     },
     {
-      "source": "lever",
-      "label": "{\"config\": \"Instrumentl\", \"source\": \"lever\"}",
+      "source": "description_check",
+      "label": "description_check",
       "status": "failed"
     },
     {
-      "source": "lever",
-      "label": "{\"config\": \"teleo\", \"source\": \"lever\"}",
+      "source": "description_check",
+      "label": "description_check",
+      "status": "failed"
+    },
+    {
+      "source": "description_check",
+      "label": "description_check",
+      "status": "failed"
+    },
+    {
+      "source": "description_check",
+      "label": "description_check",
       "status": "failed"
     }
   ],
-  "checked_at": "2026-11-03T06:50:36.729812+00:00",
+  "checked_at": "2026-11-03T07:06:35.268102+00:00",
   "legacy_backlog": {
     "assessed": 458,
     "pending": 0,
@@ -1343,12 +1384,12 @@
     "total": 492,
     "strong": 58
   },
-  "batch_id": "260ef6b1be4592b0b888892264e327fa56cda87cbe5038a710b8d9fde13ac8bf",
-  "status": "blocked",
+  "batch_id": "00ce4f8b7b552b781cd040f74d8c86a2237c0c93d38692dc6e70695bd9960df2",
+  "status": "assessing",
   "input_blobs": {
-    "jobs.json": "b6afc9c2f60fa6f62897122fd8047445466c8793",
+    "jobs.json": "93cd5acbc938c08d8bff640b0dd8eece28f15e74",
     "fit_scores.json": "85d7e485c0c577d546c11e1ea9ebc7967fd2d709",
-    "fit_backfill.json": "da2bce4ea66bef744cc44124c5822cc9a9b5fa9d",
-    "meta.json": "1aba2a777b95a0fc7e0d11ac71cba321b5d20b44"
+    "fit_backfill.json": "af3bbeacc2883bfe444acd94b2cc4b0ba70de13f",
+    "meta.json": "681991791d05c2ae3d6123db2fc9eaf1cbd79d4f"
   }
 }
