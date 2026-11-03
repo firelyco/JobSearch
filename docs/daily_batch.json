@@ -7,15 +7,15 @@
   "collection_at": "2026-11-03T06:00:51.858408+00:00",
   "counts": {
     "found": 83,
-    "eligible": 30,
-    "completed": 17,
+    "eligible": 26,
+    "completed": 21,
     "strong": 1,
     "middle": 11,
-    "pass": 5,
-    "waiting": 3,
-    "processing": 10,
+    "pass": 9,
+    "waiting": 4,
+    "processing": 1,
     "blocked": 0,
-    "excluded": 53,
+    "excluded": 57,
     "unverified_links": 26
   },
   "members": [
@@ -36,9 +36,9 @@
       "url": "https://www.amazon.jobs/en/jobs/10594475/technical-program-manager-annapurna",
       "source": "amazon_jobs",
       "job_snapshot_hash": "ab69f434dff993bc75fd1405a1837f82a82299a634400239ba546ce8b02d754f",
-      "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -58,9 +58,9 @@
       "url": "https://www.amazon.jobs/en/jobs/10594600/senior-power-development-manager-technical-infrastructure-program-manager-global-ops-enterprise-services",
       "source": "amazon_jobs",
       "job_snapshot_hash": "24873723b87cd67cb6dfca13da43b956da445554b16e176e34e5eff4c671b169",
-      "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -80,9 +80,9 @@
       "url": "https://www.amazon.jobs/en/jobs/10594715/sr-infrastructure-tpm-aws-power-generation-solutions",
       "source": "amazon_jobs",
       "job_snapshot_hash": "ce9eeda9f4916595066b02b13f0b25d1fb3fb5bfbdedc78ec576bcf86a1b9a9e",
-      "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -598,7 +598,7 @@
       "source": "lever",
       "job_snapshot_hash": "2541746a709fea2d77f0f6be2e183eb1a5e2b3b80726c617e55dc30c616b89c9",
       "eligible": true,
-      "status": "processing",
+      "status": "waiting",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -630,9 +630,9 @@
       "url": "https://jobs.lever.co/tutorintelligence/ef8784b4-af3a-4661-b63b-ee1f6f21ab1d",
       "source": "lever",
       "job_snapshot_hash": "73703f46631c21a7f47029f8755dc1cffc86faaedd677418bf5410f43c1c069e",
-      "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -730,9 +730,9 @@
       "source": "web_discovery",
       "job_snapshot_hash": "fbc7cd00e3fc6f64e39832c39562f72e6057005873fdc5d6cf29778522026757",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "pass"
     },
     {
       "key": "workday:astrazeneca:/job/UK---Macclesfield/Learning-Transformation-Portfolio-Delivery-Lead--18-months-FTC-_R-260711",
@@ -774,9 +774,9 @@
       "source": "workday",
       "job_snapshot_hash": "5f60ddd06fbfb026309d21477c4ecd21fdf7ab213d6e41ec373c3ed2a548e20e",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "pass"
     },
     {
       "key": "workday:astrazeneca:/job/US--Santa-Monica-Colorado-Avenue--CA/Associate-Director--CMC-Program-Management_R-263115",
@@ -785,9 +785,9 @@
       "source": "workday",
       "job_snapshot_hash": "234ab69219c54463f4295f43f5860a5df38191963c6e6e84e39d453cba517fa1",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "pass"
     },
     {
       "key": "workday:capitalone:/job/McLean-VA/Sr-Director-Technical-Program-Management--AI-ML-_R1005015-1",
@@ -862,9 +862,9 @@
       "source": "workday",
       "job_snapshot_hash": "29981f6f6c63f341cccad55fc59ab16b12cb517e7f4a348984925cce2f7311d0",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "pass"
     },
     {
       "key": "workday:mastercard:/job/OFallon-Missouri/Technical-Program-Manager-II_R-294553",
@@ -1369,21 +1369,21 @@
       "status": "failed"
     }
   ],
-  "checked_at": "2026-11-03T06:21:25.167033+00:00",
+  "checked_at": "2026-11-03T06:22:39.804811+00:00",
   "legacy_backlog": {
-    "assessed": 455,
-    "pending": 27,
+    "assessed": 459,
+    "pending": 28,
     "unresolved": 33,
-    "in_progress": 10,
-    "total": 525,
+    "in_progress": 1,
+    "total": 521,
     "strong": 55
   },
-  "batch_id": "9f9824add50d10b87676d75abaccb1791ffd8d807297b731ad62bcfdc7d3544a",
+  "batch_id": "0f5b92dafe3ff474e3f9e56964aad2c27f7151598f228ecdcccf626729dc4ad7",
   "status": "assessing",
   "input_blobs": {
     "jobs.json": "b0919aa45c43e3e25e0c1d7db8d262100e17df41",
-    "fit_scores.json": "e28d20a1de4327bfe5f6f53af4232739d200596f",
-    "fit_backfill.json": "fb6a2deffd31032c3495eeda231004085f92ab69",
+    "fit_scores.json": "0428c81a4f229f6eaf2965b30569e8e93293fa9d",
+    "fit_backfill.json": "e7b55bf6f84b115c72b37b371084f0f183b858c8",
     "meta.json": "ceacf86380542af56f7f9fe5968733d5831b34a3"
   }
 }
