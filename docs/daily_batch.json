@@ -4,7 +4,7 @@
   "start_hour_eastern": 1,
   "deadline_hour_eastern": 6,
   "collection_completed": true,
-  "collection_at": "2026-11-03T06:00:51.858408+00:00",
+  "collection_at": "2026-11-03T06:30:53.099341+00:00",
   "counts": {
     "found": 83,
     "eligible": 25,
@@ -709,7 +709,7 @@
       "job_snapshot_hash": "7d5c5535da621c79d5a8d49a5daf977a1181e316ea39d2294d9217c368894cc3",
       "eligible": true,
       "status": "completed",
-      "reason": "Existing validated result reused.",
+      "reason": "Saved result retained.",
       "verdict": "strong"
     },
     {
@@ -720,7 +720,7 @@
       "job_snapshot_hash": "c9860dde68a40413a443e24c51f2b0aa5fa39a142d7b390f5bfbf20a7039e276",
       "eligible": true,
       "status": "completed",
-      "reason": "Existing validated result reused.",
+      "reason": "Saved result retained.",
       "verdict": "pass"
     },
     {
@@ -731,7 +731,7 @@
       "job_snapshot_hash": "fbc7cd00e3fc6f64e39832c39562f72e6057005873fdc5d6cf29778522026757",
       "eligible": true,
       "status": "completed",
-      "reason": "Existing validated result reused.",
+      "reason": "Saved result retained.",
       "verdict": "pass"
     },
     {
@@ -961,66 +961,16 @@
     "4486122028",
     "4486129071"
   ],
-  "coverage_issues": 81,
+  "coverage_issues": 74,
   "incomplete_sources": [
     {
       "source": "netflix",
       "label": "program manager",
-      "status": "failed"
+      "status": "partial"
     },
     {
       "source": "microsoft",
       "label": "{'query': '', 'filters': {'career_discipline': ['Technical Program Management']}}",
-      "status": "partial"
-    },
-    {
-      "source": "career_page",
-      "label": "career_page",
-      "status": "failed"
-    },
-    {
-      "source": "career_page",
-      "label": "career_page",
-      "status": "failed"
-    },
-    {
-      "source": "career_page",
-      "label": "career_page",
-      "status": "failed"
-    },
-    {
-      "source": "career_page",
-      "label": "career_page",
-      "status": "failed"
-    },
-    {
-      "source": "career_page",
-      "label": "career_page",
-      "status": "failed"
-    },
-    {
-      "source": "career_page",
-      "label": "career_page",
-      "status": "failed"
-    },
-    {
-      "source": "career_page",
-      "label": "career_page",
-      "status": "failed"
-    },
-    {
-      "source": "career_page",
-      "label": "career_page",
-      "status": "failed"
-    },
-    {
-      "source": "career_page",
-      "label": "career_page",
-      "status": "failed"
-    },
-    {
-      "source": "career_page",
-      "label": "career_page",
       "status": "failed"
     },
     {
@@ -1367,9 +1317,24 @@
       "source": "greenhouse",
       "label": "{\"config\": \"philo\", \"source\": \"greenhouse\"}",
       "status": "failed"
+    },
+    {
+      "source": "lever",
+      "label": "{\"config\": \"jobgether\", \"source\": \"lever\"}",
+      "status": "failed"
+    },
+    {
+      "source": "lever",
+      "label": "{\"config\": \"Instrumentl\", \"source\": \"lever\"}",
+      "status": "failed"
+    },
+    {
+      "source": "lever",
+      "label": "{\"config\": \"teleo\", \"source\": \"lever\"}",
+      "status": "failed"
     }
   ],
-  "checked_at": "2026-11-03T06:26:38.965239+00:00",
+  "checked_at": "2026-11-03T06:48:13.661092+00:00",
   "legacy_backlog": {
     "assessed": 468,
     "pending": 0,
@@ -1378,12 +1343,12 @@
     "total": 504,
     "strong": 57
   },
-  "batch_id": "939cf3e1ba5956bb9d33c86c2003551092669ddff7160b23940b2ef96f82025a",
+  "batch_id": "cf44d02cbaf9b4e77c9e74ffee466150f997a0359d818d76448ff1d613abe354",
   "status": "blocked",
   "input_blobs": {
-    "jobs.json": "b0919aa45c43e3e25e0c1d7db8d262100e17df41",
+    "jobs.json": "b6afc9c2f60fa6f62897122fd8047445466c8793",
     "fit_scores.json": "4027f08d48425799a9633c2c6ce225fc9b70710a",
     "fit_backfill.json": "cc61bf503661106a9f4f7202d86da9beefe563f6",
-    "meta.json": "ceacf86380542af56f7f9fe5968733d5831b34a3"
+    "meta.json": "1aba2a777b95a0fc7e0d11ac71cba321b5d20b44"
   }
 }
