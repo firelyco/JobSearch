@@ -7,15 +7,15 @@
   "collection_at": "2026-11-03T06:00:51.858408+00:00",
   "counts": {
     "found": 83,
-    "eligible": 32,
-    "completed": 16,
+    "eligible": 30,
+    "completed": 17,
     "strong": 1,
-    "middle": 10,
+    "middle": 11,
     "pass": 5,
-    "waiting": 15,
-    "processing": 1,
+    "waiting": 3,
+    "processing": 10,
     "blocked": 0,
-    "excluded": 51,
+    "excluded": 53,
     "unverified_links": 26
   },
   "members": [
@@ -37,7 +37,7 @@
       "source": "amazon_jobs",
       "job_snapshot_hash": "ab69f434dff993bc75fd1405a1837f82a82299a634400239ba546ce8b02d754f",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -47,9 +47,9 @@
       "url": "https://www.amazon.jobs/en/jobs/10594476/technical-program-manager-ii-go-ai",
       "source": "amazon_jobs",
       "job_snapshot_hash": "89f6b880ab82088f32a6c6826c82cf2bc3e43f1474fed68d870b4284eee07f35",
-      "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -59,7 +59,7 @@
       "source": "amazon_jobs",
       "job_snapshot_hash": "24873723b87cd67cb6dfca13da43b956da445554b16e176e34e5eff4c671b169",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -69,9 +69,9 @@
       "url": "https://www.amazon.jobs/en/jobs/10594645/technical-program-manager-serviceability",
       "source": "amazon_jobs",
       "job_snapshot_hash": "1e0884053825caf602a4255d28fab497aa73641fa63d8548f998f98a5f0ec334",
-      "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -81,7 +81,7 @@
       "source": "amazon_jobs",
       "job_snapshot_hash": "ce9eeda9f4916595066b02b13f0b25d1fb3fb5bfbdedc78ec576bcf86a1b9a9e",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -598,7 +598,7 @@
       "source": "lever",
       "job_snapshot_hash": "2541746a709fea2d77f0f6be2e183eb1a5e2b3b80726c617e55dc30c616b89c9",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -631,7 +631,7 @@
       "source": "lever",
       "job_snapshot_hash": "73703f46631c21a7f47029f8755dc1cffc86faaedd677418bf5410f43c1c069e",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -697,9 +697,9 @@
       "source": "oracle_cloud",
       "job_snapshot_hash": "dcb7de89ebd7ff8ad374dcef7303a723c34e9e4f1d96accd0313a37186862be7",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "web_discovery:Equinix:eccd57ad46ccb57f887c",
@@ -730,7 +730,7 @@
       "source": "web_discovery",
       "job_snapshot_hash": "fbc7cd00e3fc6f64e39832c39562f72e6057005873fdc5d6cf29778522026757",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -763,7 +763,7 @@
       "source": "workday",
       "job_snapshot_hash": "ab7abc6c6a3f12170c89adfec662e684be7e43a0946e6602259eabd918ceb2cf",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -774,7 +774,7 @@
       "source": "workday",
       "job_snapshot_hash": "5f60ddd06fbfb026309d21477c4ecd21fdf7ab213d6e41ec373c3ed2a548e20e",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -785,7 +785,7 @@
       "source": "workday",
       "job_snapshot_hash": "234ab69219c54463f4295f43f5860a5df38191963c6e6e84e39d453cba517fa1",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -862,7 +862,7 @@
       "source": "workday",
       "job_snapshot_hash": "29981f6f6c63f341cccad55fc59ab16b12cb517e7f4a348984925cce2f7311d0",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -1369,21 +1369,21 @@
       "status": "failed"
     }
   ],
-  "checked_at": "2026-11-03T06:20:24.033878+00:00",
+  "checked_at": "2026-11-03T06:21:25.167033+00:00",
   "legacy_backlog": {
-    "assessed": 454,
-    "pending": 39,
+    "assessed": 455,
+    "pending": 27,
     "unresolved": 33,
-    "in_progress": 1,
-    "total": 527,
+    "in_progress": 10,
+    "total": 525,
     "strong": 55
   },
-  "batch_id": "c59b0f9448fb028ac08718ce80aab08eb828572e40aaaf53fe3f089534cbabcb",
+  "batch_id": "9f9824add50d10b87676d75abaccb1791ffd8d807297b731ad62bcfdc7d3544a",
   "status": "assessing",
   "input_blobs": {
     "jobs.json": "b0919aa45c43e3e25e0c1d7db8d262100e17df41",
-    "fit_scores.json": "e20886115bfbe25ddc07f1b46d96c368280627a7",
-    "fit_backfill.json": "26ccb03afa7cfcb96755e48882fd336b2bafae31",
+    "fit_scores.json": "e28d20a1de4327bfe5f6f53af4232739d200596f",
+    "fit_backfill.json": "fb6a2deffd31032c3495eeda231004085f92ab69",
     "meta.json": "ceacf86380542af56f7f9fe5968733d5831b34a3"
   }
 }
