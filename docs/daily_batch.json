@@ -12,8 +12,8 @@
     "strong": 2,
     "middle": 11,
     "pass": 10,
-    "waiting": 0,
-    "processing": 1,
+    "waiting": 1,
+    "processing": 0,
     "blocked": 2,
     "excluded": 58,
     "unverified_links": 26
@@ -741,7 +741,7 @@
       "source": "web_discovery",
       "job_snapshot_hash": "a521be400477bd2d59ed6f47ee22dde618e65cfe48f48362da2bc0e504097ff4",
       "eligible": true,
-      "status": "processing",
+      "status": "waiting",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -1375,21 +1375,21 @@
       "status": "failed"
     }
   ],
-  "checked_at": "2026-11-03T07:09:13.916508+00:00",
+  "checked_at": "2026-11-03T07:10:43.020091+00:00",
   "legacy_backlog": {
     "assessed": 458,
-    "pending": 0,
+    "pending": 1,
     "unresolved": 35,
-    "in_progress": 2,
+    "in_progress": 1,
     "total": 495,
     "strong": 56
   },
-  "batch_id": "99ff52b6495948975b322fe53813232203ab06092a97381a4a542a037045c3fb",
+  "batch_id": "a8d4a18d656d6a859c48365a061cdf29cb0cdb407ce8b4d6b5ca42ad48a4c711",
   "status": "assessing",
   "input_blobs": {
     "jobs.json": "93cd5acbc938c08d8bff640b0dd8eece28f15e74",
-    "fit_scores.json": "9fe59153f027ab377a60d668262bbd607e9965f0",
-    "fit_backfill.json": "d179692fe46f6c89109f5f733a2e97d3a525305d",
+    "fit_scores.json": "029d3911d5b228c1a6334d85d082005db8790db8",
+    "fit_backfill.json": "1db34bf3269c6ba48478fd34629f7af5b8598560",
     "meta.json": "681991791d05c2ae3d6123db2fc9eaf1cbd79d4f"
   }
 }
