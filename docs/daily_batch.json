@@ -7,15 +7,15 @@
   "collection_at": "2026-11-03T06:00:51.858408+00:00",
   "counts": {
     "found": 83,
-    "eligible": 38,
-    "completed": 7,
+    "eligible": 35,
+    "completed": 9,
     "strong": 1,
-    "middle": 5,
-    "pass": 1,
-    "waiting": 27,
-    "processing": 4,
+    "middle": 6,
+    "pass": 2,
+    "waiting": 15,
+    "processing": 11,
     "blocked": 0,
-    "excluded": 45,
+    "excluded": 48,
     "unverified_links": 26
   },
   "members": [
@@ -92,7 +92,7 @@
       "source": "amazon_jobs",
       "job_snapshot_hash": "bff4e811e89f14f01c244894aefad2ce53343da85f3679ef07b844256fa98b64",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -114,9 +114,9 @@
       "source": "apple",
       "job_snapshot_hash": "4d562b35a042676af478fddeecbb179efe3dcd933c56043043e69d864b818e67",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "pass"
     },
     {
       "key": "arbeitnow:Asteralabs:senior-principal-asic-design-engineer-21270",
@@ -356,7 +356,7 @@
       "source": "arbeitnow",
       "job_snapshot_hash": "e6e0f13dcdf89c4a797ace9d0bbdece12970a753b583a48094e74ff84389e117",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -466,7 +466,7 @@
       "source": "ashby",
       "job_snapshot_hash": "6d9e5995c2d2c436888406a9c400925318afc0989ac9a12538e6522e6339839f",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -498,9 +498,9 @@
       "url": "https://jobs.ashbyhq.com/salient/5fd4bc15-d2f8-446b-83b3-b88573445b47",
       "source": "ashby",
       "job_snapshot_hash": "f5c54abaa8cdbedcae88567cec25af017a05b41daf4c5b62639fe4ca57af1632",
-      "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -510,7 +510,7 @@
       "source": "ashby",
       "job_snapshot_hash": "12d6dbd4b5f4965418ba4c4334ed4e537148d18c794ddaf5495249685c3b7258",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -521,7 +521,7 @@
       "source": "google",
       "job_snapshot_hash": "206f72850ceb25879d7e19f4666a7b8d75483bb74afa37279f3715051d84f832",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -532,7 +532,7 @@
       "source": "google",
       "job_snapshot_hash": "a1dfcb89d9c155ae8f7a094c3d0fe43bbbcc3bef095a19b775cb412a68beec99",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -543,7 +543,7 @@
       "source": "greenhouse",
       "job_snapshot_hash": "b0f5008ae61c4278c81428cc55725103b81566443c2c30415ee87f177727a86b",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -553,9 +553,9 @@
       "url": "https://job-boards.greenhouse.io/altentechnologyusa/jobs/5282040007",
       "source": "greenhouse",
       "job_snapshot_hash": "040d50678da099fba9ba34a693e8eb0fb0c8dc7e78c161341e67c0e3699a2d91",
-      "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -565,7 +565,7 @@
       "source": "greenhouse",
       "job_snapshot_hash": "b021eba0dd2e6aa2906b296824a56f8bab6a65e17b3723bcd92e6ca67ff3ba31",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -575,9 +575,9 @@
       "url": "https://boards.greenhouse.io/robinhood/jobs/8348038?t=gh_src=&gh_jid=8348038",
       "source": "greenhouse",
       "job_snapshot_hash": "3f8c040d68ae7aaa90f236ce62a9b878313a703b7090b17c8c5aed4d1e8c9886",
-      "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -642,7 +642,7 @@
       "source": "lever",
       "job_snapshot_hash": "b614c9c2746459670751c68b409b856246710b9b1367431b5d994e44201f0a69",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -653,9 +653,9 @@
       "source": "microsoft",
       "job_snapshot_hash": "8a15faccba952abfaf72ebbc7399dc576881611068d640c95a7d86e638c1e505",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "microsoft:microsoft:1970393557050696",
@@ -664,7 +664,7 @@
       "source": "microsoft",
       "job_snapshot_hash": "d0c40a6bcb8e663eb0d6cba1055a853c2b840664248ef48c94313c7143508219",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -697,7 +697,7 @@
       "source": "oracle_cloud",
       "job_snapshot_hash": "dcb7de89ebd7ff8ad374dcef7303a723c34e9e4f1d96accd0313a37186862be7",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -1369,21 +1369,21 @@
       "status": "failed"
     }
   ],
-  "checked_at": "2026-11-03T06:16:55.785635+00:00",
+  "checked_at": "2026-11-03T06:18:31.994442+00:00",
   "legacy_backlog": {
-    "assessed": 445,
-    "pending": 51,
+    "assessed": 447,
+    "pending": 39,
     "unresolved": 33,
-    "in_progress": 4,
-    "total": 533,
+    "in_progress": 11,
+    "total": 530,
     "strong": 55
   },
-  "batch_id": "47074f570a8db069c86ab3419b585e391d117a6c4a33e36f1f028f1506169a1d",
+  "batch_id": "38b4d7b2f647038ad2659f0a92cb7c3819d549d1df6d3bcad1bf6032c1ff68d1",
   "status": "assessing",
   "input_blobs": {
     "jobs.json": "b0919aa45c43e3e25e0c1d7db8d262100e17df41",
-    "fit_scores.json": "bc0b7e6a9e32f29d5e8f595534e8f21f6ec3d26d",
-    "fit_backfill.json": "92905c39fd7624b892271b89844597a476171575",
+    "fit_scores.json": "dcfbc532d41dda425e40a00687a65de33dc489c8",
+    "fit_backfill.json": "7dc7f59c9ab17cee63bb334693a9b6f44dac684b",
     "meta.json": "ceacf86380542af56f7f9fe5968733d5831b34a3"
   }
 }
