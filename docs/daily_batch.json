@@ -7,15 +7,15 @@
   "collection_at": "2026-11-03T06:00:51.858408+00:00",
   "counts": {
     "found": 83,
-    "eligible": 39,
-    "completed": 0,
-    "strong": 0,
-    "middle": 0,
-    "pass": 0,
-    "waiting": 39,
-    "processing": 0,
+    "eligible": 38,
+    "completed": 7,
+    "strong": 1,
+    "middle": 5,
+    "pass": 1,
+    "waiting": 27,
+    "processing": 4,
     "blocked": 0,
-    "excluded": 44,
+    "excluded": 45,
     "unverified_links": 26
   },
   "members": [
@@ -103,9 +103,9 @@
       "source": "apple",
       "job_snapshot_hash": "8ef7ef8c30799fcc00143ddf583d5ea197092875d9044c72c6d3fe4718319d83",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "apple:apple:200692720",
@@ -114,7 +114,7 @@
       "source": "apple",
       "job_snapshot_hash": "4d562b35a042676af478fddeecbb179efe3dcd933c56043043e69d864b818e67",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -554,7 +554,7 @@
       "source": "greenhouse",
       "job_snapshot_hash": "040d50678da099fba9ba34a693e8eb0fb0c8dc7e78c161341e67c0e3699a2d91",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -576,7 +576,7 @@
       "source": "greenhouse",
       "job_snapshot_hash": "3f8c040d68ae7aaa90f236ce62a9b878313a703b7090b17c8c5aed4d1e8c9886",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -608,9 +608,9 @@
       "url": "https://jobs.lever.co/tutorintelligence/6dcff1e7-75fc-4bc5-be54-65c78154bd30",
       "source": "lever",
       "job_snapshot_hash": "f08974488129af7a66926f49ccc0245753c6f813df99586b925bf4a9c3156128",
-      "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -653,7 +653,7 @@
       "source": "microsoft",
       "job_snapshot_hash": "8a15faccba952abfaf72ebbc7399dc576881611068d640c95a7d86e638c1e505",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -796,9 +796,9 @@
       "source": "workday",
       "job_snapshot_hash": "3af299776be878602d3f315f33ad45812ea89947e85a76a80cb4a885e7fbc259",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "strong"
     },
     {
       "key": "workday:capitalone:/job/Toronto-ON/Director--Technical-Program-Management_R1004953",
@@ -818,9 +818,9 @@
       "source": "workday",
       "job_snapshot_hash": "ac4dbc4950de74ea01725341e09b9cb1ff0043dd8ba6398eb1103cb007b41ce7",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "workday:insmed:/job/NJ-Corporate-Headquarters/Senior-Director--PMO-Strategic-Portfolio-Management---AI-Innovation_R3715",
@@ -884,9 +884,9 @@
       "source": "workday",
       "job_snapshot_hash": "254a13df642a0007f3dbd7e22f53dfd9aa15dc8a86e60e5b801223f45c1d8072",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "workday:nvidia:/job/US-CA-Santa-Clara/Senior-Technical-Program-Manager--Cloud-Infrastructure_JR2027569",
@@ -895,9 +895,9 @@
       "source": "workday",
       "job_snapshot_hash": "7144f8518d731c5b1df398c03ae18b452c3f2a6d3cb678d9cb26daa56a0a97cd",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "pass"
     },
     {
       "key": "workday:nvidia:/job/US-CA-Santa-Clara/Senior-Technical-Program-Manager--DGX-Cloud-Software-Products-and-Services_JR2028926",
@@ -906,9 +906,9 @@
       "source": "workday",
       "job_snapshot_hash": "a0a9689b7c3b62c80dc27461b0c7acebc2a3bdbbb594ac878775949ea1cf38cc",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "workday:nvidia:/job/US-CA-Santa-Clara/Technical-Program-Manager--EDA-Compute-Infrastructure_JR2029139",
@@ -917,9 +917,9 @@
       "source": "workday",
       "job_snapshot_hash": "5fed050a374e16fac9d8a137e1b0ac100845b6105504a7871d7718dc69c490aa",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "workday:shi:/job/Austin-TX-USA/Associate-Director---Solutions-Portfolio-Operations_JR4013",
@@ -1369,21 +1369,21 @@
       "status": "failed"
     }
   ],
-  "checked_at": "2026-11-03T06:15:54.445795+00:00",
+  "checked_at": "2026-11-03T06:16:55.785635+00:00",
   "legacy_backlog": {
-    "assessed": 433,
-    "pending": 73,
+    "assessed": 445,
+    "pending": 51,
     "unresolved": 33,
-    "in_progress": 0,
-    "total": 539,
-    "strong": 54
+    "in_progress": 4,
+    "total": 533,
+    "strong": 55
   },
-  "batch_id": "5e016196cbb144b2e9510542e93cc6f0b2cb3515b5d0f445e45f9c5164e7a672",
+  "batch_id": "47074f570a8db069c86ab3419b585e391d117a6c4a33e36f1f028f1506169a1d",
   "status": "assessing",
   "input_blobs": {
     "jobs.json": "b0919aa45c43e3e25e0c1d7db8d262100e17df41",
-    "fit_scores.json": "916a9a563142b586e8a5af694da2bbccda7171ae",
-    "fit_backfill.json": "7e71dddcc9fd5587e2608abd017e63642c030c0a",
+    "fit_scores.json": "bc0b7e6a9e32f29d5e8f595534e8f21f6ec3d26d",
+    "fit_backfill.json": "92905c39fd7624b892271b89844597a476171575",
     "meta.json": "ceacf86380542af56f7f9fe5968733d5831b34a3"
   }
 }
