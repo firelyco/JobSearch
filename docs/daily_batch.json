@@ -4,15 +4,15 @@
   "start_hour_eastern": 1,
   "deadline_hour_eastern": 6,
   "collection_completed": true,
-  "collection_at": "2026-11-04T06:00:49.684151+00:00",
+  "collection_at": "2026-11-04T06:30:53.373196+00:00",
   "counts": {
-    "found": 134,
-    "eligible": 41,
+    "found": 135,
+    "eligible": 42,
     "completed": 36,
     "strong": 2,
     "middle": 22,
     "pass": 12,
-    "waiting": 0,
+    "waiting": 1,
     "processing": 0,
     "blocked": 5,
     "excluded": 93,
@@ -1087,6 +1087,17 @@
       "verdict": null
     },
     {
+      "key": "microsoft:microsoft:1970393557050367",
+      "title": "Senior Technical Program Manager",
+      "url": "https://apply.careers.microsoft.com/careers/job/1970393557050367",
+      "source": "microsoft",
+      "job_snapshot_hash": "9b00613139ad9bbb3d6ebc8d1e65e5e9b49cceb5c4577c3a211bd12eede6c651",
+      "eligible": true,
+      "status": "waiting",
+      "reason": "Unfinished assessment.",
+      "verdict": null
+    },
+    {
       "key": "microsoft:microsoft:1970393557050582",
       "title": "Senior Technical Program Manager",
       "url": "https://apply.careers.microsoft.com/careers/job/1970393557050582",
@@ -1160,7 +1171,7 @@
       "job_snapshot_hash": "8ed511c224950fb4a84c81382aa90ea9411e88124e2017d7516734e4260a3d39",
       "eligible": true,
       "status": "completed",
-      "reason": "Existing validated result reused.",
+      "reason": "Saved result retained.",
       "verdict": "pass"
     },
     {
@@ -1171,7 +1182,7 @@
       "job_snapshot_hash": "13ea093e391fd929dad9d2a72d142ec43715426b987b7eb68bd6815c452497dd",
       "eligible": true,
       "status": "completed",
-      "reason": "Existing validated result reused.",
+      "reason": "Saved result retained.",
       "verdict": "middle"
     },
     {
@@ -1182,7 +1193,7 @@
       "job_snapshot_hash": "4d7cff56f4bb9c444ae3f2f5a31af3c6171aa023faeaaa0473d49927036d1c0b",
       "eligible": false,
       "status": "excluded",
-      "reason": "Outside agreed assessment criteria.",
+      "reason": "Frozen daily posting is no longer available; review required.",
       "verdict": null
     },
     {
@@ -1193,7 +1204,7 @@
       "job_snapshot_hash": "4447a24d31a9c5743f1a626798a5c0507398c2fe752cbc048ade1edcf96ea89d",
       "eligible": false,
       "status": "excluded",
-      "reason": "Outside agreed assessment criteria.",
+      "reason": "Frozen daily posting is no longer available; review required.",
       "verdict": null
     },
     {
@@ -1677,11 +1688,6 @@
       "status": "failed"
     },
     {
-      "source": "career_page",
-      "label": "career_page",
-      "status": "failed"
-    },
-    {
       "source": "harmonic_employer",
       "label": "Harmonic: Starcloud",
       "status": "partial"
@@ -1900,9 +1906,14 @@
       "source": "greenhouse",
       "label": "{\"config\": \"philo\", \"source\": \"greenhouse\"}",
       "status": "failed"
+    },
+    {
+      "source": "lever",
+      "label": "{\"config\": \"matchgroup\", \"source\": \"lever\"}",
+      "status": "failed"
     }
   ],
-  "checked_at": "2026-11-04T06:27:21.131600+00:00",
+  "checked_at": "2026-11-04T06:50:15.416380+00:00",
   "legacy_backlog": {
     "assessed": 497,
     "pending": 0,
@@ -1911,12 +1922,12 @@
     "total": 537,
     "strong": 58
   },
-  "batch_id": "a4ca1b2918513130761907e841eac0509a4d8c9e48055f83970f6ff9eab3c4c5",
-  "status": "blocked",
+  "batch_id": "a7de0d1df94ef59a481f4049417fbea89928d174d2d51179da694d6e99a33a7b",
+  "status": "assessing",
   "input_blobs": {
-    "jobs.json": "711879e7f6dc5f00fed53dd5995d1395455c5d66",
+    "jobs.json": "07ba5882010359ee53b5840dfea912dcd50a914c",
     "fit_scores.json": "a0d0787b97a46bf621eed4212bfc7d7f0ac4faa9",
     "fit_backfill.json": "c7cb9ebf67eeef9bdf9e489c69851c9968db6ebc",
-    "meta.json": "420885d3aa523c1d0d71cebff0b4593f362119d5"
+    "meta.json": "5046c4d0edb4da535b8acb3acda4049015eb93b0"
   }
 }
