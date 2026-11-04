@@ -8,12 +8,12 @@
   "counts": {
     "found": 134,
     "eligible": 59,
-    "completed": 0,
+    "completed": 5,
     "strong": 0,
-    "middle": 0,
-    "pass": 0,
-    "waiting": 59,
-    "processing": 0,
+    "middle": 3,
+    "pass": 2,
+    "waiting": 50,
+    "processing": 4,
     "blocked": 0,
     "excluded": 75,
     "unverified_links": 38
@@ -103,7 +103,7 @@
       "source": "amazon_jobs",
       "job_snapshot_hash": "8b5e5773ac3c558a40be5fa9625bf416e01d55f22cfa3728175be4cade2baf4d",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -191,7 +191,7 @@
       "source": "arbeitnow",
       "job_snapshot_hash": "33e4ffbc225a5c25f197f035aa661ab530ae426a63d6085c26fbb082b13d53e7",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -796,9 +796,9 @@
       "source": "ashby",
       "job_snapshot_hash": "e84ced4798678ba112de540b47fbdda83ffbbffdc9a9cb3ed47c6189e9c05c61",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "pass"
     },
     {
       "key": "ashby:crusoe:e172c6e7-a088-4287-a3d4-966ef892e3f9",
@@ -983,9 +983,9 @@
       "source": "lever",
       "job_snapshot_hash": "60d9b56cdec8a8e1f0fade47379d950ddb7f8e57c4934e8d84d11b68093cd7c9",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "lever:jobgether:f721878e-bd93-4fe8-ac94-101c3b473518",
@@ -994,9 +994,9 @@
       "source": "lever",
       "job_snapshot_hash": "ec43aea05a53c162f755bdd959fd23266f2304692073bafaf3159f2b71c6f8c9",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "lever:pointclickcare:2f074e3f-34dc-4a72-81f2-60305520a3bb",
@@ -1038,9 +1038,9 @@
       "source": "microsoft",
       "job_snapshot_hash": "8cd6b7aeed54b8d25f02ba3071657b08e5bba93d4225f7d6077e590e2bb8c9c5",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "microsoft:microsoft:1970393557048070",
@@ -1137,7 +1137,7 @@
       "source": "oracle_cloud",
       "job_snapshot_hash": "a609f0052ebe19accdfc3dfc83c72a0c94d30a163be4e571a305c45c562dfe99",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -1148,7 +1148,7 @@
       "source": "oracle_cloud",
       "job_snapshot_hash": "be190a4eb9c64b359e717f15f7ba999b64fd0f6775faa516adb78d4fdb2977c4",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -1291,9 +1291,9 @@
       "source": "workday",
       "job_snapshot_hash": "421f9717379c0775535a216686fb9c9a1f8f1ed2c22254b55404d84e5d4bdfce",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "pass"
     },
     {
       "key": "workday:flextronics:/job/USA-TX-Austin/Sr-Technical-Program-Manager_WD228502",
@@ -1902,21 +1902,21 @@
       "status": "failed"
     }
   ],
-  "checked_at": "2026-11-04T06:15:19.683181+00:00",
+  "checked_at": "2026-11-04T06:16:22.384338+00:00",
   "legacy_backlog": {
-    "assessed": 453,
-    "pending": 77,
+    "assessed": 459,
+    "pending": 67,
     "unresolved": 31,
-    "in_progress": 0,
+    "in_progress": 4,
     "total": 561,
     "strong": 55
   },
-  "batch_id": "56da58de2c96636eb2664c0285028c057eac4d3d7e4d98ea894e777ef766848c",
+  "batch_id": "bea07019320cec2426508f5021a731d3910247a66f59cd3ad570d649e3ccccbf",
   "status": "assessing",
   "input_blobs": {
     "jobs.json": "711879e7f6dc5f00fed53dd5995d1395455c5d66",
-    "fit_scores.json": "e44b78f921b00cc3fddcd54ffb65215ab708f557",
-    "fit_backfill.json": "de4f916720acd2d3809935a04f9a074ab417362a",
+    "fit_scores.json": "bd1628a9a014ce73fa41009ac48e2e36089bf71d",
+    "fit_backfill.json": "b77d9abc4987f178deead4e4faf8520a9171bebb",
     "meta.json": "420885d3aa523c1d0d71cebff0b4593f362119d5"
   }
 }
