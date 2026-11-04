@@ -7,15 +7,15 @@
   "collection_at": "2026-11-04T06:00:49.684151+00:00",
   "counts": {
     "found": 134,
-    "eligible": 57,
-    "completed": 24,
-    "strong": 0,
-    "middle": 16,
-    "pass": 8,
-    "waiting": 19,
-    "processing": 9,
+    "eligible": 51,
+    "completed": 28,
+    "strong": 1,
+    "middle": 18,
+    "pass": 9,
+    "waiting": 7,
+    "processing": 11,
     "blocked": 5,
-    "excluded": 77,
+    "excluded": 83,
     "unverified_links": 38
   },
   "members": [
@@ -25,9 +25,9 @@
       "url": "https://www.amazon.jobs/en/jobs/10592194/aws-sr-technical-program-manager-infrastructure-us-west",
       "source": "amazon_jobs",
       "job_snapshot_hash": "a09e1f98f1e9988497a6a8d77fc2f769f1d889ca8e0e7b69abcce7d0498d5798",
-      "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -36,9 +36,9 @@
       "url": "https://www.amazon.jobs/en/jobs/10593427/sr-technical-program-manager-aws-rack-manufacturing",
       "source": "amazon_jobs",
       "job_snapshot_hash": "287b4cb8835ebd535aa7ba646dff26551e8d57a56ea4b1698020eb8ab7ed9b2c",
-      "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -48,7 +48,7 @@
       "source": "amazon_jobs",
       "job_snapshot_hash": "fa9b15569cffd8b956bf19559968277198b7ac502603f0232b1a69b1271b72c0",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -58,9 +58,9 @@
       "url": "https://www.amazon.jobs/en/jobs/10595427/sr-technical-program-manager-amazon-foundational-security-services",
       "source": "amazon_jobs",
       "job_snapshot_hash": "e5a086c601940c427baac8c45de5c08dc2b5a900e121a753ccfb146f02af8851",
-      "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -69,9 +69,9 @@
       "url": "https://www.amazon.jobs/en/jobs/10595760/sr-technical-program-manager-selling-partner-trust",
       "source": "amazon_jobs",
       "job_snapshot_hash": "6304e1ec4987d00e517630dfdbd7c08fd8187c4e258647face0f62e82fc43859",
-      "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -80,9 +80,9 @@
       "url": "https://www.amazon.jobs/en/jobs/10595849/sr-technical-program-manager-ads-full-funnel-agentic-intell",
       "source": "amazon_jobs",
       "job_snapshot_hash": "b7b6ef1a97701422c5e22518632feaab4580ed6d26d4a931628841cd32b54b4b",
-      "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -91,9 +91,9 @@
       "url": "https://www.amazon.jobs/en/jobs/10596045/principal-technical-program-manager-fulfilled-by-amazon",
       "source": "amazon_jobs",
       "job_snapshot_hash": "b2d7881aa378d09df89542c12349f66f8d8258f7e6e8a1362d60fbf45fe06e1e",
-      "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -136,9 +136,9 @@
       "source": "arbeitnow",
       "job_snapshot_hash": "5ee450020deaf2104ffdf7e5ce0b0db91a07fbcff5c454e9b8200e730fcfe701",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "pass"
     },
     {
       "key": "arbeitnow:Abnormalsecurity:senior-software-engineer-full-stack-portal-platform-325649",
@@ -818,7 +818,7 @@
       "source": "ashby",
       "job_snapshot_hash": "2d0080a1baf7bb3e13ff1c6e1a8e4b41b109325a13f3ee11400035df12187ac9",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -829,7 +829,7 @@
       "source": "ashby",
       "job_snapshot_hash": "b4cb43058113c0069f40daaeb815f346a869804c093871e0d42e44923063d98b",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -862,9 +862,9 @@
       "source": "google",
       "job_snapshot_hash": "a96ad72f32a09f88d4fb7d9afa84cb6fd67368099609535590e951b19755ee84",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "strong"
     },
     {
       "key": "google:google:97741571805323974",
@@ -917,7 +917,7 @@
       "source": "greenhouse",
       "job_snapshot_hash": "73e97bccfa831e70eb2d6023f229f9fdee52bc69eb9825bdff75c1733c06c180",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -928,7 +928,7 @@
       "source": "greenhouse",
       "job_snapshot_hash": "e9ac9b1f30adc22a351d7616fd9acf3751f5fb5fe12301c1aaa5681718293629",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -950,9 +950,9 @@
       "source": "greenhouse",
       "job_snapshot_hash": "e8b737d1058793b8e524cba656f83f087017ff1d42483eea075999fa0da364f9",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "greenhouse:missionlane:8860735002",
@@ -1005,7 +1005,7 @@
       "source": "lever",
       "job_snapshot_hash": "1e5503ef882a542eddbd3ee4a773210c223d4c1ebcd39acab6c9c581a51d0f34",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -1126,7 +1126,7 @@
       "source": "oracle_cloud",
       "job_snapshot_hash": "9abbdf52723979644eb562fc6c8c4b52be4fb30e6242235e6ec007c583cac624",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -1170,9 +1170,9 @@
       "source": "web_discovery",
       "job_snapshot_hash": "13ea093e391fd929dad9d2a72d142ec43715426b987b7eb68bd6815c452497dd",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "web_discovery:Rapid7:666adeaa4e30f0b0c6fb",
@@ -1302,7 +1302,7 @@
       "source": "workday",
       "job_snapshot_hash": "1b0408a93908af047436f45a5a549cbb38ea1c109b972e005f51ab4d456d39a8",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -1379,7 +1379,7 @@
       "source": "workday",
       "job_snapshot_hash": "e43d70025ca7908e578be1c52426e6fca493d5a33433a9f0518a2e6791015afa",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -1434,7 +1434,7 @@
       "source": "workday",
       "job_snapshot_hash": "c73bb0b119dc2af1a92380c504b8c7f14bed0ebfb03dd2037a2e268b63d3e7f2",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -1478,7 +1478,7 @@
       "source": "workday",
       "job_snapshot_hash": "46e8a84d625895c5cbb5ee54665e56be432f005c4290c68d14c24656cf6926cb",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -1902,21 +1902,21 @@
       "status": "failed"
     }
   ],
-  "checked_at": "2026-11-04T06:20:52.564390+00:00",
+  "checked_at": "2026-11-04T06:21:56.064161+00:00",
   "legacy_backlog": {
-    "assessed": 478,
-    "pending": 36,
+    "assessed": 482,
+    "pending": 24,
     "unresolved": 36,
-    "in_progress": 9,
-    "total": 559,
-    "strong": 55
+    "in_progress": 11,
+    "total": 553,
+    "strong": 56
   },
-  "batch_id": "7f78412b5ad822e00218d63d98e7870bfd1b68462af38ebc7d288a3103e49bb2",
+  "batch_id": "845551823cd1729f12bef20096258c09f5bbc08df74ec07cfb461830a6b68e41",
   "status": "assessing",
   "input_blobs": {
     "jobs.json": "711879e7f6dc5f00fed53dd5995d1395455c5d66",
-    "fit_scores.json": "9bade68e253aa72681d20633e2492e2de7ce4219",
-    "fit_backfill.json": "80c58325847e80771bafe80fdf78ce1ced373a21",
+    "fit_scores.json": "ca7d31512166ff540cd4b409ab1ba381a2b71df6",
+    "fit_backfill.json": "59bd881599cd0e7ad0ba648bb313ae4c26faa17f",
     "meta.json": "420885d3aa523c1d0d71cebff0b4593f362119d5"
   }
 }
