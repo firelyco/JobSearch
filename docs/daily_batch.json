@@ -8,12 +8,12 @@
   "counts": {
     "found": 135,
     "eligible": 42,
-    "completed": 36,
+    "completed": 37,
     "strong": 2,
     "middle": 22,
-    "pass": 12,
+    "pass": 13,
     "waiting": 0,
-    "processing": 1,
+    "processing": 0,
     "blocked": 5,
     "excluded": 93,
     "unverified_links": 38
@@ -1093,9 +1093,9 @@
       "source": "microsoft",
       "job_snapshot_hash": "9b00613139ad9bbb3d6ebc8d1e65e5e9b49cceb5c4577c3a211bd12eede6c651",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "pass"
     },
     {
       "key": "microsoft:microsoft:1970393557050582",
@@ -1913,21 +1913,21 @@
       "status": "failed"
     }
   ],
-  "checked_at": "2026-11-04T06:51:00.077262+00:00",
+  "checked_at": "2026-11-04T06:51:42.201393+00:00",
   "legacy_backlog": {
-    "assessed": 495,
+    "assessed": 496,
     "pending": 0,
     "unresolved": 45,
-    "in_progress": 1,
+    "in_progress": 0,
     "total": 541,
     "strong": 59
   },
-  "batch_id": "71e3dcb48e92437daf980e0cad019aef1b016639f9eaaa94370ef493ee3ed19a",
-  "status": "assessing",
+  "batch_id": "84067b9d65a0ba8b611b8e5b31f8e38d8426698f9add627ff03a48ac1679c05b",
+  "status": "blocked",
   "input_blobs": {
     "jobs.json": "07ba5882010359ee53b5840dfea912dcd50a914c",
-    "fit_scores.json": "a0d0787b97a46bf621eed4212bfc7d7f0ac4faa9",
-    "fit_backfill.json": "7d9ce2fabd7a4c0f81180b8bead94e82745f1a55",
+    "fit_scores.json": "aca9c47a2cdbda04722a9fac858767cdcae16165",
+    "fit_backfill.json": "9180b3474e7c8245040c4dd30dcbea3b1fb51ea6",
     "meta.json": "5046c4d0edb4da535b8acb3acda4049015eb93b0"
   }
 }
