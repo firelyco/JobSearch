@@ -7,15 +7,15 @@
   "collection_at": "2026-11-04T06:00:49.684151+00:00",
   "counts": {
     "found": 134,
-    "eligible": 58,
-    "completed": 11,
+    "eligible": 57,
+    "completed": 14,
     "strong": 0,
-    "middle": 7,
-    "pass": 4,
-    "waiting": 40,
-    "processing": 5,
-    "blocked": 2,
-    "excluded": 76,
+    "middle": 8,
+    "pass": 6,
+    "waiting": 30,
+    "processing": 10,
+    "blocked": 3,
+    "excluded": 77,
     "unverified_links": 38
   },
   "members": [
@@ -114,7 +114,7 @@
       "source": "apple",
       "job_snapshot_hash": "8f4d1c82975ec06dee7420dfb364631ba2a7adb7d0990813ac531c3fd1038645",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -785,9 +785,9 @@
       "source": "ashby",
       "job_snapshot_hash": "98da41ac9018bde2a52e332825ff1282c8f007b3be4f16cdd348d007a4d90637",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "pass"
     },
     {
       "key": "ashby:crusoe:81b7a0a6-3ccf-49b2-acf4-26f16fd8ea79",
@@ -807,7 +807,7 @@
       "source": "ashby",
       "job_snapshot_hash": "4e9c329281af37e68c0cd3182a8c3b9ca5658bd8290bbd3c66919643716da0a8",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -840,9 +840,9 @@
       "source": "github",
       "job_snapshot_hash": "e0ba32ee11c7ca2a073b5583581b721c5c55ce3e6f6fd8ecbc461850f77ff30b",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "pass"
     },
     {
       "key": "github:github:6792",
@@ -851,8 +851,8 @@
       "source": "github",
       "job_snapshot_hash": "3caccb2ac2118efabfed59c0162bfb7e82f79be7bbfc1c5689a8832b61b62bff",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
+      "status": "blocked",
+      "reason": "Paid retry budget exhausted; review required.",
       "verdict": null
     },
     {
@@ -972,7 +972,7 @@
       "source": "greenhouse",
       "job_snapshot_hash": "f74b3cdd60a22def88b904d8d0435120e833e5bc29e5c79305447ed9060c8d7c",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -1027,7 +1027,7 @@
       "source": "microsoft",
       "job_snapshot_hash": "b0707ffd57fe9ec6073d30059e3f0dcb99919018233839629288b022f33b3487",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -1049,7 +1049,7 @@
       "source": "microsoft",
       "job_snapshot_hash": "05d44a590bb1efda7964109761afe83006a12709a4d0003ee650517c808333c5",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -1060,7 +1060,7 @@
       "source": "microsoft",
       "job_snapshot_hash": "88dd835f488a2777c494ecfaa33c1dc8edd4ca71b6974b7b5aff52b80f260187",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -1071,7 +1071,7 @@
       "source": "microsoft",
       "job_snapshot_hash": "2f870ff65c8e42e9a4cc8710f39ea915cc5375bec5bfb354d06bb7d067668547",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -1093,9 +1093,9 @@
       "source": "microsoft",
       "job_snapshot_hash": "1cec5de9b78c6a78892c5c1e517226058a4f1c3fa976007019b4bb56cd2da660",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "microsoft:microsoft:1970393557050589",
@@ -1115,7 +1115,7 @@
       "source": "microsoft",
       "job_snapshot_hash": "f79e446597a6c0441b9bba74b163d9372f4f06bfd0f49c633d72915317ec3c50",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -1213,9 +1213,9 @@
       "url": "https://blueorigin.wd5.myworkdayjobs.com/en-US/BlueOrigin/job/Denver-CO/Technical-Program-Integrator-III---Blue-National-Security--BNS-_R74680",
       "source": "workday",
       "job_snapshot_hash": "984f441838e4890546dffbeb9328ea7211b1769e982f85196304e8df3569006e",
-      "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -1902,21 +1902,21 @@
       "status": "failed"
     }
   ],
-  "checked_at": "2026-11-04T06:18:51.367283+00:00",
+  "checked_at": "2026-11-04T06:19:52.131434+00:00",
   "legacy_backlog": {
-    "assessed": 465,
-    "pending": 57,
-    "unresolved": 33,
-    "in_progress": 5,
-    "total": 560,
+    "assessed": 468,
+    "pending": 47,
+    "unresolved": 34,
+    "in_progress": 10,
+    "total": 559,
     "strong": 55
   },
-  "batch_id": "b3ce981199a7e1fbe8b87aec2c4c915df6cc5bca17909e256886e5d5c8fbe0b7",
+  "batch_id": "5d59aec80063e3a515604c9f234d306b50e8cba9f2ef25b03a55ae2020e36d44",
   "status": "assessing",
   "input_blobs": {
     "jobs.json": "711879e7f6dc5f00fed53dd5995d1395455c5d66",
-    "fit_scores.json": "2952a839381db09c3a8d767f1390e3628768ea3e",
-    "fit_backfill.json": "b42e8d0727c77612ef508461cc0497c039893dba",
+    "fit_scores.json": "f77ec0c8bb3fb139807674e3bc5a025d0ed01129",
+    "fit_backfill.json": "5c7b872091a5dcece8a285f5be49c92dc16a1655",
     "meta.json": "420885d3aa523c1d0d71cebff0b4593f362119d5"
   }
 }
