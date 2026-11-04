@@ -12,8 +12,8 @@
     "strong": 2,
     "middle": 22,
     "pass": 13,
-    "waiting": 3,
-    "processing": 0,
+    "waiting": 0,
+    "processing": 3,
     "blocked": 5,
     "excluded": 93,
     "unverified_links": 38
@@ -125,7 +125,7 @@
       "source": "apple",
       "job_snapshot_hash": "65e27d02606035100ea9684c059617d5b4bcb77e5412ecf41c8f0ebed8b1dd87",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -884,7 +884,7 @@
       "source": "google",
       "job_snapshot_hash": "5c879eca1874b3cfb63ea1df6724847aed749859bae5aff198a52ff7e02f3951",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -1159,7 +1159,7 @@
       "source": "netflix",
       "job_snapshot_hash": "531cd3090f3ff346241652fc6f9b2e67b5f512894f2ff2ef177e5403022793e0",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -1971,21 +1971,21 @@
       "status": "failed"
     }
   ],
-  "checked_at": "2026-11-04T07:25:54.642475+00:00",
+  "checked_at": "2026-11-04T07:26:37.363240+00:00",
   "legacy_backlog": {
-    "assessed": 496,
+    "assessed": 495,
     "pending": 0,
     "unresolved": 45,
-    "in_progress": 0,
-    "total": 541,
-    "strong": 59
+    "in_progress": 3,
+    "total": 543,
+    "strong": 58
   },
-  "batch_id": "25fc5b857f312641403d7b559b776da5c62ebb0456e93cf8c51056848c5291db",
+  "batch_id": "6b1b63f04858c257a8009cd16e72bba6c7d23716cf56dcb2b7344095f5d0ad55",
   "status": "assessing",
   "input_blobs": {
     "jobs.json": "fd7f8c806e5d2272958159c5104aa51f0ad1f4c4",
     "fit_scores.json": "f4935e07cc022b0fb2614e6fda55e4f949dad51f",
-    "fit_backfill.json": "cddf4e4ed54438f80c7f6abb6788b44edcf02dcb",
+    "fit_backfill.json": "338ab7d3fb660f58efe143aaefdf7bddd2673168",
     "meta.json": "2bfe98af65295f94816cc11d3647f9ce0103782c"
   }
 }
