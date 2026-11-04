@@ -8,13 +8,13 @@
   "counts": {
     "found": 134,
     "eligible": 58,
-    "completed": 5,
+    "completed": 11,
     "strong": 0,
-    "middle": 3,
-    "pass": 2,
-    "waiting": 51,
-    "processing": 2,
-    "blocked": 0,
+    "middle": 7,
+    "pass": 4,
+    "waiting": 40,
+    "processing": 5,
+    "blocked": 2,
     "excluded": 76,
     "unverified_links": 38
   },
@@ -125,9 +125,9 @@
       "source": "apple",
       "job_snapshot_hash": "483787c0140dd86a83b21458e5cd6e4ca0e916bcb207583adfede79f0bb06bf0",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "pass"
     },
     {
       "key": "arbeitnow:AIM:remote-dealer-account-manager-165208",
@@ -169,7 +169,7 @@
       "source": "arbeitnow",
       "job_snapshot_hash": "7b44c4f8f1c0990d9dd1c558029bba13d9bf14160d6a2c5102369b82cbaef305",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -191,8 +191,8 @@
       "source": "arbeitnow",
       "job_snapshot_hash": "33e4ffbc225a5c25f197f035aa661ab530ae426a63d6085c26fbb082b13d53e7",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
+      "status": "blocked",
+      "reason": "Paid retry budget exhausted; review required.",
       "verdict": null
     },
     {
@@ -202,8 +202,8 @@
       "source": "arbeitnow",
       "job_snapshot_hash": "f87ee05bdbf9fe4e09792f11e85789023db2635ca64e581fac131beb0014f579",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
+      "status": "blocked",
+      "reason": "Paid retry budget exhausted; review required.",
       "verdict": null
     },
     {
@@ -367,9 +367,9 @@
       "source": "arbeitnow",
       "job_snapshot_hash": "36d74968e8697544a50ae5e9e298266e0b2bd9d328a238010022cf57ebd88770",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "pass"
     },
     {
       "key": "arbeitnow:Partnerize:lead-database-administrator-cardiff-86927",
@@ -840,7 +840,7 @@
       "source": "github",
       "job_snapshot_hash": "e0ba32ee11c7ca2a073b5583581b721c5c55ce3e6f6fd8ecbc461850f77ff30b",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -1082,7 +1082,7 @@
       "source": "microsoft",
       "job_snapshot_hash": "8b27556150af3e65c01b0015f4798988ddac647d07b45cff474b2b41d836a90a",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -1093,7 +1093,7 @@
       "source": "microsoft",
       "job_snapshot_hash": "1cec5de9b78c6a78892c5c1e517226058a4f1c3fa976007019b4bb56cd2da660",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -1104,9 +1104,9 @@
       "source": "microsoft",
       "job_snapshot_hash": "bf171883fd407a1df46f3066822b53f2958871e0f677595e63c7f7255b26f4f2",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "microsoft:microsoft:1970393557050760",
@@ -1137,9 +1137,9 @@
       "source": "oracle_cloud",
       "job_snapshot_hash": "a609f0052ebe19accdfc3dfc83c72a0c94d30a163be4e571a305c45c562dfe99",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "oracle_cloud:oracle:349660",
@@ -1148,9 +1148,9 @@
       "source": "oracle_cloud",
       "job_snapshot_hash": "be190a4eb9c64b359e717f15f7ba999b64fd0f6775faa516adb78d4fdb2977c4",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "web_discovery:Intuit:b254edf47c8c5f4692a7",
@@ -1214,7 +1214,7 @@
       "source": "workday",
       "job_snapshot_hash": "984f441838e4890546dffbeb9328ea7211b1769e982f85196304e8df3569006e",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -1368,9 +1368,9 @@
       "source": "workday",
       "job_snapshot_hash": "5a3d728744cdbdc9c997864074cae4ad7326734ba19d6e5a3f77a869576fc193",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "workday:statestreet:/job/Boston-Massachusetts/Head-of-Technology-Governance---Program-Management--Senior-Vice-President_R-799678-1",
@@ -1902,21 +1902,21 @@
       "status": "failed"
     }
   ],
-  "checked_at": "2026-11-04T06:17:48.863638+00:00",
+  "checked_at": "2026-11-04T06:18:51.367283+00:00",
   "legacy_backlog": {
-    "assessed": 459,
-    "pending": 68,
-    "unresolved": 31,
-    "in_progress": 2,
+    "assessed": 465,
+    "pending": 57,
+    "unresolved": 33,
+    "in_progress": 5,
     "total": 560,
     "strong": 55
   },
-  "batch_id": "24af4cc78c9e68a854a890e0a6c51989fd53a7e1153aaa6aaf5e25bd12524ec9",
+  "batch_id": "b3ce981199a7e1fbe8b87aec2c4c915df6cc5bca17909e256886e5d5c8fbe0b7",
   "status": "assessing",
   "input_blobs": {
     "jobs.json": "711879e7f6dc5f00fed53dd5995d1395455c5d66",
-    "fit_scores.json": "832fd0eca850e5c8e61e3ae84e9201d851769fc1",
-    "fit_backfill.json": "17be9385fd879b4b253e4080cd03a8560ce27d80",
+    "fit_scores.json": "2952a839381db09c3a8d767f1390e3628768ea3e",
+    "fit_backfill.json": "b42e8d0727c77612ef508461cc0497c039893dba",
     "meta.json": "420885d3aa523c1d0d71cebff0b4593f362119d5"
   }
 }
