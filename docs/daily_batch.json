@@ -7,15 +7,15 @@
   "collection_at": "2026-11-04T06:00:49.684151+00:00",
   "counts": {
     "found": 134,
-    "eligible": 45,
-    "completed": 32,
+    "eligible": 41,
+    "completed": 36,
     "strong": 2,
-    "middle": 20,
-    "pass": 10,
-    "waiting": 8,
+    "middle": 22,
+    "pass": 12,
+    "waiting": 0,
     "processing": 0,
     "blocked": 5,
-    "excluded": 89,
+    "excluded": 93,
     "unverified_links": 38
   },
   "members": [
@@ -960,9 +960,9 @@
       "url": "https://job-boards.greenhouse.io/missionlane/jobs/8860735002",
       "source": "greenhouse",
       "job_snapshot_hash": "fad0b5f1e4fc5f83158772c4eb5121d1560e789759872fcb638f37c42e5b104a",
-      "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -1159,9 +1159,9 @@
       "source": "web_discovery",
       "job_snapshot_hash": "8ed511c224950fb4a84c81382aa90ea9411e88124e2017d7516734e4260a3d39",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "pass"
     },
     {
       "key": "web_discovery:NVIDIA Corporation:9f4221372d418ec80fc0",
@@ -1302,9 +1302,9 @@
       "source": "workday",
       "job_snapshot_hash": "1b0408a93908af047436f45a5a549cbb38ea1c109b972e005f51ab4d456d39a8",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "workday:mastercard:/job/OFallon-Missouri/Director--Technical-Program-Management_R-293051",
@@ -1357,9 +1357,9 @@
       "source": "workday",
       "job_snapshot_hash": "1cda3f6c818c1fe4b8019e9d6d74591bc89067fd4b0fe8e7d1d46b319364cf8a",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "workday:ngc:/job/United-States-Virginia-Dulles/Senior-Staff-Engineering-Program-Manager--EPM-_R10258956",
@@ -1389,9 +1389,9 @@
       "url": "https://statestreet.wd1.myworkdayjobs.com/en-US/Global/job/Boston-Massachusetts/Portfolio-Finance---Execution-Business-Officer--Vice-President_R-798794",
       "source": "workday",
       "job_snapshot_hash": "9db04b6a63b74c016a0aeadda5c9ddcb42bec713b5cfcd3b3888d33cfbf62bef",
-      "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -1401,9 +1401,9 @@
       "source": "workday",
       "job_snapshot_hash": "aa63f6b7b8ee91c0be273dbb29e1d21d01597ddadf7b8a855948051893013d4d",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "pass"
     },
     {
       "key": "workday:statestreet:/job/Boston-Massachusetts/Technical-Business-Program-Manager--Vice-President---SSIM_R-798933",
@@ -1411,9 +1411,9 @@
       "url": "https://statestreet.wd1.myworkdayjobs.com/en-US/Global/job/Boston-Massachusetts/Technical-Business-Program-Manager--Vice-President---SSIM_R-798933",
       "source": "workday",
       "job_snapshot_hash": "8d64dc3061c895acf176cdbc186bcd849a56de393e4fcf9caaada2f13efce461",
-      "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -1422,9 +1422,9 @@
       "url": "https://statestreet.wd1.myworkdayjobs.com/en-US/Global/job/Burlington-Massachusetts/AI-Governance-Engineer--VP_R-794568",
       "source": "workday",
       "job_snapshot_hash": "500d41656ff495a0f1275d1a12eda58b4fe8e077fba43cfd3ba957261c0a194e",
-      "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -1902,21 +1902,21 @@
       "status": "failed"
     }
   ],
-  "checked_at": "2026-11-04T06:22:57.926402+00:00",
+  "checked_at": "2026-11-04T06:23:58.894329+00:00",
   "legacy_backlog": {
-    "assessed": 486,
-    "pending": 25,
+    "assessed": 491,
+    "pending": 15,
     "unresolved": 36,
     "in_progress": 0,
-    "total": 547,
+    "total": 542,
     "strong": 57
   },
-  "batch_id": "28e87ab245dd152bfc26bb1bac7a8dda4aed9b50d66bd1c0c44737188c6ceffd",
-  "status": "assessing",
+  "batch_id": "cdb92f89e204c0625bfacef97c84cb95e7562a56c72f9df9347cbd843200ca80",
+  "status": "blocked",
   "input_blobs": {
     "jobs.json": "711879e7f6dc5f00fed53dd5995d1395455c5d66",
-    "fit_scores.json": "8aa6e2311c13695c0f93cdb0db6fea3c6298b6dc",
-    "fit_backfill.json": "0810255c792610193a8893e176a0341ee8136ff5",
+    "fit_scores.json": "3627128f80bddaea7ee004873f6c333f838389b5",
+    "fit_backfill.json": "8492fbf6d36a6b022f62a8a896438ee2ae3cf1ba",
     "meta.json": "420885d3aa523c1d0d71cebff0b4593f362119d5"
   }
 }
