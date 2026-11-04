@@ -1,8 +1,8 @@
 {
   "scope": "Configured employer queries and observed listings; internet-wide completeness is unknown.",
   "internet_coverage_verified": false,
-  "raw_unique": 64001,
-  "published_unique": 1464,
+  "raw_unique": 64329,
+  "published_unique": 1466,
   "watchlist_counts": {
     "discovery_gap": 3,
     "collected": 6,
@@ -135,13 +135,13 @@
           "assessment_date_eligible": true
         },
         {
-          "key": "web_discovery:Microsoft:2d8598b6827c15ce30e2",
+          "key": "microsoft:microsoft:1970393557026741",
           "title": "Principal Technical Program Manager",
-          "url": "https://jobs.hardwarefyi.com/jobs/microsoft-principal-technical-program-manager",
-          "location": "Redmond, WA, US",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557026741",
+          "location": "United States, Washington, Redmond | United States, California, Mountain View | United States, Oregon, Hillsboro | United States, North Carolina, Raleigh | United States, Texas, Austin",
           "published": true,
-          "open_status": "structured_posting",
-          "assessment_date_eligible": false
+          "open_status": "listed_in_feed",
+          "assessment_date_eligible": true
         },
         {
           "key": "microsoft:microsoft:1970393557026561",
@@ -149,7 +149,7 @@
           "url": "https://apply.careers.microsoft.com/careers/job/1970393557026561",
           "location": "United States, Washington, Redmond | United States, New York, New York | United States, California, San Francisco | United States, California, Mountain View",
           "published": true,
-          "open_status": "unverified_source_failure",
+          "open_status": "listed_in_feed",
           "assessment_date_eligible": true
         },
         {
@@ -250,15 +250,6 @@
           "published": true,
           "open_status": "unverified_source_failure",
           "assessment_date_eligible": false
-        },
-        {
-          "key": "microsoft:microsoft:1970393557026741",
-          "title": "Principal Technical Program Manager",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557026741",
-          "location": "United States, Washington, Redmond | United States, California, Mountain View | United States, Oregon, Hillsboro | United States, North Carolina, Raleigh | United States, Texas, Austin",
-          "published": true,
-          "open_status": "unverified_source_failure",
-          "assessment_date_eligible": true
         },
         {
           "key": "microsoft:microsoft:1970393557007989",
@@ -393,18 +384,29 @@
   ],
   "screened_out_role_candidates": [
     {
-      "key": "greenhouse:instacart:8337981",
-      "title": "Program Manager, Escalation Management",
-      "location": "United States - Remote",
+      "key": "greenhouse:airbnb:8094412",
+      "title": "Product Program Manager, Roadmap Planning & Program Management",
+      "location": "San Francisco, United States",
       "reasons": [
         "no title match"
       ],
       "score": 0
     },
     {
-      "key": "greenhouse:airbnb:8094412",
-      "title": "Product Program Manager, Roadmap Planning & Program Management",
-      "location": "San Francisco, United States",
+      "key": "greenhouse:stripe:8007738",
+      "title": "Senior Manager, Technical Program Management",
+      "location": "Dublin",
+      "reasons": [
+        "title match (+25)",
+        "sr manager (+30)",
+        "excluded location: Dublin (-60)"
+      ],
+      "score": 0
+    },
+    {
+      "key": "greenhouse:instacart:8337981",
+      "title": "Program Manager, Escalation Management",
+      "location": "United States - Remote",
       "reasons": [
         "no title match"
       ],
@@ -433,17 +435,6 @@
       "score": 0
     },
     {
-      "key": "greenhouse:stripe:8007738",
-      "title": "Senior Manager, Technical Program Management",
-      "location": "Dublin",
-      "reasons": [
-        "title match (+25)",
-        "sr manager (+30)",
-        "excluded location: Dublin (-60)"
-      ],
-      "score": 0
-    },
-    {
       "key": "greenhouse:anthropic:5460837008",
       "title": "International Finance Program Management",
       "location": "Dublin, IE",
@@ -456,6 +447,15 @@
       "key": "greenhouse:anthropic:5445366008",
       "title": "Manager, Product Program Management",
       "location": "San Francisco, CA | New York City, NY",
+      "reasons": [
+        "no title match"
+      ],
+      "score": 0
+    },
+    {
+      "key": "greenhouse:samsara:7558150",
+      "title": "Manager, Operations Program Management",
+      "location": "Remote - US",
       "reasons": [
         "no title match"
       ],
@@ -495,26 +495,6 @@
       "score": 0
     },
     {
-      "key": "greenhouse:tenstorrent:5251842007",
-      "title": "Technical Program Manager SOC & Digital Design",
-      "location": "Tokyo, Japan",
-      "reasons": [
-        "level not in title; needs profile assessment",
-        "title match (+25)",
-        "excluded location: Tokyo, Japan (-60)"
-      ],
-      "score": 0
-    },
-    {
-      "key": "greenhouse:samsara:7558150",
-      "title": "Manager, Operations Program Management",
-      "location": "Remote - US",
-      "reasons": [
-        "no title match"
-      ],
-      "score": 0
-    },
-    {
       "key": "greenhouse:pinterest:8016646",
       "title": "Sr. Technical Program Manager",
       "location": "Singapore, SG",
@@ -522,6 +502,17 @@
         "title match (+25)",
         "senior tpm (+20)",
         "excluded location: Singapore, SG (-60)"
+      ],
+      "score": 0
+    },
+    {
+      "key": "greenhouse:tenstorrent:5251842007",
+      "title": "Technical Program Manager SOC & Digital Design",
+      "location": "Tokyo, Japan",
+      "reasons": [
+        "level not in title; needs profile assessment",
+        "title match (+25)",
+        "excluded location: Tokyo, Japan (-60)"
       ],
       "score": 0
     },
@@ -535,11 +526,46 @@
       "score": 0
     },
     {
-      "key": "ashby:openai:e1b8fd3a-315c-4480-9105-98228093d429",
-      "title": "Technical Systems Program Manager, User Operations",
-      "location": "Remote; San Francisco, California, United States",
+      "key": "workday:walmart:/job/IN-KA-BANGALORE-Home-Office-Building-10/STAFF--TECHNICAL-PROGRAM-MANAGER_R-2625851",
+      "title": "STAFF, TECHNICAL PROGRAM MANAGER",
+      "location": "IN KA BANGALORE Home Office Building 10",
       "reasons": [
-        "no title match"
+        "title match (+25)",
+        "staff or principal (+25)",
+        "excluded location: IN KA BANGALORE Home Office Building 10 (-60)"
+      ],
+      "score": 0
+    },
+    {
+      "key": "workday:walmart:/job/IN-KA-BANGALORE-Home-Office-PTPP1/PRINCIPAL--TECHNICAL-PROGRAM-MANAGER_R-2672481",
+      "title": "PRINCIPAL, TECHNICAL PROGRAM MANAGER",
+      "location": "IN KA BANGALORE Home Office PTPP1",
+      "reasons": [
+        "title match (+25)",
+        "staff or principal (+25)",
+        "excluded location: IN KA BANGALORE Home Office PTPP1 (-60)"
+      ],
+      "score": 0
+    },
+    {
+      "key": "workday:cisco:/job/Singapore-Singapore/Director--Splunk-APJC-Program-Management_2023333-1",
+      "title": "Director, Splunk APJC Program Management",
+      "location": "Singapore, Singapore",
+      "reasons": [
+        "title match (+25)",
+        "director (+35)",
+        "excluded location: Singapore, Singapore (-60)"
+      ],
+      "score": 0
+    },
+    {
+      "key": "netflix:netflix:790318307129",
+      "title": "Technical Program Manager 5 - Content & Studio Engineering",
+      "location": "Warsaw,Poland",
+      "reasons": [
+        "title match (+25)",
+        "level not in title, fit check judges it (+20)",
+        "excluded location: Warsaw,Poland (-60)"
       ],
       "score": 0
     },
@@ -630,28 +656,6 @@
       "location": "Herndon, Virginia, USA",
       "reasons": [
         "no title match"
-      ],
-      "score": 0
-    },
-    {
-      "key": "workday:walmart:/job/IN-KA-BANGALORE-Home-Office-Building-10/STAFF--TECHNICAL-PROGRAM-MANAGER_R-2625851",
-      "title": "STAFF, TECHNICAL PROGRAM MANAGER",
-      "location": "IN KA BANGALORE Home Office Building 10",
-      "reasons": [
-        "title match (+25)",
-        "staff or principal (+25)",
-        "excluded location: IN KA BANGALORE Home Office Building 10 (-60)"
-      ],
-      "score": 0
-    },
-    {
-      "key": "workday:walmart:/job/IN-KA-BANGALORE-Home-Office-PTPP1/PRINCIPAL--TECHNICAL-PROGRAM-MANAGER_R-2672481",
-      "title": "PRINCIPAL, TECHNICAL PROGRAM MANAGER",
-      "location": "IN KA BANGALORE Home Office PTPP1",
-      "reasons": [
-        "title match (+25)",
-        "staff or principal (+25)",
-        "excluded location: IN KA BANGALORE Home Office PTPP1 (-60)"
       ],
       "score": 0
     },
@@ -1070,17 +1074,6 @@
       "score": 0
     },
     {
-      "key": "workday:cisco:/job/Singapore-Singapore/Director--Splunk-APJC-Program-Management_2023333-1",
-      "title": "Director, Splunk APJC Program Management",
-      "location": "Singapore, Singapore",
-      "reasons": [
-        "title match (+25)",
-        "director (+35)",
-        "excluded location: Singapore, Singapore (-60)"
-      ],
-      "score": 0
-    },
-    {
       "key": "oracle_cloud:dell:291930",
       "title": "Advisor, Technical Program Management",
       "location": "Bukit Mertajam, Pulau Pinang, Malaysia",
@@ -1120,15 +1113,6 @@
       "key": "oracle_cloud:dell:299387",
       "title": "Consultant, Technical Program Management",
       "location": "TX, United States",
-      "reasons": [
-        "no title match"
-      ],
-      "score": 0
-    },
-    {
-      "key": "oracle_cloud:dell:299744",
-      "title": "Advisor, Services Project Program Management",
-      "location": "Indonesia",
       "reasons": [
         "no title match"
       ],
@@ -1209,27 +1193,36 @@
       "score": 0
     },
     {
-      "key": "workday:salesforce:/job/India---Bangalore/Salesforce-Technical-Architect--Consumer-goods--REX-or-TPM-or-CG-Cloud-exp-mandatory-_JR327810",
-      "title": "Salesforce Technical Architect, Consumer goods (REX or TPM or CG Cloud exp mandatory)",
-      "location": "2 Locations",
+      "key": "apple:apple:200687148",
+      "title": "Manager, Technical SEO Programs - Cupertino",
+      "location": "Cupertino, United States",
       "reasons": [
         "no title match"
       ],
       "score": 0
     },
     {
-      "key": "workday:salesforce:/job/Indiana---Indianapolis/Program-Project-Management-Lead_JR363422-1",
-      "title": "Program/Project Management Lead",
-      "location": "2 Locations",
+      "key": "apple:apple:200670842",
+      "title": "Technical Program & Quality Manager (System-in-Package)",
+      "location": "Cupertino, United States",
       "reasons": [
         "no title match"
       ],
       "score": 0
     },
     {
-      "key": "workday:salesforce:/job/Illinois---Chicago/Program-Project-Management-Senior-Lead_JR364722",
-      "title": "Program/Project Management Senior Lead",
-      "location": "2 Locations",
+      "key": "apple:apple:200681224",
+      "title": "Manager, Compliance Engineering Program Management - Strategic Data Solutions",
+      "location": "Austin, United States",
+      "reasons": [
+        "no title match"
+      ],
+      "score": 0
+    },
+    {
+      "key": "apple:apple:200681516",
+      "title": "Engineering Project Manager - Software Beta Program",
+      "location": "San Diego, United States",
       "reasons": [
         "no title match"
       ],
@@ -1301,17 +1294,6 @@
       "score": 0
     },
     {
-      "key": "oracle_cloud:oracle:338747",
-      "title": "Principal Technical Program Manager (TPM) \u2013 Data Center Last Mile",
-      "location": "Singapore",
-      "reasons": [
-        "title match (+25)",
-        "staff or principal (+25)",
-        "excluded location: Singapore (-60)"
-      ],
-      "score": 0
-    },
-    {
       "key": "oracle_cloud:oracle:341666",
       "title": "Program Management Snr Manager \u2013 Platform Planning",
       "location": "Seattle, WA, United States",
@@ -1368,6 +1350,33 @@
       "score": 0
     },
     {
+      "key": "workday:salesforce:/job/India---Bangalore/Salesforce-Technical-Architect--Consumer-goods--REX-or-TPM-or-CG-Cloud-exp-mandatory-_JR327810",
+      "title": "Salesforce Technical Architect, Consumer goods (REX or TPM or CG Cloud exp mandatory)",
+      "location": "2 Locations",
+      "reasons": [
+        "no title match"
+      ],
+      "score": 0
+    },
+    {
+      "key": "workday:salesforce:/job/Indiana---Indianapolis/Program-Project-Management-Lead_JR363422-1",
+      "title": "Program/Project Management Lead",
+      "location": "2 Locations",
+      "reasons": [
+        "no title match"
+      ],
+      "score": 0
+    },
+    {
+      "key": "workday:salesforce:/job/Illinois---Chicago/Program-Project-Management-Senior-Lead_JR364722",
+      "title": "Program/Project Management Senior Lead",
+      "location": "2 Locations",
+      "reasons": [
+        "no title match"
+      ],
+      "score": 0
+    },
+    {
       "key": "workday:capitalone:/job/McLean-VA/Manager--CRA-Strategy---Program-Management_R1004592-1",
       "title": "Manager, CRA Strategy & Program Management",
       "location": "3 Locations",
@@ -1398,24 +1407,6 @@
       "key": "workday:intel:/job/PRC-Chengdu/Foundry-Program-Manager--Service-Operations-and-Program-Management_JR0287147-1",
       "title": "Foundry Program Manager, Service Operations and Program Management",
       "location": "2 Locations",
-      "reasons": [
-        "no title match"
-      ],
-      "score": 0
-    },
-    {
-      "key": "apple:apple:200687148",
-      "title": "Manager, Technical SEO Programs - Cupertino",
-      "location": "Cupertino, United States",
-      "reasons": [
-        "no title match"
-      ],
-      "score": 0
-    },
-    {
-      "key": "apple:apple:200670842",
-      "title": "Technical Program & Quality Manager (System-in-Package)",
-      "location": "Cupertino, United States",
       "reasons": [
         "no title match"
       ],
@@ -1556,6 +1547,26 @@
       "score": 0
     },
     {
+      "key": "greenhouse:wikimedia:8268853",
+      "title": "Software Engineering Internship Program (2027)",
+      "location": "Remote",
+      "reasons": [
+        "excluded: title matches junior/intern/etc."
+      ],
+      "score": 0
+    },
+    {
+      "key": "ashby:applied:efdef8c6-ccd6-4721-aeff-e04e63732622",
+      "title": "Technical Program Manager - EMEA",
+      "location": "Stockholm, Stockholm County, Sweden; Munich, Bavaria, Germany",
+      "reasons": [
+        "level not in title; needs profile assessment",
+        "title match (+25)",
+        "excluded location: Stockholm, Stockholm County, Sweden; Munich, Bavaria, Germany (-60)"
+      ],
+      "score": 0
+    },
+    {
       "key": "greenhouse:purestorage:8283872",
       "title": "Program Manager, Talent Management",
       "location": "Lehi, Utah",
@@ -1574,35 +1585,6 @@
       "score": 0
     },
     {
-      "key": "ashby:applied:efdef8c6-ccd6-4721-aeff-e04e63732622",
-      "title": "Technical Program Manager - EMEA",
-      "location": "Stockholm, Stockholm County, Sweden; Munich, Bavaria, Germany",
-      "reasons": [
-        "level not in title; needs profile assessment",
-        "title match (+25)",
-        "excluded location: Stockholm, Stockholm County, Sweden; Munich, Bavaria, Germany (-60)"
-      ],
-      "score": 0
-    },
-    {
-      "key": "workday:bostondynamics:/job/Waltham-Office-POST/Senior-Field-Application-Engineer_R2934",
-      "title": "Technical Project Manager (TPM), Partner Ecosystems and Integration - French Speaking",
-      "location": "Waltham Office (POST)",
-      "reasons": [
-        "no title match"
-      ],
-      "score": 0
-    },
-    {
-      "key": "workday:workiva:/job/USA---Remote/Senior-Partner-solution-program-manager--Financial-Reporting--Data-Management-_R12645",
-      "title": "Senior Partner solution program manager (Financial Reporting, Data Management)",
-      "location": "USA - Remote",
-      "reasons": [
-        "no title match"
-      ],
-      "score": 0
-    },
-    {
       "key": "lever:jobgether:b2407d36-49b3-4c32-99df-f9d5a904f2b6",
       "title": "Program Management Director",
       "location": "US",
@@ -1615,6 +1597,15 @@
       "key": "lever:jobgether:9d829ffb-2d50-4dd0-afb5-25c01c8c52ca",
       "title": "Program Management, Data & AI Applications",
       "location": "US",
+      "reasons": [
+        "no title match"
+      ],
+      "score": 0
+    },
+    {
+      "key": "workday:bostondynamics:/job/Waltham-Office-POST/Senior-Field-Application-Engineer_R2934",
+      "title": "Technical Project Manager (TPM), Partner Ecosystems and Integration - French Speaking",
+      "location": "Waltham Office (POST)",
       "reasons": [
         "no title match"
       ],
@@ -1651,6 +1642,15 @@
       "key": "workday:google:/job/IN-BLR-BCPV/XMLNAME--Upcoming-Roles--Technical-Program-Manager_JR5686",
       "title": "Program Management Senior Specialist - WebOps - Shared",
       "location": "IN-BLR-BCPV",
+      "reasons": [
+        "no title match"
+      ],
+      "score": 0
+    },
+    {
+      "key": "workday:workiva:/job/USA---Remote/Senior-Partner-solution-program-manager--Financial-Reporting--Data-Management-_R12645",
+      "title": "Senior Partner solution program manager (Financial Reporting, Data Management)",
+      "location": "USA - Remote",
       "reasons": [
         "no title match"
       ],
@@ -1996,36 +1996,9 @@
       "score": 0
     },
     {
-      "key": "lever:InfrastructureandCapitalProjects:0a4ce8e8-da77-4a75-8a99-b5cb348e8492",
-      "title": "Accenture Construct - Vice President \u2013 Program & Construction Management (Transit), ANS",
-      "location": "San Francisco, CA",
-      "reasons": [
-        "no title match"
-      ],
-      "score": 0
-    },
-    {
       "key": "workday:snapchat:/job/New-York-New-York/Lead-Program-Management--SMC-Operations_R0046960-1",
       "title": "Lead Program Management, SMC Operations",
       "location": "6 Locations",
-      "reasons": [
-        "no title match"
-      ],
-      "score": 0
-    },
-    {
-      "key": "workday:statestreet:/job/Bangalore-India/India-Program-Office--Vice-President---State-Street-Investment-Management_R-799966",
-      "title": "India Program Office, Vice President - State Street Investment Management",
-      "location": "Bangalore, India",
-      "reasons": [
-        "no title match"
-      ],
-      "score": 0
-    },
-    {
-      "key": "workday:statestreet:/job/Boston-Massachusetts/Program-Manager---Ways-of-Working-Transformation--VP-II---State-Street-Investment-Management_R-800506",
-      "title": "Program Manager - Ways of Working Transformation, VP II - State Street Investment Management",
-      "location": "Boston, Massachusetts",
       "reasons": [
         "no title match"
       ],
@@ -2255,42 +2228,6 @@
       "score": 0
     },
     {
-      "key": "workday:comcast:/job/PA---Philadelphia-1701-John-F-Kennedy-Blvd/Sr-Director--Program-Management---Early-Career---Rotational-Programming_R446718-1",
-      "title": "Sr Director, Program Management - Early Career & Rotational Programming",
-      "location": "PA - Philadelphia, 1701 John F Kennedy Blvd",
-      "reasons": [
-        "excluded: title matches junior/intern/etc."
-      ],
-      "score": 0
-    },
-    {
-      "key": "workday:comcast:/job/PA---Philadelphia-1701-John-F-Kennedy-Blvd/Sr-Program-Manager--Program-Management---Talent-Experience_R446612-1",
-      "title": "Sr. Program Manager, Program Management - Talent Experience",
-      "location": "PA - Philadelphia, 1701 John F Kennedy Blvd",
-      "reasons": [
-        "no title match"
-      ],
-      "score": 0
-    },
-    {
-      "key": "workday:comcast:/job/PA---Philadelphia-1701-John-F-Kennedy-Blvd/Lead--Program-Management---Accelerated-Development--Mgr-Programming-_R446613",
-      "title": "Lead, Program Management - Accelerated Development",
-      "location": "PA - Philadelphia, 1701 John F Kennedy Blvd",
-      "reasons": [
-        "no title match"
-      ],
-      "score": 0
-    },
-    {
-      "key": "workday:comcast:/job/PA---Philadelphia-1701-John-F-Kennedy-Blvd/Program-Manager--Program-Management---Accelerated-Development_R446671-1",
-      "title": "Program Manager, Program Management - Accelerated Development",
-      "location": "PA - Philadelphia, 1701 John F Kennedy Blvd",
-      "reasons": [
-        "no title match"
-      ],
-      "score": 0
-    },
-    {
       "key": "workday:visa:/job/IN---Bengaluru-India/Technical-Program-Manager_REF089888W",
       "title": "Technical Program Manager",
       "location": "IN - Bengaluru, India",
@@ -2333,29 +2270,18 @@
       "score": 0
     },
     {
-      "key": "workday:kla:/job/Singapore-Singapore/Engineering-Program-Manager_2639861",
-      "title": "Engineering Program Manager",
-      "location": "Singapore, Singapore",
-      "reasons": [
-        "level not in title; needs profile assessment",
-        "title match (+25)",
-        "excluded location: Singapore, Singapore (-60)"
-      ],
-      "score": 0
-    },
-    {
-      "key": "workday:kla:/job/Chennai-India/Associate---Technical-Lead-PLC-Programming_2640061",
-      "title": "Associate / Technical Lead PLC Programming",
-      "location": "Chennai, India",
+      "key": "workday:statestreet:/job/Bangalore-India/India-Program-Office--Vice-President---State-Street-Investment-Management_R-799966",
+      "title": "India Program Office, Vice President - State Street Investment Management",
+      "location": "Bangalore, India",
       "reasons": [
         "no title match"
       ],
       "score": 0
     },
     {
-      "key": "workday:kla:/job/Milpitas-CA/Technical-Program-Project-Manager--Software-_2641387",
-      "title": "Technical Program/Project Manager (Software)",
-      "location": "Milpitas, CA",
+      "key": "workday:statestreet:/job/Boston-Massachusetts/Program-Manager---Ways-of-Working-Transformation--VP-II---State-Street-Investment-Management_R-800506",
+      "title": "Program Manager - Ways of Working Transformation, VP II - State Street Investment Management",
+      "location": "Boston, Massachusetts",
       "reasons": [
         "no title match"
       ],
@@ -2625,27 +2551,29 @@
       "score": 0
     },
     {
-      "key": "workday:jabil:/job/Remote---USA/Sr-Finance-Program-Management-Manager_J2468837",
-      "title": "Sr. Finance Program Management Manager",
-      "location": "Remote - USA",
+      "key": "workday:kla:/job/Singapore-Singapore/Engineering-Program-Manager_2639861",
+      "title": "Engineering Program Manager",
+      "location": "Singapore, Singapore",
+      "reasons": [
+        "level not in title; needs profile assessment",
+        "title match (+25)",
+        "excluded location: Singapore, Singapore (-60)"
+      ],
+      "score": 0
+    },
+    {
+      "key": "workday:kla:/job/Chennai-India/Associate---Technical-Lead-PLC-Programming_2640061",
+      "title": "Associate / Technical Lead PLC Programming",
+      "location": "Chennai, India",
       "reasons": [
         "no title match"
       ],
       "score": 0
     },
     {
-      "key": "workday:jabil:/job/Elmira-NY/Manufacturing-Engineering-Tech-II---CNC-Programmer_J2466657",
-      "title": "Manufacturing Engineering Tech II - CNC Programmer",
-      "location": "Elmira, NY",
-      "reasons": [
-        "no title match"
-      ],
-      "score": 0
-    },
-    {
-      "key": "workday:jabil:/job/Elmira-NY/Manufacturing-Engineering-Tech-II---CNC-Programmer_J2466659",
-      "title": "Manufacturing Engineering Tech II - CNC Programmer",
-      "location": "Elmira, NY",
+      "key": "workday:kla:/job/Milpitas-CA/Technical-Program-Project-Manager--Software-_2641387",
+      "title": "Technical Program/Project Manager (Software)",
+      "location": "Milpitas, CA",
       "reasons": [
         "no title match"
       ],
@@ -2706,13 +2634,29 @@
       "score": 0
     },
     {
-      "key": "workday:novartis:/job/Hyderabad-Office/Associate-Director---Consulting---Program-Management_REQ-10087022",
-      "title": "Associate Director - Consulting & Program Management",
-      "location": "Hyderabad (Office)",
+      "key": "workday:jabil:/job/Remote---USA/Sr-Finance-Program-Management-Manager_J2468837",
+      "title": "Sr. Finance Program Management Manager",
+      "location": "Remote - USA",
       "reasons": [
-        "title match (+25)",
-        "director (+35)",
-        "excluded location: Hyderabad (Office) (-60)"
+        "no title match"
+      ],
+      "score": 0
+    },
+    {
+      "key": "workday:jabil:/job/Elmira-NY/Manufacturing-Engineering-Tech-II---CNC-Programmer_J2466657",
+      "title": "Manufacturing Engineering Tech II - CNC Programmer",
+      "location": "Elmira, NY",
+      "reasons": [
+        "no title match"
+      ],
+      "score": 0
+    },
+    {
+      "key": "workday:jabil:/job/Elmira-NY/Manufacturing-Engineering-Tech-II---CNC-Programmer_J2466659",
+      "title": "Manufacturing Engineering Tech II - CNC Programmer",
+      "location": "Elmira, NY",
+      "reasons": [
+        "no title match"
       ],
       "score": 0
     },
@@ -3181,6 +3125,60 @@
       "score": 0
     },
     {
+      "key": "workday:cw:/job/Raleigh-North-Carolina-USA/Program-Management-Leader_R341485",
+      "title": "Program Management Leader",
+      "location": "2 Locations",
+      "reasons": [
+        "no title match"
+      ],
+      "score": 0
+    },
+    {
+      "key": "workday:comcast:/job/PA---Philadelphia-1701-John-F-Kennedy-Blvd/Sr-Director--Program-Management---Early-Career---Rotational-Programming_R446718-1",
+      "title": "Sr Director, Program Management - Early Career & Rotational Programming",
+      "location": "PA - Philadelphia, 1701 John F Kennedy Blvd",
+      "reasons": [
+        "excluded: title matches junior/intern/etc."
+      ],
+      "score": 0
+    },
+    {
+      "key": "workday:comcast:/job/PA---Philadelphia-1701-John-F-Kennedy-Blvd/Sr-Program-Manager--Program-Management---Talent-Experience_R446612-1",
+      "title": "Sr. Program Manager, Program Management - Talent Experience",
+      "location": "PA - Philadelphia, 1701 John F Kennedy Blvd",
+      "reasons": [
+        "no title match"
+      ],
+      "score": 0
+    },
+    {
+      "key": "workday:comcast:/job/PA---Philadelphia-1701-John-F-Kennedy-Blvd/Lead--Program-Management---Accelerated-Development--Mgr-Programming-_R446613",
+      "title": "Lead, Program Management - Accelerated Development",
+      "location": "PA - Philadelphia, 1701 John F Kennedy Blvd",
+      "reasons": [
+        "no title match"
+      ],
+      "score": 0
+    },
+    {
+      "key": "workday:comcast:/job/PA---Philadelphia-1701-John-F-Kennedy-Blvd/Program-Manager--Program-Management---Accelerated-Development_R446671-1",
+      "title": "Program Manager, Program Management - Accelerated Development",
+      "location": "PA - Philadelphia, 1701 John F Kennedy Blvd",
+      "reasons": [
+        "no title match"
+      ],
+      "score": 0
+    },
+    {
+      "key": "lever:InfrastructureandCapitalProjects:0a4ce8e8-da77-4a75-8a99-b5cb348e8492",
+      "title": "Accenture Construct - Vice President \u2013 Program & Construction Management (Transit), ANS",
+      "location": "San Francisco, CA",
+      "reasons": [
+        "no title match"
+      ],
+      "score": 0
+    },
+    {
       "key": "workday:ngc:/job/United-States-Remote/Manager-Supply-Chain-Programs-2---Category-Management_R10258773",
       "title": "Manager Supply Chain Programs 2 - Category Management",
       "location": "4 Locations",
@@ -3244,59 +3242,32 @@
       "score": 0
     },
     {
-      "key": "workday:cw:/job/Raleigh-North-Carolina-USA/Program-Management-Leader_R341485",
-      "title": "Program Management Leader",
-      "location": "2 Locations",
+      "key": "workday:novartis:/job/Hyderabad-Office/Associate-Director---Consulting---Program-Management_REQ-10087022",
+      "title": "Associate Director - Consulting & Program Management",
+      "location": "Hyderabad (Office)",
       "reasons": [
-        "no title match"
-      ],
-      "score": 0
-    },
-    {
-      "key": "greenhouse:wikimedia:8268853",
-      "title": "Software Engineering Internship Program (2027)",
-      "location": "Remote",
-      "reasons": [
-        "excluded: title matches junior/intern/etc."
+        "title match (+25)",
+        "director (+35)",
+        "excluded location: Hyderabad (Office) (-60)"
       ],
       "score": 0
     }
   ],
   "incomplete_sources": [
     {
-      "source": "netflix",
-      "label": "program manager",
-      "status": "failed",
-      "jobs": 0
-    },
-    {
-      "source": "apple",
-      "label": "\"program management\"",
-      "status": "partial",
-      "jobs": 140
-    },
-    {
       "source": "microsoft",
       "label": "{'query': '', 'filters': {'career_discipline': ['Technical Program Management']}}",
       "status": "partial",
-      "jobs": 10,
+      "jobs": 30,
       "reported_total": 81,
-      "collected": 10,
-      "pages": 1,
+      "collected": 30,
+      "pages": 3,
       "enumeration_complete": false,
       "query": ""
     },
     {
       "source": "web_search",
-      "query": "\"Principal Technical Program Manager\" \"Atlassian\" careers",
-      "status": "limit_reached",
-      "leads": 19,
-      "pages": 1,
-      "scope": "search_index_only"
-    },
-    {
-      "source": "web_search",
-      "query": "\"Director, Technical Program Management - Ads Foundations, Supply & Decisioning\" \"Netflix\" careers",
+      "query": "\"Customer Technical Program Manager\" \"NVIDIA\" careers",
       "status": "limit_reached",
       "leads": 16,
       "pages": 1,
@@ -3304,95 +3275,53 @@
     },
     {
       "source": "web_search",
-      "query": "\"Principal Technical Program Manager\" \"Microsoft\" careers",
+      "query": "\"Technical Program Manager\" \"Meta\" careers",
       "status": "limit_reached",
       "leads": 20,
       "pages": 1,
       "scope": "search_index_only"
     },
     {
+      "source": "web_search",
+      "query": "\"Principal Technical Program Manager\" \"Oracle\" careers",
+      "status": "limit_reached",
+      "leads": 15,
+      "pages": 1,
+      "scope": "search_index_only"
+    },
+    {
       "source": "career_page",
-      "url": "https://jobs.biospace.com/job/3087905/vice-president-program-management-pmo",
+      "url": "https://jobs.anitab.org/companies/capital-one/jobs/65847810-director-technical-program-management",
       "status": "failed"
     },
     {
       "source": "career_page",
-      "url": "https://careers.insmed.com/posting/senior-director-program-management/R3581/",
+      "url": "https://jobs.sanofi.com/en/job/morristown/head-of-ai-driven-digital-customer-engagement-management-platform/2649/44747756352",
       "status": "failed"
     },
     {
       "source": "career_page",
-      "url": "https://careers.insmed.com/posting/director-diagnosis-innovation-collaboration/R3648/",
+      "url": "https://jobs.biospace.com/job/3075191/head-of-ai-driven-digital-customer-engagement-management-platform/?TrackID=22",
       "status": "failed"
     },
     {
       "source": "career_page",
-      "url": "https://careers.oracle.com/en/job/320963",
+      "url": "https://jobs.sagavc.com/companies/openai/jobs/82148933-technical-program-manager-applied-api-product",
       "status": "failed"
     },
     {
       "source": "career_page",
-      "url": "https://jobs.biospace.com/job/3075281/director-program-management-oncology/?TrackID=22",
+      "url": "https://jobs.accel.com/companies/anthropic/jobs/89153377-technical-program-manager-silicon",
       "status": "failed"
     },
     {
       "source": "career_page",
-      "url": "https://careers.astrazeneca.com/job/new-york/global-clinical-program-lead-immunology-cell-therapy-rheumatology/7684/92760560000",
+      "url": "https://jobs.menlovc.com/companies/anthropic/jobs/89153377-technical-program-manager-silicon",
       "status": "failed"
     },
     {
       "source": "career_page",
-      "url": "https://careers.astrazeneca.com/job/boston/global-clinical-program-lead-immunology-cell-therapy/7684/79257811440",
-      "status": "failed"
-    },
-    {
-      "source": "career_page",
-      "url": "https://jobs.innovationbay.com/companies/excelero-storage/jobs/91599526-senior-manager-validation-and-hpc-nvis",
-      "status": "failed"
-    },
-    {
-      "source": "career_page",
-      "url": "https://jobs.khoslaventures.com/companies/hackerrank/jobs/74071961-director-forward-deployed-engineering",
-      "status": "failed"
-    },
-    {
-      "source": "career_page",
-      "url": "https://jobs.accel.com/companies/atlassian/jobs/41010570-principal-technical-program-manager",
-      "status": "failed"
-    },
-    {
-      "source": "career_page",
-      "url": "https://jobs.accel.com/companies/atlassian/jobs/46716993-senior-principal-technical-program-manager",
-      "status": "failed"
-    },
-    {
-      "source": "career_page",
-      "url": "https://jobs.accel.com/companies/atlassian/jobs/59862658-principal-technical-program-manager-paas",
-      "status": "failed"
-    },
-    {
-      "source": "career_page",
-      "url": "https://jobs.accel.com/companies/atlassian/jobs/39157220-lead-principal-technical-program-manager",
-      "status": "failed"
-    },
-    {
-      "source": "career_page",
-      "url": "https://jobs.appliedmaterials.com/job/santa-clara/technical-project-program-management/95/95409043424",
-      "status": "failed"
-    },
-    {
-      "source": "career_page",
-      "url": "https://careers.alvarezandmarsal.com/jobs/17860788-director-pepi-technology-services-cto-domain",
-      "status": "failed"
-    },
-    {
-      "source": "career_page",
-      "url": "https://jobs.physicstoday.org/employer/20569/slac-national-accelerator-laboratory/",
-      "status": "failed"
-    },
-    {
-      "source": "career_page",
-      "url": "https://jobs.physicstoday.org/jobs/particle-nuclear-and-high-energy-physics/full-time/california/",
+      "url": "https://jobs.lionheart.vc/companies/anthropic/jobs/89153377-technical-program-manager-silicon",
       "status": "failed"
     },
     {
@@ -3427,12 +3356,102 @@
     },
     {
       "source": "career_page",
-      "url": "https://jobs.anitab.org/companies/microsoft-2/jobs/85372043-principal-technical-program-manager",
+      "url": "https://careers.rivianvw.tech/",
       "status": "failed"
     },
     {
       "source": "career_page",
-      "url": "https://jobs.lenovo.com/en_US/careers/JobDetail/Chief-of-Staff-AI-Engineering/80304",
+      "url": "https://careers.nike.com/senior-principal-technical-program-manager/job/R-69624",
+      "status": "failed"
+    },
+    {
+      "source": "career_page",
+      "url": "https://jobs.anitab.org/companies/ey-2/jobs/90536251-ey-parthenon-ai-business-solutions-oneedge-portfolio-manager-senior-director",
+      "status": "failed"
+    },
+    {
+      "source": "career_page",
+      "url": "https://careers.mastercard.com/us/en/job/R-280171/Director-Technical-Program-Management",
+      "status": "failed"
+    },
+    {
+      "source": "career_page",
+      "url": "https://jobs.alleycorp.com/companies/archer-technologies/jobs/65825206-staff-technical-program-manager-powertrain-operations-sj2026rs",
+      "status": "failed"
+    },
+    {
+      "source": "career_page",
+      "url": "https://jobs.alleycorp.com/companies/archer-technologies/jobs/54134189-technical-program-manager-composites",
+      "status": "failed"
+    },
+    {
+      "source": "career_page",
+      "url": "https://jobs.alleycorp.com/companies/archer-technologies/jobs/48071748-staff-technical-program-manager",
+      "status": "failed"
+    },
+    {
+      "source": "career_page",
+      "url": "https://jobs.tryclub.com/projects/126305/manager-technical-program-management-ai-ml-content-engineering",
+      "status": "failed"
+    },
+    {
+      "source": "career_page",
+      "url": "https://careers.wing.vc/companies/develop-health-2-ec5d455a-012c-4578-b97d-73d8cc520fec/jobs/91881409-strategic-business-operations-lead",
+      "status": "failed"
+    },
+    {
+      "source": "career_page",
+      "url": "https://jobs.boeing.com/job/berkeley/business-operations-lead/185/85432390736",
+      "status": "failed"
+    },
+    {
+      "source": "career_page",
+      "url": "https://careers.airbnb.com/positions/8163221/",
+      "status": "failed"
+    },
+    {
+      "source": "career_page",
+      "url": "https://careers.airbnb.com/positions/7736820/",
+      "status": "failed"
+    },
+    {
+      "source": "career_page",
+      "url": "https://jobs.anitab.org/companies/nvidia/jobs/59410418-customer-technical-program-manager",
+      "status": "failed"
+    },
+    {
+      "source": "career_page",
+      "url": "https://jobs.anitab.org/companies/nvidia/jobs/52278874-enterprise-customer-technical-program-manager",
+      "status": "failed"
+    },
+    {
+      "source": "career_page",
+      "url": "https://careers.unitedhealthgroup.com/job/minnetonka/director-of-ai-transformation-and-business-modernization-remote/34088/102336385168",
+      "status": "failed"
+    },
+    {
+      "source": "career_page",
+      "url": "https://jobs.anitab.org/companies/meta-3-c00df464-9d7f-4a12-a5c0-f043ccf7bf75/jobs/57122825-technical-program-manager",
+      "status": "failed"
+    },
+    {
+      "source": "career_page",
+      "url": "https://jobs.anitab.org/companies/oracle-2-2edaf908-7a2f-4ec2-a440-aed90715dc36/jobs/62507597-principal-technical-program-manager",
+      "status": "failed"
+    },
+    {
+      "source": "career_page",
+      "url": "https://jobs.anitab.org/companies/oracle-2-2edaf908-7a2f-4ec2-a440-aed90715dc36/jobs/63254753-senior-principal-technical-program-manager",
+      "status": "failed"
+    },
+    {
+      "source": "career_page",
+      "url": "https://careers.oracle.com/en/job/333195",
+      "status": "failed"
+    },
+    {
+      "source": "career_page",
+      "url": "https://careers.salesforce.com/en/jobs/jr320588/senior-director-technical-program-management/",
       "status": "failed"
     },
     {
@@ -3496,11 +3515,11 @@
       "label": "a16z startup discovery",
       "url": "https://jobs.a16z.com/jobs",
       "status": "partial",
-      "leads": 31,
+      "leads": 29,
       "employers_found": 16,
       "employers_checked": 8,
       "deferred": 8,
-      "unresolved": 6,
+      "unresolved": 8,
       "listing_failures": 0
     },
     {
@@ -3508,11 +3527,11 @@
       "label": "Sequoia startup discovery",
       "url": "https://jobs.sequoiacap.com/jobs",
       "status": "partial",
-      "leads": 18,
+      "leads": 20,
       "employers_found": 25,
       "employers_checked": 8,
       "deferred": 17,
-      "unresolved": 4,
+      "unresolved": 5,
       "listing_failures": 0
     },
     {
@@ -3520,10 +3539,10 @@
       "label": "Greylock startup discovery",
       "url": "https://greylock.com/jobs/portfolio-jobs/",
       "status": "partial",
-      "leads": 20,
-      "employers_found": 42,
+      "leads": 23,
+      "employers_found": 52,
       "employers_checked": 8,
-      "deferred": 34,
+      "deferred": 44,
       "unresolved": 8,
       "listing_failures": 0
     },
@@ -3741,7 +3760,7 @@
       "unresolved_alert_messages": 10,
       "lookback_days": 14,
       "mode": "incremental",
-      "search_since": "2026-11-03T06:00:49.684151+00:00",
+      "search_since": "2026-11-03T06:30:53.373196+00:00",
       "last_success_at": null
     },
     {
@@ -3786,156 +3805,160 @@
       "jobs": 0
     },
     {
-      "source": "lever",
-      "label": "{\"config\": \"matchgroup\", \"source\": \"lever\"}",
-      "status": "failed",
-      "jobs": 0
-    },
-    {
       "source": "greenhouse",
-      "label": "{\"config\": \"sharkninjaoperatingllc\", \"source\": \"greenhouse\"}",
+      "label": "{\"config\": \"beamtherapeutics\", \"source\": \"greenhouse\"}",
       "status": "deferred",
-      "jobs": 143,
-      "checked_at": "2026-11-04T06:00:49.684151+00:00",
-      "cached_results_retained": true
-    },
-    {
-      "source": "ashby",
-      "label": "{\"config\": \"formenergy\", \"source\": \"ashby\"}",
-      "status": "deferred",
-      "jobs": 202,
-      "checked_at": "2026-11-04T06:00:49.684151+00:00",
+      "jobs": 42,
+      "checked_at": "2026-11-04T06:30:53.373196+00:00",
       "cached_results_retained": true
     },
     {
       "source": "greenhouse",
-      "label": "{\"config\": \"wikimedia\", \"source\": \"greenhouse\"}",
+      "label": "{\"config\": \"rebuildmanufacturing\", \"source\": \"greenhouse\"}",
       "status": "deferred",
-      "jobs": 14,
-      "checked_at": "2026-11-04T06:00:49.684151+00:00",
+      "jobs": 133,
+      "checked_at": "2026-11-04T06:30:53.373196+00:00",
       "cached_results_retained": true
     },
     {
       "source": "workday",
-      "label": "{\"config\": {\"search\": \"program\", \"site\": \"Vantor\", \"tenant\": \"maxar\", \"wd_server\": \"wd1\"}, \"source\": \"workday\"}",
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"External\", \"tenant\": \"cw\", \"wd_server\": \"wd1\"}, \"source\": \"workday\"}",
       "status": "deferred",
-      "jobs": 83,
-      "reported_total": 83,
-      "collected": 83,
-      "pages": 5,
+      "jobs": 1779,
+      "reported_total": 1779,
+      "collected": 1779,
+      "pages": 89,
       "enumeration_complete": true,
       "query": "program",
-      "checked_at": "2026-11-04T06:00:49.684151+00:00",
+      "checked_at": "2026-11-04T06:30:53.373196+00:00",
       "cached_results_retained": true
     },
     {
       "source": "workday",
-      "label": "{\"config\": {\"search\": \"program\", \"site\": \"EXTERNAL\", \"tenant\": \"insmed\", \"wd_server\": \"wd504\"}, \"source\": \"workday\"}",
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"jobs\", \"tenant\": \"paypal\", \"wd_server\": \"wd1\"}, \"source\": \"workday\"}",
       "status": "deferred",
-      "jobs": 112,
-      "reported_total": 112,
-      "collected": 112,
-      "pages": 6,
+      "jobs": 314,
+      "reported_total": 314,
+      "collected": 314,
+      "pages": 16,
       "enumeration_complete": true,
       "query": "program",
-      "checked_at": "2026-11-04T06:00:49.684151+00:00",
-      "cached_results_retained": true
-    },
-    {
-      "source": "workday",
-      "label": "{\"config\": {\"search\": \"program\", \"site\": \"Careers\", \"tenant\": \"astrazeneca\", \"wd_server\": \"wd3\"}, \"source\": \"workday\"}",
-      "status": "deferred",
-      "jobs": 492,
-      "reported_total": 492,
-      "collected": 492,
-      "pages": 25,
-      "enumeration_complete": true,
-      "query": "program",
-      "checked_at": "2026-11-04T06:00:49.684151+00:00",
-      "cached_results_retained": true
-    },
-    {
-      "source": "workday",
-      "label": "{\"config\": {\"search\": \"program\", \"site\": \"broadbean_external\", \"tenant\": \"astrazeneca\", \"wd_server\": \"wd3\"}, \"source\": \"workday\"}",
-      "status": "deferred",
-      "jobs": 108,
-      "reported_total": 108,
-      "collected": 108,
-      "pages": 6,
-      "enumeration_complete": true,
-      "query": "program",
-      "checked_at": "2026-11-04T06:00:49.684151+00:00",
-      "cached_results_retained": true
-    },
-    {
-      "source": "greenhouse",
-      "label": "{\"config\": \"hackerrank\", \"source\": \"greenhouse\"}",
-      "status": "deferred",
-      "jobs": 28,
-      "checked_at": "2026-11-03T06:50:53.017348+00:00",
-      "cached_results_retained": true
-    },
-    {
-      "source": "lever",
-      "label": "{\"config\": \"tutorintelligence\", \"source\": \"lever\"}",
-      "status": "deferred",
-      "jobs": 81,
-      "checked_at": "2026-11-03T06:50:53.017348+00:00",
+      "checked_at": "2026-11-04T06:30:53.373196+00:00",
       "cached_results_retained": true
     },
     {
       "source": "ashby",
-      "label": "{\"config\": \"magiceden\", \"source\": \"ashby\"}",
+      "label": "{\"config\": \"illumio\", \"source\": \"ashby\"}",
       "status": "deferred",
-      "jobs": 2,
-      "checked_at": "2026-11-03T06:50:53.017348+00:00",
+      "jobs": 65,
+      "checked_at": "2026-11-04T06:30:53.373196+00:00",
       "cached_results_retained": true
     },
     {
       "source": "ashby",
-      "label": "{\"config\": \"assured\", \"source\": \"ashby\"}",
+      "label": "{\"config\": \"AeroVect\", \"source\": \"ashby\"}",
       "status": "deferred",
       "jobs": 44,
-      "checked_at": "2026-11-03T06:50:53.017348+00:00",
+      "checked_at": "2026-11-04T06:30:53.373196+00:00",
       "cached_results_retained": true
     },
     {
-      "source": "ashby",
-      "label": "{\"config\": \"miovision\", \"source\": \"ashby\"}",
+      "source": "lever",
+      "label": "{\"config\": \"nahc\", \"source\": \"lever\"}",
       "status": "deferred",
-      "jobs": 18,
-      "checked_at": "2026-11-03T06:50:53.017348+00:00",
+      "jobs": 40,
+      "checked_at": "2026-11-04T06:30:53.373196+00:00",
       "cached_results_retained": true
     },
     {
-      "source": "ashby",
-      "label": "{\"config\": \"socure\", \"source\": \"ashby\"}",
+      "source": "lever",
+      "label": "{\"config\": \"anchorage\", \"source\": \"lever\"}",
       "status": "deferred",
-      "jobs": 86,
-      "checked_at": "2026-11-03T06:50:53.017348+00:00",
-      "cached_results_retained": true
-    },
-    {
-      "source": "ashby",
-      "label": "{\"config\": \"radai\", \"source\": \"ashby\"}",
-      "status": "deferred",
-      "jobs": 23,
-      "checked_at": "2026-11-03T06:50:53.017348+00:00",
+      "jobs": 22,
+      "checked_at": "2026-11-04T06:30:53.373196+00:00",
       "cached_results_retained": true
     },
     {
       "source": "greenhouse",
-      "label": "{\"config\": \"bloombergorg\", \"source\": \"greenhouse\"}",
+      "label": "{\"config\": \"solidpower\", \"source\": \"greenhouse\"}",
       "status": "deferred",
-      "jobs": 3,
-      "checked_at": "2026-11-03T06:50:53.017348+00:00",
+      "jobs": 6,
+      "checked_at": "2026-11-04T06:30:53.373196+00:00",
+      "cached_results_retained": true
+    },
+    {
+      "source": "workday",
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"f5jobs\", \"tenant\": \"ffive\", \"wd_server\": \"wd5\"}, \"source\": \"workday\"}",
+      "status": "deferred",
+      "jobs": 131,
+      "reported_total": 131,
+      "collected": 131,
+      "pages": 7,
+      "enumeration_complete": true,
+      "query": "program",
+      "checked_at": "2026-11-04T06:30:53.373196+00:00",
+      "cached_results_retained": true
+    },
+    {
+      "source": "workday",
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"Comcast_Careers\", \"tenant\": \"comcast\", \"wd_server\": \"wd115\"}, \"source\": \"workday\"}",
+      "status": "deferred",
+      "jobs": 470,
+      "reported_total": 470,
+      "collected": 470,
+      "pages": 24,
+      "enumeration_complete": true,
+      "query": "program",
+      "checked_at": "2026-11-04T06:30:53.373196+00:00",
+      "cached_results_retained": true
+    },
+    {
+      "source": "greenhouse",
+      "label": "{\"config\": \"onetrust\", \"source\": \"greenhouse\"}",
+      "status": "deferred",
+      "jobs": 82,
+      "checked_at": "2026-11-04T06:30:53.373196+00:00",
+      "cached_results_retained": true
+    },
+    {
+      "source": "lever",
+      "label": "{\"config\": \"InfrastructureandCapitalProjects\", \"source\": \"lever\"}",
+      "status": "deferred",
+      "jobs": 190,
+      "checked_at": "2026-11-04T06:30:53.373196+00:00",
+      "cached_results_retained": true
+    },
+    {
+      "source": "workday",
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"Northrop_Grumman_External_Site\", \"tenant\": \"ngc\", \"wd_server\": \"wd1\"}, \"source\": \"workday\"}",
+      "status": "deferred",
+      "jobs": 3341,
+      "reported_total": 3341,
+      "collected": 3341,
+      "pages": 168,
+      "enumeration_complete": true,
+      "query": "program",
+      "checked_at": "2026-11-04T06:30:53.373196+00:00",
+      "cached_results_retained": true
+    },
+    {
+      "source": "workday",
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"Novartis_Careers\", \"tenant\": \"novartis\", \"wd_server\": \"wd3\"}, \"source\": \"workday\"}",
+      "status": "deferred",
+      "jobs": 534,
+      "reported_total": 534,
+      "collected": 534,
+      "pages": 27,
+      "enumeration_complete": true,
+      "query": "program",
+      "checked_at": "2026-11-04T06:30:53.373196+00:00",
       "cached_results_retained": true
     },
     {
       "source": "description_check",
       "status": "limit_reached",
-      "deferred": 119
+      "deferred": 111
     }
   ],
-  "checked_at": "2026-11-04T06:30:53.373196+00:00"
+  "checked_at": "2026-11-04T07:10:56.053043+00:00"
 }

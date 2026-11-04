@@ -4,15 +4,15 @@
   "start_hour_eastern": 1,
   "deadline_hour_eastern": 6,
   "collection_completed": true,
-  "collection_at": "2026-11-04T06:30:53.373196+00:00",
+  "collection_at": "2026-11-04T07:10:56.053043+00:00",
   "counts": {
-    "found": 135,
-    "eligible": 42,
+    "found": 138,
+    "eligible": 45,
     "completed": 37,
     "strong": 2,
     "middle": 22,
     "pass": 13,
-    "waiting": 0,
+    "waiting": 3,
     "processing": 0,
     "blocked": 5,
     "excluded": 93,
@@ -117,6 +117,17 @@
       "status": "completed",
       "reason": "Existing validated result reused.",
       "verdict": "middle"
+    },
+    {
+      "key": "apple:apple:200693063",
+      "title": "Product Design Engineering Program Manager",
+      "url": "https://jobs.apple.com/en-us/details/200693063/product-design-engineering-program-manager",
+      "source": "apple",
+      "job_snapshot_hash": "65e27d02606035100ea9684c059617d5b4bcb77e5412ecf41c8f0ebed8b1dd87",
+      "eligible": true,
+      "status": "waiting",
+      "reason": "Unfinished assessment.",
+      "verdict": null
     },
     {
       "key": "apple:apple:200693259",
@@ -867,6 +878,17 @@
       "verdict": "strong"
     },
     {
+      "key": "google:google:82921288934269638",
+      "title": "Senior Technical Program Manager, Geo Makers PMO Analytics, Geo",
+      "url": "https://www.google.com/about/careers/applications/jobs/results/82921288934269638",
+      "source": "google",
+      "job_snapshot_hash": "5c879eca1874b3cfb63ea1df6724847aed749859bae5aff198a52ff7e02f3951",
+      "eligible": true,
+      "status": "waiting",
+      "reason": "Unfinished assessment.",
+      "verdict": null
+    },
+    {
       "key": "google:google:97741571805323974",
       "title": "Senior Technical Program Manager I, Network Infrastructure Planning, Google Cloud",
       "url": "https://www.google.com/about/careers/applications/jobs/results/97741571805323974",
@@ -1129,6 +1151,17 @@
       "status": "completed",
       "reason": "Existing validated result reused.",
       "verdict": "middle"
+    },
+    {
+      "key": "netflix:netflix:790319328319",
+      "title": "Technical Program Manager 5 - Enterprise Business Products",
+      "url": "https://explore.jobs.netflix.net/careers/job/790319328319",
+      "source": "netflix",
+      "job_snapshot_hash": "531cd3090f3ff346241652fc6f9b2e67b5f512894f2ff2ef177e5403022793e0",
+      "eligible": true,
+      "status": "waiting",
+      "reason": "Unfinished assessment.",
+      "verdict": null
     },
     {
       "key": "oracle_cloud:oracle:349227",
@@ -1545,22 +1578,52 @@
     "4486817140",
     "4486886427"
   ],
-  "coverage_issues": 73,
+  "coverage_issues": 78,
   "incomplete_sources": [
-    {
-      "source": "netflix",
-      "label": "program manager",
-      "status": "failed"
-    },
-    {
-      "source": "apple",
-      "label": "\"program management\"",
-      "status": "partial"
-    },
     {
       "source": "microsoft",
       "label": "{'query': '', 'filters': {'career_discipline': ['Technical Program Management']}}",
       "status": "partial"
+    },
+    {
+      "source": "career_page",
+      "label": "career_page",
+      "status": "failed"
+    },
+    {
+      "source": "career_page",
+      "label": "career_page",
+      "status": "failed"
+    },
+    {
+      "source": "career_page",
+      "label": "career_page",
+      "status": "failed"
+    },
+    {
+      "source": "career_page",
+      "label": "career_page",
+      "status": "failed"
+    },
+    {
+      "source": "career_page",
+      "label": "career_page",
+      "status": "failed"
+    },
+    {
+      "source": "career_page",
+      "label": "career_page",
+      "status": "failed"
+    },
+    {
+      "source": "career_page",
+      "label": "career_page",
+      "status": "failed"
+    },
+    {
+      "source": "career_page",
+      "label": "career_page",
+      "status": "failed"
     },
     {
       "source": "career_page",
@@ -1906,14 +1969,9 @@
       "source": "greenhouse",
       "label": "{\"config\": \"philo\", \"source\": \"greenhouse\"}",
       "status": "failed"
-    },
-    {
-      "source": "lever",
-      "label": "{\"config\": \"matchgroup\", \"source\": \"lever\"}",
-      "status": "failed"
     }
   ],
-  "checked_at": "2026-11-04T07:01:04.225810+00:00",
+  "checked_at": "2026-11-04T07:25:54.642475+00:00",
   "legacy_backlog": {
     "assessed": 496,
     "pending": 0,
@@ -1922,12 +1980,12 @@
     "total": 541,
     "strong": 59
   },
-  "batch_id": "74bd493d430ce1981a4ac88c53f6dbf171fef174cf8cb12763cfda2765bd3da4",
-  "status": "blocked",
+  "batch_id": "25fc5b857f312641403d7b559b776da5c62ebb0456e93cf8c51056848c5291db",
+  "status": "assessing",
   "input_blobs": {
-    "jobs.json": "07ba5882010359ee53b5840dfea912dcd50a914c",
+    "jobs.json": "fd7f8c806e5d2272958159c5104aa51f0ad1f4c4",
     "fit_scores.json": "f4935e07cc022b0fb2614e6fda55e4f949dad51f",
     "fit_backfill.json": "cddf4e4ed54438f80c7f6abb6788b44edcf02dcb",
-    "meta.json": "5046c4d0edb4da535b8acb3acda4049015eb93b0"
+    "meta.json": "2bfe98af65295f94816cc11d3647f9ce0103782c"
   }
 }
