@@ -7,15 +7,15 @@
   "collection_at": "2026-11-04T06:00:49.684151+00:00",
   "counts": {
     "found": 134,
-    "eligible": 59,
+    "eligible": 58,
     "completed": 5,
     "strong": 0,
     "middle": 3,
     "pass": 2,
-    "waiting": 50,
-    "processing": 4,
+    "waiting": 51,
+    "processing": 2,
     "blocked": 0,
-    "excluded": 75,
+    "excluded": 76,
     "unverified_links": 38
   },
   "members": [
@@ -102,9 +102,9 @@
       "url": "https://www.amazon.jobs/en/jobs/10596093/senior-technical-program-manager-digital-acceleration",
       "source": "amazon_jobs",
       "job_snapshot_hash": "8b5e5773ac3c558a40be5fa9625bf416e01d55f22cfa3728175be4cade2baf4d",
-      "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -191,7 +191,7 @@
       "source": "arbeitnow",
       "job_snapshot_hash": "33e4ffbc225a5c25f197f035aa661ab530ae426a63d6085c26fbb082b13d53e7",
       "eligible": true,
-      "status": "processing",
+      "status": "waiting",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -1902,21 +1902,21 @@
       "status": "failed"
     }
   ],
-  "checked_at": "2026-11-04T06:16:22.384338+00:00",
+  "checked_at": "2026-11-04T06:17:48.863638+00:00",
   "legacy_backlog": {
     "assessed": 459,
-    "pending": 67,
+    "pending": 68,
     "unresolved": 31,
-    "in_progress": 4,
-    "total": 561,
+    "in_progress": 2,
+    "total": 560,
     "strong": 55
   },
-  "batch_id": "bea07019320cec2426508f5021a731d3910247a66f59cd3ad570d649e3ccccbf",
+  "batch_id": "24af4cc78c9e68a854a890e0a6c51989fd53a7e1153aaa6aaf5e25bd12524ec9",
   "status": "assessing",
   "input_blobs": {
     "jobs.json": "711879e7f6dc5f00fed53dd5995d1395455c5d66",
-    "fit_scores.json": "bd1628a9a014ce73fa41009ac48e2e36089bf71d",
-    "fit_backfill.json": "b77d9abc4987f178deead4e4faf8520a9171bebb",
+    "fit_scores.json": "832fd0eca850e5c8e61e3ae84e9201d851769fc1",
+    "fit_backfill.json": "17be9385fd879b4b253e4080cd03a8560ce27d80",
     "meta.json": "420885d3aa523c1d0d71cebff0b4593f362119d5"
   }
 }
