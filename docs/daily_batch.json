@@ -4,7 +4,7 @@
   "start_hour_eastern": 1,
   "deadline_hour_eastern": 6,
   "collection_completed": true,
-  "collection_at": "2026-11-05T06:40:56.990427+00:00",
+  "collection_at": "2026-11-05T07:10:57.303665+00:00",
   "counts": {
     "found": 94,
     "eligible": 40,
@@ -786,7 +786,7 @@
       "job_snapshot_hash": "9df235b0374af5e1aa0634945dd136f4ea3515951eb21bc48decbcc9c99ab247",
       "eligible": true,
       "status": "completed",
-      "reason": "Existing validated result reused.",
+      "reason": "Saved result retained.",
       "verdict": "pass"
     },
     {
@@ -896,7 +896,7 @@
       "job_snapshot_hash": "b3c1cd4239a1145459b742fc7af2d9dff9c2194c8a49b386d22ef0a91d85ae96",
       "eligible": false,
       "status": "excluded",
-      "reason": "Outside agreed assessment criteria.",
+      "reason": "Frozen daily posting is no longer available; review required.",
       "verdict": null
     },
     {
@@ -1091,9 +1091,24 @@
     "4487097992",
     "4487202080"
   ],
-  "coverage_issues": 111,
+  "coverage_issues": 117,
   "incomplete_sources": [
     {
+      "source": "microsoft",
+      "label": "{'query': '', 'filters': {'career_discipline': ['Technical Program Management']}}",
+      "status": "partial"
+    },
+    {
+      "source": "web_search",
+      "label": "web_search",
+      "status": "failed"
+    },
+    {
+      "source": "web_search",
+      "label": "web_search",
+      "status": "failed"
+    },
+    {
       "source": "web_search",
       "label": "web_search",
       "status": "failed"
@@ -1414,8 +1429,18 @@
       "status": "failed"
     },
     {
-      "source": "career_page",
-      "label": "career_page",
+      "source": "web_search",
+      "label": "web_search",
+      "status": "failed"
+    },
+    {
+      "source": "web_search",
+      "label": "web_search",
+      "status": "failed"
+    },
+    {
+      "source": "web_search",
+      "label": "web_search",
       "status": "failed"
     },
     {
@@ -1589,11 +1614,6 @@
       "status": "failed"
     },
     {
-      "source": "lever",
-      "label": "{\"config\": \"anchorage\", \"source\": \"lever\"}",
-      "status": "failed"
-    },
-    {
       "source": "workday",
       "label": "{\"config\": {\"search\": \"program\", \"site\": \"careers\", \"tenant\": \"gogo\", \"wd_server\": \"wd1\"}, \"source\": \"workday\"}",
       "status": "failed"
@@ -1601,11 +1621,6 @@
     {
       "source": "ashby",
       "label": "{\"config\": \"whatnot\", \"source\": \"ashby\"}",
-      "status": "failed"
-    },
-    {
-      "source": "lever",
-      "label": "{\"config\": \"shieldai\", \"source\": \"lever\"}",
       "status": "failed"
     },
     {
@@ -1619,8 +1634,8 @@
       "status": "failed"
     },
     {
-      "source": "ashby",
-      "label": "{\"config\": \"truss\", \"source\": \"ashby\"}",
+      "source": "greenhouse",
+      "label": "{\"config\": \"andurilindustries\", \"source\": \"greenhouse\"}",
       "status": "failed"
     },
     {
@@ -1635,21 +1650,36 @@
     },
     {
       "source": "workday",
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"External\", \"tenant\": \"cw\", \"wd_server\": \"wd1\"}, \"source\": \"workday\"}",
+      "status": "partial"
+    },
+    {
+      "source": "workday",
       "label": "{\"config\": {\"search\": \"program\", \"site\": \"External\", \"tenant\": \"amat\", \"wd_server\": \"wd1\"}, \"source\": \"workday\"}",
       "status": "partial"
     },
     {
       "source": "workday",
-      "label": "{\"config\": {\"search\": \"program\", \"site\": \"External\", \"tenant\": \"cw\", \"wd_server\": \"wd1\"}, \"source\": \"workday\"}",
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"CorporateCareers\", \"tenant\": \"mastercard\", \"wd_server\": \"wd1\"}, \"source\": \"workday\"}",
       "status": "partial"
     },
     {
-      "source": "lever",
-      "label": "{\"config\": \"teleo\", \"source\": \"lever\"}",
+      "source": "workday",
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"Jabil_Careers\", \"tenant\": \"jabil\", \"wd_server\": \"wd5\"}, \"source\": \"workday\"}",
+      "status": "partial"
+    },
+    {
+      "source": "workday",
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"jabil_careers\", \"tenant\": \"jabil\", \"wd_server\": \"wd5\"}, \"source\": \"workday\"}",
+      "status": "partial"
+    },
+    {
+      "source": "ashby",
+      "label": "{\"config\": \"truss\", \"source\": \"ashby\"}",
       "status": "failed"
     }
   ],
-  "checked_at": "2026-11-05T07:01:13.896835+00:00",
+  "checked_at": "2026-11-05T07:28:08.904975+00:00",
   "legacy_backlog": {
     "assessed": 505,
     "pending": 0,
@@ -1658,12 +1688,12 @@
     "total": 543,
     "strong": 63
   },
-  "batch_id": "4bfa66cab0b437ca54caa8391dd52c383f27ed6546829a14183f500ae73e2a30",
+  "batch_id": "dbd5ca10ed2ad40b87c1c8b1bd410b23d8ab008bbbfba1bcfc2c4c854162a0cd",
   "status": "blocked",
   "input_blobs": {
-    "jobs.json": "5efae63d716ef1f4151a9603dade88a12d0c1c50",
+    "jobs.json": "46eb7c2341a51705a02fb4c5575a9f420e487392",
     "fit_scores.json": "63091398b376c31dd851d22e8974a187afdd5c88",
     "fit_backfill.json": "6c63eec8220a8cfaf8fa9518ec408e6d5a2e1da0",
-    "meta.json": "df4626f9eb12c1370e3a2da6876648437fe38cbd"
+    "meta.json": "00fad80c67e26ac0187d01d0a7b76dd918fb5c3f"
   }
 }
