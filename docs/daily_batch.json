@@ -7,15 +7,15 @@
   "collection_at": "2026-11-05T06:00:57.935423+00:00",
   "counts": {
     "found": 90,
-    "eligible": 57,
-    "completed": 5,
+    "eligible": 55,
+    "completed": 9,
     "strong": 2,
-    "middle": 2,
-    "pass": 1,
-    "waiting": 50,
-    "processing": 2,
-    "blocked": 0,
-    "excluded": 33,
+    "middle": 4,
+    "pass": 3,
+    "waiting": 39,
+    "processing": 5,
+    "blocked": 2,
+    "excluded": 35,
     "unverified_links": 35
   },
   "members": [
@@ -157,9 +157,9 @@
       "url": "https://www.amazon.jobs/en/jobs/10597327/senior-technical-program-manager-amazon-stores-finance-tech",
       "source": "amazon_jobs",
       "job_snapshot_hash": "8ae423cffb7d497930961244ae170f778bc0accc6602730782c07dbe81b3b28e",
-      "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -455,7 +455,7 @@
       "source": "ashby",
       "job_snapshot_hash": "01d302d4a4f8f23f3919c5b4f6d3dcbaa7f7f7caf8142241543d31371b034b2b",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -466,7 +466,7 @@
       "source": "ashby",
       "job_snapshot_hash": "eac7aa7eb7cb87af0712ec288f2663677d4833abb7f5fe8f4b688fa48ad1b31c",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -477,7 +477,7 @@
       "source": "ashby",
       "job_snapshot_hash": "0b25667b32c3c08febc7c962aed52f81a3a2b77aa931b0d51470084f3cf6add1",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -488,7 +488,7 @@
       "source": "ashby",
       "job_snapshot_hash": "fe599dd80958ee9969acb97da27ea79dd958b91e34524842cabd7a972c092913",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -499,9 +499,9 @@
       "source": "ashby",
       "job_snapshot_hash": "c0005a0b353e9ee9425deb325bbb6935edf046dcbcc84a76a0bc98061bd0971c",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "pass"
     },
     {
       "key": "ashby:dandy:b29d1dae-a52a-45e6-b9a6-867e938bfe29",
@@ -521,7 +521,7 @@
       "source": "ashby",
       "job_snapshot_hash": "9fb43afda1b6952e92285f8ec82fb31850a490cb3bb323fc3cc31add2dc54569",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -565,8 +565,8 @@
       "source": "ashby",
       "job_snapshot_hash": "0251a35a954acf17d3afc0d4c5d458aa3dbfb937b443b7299b52be60d6da52bc",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
+      "status": "blocked",
+      "reason": "Paid retry budget exhausted; review required.",
       "verdict": null
     },
     {
@@ -796,8 +796,8 @@
       "source": "lever",
       "job_snapshot_hash": "e6b1dad645b49113390569400c5426c3dd69572d10b8cbd147b1dd6fe81d7e09",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
+      "status": "blocked",
+      "reason": "Paid retry budget exhausted; review required.",
       "verdict": null
     },
     {
@@ -927,9 +927,9 @@
       "url": "https://blueorigin.wd5.myworkdayjobs.com/en-US/BlueOrigin/job/Greater-Seattle-Area/Senior-Technical-Program-Manager_R75209",
       "source": "workday",
       "job_snapshot_hash": "d5f7fe79000759546d7d1ac15ac401dd6d28e54f5a3c02a781c0ba8aea4901f3",
-      "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -939,9 +939,9 @@
       "source": "workday",
       "job_snapshot_hash": "2af119eeca330a29beb6559228cb4febf06a99823b546f265070b74c738092e3",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "workday:cisco:/job/RTP-North-Carolina-US/Technical-Program-Manager---NPI---Technical-Sales-Enablement---Splunk_2028606-1",
@@ -972,9 +972,9 @@
       "source": "workday",
       "job_snapshot_hash": "b27d0a50b4e23320b12a1f541eb08dd15911fd2039af7f687dd6198ca5f1c29f",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "workday:msd:/job/USA---New-Jersey---Rahway/Senior-Director--Program-Lead---Infectious-Diseases_R425334-1",
@@ -1005,9 +1005,9 @@
       "source": "workday",
       "job_snapshot_hash": "a32f3bdc2f0a46aecda0db8df1d3ccab5b9e1b7e47d93f5904d9cc5f086fb091",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "pass"
     }
   ],
   "link_ids": [
@@ -1415,21 +1415,21 @@
       "status": "failed"
     }
   ],
-  "checked_at": "2026-11-05T06:25:11.510475+00:00",
+  "checked_at": "2026-11-05T06:26:12.495138+00:00",
   "legacy_backlog": {
-    "assessed": 472,
-    "pending": 72,
-    "unresolved": 32,
-    "in_progress": 2,
-    "total": 578,
+    "assessed": 476,
+    "pending": 61,
+    "unresolved": 34,
+    "in_progress": 5,
+    "total": 576,
     "strong": 60
   },
-  "batch_id": "4439b701073587639beb7c4750614b8affc40f540085fa341668b05001727ab6",
+  "batch_id": "22285985aedd74642de944a723bd7cbaae1eb79bd2643ff08ef8a78765b439a1",
   "status": "assessing",
   "input_blobs": {
     "jobs.json": "75c74338ff3ecd090f6ae452b05434950bb5276b",
-    "fit_scores.json": "0bc2add6d495ba3f2240f62d755dc711a55a7260",
-    "fit_backfill.json": "914fc5000109e5222631ce2d36408f0bf2398e01",
+    "fit_scores.json": "33613dc6060a5488e5c56dd7aa8a8428cd567353",
+    "fit_backfill.json": "6cebcd3bc31c65aa9dbf25d404db9814cd3abe14",
     "meta.json": "76e0ad14d34817d26e8c5e7ff50c451c87546e2a"
   }
 }
