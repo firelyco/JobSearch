@@ -7,15 +7,15 @@
   "collection_at": "2026-11-05T06:00:57.935423+00:00",
   "counts": {
     "found": 90,
-    "eligible": 40,
-    "completed": 30,
+    "eligible": 38,
+    "completed": 32,
     "strong": 4,
-    "middle": 15,
-    "pass": 11,
-    "waiting": 5,
-    "processing": 0,
+    "middle": 16,
+    "pass": 12,
+    "waiting": 0,
+    "processing": 1,
     "blocked": 5,
-    "excluded": 50,
+    "excluded": 52,
     "unverified_links": 35
   },
   "members": [
@@ -70,7 +70,7 @@
       "source": "amazon_jobs",
       "job_snapshot_hash": "b851771ab3b59e2b6a8a6040a8e4bb26a0ea3931b6b0aaa6fe6b461dbcee8d9d",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -124,9 +124,9 @@
       "url": "https://www.amazon.jobs/en/jobs/10596928/production-control-tpm-central-operations-production-control",
       "source": "amazon_jobs",
       "job_snapshot_hash": "985ce38792674aa1b420d0632dd75e7dd7e070911cc845509c574a621ad301d1",
-      "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -663,9 +663,9 @@
       "url": "https://boards.greenhouse.io/andurilindustries/jobs/5252403007?gh_jid=5252403007",
       "source": "greenhouse",
       "job_snapshot_hash": "f114754bf132fdabac03d7e2e8481a8ffd142dedcb1f6205830d8406ab1084ee",
-      "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -906,9 +906,9 @@
       "source": "web_discovery",
       "job_snapshot_hash": "2cf965b102f46685e8fe6bdcc001c0d521fb0f1607a0e1ea8b5b7eaa07debce1",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "pass"
     },
     {
       "key": "web_discovery:NVIDIA Corporation:602097e897d1c7528996",
@@ -917,9 +917,9 @@
       "source": "web_discovery",
       "job_snapshot_hash": "e90314b6b0d77547d3abb525fdcaffbdf9d8dbf5d33f7f2036e2dce5bf05c8ec",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "workday:blueorigin:/job/Greater-Seattle-Area/Senior-Technical-Program-Manager_R75209",
@@ -1415,21 +1415,21 @@
       "status": "failed"
     }
   ],
-  "checked_at": "2026-11-05T06:30:42.951450+00:00",
+  "checked_at": "2026-11-05T06:31:44.975174+00:00",
   "legacy_backlog": {
-    "assessed": 497,
-    "pending": 27,
+    "assessed": 501,
+    "pending": 15,
     "unresolved": 37,
-    "in_progress": 0,
-    "total": 561,
+    "in_progress": 5,
+    "total": 558,
     "strong": 62
   },
-  "batch_id": "488db8302e04b1c23267d65f9185822279f66435e07d68d10d07e75a17568a16",
+  "batch_id": "5b4e9eb6d3f9fd1c4e8f13ef8de36745495116da97e35313c97a12920e138716",
   "status": "assessing",
   "input_blobs": {
     "jobs.json": "75c74338ff3ecd090f6ae452b05434950bb5276b",
-    "fit_scores.json": "bf360caa89b76ab1775333e3104974a2962d7576",
-    "fit_backfill.json": "666e3dbf2e1eb8ff57f8dcbabb3f68b2bd554101",
+    "fit_scores.json": "cea88970afb7bd34f2acbf921b2df8b664194f30",
+    "fit_backfill.json": "7e823b15cec533720ff7617ad74d90555d56a12d",
     "meta.json": "76e0ad14d34817d26e8c5e7ff50c451c87546e2a"
   }
 }
