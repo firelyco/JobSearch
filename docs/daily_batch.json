@@ -12,8 +12,8 @@
     "strong": 4,
     "middle": 16,
     "pass": 12,
-    "waiting": 4,
-    "processing": 0,
+    "waiting": 0,
+    "processing": 4,
     "blocked": 5,
     "excluded": 53,
     "unverified_links": 35
@@ -169,7 +169,7 @@
       "source": "apple",
       "job_snapshot_hash": "6936f432daaad3c439eaaeaf1731f828439561a597e317ed607242a4d9297449",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -180,7 +180,7 @@
       "source": "apple",
       "job_snapshot_hash": "6aa355575425ce9c3b196f8b9079f6b80ff9db7e52a25285224959007ac8d505",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -840,7 +840,7 @@
       "source": "microsoft",
       "job_snapshot_hash": "2a7503747f7067c847a4e23140e586da42bdecfd106706695cdce15ee2065eeb",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -851,7 +851,7 @@
       "source": "microsoft",
       "job_snapshot_hash": "892f94dd608e85e4cc29c17ef0841cf63b94e1fa19fb6c73465a3d58ff5d555b",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -1649,21 +1649,21 @@
       "status": "failed"
     }
   ],
-  "checked_at": "2026-11-05T06:57:33.431347+00:00",
+  "checked_at": "2026-11-05T06:58:20.654831+00:00",
   "legacy_backlog": {
-    "assessed": 510,
+    "assessed": 502,
     "pending": 0,
-    "unresolved": 39,
-    "in_progress": 0,
-    "total": 549,
-    "strong": 63
+    "unresolved": 38,
+    "in_progress": 4,
+    "total": 544,
+    "strong": 62
   },
-  "batch_id": "ee4682e428c73262afb5250b53b37daba37733bd9c1e24f1968c3c469c12d883",
+  "batch_id": "b113a904e16e02ee1ed65cbe0a5f223ccc362386808fe35bd14af903536d0022",
   "status": "assessing",
   "input_blobs": {
     "jobs.json": "5efae63d716ef1f4151a9603dade88a12d0c1c50",
     "fit_scores.json": "74cb434c7aa2a1eeac845deb179dc6a81a1ab5e8",
-    "fit_backfill.json": "028b45111af6f82ef3af2b64941d856c90fb6668",
+    "fit_backfill.json": "f925bc851099d2442885c24b58d68c404ad2671a",
     "meta.json": "df4626f9eb12c1370e3a2da6876648437fe38cbd"
   }
 }
