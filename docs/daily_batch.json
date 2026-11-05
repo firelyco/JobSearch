@@ -7,15 +7,15 @@
   "collection_at": "2026-11-05T06:00:57.935423+00:00",
   "counts": {
     "found": 90,
-    "eligible": 60,
-    "completed": 1,
-    "strong": 1,
-    "middle": 0,
-    "pass": 0,
-    "waiting": 48,
-    "processing": 11,
+    "eligible": 57,
+    "completed": 5,
+    "strong": 2,
+    "middle": 2,
+    "pass": 1,
+    "waiting": 50,
+    "processing": 2,
     "blocked": 0,
-    "excluded": 30,
+    "excluded": 33,
     "unverified_links": 35
   },
   "members": [
@@ -356,9 +356,9 @@
       "source": "arbeitnow",
       "job_snapshot_hash": "a2ad16f17e72047ed0ea561d5cf6e9b10b01079de01fe2a27ef455f168c1e1f4",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "pass"
     },
     {
       "key": "arbeitnow:Quandela:senior-quality-knowledge-specialist-massy-348102",
@@ -565,7 +565,7 @@
       "source": "ashby",
       "job_snapshot_hash": "0251a35a954acf17d3afc0d4c5d458aa3dbfb937b443b7299b52be60d6da52bc",
       "eligible": true,
-      "status": "processing",
+      "status": "waiting",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -576,9 +576,9 @@
       "source": "ashby",
       "job_snapshot_hash": "cfd1c7ded5873270de521fb95e735b6149a6dd49a02ad90e3b4348ac4295a906",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "ashby:openai:e49133e6-4030-4295-b393-1725aa410344",
@@ -587,9 +587,9 @@
       "source": "ashby",
       "job_snapshot_hash": "a2ac6c9006c13f997787121533aab2ee906a7baa32fcec709d45bda4df34479c",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "ashby:openai:f7dbbb26-4880-4cf1-bdf9-b8aefa3572cd",
@@ -741,9 +741,9 @@
       "source": "lever",
       "job_snapshot_hash": "da555f2f9a02472ea0350d91a0152b27c6d5a8cba8236f33bf2f63e895e65425",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "strong"
     },
     {
       "key": "lever:jobgether:405c0884-fff9-4803-b692-15604551c28c",
@@ -751,9 +751,9 @@
       "url": "https://jobs.lever.co/jobgether/405c0884-fff9-4803-b692-15604551c28c",
       "source": "lever",
       "job_snapshot_hash": "48da3ff436a5cbf49191c0175cacd52dee465e9232fef16ac54c2438ea8b77c7",
-      "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -796,7 +796,7 @@
       "source": "lever",
       "job_snapshot_hash": "e6b1dad645b49113390569400c5426c3dd69572d10b8cbd147b1dd6fe81d7e09",
       "eligible": true,
-      "status": "processing",
+      "status": "waiting",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -949,9 +949,9 @@
       "url": "https://cisco.wd5.myworkdayjobs.com/en-US/Cisco_Careers/job/RTP-North-Carolina-US/Technical-Program-Manager---NPI---Technical-Sales-Enablement---Splunk_2028606-1",
       "source": "workday",
       "job_snapshot_hash": "f82f6a7b5da9cf3310e8cf71ac575c0b75d09f1079217e2ef253eff500fa4dac",
-      "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -960,9 +960,9 @@
       "url": "https://cisco.wd5.myworkdayjobs.com/en-US/Cisco_Careers/job/RTP-North-Carolina-US/Technical-Program-Manager---NPI---Technical-Sales-Enablement---Splunk_2028608-1",
       "source": "workday",
       "job_snapshot_hash": "deaa4fd4c47b92ff7a43319e2a46e6ad8a079531d3b7146d83ea233c3d9652d8",
-      "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -1415,21 +1415,21 @@
       "status": "failed"
     }
   ],
-  "checked_at": "2026-11-05T06:24:06.023107+00:00",
+  "checked_at": "2026-11-05T06:25:11.510475+00:00",
   "legacy_backlog": {
-    "assessed": 468,
-    "pending": 70,
+    "assessed": 472,
+    "pending": 72,
     "unresolved": 32,
-    "in_progress": 11,
-    "total": 581,
-    "strong": 59
+    "in_progress": 2,
+    "total": 578,
+    "strong": 60
   },
-  "batch_id": "cba6de418c5e5467ab323916df28e8e2ebec42c3ace5961249fb15ba89f42da4",
+  "batch_id": "4439b701073587639beb7c4750614b8affc40f540085fa341668b05001727ab6",
   "status": "assessing",
   "input_blobs": {
     "jobs.json": "75c74338ff3ecd090f6ae452b05434950bb5276b",
-    "fit_scores.json": "f0dee06a325959f129a5c1d74455b5ebd599ff1a",
-    "fit_backfill.json": "8379e25f049456773833d3028328969e05aba596",
+    "fit_scores.json": "0bc2add6d495ba3f2240f62d755dc711a55a7260",
+    "fit_backfill.json": "914fc5000109e5222631ce2d36408f0bf2398e01",
     "meta.json": "76e0ad14d34817d26e8c5e7ff50c451c87546e2a"
   }
 }
