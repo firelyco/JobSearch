@@ -7,15 +7,15 @@
   "collection_at": "2026-11-05T06:40:56.990427+00:00",
   "counts": {
     "found": 94,
-    "eligible": 41,
-    "completed": 32,
-    "strong": 4,
-    "middle": 16,
+    "eligible": 40,
+    "completed": 35,
+    "strong": 5,
+    "middle": 18,
     "pass": 12,
     "waiting": 0,
-    "processing": 4,
+    "processing": 0,
     "blocked": 5,
-    "excluded": 53,
+    "excluded": 54,
     "unverified_links": 35
   },
   "members": [
@@ -168,9 +168,9 @@
       "url": "https://jobs.apple.com/en-us/details/200684690/technical-program-manager",
       "source": "apple",
       "job_snapshot_hash": "6936f432daaad3c439eaaeaf1731f828439561a597e317ed607242a4d9297449",
-      "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -180,9 +180,9 @@
       "source": "apple",
       "job_snapshot_hash": "6aa355575425ce9c3b196f8b9079f6b80ff9db7e52a25285224959007ac8d505",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "strong"
     },
     {
       "key": "arbeitnow:Airwallex:senior-account-manager-mid-market-london-284117",
@@ -840,9 +840,9 @@
       "source": "microsoft",
       "job_snapshot_hash": "2a7503747f7067c847a4e23140e586da42bdecfd106706695cdce15ee2065eeb",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "microsoft:microsoft:1970393557048165",
@@ -851,9 +851,9 @@
       "source": "microsoft",
       "job_snapshot_hash": "892f94dd608e85e4cc29c17ef0841cf63b94e1fa19fb6c73465a3d58ff5d555b",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "microsoft:microsoft:1970393557050169",
@@ -1649,21 +1649,21 @@
       "status": "failed"
     }
   ],
-  "checked_at": "2026-11-05T06:58:20.654831+00:00",
+  "checked_at": "2026-11-05T06:59:12.699277+00:00",
   "legacy_backlog": {
-    "assessed": 502,
+    "assessed": 505,
     "pending": 0,
     "unresolved": 38,
-    "in_progress": 4,
-    "total": 544,
-    "strong": 62
+    "in_progress": 0,
+    "total": 543,
+    "strong": 63
   },
-  "batch_id": "b113a904e16e02ee1ed65cbe0a5f223ccc362386808fe35bd14af903536d0022",
-  "status": "assessing",
+  "batch_id": "7e3cdd8d23b38f23270fe6a7d145872d8953d02b5c6e94f2c4aeb21cba682ead",
+  "status": "blocked",
   "input_blobs": {
     "jobs.json": "5efae63d716ef1f4151a9603dade88a12d0c1c50",
-    "fit_scores.json": "74cb434c7aa2a1eeac845deb179dc6a81a1ab5e8",
-    "fit_backfill.json": "f925bc851099d2442885c24b58d68c404ad2671a",
+    "fit_scores.json": "1186a0c2e9b83a1154e89befd375e96d331a05d3",
+    "fit_backfill.json": "e829509516cf8f0ff7e92a679017fb2f8a8d1bb4",
     "meta.json": "df4626f9eb12c1370e3a2da6876648437fe38cbd"
   }
 }
