@@ -7,15 +7,15 @@
   "collection_at": "2026-11-05T06:00:57.935423+00:00",
   "counts": {
     "found": 90,
-    "eligible": 38,
+    "eligible": 37,
     "completed": 32,
     "strong": 4,
     "middle": 16,
     "pass": 12,
     "waiting": 0,
-    "processing": 1,
+    "processing": 0,
     "blocked": 5,
-    "excluded": 52,
+    "excluded": 53,
     "unverified_links": 35
   },
   "members": [
@@ -69,9 +69,9 @@
       "url": "https://www.amazon.jobs/en/jobs/10595764/principal-tpm-operations-infrastructure-services-self-service-customer-experience-infrastructure",
       "source": "amazon_jobs",
       "job_snapshot_hash": "b851771ab3b59e2b6a8a6040a8e4bb26a0ea3931b6b0aaa6fe6b461dbcee8d9d",
-      "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -1415,21 +1415,21 @@
       "status": "failed"
     }
   ],
-  "checked_at": "2026-11-05T06:31:44.975174+00:00",
+  "checked_at": "2026-11-05T06:32:08.585939+00:00",
   "legacy_backlog": {
-    "assessed": 501,
-    "pending": 15,
+    "assessed": 502,
+    "pending": 17,
     "unresolved": 37,
-    "in_progress": 5,
-    "total": 558,
+    "in_progress": 0,
+    "total": 556,
     "strong": 62
   },
-  "batch_id": "5b4e9eb6d3f9fd1c4e8f13ef8de36745495116da97e35313c97a12920e138716",
-  "status": "assessing",
+  "batch_id": "ea344dec2f4ffa208935168cc25e336c94b30ce92475cb8da8fb775a12a59e7f",
+  "status": "blocked",
   "input_blobs": {
     "jobs.json": "75c74338ff3ecd090f6ae452b05434950bb5276b",
-    "fit_scores.json": "cea88970afb7bd34f2acbf921b2df8b664194f30",
-    "fit_backfill.json": "7e823b15cec533720ff7617ad74d90555d56a12d",
+    "fit_scores.json": "d97480182ce65226bb03d813499ef89e2c6496cc",
+    "fit_backfill.json": "ed574119f55c5d4ddde9fbf8b1013a77d404791d",
     "meta.json": "76e0ad14d34817d26e8c5e7ff50c451c87546e2a"
   }
 }
