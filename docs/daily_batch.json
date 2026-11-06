@@ -8,11 +8,11 @@
   "counts": {
     "found": 77,
     "eligible": 32,
-    "completed": 30,
-    "strong": 6,
+    "completed": 31,
+    "strong": 7,
     "middle": 18,
     "pass": 6,
-    "waiting": 1,
+    "waiting": 0,
     "processing": 0,
     "blocked": 1,
     "excluded": 45,
@@ -521,9 +521,9 @@
       "source": "greenhouse",
       "job_snapshot_hash": "746a5f6604e0d7a88b895ed95098f9b069c6c21b12ae0db27b0c8201c966e3bb",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "strong"
     },
     {
       "key": "greenhouse:gitlab:8928711002",
@@ -1459,21 +1459,21 @@
       "status": "failed"
     }
   ],
-  "checked_at": "2026-11-06T06:45:20.029742+00:00",
+  "checked_at": "2026-11-06T06:46:08.476420+00:00",
   "legacy_backlog": {
-    "assessed": 518,
-    "pending": 3,
+    "assessed": 519,
+    "pending": 0,
     "unresolved": 39,
     "in_progress": 0,
-    "total": 560,
-    "strong": 67
+    "total": 558,
+    "strong": 68
   },
-  "batch_id": "5f59acf7c64f25fe7cce96b3166c4f7e947376277543084134bff8e89c7b3d87",
-  "status": "assessing",
+  "batch_id": "688b51d74aec2d6082b39a8d536df52ef54e2e30a9d930809adba96e11cc6804",
+  "status": "blocked",
   "input_blobs": {
     "jobs.json": "c25c5e97243f68454bccc007170525ed10b0e33d",
-    "fit_scores.json": "aff18d8564a2e66b56bf0ec97f12682339dcef3d",
-    "fit_backfill.json": "34c1a3e8c9de0913194cfdc66bffb3fab4e45007",
+    "fit_scores.json": "8e80598703fd5a9ad8496c69c833de8965d9922a",
+    "fit_backfill.json": "61e3bceeecee38fdd2c072509d0fb168fcf9e344",
     "meta.json": "91a61df124461fda5dccfbc838fb665173450dcb"
   }
 }
