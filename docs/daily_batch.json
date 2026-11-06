@@ -4,15 +4,15 @@
   "start_hour_eastern": 1,
   "deadline_hour_eastern": 6,
   "collection_completed": true,
-  "collection_at": "2026-11-06T06:00:58.060241+00:00",
+  "collection_at": "2026-11-06T06:30:49.144713+00:00",
   "counts": {
-    "found": 76,
-    "eligible": 31,
+    "found": 77,
+    "eligible": 32,
     "completed": 30,
     "strong": 6,
     "middle": 18,
     "pass": 6,
-    "waiting": 0,
+    "waiting": 1,
     "processing": 0,
     "blocked": 1,
     "excluded": 45,
@@ -515,6 +515,17 @@
       "verdict": "pass"
     },
     {
+      "key": "greenhouse:andurilindustries:5100128007",
+      "title": "Deputy Technical Program Manager",
+      "url": "https://boards.greenhouse.io/andurilindustries/jobs/5100128007?gh_jid=5100128007",
+      "source": "greenhouse",
+      "job_snapshot_hash": "746a5f6604e0d7a88b895ed95098f9b069c6c21b12ae0db27b0c8201c966e3bb",
+      "eligible": true,
+      "status": "waiting",
+      "reason": "Unfinished assessment.",
+      "verdict": null
+    },
+    {
       "key": "greenhouse:gitlab:8928711002",
       "title": "Senior Security Technical Program Manager, Fraud & Abuse",
       "url": "https://job-boards.greenhouse.io/gitlab/jobs/8928711002",
@@ -892,6 +903,31 @@
   ],
   "coverage_issues": 111,
   "incomplete_sources": [
+    {
+      "source": "netflix",
+      "label": "program manager",
+      "status": "partial"
+    },
+    {
+      "source": "web_search",
+      "label": "web_search",
+      "status": "failed"
+    },
+    {
+      "source": "web_search",
+      "label": "web_search",
+      "status": "failed"
+    },
+    {
+      "source": "web_search",
+      "label": "web_search",
+      "status": "failed"
+    },
+    {
+      "source": "web_search",
+      "label": "web_search",
+      "status": "failed"
+    },
     {
       "source": "web_search",
       "label": "web_search",
@@ -1403,52 +1439,27 @@
       "status": "failed"
     },
     {
-      "source": "lever",
-      "label": "{\"config\": \"filevine\", \"source\": \"lever\"}",
-      "status": "failed"
-    },
-    {
-      "source": "lever",
-      "label": "{\"config\": \"tutorintelligence\", \"source\": \"lever\"}",
-      "status": "failed"
-    },
-    {
       "source": "workday",
       "label": "{\"config\": {\"search\": \"program\", \"site\": \"careers\", \"tenant\": \"gogo\", \"wd_server\": \"wd1\"}, \"source\": \"workday\"}",
+      "status": "failed"
+    },
+    {
+      "source": "lever",
+      "label": "{\"config\": \"wmg\", \"source\": \"lever\"}",
+      "status": "failed"
+    },
+    {
+      "source": "lever",
+      "label": "{\"config\": \"greenlight\", \"source\": \"lever\"}",
       "status": "failed"
     },
     {
       "source": "ashby",
       "label": "{\"config\": \"whatnot\", \"source\": \"ashby\"}",
       "status": "failed"
-    },
-    {
-      "source": "greenhouse",
-      "label": "{\"config\": \"andurilindustries\", \"source\": \"greenhouse\"}",
-      "status": "failed"
-    },
-    {
-      "source": "workday",
-      "label": "{\"config\": {\"search\": \"program\", \"site\": \"Northrop_Grumman_External_Site\", \"tenant\": \"ngc\", \"wd_server\": \"wd1\"}, \"source\": \"workday\"}",
-      "status": "partial"
-    },
-    {
-      "source": "workday",
-      "label": "{\"config\": {\"search\": \"program\", \"site\": \"External\", \"tenant\": \"cw\", \"wd_server\": \"wd1\"}, \"source\": \"workday\"}",
-      "status": "partial"
-    },
-    {
-      "source": "workday",
-      "label": "{\"config\": {\"search\": \"program\", \"site\": \"External\", \"tenant\": \"amat\", \"wd_server\": \"wd1\"}, \"source\": \"workday\"}",
-      "status": "partial"
-    },
-    {
-      "source": "workday",
-      "label": "{\"config\": {\"search\": \"program\", \"site\": \"Search\", \"tenant\": \"kla\", \"wd_server\": \"wd1\"}, \"source\": \"workday\"}",
-      "status": "partial"
     }
   ],
-  "checked_at": "2026-11-06T06:29:49.676845+00:00",
+  "checked_at": "2026-11-06T06:44:36.735172+00:00",
   "legacy_backlog": {
     "assessed": 522,
     "pending": 0,
@@ -1457,12 +1468,12 @@
     "total": 561,
     "strong": 67
   },
-  "batch_id": "685ad2c1f5929d3ee8d994724aa96ede48491be65b5eb24102ec7dfd4ca8236c",
-  "status": "blocked",
+  "batch_id": "0c1cb38055d31763fd81df33e4af685f8eb6e4ceaaed3fc534b52e4c752e2495",
+  "status": "assessing",
   "input_blobs": {
-    "jobs.json": "7f8fb2b32c3979fee40fdf793fbcb1a1820a8977",
+    "jobs.json": "c25c5e97243f68454bccc007170525ed10b0e33d",
     "fit_scores.json": "12f0d6b9150503302065b6e2fb45e299b8dc656b",
     "fit_backfill.json": "669dc2b8f5cb37a2b813f03799e758f6a7be5334",
-    "meta.json": "af50a45547dc9e8d7fa976d1f5804cd33dd3dab7"
+    "meta.json": "91a61df124461fda5dccfbc838fb665173450dcb"
   }
 }
