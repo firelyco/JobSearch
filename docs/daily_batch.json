@@ -7,15 +7,15 @@
   "collection_at": "2026-11-06T06:00:58.060241+00:00",
   "counts": {
     "found": 76,
-    "eligible": 44,
-    "completed": 0,
-    "strong": 0,
-    "middle": 0,
-    "pass": 0,
-    "waiting": 44,
-    "processing": 0,
+    "eligible": 42,
+    "completed": 5,
+    "strong": 2,
+    "middle": 1,
+    "pass": 2,
+    "waiting": 32,
+    "processing": 5,
     "blocked": 0,
-    "excluded": 32,
+    "excluded": 34,
     "unverified_links": 32
   },
   "members": [
@@ -124,9 +124,9 @@
       "url": "https://jobs.apple.com/en-us/details/200693763/display-ee-engineering-program-manager",
       "source": "apple",
       "job_snapshot_hash": "76d5960851356e322d5c653d66e95f8120bade87a3c8253ef83857b08e931a5c",
-      "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -554,9 +554,9 @@
       "source": "lever",
       "job_snapshot_hash": "4ede779009b87d19051bdbe3e777fc7fb7010c87d8ca5d4b5edaa0ec91b9ce58",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "pass"
     },
     {
       "key": "lever:jobgether:d6b6eef9-cc35-48c7-a52a-8ccef393392e",
@@ -598,7 +598,7 @@
       "source": "microsoft",
       "job_snapshot_hash": "263d7e39275d799b8130b09dda794b16de2e18ecbda925b1f7778b3596063ffc",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -697,7 +697,7 @@
       "source": "workday",
       "job_snapshot_hash": "d0e68b48785542d5c2f990aeb6a880ecf726c30ac6d05521bc5583bc5c18e9af",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -708,7 +708,7 @@
       "source": "workday",
       "job_snapshot_hash": "78769adecc76892885f6c56ab2b6af081fbbb0eb31926da7e6068f8662f297a9",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -752,9 +752,9 @@
       "source": "workday",
       "job_snapshot_hash": "62960d37df45b3abab8af13e176021c9db54eaa7af23312ae6cd3ea5ea5397f1",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "workday:cisco:/job/Denver-Colorado-US/Account-Executive---Portfolio--Airforce_2030062",
@@ -763,9 +763,9 @@
       "source": "workday",
       "job_snapshot_hash": "378f4c6b2bd4d10255edd28138c14d23432f121dcd7b79d26af1a9a117a0b83b",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "pass"
     },
     {
       "key": "workday:cisco:/job/Milpitas-California-US/Engineering-Program-Manager_2026317",
@@ -774,7 +774,7 @@
       "source": "workday",
       "job_snapshot_hash": "122321c800b4f25e8f08ab6e823d95ac6c56b5b0acdba1dd0b76dbbcb0709c20",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -784,9 +784,9 @@
       "url": "https://cisco.wd5.myworkdayjobs.com/en-US/Cisco_Careers/job/RTP-North-Carolina-US/Leader--Technical-Program-Manager---NPI---Technical-Sales-Enablement---Splunk_2028605",
       "source": "workday",
       "job_snapshot_hash": "db968ca0a7f243ac5b116bbcc3d3fcd7ee678a373153d57a0018f1e7078eb659",
-      "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -796,7 +796,7 @@
       "source": "workday",
       "job_snapshot_hash": "c94a5301a2abad6096b37941fad65d46ff62c6acd3ae6e9b1cd1a3c90ea31d06",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -807,9 +807,9 @@
       "source": "workday",
       "job_snapshot_hash": "8fbb6c3b6998108f7292c8e9aac7709798ed9ae382c0acc965f8cd333addbbc8",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "strong"
     },
     {
       "key": "workday:msd:/job/CZE---Central-Bohemian---Prague-Five/Technology-Compliance-Portfolio-Operations-Lead_R425307-2",
@@ -851,9 +851,9 @@
       "source": "workday",
       "job_snapshot_hash": "ee4fd04088b1868051385ddcce17dd4f4c9b4a7d393d4b99cc624aa2666c911c",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "strong"
     }
   ],
   "link_ids": [
@@ -1448,21 +1448,21 @@
       "status": "partial"
     }
   ],
-  "checked_at": "2026-11-06T06:18:32.589771+00:00",
+  "checked_at": "2026-11-06T06:19:37.192704+00:00",
   "legacy_backlog": {
-    "assessed": 481,
-    "pending": 63,
+    "assessed": 486,
+    "pending": 50,
     "unresolved": 38,
-    "in_progress": 0,
-    "total": 582,
-    "strong": 60
+    "in_progress": 5,
+    "total": 579,
+    "strong": 62
   },
-  "batch_id": "372874b075e45bdfa97f6ca584eb140068b916e75f3ca489dd72d03d114bb6d2",
+  "batch_id": "ac51122b6d21bfbee4aef318c321f994bbfe5962814092b9b64e4e24f3e70ca2",
   "status": "assessing",
   "input_blobs": {
     "jobs.json": "7f8fb2b32c3979fee40fdf793fbcb1a1820a8977",
-    "fit_scores.json": "bdcd658a1bb850485cd446e87b74db1c78aecc1d",
-    "fit_backfill.json": "4277d200c0445052cd40206ff86c9b87e92e680b",
+    "fit_scores.json": "95dc6ad6c9d5246d491b125e866943e6b9c04a56",
+    "fit_backfill.json": "91e0739a20bd3007c412cc5f5f16005ce244d8b6",
     "meta.json": "af50a45547dc9e8d7fa976d1f5804cd33dd3dab7"
   }
 }
