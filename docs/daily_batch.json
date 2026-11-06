@@ -4,7 +4,7 @@
   "start_hour_eastern": 1,
   "deadline_hour_eastern": 6,
   "collection_completed": true,
-  "collection_at": "2026-11-06T06:30:49.144713+00:00",
+  "collection_at": "2026-11-06T07:00:55.996194+00:00",
   "counts": {
     "found": 77,
     "eligible": 32,
@@ -901,12 +901,27 @@
     "4487709502",
     "4487726574"
   ],
-  "coverage_issues": 111,
+  "coverage_issues": 112,
   "incomplete_sources": [
     {
       "source": "netflix",
       "label": "program manager",
+      "status": "failed"
+    },
+    {
+      "source": "microsoft",
+      "label": "{'query': '', 'filters': {'career_discipline': ['Technical Program Management']}}",
       "status": "partial"
+    },
+    {
+      "source": "web_search",
+      "label": "web_search",
+      "status": "failed"
+    },
+    {
+      "source": "web_search",
+      "label": "web_search",
+      "status": "failed"
     },
     {
       "source": "web_search",
@@ -1444,22 +1459,12 @@
       "status": "failed"
     },
     {
-      "source": "lever",
-      "label": "{\"config\": \"wmg\", \"source\": \"lever\"}",
-      "status": "failed"
-    },
-    {
-      "source": "lever",
-      "label": "{\"config\": \"greenlight\", \"source\": \"lever\"}",
-      "status": "failed"
-    },
-    {
       "source": "ashby",
       "label": "{\"config\": \"whatnot\", \"source\": \"ashby\"}",
       "status": "failed"
     }
   ],
-  "checked_at": "2026-11-06T06:51:11.172529+00:00",
+  "checked_at": "2026-11-06T07:18:20.124127+00:00",
   "legacy_backlog": {
     "assessed": 519,
     "pending": 0,
@@ -1468,12 +1473,12 @@
     "total": 558,
     "strong": 68
   },
-  "batch_id": "319e9f1c9e614b3277fbd3bddb0ada6caf67100a5a51dfa4ac4b779d5cbf0cc8",
+  "batch_id": "b3b8ed8744ac20645eea2efe7a653387990d7e13957966c34ed998fb9d1e824f",
   "status": "blocked",
   "input_blobs": {
-    "jobs.json": "c25c5e97243f68454bccc007170525ed10b0e33d",
+    "jobs.json": "8094c54d5273b3079fc28be6198a19451c27ac03",
     "fit_scores.json": "5daab2d5ae59ab58c3cc0871a654119eed89199c",
     "fit_backfill.json": "ff71d179be5ac8fa9221b324b0a1193412723a04",
-    "meta.json": "91a61df124461fda5dccfbc838fb665173450dcb"
+    "meta.json": "a4e05eff9a69bf9a0d80420920b477d14f308f47"
   }
 }

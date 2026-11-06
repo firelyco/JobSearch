@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "checked_at": "2026-11-06T06:30:49.144713+00:00",
+  "checked_at": "2026-11-06T07:00:55.996194+00:00",
   "connection": {
     "source": "linkedin_email",
     "label": "LinkedIn job-alert emails",
@@ -15,14 +15,14 @@
     "unresolved_alert_messages": 11,
     "lookback_days": 14,
     "mode": "incremental",
-    "search_since": "2026-11-05T06:00:58.060241+00:00",
+    "search_since": "2026-11-05T06:30:49.144713+00:00",
     "last_success_at": null
   },
   "last_success_at": null,
   "scope": "One-time 14-day catch-up, then new unprocessed LinkedIn emails during the daily job search. Collected references are retained; this does not verify all LinkedIn or in-app listings.",
   "counts": {
-    "missing": 561,
-    "possible_match": 223
+    "missing": 562,
+    "possible_match": 222
   },
   "rows": [
     {
@@ -971,8 +971,10 @@
       "first_alert_at": "2026-11-02T13:57:42+00:00",
       "last_alert_at": "2026-11-02T13:57:42+00:00",
       "collection": "possible_match",
-      "assessment": "reassessment_pending",
-      "verdicts": [],
+      "assessment": "assessed",
+      "verdicts": [
+        "Middle"
+      ],
       "matches": [
         {
           "key": "workday:kla:/job/Milpitas-CA/Technical-project-and-program-manager_2638172",
@@ -7457,19 +7459,11 @@
       "employer_urls": [],
       "first_alert_at": "2026-10-20T23:54:41+00:00",
       "last_alert_at": "2026-10-20T23:54:41+00:00",
-      "collection": "possible_match",
+      "collection": "missing",
       "assessment": "not_assessed",
       "verdicts": [],
-      "matches": [
-        {
-          "key": "netflix:netflix:790319022497",
-          "title": "Senior Product Operations Lead & Program Manager - Content Experience Innovation",
-          "company": "netflix",
-          "url": "https://explore.jobs.netflix.net/careers/job/790319022497",
-          "assessment_date_eligible": true
-        }
-      ],
-      "reason": "Title/company similarity is not proof of the same requisition."
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
     },
     {
       "linkedin_id": "4478650163",
