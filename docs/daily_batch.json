@@ -8,13 +8,13 @@
   "counts": {
     "found": 76,
     "eligible": 42,
-    "completed": 5,
+    "completed": 11,
     "strong": 2,
-    "middle": 1,
+    "middle": 7,
     "pass": 2,
-    "waiting": 32,
-    "processing": 5,
-    "blocked": 0,
+    "waiting": 21,
+    "processing": 9,
+    "blocked": 1,
     "excluded": 34,
     "unverified_links": 32
   },
@@ -114,7 +114,7 @@
       "source": "apple",
       "job_snapshot_hash": "0c8721178d0a5b1905efe574647e6fbd8a32b88d7841d78f2572a3b65fd9aee1",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -444,7 +444,7 @@
       "source": "ashby",
       "job_snapshot_hash": "cfbaa9b9b8510238c20141576dbccdde186d206bdd691e4d9e451b9b36541e64",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -455,7 +455,7 @@
       "source": "google",
       "job_snapshot_hash": "4c97b973a366fef0588015e32af53bca0fcf2f14c6a7b396e75acddbe66298cf",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -521,7 +521,7 @@
       "source": "greenhouse",
       "job_snapshot_hash": "2ddc02c8b14541499c32e6f493cc1913ef3b75f1c3633b10ba1793794c91d8ed",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -532,7 +532,7 @@
       "source": "greenhouse",
       "job_snapshot_hash": "943daa7d5b30744c6b60f68cea70d97139b82ae5863b52215c6927b08e9a1890",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -543,7 +543,7 @@
       "source": "greenhouse",
       "job_snapshot_hash": "25cea332bf842ff400246365f531e766f45e2d853162754f77b9be5b70b2048f",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -576,7 +576,7 @@
       "source": "lever",
       "job_snapshot_hash": "3c0d5b8a858e59bd31d2dbbb8bc3932a841deff98c2adbc82e78c095f6729f15",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -587,9 +587,9 @@
       "source": "microsoft",
       "job_snapshot_hash": "c71cc6255563d215d76b1fd17ad6b689a35590e44dc293f61ef47818ead7ec07",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "microsoft:microsoft:1970393557050805",
@@ -598,9 +598,9 @@
       "source": "microsoft",
       "job_snapshot_hash": "263d7e39275d799b8130b09dda794b16de2e18ecbda925b1f7778b3596063ffc",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "microsoft:microsoft:1970393557050856",
@@ -609,9 +609,9 @@
       "source": "microsoft",
       "job_snapshot_hash": "ef58afa25df760bd7c7b0693120dda35de34e5274c13358234769271edc2811d",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "microsoft:microsoft:1970393557051417",
@@ -620,7 +620,7 @@
       "source": "microsoft",
       "job_snapshot_hash": "f90cf9d3009a63c5092569169f5f6ac53a2e82d1e73e0c56e7f469c3513b91f8",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -631,7 +631,7 @@
       "source": "microsoft",
       "job_snapshot_hash": "e45feb8467d1e2e70c442679912b302747cf5c094556933fa1fa17b9265de584",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -697,8 +697,8 @@
       "source": "workday",
       "job_snapshot_hash": "d0e68b48785542d5c2f990aeb6a880ecf726c30ac6d05521bc5583bc5c18e9af",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "status": "blocked",
+      "reason": "Paid retry budget exhausted; review required.",
       "verdict": null
     },
     {
@@ -708,9 +708,9 @@
       "source": "workday",
       "job_snapshot_hash": "78769adecc76892885f6c56ab2b6af081fbbb0eb31926da7e6068f8662f297a9",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "workday:astrazeneca:/job/Sweden---Gothenburg/Statistical-Programming-Strategy---Portfolio-Lead--Associate-Director_R-263528",
@@ -774,9 +774,9 @@
       "source": "workday",
       "job_snapshot_hash": "122321c800b4f25e8f08ab6e823d95ac6c56b5b0acdba1dd0b76dbbcb0709c20",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "workday:cisco:/job/RTP-North-Carolina-US/Leader--Technical-Program-Manager---NPI---Technical-Sales-Enablement---Splunk_2028605",
@@ -796,9 +796,9 @@
       "source": "workday",
       "job_snapshot_hash": "c94a5301a2abad6096b37941fad65d46ff62c6acd3ae6e9b1cd1a3c90ea31d06",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "workday:intel:/job/US-California-Santa-Clara/Senior-Manager--Data-Center-Portfolio---Demand-Management_JR0288640-1",
@@ -1448,21 +1448,21 @@
       "status": "partial"
     }
   ],
-  "checked_at": "2026-11-06T06:19:37.192704+00:00",
+  "checked_at": "2026-11-06T06:20:38.392341+00:00",
   "legacy_backlog": {
-    "assessed": 486,
-    "pending": 50,
-    "unresolved": 38,
-    "in_progress": 5,
+    "assessed": 492,
+    "pending": 39,
+    "unresolved": 39,
+    "in_progress": 9,
     "total": 579,
     "strong": 62
   },
-  "batch_id": "ac51122b6d21bfbee4aef318c321f994bbfe5962814092b9b64e4e24f3e70ca2",
+  "batch_id": "e761d58a66c7d7d2b9adc0897ab69cbe4a63a0fb0f1f0a78d71a12f90d8f85cb",
   "status": "assessing",
   "input_blobs": {
     "jobs.json": "7f8fb2b32c3979fee40fdf793fbcb1a1820a8977",
-    "fit_scores.json": "95dc6ad6c9d5246d491b125e866943e6b9c04a56",
-    "fit_backfill.json": "91e0739a20bd3007c412cc5f5f16005ce244d8b6",
+    "fit_scores.json": "b92dcb301b0082bb957164a3fd9278ae9fe0c169",
+    "fit_backfill.json": "10bdbcbb8132e2a9a5a5be2604c1861bc5b9c76b",
     "meta.json": "af50a45547dc9e8d7fa976d1f5804cd33dd3dab7"
   }
 }
