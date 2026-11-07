@@ -7,15 +7,15 @@
   "collection_at": "2026-11-07T06:00:53.489604+00:00",
   "counts": {
     "found": 83,
-    "eligible": 30,
-    "completed": 12,
+    "eligible": 29,
+    "completed": 16,
     "strong": 3,
     "middle": 7,
-    "pass": 2,
-    "waiting": 12,
-    "processing": 6,
+    "pass": 6,
+    "waiting": 13,
+    "processing": 0,
     "blocked": 0,
-    "excluded": 53,
+    "excluded": 54,
     "unverified_links": 35
   },
   "members": [
@@ -718,9 +718,9 @@
       "url": "https://boards.greenhouse.io/andurilindustries/jobs/5287472007?gh_jid=5287472007",
       "source": "greenhouse",
       "job_snapshot_hash": "b0e26a7ec6b7efa4d1025caaf8cb639b5ff27202470fcde45346eaa6fadc67f9",
-      "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -741,7 +741,7 @@
       "source": "greenhouse",
       "job_snapshot_hash": "21277238b4a8be720854e9af115486ab772c2f8465f455abb45eb8518109c568",
       "eligible": true,
-      "status": "processing",
+      "status": "waiting",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -752,9 +752,9 @@
       "source": "greenhouse",
       "job_snapshot_hash": "974bd2c2ab7570253772fa6538a0802db43d2b2b1fae7acb2bbfef01c08b9d80",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "pass"
     },
     {
       "key": "greenhouse:oura:4484061009",
@@ -785,9 +785,9 @@
       "source": "lever",
       "job_snapshot_hash": "e1108b860471d2db533e7d9aa2b553f3a960b33c65b186987a266f6fc99fd7f5",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "pass"
     },
     {
       "key": "lever:jobgether:a8fa9a15-466b-4359-8a28-0df5448674c8",
@@ -796,9 +796,9 @@
       "source": "lever",
       "job_snapshot_hash": "e580c21e516faf72c3d4af555f2a37f2bf360bfdf9c3ef08feadeb284e364f0c",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "pass"
     },
     {
       "key": "lever:jobgether:a9cd4a97-703f-41e1-91cb-b95e7bfa60e4",
@@ -807,9 +807,9 @@
       "source": "lever",
       "job_snapshot_hash": "d4d958b75a98603a168b0db6e5bb766d936c1bb84911b1dcd9c584e9df8dd5d8",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "pass"
     },
     {
       "key": "lever:jobgether:b589133a-4e7d-4cad-b7db-d694e407e7a6",
@@ -1528,21 +1528,21 @@
       "status": "failed"
     }
   ],
-  "checked_at": "2026-11-07T06:20:22.703538+00:00",
+  "checked_at": "2026-11-07T06:21:22.949722+00:00",
   "legacy_backlog": {
-    "assessed": 499,
-    "pending": 41,
+    "assessed": 503,
+    "pending": 42,
     "unresolved": 33,
-    "in_progress": 6,
-    "total": 579,
+    "in_progress": 0,
+    "total": 578,
     "strong": 65
   },
-  "batch_id": "0ff8a3f48c9b61891413ed33e7d77d942e6418083880b98cd84cb14c68e9bd8a",
+  "batch_id": "f15198fe9f8b0b77102b1bc9f33e7d44689e556e8548b1e3ce7cc65b64717071",
   "status": "assessing",
   "input_blobs": {
     "jobs.json": "0dc213d7a0775a485a1e205eaf84a9d9125bc1d7",
-    "fit_scores.json": "4db107b5186192cf214607d121ca3f5a16bf7ea2",
-    "fit_backfill.json": "cbc50a40818d4ab79eb5b7c3d5af8d70b161837f",
+    "fit_scores.json": "9b9013ff0bdf174224671bb340637b506a6463bf",
+    "fit_backfill.json": "90001c6124fea9a1b0e41203f70619f31ae609bf",
     "meta.json": "d4de048546e997317cb7b95e4dcb977fe350499c"
   }
 }
