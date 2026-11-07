@@ -7,15 +7,15 @@
   "collection_at": "2026-11-07T06:00:53.489604+00:00",
   "counts": {
     "found": 83,
-    "eligible": 24,
-    "completed": 18,
+    "eligible": 21,
+    "completed": 19,
     "strong": 3,
     "middle": 8,
-    "pass": 7,
-    "waiting": 1,
-    "processing": 4,
+    "pass": 8,
+    "waiting": 0,
+    "processing": 1,
     "blocked": 1,
-    "excluded": 59,
+    "excluded": 62,
     "unverified_links": 35
   },
   "members": [
@@ -36,9 +36,9 @@
       "url": "https://www.amazon.jobs/en/jobs/10598492/power-hydrogen-solutions-technical-program-manager-power-hydrogen-solutions-gesa",
       "source": "amazon_jobs",
       "job_snapshot_hash": "ee9e8bb5febc05113d754f746f0c33552523c3408d59ce49f4f8f294bec8150e",
-      "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -80,9 +80,9 @@
       "url": "https://www.amazon.jobs/en/jobs/10599078/sr-technical-program-manager-e-reader-products-team",
       "source": "amazon_jobs",
       "job_snapshot_hash": "d5d7a3af800897c1a96f5ae3075be59d936fde4a2912debcc2060e025c610baa",
-      "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -102,9 +102,9 @@
       "url": "https://www.amazon.jobs/en/jobs/10599160/sr-technical-infrastructure-program-manager-corporate-network-engineering",
       "source": "amazon_jobs",
       "job_snapshot_hash": "d84220ee517787fd298cbf86559c26db21c7dd17500aba3da4c360867600ba6a",
-      "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -851,9 +851,9 @@
       "source": "oracle_cloud",
       "job_snapshot_hash": "f916cf5b281c665f273fbe8309778cb37eabd807baacffe1d7cd79d93b10858a",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "pass"
     },
     {
       "key": "oracle_cloud:oracle:347711",
@@ -862,7 +862,7 @@
       "source": "oracle_cloud",
       "job_snapshot_hash": "b2eeda1671ed6060584508e6e830357bc3e7b935622c4eaf211dffb7f0bc9529",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -1528,21 +1528,21 @@
       "status": "failed"
     }
   ],
-  "checked_at": "2026-11-07T06:22:27.535372+00:00",
+  "checked_at": "2026-11-07T06:23:30.284251+00:00",
   "legacy_backlog": {
-    "assessed": 505,
-    "pending": 30,
+    "assessed": 507,
+    "pending": 18,
     "unresolved": 34,
-    "in_progress": 4,
-    "total": 573,
+    "in_progress": 9,
+    "total": 568,
     "strong": 65
   },
-  "batch_id": "090c46d38abd1e75f7b272c5d9acd314a7877811bef1f0e263352dcb5253bdd0",
+  "batch_id": "34a3546de399adebf182908080f6b828ffbf8e2f2da6c4c8d8f085b0ba6e030c",
   "status": "assessing",
   "input_blobs": {
     "jobs.json": "0dc213d7a0775a485a1e205eaf84a9d9125bc1d7",
-    "fit_scores.json": "473bcea32eeb0ebb0436653364ef8576b087512e",
-    "fit_backfill.json": "ea7259c38b077279c4810499fb4d8e807cd769bf",
+    "fit_scores.json": "e44bfacfe41dc93c872fcbda92caa73fefac62ce",
+    "fit_backfill.json": "a455b92ae000ee2770bb9b419b4f3e7b901d7b67",
     "meta.json": "d4de048546e997317cb7b95e4dcb977fe350499c"
   }
 }
