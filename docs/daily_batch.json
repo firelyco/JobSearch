@@ -7,15 +7,15 @@
   "collection_at": "2026-11-07T06:00:53.489604+00:00",
   "counts": {
     "found": 83,
-    "eligible": 36,
-    "completed": 0,
-    "strong": 0,
-    "middle": 0,
-    "pass": 0,
-    "waiting": 36,
-    "processing": 0,
+    "eligible": 34,
+    "completed": 4,
+    "strong": 1,
+    "middle": 2,
+    "pass": 1,
+    "waiting": 24,
+    "processing": 6,
     "blocked": 0,
-    "excluded": 47,
+    "excluded": 49,
     "unverified_links": 35
   },
   "members": [
@@ -114,9 +114,9 @@
       "source": "apple",
       "job_snapshot_hash": "9ad34fcbe10e6f00d60bfd473912e05c9958de3f80af996eaeec36d6cd75b9c2",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "arbeitnow:84674Th44Metrea9999:senior-devops-engineer-london-456296",
@@ -653,7 +653,7 @@
       "source": "ashby",
       "job_snapshot_hash": "36b26a0c563500f65caa1ea5b5237cdc68404659230c146b0264101a2fa4d140",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -675,7 +675,7 @@
       "source": "google",
       "job_snapshot_hash": "d9afa6c638156b4ea3d6d40372aa8a402f6e9da76cd8a428539422373ebce785",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -697,7 +697,7 @@
       "source": "greenhouse",
       "job_snapshot_hash": "ce30a02a9528cd19b703894bbc39780e12183f7ff7e2e69c3b613f3415b8ff08",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -708,7 +708,7 @@
       "source": "greenhouse",
       "job_snapshot_hash": "97fc9044861b734d0ccc8306b5392b4c23b5968a7b60d16d79309e3142ae6530",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -730,7 +730,7 @@
       "source": "greenhouse",
       "job_snapshot_hash": "65e47f8b3cdf28e8175c63ced5ae90b87dcf86aec775a0a0bf094b929df0995d",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -829,7 +829,7 @@
       "source": "lever",
       "job_snapshot_hash": "cd5aff435d6bc188de085c57836a22b3236a0e263183863e8a2574f4901ee306",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -873,9 +873,9 @@
       "source": "workday",
       "job_snapshot_hash": "80f85673a5fedfeb7ad1f3413df689b3c7593e4861091b4be07e6e41b21f874c",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "strong"
     },
     {
       "key": "workday:novartis:/job/Ljubljana/Direktor-platformskih-reitev-za-avtomatizacijo-in-umetno-inteligenco-ITOT--m--d----Director-of-DDIT-ITOT-Platforms--Solutions--Automation---AI-Delivery--m-f-d-_REQ-10089746-1",
@@ -895,9 +895,9 @@
       "source": "workday",
       "job_snapshot_hash": "ae994bfd0fcff3b3e882bff6a2cad7f82965a62e04072cda7a6796237270a45c",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "workday:visa:/job/US---Austin-TX/Sr-Technical-Program-Manager--Technology-Portfolio-Management_REF089546W",
@@ -905,9 +905,9 @@
       "url": "https://visa.wd5.myworkdayjobs.com/en-US/Visa/job/US---Austin-TX/Sr-Technical-Program-Manager--Technology-Portfolio-Management_REF089546W",
       "source": "workday",
       "job_snapshot_hash": "81fca23fcc1765c8adfcc63c5210fae7d7d72f8790015f539bb09c28e31c1678",
-      "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -916,9 +916,9 @@
       "url": "https://walmart.wd504.myworkdayjobs.com/en-US/WalmartExternal/job/USA-ISD-Office---DGTC-AR-BENTONVILLE-Home-Office/XMLNAME--USA--Principal--Technical-Program-Manager_R-2682765-1",
       "source": "workday",
       "job_snapshot_hash": "4c6cc8fd36385fa0a5d96823276ee845ccf11c73f4223eb737e2b78ba37f8c93",
-      "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -928,9 +928,9 @@
       "source": "workday",
       "job_snapshot_hash": "40f99075d9277dba07e883ec01d6bfc2c8a22da00b8d2728d6916b274ff9f4d7",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "pass"
     }
   ],
   "link_ids": [
@@ -1528,21 +1528,21 @@
       "status": "failed"
     }
   ],
-  "checked_at": "2026-11-07T06:18:04.214805+00:00",
+  "checked_at": "2026-11-07T06:19:10.277612+00:00",
   "legacy_backlog": {
-    "assessed": 485,
-    "pending": 67,
+    "assessed": 491,
+    "pending": 53,
     "unresolved": 33,
-    "in_progress": 0,
-    "total": 585,
-    "strong": 62
+    "in_progress": 6,
+    "total": 583,
+    "strong": 63
   },
-  "batch_id": "77f909d801bd82ec2a780553a1b6106ed8b954c3fc073573e3b3bcf3712df81d",
+  "batch_id": "645c9469600d5e67f96e229664747f07914e10ab52d8b7c2dedf3c1933797c74",
   "status": "assessing",
   "input_blobs": {
     "jobs.json": "0dc213d7a0775a485a1e205eaf84a9d9125bc1d7",
-    "fit_scores.json": "389d7d489cf0a422ee036d4e1f5bf081c380fc14",
-    "fit_backfill.json": "46d83f3b509e7b25945e7d86a9ed14f10c905667",
+    "fit_scores.json": "1904803506bd4160dc0b696fe42610ecabede0c1",
+    "fit_backfill.json": "8c360e033ac8595001f38ec0964ec3c7818749f1",
     "meta.json": "d4de048546e997317cb7b95e4dcb977fe350499c"
   }
 }
