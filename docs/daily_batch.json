@@ -7,15 +7,15 @@
   "collection_at": "2026-11-07T06:00:53.489604+00:00",
   "counts": {
     "found": 83,
-    "eligible": 21,
+    "eligible": 20,
     "completed": 19,
     "strong": 3,
     "middle": 8,
     "pass": 8,
     "waiting": 0,
-    "processing": 1,
+    "processing": 0,
     "blocked": 1,
-    "excluded": 62,
+    "excluded": 63,
     "unverified_links": 35
   },
   "members": [
@@ -861,9 +861,9 @@
       "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/347711",
       "source": "oracle_cloud",
       "job_snapshot_hash": "b2eeda1671ed6060584508e6e830357bc3e7b935622c4eaf211dffb7f0bc9529",
-      "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -1528,21 +1528,21 @@
       "status": "failed"
     }
   ],
-  "checked_at": "2026-11-07T06:23:30.284251+00:00",
+  "checked_at": "2026-11-07T06:24:34.985922+00:00",
   "legacy_backlog": {
-    "assessed": 507,
-    "pending": 18,
+    "assessed": 515,
+    "pending": 8,
     "unresolved": 34,
-    "in_progress": 9,
-    "total": 568,
+    "in_progress": 10,
+    "total": 567,
     "strong": 65
   },
-  "batch_id": "34a3546de399adebf182908080f6b828ffbf8e2f2da6c4c8d8f085b0ba6e030c",
-  "status": "assessing",
+  "batch_id": "2d0f4a81fcbc76fc3862bf86ee51496b50699e521fa00a525e5c482238cb828a",
+  "status": "blocked",
   "input_blobs": {
     "jobs.json": "0dc213d7a0775a485a1e205eaf84a9d9125bc1d7",
-    "fit_scores.json": "e44bfacfe41dc93c872fcbda92caa73fefac62ce",
-    "fit_backfill.json": "a455b92ae000ee2770bb9b419b4f3e7b901d7b67",
+    "fit_scores.json": "b5b50074daef81d180d22c95d5d90fc69c3b3a65",
+    "fit_backfill.json": "2068626905d12da68e1519b1dcae51dd022ee6ce",
     "meta.json": "d4de048546e997317cb7b95e4dcb977fe350499c"
   }
 }
