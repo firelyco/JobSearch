@@ -1,28 +1,28 @@
 {
   "schema": 1,
-  "checked_at": "2026-11-06T07:00:55.996194+00:00",
+  "checked_at": "2026-11-07T06:00:53.489604+00:00",
   "connection": {
     "source": "linkedin_email",
     "label": "LinkedIn job-alert emails",
     "status": "partial",
-    "jobs": 784,
-    "messages_checked": 0,
-    "alerts_with_jobs": 0,
-    "job_references_found": 0,
+    "jobs": 819,
+    "messages_checked": 12,
+    "alerts_with_jobs": 10,
+    "job_references_found": 58,
     "failed_messages": 0,
     "alerts_without_job_links": 0,
     "messages_deferred": 0,
     "unresolved_alert_messages": 11,
     "lookback_days": 14,
     "mode": "incremental",
-    "search_since": "2026-11-05T06:30:49.144713+00:00",
+    "search_since": "2026-11-05T07:00:55.996194+00:00",
     "last_success_at": null
   },
   "last_success_at": null,
   "scope": "One-time 14-day catch-up, then new unprocessed LinkedIn emails during the daily job search. Collected references are retained; this does not verify all LinkedIn or in-app listings.",
   "counts": {
-    "missing": 562,
-    "possible_match": 222
+    "missing": 594,
+    "possible_match": 225
   },
   "rows": [
     {
@@ -577,7 +577,7 @@
       "first_alert_at": "2026-10-19T23:54:42+00:00",
       "last_alert_at": "2026-10-20T05:57:44+00:00",
       "collection": "possible_match",
-      "assessment": "outside_date_scope",
+      "assessment": "reassessment_pending",
       "verdicts": [
         "Middle"
       ],
@@ -601,55 +601,6 @@
           "title": "Principal Technical Program Manager",
           "company": "microsoft",
           "url": "https://apply.careers.microsoft.com/careers/job/1970393557051417",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "microsoft:microsoft:1970393557050066",
-          "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050066",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "microsoft:microsoft:1970393557050169",
-          "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050169",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "microsoft:microsoft:1970393557044841",
-          "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557044841",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "microsoft:microsoft:1970393557048060",
-          "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557048060",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "microsoft:microsoft:1970393557050589",
-          "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050589",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "microsoft:microsoft:1970393557026741",
-          "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557026741",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "microsoft:microsoft:1970393557042157",
-          "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557042157",
           "assessment_date_eligible": true
         },
         {
@@ -707,6 +658,55 @@
           "company": "microsoft",
           "url": "https://apply.careers.microsoft.com/careers/job/1970393556873572",
           "assessment_date_eligible": false
+        },
+        {
+          "key": "microsoft:microsoft:1970393557026741",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557026741",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "microsoft:microsoft:1970393557042157",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557042157",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "microsoft:microsoft:1970393557044841",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557044841",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "microsoft:microsoft:1970393557050066",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050066",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "microsoft:microsoft:1970393557048060",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557048060",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "microsoft:microsoft:1970393557050589",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050589",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "microsoft:microsoft:1970393557050169",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050169",
+          "assessment_date_eligible": true
         }
       ],
       "reason": "Title/company similarity is not proof of the same requisition."
@@ -971,10 +971,8 @@
       "first_alert_at": "2026-11-02T13:57:42+00:00",
       "last_alert_at": "2026-11-02T13:57:42+00:00",
       "collection": "possible_match",
-      "assessment": "assessed",
-      "verdicts": [
-        "Middle"
-      ],
+      "assessment": "reassessment_pending",
+      "verdicts": [],
       "matches": [
         {
           "key": "workday:kla:/job/Milpitas-CA/Technical-project-and-program-manager_2638172",
@@ -996,7 +994,7 @@
       "first_alert_at": "2026-11-04T15:57:45+00:00",
       "last_alert_at": "2026-11-04T21:57:41+00:00",
       "collection": "possible_match",
-      "assessment": "assessed",
+      "assessment": "reassessment_pending",
       "verdicts": [
         "Strong"
       ],
@@ -1013,13 +1011,6 @@
           "title": "Director, Technical Program Management",
           "company": "capitalone",
           "url": "https://capitalone.wd12.myworkdayjobs.com/en-US/Capital_One/job/McLean-VA/Director--Technical-Program-Management_R1002717-1",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "workday:capitalone:/job/McLean-VA/Director--Technical-Program-Management_R1001686-1",
-          "title": "Director, Technical Program Management",
-          "company": "capitalone",
-          "url": "https://capitalone.wd12.myworkdayjobs.com/en-US/Capital_One/job/McLean-VA/Director--Technical-Program-Management_R1001686-1",
           "assessment_date_eligible": true
         },
         {
@@ -1335,19 +1326,11 @@
       "employer_urls": [],
       "first_alert_at": "2026-10-17T21:57:43+00:00",
       "last_alert_at": "2026-10-17T21:57:43+00:00",
-      "collection": "possible_match",
-      "assessment": "outside_date_scope",
+      "collection": "missing",
+      "assessment": "not_assessed",
       "verdicts": [],
-      "matches": [
-        {
-          "key": "lever:shieldai:695780f5-c62a-40d5-b897-a2aa4477a8e8",
-          "title": "Director, Engineering Excellence & Enablement",
-          "company": "shieldai",
-          "url": "https://jobs.lever.co/shieldai/695780f5-c62a-40d5-b897-a2aa4477a8e8",
-          "assessment_date_eligible": false
-        }
-      ],
-      "reason": "Title/company similarity is not proof of the same requisition."
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
     },
     {
       "linkedin_id": "4443447154",
@@ -1403,19 +1386,11 @@
       "employer_urls": [],
       "first_alert_at": "2026-10-21T21:57:42+00:00",
       "last_alert_at": "2026-10-21T21:57:42+00:00",
-      "collection": "possible_match",
-      "assessment": "outside_date_scope",
+      "collection": "missing",
+      "assessment": "not_assessed",
       "verdicts": [],
-      "matches": [
-        {
-          "key": "greenhouse:airbnb:8077683",
-          "title": "Senior Manager, Technical Program Management (Search & AI Foundations)",
-          "company": "airbnb",
-          "url": "https://careers.airbnb.com/positions/8077683?gh_jid=8077683",
-          "assessment_date_eligible": false
-        }
-      ],
-      "reason": "Title/company similarity is not proof of the same requisition."
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
     },
     {
       "linkedin_id": "4443625540",
@@ -1872,17 +1847,17 @@
       "verdicts": [],
       "matches": [
         {
-          "key": "greenhouse:instacart:8112136",
-          "title": "Chief of Staff, Online Grocery",
-          "company": "instacart",
-          "url": "https://instacart.careers/job/?gh_jid=8112136",
-          "assessment_date_eligible": false
-        },
-        {
           "key": "greenhouse:instacart:8112138",
           "title": "Chief of Staff, Online Grocery",
           "company": "instacart",
           "url": "https://instacart.careers/job/?gh_jid=8112138",
+          "assessment_date_eligible": false
+        },
+        {
+          "key": "greenhouse:instacart:8112136",
+          "title": "Chief of Staff, Online Grocery",
+          "company": "instacart",
+          "url": "https://instacart.careers/job/?gh_jid=8112136",
           "assessment_date_eligible": false
         }
       ],
@@ -2019,10 +1994,10 @@
           "assessment_date_eligible": true
         },
         {
-          "key": "oracle_cloud:oracle:341376",
+          "key": "oracle_cloud:oracle:345276",
           "title": "Lead Principal Technical Program Manager",
           "company": "oracle",
-          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/341376",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/345276",
           "assessment_date_eligible": true
         },
         {
@@ -2030,20 +2005,6 @@
           "title": "Lead Principal Technical Program Manager",
           "company": "oracle",
           "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/349660",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "oracle_cloud:oracle:338528",
-          "title": "Lead Principal Technical Program Manager",
-          "company": "oracle",
-          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/338528",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "oracle_cloud:oracle:344234",
-          "title": "Lead Principal Technical Program Manager",
-          "company": "oracle",
-          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/344234",
           "assessment_date_eligible": true
         },
         {
@@ -2061,11 +2022,32 @@
           "assessment_date_eligible": false
         },
         {
+          "key": "oracle_cloud:oracle:341376",
+          "title": "Lead Principal Technical Program Manager",
+          "company": "oracle",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/341376",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "oracle_cloud:oracle:338528",
+          "title": "Lead Principal Technical Program Manager",
+          "company": "oracle",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/338528",
+          "assessment_date_eligible": true
+        },
+        {
           "key": "oracle_cloud:oracle:342277",
           "title": "Lead Principal Technical Program Manager",
           "company": "oracle",
           "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/342277",
           "assessment_date_eligible": false
+        },
+        {
+          "key": "oracle_cloud:oracle:344234",
+          "title": "Lead Principal Technical Program Manager",
+          "company": "oracle",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/344234",
+          "assessment_date_eligible": true
         },
         {
           "key": "oracle_cloud:oracle:348205",
@@ -2200,10 +2182,10 @@
           "assessment_date_eligible": true
         },
         {
-          "key": "oracle_cloud:oracle:341376",
+          "key": "oracle_cloud:oracle:345276",
           "title": "Lead Principal Technical Program Manager",
           "company": "oracle",
-          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/341376",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/345276",
           "assessment_date_eligible": true
         },
         {
@@ -2211,20 +2193,6 @@
           "title": "Lead Principal Technical Program Manager",
           "company": "oracle",
           "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/349660",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "oracle_cloud:oracle:338528",
-          "title": "Lead Principal Technical Program Manager",
-          "company": "oracle",
-          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/338528",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "oracle_cloud:oracle:344234",
-          "title": "Lead Principal Technical Program Manager",
-          "company": "oracle",
-          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/344234",
           "assessment_date_eligible": true
         },
         {
@@ -2242,11 +2210,32 @@
           "assessment_date_eligible": false
         },
         {
+          "key": "oracle_cloud:oracle:341376",
+          "title": "Lead Principal Technical Program Manager",
+          "company": "oracle",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/341376",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "oracle_cloud:oracle:338528",
+          "title": "Lead Principal Technical Program Manager",
+          "company": "oracle",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/338528",
+          "assessment_date_eligible": true
+        },
+        {
           "key": "oracle_cloud:oracle:342277",
           "title": "Lead Principal Technical Program Manager",
           "company": "oracle",
           "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/342277",
           "assessment_date_eligible": false
+        },
+        {
+          "key": "oracle_cloud:oracle:344234",
+          "title": "Lead Principal Technical Program Manager",
+          "company": "oracle",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/344234",
+          "assessment_date_eligible": true
         },
         {
           "key": "oracle_cloud:oracle:348205",
@@ -2386,13 +2375,6 @@
         "Strong"
       ],
       "matches": [
-        {
-          "key": "microsoft:microsoft:1970393556642449",
-          "title": "Principal Technical Program Manager - FDE",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393556642449",
-          "assessment_date_eligible": true
-        },
         {
           "key": "microsoft:microsoft:1970393556939562",
           "title": "Principal Technical Program Manager - FDE",
@@ -2630,7 +2612,7 @@
       "location": "Menlo Park, CA",
       "employer_urls": [],
       "first_alert_at": "2026-10-28T15:57:42+00:00",
-      "last_alert_at": "2026-10-28T15:57:42+00:00",
+      "last_alert_at": "2026-11-06T12:10:08+00:00",
       "collection": "missing",
       "assessment": "not_assessed",
       "verdicts": [],
@@ -2837,7 +2819,7 @@
           "key": "ashby:leandata:46138c47-ee37-4abb-b8b0-d9d6c2b64300",
           "title": "Chief of Staff",
           "company": "leandata",
-          "url": "https://jobs.ashbyhq.com/leandata/46138c47-ee37-4abb-b8b0-d9d6c2b64300",
+          "url": "https://jobs.ashbyhq.com/LeanData/46138c47-ee37-4abb-b8b0-d9d6c2b64300",
           "assessment_date_eligible": false
         }
       ],
@@ -2916,13 +2898,6 @@
       "assessment": "reassessment_pending",
       "verdicts": [],
       "matches": [
-        {
-          "key": "workday:mastercard:/job/OFallon-Missouri/Director--Technical-Program-Management_R-293051",
-          "title": "Director, Technical Program Management",
-          "company": "mastercard",
-          "url": "https://mastercard.wd1.myworkdayjobs.com/en-US/CorporateCareers/job/OFallon-Missouri/Director--Technical-Program-Management_R-293051",
-          "assessment_date_eligible": true
-        },
         {
           "key": "workday:mastercard:/job/Pune-India/Director--Technical-Program-Management-_R-288288",
           "title": "Director, Technical Program Management\u2019",
@@ -3464,10 +3439,10 @@
           "assessment_date_eligible": true
         },
         {
-          "key": "oracle_cloud:oracle:341376",
+          "key": "oracle_cloud:oracle:345276",
           "title": "Lead Principal Technical Program Manager",
           "company": "oracle",
-          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/341376",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/345276",
           "assessment_date_eligible": true
         },
         {
@@ -3475,20 +3450,6 @@
           "title": "Lead Principal Technical Program Manager",
           "company": "oracle",
           "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/349660",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "oracle_cloud:oracle:338528",
-          "title": "Lead Principal Technical Program Manager",
-          "company": "oracle",
-          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/338528",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "oracle_cloud:oracle:344234",
-          "title": "Lead Principal Technical Program Manager",
-          "company": "oracle",
-          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/344234",
           "assessment_date_eligible": true
         },
         {
@@ -3506,11 +3467,32 @@
           "assessment_date_eligible": false
         },
         {
+          "key": "oracle_cloud:oracle:341376",
+          "title": "Lead Principal Technical Program Manager",
+          "company": "oracle",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/341376",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "oracle_cloud:oracle:338528",
+          "title": "Lead Principal Technical Program Manager",
+          "company": "oracle",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/338528",
+          "assessment_date_eligible": true
+        },
+        {
           "key": "oracle_cloud:oracle:342277",
           "title": "Lead Principal Technical Program Manager",
           "company": "oracle",
           "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/342277",
           "assessment_date_eligible": false
+        },
+        {
+          "key": "oracle_cloud:oracle:344234",
+          "title": "Lead Principal Technical Program Manager",
+          "company": "oracle",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/344234",
+          "assessment_date_eligible": true
         },
         {
           "key": "oracle_cloud:oracle:348205",
@@ -3673,7 +3655,7 @@
       "location": "Sunnyvale, CA",
       "employer_urls": [],
       "first_alert_at": "2026-10-26T03:57:42+00:00",
-      "last_alert_at": "2026-10-26T03:57:42+00:00",
+      "last_alert_at": "2026-11-06T12:10:08+00:00",
       "collection": "missing",
       "assessment": "not_assessed",
       "verdicts": [],
@@ -4135,6 +4117,13 @@
       ],
       "matches": [
         {
+          "key": "workday:walmart:/job/USA-ISD-Office---DGTC-AR-BENTONVILLE-Home-Office/XMLNAME--USA--Principal--Technical-Program-Manager_R-2682765-1",
+          "title": "(USA) Principal, Technical Program Manager",
+          "company": "walmart",
+          "url": "https://walmart.wd504.myworkdayjobs.com/en-US/WalmartExternal/job/USA-ISD-Office---DGTC-AR-BENTONVILLE-Home-Office/XMLNAME--USA--Principal--Technical-Program-Manager_R-2682765-1",
+          "assessment_date_eligible": true
+        },
+        {
           "key": "workday:walmart:/job/USA-Crossman-Respect-Building-CA-SUNNYVALE-Home-Office/XMLNAME--USA--Principal--Technical-Program-Manager_R-2655207-1",
           "title": "(USA) Principal, Technical Program Manager",
           "company": "walmart",
@@ -4270,7 +4259,7 @@
       "first_alert_at": "2026-10-16T05:57:41+00:00",
       "last_alert_at": "2026-10-16T05:57:41+00:00",
       "collection": "possible_match",
-      "assessment": "assessed",
+      "assessment": "reassessment_pending",
       "verdicts": [
         "Strong"
       ],
@@ -4287,13 +4276,6 @@
           "title": "Director, Technical Program Management",
           "company": "capitalone",
           "url": "https://capitalone.wd12.myworkdayjobs.com/en-US/Capital_One/job/McLean-VA/Director--Technical-Program-Management_R1002717-1",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "workday:capitalone:/job/McLean-VA/Director--Technical-Program-Management_R1001686-1",
-          "title": "Director, Technical Program Management",
-          "company": "capitalone",
-          "url": "https://capitalone.wd12.myworkdayjobs.com/en-US/Capital_One/job/McLean-VA/Director--Technical-Program-Management_R1001686-1",
           "assessment_date_eligible": true
         },
         {
@@ -4356,10 +4338,10 @@
           "assessment_date_eligible": true
         },
         {
-          "key": "oracle_cloud:oracle:341376",
+          "key": "oracle_cloud:oracle:345276",
           "title": "Lead Principal Technical Program Manager",
           "company": "oracle",
-          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/341376",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/345276",
           "assessment_date_eligible": true
         },
         {
@@ -4367,20 +4349,6 @@
           "title": "Lead Principal Technical Program Manager",
           "company": "oracle",
           "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/349660",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "oracle_cloud:oracle:338528",
-          "title": "Lead Principal Technical Program Manager",
-          "company": "oracle",
-          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/338528",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "oracle_cloud:oracle:344234",
-          "title": "Lead Principal Technical Program Manager",
-          "company": "oracle",
-          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/344234",
           "assessment_date_eligible": true
         },
         {
@@ -4398,11 +4366,32 @@
           "assessment_date_eligible": false
         },
         {
+          "key": "oracle_cloud:oracle:341376",
+          "title": "Lead Principal Technical Program Manager",
+          "company": "oracle",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/341376",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "oracle_cloud:oracle:338528",
+          "title": "Lead Principal Technical Program Manager",
+          "company": "oracle",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/338528",
+          "assessment_date_eligible": true
+        },
+        {
           "key": "oracle_cloud:oracle:342277",
           "title": "Lead Principal Technical Program Manager",
           "company": "oracle",
           "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/342277",
           "assessment_date_eligible": false
+        },
+        {
+          "key": "oracle_cloud:oracle:344234",
+          "title": "Lead Principal Technical Program Manager",
+          "company": "oracle",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/344234",
+          "assessment_date_eligible": true
         },
         {
           "key": "oracle_cloud:oracle:348205",
@@ -4577,7 +4566,7 @@
       "first_alert_at": "2026-10-17T03:57:43+00:00",
       "last_alert_at": "2026-10-17T03:57:43+00:00",
       "collection": "possible_match",
-      "assessment": "assessed",
+      "assessment": "reassessment_pending",
       "verdicts": [
         "Strong"
       ],
@@ -4594,13 +4583,6 @@
           "title": "Director, Technical Program Management",
           "company": "capitalone",
           "url": "https://capitalone.wd12.myworkdayjobs.com/en-US/Capital_One/job/McLean-VA/Director--Technical-Program-Management_R1002717-1",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "workday:capitalone:/job/McLean-VA/Director--Technical-Program-Management_R1001686-1",
-          "title": "Director, Technical Program Management",
-          "company": "capitalone",
-          "url": "https://capitalone.wd12.myworkdayjobs.com/en-US/Capital_One/job/McLean-VA/Director--Technical-Program-Management_R1001686-1",
           "assessment_date_eligible": true
         },
         {
@@ -4623,7 +4605,7 @@
       "first_alert_at": "2026-10-17T03:57:43+00:00",
       "last_alert_at": "2026-10-17T03:57:43+00:00",
       "collection": "possible_match",
-      "assessment": "assessed",
+      "assessment": "reassessment_pending",
       "verdicts": [
         "Strong"
       ],
@@ -4640,13 +4622,6 @@
           "title": "Director, Technical Program Management",
           "company": "capitalone",
           "url": "https://capitalone.wd12.myworkdayjobs.com/en-US/Capital_One/job/McLean-VA/Director--Technical-Program-Management_R1002717-1",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "workday:capitalone:/job/McLean-VA/Director--Technical-Program-Management_R1001686-1",
-          "title": "Director, Technical Program Management",
-          "company": "capitalone",
-          "url": "https://capitalone.wd12.myworkdayjobs.com/en-US/Capital_One/job/McLean-VA/Director--Technical-Program-Management_R1001686-1",
           "assessment_date_eligible": true
         },
         {
@@ -4962,22 +4937,21 @@
       "collection": "possible_match",
       "assessment": "assessed",
       "verdicts": [
-        "Middle",
-        "Strong"
+        "Middle"
       ],
       "matches": [
+        {
+          "key": "workday:capitalone:/job/New-York-NY/Director--Technical-Program-Manager_R1002194-1",
+          "title": "Director, Technical Program Manager",
+          "company": "capitalone",
+          "url": "https://capitalone.wd12.myworkdayjobs.com/en-US/Capital_One/job/New-York-NY/Director--Technical-Program-Manager_R1002194-1",
+          "assessment_date_eligible": true
+        },
         {
           "key": "workday:capitalone:/job/McLean-VA/Director--Technical-Program-Manager_R1003330-1",
           "title": "Director, Technical Program Manager",
           "company": "capitalone",
           "url": "https://capitalone.wd12.myworkdayjobs.com/en-US/Capital_One/job/McLean-VA/Director--Technical-Program-Manager_R1003330-1",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "workday:capitalone:/job/McLean-VA/Director--Technical-Program-Manager_R1002194-1",
-          "title": "Director, Technical Program Manager",
-          "company": "capitalone",
-          "url": "https://capitalone.wd12.myworkdayjobs.com/en-US/Capital_One/job/McLean-VA/Director--Technical-Program-Manager_R1002194-1",
           "assessment_date_eligible": true
         }
       ],
@@ -5128,7 +5102,7 @@
       "first_alert_at": "2026-10-23T05:57:41+00:00",
       "last_alert_at": "2026-10-31T07:57:43+00:00",
       "collection": "possible_match",
-      "assessment": "outside_date_scope",
+      "assessment": "reassessment_pending",
       "verdicts": [
         "Middle"
       ],
@@ -5152,55 +5126,6 @@
           "title": "Principal Technical Program Manager",
           "company": "microsoft",
           "url": "https://apply.careers.microsoft.com/careers/job/1970393557051417",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "microsoft:microsoft:1970393557050066",
-          "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050066",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "microsoft:microsoft:1970393557050169",
-          "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050169",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "microsoft:microsoft:1970393557044841",
-          "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557044841",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "microsoft:microsoft:1970393557048060",
-          "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557048060",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "microsoft:microsoft:1970393557050589",
-          "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050589",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "microsoft:microsoft:1970393557026741",
-          "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557026741",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "microsoft:microsoft:1970393557042157",
-          "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557042157",
           "assessment_date_eligible": true
         },
         {
@@ -5258,6 +5183,55 @@
           "company": "microsoft",
           "url": "https://apply.careers.microsoft.com/careers/job/1970393556873572",
           "assessment_date_eligible": false
+        },
+        {
+          "key": "microsoft:microsoft:1970393557026741",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557026741",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "microsoft:microsoft:1970393557042157",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557042157",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "microsoft:microsoft:1970393557044841",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557044841",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "microsoft:microsoft:1970393557050066",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050066",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "microsoft:microsoft:1970393557048060",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557048060",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "microsoft:microsoft:1970393557050589",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050589",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "microsoft:microsoft:1970393557050169",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050169",
+          "assessment_date_eligible": true
         }
       ],
       "reason": "Title/company similarity is not proof of the same requisition."
@@ -5555,17 +5529,17 @@
       "verdicts": [],
       "matches": [
         {
-          "key": "greenhouse:instacart:8249753",
-          "title": "Senior Design Program Manager II",
-          "company": "instacart",
-          "url": "https://instacart.careers/job/?gh_jid=8249753",
-          "assessment_date_eligible": true
-        },
-        {
           "key": "greenhouse:instacart:8249751",
           "title": "Senior Design Program Manager II",
           "company": "instacart",
           "url": "https://instacart.careers/job/?gh_jid=8249751",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "greenhouse:instacart:8249753",
+          "title": "Senior Design Program Manager II",
+          "company": "instacart",
+          "url": "https://instacart.careers/job/?gh_jid=8249753",
           "assessment_date_eligible": true
         }
       ],
@@ -5581,7 +5555,7 @@
       "first_alert_at": "2026-10-25T13:57:41+00:00",
       "last_alert_at": "2026-10-25T23:57:43+00:00",
       "collection": "possible_match",
-      "assessment": "assessed",
+      "assessment": "reassessment_pending",
       "verdicts": [
         "Strong"
       ],
@@ -5598,13 +5572,6 @@
           "title": "Director, Technical Program Management",
           "company": "capitalone",
           "url": "https://capitalone.wd12.myworkdayjobs.com/en-US/Capital_One/job/McLean-VA/Director--Technical-Program-Management_R1002717-1",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "workday:capitalone:/job/McLean-VA/Director--Technical-Program-Management_R1001686-1",
-          "title": "Director, Technical Program Management",
-          "company": "capitalone",
-          "url": "https://capitalone.wd12.myworkdayjobs.com/en-US/Capital_One/job/McLean-VA/Director--Technical-Program-Management_R1001686-1",
           "assessment_date_eligible": true
         },
         {
@@ -5627,7 +5594,7 @@
       "first_alert_at": "2026-10-25T21:57:42+00:00",
       "last_alert_at": "2026-10-25T21:57:42+00:00",
       "collection": "possible_match",
-      "assessment": "assessed",
+      "assessment": "reassessment_pending",
       "verdicts": [
         "Strong"
       ],
@@ -5644,13 +5611,6 @@
           "title": "Director, Technical Program Management",
           "company": "capitalone",
           "url": "https://capitalone.wd12.myworkdayjobs.com/en-US/Capital_One/job/McLean-VA/Director--Technical-Program-Management_R1002717-1",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "workday:capitalone:/job/McLean-VA/Director--Technical-Program-Management_R1001686-1",
-          "title": "Director, Technical Program Management",
-          "company": "capitalone",
-          "url": "https://capitalone.wd12.myworkdayjobs.com/en-US/Capital_One/job/McLean-VA/Director--Technical-Program-Management_R1001686-1",
           "assessment_date_eligible": true
         },
         {
@@ -5763,10 +5723,10 @@
           "assessment_date_eligible": true
         },
         {
-          "key": "oracle_cloud:oracle:341376",
+          "key": "oracle_cloud:oracle:345276",
           "title": "Lead Principal Technical Program Manager",
           "company": "oracle",
-          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/341376",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/345276",
           "assessment_date_eligible": true
         },
         {
@@ -5774,20 +5734,6 @@
           "title": "Lead Principal Technical Program Manager",
           "company": "oracle",
           "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/349660",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "oracle_cloud:oracle:338528",
-          "title": "Lead Principal Technical Program Manager",
-          "company": "oracle",
-          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/338528",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "oracle_cloud:oracle:344234",
-          "title": "Lead Principal Technical Program Manager",
-          "company": "oracle",
-          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/344234",
           "assessment_date_eligible": true
         },
         {
@@ -5805,11 +5751,32 @@
           "assessment_date_eligible": false
         },
         {
+          "key": "oracle_cloud:oracle:341376",
+          "title": "Lead Principal Technical Program Manager",
+          "company": "oracle",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/341376",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "oracle_cloud:oracle:338528",
+          "title": "Lead Principal Technical Program Manager",
+          "company": "oracle",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/338528",
+          "assessment_date_eligible": true
+        },
+        {
           "key": "oracle_cloud:oracle:342277",
           "title": "Lead Principal Technical Program Manager",
           "company": "oracle",
           "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/342277",
           "assessment_date_eligible": false
+        },
+        {
+          "key": "oracle_cloud:oracle:344234",
+          "title": "Lead Principal Technical Program Manager",
+          "company": "oracle",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/344234",
+          "assessment_date_eligible": true
         },
         {
           "key": "oracle_cloud:oracle:348205",
@@ -6177,21 +6144,11 @@
       "employer_urls": [],
       "first_alert_at": "2026-10-21T12:30:03+00:00",
       "last_alert_at": "2026-10-30T03:57:41+00:00",
-      "collection": "possible_match",
-      "assessment": "assessed",
-      "verdicts": [
-        "Middle"
-      ],
-      "matches": [
-        {
-          "key": "google:google:77215114838581958",
-          "title": "Head of Program Management Office, Google Enterprise Network",
-          "company": "google",
-          "url": "https://www.google.com/about/careers/applications/jobs/results/77215114838581958",
-          "assessment_date_eligible": true
-        }
-      ],
-      "reason": "Title/company similarity is not proof of the same requisition."
+      "collection": "missing",
+      "assessment": "not_assessed",
+      "verdicts": [],
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
     },
     {
       "linkedin_id": "4476735992",
@@ -6345,7 +6302,7 @@
       "location": "Bedford, MA",
       "employer_urls": [],
       "first_alert_at": "2026-10-15T21:57:43+00:00",
-      "last_alert_at": "2026-11-06T01:57:42+00:00",
+      "last_alert_at": "2026-11-06T15:57:42+00:00",
       "collection": "possible_match",
       "assessment": "assessed",
       "verdicts": [
@@ -6370,7 +6327,7 @@
       "location": "Sunnyvale, CA (On-site)",
       "employer_urls": [],
       "first_alert_at": "2026-10-15T21:57:43+00:00",
-      "last_alert_at": "2026-10-16T01:57:43+00:00",
+      "last_alert_at": "2026-11-06T19:57:41+00:00",
       "collection": "possible_match",
       "assessment": "assessed",
       "verdicts": [
@@ -6494,21 +6451,11 @@
       "employer_urls": [],
       "first_alert_at": "2026-11-01T13:57:42+00:00",
       "last_alert_at": "2026-11-02T03:57:43+00:00",
-      "collection": "possible_match",
-      "assessment": "assessed",
-      "verdicts": [
-        "Middle"
-      ],
-      "matches": [
-        {
-          "key": "workday:astrazeneca:/job/US---Cambridge-Kendall-SQ---MA/Director--Portfolio--Resourcing-and-Transformation_R-261581",
-          "title": "Director, Portfolio, Resourcing and Transformation",
-          "company": "astrazeneca",
-          "url": "https://astrazeneca.wd3.myworkdayjobs.com/en-US/Careers/job/US---Cambridge-Kendall-SQ---MA/Director--Portfolio--Resourcing-and-Transformation_R-261581",
-          "assessment_date_eligible": true
-        }
-      ],
-      "reason": "Title/company similarity is not proof of the same requisition."
+      "collection": "missing",
+      "assessment": "not_assessed",
+      "verdicts": [],
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
     },
     {
       "linkedin_id": "4477309803",
@@ -6731,10 +6678,10 @@
           "assessment_date_eligible": true
         },
         {
-          "key": "oracle_cloud:oracle:341376",
+          "key": "oracle_cloud:oracle:345276",
           "title": "Lead Principal Technical Program Manager",
           "company": "oracle",
-          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/341376",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/345276",
           "assessment_date_eligible": true
         },
         {
@@ -6742,20 +6689,6 @@
           "title": "Lead Principal Technical Program Manager",
           "company": "oracle",
           "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/349660",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "oracle_cloud:oracle:338528",
-          "title": "Lead Principal Technical Program Manager",
-          "company": "oracle",
-          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/338528",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "oracle_cloud:oracle:344234",
-          "title": "Lead Principal Technical Program Manager",
-          "company": "oracle",
-          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/344234",
           "assessment_date_eligible": true
         },
         {
@@ -6773,11 +6706,32 @@
           "assessment_date_eligible": false
         },
         {
+          "key": "oracle_cloud:oracle:341376",
+          "title": "Lead Principal Technical Program Manager",
+          "company": "oracle",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/341376",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "oracle_cloud:oracle:338528",
+          "title": "Lead Principal Technical Program Manager",
+          "company": "oracle",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/338528",
+          "assessment_date_eligible": true
+        },
+        {
           "key": "oracle_cloud:oracle:342277",
           "title": "Lead Principal Technical Program Manager",
           "company": "oracle",
           "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/342277",
           "assessment_date_eligible": false
+        },
+        {
+          "key": "oracle_cloud:oracle:344234",
+          "title": "Lead Principal Technical Program Manager",
+          "company": "oracle",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/344234",
+          "assessment_date_eligible": true
         },
         {
           "key": "oracle_cloud:oracle:348205",
@@ -6945,13 +6899,6 @@
           "assessment_date_eligible": true
         },
         {
-          "key": "oracle_cloud:oracle:349319",
-          "title": "Program Manager 4",
-          "company": "oracle",
-          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/349319",
-          "assessment_date_eligible": true
-        },
-        {
           "key": "oracle_cloud:oracle:347267",
           "title": "Program Manager 4",
           "company": "oracle",
@@ -6991,6 +6938,13 @@
           "title": "Program Manager 4",
           "company": "oracle",
           "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/347743",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "oracle_cloud:oracle:349319",
+          "title": "Program Manager 4",
+          "company": "oracle",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/349319",
           "assessment_date_eligible": true
         },
         {
@@ -7050,10 +7004,10 @@
           "assessment_date_eligible": false
         },
         {
-          "key": "oracle_cloud:oracle:344627",
+          "key": "oracle_cloud:oracle:349639",
           "title": "Program Manager 4",
           "company": "oracle",
-          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/344627",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/349639",
           "assessment_date_eligible": true
         },
         {
@@ -7520,10 +7474,8 @@
       "first_alert_at": "2026-10-31T07:57:43+00:00",
       "last_alert_at": "2026-11-04T19:57:43+00:00",
       "collection": "possible_match",
-      "assessment": "assessed",
-      "verdicts": [
-        "Middle"
-      ],
+      "assessment": "reassessment_pending",
+      "verdicts": [],
       "matches": [
         {
           "key": "ashby:snowflake:34f83a57-280d-4ee6-9f99-bcc06d8ab4ea",
@@ -7995,10 +7947,10 @@
           "assessment_date_eligible": true
         },
         {
-          "key": "oracle_cloud:oracle:341376",
+          "key": "oracle_cloud:oracle:345276",
           "title": "Lead Principal Technical Program Manager",
           "company": "oracle",
-          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/341376",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/345276",
           "assessment_date_eligible": true
         },
         {
@@ -8006,20 +7958,6 @@
           "title": "Lead Principal Technical Program Manager",
           "company": "oracle",
           "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/349660",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "oracle_cloud:oracle:338528",
-          "title": "Lead Principal Technical Program Manager",
-          "company": "oracle",
-          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/338528",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "oracle_cloud:oracle:344234",
-          "title": "Lead Principal Technical Program Manager",
-          "company": "oracle",
-          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/344234",
           "assessment_date_eligible": true
         },
         {
@@ -8037,11 +7975,32 @@
           "assessment_date_eligible": false
         },
         {
+          "key": "oracle_cloud:oracle:341376",
+          "title": "Lead Principal Technical Program Manager",
+          "company": "oracle",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/341376",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "oracle_cloud:oracle:338528",
+          "title": "Lead Principal Technical Program Manager",
+          "company": "oracle",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/338528",
+          "assessment_date_eligible": true
+        },
+        {
           "key": "oracle_cloud:oracle:342277",
           "title": "Lead Principal Technical Program Manager",
           "company": "oracle",
           "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/342277",
           "assessment_date_eligible": false
+        },
+        {
+          "key": "oracle_cloud:oracle:344234",
+          "title": "Lead Principal Technical Program Manager",
+          "company": "oracle",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/344234",
+          "assessment_date_eligible": true
         },
         {
           "key": "oracle_cloud:oracle:348205",
@@ -8176,10 +8135,10 @@
           "assessment_date_eligible": true
         },
         {
-          "key": "oracle_cloud:oracle:341376",
+          "key": "oracle_cloud:oracle:345276",
           "title": "Lead Principal Technical Program Manager",
           "company": "oracle",
-          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/341376",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/345276",
           "assessment_date_eligible": true
         },
         {
@@ -8187,20 +8146,6 @@
           "title": "Lead Principal Technical Program Manager",
           "company": "oracle",
           "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/349660",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "oracle_cloud:oracle:338528",
-          "title": "Lead Principal Technical Program Manager",
-          "company": "oracle",
-          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/338528",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "oracle_cloud:oracle:344234",
-          "title": "Lead Principal Technical Program Manager",
-          "company": "oracle",
-          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/344234",
           "assessment_date_eligible": true
         },
         {
@@ -8218,11 +8163,32 @@
           "assessment_date_eligible": false
         },
         {
+          "key": "oracle_cloud:oracle:341376",
+          "title": "Lead Principal Technical Program Manager",
+          "company": "oracle",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/341376",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "oracle_cloud:oracle:338528",
+          "title": "Lead Principal Technical Program Manager",
+          "company": "oracle",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/338528",
+          "assessment_date_eligible": true
+        },
+        {
           "key": "oracle_cloud:oracle:342277",
           "title": "Lead Principal Technical Program Manager",
           "company": "oracle",
           "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/342277",
           "assessment_date_eligible": false
+        },
+        {
+          "key": "oracle_cloud:oracle:344234",
+          "title": "Lead Principal Technical Program Manager",
+          "company": "oracle",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/344234",
+          "assessment_date_eligible": true
         },
         {
           "key": "oracle_cloud:oracle:348205",
@@ -8357,7 +8323,7 @@
       "first_alert_at": "2026-10-15T23:57:43+00:00",
       "last_alert_at": "2026-10-15T23:57:43+00:00",
       "collection": "possible_match",
-      "assessment": "outside_date_scope",
+      "assessment": "reassessment_pending",
       "verdicts": [
         "Middle"
       ],
@@ -8381,55 +8347,6 @@
           "title": "Principal Technical Program Manager",
           "company": "microsoft",
           "url": "https://apply.careers.microsoft.com/careers/job/1970393557051417",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "microsoft:microsoft:1970393557050066",
-          "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050066",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "microsoft:microsoft:1970393557050169",
-          "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050169",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "microsoft:microsoft:1970393557044841",
-          "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557044841",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "microsoft:microsoft:1970393557048060",
-          "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557048060",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "microsoft:microsoft:1970393557050589",
-          "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050589",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "microsoft:microsoft:1970393557026741",
-          "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557026741",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "microsoft:microsoft:1970393557042157",
-          "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557042157",
           "assessment_date_eligible": true
         },
         {
@@ -8487,6 +8404,55 @@
           "company": "microsoft",
           "url": "https://apply.careers.microsoft.com/careers/job/1970393556873572",
           "assessment_date_eligible": false
+        },
+        {
+          "key": "microsoft:microsoft:1970393557026741",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557026741",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "microsoft:microsoft:1970393557042157",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557042157",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "microsoft:microsoft:1970393557044841",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557044841",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "microsoft:microsoft:1970393557050066",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050066",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "microsoft:microsoft:1970393557048060",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557048060",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "microsoft:microsoft:1970393557050589",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050589",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "microsoft:microsoft:1970393557050169",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050169",
+          "assessment_date_eligible": true
         }
       ],
       "reason": "Title/company similarity is not proof of the same requisition."
@@ -8805,7 +8771,7 @@
       "location": "Mountain View, CA (On-site)",
       "employer_urls": [],
       "first_alert_at": "2026-10-16T01:57:43+00:00",
-      "last_alert_at": "2026-10-16T01:57:43+00:00",
+      "last_alert_at": "2026-11-06T19:57:41+00:00",
       "collection": "missing",
       "assessment": "not_assessed",
       "verdicts": [],
@@ -9028,13 +8994,6 @@
           "title": "Principal Technical Program Manager",
           "company": "oracle",
           "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/344808",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "oracle_cloud:oracle:349321",
-          "title": "Principal Technical Program Manager",
-          "company": "oracle",
-          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/349321",
           "assessment_date_eligible": true
         },
         {
@@ -9955,10 +9914,10 @@
           "assessment_date_eligible": true
         },
         {
-          "key": "oracle_cloud:oracle:341376",
+          "key": "oracle_cloud:oracle:345276",
           "title": "Lead Principal Technical Program Manager",
           "company": "oracle",
-          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/341376",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/345276",
           "assessment_date_eligible": true
         },
         {
@@ -9966,20 +9925,6 @@
           "title": "Lead Principal Technical Program Manager",
           "company": "oracle",
           "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/349660",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "oracle_cloud:oracle:338528",
-          "title": "Lead Principal Technical Program Manager",
-          "company": "oracle",
-          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/338528",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "oracle_cloud:oracle:344234",
-          "title": "Lead Principal Technical Program Manager",
-          "company": "oracle",
-          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/344234",
           "assessment_date_eligible": true
         },
         {
@@ -9997,11 +9942,32 @@
           "assessment_date_eligible": false
         },
         {
+          "key": "oracle_cloud:oracle:341376",
+          "title": "Lead Principal Technical Program Manager",
+          "company": "oracle",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/341376",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "oracle_cloud:oracle:338528",
+          "title": "Lead Principal Technical Program Manager",
+          "company": "oracle",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/338528",
+          "assessment_date_eligible": true
+        },
+        {
           "key": "oracle_cloud:oracle:342277",
           "title": "Lead Principal Technical Program Manager",
           "company": "oracle",
           "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/342277",
           "assessment_date_eligible": false
+        },
+        {
+          "key": "oracle_cloud:oracle:344234",
+          "title": "Lead Principal Technical Program Manager",
+          "company": "oracle",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/344234",
+          "assessment_date_eligible": true
         },
         {
           "key": "oracle_cloud:oracle:348205",
@@ -10124,13 +10090,6 @@
       "assessment": "reassessment_pending",
       "verdicts": [],
       "matches": [
-        {
-          "key": "workday:mastercard:/job/OFallon-Missouri/Director--Technical-Program-Management_R-293051",
-          "title": "Director, Technical Program Management",
-          "company": "mastercard",
-          "url": "https://mastercard.wd1.myworkdayjobs.com/en-US/CorporateCareers/job/OFallon-Missouri/Director--Technical-Program-Management_R-293051",
-          "assessment_date_eligible": true
-        },
         {
           "key": "workday:mastercard:/job/Pune-India/Director--Technical-Program-Management-_R-288288",
           "title": "Director, Technical Program Management\u2019",
@@ -10433,10 +10392,8 @@
       "first_alert_at": "2026-10-20T23:54:41+00:00",
       "last_alert_at": "2026-11-03T15:02:37+00:00",
       "collection": "possible_match",
-      "assessment": "assessed",
-      "verdicts": [
-        "Middle"
-      ],
+      "assessment": "reassessment_pending",
+      "verdicts": [],
       "matches": [
         {
           "key": "greenhouse:pinterest:8263122",
@@ -10473,10 +10430,8 @@
       "first_alert_at": "2026-10-20T23:54:41+00:00",
       "last_alert_at": "2026-10-31T07:57:43+00:00",
       "collection": "possible_match",
-      "assessment": "assessed",
-      "verdicts": [
-        "Middle"
-      ],
+      "assessment": "reassessment_pending",
+      "verdicts": [],
       "matches": [
         {
           "key": "greenhouse:pinterest:8263122",
@@ -10891,10 +10846,10 @@
           "assessment_date_eligible": true
         },
         {
-          "key": "oracle_cloud:oracle:341376",
+          "key": "oracle_cloud:oracle:345276",
           "title": "Lead Principal Technical Program Manager",
           "company": "oracle",
-          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/341376",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/345276",
           "assessment_date_eligible": true
         },
         {
@@ -10902,20 +10857,6 @@
           "title": "Lead Principal Technical Program Manager",
           "company": "oracle",
           "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/349660",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "oracle_cloud:oracle:338528",
-          "title": "Lead Principal Technical Program Manager",
-          "company": "oracle",
-          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/338528",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "oracle_cloud:oracle:344234",
-          "title": "Lead Principal Technical Program Manager",
-          "company": "oracle",
-          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/344234",
           "assessment_date_eligible": true
         },
         {
@@ -10933,11 +10874,32 @@
           "assessment_date_eligible": false
         },
         {
+          "key": "oracle_cloud:oracle:341376",
+          "title": "Lead Principal Technical Program Manager",
+          "company": "oracle",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/341376",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "oracle_cloud:oracle:338528",
+          "title": "Lead Principal Technical Program Manager",
+          "company": "oracle",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/338528",
+          "assessment_date_eligible": true
+        },
+        {
           "key": "oracle_cloud:oracle:342277",
           "title": "Lead Principal Technical Program Manager",
           "company": "oracle",
           "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/342277",
           "assessment_date_eligible": false
+        },
+        {
+          "key": "oracle_cloud:oracle:344234",
+          "title": "Lead Principal Technical Program Manager",
+          "company": "oracle",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/344234",
+          "assessment_date_eligible": true
         },
         {
           "key": "oracle_cloud:oracle:348205",
@@ -11626,10 +11588,10 @@
           "assessment_date_eligible": true
         },
         {
-          "key": "oracle_cloud:oracle:341376",
+          "key": "oracle_cloud:oracle:345276",
           "title": "Lead Principal Technical Program Manager",
           "company": "oracle",
-          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/341376",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/345276",
           "assessment_date_eligible": true
         },
         {
@@ -11637,20 +11599,6 @@
           "title": "Lead Principal Technical Program Manager",
           "company": "oracle",
           "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/349660",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "oracle_cloud:oracle:338528",
-          "title": "Lead Principal Technical Program Manager",
-          "company": "oracle",
-          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/338528",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "oracle_cloud:oracle:344234",
-          "title": "Lead Principal Technical Program Manager",
-          "company": "oracle",
-          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/344234",
           "assessment_date_eligible": true
         },
         {
@@ -11668,11 +11616,32 @@
           "assessment_date_eligible": false
         },
         {
+          "key": "oracle_cloud:oracle:341376",
+          "title": "Lead Principal Technical Program Manager",
+          "company": "oracle",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/341376",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "oracle_cloud:oracle:338528",
+          "title": "Lead Principal Technical Program Manager",
+          "company": "oracle",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/338528",
+          "assessment_date_eligible": true
+        },
+        {
           "key": "oracle_cloud:oracle:342277",
           "title": "Lead Principal Technical Program Manager",
           "company": "oracle",
           "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/342277",
           "assessment_date_eligible": false
+        },
+        {
+          "key": "oracle_cloud:oracle:344234",
+          "title": "Lead Principal Technical Program Manager",
+          "company": "oracle",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/344234",
+          "assessment_date_eligible": true
         },
         {
           "key": "oracle_cloud:oracle:348205",
@@ -11836,19 +11805,11 @@
       "employer_urls": [],
       "first_alert_at": "2026-10-25T13:57:41+00:00",
       "last_alert_at": "2026-10-25T13:57:41+00:00",
-      "collection": "possible_match",
+      "collection": "missing",
       "assessment": "not_assessed",
       "verdicts": [],
-      "matches": [
-        {
-          "key": "workday:astrazeneca:/job/US---Cambridge-Kendall-SQ---MA/Senior-Director--Business-Planning---Operations--SMM_R-262540",
-          "title": "Senior Director, Business Planning & Operations, SMM",
-          "company": "astrazeneca",
-          "url": "https://astrazeneca.wd3.myworkdayjobs.com/en-US/Careers/job/US---Cambridge-Kendall-SQ---MA/Senior-Director--Business-Planning---Operations--SMM_R-262540",
-          "assessment_date_eligible": true
-        }
-      ],
-      "reason": "Title/company similarity is not proof of the same requisition."
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
     },
     {
       "linkedin_id": "4482692355",
@@ -12615,7 +12576,7 @@
       "first_alert_at": "2026-10-25T23:57:43+00:00",
       "last_alert_at": "2026-10-25T23:57:43+00:00",
       "collection": "possible_match",
-      "assessment": "outside_date_scope",
+      "assessment": "reassessment_pending",
       "verdicts": [
         "Middle"
       ],
@@ -12639,55 +12600,6 @@
           "title": "Principal Technical Program Manager",
           "company": "microsoft",
           "url": "https://apply.careers.microsoft.com/careers/job/1970393557051417",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "microsoft:microsoft:1970393557050066",
-          "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050066",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "microsoft:microsoft:1970393557050169",
-          "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050169",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "microsoft:microsoft:1970393557044841",
-          "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557044841",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "microsoft:microsoft:1970393557048060",
-          "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557048060",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "microsoft:microsoft:1970393557050589",
-          "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050589",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "microsoft:microsoft:1970393557026741",
-          "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557026741",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "microsoft:microsoft:1970393557042157",
-          "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557042157",
           "assessment_date_eligible": true
         },
         {
@@ -12745,6 +12657,55 @@
           "company": "microsoft",
           "url": "https://apply.careers.microsoft.com/careers/job/1970393556873572",
           "assessment_date_eligible": false
+        },
+        {
+          "key": "microsoft:microsoft:1970393557026741",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557026741",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "microsoft:microsoft:1970393557042157",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557042157",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "microsoft:microsoft:1970393557044841",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557044841",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "microsoft:microsoft:1970393557050066",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050066",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "microsoft:microsoft:1970393557048060",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557048060",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "microsoft:microsoft:1970393557050589",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050589",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "microsoft:microsoft:1970393557050169",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050169",
+          "assessment_date_eligible": true
         }
       ],
       "reason": "Title/company similarity is not proof of the same requisition."
@@ -13860,7 +13821,7 @@
       "first_alert_at": "2026-10-29T19:57:42+00:00",
       "last_alert_at": "2026-10-29T23:58:15+00:00",
       "collection": "possible_match",
-      "assessment": "assessed",
+      "assessment": "reassessment_pending",
       "verdicts": [
         "Strong"
       ],
@@ -13877,13 +13838,6 @@
           "title": "Director, Technical Program Management",
           "company": "capitalone",
           "url": "https://capitalone.wd12.myworkdayjobs.com/en-US/Capital_One/job/McLean-VA/Director--Technical-Program-Management_R1002717-1",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "workday:capitalone:/job/McLean-VA/Director--Technical-Program-Management_R1001686-1",
-          "title": "Director, Technical Program Management",
-          "company": "capitalone",
-          "url": "https://capitalone.wd12.myworkdayjobs.com/en-US/Capital_One/job/McLean-VA/Director--Technical-Program-Management_R1001686-1",
           "assessment_date_eligible": true
         },
         {
@@ -13921,7 +13875,7 @@
       "first_alert_at": "2026-10-29T19:57:42+00:00",
       "last_alert_at": "2026-10-29T23:58:15+00:00",
       "collection": "possible_match",
-      "assessment": "assessed",
+      "assessment": "reassessment_pending",
       "verdicts": [
         "Strong"
       ],
@@ -13938,13 +13892,6 @@
           "title": "Director, Technical Program Management",
           "company": "capitalone",
           "url": "https://capitalone.wd12.myworkdayjobs.com/en-US/Capital_One/job/McLean-VA/Director--Technical-Program-Management_R1002717-1",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "workday:capitalone:/job/McLean-VA/Director--Technical-Program-Management_R1001686-1",
-          "title": "Director, Technical Program Management",
-          "company": "capitalone",
-          "url": "https://capitalone.wd12.myworkdayjobs.com/en-US/Capital_One/job/McLean-VA/Director--Technical-Program-Management_R1001686-1",
           "assessment_date_eligible": true
         },
         {
@@ -14465,13 +14412,6 @@
       "verdicts": [],
       "matches": [
         {
-          "key": "workday:mastercard:/job/OFallon-Missouri/Director--Technical-Program-Management_R-293051",
-          "title": "Director, Technical Program Management",
-          "company": "mastercard",
-          "url": "https://mastercard.wd1.myworkdayjobs.com/en-US/CorporateCareers/job/OFallon-Missouri/Director--Technical-Program-Management_R-293051",
-          "assessment_date_eligible": true
-        },
-        {
           "key": "workday:mastercard:/job/Pune-India/Director--Technical-Program-Management-_R-288288",
           "title": "Director, Technical Program Management\u2019",
           "company": "mastercard",
@@ -14508,6 +14448,13 @@
       "assessment": "outside_date_scope",
       "verdicts": [],
       "matches": [
+        {
+          "key": "oracle_cloud:oracle:349954",
+          "title": "Lead Principal Program Manager",
+          "company": "oracle",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/349954",
+          "assessment_date_eligible": true
+        },
         {
           "key": "oracle_cloud:oracle:349637",
           "title": "Lead Principal Program Manager",
@@ -14639,10 +14586,10 @@
           "assessment_date_eligible": true
         },
         {
-          "key": "oracle_cloud:oracle:341376",
+          "key": "oracle_cloud:oracle:345276",
           "title": "Lead Principal Technical Program Manager",
           "company": "oracle",
-          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/341376",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/345276",
           "assessment_date_eligible": true
         },
         {
@@ -14650,20 +14597,6 @@
           "title": "Lead Principal Technical Program Manager",
           "company": "oracle",
           "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/349660",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "oracle_cloud:oracle:338528",
-          "title": "Lead Principal Technical Program Manager",
-          "company": "oracle",
-          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/338528",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "oracle_cloud:oracle:344234",
-          "title": "Lead Principal Technical Program Manager",
-          "company": "oracle",
-          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/344234",
           "assessment_date_eligible": true
         },
         {
@@ -14681,11 +14614,32 @@
           "assessment_date_eligible": false
         },
         {
+          "key": "oracle_cloud:oracle:341376",
+          "title": "Lead Principal Technical Program Manager",
+          "company": "oracle",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/341376",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "oracle_cloud:oracle:338528",
+          "title": "Lead Principal Technical Program Manager",
+          "company": "oracle",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/338528",
+          "assessment_date_eligible": true
+        },
+        {
           "key": "oracle_cloud:oracle:342277",
           "title": "Lead Principal Technical Program Manager",
           "company": "oracle",
           "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/342277",
           "assessment_date_eligible": false
+        },
+        {
+          "key": "oracle_cloud:oracle:344234",
+          "title": "Lead Principal Technical Program Manager",
+          "company": "oracle",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/344234",
+          "assessment_date_eligible": true
         },
         {
           "key": "oracle_cloud:oracle:348205",
@@ -14820,10 +14774,10 @@
           "assessment_date_eligible": true
         },
         {
-          "key": "oracle_cloud:oracle:341376",
+          "key": "oracle_cloud:oracle:345276",
           "title": "Lead Principal Technical Program Manager",
           "company": "oracle",
-          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/341376",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/345276",
           "assessment_date_eligible": true
         },
         {
@@ -14831,20 +14785,6 @@
           "title": "Lead Principal Technical Program Manager",
           "company": "oracle",
           "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/349660",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "oracle_cloud:oracle:338528",
-          "title": "Lead Principal Technical Program Manager",
-          "company": "oracle",
-          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/338528",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "oracle_cloud:oracle:344234",
-          "title": "Lead Principal Technical Program Manager",
-          "company": "oracle",
-          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/344234",
           "assessment_date_eligible": true
         },
         {
@@ -14862,11 +14802,32 @@
           "assessment_date_eligible": false
         },
         {
+          "key": "oracle_cloud:oracle:341376",
+          "title": "Lead Principal Technical Program Manager",
+          "company": "oracle",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/341376",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "oracle_cloud:oracle:338528",
+          "title": "Lead Principal Technical Program Manager",
+          "company": "oracle",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/338528",
+          "assessment_date_eligible": true
+        },
+        {
           "key": "oracle_cloud:oracle:342277",
           "title": "Lead Principal Technical Program Manager",
           "company": "oracle",
           "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/342277",
           "assessment_date_eligible": false
+        },
+        {
+          "key": "oracle_cloud:oracle:344234",
+          "title": "Lead Principal Technical Program Manager",
+          "company": "oracle",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/344234",
+          "assessment_date_eligible": true
         },
         {
           "key": "oracle_cloud:oracle:348205",
@@ -15476,13 +15437,6 @@
           "title": "Principal Technical Program Manager",
           "company": "oracle",
           "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/344808",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "oracle_cloud:oracle:349321",
-          "title": "Principal Technical Program Manager",
-          "company": "oracle",
-          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/349321",
           "assessment_date_eligible": true
         },
         {
@@ -16928,7 +16882,7 @@
       "first_alert_at": "2026-11-05T15:57:42+00:00",
       "last_alert_at": "2026-11-05T15:57:42+00:00",
       "collection": "possible_match",
-      "assessment": "outside_date_scope",
+      "assessment": "reassessment_pending",
       "verdicts": [
         "Middle"
       ],
@@ -16952,55 +16906,6 @@
           "title": "Principal Technical Program Manager",
           "company": "microsoft",
           "url": "https://apply.careers.microsoft.com/careers/job/1970393557051417",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "microsoft:microsoft:1970393557050066",
-          "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050066",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "microsoft:microsoft:1970393557050169",
-          "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050169",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "microsoft:microsoft:1970393557044841",
-          "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557044841",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "microsoft:microsoft:1970393557048060",
-          "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557048060",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "microsoft:microsoft:1970393557050589",
-          "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050589",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "microsoft:microsoft:1970393557026741",
-          "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557026741",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "microsoft:microsoft:1970393557042157",
-          "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557042157",
           "assessment_date_eligible": true
         },
         {
@@ -17058,6 +16963,55 @@
           "company": "microsoft",
           "url": "https://apply.careers.microsoft.com/careers/job/1970393556873572",
           "assessment_date_eligible": false
+        },
+        {
+          "key": "microsoft:microsoft:1970393557026741",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557026741",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "microsoft:microsoft:1970393557042157",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557042157",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "microsoft:microsoft:1970393557044841",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557044841",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "microsoft:microsoft:1970393557050066",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050066",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "microsoft:microsoft:1970393557048060",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557048060",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "microsoft:microsoft:1970393557050589",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050589",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "microsoft:microsoft:1970393557050169",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050169",
+          "assessment_date_eligible": true
         }
       ],
       "reason": "Title/company similarity is not proof of the same requisition."
@@ -17071,19 +17025,11 @@
       "employer_urls": [],
       "first_alert_at": "2026-11-05T23:57:43+00:00",
       "last_alert_at": "2026-11-05T23:57:43+00:00",
-      "collection": "possible_match",
+      "collection": "missing",
       "assessment": "not_assessed",
       "verdicts": [],
-      "matches": [
-        {
-          "key": "microsoft:microsoft:1970393557052882",
-          "title": "Director, MAVS Technology & Product",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557052882",
-          "assessment_date_eligible": true
-        }
-      ],
-      "reason": "Title/company similarity is not proof of the same requisition."
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
     },
     {
       "linkedin_id": "4487528331",
@@ -17199,6 +17145,950 @@
       "employer_urls": [],
       "first_alert_at": "2026-11-05T23:54:42+00:00",
       "last_alert_at": "2026-11-05T23:54:42+00:00",
+      "collection": "missing",
+      "assessment": "not_assessed",
+      "verdicts": [],
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+    },
+    {
+      "linkedin_id": "4468891650",
+      "url": "https://www.linkedin.com/jobs/view/4468891650",
+      "title": "Director, AI Strategy and Product Management",
+      "company": "PayPal",
+      "location": "San Jose, CA",
+      "employer_urls": [],
+      "first_alert_at": "2026-11-06T12:10:08+00:00",
+      "last_alert_at": "2026-11-06T12:10:08+00:00",
+      "collection": "possible_match",
+      "assessment": "not_assessed",
+      "verdicts": [],
+      "matches": [
+        {
+          "key": "workday:paypal:/job/San-Jose-California-United-States-of-America/Director--AI-Strategy-and-Product-Management_R0137370-1",
+          "title": "Director, AI Strategy and Product Management",
+          "company": "paypal",
+          "url": "https://paypal.wd1.myworkdayjobs.com/en-US/jobs/job/San-Jose-California-United-States-of-America/Director--AI-Strategy-and-Product-Management_R0137370-1",
+          "assessment_date_eligible": true
+        }
+      ],
+      "reason": "Title/company similarity is not proof of the same requisition."
+    },
+    {
+      "linkedin_id": "4486775995",
+      "url": "https://www.linkedin.com/jobs/view/4486775995",
+      "title": "Director, Program Management",
+      "company": "Repligen Corporation",
+      "location": "Waltham, MA",
+      "employer_urls": [],
+      "first_alert_at": "2026-11-06T13:57:42+00:00",
+      "last_alert_at": "2026-11-06T23:57:42+00:00",
+      "collection": "missing",
+      "assessment": "not_assessed",
+      "verdicts": [],
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+    },
+    {
+      "linkedin_id": "4486915137",
+      "url": "https://www.linkedin.com/jobs/view/4486915137",
+      "title": "Transformation Capability Director - New England",
+      "company": "Slalom",
+      "location": "Boston, MA",
+      "employer_urls": [],
+      "first_alert_at": "2026-11-06T13:57:42+00:00",
+      "last_alert_at": "2026-11-06T13:57:42+00:00",
+      "collection": "missing",
+      "assessment": "not_assessed",
+      "verdicts": [],
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+    },
+    {
+      "linkedin_id": "4479700943",
+      "url": "https://www.linkedin.com/jobs/view/4479700943",
+      "title": "Test Solutions Senior Principal Program Lead",
+      "company": "Raytheon",
+      "location": "Tewksbury, MA (On-site)",
+      "employer_urls": [],
+      "first_alert_at": "2026-11-06T13:57:42+00:00",
+      "last_alert_at": "2026-11-06T15:57:42+00:00",
+      "collection": "missing",
+      "assessment": "not_assessed",
+      "verdicts": [],
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+    },
+    {
+      "linkedin_id": "4486962118",
+      "url": "https://www.linkedin.com/jobs/view/4486962118",
+      "title": "Public Service Management Consulting Principal Director",
+      "company": "Accenture",
+      "location": "Boston, MA",
+      "employer_urls": [],
+      "first_alert_at": "2026-11-06T13:57:42+00:00",
+      "last_alert_at": "2026-11-06T15:57:42+00:00",
+      "collection": "missing",
+      "assessment": "not_assessed",
+      "verdicts": [],
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+    },
+    {
+      "linkedin_id": "4488084056",
+      "url": "https://www.linkedin.com/jobs/view/4488084056",
+      "title": "Senior Director, Regulatory Strategy Program Lead",
+      "company": "Rapport Therapeutics",
+      "location": "Boston, MA",
+      "employer_urls": [],
+      "first_alert_at": "2026-11-06T13:57:42+00:00",
+      "last_alert_at": "2026-11-06T15:57:42+00:00",
+      "collection": "missing",
+      "assessment": "not_assessed",
+      "verdicts": [],
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+    },
+    {
+      "linkedin_id": "4486917573",
+      "url": "https://www.linkedin.com/jobs/view/4486917573",
+      "title": "OTC ETF Operational Change Manager Director",
+      "company": "Citi",
+      "location": "Boston, MA (Hybrid)",
+      "employer_urls": [],
+      "first_alert_at": "2026-11-06T13:57:42+00:00",
+      "last_alert_at": "2026-11-06T15:57:42+00:00",
+      "collection": "missing",
+      "assessment": "not_assessed",
+      "verdicts": [],
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+    },
+    {
+      "linkedin_id": "4488113483",
+      "url": "https://www.linkedin.com/jobs/view/4488113483",
+      "title": "Senior Director, Personal Systems Strategy and Planning",
+      "company": "HP",
+      "location": "Palo Alto, CA (Hybrid)",
+      "employer_urls": [],
+      "first_alert_at": "2026-11-06T17:57:43+00:00",
+      "last_alert_at": "2026-11-06T17:57:43+00:00",
+      "collection": "missing",
+      "assessment": "not_assessed",
+      "verdicts": [],
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+    },
+    {
+      "linkedin_id": "4485898763",
+      "url": "https://www.linkedin.com/jobs/view/4485898763",
+      "title": "Technical Program Manager, Quantum Technology",
+      "company": "Applied Materials",
+      "location": "Santa Clara, CA",
+      "employer_urls": [],
+      "first_alert_at": "2026-11-06T17:57:43+00:00",
+      "last_alert_at": "2026-11-06T19:57:41+00:00",
+      "collection": "missing",
+      "assessment": "not_assessed",
+      "verdicts": [],
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+    },
+    {
+      "linkedin_id": "4487782652",
+      "url": "https://www.linkedin.com/jobs/view/4487782652",
+      "title": "Chief of Staff",
+      "company": "StaffGreat.com",
+      "location": "San Francisco Bay Area (On-site)",
+      "employer_urls": [],
+      "first_alert_at": "2026-11-06T17:57:43+00:00",
+      "last_alert_at": "2026-11-06T17:57:43+00:00",
+      "collection": "missing",
+      "assessment": "not_assessed",
+      "verdicts": [],
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+    },
+    {
+      "linkedin_id": "4488100970",
+      "url": "https://www.linkedin.com/jobs/view/4488100970",
+      "title": "Business Strategy Principal \u2013 HP Solutions Strategy",
+      "company": "HP",
+      "location": "Palo Alto, CA (Hybrid)",
+      "employer_urls": [],
+      "first_alert_at": "2026-11-06T17:57:43+00:00",
+      "last_alert_at": "2026-11-06T17:57:43+00:00",
+      "collection": "possible_match",
+      "assessment": "not_assessed",
+      "verdicts": [],
+      "matches": [
+        {
+          "key": "workday:hp:/job/Palo-Alto-California-United-States-of-America/Business-Strategy-Principal---HP-Solutions-Strategy_3164335-1",
+          "title": "Business Strategy Principal \u2013 HP Solutions Strategy",
+          "company": "hp",
+          "url": "https://hp.wd5.myworkdayjobs.com/en-US/ExternalCareerSite/job/Palo-Alto-California-United-States-of-America/Business-Strategy-Principal---HP-Solutions-Strategy_3164335-1",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "workday:hp:/job/Palo-Alto-California-United-States-of-America/Business-Strategy-Principal---HP-Solutions-Strategy_3168781-1",
+          "title": "Business Strategy Principal \u2013 HP Solutions Strategy",
+          "company": "hp",
+          "url": "https://hp.wd5.myworkdayjobs.com/en-US/ExternalCareerSite/job/Palo-Alto-California-United-States-of-America/Business-Strategy-Principal---HP-Solutions-Strategy_3168781-1",
+          "assessment_date_eligible": true
+        }
+      ],
+      "reason": "Title/company similarity is not proof of the same requisition."
+    },
+    {
+      "linkedin_id": "4486772914",
+      "url": "https://www.linkedin.com/jobs/view/4486772914",
+      "title": "Senior Director, Strategic Projects",
+      "company": "Gilead Sciences",
+      "location": "San Francisco Bay Area",
+      "employer_urls": [],
+      "first_alert_at": "2026-11-06T17:57:43+00:00",
+      "last_alert_at": "2026-11-06T17:57:43+00:00",
+      "collection": "missing",
+      "assessment": "not_assessed",
+      "verdicts": [],
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+    },
+    {
+      "linkedin_id": "4477077061",
+      "url": "https://www.linkedin.com/jobs/view/4477077061",
+      "title": "MSL Special Projects Lead",
+      "company": "Meta",
+      "location": "Menlo Park, CA",
+      "employer_urls": [],
+      "first_alert_at": "2026-11-06T17:57:43+00:00",
+      "last_alert_at": "2026-11-06T17:57:43+00:00",
+      "collection": "missing",
+      "assessment": "not_assessed",
+      "verdicts": [],
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+    },
+    {
+      "linkedin_id": "4486924162",
+      "url": "https://www.linkedin.com/jobs/view/4486924162",
+      "title": "Senior Leadership Technical Program Manager, Data Intelligence, Core Systems",
+      "company": "Google",
+      "location": "San Jose, CA (On-site)",
+      "employer_urls": [],
+      "first_alert_at": "2026-11-06T19:57:41+00:00",
+      "last_alert_at": "2026-11-07T03:57:44+00:00",
+      "collection": "possible_match",
+      "assessment": "assessed",
+      "verdicts": [
+        "Strong"
+      ],
+      "matches": [
+        {
+          "key": "google:google:106543789450896070",
+          "title": "Senior Leadership Technical Program Manager, Data Intelligence, Core Systems",
+          "company": "google",
+          "url": "https://www.google.com/about/careers/applications/jobs/results/106543789450896070",
+          "assessment_date_eligible": true
+        }
+      ],
+      "reason": "Title/company similarity is not proof of the same requisition."
+    },
+    {
+      "linkedin_id": "4486755977",
+      "url": "https://www.linkedin.com/jobs/view/4486755977",
+      "title": "Manager, Technical Program Management, Project Suncatcher",
+      "company": "Google",
+      "location": "Mountain View, CA (On-site)",
+      "employer_urls": [],
+      "first_alert_at": "2026-11-06T19:57:41+00:00",
+      "last_alert_at": "2026-11-06T19:57:41+00:00",
+      "collection": "possible_match",
+      "assessment": "assessed",
+      "verdicts": [
+        "Middle"
+      ],
+      "matches": [
+        {
+          "key": "google:google:82019706579362502",
+          "title": "Manager, Technical Program Management, Project Suncatcher",
+          "company": "google",
+          "url": "https://www.google.com/about/careers/applications/jobs/results/82019706579362502",
+          "assessment_date_eligible": true
+        }
+      ],
+      "reason": "Title/company similarity is not proof of the same requisition."
+    },
+    {
+      "linkedin_id": "4484376797",
+      "url": "https://www.linkedin.com/jobs/view/4484376797",
+      "title": "",
+      "company": "",
+      "location": "",
+      "employer_urls": [],
+      "first_alert_at": "2026-11-06T19:57:41+00:00",
+      "last_alert_at": "2026-11-06T19:57:41+00:00",
+      "collection": "missing",
+      "assessment": "not_assessed",
+      "verdicts": [],
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+    },
+    {
+      "linkedin_id": "4486936662",
+      "url": "https://www.linkedin.com/jobs/view/4486936662",
+      "title": "Manager, Technical Program Manager, AI Platform",
+      "company": "Nuro",
+      "location": "Mountain View, CA",
+      "employer_urls": [],
+      "first_alert_at": "2026-11-06T21:57:43+00:00",
+      "last_alert_at": "2026-11-06T21:57:43+00:00",
+      "collection": "missing",
+      "assessment": "not_assessed",
+      "verdicts": [],
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+    },
+    {
+      "linkedin_id": "4486940151",
+      "url": "https://www.linkedin.com/jobs/view/4486940151",
+      "title": "Principal Technical Program Manager",
+      "company": "Arm",
+      "location": "Austin, TX (Hybrid)",
+      "employer_urls": [],
+      "first_alert_at": "2026-11-06T21:57:43+00:00",
+      "last_alert_at": "2026-11-06T21:57:43+00:00",
+      "collection": "missing",
+      "assessment": "not_assessed",
+      "verdicts": [],
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+    },
+    {
+      "linkedin_id": "4479767454",
+      "url": "https://www.linkedin.com/jobs/view/4479767454",
+      "title": "Principal Technical Program Manager - Consumer Group",
+      "company": "Intuit",
+      "location": "San Diego, CA (On-site)",
+      "employer_urls": [],
+      "first_alert_at": "2026-11-06T21:57:43+00:00",
+      "last_alert_at": "2026-11-06T21:57:43+00:00",
+      "collection": "missing",
+      "assessment": "not_assessed",
+      "verdicts": [],
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+    },
+    {
+      "linkedin_id": "4479776199",
+      "url": "https://www.linkedin.com/jobs/view/4479776199",
+      "title": "Staff Technical Program Manager",
+      "company": "Intuit",
+      "location": "San Diego, CA (On-site)",
+      "employer_urls": [],
+      "first_alert_at": "2026-11-06T21:57:43+00:00",
+      "last_alert_at": "2026-11-06T21:57:43+00:00",
+      "collection": "missing",
+      "assessment": "not_assessed",
+      "verdicts": [],
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+    },
+    {
+      "linkedin_id": "4485873719",
+      "url": "https://www.linkedin.com/jobs/view/4485873719",
+      "title": "Lead Principal Technical Program Manager",
+      "company": "Oracle",
+      "location": "Seattle, WA",
+      "employer_urls": [],
+      "first_alert_at": "2026-11-06T21:57:43+00:00",
+      "last_alert_at": "2026-11-06T21:57:43+00:00",
+      "collection": "possible_match",
+      "assessment": "assessed",
+      "verdicts": [
+        "Middle",
+        "Pass",
+        "Strong"
+      ],
+      "matches": [
+        {
+          "key": "oracle_cloud:oracle:349820",
+          "title": "Lead Principal Technical Program Manager",
+          "company": "oracle",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/349820",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "oracle_cloud:oracle:345276",
+          "title": "Lead Principal Technical Program Manager",
+          "company": "oracle",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/345276",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "oracle_cloud:oracle:349660",
+          "title": "Lead Principal Technical Program Manager",
+          "company": "oracle",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/349660",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "oracle_cloud:oracle:349330",
+          "title": "Lead Principal Technical Program Manager",
+          "company": "oracle",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/349330",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "oracle_cloud:oracle:344663",
+          "title": "Lead Principal Technical Program Manager",
+          "company": "oracle",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/344663",
+          "assessment_date_eligible": false
+        },
+        {
+          "key": "oracle_cloud:oracle:341376",
+          "title": "Lead Principal Technical Program Manager",
+          "company": "oracle",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/341376",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "oracle_cloud:oracle:338528",
+          "title": "Lead Principal Technical Program Manager",
+          "company": "oracle",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/338528",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "oracle_cloud:oracle:342277",
+          "title": "Lead Principal Technical Program Manager",
+          "company": "oracle",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/342277",
+          "assessment_date_eligible": false
+        },
+        {
+          "key": "oracle_cloud:oracle:344234",
+          "title": "Lead Principal Technical Program Manager",
+          "company": "oracle",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/344234",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "oracle_cloud:oracle:348205",
+          "title": "Lead Principal Technical Program Manager",
+          "company": "oracle",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/348205",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "oracle_cloud:oracle:343541",
+          "title": "Lead Principal Technical Program Manager",
+          "company": "oracle",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/343541",
+          "assessment_date_eligible": false
+        },
+        {
+          "key": "oracle_cloud:oracle:349227",
+          "title": "Lead Principal Technical Program Manager",
+          "company": "oracle",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/349227",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "oracle_cloud:oracle:341976",
+          "title": "Lead Principal Technical Program Manager",
+          "company": "oracle",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/341976",
+          "assessment_date_eligible": false
+        },
+        {
+          "key": "oracle_cloud:oracle:341974",
+          "title": "Lead Principal Technical Program Manager",
+          "company": "oracle",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/341974",
+          "assessment_date_eligible": false
+        },
+        {
+          "key": "oracle_cloud:oracle:344632",
+          "title": "Lead Principal Technical Program Manager",
+          "company": "oracle",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/344632",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "oracle_cloud:oracle:347142",
+          "title": "Lead Principal Technical Program Manager",
+          "company": "oracle",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/347142",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "oracle_cloud:oracle:338745",
+          "title": "Lead Principal Technical Program Manager",
+          "company": "oracle",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/338745",
+          "assessment_date_eligible": false
+        },
+        {
+          "key": "oracle_cloud:oracle:346982",
+          "title": "Lead Principal Technical Program Manager",
+          "company": "oracle",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/346982",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "oracle_cloud:oracle:346916",
+          "title": "Lead Principal Technical Program Manager",
+          "company": "oracle",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/346916",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "oracle_cloud:oracle:346915",
+          "title": "Lead Principal Technical Program Manager",
+          "company": "oracle",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/346915",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "oracle_cloud:oracle:349109",
+          "title": "Lead Principal Technical Program Manager",
+          "company": "oracle",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/349109",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "oracle_cloud:oracle:348823",
+          "title": "Lead Principal Technical Program Manager",
+          "company": "oracle",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/348823",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "oracle_cloud:oracle:341777",
+          "title": "Lead Principal Technical Program Manager",
+          "company": "oracle",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/341777",
+          "assessment_date_eligible": false
+        },
+        {
+          "key": "oracle_cloud:oracle:347435",
+          "title": "Lead Principal Technical Program Manager",
+          "company": "oracle",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/347435",
+          "assessment_date_eligible": true
+        }
+      ],
+      "reason": "Title/company similarity is not proof of the same requisition."
+    },
+    {
+      "linkedin_id": "4488070881",
+      "url": "https://www.linkedin.com/jobs/view/4488070881",
+      "title": "Director, IT Project Management",
+      "company": "Swooped",
+      "location": "United States (Remote)",
+      "employer_urls": [],
+      "first_alert_at": "2026-11-06T23:54:43+00:00",
+      "last_alert_at": "2026-11-07T03:57:44+00:00",
+      "collection": "missing",
+      "assessment": "not_assessed",
+      "verdicts": [],
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+    },
+    {
+      "linkedin_id": "4486964295",
+      "url": "https://www.linkedin.com/jobs/view/4486964295",
+      "title": "Senior Director, Technical Program Management",
+      "company": "Archer",
+      "location": "Seattle, WA (On-site)",
+      "employer_urls": [],
+      "first_alert_at": "2026-11-06T23:54:43+00:00",
+      "last_alert_at": "2026-11-07T03:57:44+00:00",
+      "collection": "missing",
+      "assessment": "not_assessed",
+      "verdicts": [],
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+    },
+    {
+      "linkedin_id": "4488062558",
+      "url": "https://www.linkedin.com/jobs/view/4488062558",
+      "title": "Productivity Solutions Division (PSD) Strategic Portfolio & Project Management Director",
+      "company": "Agilent Technologies",
+      "location": "Santa Clara, CA (Remote)",
+      "employer_urls": [],
+      "first_alert_at": "2026-11-06T23:54:43+00:00",
+      "last_alert_at": "2026-11-06T23:54:43+00:00",
+      "collection": "missing",
+      "assessment": "not_assessed",
+      "verdicts": [],
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+    },
+    {
+      "linkedin_id": "4488064384",
+      "url": "https://www.linkedin.com/jobs/view/4488064384",
+      "title": "Productivity Solutions Division (PSD) Strategic Portfolio & Project Management Director",
+      "company": "Agilent Technologies",
+      "location": "California, United States (Remote)",
+      "employer_urls": [],
+      "first_alert_at": "2026-11-06T23:54:43+00:00",
+      "last_alert_at": "2026-11-06T23:54:43+00:00",
+      "collection": "missing",
+      "assessment": "not_assessed",
+      "verdicts": [],
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+    },
+    {
+      "linkedin_id": "4485811720",
+      "url": "https://www.linkedin.com/jobs/view/4485811720",
+      "title": "(USA) Senior Director, Technical Program Management",
+      "company": "Ladders",
+      "location": "United States (Remote)",
+      "employer_urls": [],
+      "first_alert_at": "2026-11-06T23:54:43+00:00",
+      "last_alert_at": "2026-11-07T03:57:44+00:00",
+      "collection": "missing",
+      "assessment": "not_assessed",
+      "verdicts": [],
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+    },
+    {
+      "linkedin_id": "4486781377",
+      "url": "https://www.linkedin.com/jobs/view/4486781377",
+      "title": "Director, Program Management",
+      "company": "Repligen Corporation",
+      "location": "Massachusetts, United States",
+      "employer_urls": [],
+      "first_alert_at": "2026-11-06T23:54:43+00:00",
+      "last_alert_at": "2026-11-06T23:57:42+00:00",
+      "collection": "missing",
+      "assessment": "not_assessed",
+      "verdicts": [],
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+    },
+    {
+      "linkedin_id": "4485827171",
+      "url": "https://www.linkedin.com/jobs/view/4485827171",
+      "title": "Senior Director, Technical Program Management",
+      "company": "Ladders",
+      "location": "United States (Remote)",
+      "employer_urls": [],
+      "first_alert_at": "2026-11-06T23:57:42+00:00",
+      "last_alert_at": "2026-11-06T23:57:42+00:00",
+      "collection": "missing",
+      "assessment": "not_assessed",
+      "verdicts": [],
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+    },
+    {
+      "linkedin_id": "4485813654",
+      "url": "https://www.linkedin.com/jobs/view/4485813654",
+      "title": "Distinguished, Technical Program Manager",
+      "company": "Ladders",
+      "location": "United States (Remote)",
+      "employer_urls": [],
+      "first_alert_at": "2026-11-07T01:57:43+00:00",
+      "last_alert_at": "2026-11-07T01:57:43+00:00",
+      "collection": "missing",
+      "assessment": "not_assessed",
+      "verdicts": [],
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+    },
+    {
+      "linkedin_id": "4485884216",
+      "url": "https://www.linkedin.com/jobs/view/4485884216",
+      "title": "Lead Principal Technical Program Manager",
+      "company": "Oracle",
+      "location": "United States (Remote)",
+      "employer_urls": [],
+      "first_alert_at": "2026-11-07T01:57:43+00:00",
+      "last_alert_at": "2026-11-07T01:57:43+00:00",
+      "collection": "possible_match",
+      "assessment": "assessed",
+      "verdicts": [
+        "Middle",
+        "Pass",
+        "Strong"
+      ],
+      "matches": [
+        {
+          "key": "oracle_cloud:oracle:349820",
+          "title": "Lead Principal Technical Program Manager",
+          "company": "oracle",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/349820",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "oracle_cloud:oracle:345276",
+          "title": "Lead Principal Technical Program Manager",
+          "company": "oracle",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/345276",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "oracle_cloud:oracle:349660",
+          "title": "Lead Principal Technical Program Manager",
+          "company": "oracle",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/349660",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "oracle_cloud:oracle:349330",
+          "title": "Lead Principal Technical Program Manager",
+          "company": "oracle",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/349330",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "oracle_cloud:oracle:344663",
+          "title": "Lead Principal Technical Program Manager",
+          "company": "oracle",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/344663",
+          "assessment_date_eligible": false
+        },
+        {
+          "key": "oracle_cloud:oracle:341376",
+          "title": "Lead Principal Technical Program Manager",
+          "company": "oracle",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/341376",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "oracle_cloud:oracle:338528",
+          "title": "Lead Principal Technical Program Manager",
+          "company": "oracle",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/338528",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "oracle_cloud:oracle:342277",
+          "title": "Lead Principal Technical Program Manager",
+          "company": "oracle",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/342277",
+          "assessment_date_eligible": false
+        },
+        {
+          "key": "oracle_cloud:oracle:344234",
+          "title": "Lead Principal Technical Program Manager",
+          "company": "oracle",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/344234",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "oracle_cloud:oracle:348205",
+          "title": "Lead Principal Technical Program Manager",
+          "company": "oracle",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/348205",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "oracle_cloud:oracle:343541",
+          "title": "Lead Principal Technical Program Manager",
+          "company": "oracle",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/343541",
+          "assessment_date_eligible": false
+        },
+        {
+          "key": "oracle_cloud:oracle:349227",
+          "title": "Lead Principal Technical Program Manager",
+          "company": "oracle",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/349227",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "oracle_cloud:oracle:341976",
+          "title": "Lead Principal Technical Program Manager",
+          "company": "oracle",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/341976",
+          "assessment_date_eligible": false
+        },
+        {
+          "key": "oracle_cloud:oracle:341974",
+          "title": "Lead Principal Technical Program Manager",
+          "company": "oracle",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/341974",
+          "assessment_date_eligible": false
+        },
+        {
+          "key": "oracle_cloud:oracle:344632",
+          "title": "Lead Principal Technical Program Manager",
+          "company": "oracle",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/344632",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "oracle_cloud:oracle:347142",
+          "title": "Lead Principal Technical Program Manager",
+          "company": "oracle",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/347142",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "oracle_cloud:oracle:338745",
+          "title": "Lead Principal Technical Program Manager",
+          "company": "oracle",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/338745",
+          "assessment_date_eligible": false
+        },
+        {
+          "key": "oracle_cloud:oracle:346982",
+          "title": "Lead Principal Technical Program Manager",
+          "company": "oracle",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/346982",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "oracle_cloud:oracle:346916",
+          "title": "Lead Principal Technical Program Manager",
+          "company": "oracle",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/346916",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "oracle_cloud:oracle:346915",
+          "title": "Lead Principal Technical Program Manager",
+          "company": "oracle",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/346915",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "oracle_cloud:oracle:349109",
+          "title": "Lead Principal Technical Program Manager",
+          "company": "oracle",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/349109",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "oracle_cloud:oracle:348823",
+          "title": "Lead Principal Technical Program Manager",
+          "company": "oracle",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/348823",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "oracle_cloud:oracle:341777",
+          "title": "Lead Principal Technical Program Manager",
+          "company": "oracle",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/341777",
+          "assessment_date_eligible": false
+        },
+        {
+          "key": "oracle_cloud:oracle:347435",
+          "title": "Lead Principal Technical Program Manager",
+          "company": "oracle",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/347435",
+          "assessment_date_eligible": true
+        }
+      ],
+      "reason": "Title/company similarity is not proof of the same requisition."
+    },
+    {
+      "linkedin_id": "4486780482",
+      "url": "https://www.linkedin.com/jobs/view/4486780482",
+      "title": "Applied AI Delivery Lead - Remote in AMER",
+      "company": "OpenAI",
+      "location": "United States (Remote)",
+      "employer_urls": [],
+      "first_alert_at": "2026-11-07T01:57:43+00:00",
+      "last_alert_at": "2026-11-07T01:57:43+00:00",
+      "collection": "possible_match",
+      "assessment": "assessed",
+      "verdicts": [
+        "Middle"
+      ],
+      "matches": [
+        {
+          "key": "ashby:openai:2c531790-726c-4d39-b3bd-900c59a09a4d",
+          "title": "Applied AI Delivery Lead - Remote in AMER",
+          "company": "openai",
+          "url": "https://jobs.ashbyhq.com/openai/2c531790-726c-4d39-b3bd-900c59a09a4d",
+          "assessment_date_eligible": true
+        }
+      ],
+      "reason": "Title/company similarity is not proof of the same requisition."
+    },
+    {
+      "linkedin_id": "4488076014",
+      "url": "https://www.linkedin.com/jobs/view/4488076014",
+      "title": "Staff Technical Program Manager, Data Center Data & Tooling",
+      "company": "Cerebras",
+      "location": "United States (Remote)",
+      "employer_urls": [],
+      "first_alert_at": "2026-11-07T01:57:43+00:00",
+      "last_alert_at": "2026-11-07T01:57:43+00:00",
+      "collection": "possible_match",
+      "assessment": "assessed",
+      "verdicts": [
+        "Strong"
+      ],
+      "matches": [
+        {
+          "key": "ashby:cerebras:3b5dc3c8-22ce-486c-8842-62c294cd5bf2",
+          "title": "Staff Technical Program Manager, Data Center Data & Tooling",
+          "company": "cerebras",
+          "url": "https://jobs.ashbyhq.com/cerebras/3b5dc3c8-22ce-486c-8842-62c294cd5bf2",
+          "assessment_date_eligible": true
+        }
+      ],
+      "reason": "Title/company similarity is not proof of the same requisition."
+    },
+    {
+      "linkedin_id": "4488076017",
+      "url": "https://www.linkedin.com/jobs/view/4488076017",
+      "title": "Staff Technical Program Manager, Data Center New Product Introduction",
+      "company": "Cerebras",
+      "location": "United States (Remote)",
+      "employer_urls": [],
+      "first_alert_at": "2026-11-07T01:57:43+00:00",
+      "last_alert_at": "2026-11-07T01:57:43+00:00",
+      "collection": "possible_match",
+      "assessment": "assessed",
+      "verdicts": [
+        "Middle"
+      ],
+      "matches": [
+        {
+          "key": "ashby:cerebras:91fb96a9-1737-4d3d-ac73-ac2f6c40ec58",
+          "title": "Staff Technical Program Manager, Data Center New Product Introduction",
+          "company": "cerebras",
+          "url": "https://jobs.ashbyhq.com/cerebras/91fb96a9-1737-4d3d-ac73-ac2f6c40ec58",
+          "assessment_date_eligible": true
+        }
+      ],
+      "reason": "Title/company similarity is not proof of the same requisition."
+    },
+    {
+      "linkedin_id": "4486969207",
+      "url": "https://www.linkedin.com/jobs/view/4486969207",
+      "title": "VP, Technical Programs and Business Operations",
+      "company": "Archer",
+      "location": "United States (Remote)",
+      "employer_urls": [],
+      "first_alert_at": "2026-11-07T03:57:44+00:00",
+      "last_alert_at": "2026-11-07T03:57:44+00:00",
+      "collection": "missing",
+      "assessment": "not_assessed",
+      "verdicts": [],
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+    },
+    {
+      "linkedin_id": "4486763792",
+      "url": "https://www.linkedin.com/jobs/view/4486763792",
+      "title": "",
+      "company": "",
+      "location": "",
+      "employer_urls": [],
+      "first_alert_at": "2026-11-07T03:57:44+00:00",
+      "last_alert_at": "2026-11-07T03:57:44+00:00",
       "collection": "missing",
       "assessment": "not_assessed",
       "verdicts": [],
