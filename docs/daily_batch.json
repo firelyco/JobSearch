@@ -4,18 +4,18 @@
   "start_hour_eastern": 1,
   "deadline_hour_eastern": 6,
   "collection_completed": true,
-  "collection_at": "2026-11-07T06:00:53.489604+00:00",
+  "collection_at": "2026-11-07T06:30:53.654868+00:00",
   "counts": {
-    "found": 83,
-    "eligible": 20,
+    "found": 85,
+    "eligible": 21,
     "completed": 19,
     "strong": 3,
     "middle": 8,
     "pass": 8,
-    "waiting": 0,
+    "waiting": 1,
     "processing": 0,
     "blocked": 1,
-    "excluded": 63,
+    "excluded": 64,
     "unverified_links": 35
   },
   "members": [
@@ -878,6 +878,28 @@
       "verdict": "strong"
     },
     {
+      "key": "workday:gartner:/job/Gurgaon/Program-Manager--Associate-Experience_114015",
+      "title": "Program Manager- (New Hire Associate Experience & PMO)",
+      "url": "https://gartner.wd5.myworkdayjobs.com/en-US/EXT/job/Gurgaon/Program-Manager--Associate-Experience_114015",
+      "source": "workday",
+      "job_snapshot_hash": "48447f9f19b8391bdf21dd8fe492cc5d27f7234479fcba50b8dcc3fa85d07202",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
+      "verdict": null
+    },
+    {
+      "key": "workday:msd:/job/USA---Pennsylvania---West-Point/Associate-Director--Engineering---Biologics-External-Manufacturing-Technical-Operations_R412927-1",
+      "title": "Associate Director (Engineering), Biologics External Manufacturing Technical Operations",
+      "url": "https://msd.wd5.myworkdayjobs.com/en-US/SearchJobs/job/USA---Pennsylvania---West-Point/Associate-Director--Engineering---Biologics-External-Manufacturing-Technical-Operations_R412927-1",
+      "source": "workday",
+      "job_snapshot_hash": "8ebcae0762fc64ddee16ff0b51ca83e7d73986bab33c42c31d2cb544a655f0a2",
+      "eligible": true,
+      "status": "waiting",
+      "reason": "Unfinished assessment.",
+      "verdict": null
+    },
+    {
       "key": "workday:novartis:/job/Ljubljana/Direktor-platformskih-reitev-za-avtomatizacijo-in-umetno-inteligenco-ITOT--m--d----Director-of-DDIT-ITOT-Platforms--Solutions--Automation---AI-Delivery--m-f-d-_REQ-10089746-1",
       "title": "Direktor platformskih re\u0161itev za avtomatizacijo in umetno inteligenco ITOT (m/\u017e/d) / Director of DDIT ITOT Platforms, Solutions, Automation & AI Delivery (m/f/d)",
       "url": "https://novartis.wd3.myworkdayjobs.com/en-US/Novartis_Careers/job/Ljubljana/Direktor-platformskih-reitev-za-avtomatizacijo-in-umetno-inteligenco-ITOT--m--d----Director-of-DDIT-ITOT-Platforms--Solutions--Automation---AI-Delivery--m-f-d-_REQ-10089746-1",
@@ -970,32 +992,12 @@
     "4488100970",
     "4488113483"
   ],
-  "coverage_issues": 111,
+  "coverage_issues": 112,
   "incomplete_sources": [
     {
       "source": "netflix",
       "label": "program manager",
-      "status": "failed"
-    },
-    {
-      "source": "apple",
-      "label": "\"program management\"",
       "status": "partial"
-    },
-    {
-      "source": "microsoft",
-      "label": "{'query': '', 'filters': {'career_discipline': ['Technical Program Management']}}",
-      "status": "partial"
-    },
-    {
-      "source": "web_search",
-      "label": "web_search",
-      "status": "failed"
-    },
-    {
-      "source": "web_search",
-      "label": "web_search",
-      "status": "failed"
     },
     {
       "source": "web_search",
@@ -1494,7 +1496,37 @@
     },
     {
       "source": "workday",
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"Comcast_Careers\", \"tenant\": \"comcast\", \"wd_server\": \"wd115\"}, \"source\": \"workday\"}",
+      "status": "partial"
+    },
+    {
+      "source": "workday",
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"Netflix\", \"tenant\": \"netflix\", \"wd_server\": \"wd108\"}, \"source\": \"workday\"}",
+      "status": "failed"
+    },
+    {
+      "source": "workday",
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"search\", \"tenant\": \"expedia\", \"wd_server\": \"wd108\"}, \"source\": \"workday\"}",
+      "status": "partial"
+    },
+    {
+      "source": "workday",
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"careers\", \"tenant\": \"workiva\", \"wd_server\": \"wd503\"}, \"source\": \"workday\"}",
+      "status": "failed"
+    },
+    {
+      "source": "workday",
       "label": "{\"config\": {\"search\": \"program\", \"site\": \"careers\", \"tenant\": \"gogo\", \"wd_server\": \"wd1\"}, \"source\": \"workday\"}",
+      "status": "failed"
+    },
+    {
+      "source": "workday",
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"gocjobs\", \"tenant\": \"google\", \"wd_server\": \"wd501\"}, \"source\": \"workday\"}",
+      "status": "partial"
+    },
+    {
+      "source": "workday",
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"TMNA\", \"tenant\": \"toyota\", \"wd_server\": \"wd503\"}, \"source\": \"workday\"}",
       "status": "failed"
     },
     {
@@ -1518,17 +1550,12 @@
       "status": "failed"
     },
     {
-      "source": "lever",
-      "label": "{\"config\": \"shieldai\", \"source\": \"lever\"}",
-      "status": "failed"
-    },
-    {
       "source": "greenhouse",
       "label": "{\"config\": \"philo\", \"source\": \"greenhouse\"}",
       "status": "failed"
     }
   ],
-  "checked_at": "2026-11-07T06:29:01.848026+00:00",
+  "checked_at": "2026-11-07T06:50:10.267661+00:00",
   "legacy_backlog": {
     "assessed": 526,
     "pending": 0,
@@ -1537,12 +1564,12 @@
     "total": 565,
     "strong": 66
   },
-  "batch_id": "28356e67291a153e56f51e2ab5d7eea8a1eaf47fa135f81c3c9773f0f7bf8a5d",
-  "status": "blocked",
+  "batch_id": "9985fa3079775587fec7b50100387d3e3d9b68164856d4421e33e9af66c2a1af",
+  "status": "assessing",
   "input_blobs": {
-    "jobs.json": "0dc213d7a0775a485a1e205eaf84a9d9125bc1d7",
+    "jobs.json": "5b711f8596b380717453f087178af47bae5b869b",
     "fit_scores.json": "1d96585613746cc6001f292fdc71521dc7846850",
     "fit_backfill.json": "3257ac2a1d848ff125a8107507813928e9dab069",
-    "meta.json": "d4de048546e997317cb7b95e4dcb977fe350499c"
+    "meta.json": "971183906d789ec02419917892c876927cb6dd65"
   }
 }
