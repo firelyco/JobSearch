@@ -7,15 +7,15 @@
   "collection_at": "2026-11-07T06:00:53.489604+00:00",
   "counts": {
     "found": 83,
-    "eligible": 29,
-    "completed": 16,
+    "eligible": 24,
+    "completed": 18,
     "strong": 3,
-    "middle": 7,
-    "pass": 6,
-    "waiting": 13,
-    "processing": 0,
-    "blocked": 0,
-    "excluded": 54,
+    "middle": 8,
+    "pass": 7,
+    "waiting": 1,
+    "processing": 4,
+    "blocked": 1,
+    "excluded": 59,
     "unverified_links": 35
   },
   "members": [
@@ -25,9 +25,9 @@
       "url": "https://www.amazon.jobs/en/jobs/10594881/senior-technical-program-manager-amazon-fsx",
       "source": "amazon_jobs",
       "job_snapshot_hash": "e31cedb1281d4e853b6bd9e59c0ecc8a72694b6099d563fe037d4f176bd77dd1",
-      "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -37,7 +37,7 @@
       "source": "amazon_jobs",
       "job_snapshot_hash": "ee9e8bb5febc05113d754f746f0c33552523c3408d59ce49f4f8f294bec8150e",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -47,9 +47,9 @@
       "url": "https://www.amazon.jobs/en/jobs/10598739/manager-technical-program-management-ots-delivery-software-engineering-dse",
       "source": "amazon_jobs",
       "job_snapshot_hash": "e2aeae16d3d61201e390af90f5ae66bb8de27d821f5486be3b55de94a4e2fb61",
-      "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -58,9 +58,9 @@
       "url": "https://www.amazon.jobs/en/jobs/10598823/senior-technical-program-manager-deployment-service-support",
       "source": "amazon_jobs",
       "job_snapshot_hash": "b9b364639d452b232f87378e6cc79c1e20ae3ac24b9b558fff7b94a56b03f467",
-      "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -69,9 +69,9 @@
       "url": "https://www.amazon.jobs/en/jobs/10598854/sr-technical-program-manager-logistics-supply-chain-aws-global-logistics-central-operations-logistics-central-ops-logistics-support",
       "source": "amazon_jobs",
       "job_snapshot_hash": "4ab42dd03313cb79da5e17f318c79d81de6884d8e799e787b0710b1ac0bc9f8c",
-      "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -81,7 +81,7 @@
       "source": "amazon_jobs",
       "job_snapshot_hash": "d5d7a3af800897c1a96f5ae3075be59d936fde4a2912debcc2060e025c610baa",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -91,9 +91,9 @@
       "url": "https://www.amazon.jobs/en/jobs/10599155/principal-tpm-privacy-regulation-tech-assurance",
       "source": "amazon_jobs",
       "job_snapshot_hash": "211fc6c10bc66f92a5c888726ef03573f42df415862a9332c96d8c66d49d421b",
-      "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -103,7 +103,7 @@
       "source": "amazon_jobs",
       "job_snapshot_hash": "d84220ee517787fd298cbf86559c26db21c7dd17500aba3da4c360867600ba6a",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -686,9 +686,9 @@
       "source": "google",
       "job_snapshot_hash": "e713c908bec065415dba1bf028e992bff07173a1bb6164b6d8276dc0acf2d6b6",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "greenhouse:andurilindustries:5286810007",
@@ -741,8 +741,8 @@
       "source": "greenhouse",
       "job_snapshot_hash": "21277238b4a8be720854e9af115486ab772c2f8465f455abb45eb8518109c568",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
+      "status": "blocked",
+      "reason": "Paid retry budget exhausted; review required.",
       "verdict": null
     },
     {
@@ -818,9 +818,9 @@
       "source": "lever",
       "job_snapshot_hash": "8cf0d76d7ee226942d4b49b9c1302be9d35b9ef839391b32c54e615a6b74d9f4",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "pass"
     },
     {
       "key": "lever:zoox:9e5326f4-d879-465f-8118-4584b1ba6018",
@@ -851,7 +851,7 @@
       "source": "oracle_cloud",
       "job_snapshot_hash": "f916cf5b281c665f273fbe8309778cb37eabd807baacffe1d7cd79d93b10858a",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -1528,21 +1528,21 @@
       "status": "failed"
     }
   ],
-  "checked_at": "2026-11-07T06:21:22.949722+00:00",
+  "checked_at": "2026-11-07T06:22:27.535372+00:00",
   "legacy_backlog": {
-    "assessed": 503,
-    "pending": 42,
-    "unresolved": 33,
-    "in_progress": 0,
-    "total": 578,
+    "assessed": 505,
+    "pending": 30,
+    "unresolved": 34,
+    "in_progress": 4,
+    "total": 573,
     "strong": 65
   },
-  "batch_id": "f15198fe9f8b0b77102b1bc9f33e7d44689e556e8548b1e3ce7cc65b64717071",
+  "batch_id": "090c46d38abd1e75f7b272c5d9acd314a7877811bef1f0e263352dcb5253bdd0",
   "status": "assessing",
   "input_blobs": {
     "jobs.json": "0dc213d7a0775a485a1e205eaf84a9d9125bc1d7",
-    "fit_scores.json": "9b9013ff0bdf174224671bb340637b506a6463bf",
-    "fit_backfill.json": "90001c6124fea9a1b0e41203f70619f31ae609bf",
+    "fit_scores.json": "473bcea32eeb0ebb0436653364ef8576b087512e",
+    "fit_backfill.json": "ea7259c38b077279c4810499fb4d8e807cd769bf",
     "meta.json": "d4de048546e997317cb7b95e4dcb977fe350499c"
   }
 }
