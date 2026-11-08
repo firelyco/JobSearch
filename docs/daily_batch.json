@@ -4,7 +4,7 @@
   "start_hour_eastern": 1,
   "deadline_hour_eastern": 6,
   "collection_completed": true,
-  "collection_at": "2026-11-08T06:20:54.276469+00:00",
+  "collection_at": "2026-11-08T06:40:50.296499+00:00",
   "counts": {
     "found": 38,
     "eligible": 10,
@@ -470,16 +470,26 @@
     "4488485944",
     "4488494453"
   ],
-  "coverage_issues": 113,
+  "coverage_issues": 110,
   "incomplete_sources": [
     {
-      "source": "lever",
-      "label": "zoox",
+      "source": "microsoft",
+      "label": "{'query': '', 'filters': {'career_discipline': ['Technical Program Management']}}",
       "status": "failed"
     },
     {
-      "source": "netflix",
-      "label": "program manager",
+      "source": "web_search",
+      "label": "web_search",
+      "status": "failed"
+    },
+    {
+      "source": "web_search",
+      "label": "web_search",
+      "status": "failed"
+    },
+    {
+      "source": "web_search",
+      "label": "web_search",
       "status": "failed"
     },
     {
@@ -979,6 +989,11 @@
     },
     {
       "source": "ashby",
+      "label": "{\"config\": \"lime\", \"source\": \"ashby\"}",
+      "status": "failed"
+    },
+    {
+      "source": "ashby",
       "label": "{\"config\": \"truss\", \"source\": \"ashby\"}",
       "status": "failed"
     },
@@ -998,11 +1013,6 @@
       "status": "failed"
     },
     {
-      "source": "lever",
-      "label": "{\"config\": \"jobgether\", \"source\": \"lever\"}",
-      "status": "failed"
-    },
-    {
       "source": "ashby",
       "label": "{\"config\": \"whatnot\", \"source\": \"ashby\"}",
       "status": "failed"
@@ -1011,34 +1021,9 @@
       "source": "greenhouse",
       "label": "{\"config\": \"verkada2\", \"source\": \"greenhouse\"}",
       "status": "failed"
-    },
-    {
-      "source": "workday",
-      "label": "{\"config\": {\"search\": \"program\", \"site\": \"External\", \"tenant\": \"cw\", \"wd_server\": \"wd1\"}, \"source\": \"workday\"}",
-      "status": "partial"
-    },
-    {
-      "source": "workday",
-      "label": "{\"config\": {\"search\": \"program\", \"site\": \"Northrop_Grumman_External_Site\", \"tenant\": \"ngc\", \"wd_server\": \"wd1\"}, \"source\": \"workday\"}",
-      "status": "partial"
-    },
-    {
-      "source": "workday",
-      "label": "{\"config\": {\"search\": \"program\", \"site\": \"External\", \"tenant\": \"amat\", \"wd_server\": \"wd1\"}, \"source\": \"workday\"}",
-      "status": "partial"
-    },
-    {
-      "source": "workday",
-      "label": "{\"config\": {\"search\": \"program\", \"site\": \"Search\", \"tenant\": \"kla\", \"wd_server\": \"wd1\"}, \"source\": \"workday\"}",
-      "status": "partial"
-    },
-    {
-      "source": "ashby",
-      "label": "{\"config\": \"lime\", \"source\": \"ashby\"}",
-      "status": "failed"
     }
   ],
-  "checked_at": "2026-11-08T06:40:23.431798+00:00",
+  "checked_at": "2026-11-08T06:53:29.121559+00:00",
   "legacy_backlog": {
     "assessed": 528,
     "pending": 0,
@@ -1047,12 +1032,12 @@
     "total": 568,
     "strong": 66
   },
-  "batch_id": "c87925efa28c0f52835ad98b2e1bc3464e57f0bd98d2189273fd814b3cf66c60",
+  "batch_id": "18b0d5d3ba2f5237d8440684efe08ebe9890b13e4ee932fc40182f9c8d7be6cd",
   "status": "blocked",
   "input_blobs": {
-    "jobs.json": "21610eae235434b9cef88ce36d8cc50d9277113f",
+    "jobs.json": "b5ca9f9ffb5390206c96954d4936ff64ef33438f",
     "fit_scores.json": "e9b9ae83037b4e90122b7163d62c6a2a08664e13",
     "fit_backfill.json": "c3b7bc7832d8e94872a487041a2e76c777184a91",
-    "meta.json": "bd9f2f0ac4ed00d9ebf4b392409c7e824499f308"
+    "meta.json": "a0014a2da8e9aeadc43e21fe13fafcf7e953b5bf"
   }
 }
