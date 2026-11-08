@@ -4,7 +4,7 @@
   "start_hour_eastern": 1,
   "deadline_hour_eastern": 6,
   "collection_completed": true,
-  "collection_at": "2026-11-08T06:00:53.066408+00:00",
+  "collection_at": "2026-11-08T06:20:54.276469+00:00",
   "counts": {
     "found": 38,
     "eligible": 10,
@@ -470,41 +470,16 @@
     "4488485944",
     "4488494453"
   ],
-  "coverage_issues": 114,
+  "coverage_issues": 113,
   "incomplete_sources": [
+    {
+      "source": "lever",
+      "label": "zoox",
+      "status": "failed"
+    },
     {
       "source": "netflix",
       "label": "program manager",
-      "status": "failed"
-    },
-    {
-      "source": "web_search",
-      "label": "web_search",
-      "status": "failed"
-    },
-    {
-      "source": "web_search",
-      "label": "web_search",
-      "status": "failed"
-    },
-    {
-      "source": "web_search",
-      "label": "web_search",
-      "status": "failed"
-    },
-    {
-      "source": "web_search",
-      "label": "web_search",
-      "status": "failed"
-    },
-    {
-      "source": "web_search",
-      "label": "web_search",
-      "status": "failed"
-    },
-    {
-      "source": "web_search",
-      "label": "web_search",
       "status": "failed"
     },
     {
@@ -1003,6 +978,11 @@
       "status": "partial"
     },
     {
+      "source": "ashby",
+      "label": "{\"config\": \"truss\", \"source\": \"ashby\"}",
+      "status": "failed"
+    },
+    {
       "source": "greenhouse",
       "label": "{\"config\": \"philo\", \"source\": \"greenhouse\"}",
       "status": "failed"
@@ -1014,12 +994,12 @@
     },
     {
       "source": "workday",
-      "label": "{\"config\": {\"search\": \"program\", \"site\": \"snap\", \"tenant\": \"snapchat\", \"wd_server\": \"wd1\"}, \"source\": \"workday\"}",
-      "status": "partial"
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"careers\", \"tenant\": \"gogo\", \"wd_server\": \"wd1\"}, \"source\": \"workday\"}",
+      "status": "failed"
     },
     {
-      "source": "workday",
-      "label": "{\"config\": {\"search\": \"program\", \"site\": \"careers\", \"tenant\": \"gogo\", \"wd_server\": \"wd1\"}, \"source\": \"workday\"}",
+      "source": "lever",
+      "label": "{\"config\": \"jobgether\", \"source\": \"lever\"}",
       "status": "failed"
     },
     {
@@ -1033,17 +1013,32 @@
       "status": "failed"
     },
     {
-      "source": "ashby",
-      "label": "{\"config\": \"lime\", \"source\": \"ashby\"}",
-      "status": "failed"
+      "source": "workday",
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"External\", \"tenant\": \"cw\", \"wd_server\": \"wd1\"}, \"source\": \"workday\"}",
+      "status": "partial"
+    },
+    {
+      "source": "workday",
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"Northrop_Grumman_External_Site\", \"tenant\": \"ngc\", \"wd_server\": \"wd1\"}, \"source\": \"workday\"}",
+      "status": "partial"
+    },
+    {
+      "source": "workday",
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"External\", \"tenant\": \"amat\", \"wd_server\": \"wd1\"}, \"source\": \"workday\"}",
+      "status": "partial"
+    },
+    {
+      "source": "workday",
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"Search\", \"tenant\": \"kla\", \"wd_server\": \"wd1\"}, \"source\": \"workday\"}",
+      "status": "partial"
     },
     {
       "source": "ashby",
-      "label": "{\"config\": \"truss\", \"source\": \"ashby\"}",
+      "label": "{\"config\": \"lime\", \"source\": \"ashby\"}",
       "status": "failed"
     }
   ],
-  "checked_at": "2026-11-08T06:18:33.403151+00:00",
+  "checked_at": "2026-11-08T06:37:34.436638+00:00",
   "legacy_backlog": {
     "assessed": 528,
     "pending": 0,
@@ -1052,12 +1047,12 @@
     "total": 565,
     "strong": 65
   },
-  "batch_id": "9985b84eff0df000baf18fc1bdb61f164f79954501d5b2aab1e986928949df28",
+  "batch_id": "91091102c9f996d07a03e81fb69baf6b6022d221a1af35aa4e4a8ad43ef378e2",
   "status": "blocked",
   "input_blobs": {
-    "jobs.json": "e26be7ee0bb611519c8becb4a90bb586b25870e0",
+    "jobs.json": "21610eae235434b9cef88ce36d8cc50d9277113f",
     "fit_scores.json": "5ca4a012564a1f51c911985c25d2c07e2e09aaf9",
     "fit_backfill.json": "c3114a25597a0a634adf9150616570628ef927e2",
-    "meta.json": "ceead73ffefc6b900cb75021cf0d8f54f75cd602"
+    "meta.json": "bd9f2f0ac4ed00d9ebf4b392409c7e824499f308"
   }
 }
