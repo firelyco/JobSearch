@@ -8,12 +8,12 @@
   "counts": {
     "found": 38,
     "eligible": 10,
-    "completed": 0,
+    "completed": 8,
     "strong": 0,
     "middle": 0,
-    "pass": 0,
-    "waiting": 10,
-    "processing": 0,
+    "pass": 8,
+    "waiting": 0,
+    "processing": 2,
     "blocked": 0,
     "excluded": 28,
     "unverified_links": 30
@@ -92,7 +92,7 @@
       "source": "arbeitnow",
       "job_snapshot_hash": "88fd843dcaa7009577f345d805affc7041124eb1414b0f8dc90d7b8b0f6117bd",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -103,9 +103,9 @@
       "source": "arbeitnow",
       "job_snapshot_hash": "7eb2077333f12bb6d5e7b28c9c9bd8544cc245acb4d724aeb24f90d0293a9836",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "pass"
     },
     {
       "key": "arbeitnow:ElevenLabs:remote-legal-operations-lead-195764",
@@ -114,9 +114,9 @@
       "source": "arbeitnow",
       "job_snapshot_hash": "f4aa2229623200619b1d7a96fdea21d4827a289d872cf8f85fdd78bfa2ca9ebe",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "pass"
     },
     {
       "key": "arbeitnow:ElevenLabs:remote-sales-lead-enterprise-financial-services-59862",
@@ -125,9 +125,9 @@
       "source": "arbeitnow",
       "job_snapshot_hash": "468d96cf87907dde171dd5fce078921463b7f792cbde9176d8c15c8ae57b820f",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "pass"
     },
     {
       "key": "arbeitnow:ElevenLabs:remote-sales-lead-enterprise-healthcare-229634",
@@ -136,9 +136,9 @@
       "source": "arbeitnow",
       "job_snapshot_hash": "c55b467cb2b9416e00da650a71548a1afdd0acada7adf93dd982732b6b38e39a",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "pass"
     },
     {
       "key": "arbeitnow:ElevenLabs:remote-sales-lead-mid-market-east-442713",
@@ -147,9 +147,9 @@
       "source": "arbeitnow",
       "job_snapshot_hash": "60a9e7d0fc3a9c7a7ea9781b5be1b414acbddf31e123183b97974a8cbfdd7b20",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "pass"
     },
     {
       "key": "arbeitnow:Elevenlabs:company-operations-lead-london-354184",
@@ -345,9 +345,9 @@
       "source": "arbeitnow",
       "job_snapshot_hash": "6b85364ee0a6d9ee467a3776f5cb30bca87ee2cd08989644510fd9b2b7c121c9",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "pass"
     },
     {
       "key": "arbeitnow:Resolvetosavelives:director-maternal-reproductive-health-united-states-nigeria-rwanda-ethiopia-france-drc-india-409876",
@@ -356,9 +356,9 @@
       "source": "arbeitnow",
       "job_snapshot_hash": "b663b2a4ccb3a47c12f66d39d7e762bcad99c03649d0c5d2498199ec9b09a09f",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "pass"
     },
     {
       "key": "arbeitnow:Resolvetosavelives:director-maternal-reproductive-health-united-states-united-kingdom-nigeria-rwanda-ethiopia-drc-india-456970",
@@ -367,9 +367,9 @@
       "source": "arbeitnow",
       "job_snapshot_hash": "c76a4f65946c8d5947e1d2afe71331f6d5a9e0b8314c6f0ca26b4bcc81558c24",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "pass"
     },
     {
       "key": "arbeitnow:Rohlik:head-of-warehouse-projects-berlin-185398",
@@ -433,7 +433,7 @@
       "source": "oracle_cloud",
       "job_snapshot_hash": "52abaa9e565093d5ded5a1228d7220a43661385a54ffdca5a7c96ce828a75606",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     }
@@ -1043,21 +1043,21 @@
       "status": "failed"
     }
   ],
-  "checked_at": "2026-11-08T06:15:16.699381+00:00",
+  "checked_at": "2026-11-08T06:16:18.724559+00:00",
   "legacy_backlog": {
-    "assessed": 517,
-    "pending": 12,
+    "assessed": 526,
+    "pending": 0,
     "unresolved": 36,
-    "in_progress": 0,
+    "in_progress": 3,
     "total": 565,
     "strong": 65
   },
-  "batch_id": "8bf6299d3097e85d759ea029d23f17de02fb8be2f0ef6aecbcb7c3246bdbf2da",
+  "batch_id": "2ea015feeea1f6fd4890d439e82716106cb16d594d760db1399905452a1c0630",
   "status": "assessing",
   "input_blobs": {
     "jobs.json": "e26be7ee0bb611519c8becb4a90bb586b25870e0",
-    "fit_scores.json": "fb84495bd8f09306c1178190362b6d44897eaf69",
-    "fit_backfill.json": "4c045a6d347623e2fe9a0a78e7d7fa272aae4f0e",
+    "fit_scores.json": "053efa0171543ec2bebaf8f47be5d3c1246848e2",
+    "fit_backfill.json": "2936e71e4c77e56fea00f99134c54408c84bb6d9",
     "meta.json": "ceead73ffefc6b900cb75021cf0d8f54f75cd602"
   }
 }
