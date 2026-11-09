@@ -12,9 +12,9 @@
     "strong": 0,
     "middle": 1,
     "pass": 0,
-    "waiting": 2,
+    "waiting": 0,
     "processing": 0,
-    "blocked": 0,
+    "blocked": 2,
     "excluded": 18,
     "unverified_links": 25
   },
@@ -114,8 +114,8 @@
       "source": "arbeitnow",
       "job_snapshot_hash": "7d40a973562ce3797a77ebdeb06530171891fe7bd9e40c269a772da8f812362a",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
+      "status": "blocked",
+      "reason": "Paid retry budget exhausted; review required.",
       "verdict": null
     },
     {
@@ -235,8 +235,8 @@
       "source": "oracle_cloud",
       "job_snapshot_hash": "c73ce06591b58f34ba517397203692a3429b9f01853b9e07f959db98eed8be26",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
+      "status": "blocked",
+      "reason": "Paid retry budget exhausted; review required.",
       "verdict": null
     },
     {
@@ -796,21 +796,21 @@
       "status": "failed"
     }
   ],
-  "checked_at": "2026-11-09T06:22:34.306902+00:00",
+  "checked_at": "2026-11-09T06:23:34.864441+00:00",
   "legacy_backlog": {
     "assessed": 521,
-    "pending": 2,
-    "unresolved": 37,
+    "pending": 0,
+    "unresolved": 39,
     "in_progress": 0,
     "total": 560,
     "strong": 66
   },
-  "batch_id": "d20ad5bc5bdf6d970ff299b342476fa2e4f1d9608a9dc7500426fb95fd96844a",
-  "status": "assessing",
+  "batch_id": "f53951af5654491c19204efb7ec4850dacb64261ca2ac44631e0ccda6c6b0fa1",
+  "status": "blocked",
   "input_blobs": {
     "jobs.json": "25758d5c9b836b96308efba9a8063654956c0e03",
-    "fit_scores.json": "951532df49efb05192e51683c63c0b0295c960e1",
-    "fit_backfill.json": "6b36101ab590d2c0d5827906708e2079f3af8217",
+    "fit_scores.json": "5df073ac807bdb84e86b4a4beb8b12588ab7af30",
+    "fit_backfill.json": "fc1804cc7f048af71bfe04c03bf1b36ab97f914c",
     "meta.json": "4f92e7230c5dd5febb85f01e506baae5f2c783c5"
   }
 }
