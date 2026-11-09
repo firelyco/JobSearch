@@ -8,12 +8,12 @@
   "counts": {
     "found": 21,
     "eligible": 3,
-    "completed": 0,
+    "completed": 1,
     "strong": 0,
-    "middle": 0,
+    "middle": 1,
     "pass": 0,
-    "waiting": 1,
-    "processing": 2,
+    "waiting": 2,
+    "processing": 0,
     "blocked": 0,
     "excluded": 18,
     "unverified_links": 25
@@ -235,7 +235,7 @@
       "source": "oracle_cloud",
       "job_snapshot_hash": "c73ce06591b58f34ba517397203692a3429b9f01853b9e07f959db98eed8be26",
       "eligible": true,
-      "status": "processing",
+      "status": "waiting",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -246,9 +246,9 @@
       "source": "oracle_cloud",
       "job_snapshot_hash": "05774b10d4bd30c0536c78019f7351e312de14363565871e7f217cc89be9b954",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     }
   ],
   "link_ids": [
@@ -796,21 +796,21 @@
       "status": "failed"
     }
   ],
-  "checked_at": "2026-11-09T06:21:11.847638+00:00",
+  "checked_at": "2026-11-09T06:22:34.306902+00:00",
   "legacy_backlog": {
-    "assessed": 515,
-    "pending": 1,
+    "assessed": 521,
+    "pending": 2,
     "unresolved": 37,
-    "in_progress": 7,
+    "in_progress": 0,
     "total": 560,
     "strong": 66
   },
-  "batch_id": "47866db9ba63e3be3820b65d24793e344aa7e9c6ef3bcdbc13f318e8fc948db7",
+  "batch_id": "d20ad5bc5bdf6d970ff299b342476fa2e4f1d9608a9dc7500426fb95fd96844a",
   "status": "assessing",
   "input_blobs": {
     "jobs.json": "25758d5c9b836b96308efba9a8063654956c0e03",
-    "fit_scores.json": "c8809fd8b086754299ee025b88e3121cc630e087",
-    "fit_backfill.json": "9cf95cc6ff5876aafe61860882174e11a7a75154",
+    "fit_scores.json": "951532df49efb05192e51683c63c0b0295c960e1",
+    "fit_backfill.json": "6b36101ab590d2c0d5827906708e2079f3af8217",
     "meta.json": "4f92e7230c5dd5febb85f01e506baae5f2c783c5"
   }
 }
