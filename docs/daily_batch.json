@@ -7,15 +7,15 @@
   "collection_at": "2026-11-09T06:00:58.126724+00:00",
   "counts": {
     "found": 21,
-    "eligible": 4,
+    "eligible": 3,
     "completed": 0,
     "strong": 0,
     "middle": 0,
     "pass": 0,
-    "waiting": 4,
-    "processing": 0,
+    "waiting": 1,
+    "processing": 2,
     "blocked": 0,
-    "excluded": 17,
+    "excluded": 18,
     "unverified_links": 25
   },
   "members": [
@@ -25,9 +25,9 @@
       "url": "https://www.amazon.jobs/en/jobs/10599445/sr-technical-program-manager",
       "source": "amazon_jobs",
       "job_snapshot_hash": "e2b8846bff6100f5381c5f6620458363efbb70def599022f8fcbeb3dbbf6d05a",
-      "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -235,7 +235,7 @@
       "source": "oracle_cloud",
       "job_snapshot_hash": "c73ce06591b58f34ba517397203692a3429b9f01853b9e07f959db98eed8be26",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -246,7 +246,7 @@
       "source": "oracle_cloud",
       "job_snapshot_hash": "05774b10d4bd30c0536c78019f7351e312de14363565871e7f217cc89be9b954",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     }
@@ -796,21 +796,21 @@
       "status": "failed"
     }
   ],
-  "checked_at": "2026-11-09T06:19:43.314909+00:00",
+  "checked_at": "2026-11-09T06:21:11.847638+00:00",
   "legacy_backlog": {
     "assessed": 515,
-    "pending": 9,
+    "pending": 1,
     "unresolved": 37,
-    "in_progress": 0,
-    "total": 561,
+    "in_progress": 7,
+    "total": 560,
     "strong": 66
   },
-  "batch_id": "9dcb4b80af0a61added94b819d22b55d0208a03ab0b4281b899f198cf260534e",
+  "batch_id": "47866db9ba63e3be3820b65d24793e344aa7e9c6ef3bcdbc13f318e8fc948db7",
   "status": "assessing",
   "input_blobs": {
     "jobs.json": "25758d5c9b836b96308efba9a8063654956c0e03",
-    "fit_scores.json": "f2b2c92f18be18463108dcc6396927122e3bb446",
-    "fit_backfill.json": "6d8f9eb97a10b3c0af7d4c0cf3297134a741e608",
+    "fit_scores.json": "c8809fd8b086754299ee025b88e3121cc630e087",
+    "fit_backfill.json": "9cf95cc6ff5876aafe61860882174e11a7a75154",
     "meta.json": "4f92e7230c5dd5febb85f01e506baae5f2c783c5"
   }
 }
