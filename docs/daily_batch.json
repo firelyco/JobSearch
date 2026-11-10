@@ -7,15 +7,15 @@
   "collection_at": "2026-11-10T06:00:57.069240+00:00",
   "counts": {
     "found": 85,
-    "eligible": 46,
-    "completed": 10,
-    "strong": 3,
-    "middle": 3,
-    "pass": 4,
+    "eligible": 45,
+    "completed": 18,
+    "strong": 4,
+    "middle": 8,
+    "pass": 6,
     "waiting": 25,
-    "processing": 11,
+    "processing": 2,
     "blocked": 0,
-    "excluded": 39,
+    "excluded": 40,
     "unverified_links": 19
   },
   "members": [
@@ -125,9 +125,9 @@
       "source": "apple",
       "job_snapshot_hash": "cf2cfc5e7fa577d4382aee8dbc191fcd1e9b18fb746bd7d4ba3afe76c1f5c02f",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "arbeitnow:Airwallex:payments-optimization-consultant-london-318236",
@@ -510,9 +510,9 @@
       "source": "ashby",
       "job_snapshot_hash": "8e06c791ef3b1c851facf0682355aefd8470bb9ed5d18b0104f563c910b4ed5e",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "ashby:cursor:2f568bb6-9a03-4f45-9392-0c62127011c6",
@@ -520,9 +520,9 @@
       "url": "https://jobs.ashbyhq.com/cursor/2f568bb6-9a03-4f45-9392-0c62127011c6",
       "source": "ashby",
       "job_snapshot_hash": "d54992dbcb0a6e93bdb2f05c4732e0cc8976576378df9c620a23b6f83307b54c",
-      "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -554,9 +554,9 @@
       "source": "google",
       "job_snapshot_hash": "dc4738024828203b9ec6c0b056d4ad1a581f69c56f460eddd05e7681350929ea",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "pass"
     },
     {
       "key": "google:google:98756109652632262",
@@ -565,9 +565,9 @@
       "source": "google",
       "job_snapshot_hash": "11fbdbd62b1340a0c9d147d015bc556551cf82f907859a27b003400f7f3e197c",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "strong"
     },
     {
       "key": "lever:jobgether:2d6ea969-016e-4988-8d22-e122c2fd35ac",
@@ -675,9 +675,9 @@
       "source": "microsoft",
       "job_snapshot_hash": "ebbffe671f9f064d01625e2df174dfc7e55baed8db6f652e2c7ff41e54d262c5",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "microsoft:microsoft:1970393557050672",
@@ -686,9 +686,9 @@
       "source": "microsoft",
       "job_snapshot_hash": "a8e56b468b4e91173e5df70890ada7e4e370a7ac73915f96aed4cec6d9a1d4f4",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "microsoft:microsoft:1970393557050859",
@@ -708,9 +708,9 @@
       "source": "microsoft",
       "job_snapshot_hash": "dc3089025bdd5fc8348852264c7af3a45b88473cef848075e0f31aaa0b5e5817",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "microsoft:microsoft:1970393557055368",
@@ -730,9 +730,9 @@
       "source": "microsoft",
       "job_snapshot_hash": "328c8c0e1caa5c2ac9a6a45f1f35bc7a0684d3810192d646d959c2fd7c0359bc",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "pass"
     },
     {
       "key": "oracle_cloud:oracle:346658",
@@ -1529,21 +1529,21 @@
       "status": "failed"
     }
   ],
-  "checked_at": "2026-11-10T06:27:18.770488+00:00",
+  "checked_at": "2026-11-10T06:28:20.299138+00:00",
   "legacy_backlog": {
-    "assessed": 499,
+    "assessed": 507,
     "pending": 31,
     "unresolved": 36,
-    "in_progress": 11,
-    "total": 577,
-    "strong": 68
+    "in_progress": 2,
+    "total": 576,
+    "strong": 69
   },
-  "batch_id": "d184397a96868bfd8e7298791bb6cb5c8008e41f66378fbacd9d18c271fce75a",
+  "batch_id": "83465c5a09f482a94b1b2a989129e4c8b42622507bdf9a066a62188367e9a185",
   "status": "assessing",
   "input_blobs": {
     "jobs.json": "47fe63a30f810863ab229b51f2af2a3928df771d",
-    "fit_scores.json": "6499e0120ebb2339a92d347a36499b89e867b065",
-    "fit_backfill.json": "d29f09ee0b30efd3523130f2a8c377fba4f996a0",
+    "fit_scores.json": "eb070197c209fca7adacc37c129812475806daea",
+    "fit_backfill.json": "47a62bff9e9975b49bdd054126a91318de070229",
     "meta.json": "aa04e5d12f362339a0b5abf8e14821a52a167711"
   }
 }
