@@ -7,15 +7,15 @@
   "collection_at": "2026-11-10T06:41:00.172105+00:00",
   "counts": {
     "found": 89,
-    "eligible": 34,
-    "completed": 27,
-    "strong": 7,
+    "eligible": 32,
+    "completed": 29,
+    "strong": 9,
     "middle": 13,
     "pass": 7,
     "waiting": 0,
-    "processing": 4,
+    "processing": 0,
     "blocked": 3,
-    "excluded": 55,
+    "excluded": 57,
     "unverified_links": 19
   },
   "members": [
@@ -521,9 +521,9 @@
       "source": "ashby",
       "job_snapshot_hash": "45a85bf966f9a78e117303b7de5124213b6c8b829ca7fb6657bac86cbc1a762b",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "strong"
     },
     {
       "key": "ashby:brainco:71cf2079-a1c5-4d32-8264-ef56639d15f9",
@@ -532,9 +532,9 @@
       "source": "ashby",
       "job_snapshot_hash": "04eb1fc0915bcc0136c37b11dc09f9463720fa67b1425857ecde9a0bffd202b7",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "strong"
     },
     {
       "key": "ashby:cursor:2f568bb6-9a03-4f45-9392-0c62127011c6",
@@ -553,9 +553,9 @@
       "url": "https://jobs.ashbyhq.com/hadrian-automation/fbdbfc79-4e3e-4bbc-b5e4-64c335356a1d",
       "source": "ashby",
       "job_snapshot_hash": "860a68d9ae031dad2cd69e77f7744031210c80e27c9448e031dda4b19e286712",
-      "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -608,9 +608,9 @@
       "url": "https://boards.greenhouse.io/andurilindustries/jobs/5289969007?gh_jid=5289969007",
       "source": "greenhouse",
       "job_snapshot_hash": "2642f6fbcb9dcd2ebd050948d29bf9624ab8c7f89f89313111e8e0d14385cbad",
-      "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -1578,21 +1578,21 @@
       "status": "failed"
     }
   ],
-  "checked_at": "2026-11-10T07:00:55.927448+00:00",
+  "checked_at": "2026-11-10T07:01:44.314399+00:00",
   "legacy_backlog": {
-    "assessed": 510,
+    "assessed": 512,
     "pending": 0,
     "unresolved": 40,
-    "in_progress": 4,
-    "total": 554,
-    "strong": 69
+    "in_progress": 0,
+    "total": 552,
+    "strong": 71
   },
-  "batch_id": "fa9e48f1ccefcaff408ad5767ed568bb5ecbe821e60ff41578a14d67d8ebd5e2",
-  "status": "assessing",
+  "batch_id": "d389cec8a3466143256f7f2278f898a1270ed5c42dbc7e94751a81cb5ffb319d",
+  "status": "blocked",
   "input_blobs": {
     "jobs.json": "8e32ab9c99bc73fe3defbf439aeebba6bfeaf149",
-    "fit_scores.json": "37c42745c8cead68c52b1b5e02e4bb68adcda9d5",
-    "fit_backfill.json": "e63aea3508fec0f95735cdc9e15872b059e48ffe",
+    "fit_scores.json": "9c06111149dd760479feee47c47d39c15acf25f5",
+    "fit_backfill.json": "1194f24d4553c0a4716932ad9f99dc0df3c83c78",
     "meta.json": "a11723857cf70b6aaf3b4c9fe7870577804db7b9"
   }
 }
