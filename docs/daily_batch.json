@@ -7,15 +7,15 @@
   "collection_at": "2026-11-10T06:00:57.069240+00:00",
   "counts": {
     "found": 85,
-    "eligible": 33,
+    "eligible": 30,
     "completed": 27,
     "strong": 7,
     "middle": 13,
     "pass": 7,
     "waiting": 0,
-    "processing": 4,
-    "blocked": 2,
-    "excluded": 52,
+    "processing": 0,
+    "blocked": 3,
+    "excluded": 55,
     "unverified_links": 19
   },
   "members": [
@@ -25,9 +25,9 @@
       "url": "https://www.amazon.jobs/en/jobs/10556978/senior-technical-program-manager-payload-sw",
       "source": "amazon_jobs",
       "job_snapshot_hash": "36652f7c7ed4f449e8802a14c2b7d0ebee5d22c54b60b24b60334ba685219990",
-      "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -36,9 +36,9 @@
       "url": "https://www.amazon.jobs/en/jobs/10588102/sr-technical-program-manager-device-os-device-os",
       "source": "amazon_jobs",
       "job_snapshot_hash": "8a22e7a5f7bf92b8b1b54c6e52b13a4b3364d548f21c27d08620a06a445fc42e",
-      "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -59,8 +59,8 @@
       "source": "amazon_jobs",
       "job_snapshot_hash": "67406620f85cba4a8c5c2d4bf4345186303a39cfceb9653646c7c771d6593022",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "status": "blocked",
+      "reason": "Paid retry budget exhausted; review required.",
       "verdict": null
     },
     {
@@ -762,9 +762,9 @@
       "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/349725",
       "source": "oracle_cloud",
       "job_snapshot_hash": "83e6e8d2a5c2f34808bb9fbad5c0d3d693f9f151cb9dd318d49ea3427bd6fa19",
-      "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -1529,21 +1529,21 @@
       "status": "failed"
     }
   ],
-  "checked_at": "2026-11-10T06:31:32.631276+00:00",
+  "checked_at": "2026-11-10T06:32:34.114484+00:00",
   "legacy_backlog": {
-    "assessed": 516,
+    "assessed": 519,
     "pending": 0,
-    "unresolved": 38,
-    "in_progress": 10,
-    "total": 564,
+    "unresolved": 39,
+    "in_progress": 3,
+    "total": 561,
     "strong": 72
   },
-  "batch_id": "b3f840e38ecdc0445c0e08a4c74b541ed8f1c1da258204b6fba0f1b3b9776ada",
-  "status": "assessing",
+  "batch_id": "854887e83f41d1bc1e48e955a54fab8e3b6586bcba6129d95b31a61b0694710b",
+  "status": "blocked",
   "input_blobs": {
     "jobs.json": "47fe63a30f810863ab229b51f2af2a3928df771d",
-    "fit_scores.json": "d08a6595d5af4098892ed4303fc63542d3025fca",
-    "fit_backfill.json": "0a2283879ddadea6fe4a45237d4d949fd87031f5",
+    "fit_scores.json": "7fa630400973a1bed5de26f4d4c03402a4df862b",
+    "fit_backfill.json": "c25a74a08cc0e06042a7582a25b2ea635693b125",
     "meta.json": "aa04e5d12f362339a0b5abf8e14821a52a167711"
   }
 }
