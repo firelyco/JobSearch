@@ -1,28 +1,28 @@
 {
   "schema": 1,
-  "checked_at": "2026-11-10T06:00:57.069240+00:00",
+  "checked_at": "2026-11-10T06:41:00.172105+00:00",
   "connection": {
     "source": "linkedin_email",
     "label": "LinkedIn job-alert emails",
     "status": "partial",
     "jobs": 893,
-    "messages_checked": 10,
-    "alerts_with_jobs": 10,
-    "job_references_found": 56,
+    "messages_checked": 0,
+    "alerts_with_jobs": 0,
+    "job_references_found": 0,
     "failed_messages": 0,
     "alerts_without_job_links": 0,
     "messages_deferred": 0,
     "unresolved_alert_messages": 11,
     "lookback_days": 14,
     "mode": "incremental",
-    "search_since": "2026-11-08T07:01:00.205913+00:00",
+    "search_since": "2026-11-09T06:00:57.069240+00:00",
     "last_success_at": null
   },
   "last_success_at": null,
   "scope": "One-time 14-day catch-up, then new unprocessed LinkedIn emails during the daily job search. Collected references are retained; this does not verify all LinkedIn or in-app listings.",
   "counts": {
-    "missing": 653,
-    "possible_match": 240
+    "missing": 652,
+    "possible_match": 241
   },
   "rows": [
     {
@@ -594,7 +594,8 @@
       "collection": "possible_match",
       "assessment": "outside_date_scope",
       "verdicts": [
-        "Middle"
+        "Middle",
+        "Pass"
       ],
       "matches": [
         {
@@ -1096,6 +1097,21 @@
         }
       ],
       "reason": "Title/company similarity is not proof of the same requisition."
+    },
+    {
+      "linkedin_id": "4434364583",
+      "url": "https://www.linkedin.com/jobs/view/4434364583",
+      "title": "Director/Delivery Lead | Artificial Intelligence",
+      "company": "CBIZ",
+      "location": "United States (Remote)",
+      "employer_urls": [],
+      "first_alert_at": "2026-11-09T23:54:42+00:00",
+      "last_alert_at": "2026-11-09T23:54:42+00:00",
+      "collection": "missing",
+      "assessment": "not_assessed",
+      "verdicts": [],
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
     },
     {
       "linkedin_id": "4434367802",
@@ -2866,17 +2882,17 @@
       "verdicts": [],
       "matches": [
         {
-          "key": "greenhouse:gitlab:8693068002",
-          "title": "Principal Technical Program Manager",
-          "company": "gitlab",
-          "url": "https://job-boards.greenhouse.io/gitlab/jobs/8693068002",
-          "assessment_date_eligible": false
-        },
-        {
           "key": "greenhouse:gitlab:8784056002",
           "title": "Principal Technical Program Manager",
           "company": "gitlab",
           "url": "https://job-boards.greenhouse.io/gitlab/jobs/8784056002",
+          "assessment_date_eligible": false
+        },
+        {
+          "key": "greenhouse:gitlab:8693068002",
+          "title": "Principal Technical Program Manager",
+          "company": "gitlab",
+          "url": "https://job-boards.greenhouse.io/gitlab/jobs/8693068002",
           "assessment_date_eligible": false
         }
       ],
@@ -3388,6 +3404,29 @@
       "verdicts": [],
       "matches": [],
       "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+    },
+    {
+      "linkedin_id": "4463332787",
+      "url": "https://www.linkedin.com/jobs/view/4463332787",
+      "title": "Principal Technical Program Manager, Sponsored Products and Brands Agent",
+      "company": "Amazon",
+      "location": "Palo Alto, CA",
+      "employer_urls": [],
+      "first_alert_at": "2026-11-09T21:57:41+00:00",
+      "last_alert_at": "2026-11-10T01:57:42+00:00",
+      "collection": "possible_match",
+      "assessment": "outside_date_scope",
+      "verdicts": [],
+      "matches": [
+        {
+          "key": "amazon_jobs:amazon:10529476",
+          "title": "Principal Technical Program Manager, Sponsored Products and Brands Agent",
+          "company": "amazon",
+          "url": "https://www.amazon.jobs/en/jobs/10529476/principal-technical-program-manager-sponsored-products-and-brands-agent",
+          "assessment_date_eligible": false
+        }
+      ],
+      "reason": "Title/company similarity is not proof of the same requisition."
     },
     {
       "linkedin_id": "4463389818",
@@ -5034,6 +5073,21 @@
       "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
     },
     {
+      "linkedin_id": "4472401279",
+      "url": "https://www.linkedin.com/jobs/view/4472401279",
+      "title": "Principal, Portfolio Strategy and Growth - Services",
+      "company": "Intuit",
+      "location": "Mountain View, CA (On-site)",
+      "employer_urls": [],
+      "first_alert_at": "2026-11-09T18:29:37+00:00",
+      "last_alert_at": "2026-11-09T18:29:37+00:00",
+      "collection": "missing",
+      "assessment": "not_assessed",
+      "verdicts": [],
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+    },
+    {
       "linkedin_id": "4472673848",
       "url": "https://www.linkedin.com/jobs/view/4472673848",
       "title": "(USA) Senior Director, Technical Program Management",
@@ -5328,7 +5382,8 @@
       "collection": "possible_match",
       "assessment": "outside_date_scope",
       "verdicts": [
-        "Middle"
+        "Middle",
+        "Pass"
       ],
       "matches": [
         {
@@ -6542,10 +6597,8 @@
       "first_alert_at": "2026-10-15T21:57:43+00:00",
       "last_alert_at": "2026-11-06T15:57:42+00:00",
       "collection": "possible_match",
-      "assessment": "assessed",
-      "verdicts": [
-        "Middle"
-      ],
+      "assessment": "reassessment_pending",
+      "verdicts": [],
       "matches": [
         {
           "key": "workday:entegris:/job/Chaska-MN/Senior-Director--Enterprise-Portfolio-Manamagement_REQ-14680",
@@ -7611,17 +7664,17 @@
       ],
       "matches": [
         {
-          "key": "greenhouse:databricks:8818416002",
-          "title": "Sr Staff Technical Program Manager- Security",
-          "company": "databricks",
-          "url": "https://databricks.com/company/careers/open-positions/job?gh_jid=8818416002",
-          "assessment_date_eligible": true
-        },
-        {
           "key": "greenhouse:databricks:8818577002",
           "title": "Sr Staff Technical Program Manager- Security",
           "company": "databricks",
           "url": "https://databricks.com/company/careers/open-positions/job?gh_jid=8818577002",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "greenhouse:databricks:8818416002",
+          "title": "Sr Staff Technical Program Manager- Security",
+          "company": "databricks",
+          "url": "https://databricks.com/company/careers/open-positions/job?gh_jid=8818416002",
           "assessment_date_eligible": true
         }
       ],
@@ -7651,11 +7704,19 @@
       "employer_urls": [],
       "first_alert_at": "2026-10-20T23:54:41+00:00",
       "last_alert_at": "2026-10-20T23:54:41+00:00",
-      "collection": "missing",
+      "collection": "possible_match",
       "assessment": "not_assessed",
       "verdicts": [],
-      "matches": [],
-      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+      "matches": [
+        {
+          "key": "netflix:netflix:790319022497",
+          "title": "Senior Product Operations Lead & Program Manager - Content Experience Innovation",
+          "company": "netflix",
+          "url": "https://explore.jobs.netflix.net/careers/job/790319022497",
+          "assessment_date_eligible": true
+        }
+      ],
+      "reason": "Title/company similarity is not proof of the same requisition."
     },
     {
       "linkedin_id": "4478650163",
@@ -8551,7 +8612,8 @@
       "collection": "possible_match",
       "assessment": "outside_date_scope",
       "verdicts": [
-        "Middle"
+        "Middle",
+        "Pass"
       ],
       "matches": [
         {
@@ -8929,6 +8991,21 @@
       "employer_urls": [],
       "first_alert_at": "2026-10-17T13:57:43+00:00",
       "last_alert_at": "2026-11-08T23:57:43+00:00",
+      "collection": "missing",
+      "assessment": "not_assessed",
+      "verdicts": [],
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+    },
+    {
+      "linkedin_id": "4479682659",
+      "url": "https://www.linkedin.com/jobs/view/4479682659",
+      "title": "director, AI Transformation",
+      "company": "Starbucks",
+      "location": "Seattle, WA (On-site)",
+      "employer_urls": [],
+      "first_alert_at": "2026-11-09T17:57:41+00:00",
+      "last_alert_at": "2026-11-09T17:57:41+00:00",
       "collection": "missing",
       "assessment": "not_assessed",
       "verdicts": [],
@@ -10010,6 +10087,21 @@
       "employer_urls": [],
       "first_alert_at": "2026-10-18T15:57:42+00:00",
       "last_alert_at": "2026-10-18T21:57:42+00:00",
+      "collection": "missing",
+      "assessment": "not_assessed",
+      "verdicts": [],
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+    },
+    {
+      "linkedin_id": "4480867584",
+      "url": "https://www.linkedin.com/jobs/view/4480867584",
+      "title": "Senior Technical Portfolio Manager",
+      "company": "Switch",
+      "location": "United States (Remote)",
+      "employer_urls": [],
+      "first_alert_at": "2026-11-09T23:54:42+00:00",
+      "last_alert_at": "2026-11-09T23:54:42+00:00",
       "collection": "missing",
       "assessment": "not_assessed",
       "verdicts": [],
@@ -12833,7 +12925,8 @@
       "collection": "possible_match",
       "assessment": "outside_date_scope",
       "verdicts": [
-        "Middle"
+        "Middle",
+        "Pass"
       ],
       "matches": [
         {
@@ -18171,6 +18264,81 @@
       "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
     },
     {
+      "linkedin_id": "4487122768",
+      "url": "https://www.linkedin.com/jobs/view/4487122768",
+      "title": "Senior Technical Program Manager",
+      "company": "TalentHop",
+      "location": "United States (Remote)",
+      "employer_urls": [],
+      "first_alert_at": "2026-11-09T23:54:42+00:00",
+      "last_alert_at": "2026-11-09T23:54:42+00:00",
+      "collection": "missing",
+      "assessment": "not_assessed",
+      "verdicts": [],
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+    },
+    {
+      "linkedin_id": "4487124710",
+      "url": "https://www.linkedin.com/jobs/view/4487124710",
+      "title": "Technical Program Manager, Quantum Technology",
+      "company": "Applied Materials",
+      "location": "Santa Clara, CA",
+      "employer_urls": [],
+      "first_alert_at": "2026-11-09T13:57:43+00:00",
+      "last_alert_at": "2026-11-10T01:57:42+00:00",
+      "collection": "missing",
+      "assessment": "not_assessed",
+      "verdicts": [],
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+    },
+    {
+      "linkedin_id": "4487127594",
+      "url": "https://www.linkedin.com/jobs/view/4487127594",
+      "title": "Strategy & Planning Lead, Fleet Operations",
+      "company": "Wayve",
+      "location": "Sunnyvale, CA (Hybrid)",
+      "employer_urls": [],
+      "first_alert_at": "2026-11-09T18:29:37+00:00",
+      "last_alert_at": "2026-11-09T18:29:37+00:00",
+      "collection": "missing",
+      "assessment": "not_assessed",
+      "verdicts": [],
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+    },
+    {
+      "linkedin_id": "4487130317",
+      "url": "https://www.linkedin.com/jobs/view/4487130317",
+      "title": "Technical Project/Program Management Director - Advanced Packaging",
+      "company": "Applied Materials",
+      "location": "Santa Clara, CA",
+      "employer_urls": [],
+      "first_alert_at": "2026-11-09T21:57:41+00:00",
+      "last_alert_at": "2026-11-10T01:57:42+00:00",
+      "collection": "missing",
+      "assessment": "not_assessed",
+      "verdicts": [],
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+    },
+    {
+      "linkedin_id": "4487130434",
+      "url": "https://www.linkedin.com/jobs/view/4487130434",
+      "title": "US - Technical Operations Manager",
+      "company": "Wayve",
+      "location": "Sunnyvale, CA (Hybrid)",
+      "employer_urls": [],
+      "first_alert_at": "2026-11-09T23:54:42+00:00",
+      "last_alert_at": "2026-11-10T01:57:42+00:00",
+      "collection": "missing",
+      "assessment": "not_assessed",
+      "verdicts": [],
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+    },
+    {
       "linkedin_id": "4487202080",
       "url": "https://www.linkedin.com/jobs/view/4487202080",
       "title": "Chief of Staff Corporate Strategy",
@@ -18274,7 +18442,8 @@
       "collection": "possible_match",
       "assessment": "outside_date_scope",
       "verdicts": [
-        "Middle"
+        "Middle",
+        "Pass"
       ],
       "matches": [
         {
@@ -18639,6 +18808,94 @@
       "verdicts": [],
       "matches": [],
       "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+    },
+    {
+      "linkedin_id": "4487666255",
+      "url": "https://www.linkedin.com/jobs/view/4487666255",
+      "title": "",
+      "company": "",
+      "location": "",
+      "employer_urls": [],
+      "first_alert_at": "2026-11-09T18:29:37+00:00",
+      "last_alert_at": "2026-11-09T18:29:37+00:00",
+      "collection": "missing",
+      "assessment": "not_assessed",
+      "verdicts": [],
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+    },
+    {
+      "linkedin_id": "4487677169",
+      "url": "https://www.linkedin.com/jobs/view/4487677169",
+      "title": "Head of Project Management Office (PMO) \u2013 Insurance & Investments",
+      "company": "TheHiveCareers",
+      "location": "Bermuda, VA (Remote)",
+      "employer_urls": [],
+      "first_alert_at": "2026-11-09T19:57:42+00:00",
+      "last_alert_at": "2026-11-09T19:57:42+00:00",
+      "collection": "missing",
+      "assessment": "not_assessed",
+      "verdicts": [],
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+    },
+    {
+      "linkedin_id": "4487689173",
+      "url": "https://www.linkedin.com/jobs/view/4487689173",
+      "title": "Global PMO Lead",
+      "company": "Jobgether",
+      "location": "United States (Remote)",
+      "employer_urls": [],
+      "first_alert_at": "2026-11-09T13:57:43+00:00",
+      "last_alert_at": "2026-11-09T19:57:42+00:00",
+      "collection": "possible_match",
+      "assessment": "reassessment_pending",
+      "verdicts": [],
+      "matches": [
+        {
+          "key": "lever:jobgether:37e02f80-deb9-4800-8e81-b134d6ae23fb",
+          "title": "Global PMO Lead",
+          "company": "jobgether",
+          "url": "https://jobs.lever.co/jobgether/37e02f80-deb9-4800-8e81-b134d6ae23fb",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "lever:jobgether:4a76140e-edc8-4a63-a955-6a2818f13acb",
+          "title": "Global PMO Lead",
+          "company": "jobgether",
+          "url": "https://jobs.lever.co/jobgether/4a76140e-edc8-4a63-a955-6a2818f13acb",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "lever:jobgether:567d355c-07ad-43b1-9591-67e36bbc9cba",
+          "title": "Global PMO Lead",
+          "company": "jobgether",
+          "url": "https://jobs.lever.co/jobgether/567d355c-07ad-43b1-9591-67e36bbc9cba",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "lever:jobgether:60c833d8-01a3-4e01-92f6-87c6b60bb3f3",
+          "title": "Global PMO Lead",
+          "company": "jobgether",
+          "url": "https://jobs.lever.co/jobgether/60c833d8-01a3-4e01-92f6-87c6b60bb3f3",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "lever:jobgether:a3bdf930-094c-4c92-aa8f-0c2be28ca578",
+          "title": "Global PMO Lead",
+          "company": "jobgether",
+          "url": "https://jobs.lever.co/jobgether/a3bdf930-094c-4c92-aa8f-0c2be28ca578",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "lever:jobgether:caa2a27d-3755-4174-8a42-6b86f80dbb63",
+          "title": "Global PMO Lead",
+          "company": "jobgether",
+          "url": "https://jobs.lever.co/jobgether/caa2a27d-3755-4174-8a42-6b86f80dbb63",
+          "assessment_date_eligible": true
+        }
+      ],
+      "reason": "Title/company similarity is not proof of the same requisition."
     },
     {
       "linkedin_id": "4487700855",
@@ -19318,94 +19575,6 @@
       "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
     },
     {
-      "linkedin_id": "4487689173",
-      "url": "https://www.linkedin.com/jobs/view/4487689173",
-      "title": "Global PMO Lead",
-      "company": "Jobgether",
-      "location": "United States (Remote)",
-      "employer_urls": [],
-      "first_alert_at": "2026-11-09T13:57:43+00:00",
-      "last_alert_at": "2026-11-09T19:57:42+00:00",
-      "collection": "possible_match",
-      "assessment": "not_assessed",
-      "verdicts": [],
-      "matches": [
-        {
-          "key": "lever:jobgether:37e02f80-deb9-4800-8e81-b134d6ae23fb",
-          "title": "Global PMO Lead",
-          "company": "jobgether",
-          "url": "https://jobs.lever.co/jobgether/37e02f80-deb9-4800-8e81-b134d6ae23fb",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "lever:jobgether:4a76140e-edc8-4a63-a955-6a2818f13acb",
-          "title": "Global PMO Lead",
-          "company": "jobgether",
-          "url": "https://jobs.lever.co/jobgether/4a76140e-edc8-4a63-a955-6a2818f13acb",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "lever:jobgether:567d355c-07ad-43b1-9591-67e36bbc9cba",
-          "title": "Global PMO Lead",
-          "company": "jobgether",
-          "url": "https://jobs.lever.co/jobgether/567d355c-07ad-43b1-9591-67e36bbc9cba",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "lever:jobgether:60c833d8-01a3-4e01-92f6-87c6b60bb3f3",
-          "title": "Global PMO Lead",
-          "company": "jobgether",
-          "url": "https://jobs.lever.co/jobgether/60c833d8-01a3-4e01-92f6-87c6b60bb3f3",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "lever:jobgether:a3bdf930-094c-4c92-aa8f-0c2be28ca578",
-          "title": "Global PMO Lead",
-          "company": "jobgether",
-          "url": "https://jobs.lever.co/jobgether/a3bdf930-094c-4c92-aa8f-0c2be28ca578",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "lever:jobgether:caa2a27d-3755-4174-8a42-6b86f80dbb63",
-          "title": "Global PMO Lead",
-          "company": "jobgether",
-          "url": "https://jobs.lever.co/jobgether/caa2a27d-3755-4174-8a42-6b86f80dbb63",
-          "assessment_date_eligible": true
-        }
-      ],
-      "reason": "Title/company similarity is not proof of the same requisition."
-    },
-    {
-      "linkedin_id": "4488829427",
-      "url": "https://www.linkedin.com/jobs/view/4488829427",
-      "title": "Principal / Director, Technical Program Management \u2014 Driver Out",
-      "company": "Wayve",
-      "location": "Sunnyvale, CA (Hybrid)",
-      "employer_urls": [],
-      "first_alert_at": "2026-11-09T13:57:43+00:00",
-      "last_alert_at": "2026-11-09T21:57:41+00:00",
-      "collection": "missing",
-      "assessment": "not_assessed",
-      "verdicts": [],
-      "matches": [],
-      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
-    },
-    {
-      "linkedin_id": "4488827131",
-      "url": "https://www.linkedin.com/jobs/view/4488827131",
-      "title": "Vice President of Project Management",
-      "company": "October Capital",
-      "location": "United States (Remote)",
-      "employer_urls": [],
-      "first_alert_at": "2026-11-09T13:57:43+00:00",
-      "last_alert_at": "2026-11-09T13:57:43+00:00",
-      "collection": "missing",
-      "assessment": "not_assessed",
-      "verdicts": [],
-      "matches": [],
-      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
-    },
-    {
       "linkedin_id": "4488795661",
       "url": "https://www.linkedin.com/jobs/view/4488795661",
       "title": "Chief Project Officer",
@@ -19436,14 +19605,14 @@
       "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
     },
     {
-      "linkedin_id": "4487124710",
-      "url": "https://www.linkedin.com/jobs/view/4487124710",
-      "title": "Technical Program Manager, Quantum Technology",
-      "company": "Applied Materials",
-      "location": "Santa Clara, CA",
+      "linkedin_id": "4488812034",
+      "url": "https://www.linkedin.com/jobs/view/4488812034",
+      "title": "Strategic Project Lead, U.S. Government",
+      "company": "micro1",
+      "location": "United States (Remote)",
       "employer_urls": [],
-      "first_alert_at": "2026-11-09T13:57:43+00:00",
-      "last_alert_at": "2026-11-10T01:57:42+00:00",
+      "first_alert_at": "2026-11-09T23:54:42+00:00",
+      "last_alert_at": "2026-11-09T23:54:42+00:00",
       "collection": "missing",
       "assessment": "not_assessed",
       "verdicts": [],
@@ -19466,14 +19635,14 @@
       "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
     },
     {
-      "linkedin_id": "4479682659",
-      "url": "https://www.linkedin.com/jobs/view/4479682659",
-      "title": "director, AI Transformation",
-      "company": "Starbucks",
-      "location": "Seattle, WA (On-site)",
+      "linkedin_id": "4488827131",
+      "url": "https://www.linkedin.com/jobs/view/4488827131",
+      "title": "Vice President of Project Management",
+      "company": "October Capital",
+      "location": "United States (Remote)",
       "employer_urls": [],
-      "first_alert_at": "2026-11-09T17:57:41+00:00",
-      "last_alert_at": "2026-11-09T17:57:41+00:00",
+      "first_alert_at": "2026-11-09T13:57:43+00:00",
+      "last_alert_at": "2026-11-09T13:57:43+00:00",
       "collection": "missing",
       "assessment": "not_assessed",
       "verdicts": [],
@@ -19481,172 +19650,14 @@
       "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
     },
     {
-      "linkedin_id": "4472401279",
-      "url": "https://www.linkedin.com/jobs/view/4472401279",
-      "title": "Principal, Portfolio Strategy and Growth - Services",
-      "company": "Intuit",
-      "location": "Mountain View, CA (On-site)",
-      "employer_urls": [],
-      "first_alert_at": "2026-11-09T18:29:37+00:00",
-      "last_alert_at": "2026-11-09T18:29:37+00:00",
-      "collection": "missing",
-      "assessment": "not_assessed",
-      "verdicts": [],
-      "matches": [],
-      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
-    },
-    {
-      "linkedin_id": "4487666255",
-      "url": "https://www.linkedin.com/jobs/view/4487666255",
-      "title": "",
-      "company": "",
-      "location": "",
-      "employer_urls": [],
-      "first_alert_at": "2026-11-09T18:29:37+00:00",
-      "last_alert_at": "2026-11-09T18:29:37+00:00",
-      "collection": "missing",
-      "assessment": "not_assessed",
-      "verdicts": [],
-      "matches": [],
-      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
-    },
-    {
-      "linkedin_id": "4487127594",
-      "url": "https://www.linkedin.com/jobs/view/4487127594",
-      "title": "Strategy & Planning Lead, Fleet Operations",
+      "linkedin_id": "4488829427",
+      "url": "https://www.linkedin.com/jobs/view/4488829427",
+      "title": "Principal / Director, Technical Program Management \u2014 Driver Out",
       "company": "Wayve",
       "location": "Sunnyvale, CA (Hybrid)",
       "employer_urls": [],
-      "first_alert_at": "2026-11-09T18:29:37+00:00",
-      "last_alert_at": "2026-11-09T18:29:37+00:00",
-      "collection": "missing",
-      "assessment": "not_assessed",
-      "verdicts": [],
-      "matches": [],
-      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
-    },
-    {
-      "linkedin_id": "4487677169",
-      "url": "https://www.linkedin.com/jobs/view/4487677169",
-      "title": "Head of Project Management Office (PMO) \u2013 Insurance & Investments",
-      "company": "TheHiveCareers",
-      "location": "Bermuda, VA (Remote)",
-      "employer_urls": [],
-      "first_alert_at": "2026-11-09T19:57:42+00:00",
-      "last_alert_at": "2026-11-09T19:57:42+00:00",
-      "collection": "missing",
-      "assessment": "not_assessed",
-      "verdicts": [],
-      "matches": [],
-      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
-    },
-    {
-      "linkedin_id": "4487130317",
-      "url": "https://www.linkedin.com/jobs/view/4487130317",
-      "title": "Technical Project/Program Management Director - Advanced Packaging",
-      "company": "Applied Materials",
-      "location": "Santa Clara, CA",
-      "employer_urls": [],
-      "first_alert_at": "2026-11-09T21:57:41+00:00",
-      "last_alert_at": "2026-11-10T01:57:42+00:00",
-      "collection": "missing",
-      "assessment": "not_assessed",
-      "verdicts": [],
-      "matches": [],
-      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
-    },
-    {
-      "linkedin_id": "4463332787",
-      "url": "https://www.linkedin.com/jobs/view/4463332787",
-      "title": "Principal Technical Program Manager, Sponsored Products and Brands Agent",
-      "company": "Amazon",
-      "location": "Palo Alto, CA",
-      "employer_urls": [],
-      "first_alert_at": "2026-11-09T21:57:41+00:00",
-      "last_alert_at": "2026-11-10T01:57:42+00:00",
-      "collection": "possible_match",
-      "assessment": "outside_date_scope",
-      "verdicts": [],
-      "matches": [
-        {
-          "key": "amazon_jobs:amazon:10529476",
-          "title": "Principal Technical Program Manager, Sponsored Products and Brands Agent",
-          "company": "amazon",
-          "url": "https://www.amazon.jobs/en/jobs/10529476/principal-technical-program-manager-sponsored-products-and-brands-agent",
-          "assessment_date_eligible": false
-        }
-      ],
-      "reason": "Title/company similarity is not proof of the same requisition."
-    },
-    {
-      "linkedin_id": "4487130434",
-      "url": "https://www.linkedin.com/jobs/view/4487130434",
-      "title": "US - Technical Operations Manager",
-      "company": "Wayve",
-      "location": "Sunnyvale, CA (Hybrid)",
-      "employer_urls": [],
-      "first_alert_at": "2026-11-09T23:54:42+00:00",
-      "last_alert_at": "2026-11-10T01:57:42+00:00",
-      "collection": "missing",
-      "assessment": "not_assessed",
-      "verdicts": [],
-      "matches": [],
-      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
-    },
-    {
-      "linkedin_id": "4434364583",
-      "url": "https://www.linkedin.com/jobs/view/4434364583",
-      "title": "Director/Delivery Lead | Artificial Intelligence",
-      "company": "CBIZ",
-      "location": "United States (Remote)",
-      "employer_urls": [],
-      "first_alert_at": "2026-11-09T23:54:42+00:00",
-      "last_alert_at": "2026-11-09T23:54:42+00:00",
-      "collection": "missing",
-      "assessment": "not_assessed",
-      "verdicts": [],
-      "matches": [],
-      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
-    },
-    {
-      "linkedin_id": "4487122768",
-      "url": "https://www.linkedin.com/jobs/view/4487122768",
-      "title": "Senior Technical Program Manager",
-      "company": "TalentHop",
-      "location": "United States (Remote)",
-      "employer_urls": [],
-      "first_alert_at": "2026-11-09T23:54:42+00:00",
-      "last_alert_at": "2026-11-09T23:54:42+00:00",
-      "collection": "missing",
-      "assessment": "not_assessed",
-      "verdicts": [],
-      "matches": [],
-      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
-    },
-    {
-      "linkedin_id": "4488812034",
-      "url": "https://www.linkedin.com/jobs/view/4488812034",
-      "title": "Strategic Project Lead, U.S. Government",
-      "company": "micro1",
-      "location": "United States (Remote)",
-      "employer_urls": [],
-      "first_alert_at": "2026-11-09T23:54:42+00:00",
-      "last_alert_at": "2026-11-09T23:54:42+00:00",
-      "collection": "missing",
-      "assessment": "not_assessed",
-      "verdicts": [],
-      "matches": [],
-      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
-    },
-    {
-      "linkedin_id": "4480867584",
-      "url": "https://www.linkedin.com/jobs/view/4480867584",
-      "title": "Senior Technical Portfolio Manager",
-      "company": "Switch",
-      "location": "United States (Remote)",
-      "employer_urls": [],
-      "first_alert_at": "2026-11-09T23:54:42+00:00",
-      "last_alert_at": "2026-11-09T23:54:42+00:00",
+      "first_alert_at": "2026-11-09T13:57:43+00:00",
+      "last_alert_at": "2026-11-09T21:57:41+00:00",
       "collection": "missing",
       "assessment": "not_assessed",
       "verdicts": [],
