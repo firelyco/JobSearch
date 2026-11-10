@@ -8,12 +8,12 @@
   "counts": {
     "found": 90,
     "eligible": 33,
-    "completed": 29,
+    "completed": 30,
     "strong": 9,
     "middle": 13,
-    "pass": 7,
+    "pass": 8,
     "waiting": 0,
-    "processing": 1,
+    "processing": 0,
     "blocked": 3,
     "excluded": 57,
     "unverified_links": 19
@@ -906,9 +906,9 @@
       "source": "workday",
       "job_snapshot_hash": "be33e28e312268bcf9d43cda3d560c6da95e2c50c30aa09fb21629072c1c7c40",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "pass"
     },
     {
       "key": "workday:hp:/job/Vancouver-British-Columbia-Canada/Technical-Program-Manager_3169864-2",
@@ -1499,21 +1499,21 @@
       "status": "failed"
     }
   ],
-  "checked_at": "2026-11-10T07:40:00.579929+00:00",
+  "checked_at": "2026-11-10T07:41:01.381902+00:00",
   "legacy_backlog": {
-    "assessed": 519,
+    "assessed": 521,
     "pending": 0,
     "unresolved": 41,
-    "in_progress": 3,
+    "in_progress": 1,
     "total": 563,
     "strong": 74
   },
-  "batch_id": "c0d9dcd9aefd90879a44ec231a88136f2ac24c4628aca40e34a4d1c977d4b905",
-  "status": "assessing",
+  "batch_id": "c1adafd4279cc74766f0882b899f44e9cb49cbbd72d60188d32ddb7e1d712591",
+  "status": "blocked",
   "input_blobs": {
     "jobs.json": "403dd48ad0b1a9b45e99fde66f53eaebb3a007d2",
-    "fit_scores.json": "7dbb0e35a29a21d4e7413c5eef4392f597b14987",
-    "fit_backfill.json": "582432584af482aa5f639ad8867caf7153072976",
+    "fit_scores.json": "a3c67b64a566bf9ac85777b6692e749271cf79a2",
+    "fit_backfill.json": "f3a6bff855a2647526036554d3a288e3f342a7ba",
     "meta.json": "79ec482224ae39ad92baf0e35111e3fba1b3a526"
   }
 }
