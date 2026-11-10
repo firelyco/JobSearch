@@ -7,15 +7,15 @@
   "collection_at": "2026-11-10T06:00:57.069240+00:00",
   "counts": {
     "found": 85,
-    "eligible": 48,
-    "completed": 2,
-    "strong": 0,
-    "middle": 0,
-    "pass": 2,
-    "waiting": 36,
-    "processing": 10,
+    "eligible": 46,
+    "completed": 10,
+    "strong": 3,
+    "middle": 3,
+    "pass": 4,
+    "waiting": 25,
+    "processing": 11,
     "blocked": 0,
-    "excluded": 37,
+    "excluded": 39,
     "unverified_links": 19
   },
   "members": [
@@ -125,7 +125,7 @@
       "source": "apple",
       "job_snapshot_hash": "cf2cfc5e7fa577d4382aee8dbc191fcd1e9b18fb746bd7d4ba3afe76c1f5c02f",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -510,7 +510,7 @@
       "source": "ashby",
       "job_snapshot_hash": "8e06c791ef3b1c851facf0682355aefd8470bb9ed5d18b0104f563c910b4ed5e",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -521,7 +521,7 @@
       "source": "ashby",
       "job_snapshot_hash": "d54992dbcb0a6e93bdb2f05c4732e0cc8976576378df9c620a23b6f83307b54c",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -532,9 +532,9 @@
       "source": "google",
       "job_snapshot_hash": "fb0fba936000a518f279efccdfd6755c570e7eb217450103c0d2684b1d47508a",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "strong"
     },
     {
       "key": "google:google:125715619369624262",
@@ -554,7 +554,7 @@
       "source": "google",
       "job_snapshot_hash": "dc4738024828203b9ec6c0b056d4ad1a581f69c56f460eddd05e7681350929ea",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -565,7 +565,7 @@
       "source": "google",
       "job_snapshot_hash": "11fbdbd62b1340a0c9d147d015bc556551cf82f907859a27b003400f7f3e197c",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -664,7 +664,7 @@
       "source": "lever",
       "job_snapshot_hash": "845ee6f8fb884ae9201390c0f03453ce6477f98dda9f351c7be7ea56d0cee453",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -675,7 +675,7 @@
       "source": "microsoft",
       "job_snapshot_hash": "ebbffe671f9f064d01625e2df174dfc7e55baed8db6f652e2c7ff41e54d262c5",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -686,7 +686,7 @@
       "source": "microsoft",
       "job_snapshot_hash": "a8e56b468b4e91173e5df70890ada7e4e370a7ac73915f96aed4cec6d9a1d4f4",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -697,7 +697,7 @@
       "source": "microsoft",
       "job_snapshot_hash": "ca895cdcecf3e8d2f3688f0254daa79ad576c9224e5156a63dbf72ba206cbc5c",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -708,7 +708,7 @@
       "source": "microsoft",
       "job_snapshot_hash": "dc3089025bdd5fc8348852264c7af3a45b88473cef848075e0f31aaa0b5e5817",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -730,7 +730,7 @@
       "source": "microsoft",
       "job_snapshot_hash": "328c8c0e1caa5c2ac9a6a45f1f35bc7a0684d3810192d646d959c2fd7c0359bc",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -829,9 +829,9 @@
       "source": "workday",
       "job_snapshot_hash": "d5e4b1c3f7b08a97b601e775db8faee53edb62919996fc95237878e77f477fe9",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "workday:astrazeneca:/job/US---Gaithersburg---MD/Senior-Director--Manufacturing-Science-and-Technology--Cell-Therapy-Technical-Operations_R-255324-2",
@@ -851,9 +851,9 @@
       "source": "workday",
       "job_snapshot_hash": "ec706cf59f4ff149b125c2acde0562317cc1b673000836e730dbcc6793d81128",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "pass"
     },
     {
       "key": "workday:hp:/job/Vancouver-British-Columbia-Canada/Technical-Program-Manager_3169864-2",
@@ -872,9 +872,9 @@
       "url": "https://msd.wd5.myworkdayjobs.com/en-US/SearchJobs/job/USA---Pennsylvania---North-Wales-Upper-Gwynedd/Senior-PMO-Business-Analyst---Automation--Analytics---AI--Sr-BA---AA---AI-_R425959-2",
       "source": "workday",
       "job_snapshot_hash": "f64e3effbba8b3a22a3b3fc7b01174dd3f03ccd2d3ccc9bac2547f095ca69f46",
-      "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -884,9 +884,9 @@
       "source": "workday",
       "job_snapshot_hash": "1e5f3f909890768003f5608fd3b8748196aca340a05ce5ae764c760f6ddb535c",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "pass"
     },
     {
       "key": "workday:nvidia:/job/US-CA-Santa-Clara/Senior-Software-Technical-Program-Manager--CUDA-Robotics_JR2029040",
@@ -895,9 +895,9 @@
       "source": "workday",
       "job_snapshot_hash": "b875366fd463fcd8ec6c38614b150e7ae8ab85a52652bb59cbe88ed364c23740",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "strong"
     },
     {
       "key": "workday:nvidia:/job/US-CA-Santa-Clara/Senior-Technical-Program-Manager---Nemotron-EU-Engagement_JR2027957",
@@ -906,9 +906,9 @@
       "source": "workday",
       "job_snapshot_hash": "a26da986255cac7383a3ac50c450aa85b54f0e6b672599acf4f9a8d83bbd25b8",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "strong"
     },
     {
       "key": "workday:nvidia:/job/US-WA-Redmond/Senior-Technical-Program-Manager--Quantum-Computing-Applied-Research_JR2025114",
@@ -928,9 +928,9 @@
       "source": "workday",
       "job_snapshot_hash": "e60f8d8487bf5c06e0939ef851d7b33f2150fc35ecb70c64dd9352727b694dc3",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "workday:salesforce:/job/New-York---New-York/Senior-Manager--Digital-Enterprise-Technology--Customer-0-Program-Strategy---Storytelling_JR362969",
@@ -938,9 +938,9 @@
       "url": "https://salesforce.wd12.myworkdayjobs.com/en-US/External_Career_Site/job/New-York---New-York/Senior-Manager--Digital-Enterprise-Technology--Customer-0-Program-Strategy---Storytelling_JR362969",
       "source": "workday",
       "job_snapshot_hash": "ae70ba8a921b83e50fbd8f538aab26dea3ece1bebaab10d2cb39e3f7852ef7c4",
-      "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -950,9 +950,9 @@
       "source": "workday",
       "job_snapshot_hash": "18fa3754f16404ff81dd74c58f340d31306bd39d34d947fc8f0b34368aa50841",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     }
   ],
   "link_ids": [
@@ -1529,21 +1529,21 @@
       "status": "failed"
     }
   ],
-  "checked_at": "2026-11-10T06:26:02.509146+00:00",
+  "checked_at": "2026-11-10T06:27:18.770488+00:00",
   "legacy_backlog": {
-    "assessed": 491,
-    "pending": 42,
+    "assessed": 499,
+    "pending": 31,
     "unresolved": 36,
-    "in_progress": 10,
-    "total": 579,
-    "strong": 65
+    "in_progress": 11,
+    "total": 577,
+    "strong": 68
   },
-  "batch_id": "48838e781456a55a3cc2f328a82c498b254a68cb3e69db2edd7f4f87a86fd703",
+  "batch_id": "d184397a96868bfd8e7298791bb6cb5c8008e41f66378fbacd9d18c271fce75a",
   "status": "assessing",
   "input_blobs": {
     "jobs.json": "47fe63a30f810863ab229b51f2af2a3928df771d",
-    "fit_scores.json": "9f52c8d6da10959a2e5aab7d79236017195492d1",
-    "fit_backfill.json": "96304cebc9950fe5ff6a3912e133410a303bdd51",
+    "fit_scores.json": "6499e0120ebb2339a92d347a36499b89e867b065",
+    "fit_backfill.json": "d29f09ee0b30efd3523130f2a8c377fba4f996a0",
     "meta.json": "aa04e5d12f362339a0b5abf8e14821a52a167711"
   }
 }
