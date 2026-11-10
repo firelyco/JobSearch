@@ -8,12 +8,12 @@
   "counts": {
     "found": 85,
     "eligible": 48,
-    "completed": 0,
+    "completed": 2,
     "strong": 0,
     "middle": 0,
-    "pass": 0,
-    "waiting": 48,
-    "processing": 0,
+    "pass": 2,
+    "waiting": 36,
+    "processing": 10,
     "blocked": 0,
     "excluded": 37,
     "unverified_links": 19
@@ -532,7 +532,7 @@
       "source": "google",
       "job_snapshot_hash": "fb0fba936000a518f279efccdfd6755c570e7eb217450103c0d2684b1d47508a",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -829,7 +829,7 @@
       "source": "workday",
       "job_snapshot_hash": "d5e4b1c3f7b08a97b601e775db8faee53edb62919996fc95237878e77f477fe9",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -840,9 +840,9 @@
       "source": "workday",
       "job_snapshot_hash": "82fd4064ba65c27a4e9830f1229491f7acc6a018ea1540a732e42b21b271beed",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "pass"
     },
     {
       "key": "workday:astrazeneca:/job/US---Gaithersburg---MD/Senior-Director--Site-Manufacturing-Science-and-Technology--Cell-Therapy-Technical-Operations_R-258759-1",
@@ -851,7 +851,7 @@
       "source": "workday",
       "job_snapshot_hash": "ec706cf59f4ff149b125c2acde0562317cc1b673000836e730dbcc6793d81128",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -873,7 +873,7 @@
       "source": "workday",
       "job_snapshot_hash": "f64e3effbba8b3a22a3b3fc7b01174dd3f03ccd2d3ccc9bac2547f095ca69f46",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -884,7 +884,7 @@
       "source": "workday",
       "job_snapshot_hash": "1e5f3f909890768003f5608fd3b8748196aca340a05ce5ae764c760f6ddb535c",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -895,7 +895,7 @@
       "source": "workday",
       "job_snapshot_hash": "b875366fd463fcd8ec6c38614b150e7ae8ab85a52652bb59cbe88ed364c23740",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -906,7 +906,7 @@
       "source": "workday",
       "job_snapshot_hash": "a26da986255cac7383a3ac50c450aa85b54f0e6b672599acf4f9a8d83bbd25b8",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -917,9 +917,9 @@
       "source": "workday",
       "job_snapshot_hash": "0094608ecfae56e0536734ed60b77d115d91e38ed419fd6953ee449587c1d821",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "pass"
     },
     {
       "key": "workday:ouryahoo:/job/United-States-of-America/Paranoids-Technical-Program-Manager--Business-Analyst_JR0027656",
@@ -928,7 +928,7 @@
       "source": "workday",
       "job_snapshot_hash": "e60f8d8487bf5c06e0939ef851d7b33f2150fc35ecb70c64dd9352727b694dc3",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -939,7 +939,7 @@
       "source": "workday",
       "job_snapshot_hash": "ae70ba8a921b83e50fbd8f538aab26dea3ece1bebaab10d2cb39e3f7852ef7c4",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -950,7 +950,7 @@
       "source": "workday",
       "job_snapshot_hash": "18fa3754f16404ff81dd74c58f340d31306bd39d34d947fc8f0b34368aa50841",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     }
@@ -1529,21 +1529,21 @@
       "status": "failed"
     }
   ],
-  "checked_at": "2026-11-10T06:25:00.588480+00:00",
+  "checked_at": "2026-11-10T06:26:02.509146+00:00",
   "legacy_backlog": {
-    "assessed": 489,
-    "pending": 55,
+    "assessed": 491,
+    "pending": 42,
     "unresolved": 36,
-    "in_progress": 0,
-    "total": 580,
+    "in_progress": 10,
+    "total": 579,
     "strong": 65
   },
-  "batch_id": "4f3986467e59b9f2f56ceb68046f99b57b7eaaf5bf7d1dc23990008629189f1b",
+  "batch_id": "48838e781456a55a3cc2f328a82c498b254a68cb3e69db2edd7f4f87a86fd703",
   "status": "assessing",
   "input_blobs": {
     "jobs.json": "47fe63a30f810863ab229b51f2af2a3928df771d",
-    "fit_scores.json": "11e1d9991cd64dd8b8f3eebb66d3633775aecaf8",
-    "fit_backfill.json": "86c134bbfcb0a6ccb45a404f7ee44ed567a525ba",
+    "fit_scores.json": "9f52c8d6da10959a2e5aab7d79236017195492d1",
+    "fit_backfill.json": "96304cebc9950fe5ff6a3912e133410a303bdd51",
     "meta.json": "aa04e5d12f362339a0b5abf8e14821a52a167711"
   }
 }
