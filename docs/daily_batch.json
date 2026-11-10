@@ -7,15 +7,15 @@
   "collection_at": "2026-11-10T06:00:57.069240+00:00",
   "counts": {
     "found": 85,
-    "eligible": 45,
-    "completed": 18,
+    "eligible": 44,
+    "completed": 22,
     "strong": 4,
-    "middle": 8,
-    "pass": 6,
-    "waiting": 25,
-    "processing": 2,
-    "blocked": 0,
-    "excluded": 40,
+    "middle": 11,
+    "pass": 7,
+    "waiting": 14,
+    "processing": 7,
+    "blocked": 1,
+    "excluded": 41,
     "unverified_links": 19
   },
   "members": [
@@ -81,7 +81,7 @@
       "source": "amazon_jobs",
       "job_snapshot_hash": "d5903d70f30c37ba59513757554f9d52e6614776b07e7170cce9ae870d6505b3",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -114,7 +114,7 @@
       "source": "amazon_jobs",
       "job_snapshot_hash": "4e20bfb6cf6531e10f607482591494a3fc61d43c1b69f575361d907321008eed",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -543,9 +543,9 @@
       "source": "google",
       "job_snapshot_hash": "59591ea300a7e262cf81db15002882ca8219972ec370c2874666f8842ced96fe",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "google:google:128326925125853894",
@@ -576,7 +576,7 @@
       "source": "lever",
       "job_snapshot_hash": "37218abdcb3db65305b5daf40684110a5cae1a73398425ab33259d61db6fcfd1",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -587,9 +587,9 @@
       "source": "lever",
       "job_snapshot_hash": "0e3fb824ceda5a554f04aa0b2b4008f54b4098707e0d9f78a2365f2eb539f064",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "lever:jobgether:4a76140e-edc8-4a63-a955-6a2818f13acb",
@@ -598,9 +598,9 @@
       "source": "lever",
       "job_snapshot_hash": "1c808f151f8cb85c400353e4463872f30c446bab137fa5a4514cb470a467c6df",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "lever:jobgether:567d355c-07ad-43b1-9591-67e36bbc9cba",
@@ -609,7 +609,7 @@
       "source": "lever",
       "job_snapshot_hash": "4db8cc365aede605ce72c9cc242ce8d152f161817911ab9bddc8e9f327c51733",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -620,7 +620,7 @@
       "source": "lever",
       "job_snapshot_hash": "c07711257e81e827733dd9d8d236ebf236377e9d80a2567fb0f4b581894a1233",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -630,9 +630,9 @@
       "url": "https://jobs.lever.co/jobgether/80cc0589-33fd-448b-97b2-d6b14d610c40",
       "source": "lever",
       "job_snapshot_hash": "d13cbb010c9f0a1818e9b89ed4c5c870f11e722474025e53307ca16bf758d99f",
-      "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -642,7 +642,7 @@
       "source": "lever",
       "job_snapshot_hash": "5eb220e36fbb288f2c62c967df61b73b8458d48a7f02106222a382c391130f4e",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -653,7 +653,7 @@
       "source": "lever",
       "job_snapshot_hash": "e04c8a89ad8d6e7203967dacdbd01219893f2c81e543f2b8c5e36f26eeb88f83",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -664,8 +664,8 @@
       "source": "lever",
       "job_snapshot_hash": "845ee6f8fb884ae9201390c0f03453ce6477f98dda9f351c7be7ea56d0cee453",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "status": "blocked",
+      "reason": "Paid retry budget exhausted; review required.",
       "verdict": null
     },
     {
@@ -697,9 +697,9 @@
       "source": "microsoft",
       "job_snapshot_hash": "ca895cdcecf3e8d2f3688f0254daa79ad576c9224e5156a63dbf72ba206cbc5c",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "pass"
     },
     {
       "key": "microsoft:microsoft:1970393557054155",
@@ -1529,21 +1529,21 @@
       "status": "failed"
     }
   ],
-  "checked_at": "2026-11-10T06:28:20.299138+00:00",
+  "checked_at": "2026-11-10T06:29:23.341762+00:00",
   "legacy_backlog": {
-    "assessed": 507,
-    "pending": 31,
-    "unresolved": 36,
-    "in_progress": 2,
-    "total": 576,
+    "assessed": 511,
+    "pending": 20,
+    "unresolved": 37,
+    "in_progress": 7,
+    "total": 575,
     "strong": 69
   },
-  "batch_id": "83465c5a09f482a94b1b2a989129e4c8b42622507bdf9a066a62188367e9a185",
+  "batch_id": "304429744b49592236e150905dcacb58511dc3e54c48c1c7d50c8e0aeb582c11",
   "status": "assessing",
   "input_blobs": {
     "jobs.json": "47fe63a30f810863ab229b51f2af2a3928df771d",
-    "fit_scores.json": "eb070197c209fca7adacc37c129812475806daea",
-    "fit_backfill.json": "47a62bff9e9975b49bdd054126a91318de070229",
+    "fit_scores.json": "5ce95471c9464d0b894e555cba73bbf5ef34705b",
+    "fit_backfill.json": "df5aafcbd8deb3b022d6a2ddbcabef5ac90422ca",
     "meta.json": "aa04e5d12f362339a0b5abf8e14821a52a167711"
   }
 }
