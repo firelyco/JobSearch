@@ -7,15 +7,15 @@
   "collection_at": "2026-11-11T06:00:56.119952+00:00",
   "counts": {
     "found": 61,
-    "eligible": 31,
-    "completed": 10,
+    "eligible": 30,
+    "completed": 15,
     "strong": 1,
-    "middle": 5,
-    "pass": 4,
-    "waiting": 12,
-    "processing": 9,
-    "blocked": 0,
-    "excluded": 30,
+    "middle": 8,
+    "pass": 6,
+    "waiting": 13,
+    "processing": 1,
+    "blocked": 1,
+    "excluded": 31,
     "unverified_links": 29
   },
   "members": [
@@ -169,9 +169,9 @@
       "source": "apple",
       "job_snapshot_hash": "e3b5484e87cd7ab6301f8b01a200ef43559015f14c01988acd4483476595a5c5",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "arbeitnow:Bjak:head-of-strategy-and-product-berlin-192554",
@@ -488,7 +488,7 @@
       "source": "ashby",
       "job_snapshot_hash": "69fe9a6b26eb691c935f0d4fad3f2213488e27928dcdb7d10dd92bd8056bc180",
       "eligible": true,
-      "status": "processing",
+      "status": "waiting",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -499,9 +499,9 @@
       "source": "ashby",
       "job_snapshot_hash": "d10a3dd16a2d04df09bd785c843d7dfd15f8476d86ae33fac7b43dca2b273af9",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "pass"
     },
     {
       "key": "greenhouse:andurilindustries:5283760007",
@@ -520,9 +520,9 @@
       "url": "https://job-boards.greenhouse.io/archer56/jobs/8199293003",
       "source": "greenhouse",
       "job_snapshot_hash": "b26c8e9fae24e68917ed13a599b7c6f254146b68cea68edaa227ce45fb1ff020",
-      "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -543,9 +543,9 @@
       "source": "microsoft",
       "job_snapshot_hash": "1fb38916c9d25aab4cd82c91d87629dd22b33692d43bdd1ba0935942d5f35415",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "microsoft:microsoft:1970393557045917",
@@ -587,9 +587,9 @@
       "source": "microsoft",
       "job_snapshot_hash": "24cdc2902ec27a76bd9e5bdaec545cefc3ef658b364e3ec8d497ea398d622379",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "microsoft:microsoft:1970393557070644",
@@ -642,8 +642,8 @@
       "source": "workday",
       "job_snapshot_hash": "516b0086f06e9807cbdc309455f671125f1e70c9fdefee2af18a27e30e1f5f4d",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "status": "blocked",
+      "reason": "Paid retry budget exhausted; review required.",
       "verdict": null
     },
     {
@@ -686,9 +686,9 @@
       "source": "workday",
       "job_snapshot_hash": "6c730b4ebc981ddb33fea8eb55742506260f507bcc2698ce9cc8085558f05207",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "pass"
     }
   ],
   "link_ids": [
@@ -1080,21 +1080,21 @@
       "status": "partial"
     }
   ],
-  "checked_at": "2026-11-11T06:24:35.411168+00:00",
+  "checked_at": "2026-11-11T06:25:39.403737+00:00",
   "legacy_backlog": {
-    "assessed": 511,
-    "pending": 20,
-    "unresolved": 37,
-    "in_progress": 9,
-    "total": 577,
+    "assessed": 516,
+    "pending": 21,
+    "unresolved": 38,
+    "in_progress": 1,
+    "total": 576,
     "strong": 74
   },
-  "batch_id": "acccb5ef6d7090daed85979e8edb8ff97ff2a3917d5d1b39434d680cbd46d03b",
+  "batch_id": "bac2bc94dbe29f62a45f74c60f1d2ed0ac39ae7687e92135aa1b0a59413b06af",
   "status": "assessing",
   "input_blobs": {
     "jobs.json": "8c54aff3749ccf70566c08bc9657663de98a4044",
-    "fit_scores.json": "564de91354d77ca76be7635ef46208bf18db632a",
-    "fit_backfill.json": "6facee8cfd6804c582e7d853203c6f2faa66bcb1",
+    "fit_scores.json": "6ad0e907238fe1fdf334ac94f5a80e8b7b6ca6bc",
+    "fit_backfill.json": "affbab049494d289ab3ea6cb7d4805ddb895c5a8",
     "meta.json": "503159a011950c0be308ad5674c9ea290e0e2e2f"
   }
 }
