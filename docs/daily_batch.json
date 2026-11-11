@@ -7,15 +7,15 @@
   "collection_at": "2026-11-11T06:00:56.119952+00:00",
   "counts": {
     "found": 61,
-    "eligible": 30,
+    "eligible": 26,
     "completed": 15,
     "strong": 1,
     "middle": 8,
     "pass": 6,
-    "waiting": 13,
-    "processing": 1,
-    "blocked": 1,
-    "excluded": 31,
+    "waiting": 1,
+    "processing": 7,
+    "blocked": 3,
+    "excluded": 35,
     "unverified_links": 29
   },
   "members": [
@@ -48,7 +48,7 @@
       "source": "amazon_jobs",
       "job_snapshot_hash": "f398885777e7de31d84cfc64182e1ae4e0ff28077f2ff5f50982974159b3d846",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -58,9 +58,9 @@
       "url": "https://www.amazon.jobs/en/jobs/10601011/senior-technical-program-manager-annapurna-labs-silicon-operations",
       "source": "amazon_jobs",
       "job_snapshot_hash": "f882cc11cf6c26c095020f144c4749b21205653f9701de63db8766af6267a480",
-      "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -70,7 +70,7 @@
       "source": "amazon_jobs",
       "job_snapshot_hash": "e242339a84160923241c7ff6f014dc1bcf9df78755ddde1f314b4b16566b5380",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -81,7 +81,7 @@
       "source": "amazon_jobs",
       "job_snapshot_hash": "b6dfad720e5ee4e5abfd9878816399a4eadc8e3bfce9f90087e430a53abd719c",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -92,7 +92,7 @@
       "source": "amazon_jobs",
       "job_snapshot_hash": "2c7afef75584edd59e3734375693357215670bebce2ab8e607c18400f604d778",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -102,9 +102,9 @@
       "url": "https://www.amazon.jobs/en/jobs/10601694/principal-technical-program-manager-catalog-business-expansion-catalog-services-product-knowledge",
       "source": "amazon_jobs",
       "job_snapshot_hash": "66ba648b9e08dede4078b8341a9fcf3d297d0b133c86f858116027278e2a8725",
-      "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -114,7 +114,7 @@
       "source": "amazon_jobs",
       "job_snapshot_hash": "dd7e2015eb0fa490a6ef5eb35eda2aa6f687920f1503597091db9da2e5fd1ad0",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -125,7 +125,7 @@
       "source": "amazon_jobs",
       "job_snapshot_hash": "2e8aaf1ceb65a0374d1905b29f107beb7ff5a4d20f4ed932b1fcdc5886a2cb34",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -136,7 +136,7 @@
       "source": "amazon_jobs",
       "job_snapshot_hash": "2295cf37c1f799f3883c78dc40c4b3d2f93b444194b6261ac0a1b16c8a0a265b",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -146,9 +146,9 @@
       "url": "https://www.amazon.jobs/en/jobs/10601950/principal-technical-program-manager-pxt-central-science",
       "source": "amazon_jobs",
       "job_snapshot_hash": "4299477707f7db5f9c5e0f91a9baf43ba3b46beda1faaf5fd1170f4681132165",
-      "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -488,8 +488,8 @@
       "source": "ashby",
       "job_snapshot_hash": "69fe9a6b26eb691c935f0d4fad3f2213488e27928dcdb7d10dd92bd8056bc180",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
+      "status": "blocked",
+      "reason": "Paid retry budget exhausted; review required.",
       "verdict": null
     },
     {
@@ -531,9 +531,9 @@
       "url": "https://job-boards.greenhouse.io/kailera/jobs/5478097008",
       "source": "greenhouse",
       "job_snapshot_hash": "8e9a53b2a4cd6dc369e4114a22d2024880f712afb1175b7aa3919ebf98860928",
-      "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -598,8 +598,8 @@
       "source": "microsoft",
       "job_snapshot_hash": "e2a8dddfce192ebdef9476c4486266c5f7da5e0227a7a470494f9edcbcc0143c",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
+      "status": "blocked",
+      "reason": "Paid retry budget exhausted; review required.",
       "verdict": null
     },
     {
@@ -1080,21 +1080,21 @@
       "status": "partial"
     }
   ],
-  "checked_at": "2026-11-11T06:25:39.403737+00:00",
+  "checked_at": "2026-11-11T06:26:41.399614+00:00",
   "legacy_backlog": {
     "assessed": 516,
-    "pending": 21,
-    "unresolved": 38,
-    "in_progress": 1,
-    "total": 576,
+    "pending": 9,
+    "unresolved": 40,
+    "in_progress": 7,
+    "total": 572,
     "strong": 74
   },
-  "batch_id": "bac2bc94dbe29f62a45f74c60f1d2ed0ac39ae7687e92135aa1b0a59413b06af",
+  "batch_id": "c4374fe6de88051b2c8116aefd408da2aa48f49a372dd10fed8814e89e1801b6",
   "status": "assessing",
   "input_blobs": {
     "jobs.json": "8c54aff3749ccf70566c08bc9657663de98a4044",
-    "fit_scores.json": "6ad0e907238fe1fdf334ac94f5a80e8b7b6ca6bc",
-    "fit_backfill.json": "affbab049494d289ab3ea6cb7d4805ddb895c5a8",
+    "fit_scores.json": "ec3c763b821547fbecf2776e982de6f016c5db4b",
+    "fit_backfill.json": "ca0ca218b50ce0a5935cdc637fc778406f582535",
     "meta.json": "503159a011950c0be308ad5674c9ea290e0e2e2f"
   }
 }
