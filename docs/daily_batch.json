@@ -7,15 +7,15 @@
   "collection_at": "2026-11-11T06:00:56.119952+00:00",
   "counts": {
     "found": 61,
-    "eligible": 26,
-    "completed": 15,
+    "eligible": 21,
+    "completed": 17,
     "strong": 1,
-    "middle": 8,
-    "pass": 6,
-    "waiting": 1,
-    "processing": 7,
+    "middle": 9,
+    "pass": 7,
+    "waiting": 0,
+    "processing": 1,
     "blocked": 3,
-    "excluded": 35,
+    "excluded": 40,
     "unverified_links": 29
   },
   "members": [
@@ -26,7 +26,7 @@
       "source": "amazon_jobs",
       "job_snapshot_hash": "72dd58b4662bad449f1b368f4ead0c60d71e634b936e1922ab605d6ee2d6422c",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -47,9 +47,9 @@
       "url": "https://www.amazon.jobs/en/jobs/10599937/senior-technical-program-manager",
       "source": "amazon_jobs",
       "job_snapshot_hash": "f398885777e7de31d84cfc64182e1ae4e0ff28077f2ff5f50982974159b3d846",
-      "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -69,9 +69,9 @@
       "url": "https://www.amazon.jobs/en/jobs/10601213/technical-program-manager-aws-apt",
       "source": "amazon_jobs",
       "job_snapshot_hash": "e242339a84160923241c7ff6f014dc1bcf9df78755ddde1f314b4b16566b5380",
-      "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -80,9 +80,9 @@
       "url": "https://www.amazon.jobs/en/jobs/10601217/technical-program-manager-aws-availability-product-team",
       "source": "amazon_jobs",
       "job_snapshot_hash": "b6dfad720e5ee4e5abfd9878816399a4eadc8e3bfce9f90087e430a53abd719c",
-      "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -91,9 +91,9 @@
       "url": "https://www.amazon.jobs/en/jobs/10601537/sr-technical-program-manager-network-product-development-interconnects",
       "source": "amazon_jobs",
       "job_snapshot_hash": "2c7afef75584edd59e3734375693357215670bebce2ab8e607c18400f604d778",
-      "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -114,9 +114,9 @@
       "source": "amazon_jobs",
       "job_snapshot_hash": "dd7e2015eb0fa490a6ef5eb35eda2aa6f687920f1503597091db9da2e5fd1ad0",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "amazon_jobs:amazon:10601887",
@@ -124,9 +124,9 @@
       "url": "https://www.amazon.jobs/en/jobs/10601887/sr-technical-program-manager-device-software-services",
       "source": "amazon_jobs",
       "job_snapshot_hash": "2e8aaf1ceb65a0374d1905b29f107beb7ff5a4d20f4ed932b1fcdc5886a2cb34",
-      "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -136,9 +136,9 @@
       "source": "amazon_jobs",
       "job_snapshot_hash": "2295cf37c1f799f3883c78dc40c4b3d2f93b444194b6261ac0a1b16c8a0a265b",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "pass"
     },
     {
       "key": "amazon_jobs:amazon:10601950",
@@ -1080,21 +1080,21 @@
       "status": "partial"
     }
   ],
-  "checked_at": "2026-11-11T06:26:41.399614+00:00",
+  "checked_at": "2026-11-11T06:27:47.639832+00:00",
   "legacy_backlog": {
-    "assessed": 516,
-    "pending": 9,
+    "assessed": 519,
+    "pending": 0,
     "unresolved": 40,
-    "in_progress": 7,
-    "total": 572,
+    "in_progress": 8,
+    "total": 567,
     "strong": 74
   },
-  "batch_id": "c4374fe6de88051b2c8116aefd408da2aa48f49a372dd10fed8814e89e1801b6",
+  "batch_id": "477cba01e68df9a641b20c82fe13cc717c83b31095c5e44f630917d86181ecf3",
   "status": "assessing",
   "input_blobs": {
     "jobs.json": "8c54aff3749ccf70566c08bc9657663de98a4044",
-    "fit_scores.json": "ec3c763b821547fbecf2776e982de6f016c5db4b",
-    "fit_backfill.json": "ca0ca218b50ce0a5935cdc637fc778406f582535",
+    "fit_scores.json": "84560dbaba6463bf869e8e51e1e1b3f37079bbe5",
+    "fit_backfill.json": "dfef47c320d1c65f7030d9f5e5e3d05c9661efe3",
     "meta.json": "503159a011950c0be308ad5674c9ea290e0e2e2f"
   }
 }
