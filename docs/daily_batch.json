@@ -7,15 +7,15 @@
   "collection_at": "2026-11-11T06:00:56.119952+00:00",
   "counts": {
     "found": 61,
-    "eligible": 33,
-    "completed": 0,
+    "eligible": 31,
+    "completed": 3,
     "strong": 0,
-    "middle": 0,
-    "pass": 0,
-    "waiting": 33,
-    "processing": 0,
+    "middle": 1,
+    "pass": 2,
+    "waiting": 21,
+    "processing": 7,
     "blocked": 0,
-    "excluded": 28,
+    "excluded": 30,
     "unverified_links": 29
   },
   "members": [
@@ -36,9 +36,9 @@
       "url": "https://www.amazon.jobs/en/jobs/10593921/sr-technical-program-manager-sponsored-products-and-brands",
       "source": "amazon_jobs",
       "job_snapshot_hash": "6691ab9d2c035e289ab595e3aa47493a4dc0cfddbc4d8b4b611923f7fe59ad1c",
-      "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -157,9 +157,9 @@
       "url": "https://www.amazon.jobs/en/jobs/10601985/principal-technical-program-manager-workspaces-applications",
       "source": "amazon_jobs",
       "job_snapshot_hash": "fad05064d12d58c0d3bd88a037680f6557d156fb5c2964637c7e2d607d3c38f9",
-      "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -510,7 +510,7 @@
       "source": "greenhouse",
       "job_snapshot_hash": "e38ffb31888a0ef0848176afd8b3c5ecaeebaa16a44cccb9cc219338c13bb337",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -565,7 +565,7 @@
       "source": "microsoft",
       "job_snapshot_hash": "8bbd43ff716c7b7e766ad5f714b6fa4b7a110dd1553583ade1813d698b90b948",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -576,7 +576,7 @@
       "source": "microsoft",
       "job_snapshot_hash": "8e645bbf980ada8f998927497402aedbb0d209fb1152563079c1845a644b31f3",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -609,9 +609,9 @@
       "source": "oracle_cloud",
       "job_snapshot_hash": "bf45f3d035c1b48f51acc40a77d5725e6d0c50f7acca475e6bc794b73a216ed6",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "pass"
     },
     {
       "key": "workday:amat:/job/Santa-ClaraCA/Technical-Program-Manager--Etch-Programs_R2633175",
@@ -620,7 +620,7 @@
       "source": "workday",
       "job_snapshot_hash": "57e8dff24c1d1a8b8c2c822a7769ff7a7cb4bd3b5a66efa3febd901470b4ca3a",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -631,9 +631,9 @@
       "source": "workday",
       "job_snapshot_hash": "0db93030aa5860bc0f52b2ce7fad44a0fb5e693d790c1e3083e1b8ab8d8942b9",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "pass"
     },
     {
       "key": "workday:blueorigin:/job/Greater-Seattle-Area/Sr-Director--Program-Management---TeraWave_R75521",
@@ -642,7 +642,7 @@
       "source": "workday",
       "job_snapshot_hash": "516b0086f06e9807cbdc309455f671125f1e70c9fdefee2af18a27e30e1f5f4d",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -664,7 +664,7 @@
       "source": "workday",
       "job_snapshot_hash": "cd2201489fd56b26b843daae773f2f7c966c71917d8984c7c66977d1e2b2a3ea",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -675,9 +675,9 @@
       "source": "workday",
       "job_snapshot_hash": "e014af26a835c942d5c34efe9a7d3f361b5781518520aeb2ed654fb820d4c5b8",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "workday:paypal:/job/Austin-Texas-United-States-of-America/Director--Technical-Programs_R0139071",
@@ -686,7 +686,7 @@
       "source": "workday",
       "job_snapshot_hash": "6c730b4ebc981ddb33fea8eb55742506260f507bcc2698ce9cc8085558f05207",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     }
@@ -1080,21 +1080,21 @@
       "status": "partial"
     }
   ],
-  "checked_at": "2026-11-11T06:22:23.919480+00:00",
+  "checked_at": "2026-11-11T06:23:34.772168+00:00",
   "legacy_backlog": {
-    "assessed": 497,
-    "pending": 48,
+    "assessed": 504,
+    "pending": 29,
     "unresolved": 37,
-    "in_progress": 0,
-    "total": 582,
-    "strong": 71
+    "in_progress": 7,
+    "total": 577,
+    "strong": 73
   },
-  "batch_id": "48fca307f56544b189bbf7ec89f928aaff31e10f14d1e1e79c64bc8d1e7c8e42",
+  "batch_id": "a58351cc4165d8ed3472175705b5e4f669192469b6105c619ee1b1b2599cdc4f",
   "status": "assessing",
   "input_blobs": {
     "jobs.json": "8c54aff3749ccf70566c08bc9657663de98a4044",
-    "fit_scores.json": "595c5c6f80e80e598c3934bff96a280e6609b3fd",
-    "fit_backfill.json": "87497072ab1cafdd773dbb4ba95c1e2bee55d4d9",
+    "fit_scores.json": "7f4ad447a18eaab84492600d6f0a0c040df8bb8e",
+    "fit_backfill.json": "a0373099a4565130bd3938222f5b1b89e2f7d689",
     "meta.json": "503159a011950c0be308ad5674c9ea290e0e2e2f"
   }
 }
