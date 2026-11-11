@@ -7,15 +7,15 @@
   "collection_at": "2026-11-11T07:00:58.223306+00:00",
   "counts": {
     "found": 63,
-    "eligible": 22,
+    "eligible": 21,
     "completed": 17,
     "strong": 1,
     "middle": 9,
     "pass": 7,
-    "waiting": 1,
+    "waiting": 0,
     "processing": 0,
     "blocked": 4,
-    "excluded": 41,
+    "excluded": 42,
     "unverified_links": 29
   },
   "members": [
@@ -707,9 +707,9 @@
       "url": "https://statestreet.wd1.myworkdayjobs.com/en-US/Global/job/Boston-Massachusetts/Portfolio-Governance-Lead--VP_R-800985-1",
       "source": "workday",
       "job_snapshot_hash": "05a4d144603a21ead79a4a69e2c42da661ecbe651b8cecbed6d76f8619851ce8",
-      "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     }
   ],
@@ -1187,21 +1187,21 @@
       "status": "failed"
     }
   ],
-  "checked_at": "2026-11-11T07:23:13.741089+00:00",
+  "checked_at": "2026-11-11T07:24:11.103531+00:00",
   "legacy_backlog": {
     "assessed": 520,
-    "pending": 2,
-    "unresolved": 47,
+    "pending": 0,
+    "unresolved": 48,
     "in_progress": 0,
-    "total": 569,
+    "total": 568,
     "strong": 73
   },
-  "batch_id": "8ee9691af22befee6c132cc269a7cd9ececd2c6520f9de29d6c187eb17623675",
-  "status": "assessing",
+  "batch_id": "a3f4391105d9b84bf9d8a29c3a24c6b6fb19c59732e471ef97082aae0f9d1087",
+  "status": "blocked",
   "input_blobs": {
     "jobs.json": "faa1968994f716e3aa805a3896931a1381caccd4",
-    "fit_scores.json": "937fe73e0ff5d9cd3d9986f84c4987cf12b5f0ea",
-    "fit_backfill.json": "4d21f2ca06cc37720daa9433443990b028fb23fe",
+    "fit_scores.json": "55b2fa4d851adea0c6ceeb959a0332785f5f4b56",
+    "fit_backfill.json": "7a720c4c58e1f2feb5fb3447f7abf5598f17cfcb",
     "meta.json": "fba1fe64cd78869cd3f8af945194631c369d89a3"
   }
 }
