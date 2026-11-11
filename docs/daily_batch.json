@@ -4,15 +4,15 @@
   "start_hour_eastern": 1,
   "deadline_hour_eastern": 6,
   "collection_completed": true,
-  "collection_at": "2026-11-11T06:30:53.586732+00:00",
+  "collection_at": "2026-11-11T07:00:58.223306+00:00",
   "counts": {
-    "found": 62,
-    "eligible": 21,
+    "found": 63,
+    "eligible": 22,
     "completed": 17,
     "strong": 1,
     "middle": 9,
     "pass": 7,
-    "waiting": 0,
+    "waiting": 1,
     "processing": 0,
     "blocked": 4,
     "excluded": 41,
@@ -700,6 +700,17 @@
       "status": "completed",
       "reason": "Existing validated result reused.",
       "verdict": "pass"
+    },
+    {
+      "key": "workday:statestreet:/job/Boston-Massachusetts/Portfolio-Governance-Lead--VP_R-800985-1",
+      "title": "Portfolio Governance Lead, VP",
+      "url": "https://statestreet.wd1.myworkdayjobs.com/en-US/Global/job/Boston-Massachusetts/Portfolio-Governance-Lead--VP_R-800985-1",
+      "source": "workday",
+      "job_snapshot_hash": "05a4d144603a21ead79a4a69e2c42da661ecbe651b8cecbed6d76f8619851ce8",
+      "eligible": true,
+      "status": "waiting",
+      "reason": "Unfinished assessment.",
+      "verdict": null
     }
   ],
   "link_ids": [
@@ -733,147 +744,27 @@
     "4489424596",
     "4489428328"
   ],
-  "coverage_issues": 111,
+  "coverage_issues": 88,
   "incomplete_sources": [
     {
       "source": "greenhouse",
-      "label": "aptoslabs",
+      "label": "datadog",
       "status": "failed"
     },
     {
-      "source": "lever",
-      "label": "palantir",
+      "source": "greenhouse",
+      "label": "elastic",
       "status": "failed"
     },
     {
-      "source": "netflix",
-      "label": "program manager",
+      "source": "greenhouse",
+      "label": "pinterest",
+      "status": "failed"
+    },
+    {
+      "source": "microsoft",
+      "label": "{'query': '', 'filters': {'career_discipline': ['Technical Program Management']}}",
       "status": "partial"
-    },
-    {
-      "source": "apple",
-      "label": "\"engineering program manager\"",
-      "status": "partial"
-    },
-    {
-      "source": "web_search",
-      "label": "web_search",
-      "status": "failed"
-    },
-    {
-      "source": "web_search",
-      "label": "web_search",
-      "status": "failed"
-    },
-    {
-      "source": "web_search",
-      "label": "web_search",
-      "status": "failed"
-    },
-    {
-      "source": "web_search",
-      "label": "web_search",
-      "status": "failed"
-    },
-    {
-      "source": "web_search",
-      "label": "web_search",
-      "status": "failed"
-    },
-    {
-      "source": "web_search",
-      "label": "web_search",
-      "status": "failed"
-    },
-    {
-      "source": "web_search",
-      "label": "web_search",
-      "status": "failed"
-    },
-    {
-      "source": "web_search",
-      "label": "web_search",
-      "status": "failed"
-    },
-    {
-      "source": "web_search",
-      "label": "web_search",
-      "status": "failed"
-    },
-    {
-      "source": "web_search",
-      "label": "web_search",
-      "status": "failed"
-    },
-    {
-      "source": "web_search",
-      "label": "web_search",
-      "status": "failed"
-    },
-    {
-      "source": "web_search",
-      "label": "web_search",
-      "status": "failed"
-    },
-    {
-      "source": "web_search",
-      "label": "web_search",
-      "status": "failed"
-    },
-    {
-      "source": "web_search",
-      "label": "web_search",
-      "status": "failed"
-    },
-    {
-      "source": "web_search",
-      "label": "web_search",
-      "status": "failed"
-    },
-    {
-      "source": "web_search",
-      "label": "web_search",
-      "status": "failed"
-    },
-    {
-      "source": "web_search",
-      "label": "web_search",
-      "status": "failed"
-    },
-    {
-      "source": "web_search",
-      "label": "web_search",
-      "status": "failed"
-    },
-    {
-      "source": "web_search",
-      "label": "web_search",
-      "status": "failed"
-    },
-    {
-      "source": "web_search",
-      "label": "web_search",
-      "status": "failed"
-    },
-    {
-      "source": "web_search",
-      "label": "web_search",
-      "status": "failed"
-    },
-    {
-      "source": "web_search",
-      "label": "web_search",
-      "status": "failed"
-    },
-    {
-      "source": "web_search",
-      "label": "web_search",
-      "status": "failed"
-    },
-    {
-      "source": "web_search",
-      "label": "web_search",
-      "status": "failed"
     },
     {
       "source": "web_search",
@@ -1277,12 +1168,17 @@
     },
     {
       "source": "lever",
-      "label": "{\"config\": \"includedhealth\", \"source\": \"lever\"}",
+      "label": "{\"config\": \"jobgether\", \"source\": \"lever\"}",
       "status": "failed"
     },
     {
       "source": "lever",
-      "label": "{\"config\": \"Instrumentl\", \"source\": \"lever\"}",
+      "label": "{\"config\": \"rezotx\", \"source\": \"lever\"}",
+      "status": "failed"
+    },
+    {
+      "source": "lever",
+      "label": "{\"config\": \"anchorage\", \"source\": \"lever\"}",
       "status": "failed"
     },
     {
@@ -1291,7 +1187,7 @@
       "status": "failed"
     }
   ],
-  "checked_at": "2026-11-11T06:52:05.180844+00:00",
+  "checked_at": "2026-11-11T07:22:38.017824+00:00",
   "legacy_backlog": {
     "assessed": 521,
     "pending": 0,
@@ -1300,12 +1196,12 @@
     "total": 567,
     "strong": 73
   },
-  "batch_id": "dccfd512fcfb7fe20cc41682015b59764e8e41e9117f030ddc79125a5cc14dc3",
-  "status": "blocked",
+  "batch_id": "671ba647d017efb9cba1a6b89834c3161ea17cba08228bb3a8178f54b84dee1f",
+  "status": "assessing",
   "input_blobs": {
-    "jobs.json": "0c2f39fb99c70891741feb418e504701f970a34d",
+    "jobs.json": "faa1968994f716e3aa805a3896931a1381caccd4",
     "fit_scores.json": "937fe73e0ff5d9cd3d9986f84c4987cf12b5f0ea",
     "fit_backfill.json": "a8b70b93098a29dbbdee70df3099f2a61fd6c45b",
-    "meta.json": "dce52adad30c4bf072ea8395060879e386d23f2a"
+    "meta.json": "fba1fe64cd78869cd3f8af945194631c369d89a3"
   }
 }
