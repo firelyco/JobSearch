@@ -7,15 +7,15 @@
   "collection_at": "2026-11-11T06:00:56.119952+00:00",
   "counts": {
     "found": 61,
-    "eligible": 21,
+    "eligible": 20,
     "completed": 17,
     "strong": 1,
     "middle": 9,
     "pass": 7,
     "waiting": 0,
-    "processing": 1,
+    "processing": 0,
     "blocked": 3,
-    "excluded": 40,
+    "excluded": 41,
     "unverified_links": 29
   },
   "members": [
@@ -25,9 +25,9 @@
       "url": "https://www.amazon.jobs/en/jobs/10561970/sr-technical-program-manager-infrastructure-central-operations-install",
       "source": "amazon_jobs",
       "job_snapshot_hash": "72dd58b4662bad449f1b368f4ead0c60d71e634b936e1922ab605d6ee2d6422c",
-      "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -1080,21 +1080,21 @@
       "status": "partial"
     }
   ],
-  "checked_at": "2026-11-11T06:27:47.639832+00:00",
+  "checked_at": "2026-11-11T06:28:25.502607+00:00",
   "legacy_backlog": {
-    "assessed": 519,
+    "assessed": 520,
     "pending": 0,
-    "unresolved": 40,
-    "in_progress": 8,
-    "total": 567,
+    "unresolved": 41,
+    "in_progress": 0,
+    "total": 561,
     "strong": 74
   },
-  "batch_id": "477cba01e68df9a641b20c82fe13cc717c83b31095c5e44f630917d86181ecf3",
-  "status": "assessing",
+  "batch_id": "fbd59fb36055122d7f0afa9e925d06e2e1799b0e064dfa98ed0cbdbfbd2bd2e8",
+  "status": "blocked",
   "input_blobs": {
     "jobs.json": "8c54aff3749ccf70566c08bc9657663de98a4044",
-    "fit_scores.json": "84560dbaba6463bf869e8e51e1e1b3f37079bbe5",
-    "fit_backfill.json": "dfef47c320d1c65f7030d9f5e5e3d05c9661efe3",
+    "fit_scores.json": "b7229a0bd8bb07c0d2fc115930af8f5a92a926de",
+    "fit_backfill.json": "e3cd7899173f16c7c07eb14b498b23fb9c6fff95",
     "meta.json": "503159a011950c0be308ad5674c9ea290e0e2e2f"
   }
 }
