@@ -7,15 +7,15 @@
   "collection_at": "2026-11-12T06:00:58.914806+00:00",
   "counts": {
     "found": 112,
-    "eligible": 46,
+    "eligible": 43,
     "completed": 36,
     "strong": 1,
     "middle": 23,
     "pass": 12,
     "waiting": 0,
-    "processing": 3,
+    "processing": 0,
     "blocked": 7,
-    "excluded": 66,
+    "excluded": 69,
     "unverified_links": 33
   },
   "members": [
@@ -25,9 +25,9 @@
       "url": "https://www.amazon.jobs/en/jobs/10562049/sr-technical-program-manager-alexa-shopping",
       "source": "amazon_jobs",
       "job_snapshot_hash": "65b7f8a61a809379fa60d21ee4d5dff92129cd2d5d1e87b1ef48ec499b90947d",
-      "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -36,9 +36,9 @@
       "url": "https://www.amazon.jobs/en/jobs/10576232/senior-npi-tpm-ops-last-mile-delivery-technology-last-mile-delivery-technology",
       "source": "amazon_jobs",
       "job_snapshot_hash": "f72db7d8d9c60bb673716c1909634be3a8d5d22c502b50a38c60f280af8b2782",
-      "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -47,9 +47,9 @@
       "url": "https://www.amazon.jobs/en/jobs/10578678/principal-technical-program-manager-aws-bedrock-agentcore",
       "source": "amazon_jobs",
       "job_snapshot_hash": "7e26623f4117ef230d29922d9cba107c928a102386e4fc11c502f3d80a0b996e",
-      "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -1840,21 +1840,21 @@
       "status": "failed"
     }
   ],
-  "checked_at": "2026-11-12T06:37:33.270543+00:00",
+  "checked_at": "2026-11-12T06:38:44.645514+00:00",
   "legacy_backlog": {
-    "assessed": 536,
-    "pending": 1,
+    "assessed": 537,
+    "pending": 0,
     "unresolved": 53,
-    "in_progress": 4,
-    "total": 594,
+    "in_progress": 1,
+    "total": 591,
     "strong": 70
   },
-  "batch_id": "4e5c334a953e20a03c718189872e9ee16cd8bfbddb048df73d427ca9b1b9c368",
-  "status": "assessing",
+  "batch_id": "844f26be8fbacfd20081c311a3a932e6f46f7bd36a7ce50038b9c39938c79c56",
+  "status": "blocked",
   "input_blobs": {
     "jobs.json": "84a4f8e5c8c839d52a710d00a5edc0d817ea82ed",
-    "fit_scores.json": "0a56b1692c0992b2836142435f21b2b6a2876d58",
-    "fit_backfill.json": "f4542f2944c8493e034496f5e7b6b6ee87eef056",
+    "fit_scores.json": "2068bc1641cbdf3f64eb7b095ace46a40f16fc6f",
+    "fit_backfill.json": "4361a3efa1221f150df7c78dc924de507be35415",
     "meta.json": "a9a26f725851c6da896f98e9e2ba80f0d020b8ba"
   }
 }
