@@ -7,15 +7,15 @@
   "collection_at": "2026-11-12T06:00:58.914806+00:00",
   "counts": {
     "found": 112,
-    "eligible": 55,
-    "completed": 14,
+    "eligible": 54,
+    "completed": 21,
     "strong": 0,
-    "middle": 9,
-    "pass": 5,
-    "waiting": 28,
-    "processing": 11,
-    "blocked": 2,
-    "excluded": 57,
+    "middle": 15,
+    "pass": 6,
+    "waiting": 30,
+    "processing": 0,
+    "blocked": 3,
+    "excluded": 58,
     "unverified_links": 33
   },
   "members": [
@@ -125,9 +125,9 @@
       "source": "apple",
       "job_snapshot_hash": "f807710e89a00d38547e5f9fca27ac39a246342b724e299b66cf4fec18b66e86",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "apple:apple:200694568",
@@ -136,9 +136,9 @@
       "source": "apple",
       "job_snapshot_hash": "fffe58c029bf3e5c09b3fc9d1259facd1332cb72b590643cb031ec7c70d6f57b",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "apple:apple:200694581",
@@ -818,9 +818,9 @@
       "source": "lever",
       "job_snapshot_hash": "50f1619248a22e58c34b80478dbd9a9798de3d7a5db0e5e6a14647e8c5f94ec0",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "lever:jobgether:0c1be441-0c94-4ab9-9d5b-7af67447c778",
@@ -840,9 +840,9 @@
       "source": "lever",
       "job_snapshot_hash": "38e6da11835185b3e305e19822d97214217ad45476e4151ea8d0e1b2b56d5c1e",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "lever:jobgether:27d51998-914d-49d5-82a3-a4c6349a80ec",
@@ -873,7 +873,7 @@
       "source": "lever",
       "job_snapshot_hash": "0fcbdc47e6708a1840dfbf6b624714ca1008ee55f3c0b73e4c72d407ec63d8c7",
       "eligible": true,
-      "status": "processing",
+      "status": "waiting",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -906,9 +906,9 @@
       "source": "lever",
       "job_snapshot_hash": "7ec1683c98790ac8022abc53b023729f70f96fc88a506f1cdef19848342658db",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "lever:jobgether:565bb98f-afac-42c4-993b-30b37076df6b",
@@ -928,7 +928,7 @@
       "source": "lever",
       "job_snapshot_hash": "e3b910b5709113d0d460616ba15e1c5ed417eb6dd428be355624ea8561821f6a",
       "eligible": true,
-      "status": "processing",
+      "status": "waiting",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -939,8 +939,8 @@
       "source": "lever",
       "job_snapshot_hash": "6416fbcf825cf65b4cc08702ed8e597f5ca6cb0064dd94984df7c519c71a2a0f",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "status": "blocked",
+      "reason": "Paid retry budget exhausted; review required.",
       "verdict": null
     },
     {
@@ -994,9 +994,9 @@
       "source": "lever",
       "job_snapshot_hash": "4398ef8cc1a02722cf4c941e4c6f29bc1edf9c06708b10a7cb1f42d522f039bb",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "pass"
     },
     {
       "key": "lever:jobgether:d07ae6eb-3528-4a41-8504-2c16d0082de4",
@@ -1224,9 +1224,9 @@
       "url": "https://shi.wd12.myworkdayjobs.com/en-US/shicareers/job/Piscataway-NJ-USA/Director---AGT-PMO_JR4063",
       "source": "workday",
       "job_snapshot_hash": "3f4fa46a0bb484667cae0bfd1c1f9db07a37e5e42b9db49dc70b5c6cc23ab5b3",
-      "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -1247,9 +1247,9 @@
       "source": "workday",
       "job_snapshot_hash": "4d1bef745d532fb9f8d05c6ee865d71e3284662e68a5fe0bd790ff505f3d8864",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     }
   ],
   "link_ids": [
@@ -1840,21 +1840,21 @@
       "status": "failed"
     }
   ],
-  "checked_at": "2026-11-12T06:31:20.414878+00:00",
+  "checked_at": "2026-11-12T06:32:38.867784+00:00",
   "legacy_backlog": {
-    "assessed": 512,
-    "pending": 32,
-    "unresolved": 48,
-    "in_progress": 11,
-    "total": 603,
+    "assessed": 519,
+    "pending": 34,
+    "unresolved": 49,
+    "in_progress": 0,
+    "total": 602,
     "strong": 68
   },
-  "batch_id": "e72c2460c5fd23fa464fe05be4a5c55387fd0a81cd1311fc7728542e98867135",
+  "batch_id": "0dc15e58ff3c68262a6f47b7b060b62b19cbfa5cddd0835b0be4eb5d50f42139",
   "status": "assessing",
   "input_blobs": {
     "jobs.json": "84a4f8e5c8c839d52a710d00a5edc0d817ea82ed",
-    "fit_scores.json": "0abd0adf9033fd9687fa03c658550e55f8302df3",
-    "fit_backfill.json": "9b04bcec02639fd7211e1f47581373b1444c750b",
+    "fit_scores.json": "37f251bd85dd806260b8146526ce01f5bb6f0617",
+    "fit_backfill.json": "1715c94c4abc154d5549008af2f6682d812b73c6",
     "meta.json": "a9a26f725851c6da896f98e9e2ba80f0d020b8ba"
   }
 }
