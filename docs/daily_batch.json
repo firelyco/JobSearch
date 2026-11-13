@@ -8,12 +8,12 @@
   "counts": {
     "found": 59,
     "eligible": 23,
-    "completed": 2,
-    "strong": 0,
-    "middle": 2,
-    "pass": 0,
+    "completed": 7,
+    "strong": 1,
+    "middle": 5,
+    "pass": 1,
     "waiting": 11,
-    "processing": 9,
+    "processing": 4,
     "blocked": 1,
     "excluded": 36,
     "unverified_links": 26
@@ -433,9 +433,9 @@
       "source": "google",
       "job_snapshot_hash": "0d87033b52eccfb675bcce4e1fdd7d5292a9e0487ac6c077a0a2099bbf6dc430",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "google:google:119623062231360198",
@@ -455,9 +455,9 @@
       "source": "google",
       "job_snapshot_hash": "d4263b59c60a8f3782633e7aa83f3112c5a194b7bae48475f9b766c7d82078be",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "google:google:130667656532370118",
@@ -466,9 +466,9 @@
       "source": "google",
       "job_snapshot_hash": "2ece9d02b5e3cc378c5e51f6b04e98bd91d6dd49b45a4a4d930bb11861d69520",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "strong"
     },
     {
       "key": "google:google:141633635751994054",
@@ -543,9 +543,9 @@
       "source": "greenhouse",
       "job_snapshot_hash": "25c4ac2347eb600798df4fe7fd624d75ebde92dfdcd6d78c48e3be0c8583413f",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "greenhouse:gitlab:8928325002",
@@ -642,9 +642,9 @@
       "source": "workday",
       "job_snapshot_hash": "b75062638fa90dbe512923bf5a5c5d61312fb2ac82b990e5d7c2bfa66d798694",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "pass"
     },
     {
       "key": "workday:capitalone:/job/Cambridge-MA/Director--Technical-Program-Management--API-Strategies-_R1003103",
@@ -1275,21 +1275,21 @@
       "status": "failed"
     }
   ],
-  "checked_at": "2026-11-13T06:24:48.715507+00:00",
+  "checked_at": "2026-11-13T06:25:48.985732+00:00",
   "legacy_backlog": {
-    "assessed": 529,
+    "assessed": 534,
     "pending": 24,
     "unresolved": 51,
-    "in_progress": 9,
+    "in_progress": 4,
     "total": 613,
-    "strong": 65
+    "strong": 66
   },
-  "batch_id": "51131a3d07fe23fb240c67beac569357c3d8ab0a1a8c396d3b06400c06f49145",
+  "batch_id": "18a5f5042649834dc921e8d50d66b585d37711af9e0769a7655121d9ac9fd3b9",
   "status": "assessing",
   "input_blobs": {
     "jobs.json": "15b912b65d0d940cd3666d6817d92fc64173c759",
-    "fit_scores.json": "4d09a5c7e2a9f228cd4a6401b9395083a6d72a14",
-    "fit_backfill.json": "9c172d6d6750e9b04aa5b9067f095758227f83e7",
+    "fit_scores.json": "8bca6bd045c8076585e948effd63d6c8ca430c2f",
+    "fit_backfill.json": "d61a0e5a07f20e2c824581409e7d68b7a50fe47e",
     "meta.json": "dffabf9103b612401d12e6b7985fda5816c8edd1"
   }
 }
