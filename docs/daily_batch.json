@@ -7,15 +7,15 @@
   "collection_at": "2026-11-13T06:30:55.065786+00:00",
   "counts": {
     "found": 63,
-    "eligible": 20,
-    "completed": 14,
-    "strong": 4,
-    "middle": 7,
+    "eligible": 19,
+    "completed": 16,
+    "strong": 5,
+    "middle": 8,
     "pass": 3,
     "waiting": 0,
-    "processing": 4,
+    "processing": 1,
     "blocked": 2,
-    "excluded": 43,
+    "excluded": 44,
     "unverified_links": 26
   },
   "members": [
@@ -597,9 +597,9 @@
       "url": "https://jobs.lever.co/jobgether/6f952f31-bbfb-4948-b9f1-fd883a9e8444",
       "source": "lever",
       "job_snapshot_hash": "192c6f9a66ecfc3cdf77b9a071ff64fedbf7ab93eba5ff0a619902cd5ba4dc68",
-      "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -620,9 +620,9 @@
       "source": "microsoft",
       "job_snapshot_hash": "45d86e6280ee447b3cd4816aa6e87b9af7c6c62ae91a34aa71334d627c9431b5",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "microsoft:microsoft:1970393557056013",
@@ -642,9 +642,9 @@
       "source": "microsoft",
       "job_snapshot_hash": "4af52c3573e8b915c2c2739810814bb68f00e724b2e2ec9040ccfa8b4dde16d7",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "strong"
     },
     {
       "key": "netflix:netflix:790319484232",
@@ -1079,21 +1079,21 @@
       "status": "failed"
     }
   ],
-  "checked_at": "2026-11-13T06:58:03.725777+00:00",
+  "checked_at": "2026-11-13T06:59:07.716357+00:00",
   "legacy_backlog": {
-    "assessed": 547,
+    "assessed": 549,
     "pending": 0,
     "unresolved": 49,
-    "in_progress": 4,
-    "total": 600,
-    "strong": 72
+    "in_progress": 1,
+    "total": 599,
+    "strong": 73
   },
-  "batch_id": "c3c12a4328ee1ca1a47ebf089ec1c995870c2d3348a2822a18deb9004facd4fb",
+  "batch_id": "eece6a178da1b703c6113efbc9569b0633eb109f1db3e20db4a29ba4ab363533",
   "status": "assessing",
   "input_blobs": {
     "jobs.json": "7d72484dccc876bc0dd1ea90867b9790e04cdfa4",
-    "fit_scores.json": "d8219aba6759ea5c1fbf61000ba7bc07db1a69be",
-    "fit_backfill.json": "0ca3a21d9160738d0e7aa838b46a0a23dcb8cc7c",
+    "fit_scores.json": "9084169e09bce119e9a6a7ae3480b88b538c0e95",
+    "fit_backfill.json": "39113e66172274991b0976b5d2f4df4e430bd9d7",
     "meta.json": "4d0a8e4946fac2335926c7eeeebeac3191cc36db"
   }
 }
