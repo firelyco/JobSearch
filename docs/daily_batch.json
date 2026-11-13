@@ -7,15 +7,15 @@
   "collection_at": "2026-11-13T06:01:01.379716+00:00",
   "counts": {
     "found": 59,
-    "eligible": 20,
-    "completed": 13,
+    "eligible": 16,
+    "completed": 14,
     "strong": 4,
-    "middle": 6,
+    "middle": 7,
     "pass": 3,
-    "waiting": 1,
-    "processing": 5,
-    "blocked": 1,
-    "excluded": 39,
+    "waiting": 0,
+    "processing": 0,
+    "blocked": 2,
+    "excluded": 43,
     "unverified_links": 26
   },
   "members": [
@@ -25,9 +25,9 @@
       "url": "https://www.amazon.jobs/en/jobs/10579998/sr-technical-program-manager-relay-yard-and-fleet-tech",
       "source": "amazon_jobs",
       "job_snapshot_hash": "22e33dc4ec81ae4c193e7b5fbd3e0693695c228abbe1fd15b7774bbacc850bff",
-      "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -521,8 +521,8 @@
       "source": "greenhouse",
       "job_snapshot_hash": "b2efdcda2cc1d8787e72ffdedb65b89c1d6ba9abd878b220f3a5db95a174974c",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
+      "status": "blocked",
+      "reason": "Paid retry budget exhausted; review required.",
       "verdict": null
     },
     {
@@ -553,9 +553,9 @@
       "url": "https://job-boards.greenhouse.io/gitlab/jobs/8928325002",
       "source": "greenhouse",
       "job_snapshot_hash": "13abe5399a3de66fd5fe39d34c81a97e0c4dbb2ee98e5186a02c1142fbbcceea",
-      "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -609,9 +609,9 @@
       "source": "netflix",
       "job_snapshot_hash": "6b61908cdcd378ab4d90ab34d086201a0ae656c352342919454f93d3c93ecf83",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "oracle_cloud:oracle:347267",
@@ -619,9 +619,9 @@
       "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/347267",
       "source": "oracle_cloud",
       "job_snapshot_hash": "5ace86add0e8d2fa0bab670ef305ba87ae0e01a3dcc815bbb4a9c9ee78b5a7f8",
-      "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -630,9 +630,9 @@
       "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/350046",
       "source": "oracle_cloud",
       "job_snapshot_hash": "4f884baf129edb92dc291e0ca32cd05122ee6e20e18c444b8d56cb751958520f",
-      "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -1275,21 +1275,21 @@
       "status": "failed"
     }
   ],
-  "checked_at": "2026-11-13T06:28:18.783765+00:00",
+  "checked_at": "2026-11-13T06:29:21.423111+00:00",
   "legacy_backlog": {
-    "assessed": 540,
-    "pending": 13,
-    "unresolved": 51,
-    "in_progress": 6,
-    "total": 610,
+    "assessed": 541,
+    "pending": 2,
+    "unresolved": 52,
+    "in_progress": 10,
+    "total": 605,
     "strong": 69
   },
-  "batch_id": "091bd3548959e21881b585f86cdf17bb4d376a598498bf07ff6d59f531a0f4d0",
-  "status": "assessing",
+  "batch_id": "4830d7b6cb56d4bde52a9e871c840b1e19fd68a989fe14bd031fda91eb68b0bb",
+  "status": "blocked",
   "input_blobs": {
     "jobs.json": "15b912b65d0d940cd3666d6817d92fc64173c759",
-    "fit_scores.json": "f5956940ec313e4bb5c37720e0082ba3cbaf8bd9",
-    "fit_backfill.json": "af5ababaa99b286f166f03aeb934e98533e1d39b",
+    "fit_scores.json": "d6c1d33b63d4a5e34abe05ad60b801571955c3c5",
+    "fit_backfill.json": "147a7fbc5be300dbb3df98f1291b0f34fdbdd200",
     "meta.json": "dffabf9103b612401d12e6b7985fda5816c8edd1"
   }
 }
