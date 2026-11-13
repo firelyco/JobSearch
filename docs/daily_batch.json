@@ -7,15 +7,15 @@
   "collection_at": "2026-11-13T06:01:01.379716+00:00",
   "counts": {
     "found": 59,
-    "eligible": 24,
-    "completed": 0,
+    "eligible": 23,
+    "completed": 2,
     "strong": 0,
-    "middle": 0,
+    "middle": 2,
     "pass": 0,
-    "waiting": 23,
-    "processing": 0,
+    "waiting": 11,
+    "processing": 9,
     "blocked": 1,
-    "excluded": 35,
+    "excluded": 36,
     "unverified_links": 26
   },
   "members": [
@@ -48,9 +48,9 @@
       "source": "apple",
       "job_snapshot_hash": "ce8a50fc3e4f28a479d3c2ec9fd878e872a6bd3e15131073411090a386345e8b",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "arbeitnow:Alphasense:senior-staff-engineer-android-261942",
@@ -422,7 +422,7 @@
       "source": "ashby",
       "job_snapshot_hash": "31889b85b7af11da57a272f9fc3db9dceaa1677b26123d759fd35cf6667fd1ab",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -433,7 +433,7 @@
       "source": "google",
       "job_snapshot_hash": "0d87033b52eccfb675bcce4e1fdd7d5292a9e0487ac6c077a0a2099bbf6dc430",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -455,7 +455,7 @@
       "source": "google",
       "job_snapshot_hash": "d4263b59c60a8f3782633e7aa83f3112c5a194b7bae48475f9b766c7d82078be",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -466,7 +466,7 @@
       "source": "google",
       "job_snapshot_hash": "2ece9d02b5e3cc378c5e51f6b04e98bd91d6dd49b45a4a4d930bb11861d69520",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -498,9 +498,9 @@
       "url": "https://job-boards.greenhouse.io/altentechnologyusa/jobs/5294017007",
       "source": "greenhouse",
       "job_snapshot_hash": "7f1c0dd48389b8d2e150f20a7db13accd1570c30bd2a2ab86e9e3b8dab55de8b",
-      "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -510,7 +510,7 @@
       "source": "greenhouse",
       "job_snapshot_hash": "e02d658b17ea30f050cec4868ad6883bb2b1458b90fa084025fa3b84e3aa04f7",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -532,7 +532,7 @@
       "source": "greenhouse",
       "job_snapshot_hash": "9293f24d3e8562a75033ce8d902e980f15ee3e778b369de930ac30c9a634cc4d",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -543,7 +543,7 @@
       "source": "greenhouse",
       "job_snapshot_hash": "25c4ac2347eb600798df4fe7fd624d75ebde92dfdcd6d78c48e3be0c8583413f",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -576,7 +576,7 @@
       "source": "greenhouse",
       "job_snapshot_hash": "8303152d88b957b759a186d4c648254decf95b1e2178c72f2dbf511997bad0b5",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -598,9 +598,9 @@
       "source": "lever",
       "job_snapshot_hash": "b5f52450ba05a2b14d010ec66e17ef6bbad9aa4b64221e4f976c4edb5d79952c",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "netflix:netflix:790319484232",
@@ -642,7 +642,7 @@
       "source": "workday",
       "job_snapshot_hash": "b75062638fa90dbe512923bf5a5c5d61312fb2ac82b990e5d7c2bfa66d798694",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -1275,21 +1275,21 @@
       "status": "failed"
     }
   ],
-  "checked_at": "2026-11-13T06:23:47.652074+00:00",
+  "checked_at": "2026-11-13T06:24:48.715507+00:00",
   "legacy_backlog": {
-    "assessed": 525,
-    "pending": 38,
+    "assessed": 529,
+    "pending": 24,
     "unresolved": 51,
-    "in_progress": 0,
-    "total": 614,
+    "in_progress": 9,
+    "total": 613,
     "strong": 65
   },
-  "batch_id": "56c3ab29ae6df8c17fbfc8b76a2e8f961e35ee746aa3d04235141dda8ea33849",
+  "batch_id": "51131a3d07fe23fb240c67beac569357c3d8ab0a1a8c396d3b06400c06f49145",
   "status": "assessing",
   "input_blobs": {
     "jobs.json": "15b912b65d0d940cd3666d6817d92fc64173c759",
-    "fit_scores.json": "c4f005dae15367145c4dd310f9408bf3a2586565",
-    "fit_backfill.json": "e2e0713710f9da6d7fdac2f1c29d513f9e0bdb16",
+    "fit_scores.json": "4d09a5c7e2a9f228cd4a6401b9395083a6d72a14",
+    "fit_backfill.json": "9c172d6d6750e9b04aa5b9067f095758227f83e7",
     "meta.json": "dffabf9103b612401d12e6b7985fda5816c8edd1"
   }
 }
