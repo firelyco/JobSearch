@@ -8,12 +8,12 @@
   "counts": {
     "found": 63,
     "eligible": 19,
-    "completed": 16,
+    "completed": 17,
     "strong": 5,
-    "middle": 8,
+    "middle": 9,
     "pass": 3,
     "waiting": 0,
-    "processing": 1,
+    "processing": 0,
     "blocked": 2,
     "excluded": 44,
     "unverified_links": 26
@@ -631,9 +631,9 @@
       "source": "microsoft",
       "job_snapshot_hash": "d8ed9747b7f6dd4300339b45c561be8ab6a4a5147db4a97130eac5d77d32f673",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "microsoft:microsoft:1970393557056107",
@@ -1079,21 +1079,21 @@
       "status": "failed"
     }
   ],
-  "checked_at": "2026-11-13T06:59:07.716357+00:00",
+  "checked_at": "2026-11-13T06:59:16.434014+00:00",
   "legacy_backlog": {
-    "assessed": 549,
+    "assessed": 550,
     "pending": 0,
     "unresolved": 49,
-    "in_progress": 1,
+    "in_progress": 0,
     "total": 599,
     "strong": 73
   },
-  "batch_id": "eece6a178da1b703c6113efbc9569b0633eb109f1db3e20db4a29ba4ab363533",
-  "status": "assessing",
+  "batch_id": "ab9d100c5ee9196923e894a08bb18db4248f91e02dadbf21ec670467022d9520",
+  "status": "blocked",
   "input_blobs": {
     "jobs.json": "7d72484dccc876bc0dd1ea90867b9790e04cdfa4",
-    "fit_scores.json": "9084169e09bce119e9a6a7ae3480b88b538c0e95",
-    "fit_backfill.json": "39113e66172274991b0976b5d2f4df4e430bd9d7",
+    "fit_scores.json": "6060bb8e9d5849bb280067446f75b7e5704f6ee3",
+    "fit_backfill.json": "ac454022416ad78a71eee3dccca129f627140214",
     "meta.json": "4d0a8e4946fac2335926c7eeeebeac3191cc36db"
   }
 }
