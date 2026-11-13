@@ -7,15 +7,15 @@
   "collection_at": "2026-11-13T06:01:01.379716+00:00",
   "counts": {
     "found": 59,
-    "eligible": 23,
-    "completed": 7,
-    "strong": 1,
+    "eligible": 21,
+    "completed": 9,
+    "strong": 3,
     "middle": 5,
     "pass": 1,
     "waiting": 11,
-    "processing": 4,
+    "processing": 0,
     "blocked": 1,
-    "excluded": 36,
+    "excluded": 38,
     "unverified_links": 26
   },
   "members": [
@@ -421,9 +421,9 @@
       "url": "https://jobs.ashbyhq.com/socure/fed81553-3054-4e81-8d9a-d5e5b3d2702c",
       "source": "ashby",
       "job_snapshot_hash": "31889b85b7af11da57a272f9fc3db9dceaa1677b26123d759fd35cf6667fd1ab",
-      "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -509,9 +509,9 @@
       "url": "https://boards.greenhouse.io/andurilindustries/jobs/5293385007?gh_jid=5293385007",
       "source": "greenhouse",
       "job_snapshot_hash": "e02d658b17ea30f050cec4868ad6883bb2b1458b90fa084025fa3b84e3aa04f7",
-      "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -532,9 +532,9 @@
       "source": "greenhouse",
       "job_snapshot_hash": "9293f24d3e8562a75033ce8d902e980f15ee3e778b369de930ac30c9a634cc4d",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "strong"
     },
     {
       "key": "greenhouse:doordashusa:8373664",
@@ -576,9 +576,9 @@
       "source": "greenhouse",
       "job_snapshot_hash": "8303152d88b957b759a186d4c648254decf95b1e2178c72f2dbf511997bad0b5",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "strong"
     },
     {
       "key": "greenhouse:tenstorrent:5196179007",
@@ -1275,21 +1275,21 @@
       "status": "failed"
     }
   ],
-  "checked_at": "2026-11-13T06:25:48.985732+00:00",
+  "checked_at": "2026-11-13T06:27:15.818338+00:00",
   "legacy_backlog": {
-    "assessed": 534,
+    "assessed": 536,
     "pending": 24,
     "unresolved": 51,
-    "in_progress": 4,
-    "total": 613,
-    "strong": 66
+    "in_progress": 0,
+    "total": 611,
+    "strong": 68
   },
-  "batch_id": "18a5f5042649834dc921e8d50d66b585d37711af9e0769a7655121d9ac9fd3b9",
+  "batch_id": "e0d8fa02c2ec0f27286fe8bade257b9f253bd09aef2b6bc09169946b2f6a8cb2",
   "status": "assessing",
   "input_blobs": {
     "jobs.json": "15b912b65d0d940cd3666d6817d92fc64173c759",
-    "fit_scores.json": "8bca6bd045c8076585e948effd63d6c8ca430c2f",
-    "fit_backfill.json": "d61a0e5a07f20e2c824581409e7d68b7a50fe47e",
+    "fit_scores.json": "f2fe1997d775ddba37e41a813dbe9a7a056896a0",
+    "fit_backfill.json": "9e546d447ef3ea03ac2c008afb276a4155d03b91",
     "meta.json": "dffabf9103b612401d12e6b7985fda5816c8edd1"
   }
 }
