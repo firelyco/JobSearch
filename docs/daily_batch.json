@@ -7,15 +7,15 @@
   "collection_at": "2026-11-13T06:01:01.379716+00:00",
   "counts": {
     "found": 59,
-    "eligible": 21,
-    "completed": 9,
-    "strong": 3,
-    "middle": 5,
-    "pass": 1,
-    "waiting": 11,
-    "processing": 0,
+    "eligible": 20,
+    "completed": 13,
+    "strong": 4,
+    "middle": 6,
+    "pass": 3,
+    "waiting": 1,
+    "processing": 5,
     "blocked": 1,
-    "excluded": 38,
+    "excluded": 39,
     "unverified_links": 26
   },
   "members": [
@@ -26,7 +26,7 @@
       "source": "amazon_jobs",
       "job_snapshot_hash": "22e33dc4ec81ae4c193e7b5fbd3e0693695c228abbe1fd15b7774bbacc850bff",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -36,9 +36,9 @@
       "url": "https://www.amazon.jobs/en/jobs/10603693/sr-technical-infrastructure-program-manager-us-west",
       "source": "amazon_jobs",
       "job_snapshot_hash": "1719caead90860c78c7d6677c00543ca9774b31b2e1123decf677da0eba27cc9",
-      "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -389,9 +389,9 @@
       "source": "arbeitnow",
       "job_snapshot_hash": "13a93ad514b00c18d29ee757810a6881a727448ed30c4560247a0ed55f2a5f4d",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "pass"
     },
     {
       "key": "arbeitnow:mozilla:field-marketing-manager-firefox-enterprise-320660",
@@ -444,9 +444,9 @@
       "source": "google",
       "job_snapshot_hash": "74fe348078fb7e3b6fcfe232823c5c04263ba4ab700c00b57ebe7527f0f97f6c",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "pass"
     },
     {
       "key": "google:google:130077905983021766",
@@ -477,9 +477,9 @@
       "source": "google",
       "job_snapshot_hash": "b485e7f208b252ba7ebd494d16cf741489fa0f4ef5c0107e8e7de6ce20006ae0",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "strong"
     },
     {
       "key": "google:google:77010939341087430",
@@ -488,9 +488,9 @@
       "source": "google",
       "job_snapshot_hash": "eed2c15608bc5be7283d27d0eeaa85f183cf8c13290ee049d775bba9b6594aa6",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "greenhouse:altentechnologyusa:5294017007",
@@ -554,7 +554,7 @@
       "source": "greenhouse",
       "job_snapshot_hash": "13abe5399a3de66fd5fe39d34c81a97e0c4dbb2ee98e5186a02c1142fbbcceea",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -609,7 +609,7 @@
       "source": "netflix",
       "job_snapshot_hash": "6b61908cdcd378ab4d90ab34d086201a0ae656c352342919454f93d3c93ecf83",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -620,7 +620,7 @@
       "source": "oracle_cloud",
       "job_snapshot_hash": "5ace86add0e8d2fa0bab670ef305ba87ae0e01a3dcc815bbb4a9c9ee78b5a7f8",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -631,7 +631,7 @@
       "source": "oracle_cloud",
       "job_snapshot_hash": "4f884baf129edb92dc291e0ca32cd05122ee6e20e18c444b8d56cb751958520f",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -1275,21 +1275,21 @@
       "status": "failed"
     }
   ],
-  "checked_at": "2026-11-13T06:27:15.818338+00:00",
+  "checked_at": "2026-11-13T06:28:18.783765+00:00",
   "legacy_backlog": {
-    "assessed": 536,
-    "pending": 24,
+    "assessed": 540,
+    "pending": 13,
     "unresolved": 51,
-    "in_progress": 0,
-    "total": 611,
-    "strong": 68
+    "in_progress": 6,
+    "total": 610,
+    "strong": 69
   },
-  "batch_id": "e0d8fa02c2ec0f27286fe8bade257b9f253bd09aef2b6bc09169946b2f6a8cb2",
+  "batch_id": "091bd3548959e21881b585f86cdf17bb4d376a598498bf07ff6d59f531a0f4d0",
   "status": "assessing",
   "input_blobs": {
     "jobs.json": "15b912b65d0d940cd3666d6817d92fc64173c759",
-    "fit_scores.json": "f2fe1997d775ddba37e41a813dbe9a7a056896a0",
-    "fit_backfill.json": "9e546d447ef3ea03ac2c008afb276a4155d03b91",
+    "fit_scores.json": "f5956940ec313e4bb5c37720e0082ba3cbaf8bd9",
+    "fit_backfill.json": "af5ababaa99b286f166f03aeb934e98533e1d39b",
     "meta.json": "dffabf9103b612401d12e6b7985fda5816c8edd1"
   }
 }
