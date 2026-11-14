@@ -7,15 +7,15 @@
   "collection_at": "2026-11-14T06:00:55.622947+00:00",
   "counts": {
     "found": 74,
-    "eligible": 29,
-    "completed": 9,
+    "eligible": 23,
+    "completed": 12,
     "strong": 1,
-    "middle": 3,
-    "pass": 5,
-    "waiting": 9,
-    "processing": 11,
-    "blocked": 0,
-    "excluded": 45,
+    "middle": 4,
+    "pass": 7,
+    "waiting": 0,
+    "processing": 10,
+    "blocked": 1,
+    "excluded": 51,
     "unverified_links": 30
   },
   "members": [
@@ -26,7 +26,7 @@
       "source": "amazon_jobs",
       "job_snapshot_hash": "cb65a5cca60ab6c9693d92810622891f3aea651f29d3dcfc5ade64a701d30045",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -37,7 +37,7 @@
       "source": "amazon_jobs",
       "job_snapshot_hash": "32083af3bd16286d466f5934bdea18592724d3189ffb4332611bf4570e72ae50",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -59,9 +59,9 @@
       "source": "apple",
       "job_snapshot_hash": "6232ee8c3b3ae41449f991dcbc56be177d29092214b7704b8aa317d0da07b68d",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "apple:apple:200694917",
@@ -246,9 +246,9 @@
       "source": "arbeitnow",
       "job_snapshot_hash": "54cd21355421b8a018e82ffde2bad138d8dbe66f47e3c1fd603cc05071334b7c",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "pass"
     },
     {
       "key": "arbeitnow:Mistral.ai:head-of-fde-learning-programs-paris-446388",
@@ -378,7 +378,7 @@
       "source": "arbeitnow",
       "job_snapshot_hash": "654048186afb6b39625149185d465ca896b2c85d301e7ab44d95b71ec9cc55c6",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -631,7 +631,7 @@
       "source": "google",
       "job_snapshot_hash": "5b6bec5e0b9757cd4ba66535d83ae793348204b6dc6bfaad2314cf16a79936b9",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -653,8 +653,8 @@
       "source": "greenhouse",
       "job_snapshot_hash": "6b88594a9cbc37995bf0dfed9758ac4bdf86072c7ba505429012beecee7abfb8",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "status": "blocked",
+      "reason": "Paid retry budget exhausted; review required.",
       "verdict": null
     },
     {
@@ -685,9 +685,9 @@
       "url": "https://coreweave.com/careers/job?4729321006&board=coreweave&gh_jid=4729321006",
       "source": "greenhouse",
       "job_snapshot_hash": "a47404333ffc59e0d3e7e3d50f54361657b3009a83fc11c26d2bc8eb3d8c1c16",
-      "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -696,9 +696,9 @@
       "url": "https://coreweave.com/careers/job?4729451006&board=coreweave&gh_jid=4729451006",
       "source": "greenhouse",
       "job_snapshot_hash": "d977d20bf75b5f013cb2055d073ab4c9f11c6f2b15ed0d8abff37b2a1c450e34",
-      "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -707,9 +707,9 @@
       "url": "https://jobs.lever.co/jobgether/1bc1496e-6b24-40e8-89b4-88996beb5705",
       "source": "lever",
       "job_snapshot_hash": "ab3c2e6b462dfa0c421564833ff510b2f4a83f5b07729ba94d386d4d4f6628e9",
-      "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -719,7 +719,7 @@
       "source": "lever",
       "job_snapshot_hash": "a8448de9968d80f27927f1e37ab708f5c8acc172b0e371f59bdc9c6874df701a",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -730,7 +730,7 @@
       "source": "lever",
       "job_snapshot_hash": "e04317294452df580fe90196bc61acdf16167782eb738361e22ce05d624b67b3",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -740,9 +740,9 @@
       "url": "https://jobs.lever.co/jobgether/4392c519-c133-4480-a887-4f0531470873",
       "source": "lever",
       "job_snapshot_hash": "d9db111ae513ab552cd3c24b520191708fa9db61ae255a0c7c4fee7956275b63",
-      "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -752,7 +752,7 @@
       "source": "lever",
       "job_snapshot_hash": "6157468e9596a9156c8d03374c9d286512aac5bacb652add49f88f77e2f1db35",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -762,9 +762,9 @@
       "url": "https://jobs.lever.co/jobgether/736281ad-15a2-4a0d-b7b9-d1f3be51a5b5",
       "source": "lever",
       "job_snapshot_hash": "a974659bc42cb8d541bbaf07d47e48e851c1396c41e2e19e664dd19ff55b3dd9",
-      "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -773,9 +773,9 @@
       "url": "https://jobs.lever.co/jobgether/7a5081be-d103-4849-a6fb-dd15cb0ff890",
       "source": "lever",
       "job_snapshot_hash": "5ff7c491b4fb0cd650afe6c17a104fe944dd8adb85312fff7eb21a23f61c5fc6",
-      "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -785,9 +785,9 @@
       "source": "lever",
       "job_snapshot_hash": "fb47df7cb51959f7356325b43d017c5bc8996b835b70bcd08534489747aa0f2c",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "pass"
     },
     {
       "key": "lever:jobgether:d92edb85-a08b-401b-813f-e2db2bda53cb",
@@ -796,7 +796,7 @@
       "source": "lever",
       "job_snapshot_hash": "46e49e8988912641625b93a7cfd812ae67844e2be752dda1ffd81cd90b7145fd",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -807,7 +807,7 @@
       "source": "lever",
       "job_snapshot_hash": "f0a6f37019972a1923e0c946aa9691a7c615057aef09d1acb9d3f32f666269a8",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -1519,21 +1519,21 @@
       "status": "failed"
     }
   ],
-  "checked_at": "2026-11-14T06:16:08.008127+00:00",
+  "checked_at": "2026-11-14T06:17:23.188845+00:00",
   "legacy_backlog": {
-    "assessed": 534,
-    "pending": 15,
-    "unresolved": 48,
+    "assessed": 537,
+    "pending": 5,
+    "unresolved": 49,
     "in_progress": 11,
-    "total": 608,
+    "total": 602,
     "strong": 71
   },
-  "batch_id": "8b335eca80b0e49cfd989f3228505a1693f3e9ad79c7f1bb216661d9315dc947",
+  "batch_id": "060ccef0e0eafd8c1a521afcd00447b16c0169b2fcb1c1c3f416aa75791c835f",
   "status": "assessing",
   "input_blobs": {
     "jobs.json": "cec89d2c85d1d6f649d45235638efd26e0d62635",
-    "fit_scores.json": "cd98e02b283f7e7f40485bbde3ebe4f7ff3350ea",
-    "fit_backfill.json": "c2b7799b8d29b1969e8096381f00ff083873f7a2",
+    "fit_scores.json": "3b3e4aa2c6daaab461dca62567ecb65c6b9da663",
+    "fit_backfill.json": "ea488a50af249dc8ba052560bd2dbd969057e53a",
     "meta.json": "fa4f1232d96e183818274c78fcc9ab6195bfa12d"
   }
 }
