@@ -8,12 +8,12 @@
   "counts": {
     "found": 74,
     "eligible": 33,
-    "completed": 0,
+    "completed": 5,
     "strong": 0,
-    "middle": 0,
-    "pass": 0,
-    "waiting": 33,
-    "processing": 0,
+    "middle": 1,
+    "pass": 4,
+    "waiting": 21,
+    "processing": 7,
     "blocked": 0,
     "excluded": 41,
     "unverified_links": 30
@@ -48,7 +48,7 @@
       "source": "amazon_jobs",
       "job_snapshot_hash": "7b340be4fecc110c040ae260c012f9640446800c0787b9fbb41066708906dbc4",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -81,7 +81,7 @@
       "source": "apple",
       "job_snapshot_hash": "8faff03586e52d9e37cceec5b7d351f95bb3d46e0bb7d10fdad076f9f21ba3b5",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -92,9 +92,9 @@
       "source": "apple",
       "job_snapshot_hash": "13696de2944c488870cba58a76635b701f1c95442fca7cd3439dba43e60b443d",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "arbeitnow:1Password:senior-field-performance-partner-ai-london-209221",
@@ -543,9 +543,9 @@
       "source": "arbeitnow",
       "job_snapshot_hash": "79246dd1dcbadcd5a6d699c3ccdbf5696c41843af5c5f88818893ef7eb278b85",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "pass"
     },
     {
       "key": "arbeitnow:gitlab:remote-staff-forward-deployed-engineer-emea-238197",
@@ -554,9 +554,9 @@
       "source": "arbeitnow",
       "job_snapshot_hash": "b692ee4e90a4ae5a5b5c10eee88721e95e31656b3529414d38b66327fa4a1198",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "pass"
     },
     {
       "key": "arbeitnow:gitlab:remote-staff-forward-deployed-engineer-emea-244241",
@@ -565,9 +565,9 @@
       "source": "arbeitnow",
       "job_snapshot_hash": "f88c34e2ce64679764179102eab9852b3a26569cf951bb4bdcaf3c130d8e3cfd",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "pass"
     },
     {
       "key": "arbeitnow:gitlab:remote-staff-forward-deployed-engineer-emea-378204",
@@ -576,9 +576,9 @@
       "source": "arbeitnow",
       "job_snapshot_hash": "8f2db8213a56ef67dfb82e8645b57a6500fd209065ce40fa87c18b2f1e6c9671",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "pass"
     },
     {
       "key": "arbeitnow:nearform:strategic-account-director-perm-uk-remote-17179",
@@ -620,7 +620,7 @@
       "source": "google",
       "job_snapshot_hash": "435ebc5eb4c6157f219f38abba50f21d6cde71e62bc77df701cd27f14873d20d",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -664,7 +664,7 @@
       "source": "greenhouse",
       "job_snapshot_hash": "c1641daed8a5e87037f82e8ea4ad80a51480fc0f5e3118ebaab3d5ef10416bd4",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -675,7 +675,7 @@
       "source": "greenhouse",
       "job_snapshot_hash": "21c633f035d79eece8d4fc9a22ac98de6b795130077c2c31a0eaa8cffd08e03a",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -818,7 +818,7 @@
       "source": "lever",
       "job_snapshot_hash": "794b4b729de63385bb97754eca55c45174074e6857330b69541aa7afac410412",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -829,7 +829,7 @@
       "source": "workday",
       "job_snapshot_hash": "44160f7871eb091c82250012aacc0cef4db86183ed3ff6b2519266c521e1cd0e",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     }
@@ -1519,21 +1519,21 @@
       "status": "failed"
     }
   ],
-  "checked_at": "2026-11-14T06:14:02.783488+00:00",
+  "checked_at": "2026-11-14T06:15:03.730762+00:00",
   "legacy_backlog": {
-    "assessed": 520,
-    "pending": 45,
+    "assessed": 530,
+    "pending": 27,
     "unresolved": 48,
-    "in_progress": 0,
-    "total": 613,
+    "in_progress": 7,
+    "total": 612,
     "strong": 70
   },
-  "batch_id": "04286ad80ac9281fc47eb330872800538c5a8eaf3882180090310154724f360a",
+  "batch_id": "af8f16160b30e612e63a55ba3ad0d7df5ffc590fedf3a570952d9c0e28c7a148",
   "status": "assessing",
   "input_blobs": {
     "jobs.json": "cec89d2c85d1d6f649d45235638efd26e0d62635",
-    "fit_scores.json": "3cd00e743c5c143f7cb415e38450194af171c96a",
-    "fit_backfill.json": "51c6e37ed63d0a38f5fe49e6ca6abb5ee184bc48",
+    "fit_scores.json": "e29f38ef3c610e2541f033abf3a9735b4afe1b3a",
+    "fit_backfill.json": "c94e5f1ad95bcb6bd49a12569a2fdaab374b5304",
     "meta.json": "fa4f1232d96e183818274c78fcc9ab6195bfa12d"
   }
 }
