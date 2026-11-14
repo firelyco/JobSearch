@@ -7,15 +7,15 @@
   "collection_at": "2026-11-14T06:20:53.972931+00:00",
   "counts": {
     "found": 76,
-    "eligible": 18,
-    "completed": 15,
+    "eligible": 17,
+    "completed": 16,
     "strong": 1,
-    "middle": 5,
+    "middle": 6,
     "pass": 9,
     "waiting": 0,
-    "processing": 2,
+    "processing": 0,
     "blocked": 1,
-    "excluded": 58,
+    "excluded": 59,
     "unverified_links": 30
   },
   "members": [
@@ -620,9 +620,9 @@
       "source": "ashby",
       "job_snapshot_hash": "e2910040f447a27506e198f3d5e00752e9a5045cc33b737d3cc5058239626817",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "google:google:106288580346684102",
@@ -839,9 +839,9 @@
       "url": "https://astrazeneca.wd3.myworkdayjobs.com/en-US/Careers/job/US---Gaithersburg---MD/Director--Portfolio-Management_R-263198",
       "source": "workday",
       "job_snapshot_hash": "d179d1de03fbbec7bd28ec8919f5028697680745899b2021ec02d415b12976c1",
-      "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -1606,21 +1606,21 @@
       "status": "failed"
     }
   ],
-  "checked_at": "2026-11-14T06:35:32.136067+00:00",
+  "checked_at": "2026-11-14T06:36:13.026967+00:00",
   "legacy_backlog": {
-    "assessed": 543,
+    "assessed": 544,
     "pending": 0,
     "unresolved": 50,
-    "in_progress": 2,
-    "total": 595,
+    "in_progress": 0,
+    "total": 594,
     "strong": 73
   },
-  "batch_id": "8a6379bda81ed2970d3dba87e5d9f794ff29d0731ce888d30ef446da17305fa1",
-  "status": "assessing",
+  "batch_id": "3e9dab29c1c4470d61ef1715fa8abfe4defcccd9bd86b2eadfa4335268ab3647",
+  "status": "blocked",
   "input_blobs": {
     "jobs.json": "f45d3ac86270cca3449f9735bdef86209212442a",
-    "fit_scores.json": "da14647c65e45283ebeede60d1fbcb1a0d271171",
-    "fit_backfill.json": "eeaf9505938a16e1ae0feaa1122a03c9c69cf82e",
+    "fit_scores.json": "5246db3cbbd61322e23a2876f5a34dfc06133b5c",
+    "fit_backfill.json": "e0d2d52737ff1fb77163988cc35a37da8e90681b",
     "meta.json": "f92d219ff2d4e301dd11da4db75accd6700be82e"
   }
 }
