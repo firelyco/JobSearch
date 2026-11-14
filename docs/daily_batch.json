@@ -7,15 +7,15 @@
   "collection_at": "2026-11-14T06:00:55.622947+00:00",
   "counts": {
     "found": 74,
-    "eligible": 23,
-    "completed": 12,
+    "eligible": 16,
+    "completed": 15,
     "strong": 1,
-    "middle": 4,
-    "pass": 7,
+    "middle": 5,
+    "pass": 9,
     "waiting": 0,
-    "processing": 10,
+    "processing": 0,
     "blocked": 1,
-    "excluded": 51,
+    "excluded": 58,
     "unverified_links": 30
   },
   "members": [
@@ -25,9 +25,9 @@
       "url": "https://www.amazon.jobs/en/jobs/10573352/tpm-l6-books-kindle-unlimited",
       "source": "amazon_jobs",
       "job_snapshot_hash": "cb65a5cca60ab6c9693d92810622891f3aea651f29d3dcfc5ade64a701d30045",
-      "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -36,9 +36,9 @@
       "url": "https://www.amazon.jobs/en/jobs/10604009/technical-program-manager-amazon-customer-service",
       "source": "amazon_jobs",
       "job_snapshot_hash": "32083af3bd16286d466f5934bdea18592724d3189ffb4332611bf4570e72ae50",
-      "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -70,9 +70,9 @@
       "source": "apple",
       "job_snapshot_hash": "3194166790dbea4d11f5b4b5ee6bb5e1b011b1bc1b8d1e4efac548759a951101",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "apple:apple:200694973",
@@ -378,9 +378,9 @@
       "source": "arbeitnow",
       "job_snapshot_hash": "654048186afb6b39625149185d465ca896b2c85d301e7ab44d95b71ec9cc55c6",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "pass"
     },
     {
       "key": "arbeitnow:The Flex:senior-full-stack-product-engineer-paris-333562",
@@ -631,9 +631,9 @@
       "source": "google",
       "job_snapshot_hash": "5b6bec5e0b9757cd4ba66535d83ae793348204b6dc6bfaad2314cf16a79936b9",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "pass"
     },
     {
       "key": "greenhouse:affirm:8199157003",
@@ -718,9 +718,9 @@
       "url": "https://jobs.lever.co/jobgether/271f4cb6-e20a-46cc-a6db-9e91738113f1",
       "source": "lever",
       "job_snapshot_hash": "a8448de9968d80f27927f1e37ab708f5c8acc172b0e371f59bdc9c6874df701a",
-      "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -729,9 +729,9 @@
       "url": "https://jobs.lever.co/jobgether/387ba0ea-77a7-40b8-bc2b-f8604dde70f2",
       "source": "lever",
       "job_snapshot_hash": "e04317294452df580fe90196bc61acdf16167782eb738361e22ce05d624b67b3",
-      "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -751,9 +751,9 @@
       "url": "https://jobs.lever.co/jobgether/6cd2d943-c213-4505-82d3-2643b9e787b2",
       "source": "lever",
       "job_snapshot_hash": "6157468e9596a9156c8d03374c9d286512aac5bacb652add49f88f77e2f1db35",
-      "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -795,9 +795,9 @@
       "url": "https://jobs.lever.co/jobgether/d92edb85-a08b-401b-813f-e2db2bda53cb",
       "source": "lever",
       "job_snapshot_hash": "46e49e8988912641625b93a7cfd812ae67844e2be752dda1ffd81cd90b7145fd",
-      "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -806,9 +806,9 @@
       "url": "https://jobs.lever.co/jobgether/ea9c9057-31d6-4b48-ae60-622468b4918a",
       "source": "lever",
       "job_snapshot_hash": "f0a6f37019972a1923e0c946aa9691a7c615057aef09d1acb9d3f32f666269a8",
-      "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -1519,21 +1519,21 @@
       "status": "failed"
     }
   ],
-  "checked_at": "2026-11-14T06:17:23.188845+00:00",
+  "checked_at": "2026-11-14T06:18:25.423862+00:00",
   "legacy_backlog": {
-    "assessed": 537,
-    "pending": 5,
+    "assessed": 541,
+    "pending": 0,
     "unresolved": 49,
-    "in_progress": 11,
-    "total": 602,
-    "strong": 71
+    "in_progress": 4,
+    "total": 594,
+    "strong": 72
   },
-  "batch_id": "060ccef0e0eafd8c1a521afcd00447b16c0169b2fcb1c1c3f416aa75791c835f",
-  "status": "assessing",
+  "batch_id": "9892f427e752c581cc9ec57e32cc19da28144315d6e06dbfbe60566e19c2126c",
+  "status": "blocked",
   "input_blobs": {
     "jobs.json": "cec89d2c85d1d6f649d45235638efd26e0d62635",
-    "fit_scores.json": "3b3e4aa2c6daaab461dca62567ecb65c6b9da663",
-    "fit_backfill.json": "ea488a50af249dc8ba052560bd2dbd969057e53a",
+    "fit_scores.json": "7ec6846e4568b143dd19ca726d5ec8fa682bd89e",
+    "fit_backfill.json": "f5ce77a67a7a0c5a47732788085771979ea5eb71",
     "meta.json": "fa4f1232d96e183818274c78fcc9ab6195bfa12d"
   }
 }
