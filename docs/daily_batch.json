@@ -7,15 +7,15 @@
   "collection_at": "2026-11-15T06:00:57.878802+00:00",
   "counts": {
     "found": 43,
-    "eligible": 8,
-    "completed": 0,
+    "eligible": 7,
+    "completed": 4,
     "strong": 0,
-    "middle": 0,
-    "pass": 0,
-    "waiting": 8,
-    "processing": 0,
+    "middle": 2,
+    "pass": 2,
+    "waiting": 1,
+    "processing": 2,
     "blocked": 0,
-    "excluded": 35,
+    "excluded": 36,
     "unverified_links": 26
   },
   "members": [
@@ -279,9 +279,9 @@
       "source": "arbeitnow",
       "job_snapshot_hash": "7147b26431acf0f78b2f15a0b844ea0e1525fb355a9bf7b412b15a3330481581",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "pass"
     },
     {
       "key": "arbeitnow:Rotzinger Group:head-of-project-management-altendorf-345236",
@@ -411,9 +411,9 @@
       "source": "oracle_cloud",
       "job_snapshot_hash": "ad5498cdc71300a0e21e831ade9c37cf2eadf0e1c6ad727dffd10ebb601adaad",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "workday:blueorigin:/job/Huntsville-AL/Engine-Manufacturing-Chief-of-Staff---PMO_R75859",
@@ -433,9 +433,9 @@
       "source": "workday",
       "job_snapshot_hash": "032ea4534c6b57f5f81e83cd0d9100d2625a0cfd4085d86f929b3fcca9f4d3dd",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "pass"
     },
     {
       "key": "workday:maxar:/job/Westminster-CO/Sr-Director--Constellation-Programs_R24912",
@@ -455,7 +455,7 @@
       "source": "workday",
       "job_snapshot_hash": "aa6e40c7ea75a5fc68ffe3d376db34e01ee238a8afc524ee66500f4ecbb25565",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -466,7 +466,7 @@
       "source": "workday",
       "job_snapshot_hash": "e13697f738d0aa7deb1ce6592333d6ad7dfca9cd130d32960b8a02bba2be3870",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -477,9 +477,9 @@
       "source": "workday",
       "job_snapshot_hash": "33b111f3c10d5c62b251c5d6566a86166a2775ada26e991d9f83f1fb23334726",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "workday:nvidia:/job/US-CA-Santa-Clara/Thermal-Engineering-Program-Manager_JR2029603",
@@ -487,9 +487,9 @@
       "url": "https://nvidia.wd5.myworkdayjobs.com/en-US/NVIDIAExternalCareerSite/job/US-CA-Santa-Clara/Thermal-Engineering-Program-Manager_JR2029603",
       "source": "workday",
       "job_snapshot_hash": "6e82a4cc7bc82c0e4f83f1853e2cca7df0450368b1df19d2ad0d92895d938495",
-      "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     }
   ],
@@ -1024,21 +1024,21 @@
       "status": "failed"
     }
   ],
-  "checked_at": "2026-11-15T06:24:05.272927+00:00",
+  "checked_at": "2026-11-15T06:25:05.971129+00:00",
   "legacy_backlog": {
-    "assessed": 542,
-    "pending": 13,
+    "assessed": 548,
+    "pending": 1,
     "unresolved": 51,
-    "in_progress": 0,
-    "total": 606,
+    "in_progress": 5,
+    "total": 605,
     "strong": 72
   },
-  "batch_id": "969c0ed3ee93d13c663cbcf95a20ffd9dd940583357c1f462d8b8a5466b81712",
+  "batch_id": "f4585a5589deea535d4ae53f94ff497cd8d1f226dcb70e05ab62c60b845bb51e",
   "status": "assessing",
   "input_blobs": {
     "jobs.json": "6e2f09238f2cf6cb91b53b011c1a3b6c0ac3813a",
-    "fit_scores.json": "5914f88aa6feb3c15e6a9c367a57760e36f6ac22",
-    "fit_backfill.json": "0eacc6ca12e22cdec9606cd9ff69f9783623776f",
+    "fit_scores.json": "cd12f527dbd2375b1b7ecb18f2e5ae508a70012f",
+    "fit_backfill.json": "15391a44ef9fefdbc99b43725dc04476f23a1e4d",
     "meta.json": "e6341577f5d0376fd623bc1d436f535a1d83c1f1"
   }
 }
