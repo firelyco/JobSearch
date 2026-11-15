@@ -7,15 +7,15 @@
   "collection_at": "2026-11-15T06:00:57.878802+00:00",
   "counts": {
     "found": 43,
-    "eligible": 7,
-    "completed": 4,
+    "eligible": 6,
+    "completed": 5,
     "strong": 0,
     "middle": 2,
-    "pass": 2,
-    "waiting": 1,
-    "processing": 2,
-    "blocked": 0,
-    "excluded": 36,
+    "pass": 3,
+    "waiting": 0,
+    "processing": 0,
+    "blocked": 1,
+    "excluded": 37,
     "unverified_links": 26
   },
   "members": [
@@ -312,8 +312,8 @@
       "source": "arbeitnow",
       "job_snapshot_hash": "fe29a17c7395fb7aefe7a237e025198446f12b3081cc3a82184ae66849c0ae90",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
+      "status": "blocked",
+      "reason": "Paid retry budget exhausted; review required.",
       "verdict": null
     },
     {
@@ -454,9 +454,9 @@
       "url": "https://msd.wd5.myworkdayjobs.com/en-US/SearchJobs/job/USA---New-Jersey---Rahway/Associate-Director-of-AI-Delivery-Management_R426670",
       "source": "workday",
       "job_snapshot_hash": "aa6e40c7ea75a5fc68ffe3d376db34e01ee238a8afc524ee66500f4ecbb25565",
-      "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -466,9 +466,9 @@
       "source": "workday",
       "job_snapshot_hash": "e13697f738d0aa7deb1ce6592333d6ad7dfca9cd130d32960b8a02bba2be3870",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "pass"
     },
     {
       "key": "workday:nvidia:/job/US-CA-Santa-Clara/Senior-Manager--Technical-Program-Management---Planning_JR2029630",
@@ -1024,21 +1024,21 @@
       "status": "failed"
     }
   ],
-  "checked_at": "2026-11-15T06:25:05.971129+00:00",
+  "checked_at": "2026-11-15T06:25:46.512559+00:00",
   "legacy_backlog": {
-    "assessed": 548,
-    "pending": 1,
-    "unresolved": 51,
-    "in_progress": 5,
-    "total": 605,
+    "assessed": 552,
+    "pending": 0,
+    "unresolved": 52,
+    "in_progress": 0,
+    "total": 604,
     "strong": 72
   },
-  "batch_id": "f4585a5589deea535d4ae53f94ff497cd8d1f226dcb70e05ab62c60b845bb51e",
-  "status": "assessing",
+  "batch_id": "22c011b72378c50362edb273b919a3dfabb17cd10e3e4707e13aadf98839db39",
+  "status": "blocked",
   "input_blobs": {
     "jobs.json": "6e2f09238f2cf6cb91b53b011c1a3b6c0ac3813a",
-    "fit_scores.json": "cd12f527dbd2375b1b7ecb18f2e5ae508a70012f",
-    "fit_backfill.json": "15391a44ef9fefdbc99b43725dc04476f23a1e4d",
+    "fit_scores.json": "905b5dfc17aba8cc0e8be243fc86f7608b03d33e",
+    "fit_backfill.json": "fb0ed781e80dc80f36051c4d30b8e560d380dd7a",
     "meta.json": "e6341577f5d0376fd623bc1d436f535a1d83c1f1"
   }
 }
