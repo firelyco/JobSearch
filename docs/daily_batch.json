@@ -7,15 +7,15 @@
   "collection_at": "2026-11-15T06:30:55.093451+00:00",
   "counts": {
     "found": 44,
-    "eligible": 7,
+    "eligible": 6,
     "completed": 5,
     "strong": 0,
     "middle": 2,
     "pass": 3,
     "waiting": 0,
-    "processing": 1,
+    "processing": 0,
     "blocked": 1,
-    "excluded": 37,
+    "excluded": 38,
     "unverified_links": 26
   },
   "members": [
@@ -410,9 +410,9 @@
       "url": "https://jobs.ashbyhq.com/Clera/10660076-9627-4200-a324-ffb9f74c1657",
       "source": "ashby",
       "job_snapshot_hash": "e1d410ab45708342211c7dadb217f50bf7b83c0dd99b3a20d82e9e0277ddc77b",
-      "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -865,21 +865,21 @@
       "status": "failed"
     }
   ],
-  "checked_at": "2026-11-15T06:51:17.555293+00:00",
+  "checked_at": "2026-11-15T06:51:48.040036+00:00",
   "legacy_backlog": {
     "assessed": 546,
     "pending": 0,
     "unresolved": 51,
-    "in_progress": 1,
-    "total": 598,
+    "in_progress": 0,
+    "total": 597,
     "strong": 73
   },
-  "batch_id": "a59aa15bda61d0d9c81b9686698efc48d7027529560839b304c37df2c74d1c2b",
-  "status": "assessing",
+  "batch_id": "151500e07584e63719d6a3c0d71ade22b31e674ec02d64d5bbe64dfdc35b20d5",
+  "status": "blocked",
   "input_blobs": {
     "jobs.json": "3d0b08db6bfc71da0728a444f1cb61646999ed42",
-    "fit_scores.json": "905b5dfc17aba8cc0e8be243fc86f7608b03d33e",
-    "fit_backfill.json": "c7cf36e300e42fd0da8863fd89a5794f6ed21ba9",
+    "fit_scores.json": "05d36139565b64f872c38f2a7ace31262c8a1d64",
+    "fit_backfill.json": "71c5a7d5fb339b00a1b719b9579bb1eba1147698",
     "meta.json": "a58b89512f7327401f18d971c78a00dea198c56c"
   }
 }
