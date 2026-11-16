@@ -7,15 +7,15 @@
   "collection_at": "2026-11-16T06:01:01.054828+00:00",
   "counts": {
     "found": 26,
-    "eligible": 5,
-    "completed": 0,
+    "eligible": 4,
+    "completed": 4,
     "strong": 0,
     "middle": 0,
-    "pass": 0,
-    "waiting": 5,
+    "pass": 4,
+    "waiting": 0,
     "processing": 0,
     "blocked": 0,
-    "excluded": 21,
+    "excluded": 22,
     "unverified_links": 17
   },
   "members": [
@@ -191,9 +191,9 @@
       "source": "arbeitnow",
       "job_snapshot_hash": "beb5e6647fd5465c07f367afe5494f65fea712d4caf4fe276d23285dfccf708a",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "pass"
     },
     {
       "key": "arbeitnow:gitlab:remote-senior-engagement-manager-professional-services-sales-emea-404987",
@@ -202,9 +202,9 @@
       "source": "arbeitnow",
       "job_snapshot_hash": "80f0973ccc7c220a3eb5f76e587c2e5d971c5126fae13143e22613ec81e16b46",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "pass"
     },
     {
       "key": "arbeitnow:gitlab:remote-senior-engagement-manager-professional-services-sales-emea-410334",
@@ -213,9 +213,9 @@
       "source": "arbeitnow",
       "job_snapshot_hash": "de61c425b62ad6cfc2f142f29103542a99910b40306704c477bf170ab1c9cdf1",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "pass"
     },
     {
       "key": "arbeitnow:plancraft:senior-ai-product-manager-hamburg-130427",
@@ -245,9 +245,9 @@
       "url": "https://www.samsara.com/company/careers/roles/8375354?gh_jid=8375354",
       "source": "greenhouse",
       "job_snapshot_hash": "a3aac1d74cfb1f48852356d3e6a5a9b41397c8ebef5d7194295bcff09c304833",
-      "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -257,9 +257,9 @@
       "source": "lever",
       "job_snapshot_hash": "e05471bf5a1d346cec73e1b66654582464dbbe4f75dc4fda9ae2185eb763a44d",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "pass"
     },
     {
       "key": "workday:adobe:/job/Bangalore/AI-Studio---Content-Operations-Lead--GenStudio---Firefly-_R169730-1",
@@ -1478,21 +1478,21 @@
       "status": "failed"
     }
   ],
-  "checked_at": "2026-11-16T06:20:14.023637+00:00",
+  "checked_at": "2026-11-16T06:21:15.646541+00:00",
   "legacy_backlog": {
-    "assessed": 497,
-    "pending": 26,
+    "assessed": 505,
+    "pending": 14,
     "unresolved": 45,
-    "in_progress": 0,
-    "total": 568,
+    "in_progress": 3,
+    "total": 567,
     "strong": 67
   },
-  "batch_id": "1c85a0853c0c24b402ceddfa0e3673fdf4857e6be41019d4259c96602ae5eeff",
-  "status": "assessing",
+  "batch_id": "664269accd3b9bed15e3020999e774ee07e22794d7cca2683a47a1b7af1b8114",
+  "status": "blocked",
   "input_blobs": {
     "jobs.json": "bd9bbdb47a700f3218b1cab98084f7d237aa254a",
-    "fit_scores.json": "554251b6b219b7b677e7855a1a8121d2a3bf109c",
-    "fit_backfill.json": "f998695acad8ae93f4ea0e53ede63ea119462551",
+    "fit_scores.json": "30286daefc1cec1676964d114a6612f9c3014049",
+    "fit_backfill.json": "36d13648591ed153a885f5220e57e781779a5244",
     "meta.json": "1f5637d62f529733b4c71389267dd9a5b687eb1d"
   }
 }
