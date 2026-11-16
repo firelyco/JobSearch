@@ -4,7 +4,7 @@
   "start_hour_eastern": 1,
   "deadline_hour_eastern": 6,
   "collection_completed": true,
-  "collection_at": "2026-11-16T06:30:57.769369+00:00",
+  "collection_at": "2026-11-16T07:01:04.644268+00:00",
   "counts": {
     "found": 27,
     "eligible": 5,
@@ -336,11 +336,16 @@
     "4491211269",
     "4491217258"
   ],
-  "coverage_issues": 43,
+  "coverage_issues": 51,
   "incomplete_sources": [
     {
-      "source": "lever",
-      "label": "palantir",
+      "source": "workday",
+      "label": "capitalone",
+      "status": "failed"
+    },
+    {
+      "source": "workday",
+      "label": "salesforce",
       "status": "failed"
     },
     {
@@ -509,9 +514,19 @@
       "status": "partial"
     },
     {
+      "source": "ashby",
+      "label": "{\"config\": \"whatnot\", \"source\": \"ashby\"}",
+      "status": "failed"
+    },
+    {
       "source": "greenhouse",
       "label": "{\"config\": \"verkada2\", \"source\": \"greenhouse\"}",
       "status": "failed"
+    },
+    {
+      "source": "workday",
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"GOCJobs\", \"tenant\": \"google\", \"wd_server\": \"wd501\"}, \"source\": \"workday\"}",
+      "status": "partial"
     },
     {
       "source": "ashby",
@@ -524,8 +539,18 @@
       "status": "failed"
     },
     {
+      "source": "workday",
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"External_Careers\", \"tenant\": \"genpact\", \"wd_server\": \"wd108\"}, \"source\": \"workday\"}",
+      "status": "failed"
+    },
+    {
       "source": "greenhouse",
       "label": "{\"config\": \"philo\", \"source\": \"greenhouse\"}",
+      "status": "failed"
+    },
+    {
+      "source": "workday",
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"Netflix\", \"tenant\": \"netflix\", \"wd_server\": \"wd108\"}, \"source\": \"workday\"}",
       "status": "failed"
     },
     {
@@ -535,12 +560,27 @@
     },
     {
       "source": "workday",
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"Comcast_Careers\", \"tenant\": \"comcast\", \"wd_server\": \"wd115\"}, \"source\": \"workday\"}",
+      "status": "partial"
+    },
+    {
+      "source": "workday",
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"EXTERNAL\", \"tenant\": \"insmed\", \"wd_server\": \"wd504\"}, \"source\": \"workday\"}",
+      "status": "failed"
+    },
+    {
+      "source": "workday",
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"search\", \"tenant\": \"expedia\", \"wd_server\": \"wd108\"}, \"source\": \"workday\"}",
+      "status": "failed"
+    },
+    {
+      "source": "workday",
       "label": "{\"config\": {\"search\": \"program\", \"site\": \"careers\", \"tenant\": \"gogo\", \"wd_server\": \"wd1\"}, \"source\": \"workday\"}",
       "status": "failed"
     },
     {
-      "source": "ashby",
-      "label": "{\"config\": \"whatnot\", \"source\": \"ashby\"}",
+      "source": "location_check",
+      "label": "location_check",
       "status": "failed"
     },
     {
@@ -554,7 +594,7 @@
       "status": "failed"
     }
   ],
-  "checked_at": "2026-11-16T06:58:42.425482+00:00",
+  "checked_at": "2026-11-16T07:17:05.168138+00:00",
   "legacy_backlog": {
     "assessed": 543,
     "pending": 0,
@@ -563,12 +603,12 @@
     "total": 595,
     "strong": 74
   },
-  "batch_id": "be3aab2b17e6c9b21f0b8cb4c04e39d4084c02d58007c505d9a19cb27077c37e",
+  "batch_id": "664288ffe0b5f3f63839b74410efb59508248d2be1b806c5f84fb69b4b5895d8",
   "status": "blocked",
   "input_blobs": {
-    "jobs.json": "c3ec5aec44f7455d1e309bc0db7e6391446d24c2",
+    "jobs.json": "8d3adca9a86b0d643f505b5e5e5d4906300b2359",
     "fit_scores.json": "08bf9ec8b1f1dfa4a91aeeccc29815f8cea80277",
     "fit_backfill.json": "133731bd9b6b605961181d285afb8ac3ae0174cd",
-    "meta.json": "86995d485bfefa1051cb5f0065c74c57bbc67129"
+    "meta.json": "e44aca9c2cab54e8db91257c63381413f249f34f"
   }
 }
