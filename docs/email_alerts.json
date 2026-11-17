@@ -1,28 +1,28 @@
 {
   "schema": 1,
-  "checked_at": "2026-11-17T06:01:06.891678+00:00",
+  "checked_at": "2026-11-17T06:21:02.635702+00:00",
   "connection": {
     "source": "linkedin_email",
     "label": "LinkedIn job-alert emails",
     "status": "partial",
     "jobs": 1077,
-    "messages_checked": 12,
-    "alerts_with_jobs": 10,
-    "job_references_found": 60,
+    "messages_checked": 0,
+    "alerts_with_jobs": 0,
+    "job_references_found": 0,
     "failed_messages": 0,
-    "alerts_without_job_links": 1,
+    "alerts_without_job_links": 0,
     "messages_deferred": 0,
     "unresolved_alert_messages": 16,
     "lookback_days": 14,
     "mode": "incremental",
-    "search_since": "2026-11-15T07:01:04.644268+00:00",
+    "search_since": "2026-11-16T06:01:06.891678+00:00",
     "last_success_at": null
   },
   "last_success_at": null,
   "scope": "One-time 14-day catch-up, then new unprocessed LinkedIn emails during the daily job search. Collected references are retained; this does not verify all LinkedIn or in-app listings.",
   "counts": {
-    "missing": 859,
-    "possible_match": 218
+    "missing": 863,
+    "possible_match": 214
   },
   "rows": [
     {
@@ -377,6 +377,21 @@
       "reason": "Title/company similarity is not proof of the same requisition."
     },
     {
+      "linkedin_id": "4417771724",
+      "url": "https://www.linkedin.com/jobs/view/4417771724",
+      "title": "Director, Country Operations Management",
+      "company": "Alexion Pharmaceuticals, Inc.",
+      "location": "Boston, MA (Hybrid)",
+      "employer_urls": [],
+      "first_alert_at": "2026-11-16T13:57:42+00:00",
+      "last_alert_at": "2026-11-17T03:57:43+00:00",
+      "collection": "missing",
+      "assessment": "not_assessed",
+      "verdicts": [],
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+    },
+    {
       "linkedin_id": "4418862557",
       "url": "https://www.linkedin.com/jobs/view/4418862557",
       "title": "GPT Infrastructure Lead",
@@ -584,76 +599,6 @@
       ],
       "matches": [
         {
-          "key": "microsoft:microsoft:1970393557056079",
-          "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557056079",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "microsoft:microsoft:1970393557050858",
-          "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050858",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "microsoft:microsoft:1970393557053870",
-          "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557053870",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "microsoft:microsoft:1970393557048060",
-          "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557048060",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "microsoft:microsoft:1970393557056005",
-          "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557056005",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "microsoft:microsoft:1970393557050859",
-          "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050859",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "microsoft:microsoft:1970393557050672",
-          "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050672",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "microsoft:microsoft:1970393557004652",
-          "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557004652",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "microsoft:microsoft:1970393557050805",
-          "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050805",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "microsoft:microsoft:1970393557050856",
-          "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050856",
-          "assessment_date_eligible": true
-        },
-        {
           "key": "microsoft:microsoft:1970393557043344",
           "title": "Principal Technical Program Manager",
           "company": "microsoft",
@@ -703,6 +648,13 @@
           "assessment_date_eligible": true
         },
         {
+          "key": "microsoft:microsoft:1970393557048060",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557048060",
+          "assessment_date_eligible": true
+        },
+        {
           "key": "microsoft:microsoft:1970393557050589",
           "title": "Principal Technical Program Manager",
           "company": "microsoft",
@@ -717,10 +669,73 @@
           "assessment_date_eligible": true
         },
         {
+          "key": "microsoft:microsoft:1970393557050805",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050805",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "microsoft:microsoft:1970393557050856",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050856",
+          "assessment_date_eligible": true
+        },
+        {
           "key": "microsoft:microsoft:1970393557051417",
           "title": "Principal Technical Program Manager",
           "company": "microsoft",
           "url": "https://apply.careers.microsoft.com/careers/job/1970393557051417",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "microsoft:microsoft:1970393557056005",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557056005",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "microsoft:microsoft:1970393557050859",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050859",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "microsoft:microsoft:1970393557050672",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050672",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "microsoft:microsoft:1970393557004652",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557004652",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "microsoft:microsoft:1970393557053870",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557053870",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "microsoft:microsoft:1970393557056079",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557056079",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "microsoft:microsoft:1970393557050858",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050858",
           "assessment_date_eligible": true
         }
       ],
@@ -2365,17 +2380,17 @@
       ],
       "matches": [
         {
-          "key": "microsoft:microsoft:1970393557045917",
-          "title": "Principal Technical Program Manager - FDE",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557045917",
-          "assessment_date_eligible": true
-        },
-        {
           "key": "microsoft:microsoft:1970393556939562",
           "title": "Principal Technical Program Manager - FDE",
           "company": "microsoft",
           "url": "https://apply.careers.microsoft.com/careers/job/1970393556939562",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "microsoft:microsoft:1970393557045917",
+          "title": "Principal Technical Program Manager - FDE",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557045917",
           "assessment_date_eligible": true
         }
       ],
@@ -3001,18 +3016,11 @@
       "first_alert_at": "2026-11-08T15:57:42+00:00",
       "last_alert_at": "2026-11-08T15:57:42+00:00",
       "collection": "possible_match",
-      "assessment": "assessed",
+      "assessment": "outside_date_scope",
       "verdicts": [
         "Middle"
       ],
       "matches": [
-        {
-          "key": "greenhouse:affirm:7832310003",
-          "title": "Senior Technical Program Manager",
-          "company": "affirm",
-          "url": "https://job-boards.greenhouse.io/affirm/jobs/7832310003",
-          "assessment_date_eligible": false
-        },
         {
           "key": "greenhouse:affirm:8199159003",
           "title": "Senior Technical Program Manager",
@@ -3033,6 +3041,13 @@
           "company": "affirm",
           "url": "https://job-boards.greenhouse.io/affirm/jobs/8199157003",
           "assessment_date_eligible": true
+        },
+        {
+          "key": "greenhouse:affirm:7832310003",
+          "title": "Senior Technical Program Manager",
+          "company": "affirm",
+          "url": "https://job-boards.greenhouse.io/affirm/jobs/7832310003",
+          "assessment_date_eligible": false
         }
       ],
       "reason": "Title/company similarity is not proof of the same requisition."
@@ -3047,18 +3062,11 @@
       "first_alert_at": "2026-10-17T15:57:41+00:00",
       "last_alert_at": "2026-11-09T05:57:43+00:00",
       "collection": "possible_match",
-      "assessment": "assessed",
+      "assessment": "outside_date_scope",
       "verdicts": [
         "Middle"
       ],
       "matches": [
-        {
-          "key": "greenhouse:affirm:7832310003",
-          "title": "Senior Technical Program Manager",
-          "company": "affirm",
-          "url": "https://job-boards.greenhouse.io/affirm/jobs/7832310003",
-          "assessment_date_eligible": false
-        },
         {
           "key": "greenhouse:affirm:8199159003",
           "title": "Senior Technical Program Manager",
@@ -3079,6 +3087,13 @@
           "company": "affirm",
           "url": "https://job-boards.greenhouse.io/affirm/jobs/8199157003",
           "assessment_date_eligible": true
+        },
+        {
+          "key": "greenhouse:affirm:7832310003",
+          "title": "Senior Technical Program Manager",
+          "company": "affirm",
+          "url": "https://job-boards.greenhouse.io/affirm/jobs/7832310003",
+          "assessment_date_eligible": false
         }
       ],
       "reason": "Title/company similarity is not proof of the same requisition."
@@ -3093,18 +3108,11 @@
       "first_alert_at": "2026-10-16T15:57:43+00:00",
       "last_alert_at": "2026-10-16T15:57:43+00:00",
       "collection": "possible_match",
-      "assessment": "assessed",
+      "assessment": "outside_date_scope",
       "verdicts": [
         "Middle"
       ],
       "matches": [
-        {
-          "key": "greenhouse:affirm:7832310003",
-          "title": "Senior Technical Program Manager",
-          "company": "affirm",
-          "url": "https://job-boards.greenhouse.io/affirm/jobs/7832310003",
-          "assessment_date_eligible": false
-        },
         {
           "key": "greenhouse:affirm:8199159003",
           "title": "Senior Technical Program Manager",
@@ -3125,6 +3133,13 @@
           "company": "affirm",
           "url": "https://job-boards.greenhouse.io/affirm/jobs/8199157003",
           "assessment_date_eligible": true
+        },
+        {
+          "key": "greenhouse:affirm:7832310003",
+          "title": "Senior Technical Program Manager",
+          "company": "affirm",
+          "url": "https://job-boards.greenhouse.io/affirm/jobs/7832310003",
+          "assessment_date_eligible": false
         }
       ],
       "reason": "Title/company similarity is not proof of the same requisition."
@@ -3139,18 +3154,11 @@
       "first_alert_at": "2026-10-17T15:57:41+00:00",
       "last_alert_at": "2026-10-17T15:57:41+00:00",
       "collection": "possible_match",
-      "assessment": "assessed",
+      "assessment": "outside_date_scope",
       "verdicts": [
         "Middle"
       ],
       "matches": [
-        {
-          "key": "greenhouse:affirm:7832310003",
-          "title": "Senior Technical Program Manager",
-          "company": "affirm",
-          "url": "https://job-boards.greenhouse.io/affirm/jobs/7832310003",
-          "assessment_date_eligible": false
-        },
         {
           "key": "greenhouse:affirm:8199159003",
           "title": "Senior Technical Program Manager",
@@ -3171,6 +3179,13 @@
           "company": "affirm",
           "url": "https://job-boards.greenhouse.io/affirm/jobs/8199157003",
           "assessment_date_eligible": true
+        },
+        {
+          "key": "greenhouse:affirm:7832310003",
+          "title": "Senior Technical Program Manager",
+          "company": "affirm",
+          "url": "https://job-boards.greenhouse.io/affirm/jobs/7832310003",
+          "assessment_date_eligible": false
         }
       ],
       "reason": "Title/company similarity is not proof of the same requisition."
@@ -3200,18 +3215,11 @@
       "first_alert_at": "2026-11-08T15:57:42+00:00",
       "last_alert_at": "2026-11-08T15:57:42+00:00",
       "collection": "possible_match",
-      "assessment": "assessed",
+      "assessment": "outside_date_scope",
       "verdicts": [
         "Middle"
       ],
       "matches": [
-        {
-          "key": "greenhouse:affirm:7832310003",
-          "title": "Senior Technical Program Manager",
-          "company": "affirm",
-          "url": "https://job-boards.greenhouse.io/affirm/jobs/7832310003",
-          "assessment_date_eligible": false
-        },
         {
           "key": "greenhouse:affirm:8199159003",
           "title": "Senior Technical Program Manager",
@@ -3232,6 +3240,13 @@
           "company": "affirm",
           "url": "https://job-boards.greenhouse.io/affirm/jobs/8199157003",
           "assessment_date_eligible": true
+        },
+        {
+          "key": "greenhouse:affirm:7832310003",
+          "title": "Senior Technical Program Manager",
+          "company": "affirm",
+          "url": "https://job-boards.greenhouse.io/affirm/jobs/7832310003",
+          "assessment_date_eligible": false
         }
       ],
       "reason": "Title/company similarity is not proof of the same requisition."
@@ -4024,19 +4039,11 @@
       "employer_urls": [],
       "first_alert_at": "2026-10-16T01:57:43+00:00",
       "last_alert_at": "2026-10-16T01:57:43+00:00",
-      "collection": "possible_match",
+      "collection": "missing",
       "assessment": "not_assessed",
       "verdicts": [],
-      "matches": [
-        {
-          "key": "workday:visa:/job/US---Foster-City-CA/Director--Product-Builder_REF088214W",
-          "title": "Director, Product Builder",
-          "company": "visa",
-          "url": "https://visa.wd5.myworkdayjobs.com/en-US/Visa/job/US---Foster-City-CA/Director--Product-Builder_REF088214W",
-          "assessment_date_eligible": true
-        }
-      ],
-      "reason": "Title/company similarity is not proof of the same requisition."
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
     },
     {
       "linkedin_id": "4468891650",
@@ -4259,27 +4266,6 @@
       ],
       "matches": [
         {
-          "key": "workday:walmart:/job/USA-ISD-Office---DGTC-AR-BENTONVILLE-Home-Office/XMLNAME--USA--Principal--Technical-Program-Manager_R-2682765-1",
-          "title": "(USA) Principal, Technical Program Manager",
-          "company": "walmart",
-          "url": "https://walmart.wd504.myworkdayjobs.com/en-US/WalmartExternal/job/USA-ISD-Office---DGTC-AR-BENTONVILLE-Home-Office/XMLNAME--USA--Principal--Technical-Program-Manager_R-2682765-1",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "workday:walmart:/job/USA-Crossman-Respect-Building-CA-SUNNYVALE-Home-Office/XMLNAME--USA--Principal--Technical-Program-Manager_R-2655207-1",
-          "title": "(USA) Principal, Technical Program Manager",
-          "company": "walmart",
-          "url": "https://walmart.wd504.myworkdayjobs.com/en-US/WalmartExternal/job/USA-Crossman-Respect-Building-CA-SUNNYVALE-Home-Office/XMLNAME--USA--Principal--Technical-Program-Manager_R-2655207-1",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "workday:walmart:/job/USA-Bentonville-Global-Tech-AR-BENTONVILLE-Home-Office/XMLNAME--USA--Principal--Technical-Program-Manager_R-2685379-2",
-          "title": "(USA) Principal, Technical Program Manager",
-          "company": "walmart",
-          "url": "https://walmart.wd504.myworkdayjobs.com/en-US/WalmartExternal/job/USA-Bentonville-Global-Tech-AR-BENTONVILLE-Home-Office/XMLNAME--USA--Principal--Technical-Program-Manager_R-2685379-2",
-          "assessment_date_eligible": true
-        },
-        {
           "key": "workday:walmart:/job/USA-SUNNYVALE-TECH-CORNERS-CA-SUNNYVALE-Home-Office/XMLNAME--USA--Principal--Technical-Program-Manager_R-2671852-2",
           "title": "(USA) Principal, Technical Program Manager",
           "company": "walmart",
@@ -4305,6 +4291,27 @@
           "title": "(USA) Principal, Technical Program Manager",
           "company": "walmart",
           "url": "https://walmart.wd504.myworkdayjobs.com/en-US/WalmartExternal/job/USA-Sams-Home-Office-AR-Bentonville-Home-Office/XMLNAME--USA--Principal--Technical-Program-Manager_R-2647013-1",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "workday:walmart:/job/USA-Bentonville-Global-Tech-AR-BENTONVILLE-Home-Office/XMLNAME--USA--Principal--Technical-Program-Manager_R-2685379-2",
+          "title": "(USA) Principal, Technical Program Manager",
+          "company": "walmart",
+          "url": "https://walmart.wd504.myworkdayjobs.com/en-US/WalmartExternal/job/USA-Bentonville-Global-Tech-AR-BENTONVILLE-Home-Office/XMLNAME--USA--Principal--Technical-Program-Manager_R-2685379-2",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "workday:walmart:/job/USA-Crossman-Respect-Building-CA-SUNNYVALE-Home-Office/XMLNAME--USA--Principal--Technical-Program-Manager_R-2655207-1",
+          "title": "(USA) Principal, Technical Program Manager",
+          "company": "walmart",
+          "url": "https://walmart.wd504.myworkdayjobs.com/en-US/WalmartExternal/job/USA-Crossman-Respect-Building-CA-SUNNYVALE-Home-Office/XMLNAME--USA--Principal--Technical-Program-Manager_R-2655207-1",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "workday:walmart:/job/USA-ISD-Office---DGTC-AR-BENTONVILLE-Home-Office/XMLNAME--USA--Principal--Technical-Program-Manager_R-2682765-1",
+          "title": "(USA) Principal, Technical Program Manager",
+          "company": "walmart",
+          "url": "https://walmart.wd504.myworkdayjobs.com/en-US/WalmartExternal/job/USA-ISD-Office---DGTC-AR-BENTONVILLE-Home-Office/XMLNAME--USA--Principal--Technical-Program-Manager_R-2682765-1",
           "assessment_date_eligible": true
         }
       ],
@@ -4326,27 +4333,6 @@
       ],
       "matches": [
         {
-          "key": "workday:walmart:/job/USA-ISD-Office---DGTC-AR-BENTONVILLE-Home-Office/XMLNAME--USA--Principal--Technical-Program-Manager_R-2682765-1",
-          "title": "(USA) Principal, Technical Program Manager",
-          "company": "walmart",
-          "url": "https://walmart.wd504.myworkdayjobs.com/en-US/WalmartExternal/job/USA-ISD-Office---DGTC-AR-BENTONVILLE-Home-Office/XMLNAME--USA--Principal--Technical-Program-Manager_R-2682765-1",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "workday:walmart:/job/USA-Crossman-Respect-Building-CA-SUNNYVALE-Home-Office/XMLNAME--USA--Principal--Technical-Program-Manager_R-2655207-1",
-          "title": "(USA) Principal, Technical Program Manager",
-          "company": "walmart",
-          "url": "https://walmart.wd504.myworkdayjobs.com/en-US/WalmartExternal/job/USA-Crossman-Respect-Building-CA-SUNNYVALE-Home-Office/XMLNAME--USA--Principal--Technical-Program-Manager_R-2655207-1",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "workday:walmart:/job/USA-Bentonville-Global-Tech-AR-BENTONVILLE-Home-Office/XMLNAME--USA--Principal--Technical-Program-Manager_R-2685379-2",
-          "title": "(USA) Principal, Technical Program Manager",
-          "company": "walmart",
-          "url": "https://walmart.wd504.myworkdayjobs.com/en-US/WalmartExternal/job/USA-Bentonville-Global-Tech-AR-BENTONVILLE-Home-Office/XMLNAME--USA--Principal--Technical-Program-Manager_R-2685379-2",
-          "assessment_date_eligible": true
-        },
-        {
           "key": "workday:walmart:/job/USA-SUNNYVALE-TECH-CORNERS-CA-SUNNYVALE-Home-Office/XMLNAME--USA--Principal--Technical-Program-Manager_R-2671852-2",
           "title": "(USA) Principal, Technical Program Manager",
           "company": "walmart",
@@ -4372,6 +4358,27 @@
           "title": "(USA) Principal, Technical Program Manager",
           "company": "walmart",
           "url": "https://walmart.wd504.myworkdayjobs.com/en-US/WalmartExternal/job/USA-Sams-Home-Office-AR-Bentonville-Home-Office/XMLNAME--USA--Principal--Technical-Program-Manager_R-2647013-1",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "workday:walmart:/job/USA-Bentonville-Global-Tech-AR-BENTONVILLE-Home-Office/XMLNAME--USA--Principal--Technical-Program-Manager_R-2685379-2",
+          "title": "(USA) Principal, Technical Program Manager",
+          "company": "walmart",
+          "url": "https://walmart.wd504.myworkdayjobs.com/en-US/WalmartExternal/job/USA-Bentonville-Global-Tech-AR-BENTONVILLE-Home-Office/XMLNAME--USA--Principal--Technical-Program-Manager_R-2685379-2",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "workday:walmart:/job/USA-Crossman-Respect-Building-CA-SUNNYVALE-Home-Office/XMLNAME--USA--Principal--Technical-Program-Manager_R-2655207-1",
+          "title": "(USA) Principal, Technical Program Manager",
+          "company": "walmart",
+          "url": "https://walmart.wd504.myworkdayjobs.com/en-US/WalmartExternal/job/USA-Crossman-Respect-Building-CA-SUNNYVALE-Home-Office/XMLNAME--USA--Principal--Technical-Program-Manager_R-2655207-1",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "workday:walmart:/job/USA-ISD-Office---DGTC-AR-BENTONVILLE-Home-Office/XMLNAME--USA--Principal--Technical-Program-Manager_R-2682765-1",
+          "title": "(USA) Principal, Technical Program Manager",
+          "company": "walmart",
+          "url": "https://walmart.wd504.myworkdayjobs.com/en-US/WalmartExternal/job/USA-ISD-Office---DGTC-AR-BENTONVILLE-Home-Office/XMLNAME--USA--Principal--Technical-Program-Manager_R-2682765-1",
           "assessment_date_eligible": true
         }
       ],
@@ -4896,19 +4903,11 @@
       "employer_urls": [],
       "first_alert_at": "2026-10-18T01:57:43+00:00",
       "last_alert_at": "2026-11-12T21:57:43+00:00",
-      "collection": "possible_match",
+      "collection": "missing",
       "assessment": "not_assessed",
       "verdicts": [],
-      "matches": [
-        {
-          "key": "workday:visa:/job/US---Foster-City-CA/Director--Platform-Engineering_REF088255W",
-          "title": "Director, Platform Engineering",
-          "company": "visa",
-          "url": "https://visa.wd5.myworkdayjobs.com/en-US/Visa/job/US---Foster-City-CA/Director--Platform-Engineering_REF088255W",
-          "assessment_date_eligible": true
-        }
-      ],
-      "reason": "Title/company similarity is not proof of the same requisition."
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
     },
     {
       "linkedin_id": "4471871796",
@@ -5321,6 +5320,36 @@
       "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
     },
     {
+      "linkedin_id": "4473393431",
+      "url": "https://www.linkedin.com/jobs/view/4473393431",
+      "title": "Staff Technical Program Manager, Commercialization",
+      "company": "Waymo",
+      "location": "Mountain View, CA",
+      "employer_urls": [],
+      "first_alert_at": "2026-11-17T05:57:43+00:00",
+      "last_alert_at": "2026-11-17T05:57:43+00:00",
+      "collection": "missing",
+      "assessment": "not_assessed",
+      "verdicts": [],
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+    },
+    {
+      "linkedin_id": "4473396629",
+      "url": "https://www.linkedin.com/jobs/view/4473396629",
+      "title": "Global IT Software Engineer Senior Director & Tech Area Lead - Legal",
+      "company": "Boston Consulting Group (BCG)",
+      "location": "Boston, MA",
+      "employer_urls": [],
+      "first_alert_at": "2026-11-16T13:57:42+00:00",
+      "last_alert_at": "2026-11-17T03:57:43+00:00",
+      "collection": "missing",
+      "assessment": "not_assessed",
+      "verdicts": [],
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+    },
+    {
       "linkedin_id": "4473598873",
       "url": "https://www.linkedin.com/jobs/view/4473598873",
       "title": "Head of Autonomous Driving Technology & AI Development",
@@ -5383,76 +5412,6 @@
       ],
       "matches": [
         {
-          "key": "microsoft:microsoft:1970393557056079",
-          "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557056079",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "microsoft:microsoft:1970393557050858",
-          "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050858",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "microsoft:microsoft:1970393557053870",
-          "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557053870",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "microsoft:microsoft:1970393557048060",
-          "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557048060",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "microsoft:microsoft:1970393557056005",
-          "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557056005",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "microsoft:microsoft:1970393557050859",
-          "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050859",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "microsoft:microsoft:1970393557050672",
-          "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050672",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "microsoft:microsoft:1970393557004652",
-          "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557004652",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "microsoft:microsoft:1970393557050805",
-          "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050805",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "microsoft:microsoft:1970393557050856",
-          "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050856",
-          "assessment_date_eligible": true
-        },
-        {
           "key": "microsoft:microsoft:1970393557043344",
           "title": "Principal Technical Program Manager",
           "company": "microsoft",
@@ -5502,6 +5461,13 @@
           "assessment_date_eligible": true
         },
         {
+          "key": "microsoft:microsoft:1970393557048060",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557048060",
+          "assessment_date_eligible": true
+        },
+        {
           "key": "microsoft:microsoft:1970393557050589",
           "title": "Principal Technical Program Manager",
           "company": "microsoft",
@@ -5516,14 +5482,92 @@
           "assessment_date_eligible": true
         },
         {
+          "key": "microsoft:microsoft:1970393557050805",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050805",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "microsoft:microsoft:1970393557050856",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050856",
+          "assessment_date_eligible": true
+        },
+        {
           "key": "microsoft:microsoft:1970393557051417",
           "title": "Principal Technical Program Manager",
           "company": "microsoft",
           "url": "https://apply.careers.microsoft.com/careers/job/1970393557051417",
           "assessment_date_eligible": true
+        },
+        {
+          "key": "microsoft:microsoft:1970393557056005",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557056005",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "microsoft:microsoft:1970393557050859",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050859",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "microsoft:microsoft:1970393557050672",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050672",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "microsoft:microsoft:1970393557004652",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557004652",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "microsoft:microsoft:1970393557053870",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557053870",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "microsoft:microsoft:1970393557056079",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557056079",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "microsoft:microsoft:1970393557050858",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050858",
+          "assessment_date_eligible": true
         }
       ],
       "reason": "Title/company similarity is not proof of the same requisition."
+    },
+    {
+      "linkedin_id": "4473807000",
+      "url": "https://www.linkedin.com/jobs/view/4473807000",
+      "title": "Staff Technical Program Manager, Commercialization",
+      "company": "Waymo",
+      "location": "San Francisco, CA",
+      "employer_urls": [],
+      "first_alert_at": "2026-11-16T17:57:41+00:00",
+      "last_alert_at": "2026-11-17T05:57:43+00:00",
+      "collection": "missing",
+      "assessment": "not_assessed",
+      "verdicts": [],
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
     },
     {
       "linkedin_id": "4473856765",
@@ -5559,19 +5603,11 @@
       "employer_urls": [],
       "first_alert_at": "2026-10-28T01:57:43+00:00",
       "last_alert_at": "2026-10-28T01:57:43+00:00",
-      "collection": "possible_match",
+      "collection": "missing",
       "assessment": "not_assessed",
       "verdicts": [],
-      "matches": [
-        {
-          "key": "workday:visa:/job/US---Foster-City-CA/Director-of-Engineering--Visa-Corporate-Facilities--Building-Systems---Controls_REF087573W",
-          "title": "Director, Facilities & Operations Engineering",
-          "company": "visa",
-          "url": "https://visa.wd5.myworkdayjobs.com/en-US/Visa/job/US---Foster-City-CA/Director-of-Engineering--Visa-Corporate-Facilities--Building-Systems---Controls_REF087573W",
-          "assessment_date_eligible": true
-        }
-      ],
-      "reason": "Title/company similarity is not proof of the same requisition."
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
     },
     {
       "linkedin_id": "4474083437",
@@ -5851,6 +5887,45 @@
       "employer_urls": [],
       "first_alert_at": "2026-10-25T21:57:42+00:00",
       "last_alert_at": "2026-10-25T21:57:42+00:00",
+      "collection": "possible_match",
+      "assessment": "assessed",
+      "verdicts": [
+        "Strong"
+      ],
+      "matches": [
+        {
+          "key": "workday:capitalone:/job/McLean-VA/Director--Technical-Program-Management_R1002717-1",
+          "title": "Director, Technical Program Management",
+          "company": "capitalone",
+          "url": "https://capitalone.wd12.myworkdayjobs.com/en-US/Capital_One/job/McLean-VA/Director--Technical-Program-Management_R1002717-1",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "workday:capitalone:/job/McLean-VA/Director--Technical-Program-Management_R1003044-1",
+          "title": "Director, Technical Program Management",
+          "company": "capitalone",
+          "url": "https://capitalone.wd12.myworkdayjobs.com/en-US/Capital_One/job/McLean-VA/Director--Technical-Program-Management_R1003044-1",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "workday:capitalone:/job/Toronto-ON/Director--Technical-Program-Management_R249913",
+          "title": "Director, Technical Program Management",
+          "company": "capitalone",
+          "url": "https://capitalone.wd12.myworkdayjobs.com/en-US/Capital_One/job/Toronto-ON/Director--Technical-Program-Management_R249913",
+          "assessment_date_eligible": true
+        }
+      ],
+      "reason": "Title/company similarity is not proof of the same requisition."
+    },
+    {
+      "linkedin_id": "4475026159",
+      "url": "https://www.linkedin.com/jobs/view/4475026159",
+      "title": "Director, Technical Program Management",
+      "company": "Capital One",
+      "location": "Cambridge, MA",
+      "employer_urls": [],
+      "first_alert_at": "2026-11-16T13:57:42+00:00",
+      "last_alert_at": "2026-11-17T03:57:43+00:00",
       "collection": "possible_match",
       "assessment": "assessed",
       "verdicts": [
@@ -7576,8 +7651,10 @@
       "first_alert_at": "2026-10-21T03:57:41+00:00",
       "last_alert_at": "2026-10-21T03:57:41+00:00",
       "collection": "possible_match",
-      "assessment": "reassessment_pending",
-      "verdicts": [],
+      "assessment": "assessed",
+      "verdicts": [
+        "Middle"
+      ],
       "matches": [
         {
           "key": "greenhouse:databricks:8818577002",
@@ -8599,76 +8676,6 @@
       ],
       "matches": [
         {
-          "key": "microsoft:microsoft:1970393557056079",
-          "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557056079",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "microsoft:microsoft:1970393557050858",
-          "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050858",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "microsoft:microsoft:1970393557053870",
-          "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557053870",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "microsoft:microsoft:1970393557048060",
-          "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557048060",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "microsoft:microsoft:1970393557056005",
-          "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557056005",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "microsoft:microsoft:1970393557050859",
-          "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050859",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "microsoft:microsoft:1970393557050672",
-          "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050672",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "microsoft:microsoft:1970393557004652",
-          "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557004652",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "microsoft:microsoft:1970393557050805",
-          "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050805",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "microsoft:microsoft:1970393557050856",
-          "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050856",
-          "assessment_date_eligible": true
-        },
-        {
           "key": "microsoft:microsoft:1970393557043344",
           "title": "Principal Technical Program Manager",
           "company": "microsoft",
@@ -8718,6 +8725,13 @@
           "assessment_date_eligible": true
         },
         {
+          "key": "microsoft:microsoft:1970393557048060",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557048060",
+          "assessment_date_eligible": true
+        },
+        {
           "key": "microsoft:microsoft:1970393557050589",
           "title": "Principal Technical Program Manager",
           "company": "microsoft",
@@ -8732,10 +8746,73 @@
           "assessment_date_eligible": true
         },
         {
+          "key": "microsoft:microsoft:1970393557050805",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050805",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "microsoft:microsoft:1970393557050856",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050856",
+          "assessment_date_eligible": true
+        },
+        {
           "key": "microsoft:microsoft:1970393557051417",
           "title": "Principal Technical Program Manager",
           "company": "microsoft",
           "url": "https://apply.careers.microsoft.com/careers/job/1970393557051417",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "microsoft:microsoft:1970393557056005",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557056005",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "microsoft:microsoft:1970393557050859",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050859",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "microsoft:microsoft:1970393557050672",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050672",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "microsoft:microsoft:1970393557004652",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557004652",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "microsoft:microsoft:1970393557053870",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557053870",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "microsoft:microsoft:1970393557056079",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557056079",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "microsoft:microsoft:1970393557050858",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050858",
           "assessment_date_eligible": true
         }
       ],
@@ -11105,6 +11182,21 @@
       "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
     },
     {
+      "linkedin_id": "4481690232",
+      "url": "https://www.linkedin.com/jobs/view/4481690232",
+      "title": "Principal/Senior Program Manager",
+      "company": "Archer",
+      "location": "United States (Remote)",
+      "employer_urls": [],
+      "first_alert_at": "2026-11-17T05:57:43+00:00",
+      "last_alert_at": "2026-11-17T05:57:43+00:00",
+      "collection": "missing",
+      "assessment": "not_assessed",
+      "verdicts": [],
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+    },
+    {
       "linkedin_id": "4481690417",
       "url": "https://www.linkedin.com/jobs/view/4481690417",
       "title": "Lead Principal Technical Program Manager",
@@ -12723,6 +12815,21 @@
       "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
     },
     {
+      "linkedin_id": "4483100176",
+      "url": "https://www.linkedin.com/jobs/view/4483100176",
+      "title": "Sr Director, Clinical Excellence Group Lead (I&I)",
+      "company": "Pfizer",
+      "location": "Cambridge, MA",
+      "employer_urls": [],
+      "first_alert_at": "2026-11-16T13:57:42+00:00",
+      "last_alert_at": "2026-11-17T03:57:43+00:00",
+      "collection": "missing",
+      "assessment": "not_assessed",
+      "verdicts": [],
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+    },
+    {
       "linkedin_id": "4483121071",
       "url": "https://www.linkedin.com/jobs/view/4483121071",
       "title": "Principal, Strategy & Business Operations - Mid-Market",
@@ -12920,76 +13027,6 @@
       ],
       "matches": [
         {
-          "key": "microsoft:microsoft:1970393557056079",
-          "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557056079",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "microsoft:microsoft:1970393557050858",
-          "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050858",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "microsoft:microsoft:1970393557053870",
-          "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557053870",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "microsoft:microsoft:1970393557048060",
-          "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557048060",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "microsoft:microsoft:1970393557056005",
-          "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557056005",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "microsoft:microsoft:1970393557050859",
-          "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050859",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "microsoft:microsoft:1970393557050672",
-          "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050672",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "microsoft:microsoft:1970393557004652",
-          "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557004652",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "microsoft:microsoft:1970393557050805",
-          "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050805",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "microsoft:microsoft:1970393557050856",
-          "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050856",
-          "assessment_date_eligible": true
-        },
-        {
           "key": "microsoft:microsoft:1970393557043344",
           "title": "Principal Technical Program Manager",
           "company": "microsoft",
@@ -13039,6 +13076,13 @@
           "assessment_date_eligible": true
         },
         {
+          "key": "microsoft:microsoft:1970393557048060",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557048060",
+          "assessment_date_eligible": true
+        },
+        {
           "key": "microsoft:microsoft:1970393557050589",
           "title": "Principal Technical Program Manager",
           "company": "microsoft",
@@ -13053,10 +13097,73 @@
           "assessment_date_eligible": true
         },
         {
+          "key": "microsoft:microsoft:1970393557050805",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050805",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "microsoft:microsoft:1970393557050856",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050856",
+          "assessment_date_eligible": true
+        },
+        {
           "key": "microsoft:microsoft:1970393557051417",
           "title": "Principal Technical Program Manager",
           "company": "microsoft",
           "url": "https://apply.careers.microsoft.com/careers/job/1970393557051417",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "microsoft:microsoft:1970393557056005",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557056005",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "microsoft:microsoft:1970393557050859",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050859",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "microsoft:microsoft:1970393557050672",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050672",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "microsoft:microsoft:1970393557004652",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557004652",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "microsoft:microsoft:1970393557053870",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557053870",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "microsoft:microsoft:1970393557056079",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557056079",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "microsoft:microsoft:1970393557050858",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050858",
           "assessment_date_eligible": true
         }
       ],
@@ -17487,6 +17594,21 @@
       "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
     },
     {
+      "linkedin_id": "4486799553",
+      "url": "https://www.linkedin.com/jobs/view/4486799553",
+      "title": "Director, Consulting",
+      "company": "Kotter",
+      "location": "Boston, MA (Remote)",
+      "employer_urls": [],
+      "first_alert_at": "2026-11-16T17:52:57+00:00",
+      "last_alert_at": "2026-11-16T17:52:57+00:00",
+      "collection": "missing",
+      "assessment": "not_assessed",
+      "verdicts": [],
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+    },
+    {
       "linkedin_id": "4486803956",
       "url": "https://www.linkedin.com/jobs/view/4486803956",
       "title": "Associate Deputy Director for Program Enablement \u2013 Active Security Clearance Required",
@@ -18241,76 +18363,6 @@
       ],
       "matches": [
         {
-          "key": "microsoft:microsoft:1970393557056079",
-          "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557056079",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "microsoft:microsoft:1970393557050858",
-          "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050858",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "microsoft:microsoft:1970393557053870",
-          "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557053870",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "microsoft:microsoft:1970393557048060",
-          "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557048060",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "microsoft:microsoft:1970393557056005",
-          "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557056005",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "microsoft:microsoft:1970393557050859",
-          "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050859",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "microsoft:microsoft:1970393557050672",
-          "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050672",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "microsoft:microsoft:1970393557004652",
-          "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557004652",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "microsoft:microsoft:1970393557050805",
-          "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050805",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "microsoft:microsoft:1970393557050856",
-          "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050856",
-          "assessment_date_eligible": true
-        },
-        {
           "key": "microsoft:microsoft:1970393557043344",
           "title": "Principal Technical Program Manager",
           "company": "microsoft",
@@ -18360,6 +18412,13 @@
           "assessment_date_eligible": true
         },
         {
+          "key": "microsoft:microsoft:1970393557048060",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557048060",
+          "assessment_date_eligible": true
+        },
+        {
           "key": "microsoft:microsoft:1970393557050589",
           "title": "Principal Technical Program Manager",
           "company": "microsoft",
@@ -18374,10 +18433,73 @@
           "assessment_date_eligible": true
         },
         {
+          "key": "microsoft:microsoft:1970393557050805",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050805",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "microsoft:microsoft:1970393557050856",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050856",
+          "assessment_date_eligible": true
+        },
+        {
           "key": "microsoft:microsoft:1970393557051417",
           "title": "Principal Technical Program Manager",
           "company": "microsoft",
           "url": "https://apply.careers.microsoft.com/careers/job/1970393557051417",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "microsoft:microsoft:1970393557056005",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557056005",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "microsoft:microsoft:1970393557050859",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050859",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "microsoft:microsoft:1970393557050672",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050672",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "microsoft:microsoft:1970393557004652",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557004652",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "microsoft:microsoft:1970393557053870",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557053870",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "microsoft:microsoft:1970393557056079",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557056079",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "microsoft:microsoft:1970393557050858",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050858",
           "assessment_date_eligible": true
         }
       ],
@@ -19538,19 +19660,11 @@
       "employer_urls": [],
       "first_alert_at": "2026-11-07T23:54:43+00:00",
       "last_alert_at": "2026-11-07T23:54:43+00:00",
-      "collection": "possible_match",
+      "collection": "missing",
       "assessment": "not_assessed",
       "verdicts": [],
-      "matches": [
-        {
-          "key": "workday:visa:/job/US---Austin-TX/Vice-President--Digital-Enablement-Solutions--DES-_REF083013W",
-          "title": "Vice President, Digital Enablement Solutions (DES)",
-          "company": "visa",
-          "url": "https://visa.wd5.myworkdayjobs.com/en-US/Visa/job/US---Austin-TX/Vice-President--Digital-Enablement-Solutions--DES-_REF083013W",
-          "assessment_date_eligible": true
-        }
-      ],
-      "reason": "Title/company similarity is not proof of the same requisition."
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
     },
     {
       "linkedin_id": "4488464546",
@@ -20637,6 +20751,36 @@
       "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
     },
     {
+      "linkedin_id": "4489395982",
+      "url": "https://www.linkedin.com/jobs/view/4489395982",
+      "title": "Technical Program Manager, Quantum Technology",
+      "company": "Applied Materials",
+      "location": "Santa Clara, CA",
+      "employer_urls": [],
+      "first_alert_at": "2026-11-16T15:57:41+00:00",
+      "last_alert_at": "2026-11-16T23:57:42+00:00",
+      "collection": "missing",
+      "assessment": "not_assessed",
+      "verdicts": [],
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+    },
+    {
+      "linkedin_id": "4489397884",
+      "url": "https://www.linkedin.com/jobs/view/4489397884",
+      "title": "Technical Project/Program Management Director - Advanced Packaging",
+      "company": "Applied Materials",
+      "location": "Santa Clara, CA",
+      "employer_urls": [],
+      "first_alert_at": "2026-11-16T23:54:42+00:00",
+      "last_alert_at": "2026-11-16T23:54:42+00:00",
+      "collection": "missing",
+      "assessment": "not_assessed",
+      "verdicts": [],
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+    },
+    {
       "linkedin_id": "4489406607",
       "url": "https://www.linkedin.com/jobs/view/4489406607",
       "title": "Member of Technical Staff, Engineering Leader",
@@ -20734,76 +20878,6 @@
       ],
       "matches": [
         {
-          "key": "microsoft:microsoft:1970393557056079",
-          "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557056079",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "microsoft:microsoft:1970393557050858",
-          "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050858",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "microsoft:microsoft:1970393557053870",
-          "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557053870",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "microsoft:microsoft:1970393557048060",
-          "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557048060",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "microsoft:microsoft:1970393557056005",
-          "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557056005",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "microsoft:microsoft:1970393557050859",
-          "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050859",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "microsoft:microsoft:1970393557050672",
-          "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050672",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "microsoft:microsoft:1970393557004652",
-          "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557004652",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "microsoft:microsoft:1970393557050805",
-          "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050805",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "microsoft:microsoft:1970393557050856",
-          "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050856",
-          "assessment_date_eligible": true
-        },
-        {
           "key": "microsoft:microsoft:1970393557043344",
           "title": "Principal Technical Program Manager",
           "company": "microsoft",
@@ -20853,6 +20927,13 @@
           "assessment_date_eligible": true
         },
         {
+          "key": "microsoft:microsoft:1970393557048060",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557048060",
+          "assessment_date_eligible": true
+        },
+        {
           "key": "microsoft:microsoft:1970393557050589",
           "title": "Principal Technical Program Manager",
           "company": "microsoft",
@@ -20867,10 +20948,73 @@
           "assessment_date_eligible": true
         },
         {
+          "key": "microsoft:microsoft:1970393557050805",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050805",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "microsoft:microsoft:1970393557050856",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050856",
+          "assessment_date_eligible": true
+        },
+        {
           "key": "microsoft:microsoft:1970393557051417",
           "title": "Principal Technical Program Manager",
           "company": "microsoft",
           "url": "https://apply.careers.microsoft.com/careers/job/1970393557051417",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "microsoft:microsoft:1970393557056005",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557056005",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "microsoft:microsoft:1970393557050859",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050859",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "microsoft:microsoft:1970393557050672",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050672",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "microsoft:microsoft:1970393557004652",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557004652",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "microsoft:microsoft:1970393557053870",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557053870",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "microsoft:microsoft:1970393557056079",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557056079",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "microsoft:microsoft:1970393557050858",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050858",
           "assessment_date_eligible": true
         }
       ],
@@ -21136,6 +21280,36 @@
       "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
     },
     {
+      "linkedin_id": "4489709354",
+      "url": "https://www.linkedin.com/jobs/view/4489709354",
+      "title": "Technical Project/Program Management Manager V - (M5)",
+      "company": "Applied Materials",
+      "location": "Santa Clara, CA",
+      "employer_urls": [],
+      "first_alert_at": "2026-11-16T17:57:41+00:00",
+      "last_alert_at": "2026-11-16T17:57:41+00:00",
+      "collection": "missing",
+      "assessment": "not_assessed",
+      "verdicts": [],
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+    },
+    {
+      "linkedin_id": "4489714890",
+      "url": "https://www.linkedin.com/jobs/view/4489714890",
+      "title": "Senior Technical Program Manager",
+      "company": "TalentHop",
+      "location": "United States (Remote)",
+      "employer_urls": [],
+      "first_alert_at": "2026-11-17T05:57:43+00:00",
+      "last_alert_at": "2026-11-17T05:57:43+00:00",
+      "collection": "missing",
+      "assessment": "not_assessed",
+      "verdicts": [],
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+    },
+    {
       "linkedin_id": "4489800220",
       "url": "https://www.linkedin.com/jobs/view/4489800220",
       "title": "Global Program Head non Oncology",
@@ -21175,18 +21349,11 @@
       "first_alert_at": "2026-11-14T13:57:41+00:00",
       "last_alert_at": "2026-11-14T23:57:41+00:00",
       "collection": "possible_match",
-      "assessment": "assessed",
+      "assessment": "outside_date_scope",
       "verdicts": [
         "Middle"
       ],
       "matches": [
-        {
-          "key": "greenhouse:affirm:7832310003",
-          "title": "Senior Technical Program Manager",
-          "company": "affirm",
-          "url": "https://job-boards.greenhouse.io/affirm/jobs/7832310003",
-          "assessment_date_eligible": false
-        },
         {
           "key": "greenhouse:affirm:8199159003",
           "title": "Senior Technical Program Manager",
@@ -21207,6 +21374,13 @@
           "company": "affirm",
           "url": "https://job-boards.greenhouse.io/affirm/jobs/8199157003",
           "assessment_date_eligible": true
+        },
+        {
+          "key": "greenhouse:affirm:7832310003",
+          "title": "Senior Technical Program Manager",
+          "company": "affirm",
+          "url": "https://job-boards.greenhouse.io/affirm/jobs/7832310003",
+          "assessment_date_eligible": false
         }
       ],
       "reason": "Title/company similarity is not proof of the same requisition."
@@ -21236,8 +21410,10 @@
       "first_alert_at": "2026-11-14T23:57:41+00:00",
       "last_alert_at": "2026-11-14T23:57:41+00:00",
       "collection": "possible_match",
-      "assessment": "reassessment_pending",
-      "verdicts": [],
+      "assessment": "assessed",
+      "verdicts": [
+        "Middle"
+      ],
       "matches": [
         {
           "key": "google:google:106288580346684102",
@@ -21274,18 +21450,11 @@
       "first_alert_at": "2026-11-14T13:57:41+00:00",
       "last_alert_at": "2026-11-14T13:57:41+00:00",
       "collection": "possible_match",
-      "assessment": "assessed",
+      "assessment": "outside_date_scope",
       "verdicts": [
         "Middle"
       ],
       "matches": [
-        {
-          "key": "greenhouse:affirm:7832310003",
-          "title": "Senior Technical Program Manager",
-          "company": "affirm",
-          "url": "https://job-boards.greenhouse.io/affirm/jobs/7832310003",
-          "assessment_date_eligible": false
-        },
         {
           "key": "greenhouse:affirm:8199159003",
           "title": "Senior Technical Program Manager",
@@ -21306,6 +21475,13 @@
           "company": "affirm",
           "url": "https://job-boards.greenhouse.io/affirm/jobs/8199157003",
           "assessment_date_eligible": true
+        },
+        {
+          "key": "greenhouse:affirm:7832310003",
+          "title": "Senior Technical Program Manager",
+          "company": "affirm",
+          "url": "https://job-boards.greenhouse.io/affirm/jobs/7832310003",
+          "assessment_date_eligible": false
         }
       ],
       "reason": "Title/company similarity is not proof of the same requisition."
@@ -21413,76 +21589,6 @@
       ],
       "matches": [
         {
-          "key": "microsoft:microsoft:1970393557056079",
-          "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557056079",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "microsoft:microsoft:1970393557050858",
-          "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050858",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "microsoft:microsoft:1970393557053870",
-          "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557053870",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "microsoft:microsoft:1970393557048060",
-          "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557048060",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "microsoft:microsoft:1970393557056005",
-          "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557056005",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "microsoft:microsoft:1970393557050859",
-          "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050859",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "microsoft:microsoft:1970393557050672",
-          "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050672",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "microsoft:microsoft:1970393557004652",
-          "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557004652",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "microsoft:microsoft:1970393557050805",
-          "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050805",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "microsoft:microsoft:1970393557050856",
-          "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050856",
-          "assessment_date_eligible": true
-        },
-        {
           "key": "microsoft:microsoft:1970393557043344",
           "title": "Principal Technical Program Manager",
           "company": "microsoft",
@@ -21532,6 +21638,13 @@
           "assessment_date_eligible": true
         },
         {
+          "key": "microsoft:microsoft:1970393557048060",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557048060",
+          "assessment_date_eligible": true
+        },
+        {
           "key": "microsoft:microsoft:1970393557050589",
           "title": "Principal Technical Program Manager",
           "company": "microsoft",
@@ -21546,10 +21659,73 @@
           "assessment_date_eligible": true
         },
         {
+          "key": "microsoft:microsoft:1970393557050805",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050805",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "microsoft:microsoft:1970393557050856",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050856",
+          "assessment_date_eligible": true
+        },
+        {
           "key": "microsoft:microsoft:1970393557051417",
           "title": "Principal Technical Program Manager",
           "company": "microsoft",
           "url": "https://apply.careers.microsoft.com/careers/job/1970393557051417",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "microsoft:microsoft:1970393557056005",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557056005",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "microsoft:microsoft:1970393557050859",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050859",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "microsoft:microsoft:1970393557050672",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050672",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "microsoft:microsoft:1970393557004652",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557004652",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "microsoft:microsoft:1970393557053870",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557053870",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "microsoft:microsoft:1970393557056079",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557056079",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "microsoft:microsoft:1970393557050858",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050858",
           "assessment_date_eligible": true
         }
       ],
@@ -21701,6 +21877,36 @@
       "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
     },
     {
+      "linkedin_id": "4490275008",
+      "url": "https://www.linkedin.com/jobs/view/4490275008",
+      "title": "Program Manager, Principal",
+      "company": "PG&E, LLC",
+      "location": "Palo Alto, CA (On-site)",
+      "employer_urls": [],
+      "first_alert_at": "2026-11-16T17:57:41+00:00",
+      "last_alert_at": "2026-11-16T17:57:41+00:00",
+      "collection": "missing",
+      "assessment": "not_assessed",
+      "verdicts": [],
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+    },
+    {
+      "linkedin_id": "4490275395",
+      "url": "https://www.linkedin.com/jobs/view/4490275395",
+      "title": "Senior Technical Program Manager, DeepMind",
+      "company": "Google DeepMind",
+      "location": "Mountain View, CA (On-site)",
+      "employer_urls": [],
+      "first_alert_at": "2026-11-16T17:57:41+00:00",
+      "last_alert_at": "2026-11-17T05:57:43+00:00",
+      "collection": "missing",
+      "assessment": "not_assessed",
+      "verdicts": [],
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+    },
+    {
       "linkedin_id": "4490392692",
       "url": "https://www.linkedin.com/jobs/view/4490392692",
       "title": "Staff Technical Program Manager",
@@ -21710,8 +21916,10 @@
       "first_alert_at": "2026-11-13T23:57:43+00:00",
       "last_alert_at": "2026-11-15T05:57:44+00:00",
       "collection": "possible_match",
-      "assessment": "reassessment_pending",
-      "verdicts": [],
+      "assessment": "assessed",
+      "verdicts": [
+        "Strong"
+      ],
       "matches": [
         {
           "key": "greenhouse:pinterest:8328631",
@@ -22036,105 +22244,6 @@
       "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
     },
     {
-      "linkedin_id": "4491280841",
-      "url": "https://www.linkedin.com/jobs/view/4491280841",
-      "title": "Director, AI Strategy & Transformation",
-      "company": "Johnson & Johnson",
-      "location": "Cambridge, MA (Hybrid)",
-      "employer_urls": [],
-      "first_alert_at": "2026-11-16T13:57:42+00:00",
-      "last_alert_at": "2026-11-17T03:57:43+00:00",
-      "collection": "missing",
-      "assessment": "not_assessed",
-      "verdicts": [],
-      "matches": [],
-      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
-    },
-    {
-      "linkedin_id": "4475026159",
-      "url": "https://www.linkedin.com/jobs/view/4475026159",
-      "title": "Director, Technical Program Management",
-      "company": "Capital One",
-      "location": "Cambridge, MA",
-      "employer_urls": [],
-      "first_alert_at": "2026-11-16T13:57:42+00:00",
-      "last_alert_at": "2026-11-17T03:57:43+00:00",
-      "collection": "possible_match",
-      "assessment": "assessed",
-      "verdicts": [
-        "Strong"
-      ],
-      "matches": [
-        {
-          "key": "workday:capitalone:/job/McLean-VA/Director--Technical-Program-Management_R1002717-1",
-          "title": "Director, Technical Program Management",
-          "company": "capitalone",
-          "url": "https://capitalone.wd12.myworkdayjobs.com/en-US/Capital_One/job/McLean-VA/Director--Technical-Program-Management_R1002717-1",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "workday:capitalone:/job/McLean-VA/Director--Technical-Program-Management_R1003044-1",
-          "title": "Director, Technical Program Management",
-          "company": "capitalone",
-          "url": "https://capitalone.wd12.myworkdayjobs.com/en-US/Capital_One/job/McLean-VA/Director--Technical-Program-Management_R1003044-1",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "workday:capitalone:/job/Toronto-ON/Director--Technical-Program-Management_R249913",
-          "title": "Director, Technical Program Management",
-          "company": "capitalone",
-          "url": "https://capitalone.wd12.myworkdayjobs.com/en-US/Capital_One/job/Toronto-ON/Director--Technical-Program-Management_R249913",
-          "assessment_date_eligible": true
-        }
-      ],
-      "reason": "Title/company similarity is not proof of the same requisition."
-    },
-    {
-      "linkedin_id": "4417771724",
-      "url": "https://www.linkedin.com/jobs/view/4417771724",
-      "title": "Director, Country Operations Management",
-      "company": "Alexion Pharmaceuticals, Inc.",
-      "location": "Boston, MA (Hybrid)",
-      "employer_urls": [],
-      "first_alert_at": "2026-11-16T13:57:42+00:00",
-      "last_alert_at": "2026-11-17T03:57:43+00:00",
-      "collection": "missing",
-      "assessment": "not_assessed",
-      "verdicts": [],
-      "matches": [],
-      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
-    },
-    {
-      "linkedin_id": "4473396629",
-      "url": "https://www.linkedin.com/jobs/view/4473396629",
-      "title": "Global IT Software Engineer Senior Director & Tech Area Lead - Legal",
-      "company": "Boston Consulting Group (BCG)",
-      "location": "Boston, MA",
-      "employer_urls": [],
-      "first_alert_at": "2026-11-16T13:57:42+00:00",
-      "last_alert_at": "2026-11-17T03:57:43+00:00",
-      "collection": "missing",
-      "assessment": "not_assessed",
-      "verdicts": [],
-      "matches": [],
-      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
-    },
-    {
-      "linkedin_id": "4483100176",
-      "url": "https://www.linkedin.com/jobs/view/4483100176",
-      "title": "Sr Director, Clinical Excellence Group Lead (I&I)",
-      "company": "Pfizer",
-      "location": "Cambridge, MA",
-      "employer_urls": [],
-      "first_alert_at": "2026-11-16T13:57:42+00:00",
-      "last_alert_at": "2026-11-17T03:57:43+00:00",
-      "collection": "missing",
-      "assessment": "not_assessed",
-      "verdicts": [],
-      "matches": [],
-      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
-    },
-    {
       "linkedin_id": "4491237670",
       "url": "https://www.linkedin.com/jobs/view/4491237670",
       "title": "Sr. Director, Global Technology PMO Leader",
@@ -22143,21 +22252,6 @@
       "employer_urls": [],
       "first_alert_at": "2026-11-16T15:57:41+00:00",
       "last_alert_at": "2026-11-16T23:57:42+00:00",
-      "collection": "missing",
-      "assessment": "not_assessed",
-      "verdicts": [],
-      "matches": [],
-      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
-    },
-    {
-      "linkedin_id": "4491279140",
-      "url": "https://www.linkedin.com/jobs/view/4491279140",
-      "title": "Director, GTM Transformation - Splunk (Remote)",
-      "company": "Cisco",
-      "location": "Seattle, WA",
-      "employer_urls": [],
-      "first_alert_at": "2026-11-16T15:57:41+00:00",
-      "last_alert_at": "2026-11-16T19:57:43+00:00",
       "collection": "missing",
       "assessment": "not_assessed",
       "verdicts": [],
@@ -22180,51 +22274,6 @@
       "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
     },
     {
-      "linkedin_id": "4489395982",
-      "url": "https://www.linkedin.com/jobs/view/4489395982",
-      "title": "Technical Program Manager, Quantum Technology",
-      "company": "Applied Materials",
-      "location": "Santa Clara, CA",
-      "employer_urls": [],
-      "first_alert_at": "2026-11-16T15:57:41+00:00",
-      "last_alert_at": "2026-11-16T23:57:42+00:00",
-      "collection": "missing",
-      "assessment": "not_assessed",
-      "verdicts": [],
-      "matches": [],
-      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
-    },
-    {
-      "linkedin_id": "4486799553",
-      "url": "https://www.linkedin.com/jobs/view/4486799553",
-      "title": "Director, Consulting",
-      "company": "Kotter",
-      "location": "Boston, MA (Remote)",
-      "employer_urls": [],
-      "first_alert_at": "2026-11-16T17:52:57+00:00",
-      "last_alert_at": "2026-11-16T17:52:57+00:00",
-      "collection": "missing",
-      "assessment": "not_assessed",
-      "verdicts": [],
-      "matches": [],
-      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
-    },
-    {
-      "linkedin_id": "4490275395",
-      "url": "https://www.linkedin.com/jobs/view/4490275395",
-      "title": "Senior Technical Program Manager, DeepMind",
-      "company": "Google DeepMind",
-      "location": "Mountain View, CA (On-site)",
-      "employer_urls": [],
-      "first_alert_at": "2026-11-16T17:57:41+00:00",
-      "last_alert_at": "2026-11-17T05:57:43+00:00",
-      "collection": "missing",
-      "assessment": "not_assessed",
-      "verdicts": [],
-      "matches": [],
-      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
-    },
-    {
       "linkedin_id": "4491263853",
       "url": "https://www.linkedin.com/jobs/view/4491263853",
       "title": "Sr. Manager, Program Management",
@@ -22240,14 +22289,14 @@
       "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
     },
     {
-      "linkedin_id": "4489709354",
-      "url": "https://www.linkedin.com/jobs/view/4489709354",
-      "title": "Technical Project/Program Management Manager V - (M5)",
-      "company": "Applied Materials",
-      "location": "Santa Clara, CA",
+      "linkedin_id": "4491275500",
+      "url": "https://www.linkedin.com/jobs/view/4491275500",
+      "title": "Technical Program Manager",
+      "company": "Swooped",
+      "location": "United States (Remote)",
       "employer_urls": [],
-      "first_alert_at": "2026-11-16T17:57:41+00:00",
-      "last_alert_at": "2026-11-16T17:57:41+00:00",
+      "first_alert_at": "2026-11-17T05:57:43+00:00",
+      "last_alert_at": "2026-11-17T05:57:43+00:00",
       "collection": "missing",
       "assessment": "not_assessed",
       "verdicts": [],
@@ -22255,14 +22304,29 @@
       "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
     },
     {
-      "linkedin_id": "4473807000",
-      "url": "https://www.linkedin.com/jobs/view/4473807000",
-      "title": "Staff Technical Program Manager, Commercialization",
-      "company": "Waymo",
-      "location": "San Francisco, CA",
+      "linkedin_id": "4491279140",
+      "url": "https://www.linkedin.com/jobs/view/4491279140",
+      "title": "Director, GTM Transformation - Splunk (Remote)",
+      "company": "Cisco",
+      "location": "Seattle, WA",
       "employer_urls": [],
-      "first_alert_at": "2026-11-16T17:57:41+00:00",
-      "last_alert_at": "2026-11-17T05:57:43+00:00",
+      "first_alert_at": "2026-11-16T15:57:41+00:00",
+      "last_alert_at": "2026-11-16T19:57:43+00:00",
+      "collection": "missing",
+      "assessment": "not_assessed",
+      "verdicts": [],
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+    },
+    {
+      "linkedin_id": "4491280841",
+      "url": "https://www.linkedin.com/jobs/view/4491280841",
+      "title": "Director, AI Strategy & Transformation",
+      "company": "Johnson & Johnson",
+      "location": "Cambridge, MA (Hybrid)",
+      "employer_urls": [],
+      "first_alert_at": "2026-11-16T13:57:42+00:00",
+      "last_alert_at": "2026-11-17T03:57:43+00:00",
       "collection": "missing",
       "assessment": "not_assessed",
       "verdicts": [],
@@ -22275,21 +22339,6 @@
       "title": "Sr. Technical Program Manager, Cell NPI",
       "company": "Tesla",
       "location": "Fremont, CA (On-site)",
-      "employer_urls": [],
-      "first_alert_at": "2026-11-16T17:57:41+00:00",
-      "last_alert_at": "2026-11-16T17:57:41+00:00",
-      "collection": "missing",
-      "assessment": "not_assessed",
-      "verdicts": [],
-      "matches": [],
-      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
-    },
-    {
-      "linkedin_id": "4490275008",
-      "url": "https://www.linkedin.com/jobs/view/4490275008",
-      "title": "Program Manager, Principal",
-      "company": "PG&E, LLC",
-      "location": "Palo Alto, CA (On-site)",
       "employer_urls": [],
       "first_alert_at": "2026-11-16T17:57:41+00:00",
       "last_alert_at": "2026-11-16T17:57:41+00:00",
@@ -22323,81 +22372,6 @@
       "employer_urls": [],
       "first_alert_at": "2026-11-16T19:57:43+00:00",
       "last_alert_at": "2026-11-16T19:57:43+00:00",
-      "collection": "missing",
-      "assessment": "not_assessed",
-      "verdicts": [],
-      "matches": [],
-      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
-    },
-    {
-      "linkedin_id": "4489397884",
-      "url": "https://www.linkedin.com/jobs/view/4489397884",
-      "title": "Technical Project/Program Management Director - Advanced Packaging",
-      "company": "Applied Materials",
-      "location": "Santa Clara, CA",
-      "employer_urls": [],
-      "first_alert_at": "2026-11-16T23:54:42+00:00",
-      "last_alert_at": "2026-11-16T23:54:42+00:00",
-      "collection": "missing",
-      "assessment": "not_assessed",
-      "verdicts": [],
-      "matches": [],
-      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
-    },
-    {
-      "linkedin_id": "4491275500",
-      "url": "https://www.linkedin.com/jobs/view/4491275500",
-      "title": "Technical Program Manager",
-      "company": "Swooped",
-      "location": "United States (Remote)",
-      "employer_urls": [],
-      "first_alert_at": "2026-11-17T05:57:43+00:00",
-      "last_alert_at": "2026-11-17T05:57:43+00:00",
-      "collection": "missing",
-      "assessment": "not_assessed",
-      "verdicts": [],
-      "matches": [],
-      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
-    },
-    {
-      "linkedin_id": "4489714890",
-      "url": "https://www.linkedin.com/jobs/view/4489714890",
-      "title": "Senior Technical Program Manager",
-      "company": "TalentHop",
-      "location": "United States (Remote)",
-      "employer_urls": [],
-      "first_alert_at": "2026-11-17T05:57:43+00:00",
-      "last_alert_at": "2026-11-17T05:57:43+00:00",
-      "collection": "missing",
-      "assessment": "not_assessed",
-      "verdicts": [],
-      "matches": [],
-      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
-    },
-    {
-      "linkedin_id": "4481690232",
-      "url": "https://www.linkedin.com/jobs/view/4481690232",
-      "title": "Principal/Senior Program Manager",
-      "company": "Archer",
-      "location": "United States (Remote)",
-      "employer_urls": [],
-      "first_alert_at": "2026-11-17T05:57:43+00:00",
-      "last_alert_at": "2026-11-17T05:57:43+00:00",
-      "collection": "missing",
-      "assessment": "not_assessed",
-      "verdicts": [],
-      "matches": [],
-      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
-    },
-    {
-      "linkedin_id": "4473393431",
-      "url": "https://www.linkedin.com/jobs/view/4473393431",
-      "title": "Staff Technical Program Manager, Commercialization",
-      "company": "Waymo",
-      "location": "Mountain View, CA",
-      "employer_urls": [],
-      "first_alert_at": "2026-11-17T05:57:43+00:00",
-      "last_alert_at": "2026-11-17T05:57:43+00:00",
       "collection": "missing",
       "assessment": "not_assessed",
       "verdicts": [],
