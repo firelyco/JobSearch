@@ -7,15 +7,15 @@
   "collection_at": "2026-11-17T06:40:56.904340+00:00",
   "counts": {
     "found": 38,
-    "eligible": 17,
-    "completed": 11,
-    "strong": 1,
-    "middle": 6,
-    "pass": 4,
-    "waiting": 6,
+    "eligible": 16,
+    "completed": 16,
+    "strong": 2,
+    "middle": 9,
+    "pass": 5,
+    "waiting": 0,
     "processing": 0,
     "blocked": 0,
-    "excluded": 21,
+    "excluded": 22,
     "unverified_links": 23
   },
   "members": [
@@ -378,9 +378,9 @@
       "source": "workday",
       "job_snapshot_hash": "79496ced0abc4d46fa11ff6b6b23a676d8858c8a30522c991c44326400cb0ddb",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "pass"
     },
     {
       "key": "workday:capitalone:/job/McLean-VA/Senior-Manager--Technical-Program-Management_R1005496-1",
@@ -389,9 +389,9 @@
       "source": "workday",
       "job_snapshot_hash": "605b8bd12b673691bf935564ddf9aba482b99039621b12b12d60780b6dd4797d",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "workday:hp:/job/Austin-Texas-United-States-of-America/Technical-Program-Manager---Software-Quality---AI-Automation---Poly_3169058-1",
@@ -400,9 +400,9 @@
       "source": "workday",
       "job_snapshot_hash": "849935827c8bfd8c0efb09b83a4dcef1f962c8211d3c4442924344a78bb17776",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "workday:ngc:/job/United-States-Arizona-Chandler/Systems-Engineer-Level-5---Program-Engineering-Lead_R10252063",
@@ -410,9 +410,9 @@
       "url": "https://ngc.wd1.myworkdayjobs.com/en-US/Northrop_Grumman_External_Site/job/United-States-Arizona-Chandler/Systems-Engineer-Level-5---Program-Engineering-Lead_R10252063",
       "source": "workday",
       "job_snapshot_hash": "5836a27e5eb04cd07d322a0bf4000fd8afc796e2a18c3bdf727e3c77c83bbd53",
-      "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -422,9 +422,9 @@
       "source": "workday",
       "job_snapshot_hash": "8d96acf95989296144f4b5581246483614cefa324dcbf4beae3b24e273207d2e",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "workday:zillow:/job/Remote-USA/Principal-Technical-Program-Manager--Industry-Software_P751886-1",
@@ -433,9 +433,9 @@
       "source": "workday",
       "job_snapshot_hash": "dbc4c041ba813ebabffce8baa44649e7c5e2a657ba3cc2c998959e42bb999ae1",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "strong"
     }
   ],
   "link_ids": [
@@ -676,21 +676,21 @@
       "status": "failed"
     }
   ],
-  "checked_at": "2026-11-17T07:01:44.288008+00:00",
+  "checked_at": "2026-11-17T07:03:05.717458+00:00",
   "legacy_backlog": {
-    "assessed": 529,
-    "pending": 9,
+    "assessed": 535,
+    "pending": 0,
     "unresolved": 53,
-    "in_progress": 0,
-    "total": 591,
-    "strong": 69
+    "in_progress": 2,
+    "total": 590,
+    "strong": 70
   },
-  "batch_id": "d7621066840c088851f4c3ac7226a3ef8f74b7b1f8f6523b7fb394fbe44fc347",
-  "status": "assessing",
+  "batch_id": "5efc771b41a82187a5d00eadc7d319ac2de2351693807fd7ca6908a04d1b6347",
+  "status": "blocked",
   "input_blobs": {
     "jobs.json": "87a69f00145d90b0ec2378d9641b95eeff03836e",
-    "fit_scores.json": "dfa8b49c9628d0c1f505f396b6ba243722257c49",
-    "fit_backfill.json": "f54113ab8e27c98e93d16e71bdbc7a393467f1b5",
+    "fit_scores.json": "e84e8607aba9c94cf3424e75dae98f490983f5b5",
+    "fit_backfill.json": "e202be7e166eb9b8c935e94eef5ae685a8982e57",
     "meta.json": "191c707a3ff6e65899df8520a8000a3ae2cea5f1"
   }
 }
