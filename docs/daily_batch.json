@@ -8,13 +8,13 @@
   "counts": {
     "found": 91,
     "eligible": 24,
-    "completed": 21,
+    "completed": 22,
     "strong": 2,
-    "middle": 13,
+    "middle": 14,
     "pass": 6,
     "waiting": 0,
     "processing": 0,
-    "blocked": 3,
+    "blocked": 2,
     "excluded": 67,
     "unverified_links": 37
   },
@@ -136,9 +136,9 @@
       "source": "apple",
       "job_snapshot_hash": "3c6ff553c460aad372cdc9840dc674f44d744e3a4ce6c5af367e9fb69ebc952d",
       "eligible": true,
-      "status": "blocked",
-      "reason": "Paid retry budget exhausted; review required.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "arbeitnow:Accenture:sap-technology-delivery-lead-all-genders-kronberg-197051",
@@ -1583,21 +1583,21 @@
       "status": "failed"
     }
   ],
-  "checked_at": "2026-11-18T07:01:52.308467+00:00",
+  "checked_at": "2026-11-18T14:53:13.119788+00:00",
   "legacy_backlog": {
-    "assessed": 549,
+    "assessed": 550,
     "pending": 0,
-    "unresolved": 55,
+    "unresolved": 54,
     "in_progress": 0,
     "total": 604,
     "strong": 70
   },
-  "batch_id": "7df7d149f6da00d448a90cecb8871287db996924e7f02e28b4eafc93296bb144",
+  "batch_id": "051f57e65314c42f5c677e2d07a24aa03622c32a5a6ac8749fc94eef146e5b7f",
   "status": "blocked",
   "input_blobs": {
     "jobs.json": "b617420d42494b23c88b0d59a409a554acb0dfc4",
-    "fit_scores.json": "0afd3fcbf135bcee8c262d1291ebf8ee05042a07",
-    "fit_backfill.json": "62b5d690b6500a67896ea6806cd6ff4133268bcd",
+    "fit_scores.json": "971a9fd133d6ac3b43991000e1a43d207e5c9f62",
+    "fit_backfill.json": "a82344280a5d874fd056b4fcd683af09203555f4",
     "meta.json": "f3e8981a4b21739910a772e6a416b19c75e08c77"
   }
 }
