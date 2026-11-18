@@ -7,15 +7,15 @@
   "collection_at": "2026-11-18T06:01:04.352523+00:00",
   "counts": {
     "found": 83,
-    "eligible": 26,
-    "completed": 17,
+    "eligible": 21,
+    "completed": 18,
     "strong": 2,
     "middle": 11,
-    "pass": 4,
+    "pass": 5,
     "waiting": 0,
-    "processing": 6,
+    "processing": 0,
     "blocked": 3,
-    "excluded": 57,
+    "excluded": 62,
     "unverified_links": 37
   },
   "members": [
@@ -25,9 +25,9 @@
       "url": "https://www.amazon.jobs/en/jobs/10599279/senior-technical-program-manager-leo-networking",
       "source": "amazon_jobs",
       "job_snapshot_hash": "d01491bbb7a5d570dd765e546fd741cd010b7c4fa185037ed096a4810c47ecb0",
-      "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -36,9 +36,9 @@
       "url": "https://www.amazon.jobs/en/jobs/10602487/sr-technical-program-manager-aft-capacity-optimized-planning-and-analysis",
       "source": "amazon_jobs",
       "job_snapshot_hash": "f6cdac972d286b04ebd152f158dc19895470bb372dfe3b47df3402fe7f8a54bd",
-      "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -80,9 +80,9 @@
       "url": "https://www.amazon.jobs/en/jobs/10606574/senior-technical-program-manager-global-field-operations",
       "source": "amazon_jobs",
       "job_snapshot_hash": "350f8b00ec980857432aad512771b0db73effa1a0f5a42b3bca78a5a0c120c99",
-      "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -91,9 +91,9 @@
       "url": "https://www.amazon.jobs/en/jobs/10607220/technical-program-manager-iii-amazon-leo",
       "source": "amazon_jobs",
       "job_snapshot_hash": "a05f6a3fe5cc647534317f49a27eb74211b65d22eaa63eacd84c32f96953fd4f",
-      "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -113,9 +113,9 @@
       "url": "https://www.amazon.jobs/en/jobs/10607473/sr-tpm-gdco-change-management-data-center-learning",
       "source": "amazon_jobs",
       "job_snapshot_hash": "3fbcab77486be45d8f3e254ea8146097890a941f428c166b3c7ad279eba08eee",
-      "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -884,9 +884,9 @@
       "source": "oracle_cloud",
       "job_snapshot_hash": "966ddeeb28df898be63871366b14410fb2548f917872bd9d585aaed2d1365cc0",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "pass"
     },
     {
       "key": "oracle_cloud:oracle:343272",
@@ -1655,21 +1655,21 @@
       "status": "failed"
     }
   ],
-  "checked_at": "2026-11-18T06:16:03.873344+00:00",
+  "checked_at": "2026-11-18T06:17:04.198575+00:00",
   "legacy_backlog": {
-    "assessed": 543,
-    "pending": 11,
+    "assessed": 547,
+    "pending": 0,
     "unresolved": 53,
     "in_progress": 9,
-    "total": 616,
+    "total": 609,
     "strong": 70
   },
-  "batch_id": "44bd15264397ed7018ceb2458cce39f66aa50c8637f09dc3b321a86d55650ec2",
-  "status": "assessing",
+  "batch_id": "4160171a8f8ee3d18fda665f872a7f74c00532bab6a61e50c8dc19acecd4a314",
+  "status": "blocked",
   "input_blobs": {
     "jobs.json": "f8e1ff1c27d07c593b4ed7e4115b853aa0d803ad",
-    "fit_scores.json": "de65c2fe6dea2ec694099fe97bb9800daf5bfee8",
-    "fit_backfill.json": "4ddf051afa237362928c8c1f38728248b80bf7de",
+    "fit_scores.json": "46decb0dc326d116e0ceaa72205594a65a521ee2",
+    "fit_backfill.json": "244645b9baf29406048f3504bd5a1a6cf68c0981",
     "meta.json": "36d8873d788a8fbef3b8dbdb7fa3cdfacfba238a"
   }
 }
