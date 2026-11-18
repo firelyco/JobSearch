@@ -7,15 +7,15 @@
   "collection_at": "2026-11-18T06:20:51.764280+00:00",
   "counts": {
     "found": 90,
-    "eligible": 27,
-    "completed": 18,
+    "eligible": 23,
+    "completed": 19,
     "strong": 2,
-    "middle": 11,
+    "middle": 12,
     "pass": 5,
-    "waiting": 6,
+    "waiting": 1,
     "processing": 0,
     "blocked": 3,
-    "excluded": 63,
+    "excluded": 67,
     "unverified_links": 37
   },
   "members": [
@@ -773,9 +773,9 @@
       "url": "https://boards.greenhouse.io/andurilindustries/jobs/5296341007?gh_jid=5296341007",
       "source": "greenhouse",
       "job_snapshot_hash": "3554da84a0c5b926bdf8c1990dcf171a79d51c95ca6832809386f77e332360a2",
-      "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -784,9 +784,9 @@
       "url": "https://boards.greenhouse.io/andurilindustries/jobs/5298290007?gh_jid=5298290007",
       "source": "greenhouse",
       "job_snapshot_hash": "ace4ed1ad427b4eb515366c5ea9058c739eec7043f6c4f54085ff7e4cd3f4445",
-      "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -795,9 +795,9 @@
       "url": "https://boards.greenhouse.io/andurilindustries/jobs/5298294007?gh_jid=5298294007",
       "source": "greenhouse",
       "job_snapshot_hash": "8a17d59076d3318064d1d70a163c7cab5a6a64f5ae3b2440606fcfb7ba1e6000",
-      "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -861,9 +861,9 @@
       "url": "https://jobs.lever.co/jobgether/839538b0-3cd6-4460-b061-4a6f0e5621ef",
       "source": "lever",
       "job_snapshot_hash": "aad0921d8474febbee1d6dfd4fa53ea576ef0ab78d0c582a6fbbf700f82d0b38",
-      "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -884,9 +884,9 @@
       "source": "lever",
       "job_snapshot_hash": "ae7f2a14e7dd12f45fbd5e8c15d65a1b23417518e3b926fb9c926b3b66749b3b",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "microsoft:microsoft:1970393556749366",
@@ -1747,21 +1747,21 @@
       "status": "failed"
     }
   ],
-  "checked_at": "2026-11-18T06:32:23.543036+00:00",
+  "checked_at": "2026-11-18T06:33:30.709515+00:00",
   "legacy_backlog": {
-    "assessed": 548,
-    "pending": 6,
+    "assessed": 549,
+    "pending": 1,
     "unresolved": 53,
     "in_progress": 0,
-    "total": 607,
+    "total": 603,
     "strong": 71
   },
-  "batch_id": "3a810efa9b9fa5d05c72e636b4aee352798c94fa72102f3ecfcb1edb3d00ca5e",
+  "batch_id": "336536400eeba38dc5ae6e9b8ad90dda25f7b1608ff6e69a20a7d6649f439561",
   "status": "assessing",
   "input_blobs": {
     "jobs.json": "516520c125f00be29b48f09a0f76e3596593fb74",
-    "fit_scores.json": "c2e4eb302748554bf8d760e23adbdb434ca78e9c",
-    "fit_backfill.json": "402a4589d4220417dfdbda73f270be58e7a90465",
+    "fit_scores.json": "0f5a361989b0f13602e9b5b711c5a44d1870d7a3",
+    "fit_backfill.json": "f8e2d61edc74c7a3efbc66a3ff820daa09c3450d",
     "meta.json": "a39825e44cccdafafc7f3659a3ef2fab0112900e"
   }
 }
