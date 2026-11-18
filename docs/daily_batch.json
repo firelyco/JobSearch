@@ -7,15 +7,15 @@
   "collection_at": "2026-11-18T06:01:04.352523+00:00",
   "counts": {
     "found": 83,
-    "eligible": 29,
-    "completed": 13,
-    "strong": 1,
-    "middle": 8,
+    "eligible": 26,
+    "completed": 17,
+    "strong": 2,
+    "middle": 11,
     "pass": 4,
-    "waiting": 8,
-    "processing": 7,
-    "blocked": 1,
-    "excluded": 54,
+    "waiting": 0,
+    "processing": 6,
+    "blocked": 3,
+    "excluded": 57,
     "unverified_links": 37
   },
   "members": [
@@ -26,7 +26,7 @@
       "source": "amazon_jobs",
       "job_snapshot_hash": "d01491bbb7a5d570dd765e546fd741cd010b7c4fa185037ed096a4810c47ecb0",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -37,7 +37,7 @@
       "source": "amazon_jobs",
       "job_snapshot_hash": "f6cdac972d286b04ebd152f158dc19895470bb372dfe3b47df3402fe7f8a54bd",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -58,9 +58,9 @@
       "url": "https://www.amazon.jobs/en/jobs/10604399/infrastructure-tpm-infra-capacity-delivery",
       "source": "amazon_jobs",
       "job_snapshot_hash": "e195ef987611905f705ac16c30cce4f0da091dc04f52f3f7fd07329bd00b1487",
-      "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -69,9 +69,9 @@
       "url": "https://www.amazon.jobs/en/jobs/10606191/sr-technical-program-manager-shipping-speed-selection-charges-shipping-platform",
       "source": "amazon_jobs",
       "job_snapshot_hash": "34ac4e45eff3c88f7ae23d726290edb7e0bbbd0dafa0ea0fd55f346edf63ad7a",
-      "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -81,7 +81,7 @@
       "source": "amazon_jobs",
       "job_snapshot_hash": "350f8b00ec980857432aad512771b0db73effa1a0f5a42b3bca78a5a0c120c99",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -92,7 +92,7 @@
       "source": "amazon_jobs",
       "job_snapshot_hash": "a05f6a3fe5cc647534317f49a27eb74211b65d22eaa63eacd84c32f96953fd4f",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -102,9 +102,9 @@
       "url": "https://www.amazon.jobs/en/jobs/10607414/principal-technical-program-manager-region-flexibility-efficiency",
       "source": "amazon_jobs",
       "job_snapshot_hash": "8b4212356173a12451c043fbb16be0bf70b9b3fb5e40f2e8d8cf403b87dff646",
-      "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -114,7 +114,7 @@
       "source": "amazon_jobs",
       "job_snapshot_hash": "3fbcab77486be45d8f3e254ea8146097890a941f428c166b3c7ad279eba08eee",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -136,8 +136,8 @@
       "source": "apple",
       "job_snapshot_hash": "3c6ff553c460aad372cdc9840dc674f44d744e3a4ce6c5af367e9fb69ebc952d",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "status": "blocked",
+      "reason": "Paid retry budget exhausted; review required.",
       "verdict": null
     },
     {
@@ -851,9 +851,9 @@
       "source": "microsoft",
       "job_snapshot_hash": "9774b4264c40b7532497d1478808f3b71e14de6de342d89260248ee04025a88e",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "microsoft:microsoft:1970393557073475",
@@ -862,8 +862,8 @@
       "source": "microsoft",
       "job_snapshot_hash": "c4e9bbb002632025307c51622707af07d7a00284b62a615c62035f080eb9d2a3",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "status": "blocked",
+      "reason": "Paid retry budget exhausted; review required.",
       "verdict": null
     },
     {
@@ -884,7 +884,7 @@
       "source": "oracle_cloud",
       "job_snapshot_hash": "966ddeeb28df898be63871366b14410fb2548f917872bd9d585aaed2d1365cc0",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -895,9 +895,9 @@
       "source": "oracle_cloud",
       "job_snapshot_hash": "33227501575be6baf25998543434d5ba55581b70c008ab03419529530ac0397b",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "strong"
     },
     {
       "key": "oracle_cloud:oracle:350828",
@@ -917,9 +917,9 @@
       "source": "oracle_cloud",
       "job_snapshot_hash": "3b46255d9709093d2ea2cea65303f100675c0954e6ddf09872a1b3b13eade3a5",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "oracle_cloud:oracle:350833",
@@ -928,9 +928,9 @@
       "source": "oracle_cloud",
       "job_snapshot_hash": "235e2acdf90a56ef04852427c31da0f2aee232c817c396bfb5162931f038ce85",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     }
   ],
   "link_ids": [
@@ -1655,21 +1655,21 @@
       "status": "failed"
     }
   ],
-  "checked_at": "2026-11-18T06:15:02.410739+00:00",
+  "checked_at": "2026-11-18T06:16:03.873344+00:00",
   "legacy_backlog": {
-    "assessed": 539,
-    "pending": 22,
-    "unresolved": 51,
-    "in_progress": 7,
-    "total": 619,
-    "strong": 69
+    "assessed": 543,
+    "pending": 11,
+    "unresolved": 53,
+    "in_progress": 9,
+    "total": 616,
+    "strong": 70
   },
-  "batch_id": "4032e69062dc0c4d76c7e622d22ec92d340ee84c86edf22e885601a104feea61",
+  "batch_id": "44bd15264397ed7018ceb2458cce39f66aa50c8637f09dc3b321a86d55650ec2",
   "status": "assessing",
   "input_blobs": {
     "jobs.json": "f8e1ff1c27d07c593b4ed7e4115b853aa0d803ad",
-    "fit_scores.json": "b3692f36cdb0c907eb9305a5515127d4c0012eda",
-    "fit_backfill.json": "5179c7cc31538d6e9939a17e120c7d5cfc6de9fa",
+    "fit_scores.json": "de65c2fe6dea2ec694099fe97bb9800daf5bfee8",
+    "fit_backfill.json": "4ddf051afa237362928c8c1f38728248b80bf7de",
     "meta.json": "36d8873d788a8fbef3b8dbdb7fa3cdfacfba238a"
   }
 }
