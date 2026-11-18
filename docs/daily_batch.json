@@ -7,15 +7,15 @@
   "collection_at": "2026-11-18T06:01:04.352523+00:00",
   "counts": {
     "found": 83,
-    "eligible": 31,
-    "completed": 4,
-    "strong": 0,
-    "middle": 2,
-    "pass": 2,
-    "waiting": 18,
-    "processing": 9,
+    "eligible": 30,
+    "completed": 10,
+    "strong": 1,
+    "middle": 6,
+    "pass": 3,
+    "waiting": 19,
+    "processing": 1,
     "blocked": 0,
-    "excluded": 52,
+    "excluded": 53,
     "unverified_links": 37
   },
   "members": [
@@ -565,9 +565,9 @@
       "source": "arbeitnow",
       "job_snapshot_hash": "67741d5c5f3f74b3a46ae9a7d118577e0c30c474cb69389603155b67e250de7e",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "pass"
     },
     {
       "key": "arbeitnow:affinidi:senior-product-manager-technical-london-425434",
@@ -719,9 +719,9 @@
       "source": "ashby",
       "job_snapshot_hash": "77633853ddc8dcf2bd0107d9f6682e8b9f7b0082464a0341bf96c04ac8cc98ba",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "ashby:lambda:47fad852-1e12-4be0-920a-1ef9fb42206f",
@@ -730,9 +730,9 @@
       "source": "ashby",
       "job_snapshot_hash": "6df03eac4bfb942b27cf56f9b10e38b5be05a4572506a06daad069eb690245cb",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "google:google:136533615491064518",
@@ -785,9 +785,9 @@
       "source": "greenhouse",
       "job_snapshot_hash": "1638365ebefcdb9fa657a224686eb3b7f92aaa8c5fa325d9a3e429c777784f72",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "greenhouse:databricks:8843888002",
@@ -795,9 +795,9 @@
       "url": "https://databricks.com/company/careers/open-positions/job?gh_jid=8843888002",
       "source": "greenhouse",
       "job_snapshot_hash": "96f64264114508702f12f9168bf6c55923453a9f5dd65759e0e0011245e21933",
-      "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -807,9 +807,9 @@
       "source": "greenhouse",
       "job_snapshot_hash": "e3d84749670f56424fc0b4167ef9e7b6ba4f388eec50110966bdee314ff6d329",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "strong"
     },
     {
       "key": "microsoft:microsoft:1970393556749366",
@@ -818,9 +818,9 @@
       "source": "microsoft",
       "job_snapshot_hash": "2ca47afa9d7444ce559d5d7396893fce3ff09d3b20982bfe458196e7ac66d140",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "microsoft:microsoft:1970393556957800",
@@ -873,7 +873,7 @@
       "source": "microsoft",
       "job_snapshot_hash": "5873fb1d34fd7c7606ccca02fae34c01690dc5fb201d1370c7058b59f21ea074",
       "eligible": true,
-      "status": "processing",
+      "status": "waiting",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -1655,21 +1655,21 @@
       "status": "failed"
     }
   ],
-  "checked_at": "2026-11-18T06:12:56.621503+00:00",
+  "checked_at": "2026-11-18T06:14:01.501779+00:00",
   "legacy_backlog": {
-    "assessed": 530,
-    "pending": 32,
+    "assessed": 536,
+    "pending": 33,
     "unresolved": 50,
-    "in_progress": 9,
-    "total": 621,
-    "strong": 68
+    "in_progress": 1,
+    "total": 620,
+    "strong": 69
   },
-  "batch_id": "2dd3fd079b7dabb15c140eb9924c36466249b392868fe1ecb916e72585f32222",
+  "batch_id": "f5f43e3a7040af057c2d353614d9b1ac303e0670432195ee8ca366b61e85f596",
   "status": "assessing",
   "input_blobs": {
     "jobs.json": "f8e1ff1c27d07c593b4ed7e4115b853aa0d803ad",
-    "fit_scores.json": "eb87c85fa42a18a807602b31d36811ceb3f31277",
-    "fit_backfill.json": "8c896de3b5188b595fe97a12017f58609dda8ace",
+    "fit_scores.json": "fe2a8cc0c472d089d0cd6bd827d7a688cc67e4c1",
+    "fit_backfill.json": "9082b1fde6dfcb09bf8add64e056f4e3ce058909",
     "meta.json": "36d8873d788a8fbef3b8dbdb7fa3cdfacfba238a"
   }
 }
