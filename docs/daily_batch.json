@@ -7,15 +7,15 @@
   "collection_at": "2026-11-19T06:01:00.233646+00:00",
   "counts": {
     "found": 53,
-    "eligible": 24,
-    "completed": 11,
+    "eligible": 22,
+    "completed": 15,
     "strong": 1,
-    "middle": 5,
+    "middle": 9,
     "pass": 5,
     "waiting": 0,
-    "processing": 11,
+    "processing": 5,
     "blocked": 2,
-    "excluded": 29,
+    "excluded": 31,
     "unverified_links": 30
   },
   "members": [
@@ -48,9 +48,9 @@
       "source": "amazon_jobs",
       "job_snapshot_hash": "677dd4dba9f56d6ed7a2ca6ad097da87054544b516996bd0f23476ade6b4899c",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "amazon_jobs:amazon:10608078",
@@ -69,9 +69,9 @@
       "url": "https://www.amazon.jobs/en/jobs/10608297/senior-tpm-rai-tech-responsible-ai-regulation-tech-assurance",
       "source": "amazon_jobs",
       "job_snapshot_hash": "59ffe6634b68dafc6c392663600d698c47500c7fad7ab95fa242c8b263bbd72b",
-      "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -80,9 +80,9 @@
       "url": "https://www.amazon.jobs/en/jobs/10608299/sr-technical-program-manager-privacy",
       "source": "amazon_jobs",
       "job_snapshot_hash": "93be99acdcac6f5794bab6b8f5c3decfece3b6c7ee328021bfcaec5dc7828405",
-      "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -455,9 +455,9 @@
       "source": "lever",
       "job_snapshot_hash": "b50be0e6a9b58d16239aba07052202751acc261139fff1652d09d17b7ac490c4",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "microsoft:microsoft:1970393557045419",
@@ -521,9 +521,9 @@
       "source": "oracle_cloud",
       "job_snapshot_hash": "a83d0686f320dae7f98804064c780bd07fb399270ba3496414a599f432511221",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "workday:capitalone:/job/McLean-VA/Director--Technical-Program-Management--Connectivity-and-Cloud-Infrastructure-_R1006121-1",
@@ -587,9 +587,9 @@
       "source": "workday",
       "job_snapshot_hash": "eb19848bd1c825691c437a5df1986e95144cca48be412162330a581dc39c85e0",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "workday:walmart:/job/USA-Moon-Pie-Building-AR-Bentonville-Home-Office/Distinguished--Technical-Program-Manager_R-2701994",
@@ -1353,21 +1353,21 @@
       "status": "failed"
     }
   ],
-  "checked_at": "2026-11-19T06:21:40.459754+00:00",
+  "checked_at": "2026-11-19T06:22:41.553079+00:00",
   "legacy_backlog": {
-    "assessed": 547,
+    "assessed": 551,
     "pending": 9,
     "unresolved": 55,
-    "in_progress": 12,
-    "total": 623,
+    "in_progress": 5,
+    "total": 620,
     "strong": 70
   },
-  "batch_id": "7ee53e6bc6a6add95c11f3cee04040dd594ab435f086597c50f67b5d57f2bf0b",
+  "batch_id": "9ff604fb1b3755628896365d7bb597fbd7b5768d4628240b353ab5a2f108992f",
   "status": "assessing",
   "input_blobs": {
     "jobs.json": "f30fc23b5d2f84cc9f66a091c3c8729c60cd23e1",
-    "fit_scores.json": "e8ca8e3f0d5129eded3d1a511c5656d6f4306709",
-    "fit_backfill.json": "08d0e1ffe99f5ed75920b7e9b3ad8b3fd69dc13d",
+    "fit_scores.json": "a787da2e905792fc093a472822b2a3def6fbfe03",
+    "fit_backfill.json": "e3cacbefd4e63a3ee7233255917681eaf6c4ea3f",
     "meta.json": "6ab93712753c4c873b60f65d242f995dd190c25c"
   }
 }
