@@ -7,15 +7,15 @@
   "collection_at": "2026-11-19T06:01:00.233646+00:00",
   "counts": {
     "found": 53,
-    "eligible": 32,
-    "completed": 0,
+    "eligible": 30,
+    "completed": 3,
     "strong": 0,
-    "middle": 0,
-    "pass": 0,
-    "waiting": 32,
-    "processing": 0,
+    "middle": 1,
+    "pass": 2,
+    "waiting": 19,
+    "processing": 8,
     "blocked": 0,
-    "excluded": 21,
+    "excluded": 23,
     "unverified_links": 30
   },
   "members": [
@@ -26,7 +26,7 @@
       "source": "amazon_jobs",
       "job_snapshot_hash": "656ed0e2ca471e294e4f6b0ed3a681b72e9677f06f18b6c34088d273cf927521",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -36,9 +36,9 @@
       "url": "https://www.amazon.jobs/en/jobs/10607482/sr-technical-program-manager-amazon-leo-fleet-operations-observability",
       "source": "amazon_jobs",
       "job_snapshot_hash": "54186e6e60c117d77a7100cfc7c05608c615f278c052363bb1c0da7cc920b8d5",
-      "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -92,7 +92,7 @@
       "source": "amazon_jobs",
       "job_snapshot_hash": "6cc27633f79c4222e5dd66df4ee47d0ed6554c93a4d6b83fc6adf8939012755f",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -311,9 +311,9 @@
       "url": "https://jobs.ashbyhq.com/Clera/287aac73-fb45-48e8-9334-c1fc565859dc",
       "source": "ashby",
       "job_snapshot_hash": "577683d98a701fb82d5cb2f3ffe909e56ef27a534b6e07d23631768162a078e4",
-      "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -323,9 +323,9 @@
       "source": "ashby",
       "job_snapshot_hash": "321d4f6180d3eae73c629259dfc3734d328600157e6cb9079973e8937fcf49b0",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "pass"
     },
     {
       "key": "github:github:7635",
@@ -389,7 +389,7 @@
       "source": "greenhouse",
       "job_snapshot_hash": "0128ca60f039dd1d296c8b749d927d598c7b87781d5fc76a65a4e103ce2779d0",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -411,7 +411,7 @@
       "source": "greenhouse",
       "job_snapshot_hash": "9a5b78c292e4d51374540a9bf5d609b78668007ba5580f9cbdcfbf2ff848b145",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -433,9 +433,9 @@
       "source": "lever",
       "job_snapshot_hash": "4f8864333e6f2618282667e9e3f9e723bd05f128c093fbe2510e9d10465b7eb2",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "pass"
     },
     {
       "key": "lever:jobgether:bf7fd836-994c-4619-9c60-132425d1faa0",
@@ -444,7 +444,7 @@
       "source": "lever",
       "job_snapshot_hash": "8d5da4a30508c8dcda26aba759f92032a364a5722bf1c92f2fc9bbe65d82a831",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -532,7 +532,7 @@
       "source": "workday",
       "job_snapshot_hash": "89b05a587fce699a6d815589b28aa0686ef1ec09996baab06758893329d5a82b",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -554,7 +554,7 @@
       "source": "workday",
       "job_snapshot_hash": "78397a9da87aebd567c2278d20f71a69fdc6e474d5e2c247e0be52566025e733",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -576,7 +576,7 @@
       "source": "workday",
       "job_snapshot_hash": "0b3f206a76a5d212ee9541ae27e7299d11ab0b1a3d90ccbb7aeb42bf1f743422",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -598,9 +598,9 @@
       "source": "workday",
       "job_snapshot_hash": "ebab2eac1c8d561a5e91ec3efb49c2ef8980101e583594c6a9ab69ae1a962f10",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     }
   ],
   "link_ids": [
@@ -1353,21 +1353,21 @@
       "status": "failed"
     }
   ],
-  "checked_at": "2026-11-19T06:18:17.701069+00:00",
+  "checked_at": "2026-11-19T06:19:22.441880+00:00",
   "legacy_backlog": {
-    "assessed": 530,
-    "pending": 49,
+    "assessed": 539,
+    "pending": 29,
     "unresolved": 53,
-    "in_progress": 0,
-    "total": 632,
-    "strong": 68
+    "in_progress": 8,
+    "total": 629,
+    "strong": 69
   },
-  "batch_id": "246af11dff9d89b819cc7fdfd65fe5237f32cbcb7b20564255458ef8a411debb",
+  "batch_id": "2b1c4175ec25e6205e4abbae2bf76fab94977f98738944914716b1e74f1f58a9",
   "status": "assessing",
   "input_blobs": {
     "jobs.json": "f30fc23b5d2f84cc9f66a091c3c8729c60cd23e1",
-    "fit_scores.json": "79525616de1c6a765d17a62dce8a20a1dae050af",
-    "fit_backfill.json": "ab66c35ab1c93fd2aac04ee2d6e1e31c863c0c99",
+    "fit_scores.json": "7d9d78b3f9626a8ed91df118c160ad522ace0cc1",
+    "fit_backfill.json": "f40a76bca42a669838843a4e488f88d81c3f01b6",
     "meta.json": "6ab93712753c4c873b60f65d242f995dd190c25c"
   }
 }
