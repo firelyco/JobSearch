@@ -7,15 +7,15 @@
   "collection_at": "2026-11-19T06:01:00.233646+00:00",
   "counts": {
     "found": 53,
-    "eligible": 30,
-    "completed": 3,
-    "strong": 0,
-    "middle": 1,
+    "eligible": 27,
+    "completed": 6,
+    "strong": 1,
+    "middle": 3,
     "pass": 2,
-    "waiting": 19,
-    "processing": 8,
+    "waiting": 10,
+    "processing": 11,
     "blocked": 0,
-    "excluded": 23,
+    "excluded": 26,
     "unverified_links": 30
   },
   "members": [
@@ -25,9 +25,9 @@
       "url": "https://www.amazon.jobs/en/jobs/10600447/sr-technical-program-manager-server-hardware-engineering-aws-mainstream-compute",
       "source": "amazon_jobs",
       "job_snapshot_hash": "656ed0e2ca471e294e4f6b0ed3a681b72e9677f06f18b6c34088d273cf927521",
-      "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -59,7 +59,7 @@
       "source": "amazon_jobs",
       "job_snapshot_hash": "8b2e75f6e187cab084afb78e5a135ca8785833d82cae006c112492fe8a823d28",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -91,9 +91,9 @@
       "url": "https://www.amazon.jobs/en/jobs/10608896/technical-program-manager-fauna",
       "source": "amazon_jobs",
       "job_snapshot_hash": "6cc27633f79c4222e5dd66df4ee47d0ed6554c93a4d6b83fc6adf8939012755f",
-      "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -180,7 +180,7 @@
       "source": "arbeitnow",
       "job_snapshot_hash": "79dc79f4e6219df4897d3b02a480763782d0be60d0add1d31a7c00f04a087c97",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -334,7 +334,7 @@
       "source": "github",
       "job_snapshot_hash": "315bc3d7a1af2c406e255b4233262e50adfdd17ee6e7bb55264c2e474fbd6278",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -345,7 +345,7 @@
       "source": "greenhouse",
       "job_snapshot_hash": "b7c5c75bfb67491e77587567fb9c354acdd932d5fae3ca8f0a060096eb4e206a",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -355,9 +355,9 @@
       "url": "https://boards.greenhouse.io/andurilindustries/jobs/5300520007?gh_jid=5300520007",
       "source": "greenhouse",
       "job_snapshot_hash": "94a7872deadcfbf56b4320d67027305a72290feccafe1a31718761d18b20210f",
-      "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -367,7 +367,7 @@
       "source": "greenhouse",
       "job_snapshot_hash": "a229ce65ca1da1f04208a7305111b80d724c76292b23ed383867a3251d4174b2",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -378,7 +378,7 @@
       "source": "greenhouse",
       "job_snapshot_hash": "7e1fa308b16889ae73dd6d9cc3ed03500b320903ba37d527b20bd89bfd448e20",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -389,9 +389,9 @@
       "source": "greenhouse",
       "job_snapshot_hash": "0128ca60f039dd1d296c8b749d927d598c7b87781d5fc76a65a4e103ce2779d0",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "strong"
     },
     {
       "key": "greenhouse:mongodb:8399041",
@@ -411,9 +411,9 @@
       "source": "greenhouse",
       "job_snapshot_hash": "9a5b78c292e4d51374540a9bf5d609b78668007ba5580f9cbdcfbf2ff848b145",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "lever:jobgether:38a8214f-b623-4404-8d1c-0845337f750b",
@@ -422,7 +422,7 @@
       "source": "lever",
       "job_snapshot_hash": "e49cac2239664cedf1b7ae0e57423bb33f59ff1a147bf4169c23ae3b3b1763e3",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -444,9 +444,9 @@
       "source": "lever",
       "job_snapshot_hash": "8d5da4a30508c8dcda26aba759f92032a364a5722bf1c92f2fc9bbe65d82a831",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "lever:jobgether:c9aae85c-52fd-4041-aa0c-af12ecec2efb",
@@ -455,7 +455,7 @@
       "source": "lever",
       "job_snapshot_hash": "b50be0e6a9b58d16239aba07052202751acc261139fff1652d09d17b7ac490c4",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -1353,21 +1353,21 @@
       "status": "failed"
     }
   ],
-  "checked_at": "2026-11-19T06:19:22.441880+00:00",
+  "checked_at": "2026-11-19T06:20:37.587857+00:00",
   "legacy_backlog": {
-    "assessed": 539,
-    "pending": 29,
+    "assessed": 542,
+    "pending": 20,
     "unresolved": 53,
-    "in_progress": 8,
-    "total": 629,
-    "strong": 69
+    "in_progress": 11,
+    "total": 626,
+    "strong": 70
   },
-  "batch_id": "2b1c4175ec25e6205e4abbae2bf76fab94977f98738944914716b1e74f1f58a9",
+  "batch_id": "0a145cce26ea0f8751d453e8db607add6c0bad609c3c13719b05f016aaa54725",
   "status": "assessing",
   "input_blobs": {
     "jobs.json": "f30fc23b5d2f84cc9f66a091c3c8729c60cd23e1",
-    "fit_scores.json": "7d9d78b3f9626a8ed91df118c160ad522ace0cc1",
-    "fit_backfill.json": "f40a76bca42a669838843a4e488f88d81c3f01b6",
+    "fit_scores.json": "ef87d68d5e39526369395a4145285abff94aed09",
+    "fit_backfill.json": "24f934860be798b3b39da5d9ade15cb681030fc6",
     "meta.json": "6ab93712753c4c873b60f65d242f995dd190c25c"
   }
 }
