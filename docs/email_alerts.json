@@ -1,28 +1,28 @@
 {
   "schema": 1,
-  "checked_at": "2026-11-19T06:01:00.233646+00:00",
+  "checked_at": "2026-11-19T06:30:59.276394+00:00",
   "connection": {
     "source": "linkedin_email",
     "label": "LinkedIn job-alert emails",
     "status": "partial",
     "jobs": 1144,
-    "messages_checked": 12,
-    "alerts_with_jobs": 9,
-    "job_references_found": 54,
+    "messages_checked": 0,
+    "alerts_with_jobs": 0,
+    "job_references_found": 0,
     "failed_messages": 0,
-    "alerts_without_job_links": 2,
+    "alerts_without_job_links": 0,
     "messages_deferred": 0,
     "unresolved_alert_messages": 23,
     "lookback_days": 14,
     "mode": "incremental",
-    "search_since": "2026-11-17T06:50:54.287308+00:00",
+    "search_since": "2026-11-18T06:01:00.233646+00:00",
     "last_success_at": null
   },
   "last_success_at": null,
   "scope": "One-time 14-day catch-up, then new unprocessed LinkedIn emails during the daily job search. Collected references are retained; this does not verify all LinkedIn or in-app listings.",
   "counts": {
-    "missing": 933,
-    "possible_match": 211
+    "missing": 932,
+    "possible_match": 212
   },
   "rows": [
     {
@@ -299,6 +299,21 @@
       "employer_urls": [],
       "first_alert_at": "2026-10-28T17:38:09+00:00",
       "last_alert_at": "2026-10-28T17:38:09+00:00",
+      "collection": "missing",
+      "assessment": "not_assessed",
+      "verdicts": [],
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+    },
+    {
+      "linkedin_id": "4409217541",
+      "url": "https://www.linkedin.com/jobs/view/4409217541",
+      "title": "",
+      "company": "",
+      "location": "",
+      "employer_urls": [],
+      "first_alert_at": "2026-11-18T19:57:44+00:00",
+      "last_alert_at": "2026-11-18T19:57:44+00:00",
       "collection": "missing",
       "assessment": "not_assessed",
       "verdicts": [],
@@ -2528,13 +2543,6 @@
       ],
       "matches": [
         {
-          "key": "workday:walmart:/job/USA-Moon-Pie-Building-AR-Bentonville-Home-Office/Distinguished--Technical-Program-Manager_R-2701994",
-          "title": "Distinguished, Technical Program Manager",
-          "company": "walmart",
-          "url": "https://walmart.wd504.myworkdayjobs.com/en-US/WalmartExternal/job/USA-Moon-Pie-Building-AR-Bentonville-Home-Office/Distinguished--Technical-Program-Manager_R-2701994",
-          "assessment_date_eligible": true
-        },
-        {
           "key": "workday:walmart:/job/Bentonville-AR/Distinguished--Technical-Program-Manager_R-2591170",
           "title": "Distinguished, Technical Program Manager",
           "company": "walmart",
@@ -2554,6 +2562,36 @@
           "company": "walmart",
           "url": "https://walmart.wd504.myworkdayjobs.com/en-US/WalmartExternal/job/USA-Crossman-Respect-Building-CA-SUNNYVALE-Home-Office/Distinguished--Technical-Program-Manager_R-2592565",
           "assessment_date_eligible": true
+        },
+        {
+          "key": "workday:walmart:/job/USA-Moon-Pie-Building-AR-Bentonville-Home-Office/Distinguished--Technical-Program-Manager_R-2701994",
+          "title": "Distinguished, Technical Program Manager",
+          "company": "walmart",
+          "url": "https://walmart.wd504.myworkdayjobs.com/en-US/WalmartExternal/job/USA-Moon-Pie-Building-AR-Bentonville-Home-Office/Distinguished--Technical-Program-Manager_R-2701994",
+          "assessment_date_eligible": true
+        }
+      ],
+      "reason": "Title/company similarity is not proof of the same requisition."
+    },
+    {
+      "linkedin_id": "4454536413",
+      "url": "https://www.linkedin.com/jobs/view/4454536413",
+      "title": "Technical Program Manager, Money-as-a-Service",
+      "company": "Stripe",
+      "location": "United States (Remote)",
+      "employer_urls": [],
+      "first_alert_at": "2026-11-19T03:57:41+00:00",
+      "last_alert_at": "2026-11-19T03:57:41+00:00",
+      "collection": "possible_match",
+      "assessment": "outside_date_scope",
+      "verdicts": [],
+      "matches": [
+        {
+          "key": "greenhouse:stripe:8042055",
+          "title": "Technical Program Manager, Money-as-a-Service",
+          "company": "stripe",
+          "url": "https://stripe.com/jobs/search?gh_jid=8042055",
+          "assessment_date_eligible": false
         }
       ],
       "reason": "Title/company similarity is not proof of the same requisition."
@@ -4225,34 +4263,6 @@
       ],
       "matches": [
         {
-          "key": "workday:walmart:/job/USA-Crossman-Respect-Building-CA-SUNNYVALE-Home-Office/XMLNAME--USA--Principal--Technical-Program-Manager_R-2697414-1",
-          "title": "(USA) Principal, Technical Program Manager",
-          "company": "walmart",
-          "url": "https://walmart.wd504.myworkdayjobs.com/en-US/WalmartExternal/job/USA-Crossman-Respect-Building-CA-SUNNYVALE-Home-Office/XMLNAME--USA--Principal--Technical-Program-Manager_R-2697414-1",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "workday:walmart:/job/USA-ISD-Office---DGTC-AR-BENTONVILLE-Home-Office/XMLNAME--USA--Principal--Technical-Program-Manager_R-2682765-1",
-          "title": "(USA) Principal, Technical Program Manager",
-          "company": "walmart",
-          "url": "https://walmart.wd504.myworkdayjobs.com/en-US/WalmartExternal/job/USA-ISD-Office---DGTC-AR-BENTONVILLE-Home-Office/XMLNAME--USA--Principal--Technical-Program-Manager_R-2682765-1",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "workday:walmart:/job/USA-Crossman-Respect-Building-CA-SUNNYVALE-Home-Office/XMLNAME--USA--Principal--Technical-Program-Manager_R-2655207-1",
-          "title": "(USA) Principal, Technical Program Manager",
-          "company": "walmart",
-          "url": "https://walmart.wd504.myworkdayjobs.com/en-US/WalmartExternal/job/USA-Crossman-Respect-Building-CA-SUNNYVALE-Home-Office/XMLNAME--USA--Principal--Technical-Program-Manager_R-2655207-1",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "workday:walmart:/job/USA-Bentonville-Global-Tech-AR-BENTONVILLE-Home-Office/XMLNAME--USA--Principal--Technical-Program-Manager_R-2685379-2",
-          "title": "(USA) Principal, Technical Program Manager",
-          "company": "walmart",
-          "url": "https://walmart.wd504.myworkdayjobs.com/en-US/WalmartExternal/job/USA-Bentonville-Global-Tech-AR-BENTONVILLE-Home-Office/XMLNAME--USA--Principal--Technical-Program-Manager_R-2685379-2",
-          "assessment_date_eligible": true
-        },
-        {
           "key": "workday:walmart:/job/USA-SUNNYVALE-TECH-CORNERS-CA-SUNNYVALE-Home-Office/XMLNAME--USA--Principal--Technical-Program-Manager_R-2671852-2",
           "title": "(USA) Principal, Technical Program Manager",
           "company": "walmart",
@@ -4278,6 +4288,34 @@
           "title": "(USA) Principal, Technical Program Manager",
           "company": "walmart",
           "url": "https://walmart.wd504.myworkdayjobs.com/en-US/WalmartExternal/job/USA-Sams-Home-Office-AR-Bentonville-Home-Office/XMLNAME--USA--Principal--Technical-Program-Manager_R-2647013-1",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "workday:walmart:/job/USA-Bentonville-Global-Tech-AR-BENTONVILLE-Home-Office/XMLNAME--USA--Principal--Technical-Program-Manager_R-2685379-2",
+          "title": "(USA) Principal, Technical Program Manager",
+          "company": "walmart",
+          "url": "https://walmart.wd504.myworkdayjobs.com/en-US/WalmartExternal/job/USA-Bentonville-Global-Tech-AR-BENTONVILLE-Home-Office/XMLNAME--USA--Principal--Technical-Program-Manager_R-2685379-2",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "workday:walmart:/job/USA-Crossman-Respect-Building-CA-SUNNYVALE-Home-Office/XMLNAME--USA--Principal--Technical-Program-Manager_R-2655207-1",
+          "title": "(USA) Principal, Technical Program Manager",
+          "company": "walmart",
+          "url": "https://walmart.wd504.myworkdayjobs.com/en-US/WalmartExternal/job/USA-Crossman-Respect-Building-CA-SUNNYVALE-Home-Office/XMLNAME--USA--Principal--Technical-Program-Manager_R-2655207-1",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "workday:walmart:/job/USA-ISD-Office---DGTC-AR-BENTONVILLE-Home-Office/XMLNAME--USA--Principal--Technical-Program-Manager_R-2682765-1",
+          "title": "(USA) Principal, Technical Program Manager",
+          "company": "walmart",
+          "url": "https://walmart.wd504.myworkdayjobs.com/en-US/WalmartExternal/job/USA-ISD-Office---DGTC-AR-BENTONVILLE-Home-Office/XMLNAME--USA--Principal--Technical-Program-Manager_R-2682765-1",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "workday:walmart:/job/USA-Crossman-Respect-Building-CA-SUNNYVALE-Home-Office/XMLNAME--USA--Principal--Technical-Program-Manager_R-2697414-1",
+          "title": "(USA) Principal, Technical Program Manager",
+          "company": "walmart",
+          "url": "https://walmart.wd504.myworkdayjobs.com/en-US/WalmartExternal/job/USA-Crossman-Respect-Building-CA-SUNNYVALE-Home-Office/XMLNAME--USA--Principal--Technical-Program-Manager_R-2697414-1",
           "assessment_date_eligible": true
         }
       ],
@@ -4299,34 +4337,6 @@
       ],
       "matches": [
         {
-          "key": "workday:walmart:/job/USA-Crossman-Respect-Building-CA-SUNNYVALE-Home-Office/XMLNAME--USA--Principal--Technical-Program-Manager_R-2697414-1",
-          "title": "(USA) Principal, Technical Program Manager",
-          "company": "walmart",
-          "url": "https://walmart.wd504.myworkdayjobs.com/en-US/WalmartExternal/job/USA-Crossman-Respect-Building-CA-SUNNYVALE-Home-Office/XMLNAME--USA--Principal--Technical-Program-Manager_R-2697414-1",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "workday:walmart:/job/USA-ISD-Office---DGTC-AR-BENTONVILLE-Home-Office/XMLNAME--USA--Principal--Technical-Program-Manager_R-2682765-1",
-          "title": "(USA) Principal, Technical Program Manager",
-          "company": "walmart",
-          "url": "https://walmart.wd504.myworkdayjobs.com/en-US/WalmartExternal/job/USA-ISD-Office---DGTC-AR-BENTONVILLE-Home-Office/XMLNAME--USA--Principal--Technical-Program-Manager_R-2682765-1",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "workday:walmart:/job/USA-Crossman-Respect-Building-CA-SUNNYVALE-Home-Office/XMLNAME--USA--Principal--Technical-Program-Manager_R-2655207-1",
-          "title": "(USA) Principal, Technical Program Manager",
-          "company": "walmart",
-          "url": "https://walmart.wd504.myworkdayjobs.com/en-US/WalmartExternal/job/USA-Crossman-Respect-Building-CA-SUNNYVALE-Home-Office/XMLNAME--USA--Principal--Technical-Program-Manager_R-2655207-1",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "workday:walmart:/job/USA-Bentonville-Global-Tech-AR-BENTONVILLE-Home-Office/XMLNAME--USA--Principal--Technical-Program-Manager_R-2685379-2",
-          "title": "(USA) Principal, Technical Program Manager",
-          "company": "walmart",
-          "url": "https://walmart.wd504.myworkdayjobs.com/en-US/WalmartExternal/job/USA-Bentonville-Global-Tech-AR-BENTONVILLE-Home-Office/XMLNAME--USA--Principal--Technical-Program-Manager_R-2685379-2",
-          "assessment_date_eligible": true
-        },
-        {
           "key": "workday:walmart:/job/USA-SUNNYVALE-TECH-CORNERS-CA-SUNNYVALE-Home-Office/XMLNAME--USA--Principal--Technical-Program-Manager_R-2671852-2",
           "title": "(USA) Principal, Technical Program Manager",
           "company": "walmart",
@@ -4352,6 +4362,34 @@
           "title": "(USA) Principal, Technical Program Manager",
           "company": "walmart",
           "url": "https://walmart.wd504.myworkdayjobs.com/en-US/WalmartExternal/job/USA-Sams-Home-Office-AR-Bentonville-Home-Office/XMLNAME--USA--Principal--Technical-Program-Manager_R-2647013-1",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "workday:walmart:/job/USA-Bentonville-Global-Tech-AR-BENTONVILLE-Home-Office/XMLNAME--USA--Principal--Technical-Program-Manager_R-2685379-2",
+          "title": "(USA) Principal, Technical Program Manager",
+          "company": "walmart",
+          "url": "https://walmart.wd504.myworkdayjobs.com/en-US/WalmartExternal/job/USA-Bentonville-Global-Tech-AR-BENTONVILLE-Home-Office/XMLNAME--USA--Principal--Technical-Program-Manager_R-2685379-2",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "workday:walmart:/job/USA-Crossman-Respect-Building-CA-SUNNYVALE-Home-Office/XMLNAME--USA--Principal--Technical-Program-Manager_R-2655207-1",
+          "title": "(USA) Principal, Technical Program Manager",
+          "company": "walmart",
+          "url": "https://walmart.wd504.myworkdayjobs.com/en-US/WalmartExternal/job/USA-Crossman-Respect-Building-CA-SUNNYVALE-Home-Office/XMLNAME--USA--Principal--Technical-Program-Manager_R-2655207-1",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "workday:walmart:/job/USA-ISD-Office---DGTC-AR-BENTONVILLE-Home-Office/XMLNAME--USA--Principal--Technical-Program-Manager_R-2682765-1",
+          "title": "(USA) Principal, Technical Program Manager",
+          "company": "walmart",
+          "url": "https://walmart.wd504.myworkdayjobs.com/en-US/WalmartExternal/job/USA-ISD-Office---DGTC-AR-BENTONVILLE-Home-Office/XMLNAME--USA--Principal--Technical-Program-Manager_R-2682765-1",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "workday:walmart:/job/USA-Crossman-Respect-Building-CA-SUNNYVALE-Home-Office/XMLNAME--USA--Principal--Technical-Program-Manager_R-2697414-1",
+          "title": "(USA) Principal, Technical Program Manager",
+          "company": "walmart",
+          "url": "https://walmart.wd504.myworkdayjobs.com/en-US/WalmartExternal/job/USA-Crossman-Respect-Building-CA-SUNNYVALE-Home-Office/XMLNAME--USA--Principal--Technical-Program-Manager_R-2697414-1",
           "assessment_date_eligible": true
         }
       ],
@@ -4679,8 +4717,10 @@
       "first_alert_at": "2026-11-03T15:02:37+00:00",
       "last_alert_at": "2026-11-03T15:02:37+00:00",
       "collection": "possible_match",
-      "assessment": "reassessment_pending",
-      "verdicts": [],
+      "assessment": "assessed",
+      "verdicts": [
+        "Middle"
+      ],
       "matches": [
         {
           "key": "ashby:openai:afebc24f-c6b8-4c66-a344-b1661fc77570",
@@ -5124,11 +5164,19 @@
       "employer_urls": [],
       "first_alert_at": "2026-10-21T23:54:43+00:00",
       "last_alert_at": "2026-10-30T03:57:41+00:00",
-      "collection": "missing",
-      "assessment": "not_assessed",
+      "collection": "possible_match",
+      "assessment": "reassessment_pending",
       "verdicts": [],
-      "matches": [],
-      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+      "matches": [
+        {
+          "key": "greenhouse:missionlane:8860735002",
+          "title": "Senior Director, Platform Prioritization & Delivery",
+          "company": "missionlane",
+          "url": "https://job-boards.greenhouse.io/missionlane/jobs/8860735002",
+          "assessment_date_eligible": true
+        }
+      ],
+      "reason": "Title/company similarity is not proof of the same requisition."
     },
     {
       "linkedin_id": "4472915239",
@@ -7699,8 +7747,10 @@
       "first_alert_at": "2026-10-21T03:57:41+00:00",
       "last_alert_at": "2026-10-21T03:57:41+00:00",
       "collection": "possible_match",
-      "assessment": "reassessment_pending",
-      "verdicts": [],
+      "assessment": "assessed",
+      "verdicts": [
+        "Middle"
+      ],
       "matches": [
         {
           "key": "greenhouse:databricks:8818577002",
@@ -9982,13 +10032,6 @@
       ],
       "matches": [
         {
-          "key": "workday:walmart:/job/USA-Moon-Pie-Building-AR-Bentonville-Home-Office/Distinguished--Technical-Program-Manager_R-2701994",
-          "title": "Distinguished, Technical Program Manager",
-          "company": "walmart",
-          "url": "https://walmart.wd504.myworkdayjobs.com/en-US/WalmartExternal/job/USA-Moon-Pie-Building-AR-Bentonville-Home-Office/Distinguished--Technical-Program-Manager_R-2701994",
-          "assessment_date_eligible": true
-        },
-        {
           "key": "workday:walmart:/job/Bentonville-AR/Distinguished--Technical-Program-Manager_R-2591170",
           "title": "Distinguished, Technical Program Manager",
           "company": "walmart",
@@ -10007,6 +10050,13 @@
           "title": "Distinguished, Technical Program Manager",
           "company": "walmart",
           "url": "https://walmart.wd504.myworkdayjobs.com/en-US/WalmartExternal/job/USA-Crossman-Respect-Building-CA-SUNNYVALE-Home-Office/Distinguished--Technical-Program-Manager_R-2592565",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "workday:walmart:/job/USA-Moon-Pie-Building-AR-Bentonville-Home-Office/Distinguished--Technical-Program-Manager_R-2701994",
+          "title": "Distinguished, Technical Program Manager",
+          "company": "walmart",
+          "url": "https://walmart.wd504.myworkdayjobs.com/en-US/WalmartExternal/job/USA-Moon-Pie-Building-AR-Bentonville-Home-Office/Distinguished--Technical-Program-Manager_R-2701994",
           "assessment_date_eligible": true
         }
       ],
@@ -14068,6 +14118,21 @@
       "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
     },
     {
+      "linkedin_id": "4484043925",
+      "url": "https://www.linkedin.com/jobs/view/4484043925",
+      "title": "Senior Technical Program Manager",
+      "company": "Intuit",
+      "location": "Mountain View, CA (On-site)",
+      "employer_urls": [],
+      "first_alert_at": "2026-11-18T21:57:42+00:00",
+      "last_alert_at": "2026-11-18T21:57:42+00:00",
+      "collection": "missing",
+      "assessment": "not_assessed",
+      "verdicts": [],
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+    },
+    {
       "linkedin_id": "4484061045",
       "url": "https://www.linkedin.com/jobs/view/4484061045",
       "title": "Principal Business Operations Manager",
@@ -15801,8 +15866,10 @@
       "first_alert_at": "2026-10-31T13:57:43+00:00",
       "last_alert_at": "2026-10-31T23:57:42+00:00",
       "collection": "possible_match",
-      "assessment": "not_assessed",
-      "verdicts": [],
+      "assessment": "assessed",
+      "verdicts": [
+        "Middle"
+      ],
       "matches": [
         {
           "key": "workday:capitalone:/job/Richmond-VA/Director--Technical-Program-Management--Remote-Eligible-_R1006104-1",
@@ -20794,6 +20861,21 @@
       "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
     },
     {
+      "linkedin_id": "4489171942",
+      "url": "https://www.linkedin.com/jobs/view/4489171942",
+      "title": "Director - Operations & Project Management Office",
+      "company": "Stanford Medicine Children's Health",
+      "location": "Palo Alto, CA",
+      "employer_urls": [],
+      "first_alert_at": "2026-11-18T15:57:41+00:00",
+      "last_alert_at": "2026-11-18T19:57:44+00:00",
+      "collection": "missing",
+      "assessment": "not_assessed",
+      "verdicts": [],
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+    },
+    {
       "linkedin_id": "4489179527",
       "url": "https://www.linkedin.com/jobs/view/4489179527",
       "title": "Director, IT Project Management",
@@ -22118,6 +22200,21 @@
       "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
     },
     {
+      "linkedin_id": "4490167514",
+      "url": "https://www.linkedin.com/jobs/view/4490167514",
+      "title": "Vice President of Project Planning & Execution",
+      "company": "Siri Fintech",
+      "location": "United States (Remote)",
+      "employer_urls": [],
+      "first_alert_at": "2026-11-19T01:57:42+00:00",
+      "last_alert_at": "2026-11-19T01:57:42+00:00",
+      "collection": "missing",
+      "assessment": "not_assessed",
+      "verdicts": [],
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+    },
+    {
       "linkedin_id": "4490169699",
       "url": "https://www.linkedin.com/jobs/view/4490169699",
       "title": "Director, Capital Projects, Planning & Resiliency",
@@ -22336,6 +22433,101 @@
       "employer_urls": [],
       "first_alert_at": "2026-11-18T03:57:41+00:00",
       "last_alert_at": "2026-11-18T03:57:41+00:00",
+      "collection": "missing",
+      "assessment": "not_assessed",
+      "verdicts": [],
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+    },
+    {
+      "linkedin_id": "4490422963",
+      "url": "https://www.linkedin.com/jobs/view/4490422963",
+      "title": "Manager, Technical Program Manager, Model Engineering and Analysis, Supply Strategy and Portfolio Planning",
+      "company": "Google",
+      "location": "Sunnyvale, CA (On-site)",
+      "employer_urls": [],
+      "first_alert_at": "2026-11-18T21:57:42+00:00",
+      "last_alert_at": "2026-11-18T21:57:42+00:00",
+      "collection": "possible_match",
+      "assessment": "assessed",
+      "verdicts": [
+        "Middle"
+      ],
+      "matches": [
+        {
+          "key": "google:google:95856083309863622",
+          "title": "Manager, Technical Program Manager, Model Engineering and Analysis, Supply Strategy and Portfolio Planning",
+          "company": "google",
+          "url": "https://www.google.com/about/careers/applications/jobs/results/95856083309863622",
+          "assessment_date_eligible": true
+        }
+      ],
+      "reason": "Title/company similarity is not proof of the same requisition."
+    },
+    {
+      "linkedin_id": "4490431612",
+      "url": "https://www.linkedin.com/jobs/view/4490431612",
+      "title": "Technical Program Manager, Design Delivery",
+      "company": "Google",
+      "location": "Thornton, CO (On-site)",
+      "employer_urls": [],
+      "first_alert_at": "2026-11-18T21:57:42+00:00",
+      "last_alert_at": "2026-11-18T21:57:42+00:00",
+      "collection": "possible_match",
+      "assessment": "assessed",
+      "verdicts": [
+        "Pass"
+      ],
+      "matches": [
+        {
+          "key": "google:google:136533615491064518",
+          "title": "Technical Program Manager, Design Delivery",
+          "company": "google",
+          "url": "https://www.google.com/about/careers/applications/jobs/results/136533615491064518",
+          "assessment_date_eligible": true
+        }
+      ],
+      "reason": "Title/company similarity is not proof of the same requisition."
+    },
+    {
+      "linkedin_id": "4490456804",
+      "url": "https://www.linkedin.com/jobs/view/4490456804",
+      "title": "Program Management Sr Mgr - L6",
+      "company": "Lockheed Martin",
+      "location": "Hartford, CT (Remote)",
+      "employer_urls": [],
+      "first_alert_at": "2026-11-19T03:57:41+00:00",
+      "last_alert_at": "2026-11-19T03:57:41+00:00",
+      "collection": "missing",
+      "assessment": "not_assessed",
+      "verdicts": [],
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+    },
+    {
+      "linkedin_id": "4490459712",
+      "url": "https://www.linkedin.com/jobs/view/4490459712",
+      "title": "Program Management Sr Mgr - L6",
+      "company": "Lockheed Martin",
+      "location": "Fairfield County, CT (Remote)",
+      "employer_urls": [],
+      "first_alert_at": "2026-11-19T03:57:41+00:00",
+      "last_alert_at": "2026-11-19T03:57:41+00:00",
+      "collection": "missing",
+      "assessment": "not_assessed",
+      "verdicts": [],
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+    },
+    {
+      "linkedin_id": "4490481420",
+      "url": "https://www.linkedin.com/jobs/view/4490481420",
+      "title": "Product & Engineering Operations Director",
+      "company": "InvoiceCloud, Inc.",
+      "location": "Boston, MA",
+      "employer_urls": [],
+      "first_alert_at": "2026-11-18T13:57:42+00:00",
+      "last_alert_at": "2026-11-18T23:57:44+00:00",
       "collection": "missing",
       "assessment": "not_assessed",
       "verdicts": [],
@@ -22658,6 +22850,353 @@
       "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
     },
     {
+      "linkedin_id": "4490830089",
+      "url": "https://www.linkedin.com/jobs/view/4490830089",
+      "title": "(USA) Principal, Technical Program Manager",
+      "company": "Walmart",
+      "location": "Sunnyvale, CA (On-site)",
+      "employer_urls": [],
+      "first_alert_at": "2026-11-18T21:57:42+00:00",
+      "last_alert_at": "2026-11-18T21:57:42+00:00",
+      "collection": "possible_match",
+      "assessment": "assessed",
+      "verdicts": [
+        "Middle"
+      ],
+      "matches": [
+        {
+          "key": "workday:walmart:/job/USA-SUNNYVALE-TECH-CORNERS-CA-SUNNYVALE-Home-Office/XMLNAME--USA--Principal--Technical-Program-Manager_R-2671852-2",
+          "title": "(USA) Principal, Technical Program Manager",
+          "company": "walmart",
+          "url": "https://walmart.wd504.myworkdayjobs.com/en-US/WalmartExternal/job/USA-SUNNYVALE-TECH-CORNERS-CA-SUNNYVALE-Home-Office/XMLNAME--USA--Principal--Technical-Program-Manager_R-2671852-2",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "workday:walmart:/job/USA-J-STREET-OFFICE-SPACE-AR-BENTONVILLE-Home-Office/XMLNAME--USA--Principal--Technical-Program-Manager_R-2664224-1",
+          "title": "(USA) Principal, Technical Program Manager",
+          "company": "walmart",
+          "url": "https://walmart.wd504.myworkdayjobs.com/en-US/WalmartExternal/job/USA-J-STREET-OFFICE-SPACE-AR-BENTONVILLE-Home-Office/XMLNAME--USA--Principal--Technical-Program-Manager_R-2664224-1",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "workday:walmart:/job/USA-J-STREET-OFFICE-SPACE-AR-BENTONVILLE-Home-Office/XMLNAME--USA--Principal--Technical-Program-Manager_R-2665418-1",
+          "title": "(USA) Principal, Technical Program Manager",
+          "company": "walmart",
+          "url": "https://walmart.wd504.myworkdayjobs.com/en-US/WalmartExternal/job/USA-J-STREET-OFFICE-SPACE-AR-BENTONVILLE-Home-Office/XMLNAME--USA--Principal--Technical-Program-Manager_R-2665418-1",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "workday:walmart:/job/USA-Sams-Home-Office-AR-Bentonville-Home-Office/XMLNAME--USA--Principal--Technical-Program-Manager_R-2647013-1",
+          "title": "(USA) Principal, Technical Program Manager",
+          "company": "walmart",
+          "url": "https://walmart.wd504.myworkdayjobs.com/en-US/WalmartExternal/job/USA-Sams-Home-Office-AR-Bentonville-Home-Office/XMLNAME--USA--Principal--Technical-Program-Manager_R-2647013-1",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "workday:walmart:/job/USA-Bentonville-Global-Tech-AR-BENTONVILLE-Home-Office/XMLNAME--USA--Principal--Technical-Program-Manager_R-2685379-2",
+          "title": "(USA) Principal, Technical Program Manager",
+          "company": "walmart",
+          "url": "https://walmart.wd504.myworkdayjobs.com/en-US/WalmartExternal/job/USA-Bentonville-Global-Tech-AR-BENTONVILLE-Home-Office/XMLNAME--USA--Principal--Technical-Program-Manager_R-2685379-2",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "workday:walmart:/job/USA-Crossman-Respect-Building-CA-SUNNYVALE-Home-Office/XMLNAME--USA--Principal--Technical-Program-Manager_R-2655207-1",
+          "title": "(USA) Principal, Technical Program Manager",
+          "company": "walmart",
+          "url": "https://walmart.wd504.myworkdayjobs.com/en-US/WalmartExternal/job/USA-Crossman-Respect-Building-CA-SUNNYVALE-Home-Office/XMLNAME--USA--Principal--Technical-Program-Manager_R-2655207-1",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "workday:walmart:/job/USA-ISD-Office---DGTC-AR-BENTONVILLE-Home-Office/XMLNAME--USA--Principal--Technical-Program-Manager_R-2682765-1",
+          "title": "(USA) Principal, Technical Program Manager",
+          "company": "walmart",
+          "url": "https://walmart.wd504.myworkdayjobs.com/en-US/WalmartExternal/job/USA-ISD-Office---DGTC-AR-BENTONVILLE-Home-Office/XMLNAME--USA--Principal--Technical-Program-Manager_R-2682765-1",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "workday:walmart:/job/USA-Crossman-Respect-Building-CA-SUNNYVALE-Home-Office/XMLNAME--USA--Principal--Technical-Program-Manager_R-2697414-1",
+          "title": "(USA) Principal, Technical Program Manager",
+          "company": "walmart",
+          "url": "https://walmart.wd504.myworkdayjobs.com/en-US/WalmartExternal/job/USA-Crossman-Respect-Building-CA-SUNNYVALE-Home-Office/XMLNAME--USA--Principal--Technical-Program-Manager_R-2697414-1",
+          "assessment_date_eligible": true
+        }
+      ],
+      "reason": "Title/company similarity is not proof of the same requisition."
+    },
+    {
+      "linkedin_id": "4490841963",
+      "url": "https://www.linkedin.com/jobs/view/4490841963",
+      "title": "Technical Program Manager, Quantum Technology",
+      "company": "Applied Materials",
+      "location": "Santa Clara, CA",
+      "employer_urls": [],
+      "first_alert_at": "2026-11-18T17:57:43+00:00",
+      "last_alert_at": "2026-11-18T23:57:44+00:00",
+      "collection": "missing",
+      "assessment": "not_assessed",
+      "verdicts": [],
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+    },
+    {
+      "linkedin_id": "4490849574",
+      "url": "https://www.linkedin.com/jobs/view/4490849574",
+      "title": "Director Forward Deployed Engineer",
+      "company": "Weekday (YC W21)",
+      "location": "Santa Clara, CA (Hybrid)",
+      "employer_urls": [],
+      "first_alert_at": "2026-11-18T17:57:43+00:00",
+      "last_alert_at": "2026-11-18T17:57:43+00:00",
+      "collection": "missing",
+      "assessment": "not_assessed",
+      "verdicts": [],
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+    },
+    {
+      "linkedin_id": "4490849886",
+      "url": "https://www.linkedin.com/jobs/view/4490849886",
+      "title": "Director, Data & Technology PMO",
+      "company": "Jobgether",
+      "location": "United States (Remote)",
+      "employer_urls": [],
+      "first_alert_at": "2026-11-18T15:57:41+00:00",
+      "last_alert_at": "2026-11-18T15:57:41+00:00",
+      "collection": "possible_match",
+      "assessment": "assessed",
+      "verdicts": [
+        "Middle"
+      ],
+      "matches": [
+        {
+          "key": "lever:jobgether:38a8214f-b623-4404-8d1c-0845337f750b",
+          "title": "Director, Data & Technology PMO",
+          "company": "jobgether",
+          "url": "https://jobs.lever.co/jobgether/38a8214f-b623-4404-8d1c-0845337f750b",
+          "assessment_date_eligible": true
+        }
+      ],
+      "reason": "Title/company similarity is not proof of the same requisition."
+    },
+    {
+      "linkedin_id": "4490852534",
+      "url": "https://www.linkedin.com/jobs/view/4490852534",
+      "title": "Lead Principal Technical Program Manager",
+      "company": "Oracle",
+      "location": "United States (Remote)",
+      "employer_urls": [],
+      "first_alert_at": "2026-11-19T03:57:41+00:00",
+      "last_alert_at": "2026-11-19T03:57:41+00:00",
+      "collection": "possible_match",
+      "assessment": "outside_date_scope",
+      "verdicts": [
+        "Middle",
+        "Pass",
+        "Strong"
+      ],
+      "matches": [
+        {
+          "key": "oracle_cloud:oracle:350915",
+          "title": "Lead Principal Technical Program Manager",
+          "company": "oracle",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/350915",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "oracle_cloud:oracle:350600",
+          "title": "Lead Principal Technical Program Manager",
+          "company": "oracle",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/350600",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "oracle_cloud:oracle:350828",
+          "title": "Lead Principal Technical Program Manager",
+          "company": "oracle",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/350828",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "oracle_cloud:oracle:343272",
+          "title": "Lead Principal Technical Program Manager",
+          "company": "oracle",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/343272",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "oracle_cloud:oracle:344663",
+          "title": "Lead Principal Technical Program Manager",
+          "company": "oracle",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/344663",
+          "assessment_date_eligible": false
+        },
+        {
+          "key": "oracle_cloud:oracle:338528",
+          "title": "Lead Principal Technical Program Manager",
+          "company": "oracle",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/338528",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "oracle_cloud:oracle:350453",
+          "title": "Lead Principal Technical Program Manager",
+          "company": "oracle",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/350453",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "oracle_cloud:oracle:348205",
+          "title": "Lead Principal Technical Program Manager",
+          "company": "oracle",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/348205",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "oracle_cloud:oracle:343541",
+          "title": "Lead Principal Technical Program Manager",
+          "company": "oracle",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/343541",
+          "assessment_date_eligible": false
+        },
+        {
+          "key": "oracle_cloud:oracle:349814",
+          "title": "Lead Principal Technical Program Manager",
+          "company": "oracle",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/349814",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "oracle_cloud:oracle:350010",
+          "title": "Lead Principal Technical Program Manager",
+          "company": "oracle",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/350010",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "oracle_cloud:oracle:341976",
+          "title": "Lead Principal Technical Program Manager",
+          "company": "oracle",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/341976",
+          "assessment_date_eligible": false
+        },
+        {
+          "key": "oracle_cloud:oracle:341974",
+          "title": "Lead Principal Technical Program Manager",
+          "company": "oracle",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/341974",
+          "assessment_date_eligible": false
+        },
+        {
+          "key": "oracle_cloud:oracle:344632",
+          "title": "Lead Principal Technical Program Manager",
+          "company": "oracle",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/344632",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "oracle_cloud:oracle:347142",
+          "title": "Lead Principal Technical Program Manager",
+          "company": "oracle",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/347142",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "oracle_cloud:oracle:338745",
+          "title": "Lead Principal Technical Program Manager",
+          "company": "oracle",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/338745",
+          "assessment_date_eligible": false
+        },
+        {
+          "key": "oracle_cloud:oracle:341376",
+          "title": "Lead Principal Technical Program Manager",
+          "company": "oracle",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/341376",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "oracle_cloud:oracle:349660",
+          "title": "Lead Principal Technical Program Manager",
+          "company": "oracle",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/349660",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "oracle_cloud:oracle:346982",
+          "title": "Lead Principal Technical Program Manager",
+          "company": "oracle",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/346982",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "oracle_cloud:oracle:346916",
+          "title": "Lead Principal Technical Program Manager",
+          "company": "oracle",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/346916",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "oracle_cloud:oracle:346915",
+          "title": "Lead Principal Technical Program Manager",
+          "company": "oracle",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/346915",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "oracle_cloud:oracle:349227",
+          "title": "Lead Principal Technical Program Manager",
+          "company": "oracle",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/349227",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "oracle_cloud:oracle:344234",
+          "title": "Lead Principal Technical Program Manager",
+          "company": "oracle",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/344234",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "oracle_cloud:oracle:341777",
+          "title": "Lead Principal Technical Program Manager",
+          "company": "oracle",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/341777",
+          "assessment_date_eligible": false
+        }
+      ],
+      "reason": "Title/company similarity is not proof of the same requisition."
+    },
+    {
+      "linkedin_id": "4490858391",
+      "url": "https://www.linkedin.com/jobs/view/4490858391",
+      "title": "Sr Director Special Programs",
+      "company": "Oracle",
+      "location": "Nashua, NH",
+      "employer_urls": [],
+      "first_alert_at": "2026-11-18T23:54:41+00:00",
+      "last_alert_at": "2026-11-18T23:54:41+00:00",
+      "collection": "missing",
+      "assessment": "not_assessed",
+      "verdicts": [],
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+    },
+    {
+      "linkedin_id": "4490860665",
+      "url": "https://www.linkedin.com/jobs/view/4490860665",
+      "title": "Technical Program Manager",
+      "company": "TalentHop",
+      "location": "United States (Remote)",
+      "employer_urls": [],
+      "first_alert_at": "2026-11-19T03:57:41+00:00",
+      "last_alert_at": "2026-11-19T03:57:41+00:00",
+      "collection": "missing",
+      "assessment": "not_assessed",
+      "verdicts": [],
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+    },
+    {
       "linkedin_id": "4490954796",
       "url": "https://www.linkedin.com/jobs/view/4490954796",
       "title": "",
@@ -22870,6 +23409,21 @@
       "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
     },
     {
+      "linkedin_id": "4491191139",
+      "url": "https://www.linkedin.com/jobs/view/4491191139",
+      "title": "Head of Program & Portfolio Management \u2013 SerDes Networking Solutions",
+      "company": "NXP Semiconductors",
+      "location": "San Jose, CA",
+      "employer_urls": [],
+      "first_alert_at": "2026-11-18T15:57:41+00:00",
+      "last_alert_at": "2026-11-18T15:57:41+00:00",
+      "collection": "missing",
+      "assessment": "not_assessed",
+      "verdicts": [],
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+    },
+    {
       "linkedin_id": "4491206354",
       "url": "https://www.linkedin.com/jobs/view/4491206354",
       "title": "Senior Director, Strategy & Transformation, Integrated Specialty Care - Remote",
@@ -23050,6 +23604,128 @@
       "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
     },
     {
+      "linkedin_id": "4491405474",
+      "url": "https://www.linkedin.com/jobs/view/4491405474",
+      "title": "Principal Project / Program Manager for AI & Developer Platforms",
+      "company": "Arm",
+      "location": "Seattle, WA (Hybrid)",
+      "employer_urls": [],
+      "first_alert_at": "2026-11-18T21:57:42+00:00",
+      "last_alert_at": "2026-11-18T21:57:42+00:00",
+      "collection": "missing",
+      "assessment": "not_assessed",
+      "verdicts": [],
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+    },
+    {
+      "linkedin_id": "4491435672",
+      "url": "https://www.linkedin.com/jobs/view/4491435672",
+      "title": "AMD, Global AI Operations Lead",
+      "company": "KPMG US",
+      "location": "Santa Clara, CA (Hybrid)",
+      "employer_urls": [],
+      "first_alert_at": "2026-11-18T17:57:43+00:00",
+      "last_alert_at": "2026-11-18T17:57:43+00:00",
+      "collection": "missing",
+      "assessment": "not_assessed",
+      "verdicts": [],
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+    },
+    {
+      "linkedin_id": "4491438372",
+      "url": "https://www.linkedin.com/jobs/view/4491438372",
+      "title": "Director, Technical Program Management",
+      "company": "5C",
+      "location": "Springfield, OH",
+      "employer_urls": [],
+      "first_alert_at": "2026-11-18T23:57:44+00:00",
+      "last_alert_at": "2026-11-18T23:57:44+00:00",
+      "collection": "missing",
+      "assessment": "not_assessed",
+      "verdicts": [],
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+    },
+    {
+      "linkedin_id": "4491443371",
+      "url": "https://www.linkedin.com/jobs/view/4491443371",
+      "title": "Director of Operations Project Delivery",
+      "company": "MBTA",
+      "location": "Boston, MA",
+      "employer_urls": [],
+      "first_alert_at": "2026-11-18T13:57:42+00:00",
+      "last_alert_at": "2026-11-18T23:54:41+00:00",
+      "collection": "missing",
+      "assessment": "not_assessed",
+      "verdicts": [],
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+    },
+    {
+      "linkedin_id": "4491482956",
+      "url": "https://www.linkedin.com/jobs/view/4491482956",
+      "title": "Sr. Mgr, Technical Program Mgmt",
+      "company": "Lam Research",
+      "location": "Tualatin, OR",
+      "employer_urls": [],
+      "first_alert_at": "2026-11-18T21:57:42+00:00",
+      "last_alert_at": "2026-11-18T21:57:42+00:00",
+      "collection": "missing",
+      "assessment": "not_assessed",
+      "verdicts": [],
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+    },
+    {
+      "linkedin_id": "4491489885",
+      "url": "https://www.linkedin.com/jobs/view/4491489885",
+      "title": "Staff Technical Program Manager, Physical AI",
+      "company": "Apptronik",
+      "location": "Sunnyvale, CA (On-site)",
+      "employer_urls": [],
+      "first_alert_at": "2026-11-18T17:57:43+00:00",
+      "last_alert_at": "2026-11-18T17:57:43+00:00",
+      "collection": "possible_match",
+      "assessment": "assessed",
+      "verdicts": [
+        "Pass"
+      ],
+      "matches": [
+        {
+          "key": "greenhouse:apptronik:6264796004",
+          "title": "Staff Technical Program Manager, Physical AI",
+          "company": "apptronik",
+          "url": "https://boards.greenhouse.io/apptronik/jobs/6264796004?gh_jid=6264796004",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "greenhouse:apptronik:6264814004",
+          "title": "Staff Technical Program Manager, Physical AI",
+          "company": "apptronik",
+          "url": "https://boards.greenhouse.io/apptronik/jobs/6264814004?gh_jid=6264814004",
+          "assessment_date_eligible": true
+        }
+      ],
+      "reason": "Title/company similarity is not proof of the same requisition."
+    },
+    {
+      "linkedin_id": "4491499440",
+      "url": "https://www.linkedin.com/jobs/view/4491499440",
+      "title": "(USA) Senior Director, Operations - Program Management - Data Ventures",
+      "company": "Walmart Data Ventures",
+      "location": "Bentonville, AR (On-site)",
+      "employer_urls": [],
+      "first_alert_at": "2026-11-19T01:57:42+00:00",
+      "last_alert_at": "2026-11-19T01:57:42+00:00",
+      "collection": "missing",
+      "assessment": "not_assessed",
+      "verdicts": [],
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+    },
+    {
       "linkedin_id": "4491517990",
       "url": "https://www.linkedin.com/jobs/view/4491517990",
       "title": "Program Director, AI Verification",
@@ -23095,13 +23771,28 @@
       "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
     },
     {
-      "linkedin_id": "4490481420",
-      "url": "https://www.linkedin.com/jobs/view/4490481420",
-      "title": "Product & Engineering Operations Director",
-      "company": "InvoiceCloud, Inc.",
-      "location": "Boston, MA",
+      "linkedin_id": "4491733887",
+      "url": "https://www.linkedin.com/jobs/view/4491733887",
+      "title": "Vice President, Project & Program Management",
+      "company": "WSP in the U.S.",
+      "location": "New York, NY",
       "employer_urls": [],
-      "first_alert_at": "2026-11-18T13:57:42+00:00",
+      "first_alert_at": "2026-11-19T01:57:42+00:00",
+      "last_alert_at": "2026-11-19T01:57:42+00:00",
+      "collection": "missing",
+      "assessment": "not_assessed",
+      "verdicts": [],
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+    },
+    {
+      "linkedin_id": "4491754685",
+      "url": "https://www.linkedin.com/jobs/view/4491754685",
+      "title": "Director of Technical Program Management - Stelo",
+      "company": "Dexcom",
+      "location": "San Diego, CA",
+      "employer_urls": [],
+      "first_alert_at": "2026-11-18T23:57:44+00:00",
       "last_alert_at": "2026-11-18T23:57:44+00:00",
       "collection": "missing",
       "assessment": "not_assessed",
@@ -23125,59 +23816,6 @@
       "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
     },
     {
-      "linkedin_id": "4491443371",
-      "url": "https://www.linkedin.com/jobs/view/4491443371",
-      "title": "Director of Operations Project Delivery",
-      "company": "MBTA",
-      "location": "Boston, MA",
-      "employer_urls": [],
-      "first_alert_at": "2026-11-18T13:57:42+00:00",
-      "last_alert_at": "2026-11-18T23:54:41+00:00",
-      "collection": "missing",
-      "assessment": "not_assessed",
-      "verdicts": [],
-      "matches": [],
-      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
-    },
-    {
-      "linkedin_id": "4490849886",
-      "url": "https://www.linkedin.com/jobs/view/4490849886",
-      "title": "Director, Data & Technology PMO",
-      "company": "Jobgether",
-      "location": "United States (Remote)",
-      "employer_urls": [],
-      "first_alert_at": "2026-11-18T15:57:41+00:00",
-      "last_alert_at": "2026-11-18T15:57:41+00:00",
-      "collection": "possible_match",
-      "assessment": "not_assessed",
-      "verdicts": [],
-      "matches": [
-        {
-          "key": "lever:jobgether:38a8214f-b623-4404-8d1c-0845337f750b",
-          "title": "Director, Data & Technology PMO",
-          "company": "jobgether",
-          "url": "https://jobs.lever.co/jobgether/38a8214f-b623-4404-8d1c-0845337f750b",
-          "assessment_date_eligible": true
-        }
-      ],
-      "reason": "Title/company similarity is not proof of the same requisition."
-    },
-    {
-      "linkedin_id": "4489171942",
-      "url": "https://www.linkedin.com/jobs/view/4489171942",
-      "title": "Director - Operations & Project Management Office",
-      "company": "Stanford Medicine Children's Health",
-      "location": "Palo Alto, CA",
-      "employer_urls": [],
-      "first_alert_at": "2026-11-18T15:57:41+00:00",
-      "last_alert_at": "2026-11-18T19:57:44+00:00",
-      "collection": "missing",
-      "assessment": "not_assessed",
-      "verdicts": [],
-      "matches": [],
-      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
-    },
-    {
       "linkedin_id": "4491776735",
       "url": "https://www.linkedin.com/jobs/view/4491776735",
       "title": "Lead Director - Claim Automation",
@@ -23193,342 +23831,6 @@
       "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
     },
     {
-      "linkedin_id": "4491191139",
-      "url": "https://www.linkedin.com/jobs/view/4491191139",
-      "title": "Head of Program & Portfolio Management \u2013 SerDes Networking Solutions",
-      "company": "NXP Semiconductors",
-      "location": "San Jose, CA",
-      "employer_urls": [],
-      "first_alert_at": "2026-11-18T15:57:41+00:00",
-      "last_alert_at": "2026-11-18T15:57:41+00:00",
-      "collection": "missing",
-      "assessment": "not_assessed",
-      "verdicts": [],
-      "matches": [],
-      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
-    },
-    {
-      "linkedin_id": "4491435672",
-      "url": "https://www.linkedin.com/jobs/view/4491435672",
-      "title": "AMD, Global AI Operations Lead",
-      "company": "KPMG US",
-      "location": "Santa Clara, CA (Hybrid)",
-      "employer_urls": [],
-      "first_alert_at": "2026-11-18T17:57:43+00:00",
-      "last_alert_at": "2026-11-18T17:57:43+00:00",
-      "collection": "missing",
-      "assessment": "not_assessed",
-      "verdicts": [],
-      "matches": [],
-      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
-    },
-    {
-      "linkedin_id": "4490841963",
-      "url": "https://www.linkedin.com/jobs/view/4490841963",
-      "title": "Technical Program Manager, Quantum Technology",
-      "company": "Applied Materials",
-      "location": "Santa Clara, CA",
-      "employer_urls": [],
-      "first_alert_at": "2026-11-18T17:57:43+00:00",
-      "last_alert_at": "2026-11-18T23:57:44+00:00",
-      "collection": "missing",
-      "assessment": "not_assessed",
-      "verdicts": [],
-      "matches": [],
-      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
-    },
-    {
-      "linkedin_id": "4490849574",
-      "url": "https://www.linkedin.com/jobs/view/4490849574",
-      "title": "Director Forward Deployed Engineer",
-      "company": "Weekday (YC W21)",
-      "location": "Santa Clara, CA (Hybrid)",
-      "employer_urls": [],
-      "first_alert_at": "2026-11-18T17:57:43+00:00",
-      "last_alert_at": "2026-11-18T17:57:43+00:00",
-      "collection": "missing",
-      "assessment": "not_assessed",
-      "verdicts": [],
-      "matches": [],
-      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
-    },
-    {
-      "linkedin_id": "4491489885",
-      "url": "https://www.linkedin.com/jobs/view/4491489885",
-      "title": "Staff Technical Program Manager, Physical AI",
-      "company": "Apptronik",
-      "location": "Sunnyvale, CA (On-site)",
-      "employer_urls": [],
-      "first_alert_at": "2026-11-18T17:57:43+00:00",
-      "last_alert_at": "2026-11-18T17:57:43+00:00",
-      "collection": "possible_match",
-      "assessment": "assessed",
-      "verdicts": [
-        "Pass"
-      ],
-      "matches": [
-        {
-          "key": "greenhouse:apptronik:6264796004",
-          "title": "Staff Technical Program Manager, Physical AI",
-          "company": "apptronik",
-          "url": "https://boards.greenhouse.io/apptronik/jobs/6264796004?gh_jid=6264796004",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "greenhouse:apptronik:6264814004",
-          "title": "Staff Technical Program Manager, Physical AI",
-          "company": "apptronik",
-          "url": "https://boards.greenhouse.io/apptronik/jobs/6264814004?gh_jid=6264814004",
-          "assessment_date_eligible": true
-        }
-      ],
-      "reason": "Title/company similarity is not proof of the same requisition."
-    },
-    {
-      "linkedin_id": "4409217541",
-      "url": "https://www.linkedin.com/jobs/view/4409217541",
-      "title": "",
-      "company": "",
-      "location": "",
-      "employer_urls": [],
-      "first_alert_at": "2026-11-18T19:57:44+00:00",
-      "last_alert_at": "2026-11-18T19:57:44+00:00",
-      "collection": "missing",
-      "assessment": "not_assessed",
-      "verdicts": [],
-      "matches": [],
-      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
-    },
-    {
-      "linkedin_id": "4490830089",
-      "url": "https://www.linkedin.com/jobs/view/4490830089",
-      "title": "(USA) Principal, Technical Program Manager",
-      "company": "Walmart",
-      "location": "Sunnyvale, CA (On-site)",
-      "employer_urls": [],
-      "first_alert_at": "2026-11-18T21:57:42+00:00",
-      "last_alert_at": "2026-11-18T21:57:42+00:00",
-      "collection": "possible_match",
-      "assessment": "assessed",
-      "verdicts": [
-        "Middle"
-      ],
-      "matches": [
-        {
-          "key": "workday:walmart:/job/USA-Crossman-Respect-Building-CA-SUNNYVALE-Home-Office/XMLNAME--USA--Principal--Technical-Program-Manager_R-2697414-1",
-          "title": "(USA) Principal, Technical Program Manager",
-          "company": "walmart",
-          "url": "https://walmart.wd504.myworkdayjobs.com/en-US/WalmartExternal/job/USA-Crossman-Respect-Building-CA-SUNNYVALE-Home-Office/XMLNAME--USA--Principal--Technical-Program-Manager_R-2697414-1",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "workday:walmart:/job/USA-ISD-Office---DGTC-AR-BENTONVILLE-Home-Office/XMLNAME--USA--Principal--Technical-Program-Manager_R-2682765-1",
-          "title": "(USA) Principal, Technical Program Manager",
-          "company": "walmart",
-          "url": "https://walmart.wd504.myworkdayjobs.com/en-US/WalmartExternal/job/USA-ISD-Office---DGTC-AR-BENTONVILLE-Home-Office/XMLNAME--USA--Principal--Technical-Program-Manager_R-2682765-1",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "workday:walmart:/job/USA-Crossman-Respect-Building-CA-SUNNYVALE-Home-Office/XMLNAME--USA--Principal--Technical-Program-Manager_R-2655207-1",
-          "title": "(USA) Principal, Technical Program Manager",
-          "company": "walmart",
-          "url": "https://walmart.wd504.myworkdayjobs.com/en-US/WalmartExternal/job/USA-Crossman-Respect-Building-CA-SUNNYVALE-Home-Office/XMLNAME--USA--Principal--Technical-Program-Manager_R-2655207-1",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "workday:walmart:/job/USA-Bentonville-Global-Tech-AR-BENTONVILLE-Home-Office/XMLNAME--USA--Principal--Technical-Program-Manager_R-2685379-2",
-          "title": "(USA) Principal, Technical Program Manager",
-          "company": "walmart",
-          "url": "https://walmart.wd504.myworkdayjobs.com/en-US/WalmartExternal/job/USA-Bentonville-Global-Tech-AR-BENTONVILLE-Home-Office/XMLNAME--USA--Principal--Technical-Program-Manager_R-2685379-2",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "workday:walmart:/job/USA-SUNNYVALE-TECH-CORNERS-CA-SUNNYVALE-Home-Office/XMLNAME--USA--Principal--Technical-Program-Manager_R-2671852-2",
-          "title": "(USA) Principal, Technical Program Manager",
-          "company": "walmart",
-          "url": "https://walmart.wd504.myworkdayjobs.com/en-US/WalmartExternal/job/USA-SUNNYVALE-TECH-CORNERS-CA-SUNNYVALE-Home-Office/XMLNAME--USA--Principal--Technical-Program-Manager_R-2671852-2",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "workday:walmart:/job/USA-J-STREET-OFFICE-SPACE-AR-BENTONVILLE-Home-Office/XMLNAME--USA--Principal--Technical-Program-Manager_R-2664224-1",
-          "title": "(USA) Principal, Technical Program Manager",
-          "company": "walmart",
-          "url": "https://walmart.wd504.myworkdayjobs.com/en-US/WalmartExternal/job/USA-J-STREET-OFFICE-SPACE-AR-BENTONVILLE-Home-Office/XMLNAME--USA--Principal--Technical-Program-Manager_R-2664224-1",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "workday:walmart:/job/USA-J-STREET-OFFICE-SPACE-AR-BENTONVILLE-Home-Office/XMLNAME--USA--Principal--Technical-Program-Manager_R-2665418-1",
-          "title": "(USA) Principal, Technical Program Manager",
-          "company": "walmart",
-          "url": "https://walmart.wd504.myworkdayjobs.com/en-US/WalmartExternal/job/USA-J-STREET-OFFICE-SPACE-AR-BENTONVILLE-Home-Office/XMLNAME--USA--Principal--Technical-Program-Manager_R-2665418-1",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "workday:walmart:/job/USA-Sams-Home-Office-AR-Bentonville-Home-Office/XMLNAME--USA--Principal--Technical-Program-Manager_R-2647013-1",
-          "title": "(USA) Principal, Technical Program Manager",
-          "company": "walmart",
-          "url": "https://walmart.wd504.myworkdayjobs.com/en-US/WalmartExternal/job/USA-Sams-Home-Office-AR-Bentonville-Home-Office/XMLNAME--USA--Principal--Technical-Program-Manager_R-2647013-1",
-          "assessment_date_eligible": true
-        }
-      ],
-      "reason": "Title/company similarity is not proof of the same requisition."
-    },
-    {
-      "linkedin_id": "4484043925",
-      "url": "https://www.linkedin.com/jobs/view/4484043925",
-      "title": "Senior Technical Program Manager",
-      "company": "Intuit",
-      "location": "Mountain View, CA (On-site)",
-      "employer_urls": [],
-      "first_alert_at": "2026-11-18T21:57:42+00:00",
-      "last_alert_at": "2026-11-18T21:57:42+00:00",
-      "collection": "missing",
-      "assessment": "not_assessed",
-      "verdicts": [],
-      "matches": [],
-      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
-    },
-    {
-      "linkedin_id": "4491405474",
-      "url": "https://www.linkedin.com/jobs/view/4491405474",
-      "title": "Principal Project / Program Manager for AI & Developer Platforms",
-      "company": "Arm",
-      "location": "Seattle, WA (Hybrid)",
-      "employer_urls": [],
-      "first_alert_at": "2026-11-18T21:57:42+00:00",
-      "last_alert_at": "2026-11-18T21:57:42+00:00",
-      "collection": "missing",
-      "assessment": "not_assessed",
-      "verdicts": [],
-      "matches": [],
-      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
-    },
-    {
-      "linkedin_id": "4490422963",
-      "url": "https://www.linkedin.com/jobs/view/4490422963",
-      "title": "Manager, Technical Program Manager, Model Engineering and Analysis, Supply Strategy and Portfolio Planning",
-      "company": "Google",
-      "location": "Sunnyvale, CA (On-site)",
-      "employer_urls": [],
-      "first_alert_at": "2026-11-18T21:57:42+00:00",
-      "last_alert_at": "2026-11-18T21:57:42+00:00",
-      "collection": "possible_match",
-      "assessment": "assessed",
-      "verdicts": [
-        "Middle"
-      ],
-      "matches": [
-        {
-          "key": "google:google:95856083309863622",
-          "title": "Manager, Technical Program Manager, Model Engineering and Analysis, Supply Strategy and Portfolio Planning",
-          "company": "google",
-          "url": "https://www.google.com/about/careers/applications/jobs/results/95856083309863622",
-          "assessment_date_eligible": true
-        }
-      ],
-      "reason": "Title/company similarity is not proof of the same requisition."
-    },
-    {
-      "linkedin_id": "4490431612",
-      "url": "https://www.linkedin.com/jobs/view/4490431612",
-      "title": "Technical Program Manager, Design Delivery",
-      "company": "Google",
-      "location": "Thornton, CO (On-site)",
-      "employer_urls": [],
-      "first_alert_at": "2026-11-18T21:57:42+00:00",
-      "last_alert_at": "2026-11-18T21:57:42+00:00",
-      "collection": "possible_match",
-      "assessment": "assessed",
-      "verdicts": [
-        "Pass"
-      ],
-      "matches": [
-        {
-          "key": "google:google:136533615491064518",
-          "title": "Technical Program Manager, Design Delivery",
-          "company": "google",
-          "url": "https://www.google.com/about/careers/applications/jobs/results/136533615491064518",
-          "assessment_date_eligible": true
-        }
-      ],
-      "reason": "Title/company similarity is not proof of the same requisition."
-    },
-    {
-      "linkedin_id": "4491482956",
-      "url": "https://www.linkedin.com/jobs/view/4491482956",
-      "title": "Sr. Mgr, Technical Program Mgmt",
-      "company": "Lam Research",
-      "location": "Tualatin, OR",
-      "employer_urls": [],
-      "first_alert_at": "2026-11-18T21:57:42+00:00",
-      "last_alert_at": "2026-11-18T21:57:42+00:00",
-      "collection": "missing",
-      "assessment": "not_assessed",
-      "verdicts": [],
-      "matches": [],
-      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
-    },
-    {
-      "linkedin_id": "4490858391",
-      "url": "https://www.linkedin.com/jobs/view/4490858391",
-      "title": "Sr Director Special Programs",
-      "company": "Oracle",
-      "location": "Nashua, NH",
-      "employer_urls": [],
-      "first_alert_at": "2026-11-18T23:54:41+00:00",
-      "last_alert_at": "2026-11-18T23:54:41+00:00",
-      "collection": "missing",
-      "assessment": "not_assessed",
-      "verdicts": [],
-      "matches": [],
-      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
-    },
-    {
-      "linkedin_id": "4491438372",
-      "url": "https://www.linkedin.com/jobs/view/4491438372",
-      "title": "Director, Technical Program Management",
-      "company": "5C",
-      "location": "Springfield, OH",
-      "employer_urls": [],
-      "first_alert_at": "2026-11-18T23:57:44+00:00",
-      "last_alert_at": "2026-11-18T23:57:44+00:00",
-      "collection": "missing",
-      "assessment": "not_assessed",
-      "verdicts": [],
-      "matches": [],
-      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
-    },
-    {
-      "linkedin_id": "4491754685",
-      "url": "https://www.linkedin.com/jobs/view/4491754685",
-      "title": "Director of Technical Program Management - Stelo",
-      "company": "Dexcom",
-      "location": "San Diego, CA",
-      "employer_urls": [],
-      "first_alert_at": "2026-11-18T23:57:44+00:00",
-      "last_alert_at": "2026-11-18T23:57:44+00:00",
-      "collection": "missing",
-      "assessment": "not_assessed",
-      "verdicts": [],
-      "matches": [],
-      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
-    },
-    {
-      "linkedin_id": "4490167514",
-      "url": "https://www.linkedin.com/jobs/view/4490167514",
-      "title": "Vice President of Project Planning & Execution",
-      "company": "Siri Fintech",
-      "location": "United States (Remote)",
-      "employer_urls": [],
-      "first_alert_at": "2026-11-19T01:57:42+00:00",
-      "last_alert_at": "2026-11-19T01:57:42+00:00",
-      "collection": "missing",
-      "assessment": "not_assessed",
-      "verdicts": [],
-      "matches": [],
-      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
-    },
-    {
       "linkedin_id": "4491783437",
       "url": "https://www.linkedin.com/jobs/view/4491783437",
       "title": "Vice President, Transformation Program Delivery",
@@ -23537,292 +23839,6 @@
       "employer_urls": [],
       "first_alert_at": "2026-11-19T01:57:42+00:00",
       "last_alert_at": "2026-11-19T01:57:42+00:00",
-      "collection": "missing",
-      "assessment": "not_assessed",
-      "verdicts": [],
-      "matches": [],
-      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
-    },
-    {
-      "linkedin_id": "4491733887",
-      "url": "https://www.linkedin.com/jobs/view/4491733887",
-      "title": "Vice President, Project & Program Management",
-      "company": "WSP in the U.S.",
-      "location": "New York, NY",
-      "employer_urls": [],
-      "first_alert_at": "2026-11-19T01:57:42+00:00",
-      "last_alert_at": "2026-11-19T01:57:42+00:00",
-      "collection": "missing",
-      "assessment": "not_assessed",
-      "verdicts": [],
-      "matches": [],
-      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
-    },
-    {
-      "linkedin_id": "4491499440",
-      "url": "https://www.linkedin.com/jobs/view/4491499440",
-      "title": "(USA) Senior Director, Operations - Program Management - Data Ventures",
-      "company": "Walmart Data Ventures",
-      "location": "Bentonville, AR (On-site)",
-      "employer_urls": [],
-      "first_alert_at": "2026-11-19T01:57:42+00:00",
-      "last_alert_at": "2026-11-19T01:57:42+00:00",
-      "collection": "missing",
-      "assessment": "not_assessed",
-      "verdicts": [],
-      "matches": [],
-      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
-    },
-    {
-      "linkedin_id": "4490852534",
-      "url": "https://www.linkedin.com/jobs/view/4490852534",
-      "title": "Lead Principal Technical Program Manager",
-      "company": "Oracle",
-      "location": "United States (Remote)",
-      "employer_urls": [],
-      "first_alert_at": "2026-11-19T03:57:41+00:00",
-      "last_alert_at": "2026-11-19T03:57:41+00:00",
-      "collection": "possible_match",
-      "assessment": "outside_date_scope",
-      "verdicts": [
-        "Middle",
-        "Pass",
-        "Strong"
-      ],
-      "matches": [
-        {
-          "key": "oracle_cloud:oracle:350915",
-          "title": "Lead Principal Technical Program Manager",
-          "company": "oracle",
-          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/350915",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "oracle_cloud:oracle:350600",
-          "title": "Lead Principal Technical Program Manager",
-          "company": "oracle",
-          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/350600",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "oracle_cloud:oracle:350828",
-          "title": "Lead Principal Technical Program Manager",
-          "company": "oracle",
-          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/350828",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "oracle_cloud:oracle:343272",
-          "title": "Lead Principal Technical Program Manager",
-          "company": "oracle",
-          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/343272",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "oracle_cloud:oracle:344663",
-          "title": "Lead Principal Technical Program Manager",
-          "company": "oracle",
-          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/344663",
-          "assessment_date_eligible": false
-        },
-        {
-          "key": "oracle_cloud:oracle:338528",
-          "title": "Lead Principal Technical Program Manager",
-          "company": "oracle",
-          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/338528",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "oracle_cloud:oracle:350453",
-          "title": "Lead Principal Technical Program Manager",
-          "company": "oracle",
-          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/350453",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "oracle_cloud:oracle:348205",
-          "title": "Lead Principal Technical Program Manager",
-          "company": "oracle",
-          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/348205",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "oracle_cloud:oracle:343541",
-          "title": "Lead Principal Technical Program Manager",
-          "company": "oracle",
-          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/343541",
-          "assessment_date_eligible": false
-        },
-        {
-          "key": "oracle_cloud:oracle:349814",
-          "title": "Lead Principal Technical Program Manager",
-          "company": "oracle",
-          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/349814",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "oracle_cloud:oracle:350010",
-          "title": "Lead Principal Technical Program Manager",
-          "company": "oracle",
-          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/350010",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "oracle_cloud:oracle:341976",
-          "title": "Lead Principal Technical Program Manager",
-          "company": "oracle",
-          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/341976",
-          "assessment_date_eligible": false
-        },
-        {
-          "key": "oracle_cloud:oracle:341974",
-          "title": "Lead Principal Technical Program Manager",
-          "company": "oracle",
-          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/341974",
-          "assessment_date_eligible": false
-        },
-        {
-          "key": "oracle_cloud:oracle:344632",
-          "title": "Lead Principal Technical Program Manager",
-          "company": "oracle",
-          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/344632",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "oracle_cloud:oracle:347142",
-          "title": "Lead Principal Technical Program Manager",
-          "company": "oracle",
-          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/347142",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "oracle_cloud:oracle:338745",
-          "title": "Lead Principal Technical Program Manager",
-          "company": "oracle",
-          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/338745",
-          "assessment_date_eligible": false
-        },
-        {
-          "key": "oracle_cloud:oracle:341376",
-          "title": "Lead Principal Technical Program Manager",
-          "company": "oracle",
-          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/341376",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "oracle_cloud:oracle:349660",
-          "title": "Lead Principal Technical Program Manager",
-          "company": "oracle",
-          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/349660",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "oracle_cloud:oracle:346982",
-          "title": "Lead Principal Technical Program Manager",
-          "company": "oracle",
-          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/346982",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "oracle_cloud:oracle:346916",
-          "title": "Lead Principal Technical Program Manager",
-          "company": "oracle",
-          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/346916",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "oracle_cloud:oracle:346915",
-          "title": "Lead Principal Technical Program Manager",
-          "company": "oracle",
-          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/346915",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "oracle_cloud:oracle:349227",
-          "title": "Lead Principal Technical Program Manager",
-          "company": "oracle",
-          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/349227",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "oracle_cloud:oracle:344234",
-          "title": "Lead Principal Technical Program Manager",
-          "company": "oracle",
-          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/344234",
-          "assessment_date_eligible": true
-        },
-        {
-          "key": "oracle_cloud:oracle:341777",
-          "title": "Lead Principal Technical Program Manager",
-          "company": "oracle",
-          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/341777",
-          "assessment_date_eligible": false
-        }
-      ],
-      "reason": "Title/company similarity is not proof of the same requisition."
-    },
-    {
-      "linkedin_id": "4454536413",
-      "url": "https://www.linkedin.com/jobs/view/4454536413",
-      "title": "Technical Program Manager, Money-as-a-Service",
-      "company": "Stripe",
-      "location": "United States (Remote)",
-      "employer_urls": [],
-      "first_alert_at": "2026-11-19T03:57:41+00:00",
-      "last_alert_at": "2026-11-19T03:57:41+00:00",
-      "collection": "possible_match",
-      "assessment": "outside_date_scope",
-      "verdicts": [],
-      "matches": [
-        {
-          "key": "greenhouse:stripe:8042055",
-          "title": "Technical Program Manager, Money-as-a-Service",
-          "company": "stripe",
-          "url": "https://stripe.com/jobs/search?gh_jid=8042055",
-          "assessment_date_eligible": false
-        }
-      ],
-      "reason": "Title/company similarity is not proof of the same requisition."
-    },
-    {
-      "linkedin_id": "4490456804",
-      "url": "https://www.linkedin.com/jobs/view/4490456804",
-      "title": "Program Management Sr Mgr - L6",
-      "company": "Lockheed Martin",
-      "location": "Hartford, CT (Remote)",
-      "employer_urls": [],
-      "first_alert_at": "2026-11-19T03:57:41+00:00",
-      "last_alert_at": "2026-11-19T03:57:41+00:00",
-      "collection": "missing",
-      "assessment": "not_assessed",
-      "verdicts": [],
-      "matches": [],
-      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
-    },
-    {
-      "linkedin_id": "4490459712",
-      "url": "https://www.linkedin.com/jobs/view/4490459712",
-      "title": "Program Management Sr Mgr - L6",
-      "company": "Lockheed Martin",
-      "location": "Fairfield County, CT (Remote)",
-      "employer_urls": [],
-      "first_alert_at": "2026-11-19T03:57:41+00:00",
-      "last_alert_at": "2026-11-19T03:57:41+00:00",
-      "collection": "missing",
-      "assessment": "not_assessed",
-      "verdicts": [],
-      "matches": [],
-      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
-    },
-    {
-      "linkedin_id": "4490860665",
-      "url": "https://www.linkedin.com/jobs/view/4490860665",
-      "title": "Technical Program Manager",
-      "company": "TalentHop",
-      "location": "United States (Remote)",
-      "employer_urls": [],
-      "first_alert_at": "2026-11-19T03:57:41+00:00",
-      "last_alert_at": "2026-11-19T03:57:41+00:00",
       "collection": "missing",
       "assessment": "not_assessed",
       "verdicts": [],
