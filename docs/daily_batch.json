@@ -7,15 +7,15 @@
   "collection_at": "2026-11-20T06:00:58.257701+00:00",
   "counts": {
     "found": 87,
-    "eligible": 17,
+    "eligible": 13,
     "completed": 8,
     "strong": 1,
     "middle": 4,
     "pass": 3,
     "waiting": 0,
-    "processing": 5,
+    "processing": 1,
     "blocked": 4,
-    "excluded": 70,
+    "excluded": 74,
     "unverified_links": 24
   },
   "members": [
@@ -58,9 +58,9 @@
       "url": "https://www.amazon.jobs/en/jobs/10607990/technical-program-manager-iii-amz10587217",
       "source": "amazon_jobs",
       "job_snapshot_hash": "cb0ec2534f976067031e4b5900041fe5675a0858bc0e6557a3df827cc9e1105f",
-      "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -91,9 +91,9 @@
       "url": "https://www.amazon.jobs/en/jobs/10609730/program-manager-wwrgs-pmo-wwrgs-pmo",
       "source": "amazon_jobs",
       "job_snapshot_hash": "1c762c3bca253feaf51cee55358faccab01e363f903a8332cc032a160c1d0da6",
-      "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -927,9 +927,9 @@
       "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/350968",
       "source": "oracle_cloud",
       "job_snapshot_hash": "0feb0b9cba2bae0863ce1cdef478596c6a6ba97774b6d28f948cc2db37ab7959",
-      "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -938,9 +938,9 @@
       "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/350969",
       "source": "oracle_cloud",
       "job_snapshot_hash": "f09502ffe0d71753538c25afe20a6c14ecf76f1426249a0d90e80fd1bcc35cff",
-      "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -1741,21 +1741,21 @@
       "status": "failed"
     }
   ],
-  "checked_at": "2026-11-20T06:21:16.855001+00:00",
+  "checked_at": "2026-11-20T06:22:17.778710+00:00",
   "legacy_backlog": {
-    "assessed": 528,
-    "pending": 9,
+    "assessed": 529,
+    "pending": 0,
     "unresolved": 58,
-    "in_progress": 11,
-    "total": 606,
+    "in_progress": 10,
+    "total": 597,
     "strong": 71
   },
-  "batch_id": "abb7636fb87880d2a872efbaee8bd9a1efc48d25c8ef8149482826c6efffd5e3",
+  "batch_id": "81d1f90486a882ac48fe7b07a32fdfda4ac893b6dfa10076aaf32b5ca3ef99f4",
   "status": "assessing",
   "input_blobs": {
     "jobs.json": "b1f321d8e64d6d26d22dad068d2500eb2fae34e4",
-    "fit_scores.json": "cd5483a08b6ff0b2cae22745fc7d75a543f6a72c",
-    "fit_backfill.json": "b8f18fc15d6c3bc047c802651b912128af07aa36",
+    "fit_scores.json": "56c1ce60402840140632fc0a0b13c86d4e2990da",
+    "fit_backfill.json": "be7f564fa98b11ee3ec7fefa61e179fccdbaa25d",
     "meta.json": "483258e1ed6fcb80c00cc8ee0c8e3dfc61c1e474"
   }
 }
