@@ -7,15 +7,15 @@
   "collection_at": "2026-11-20T06:00:58.257701+00:00",
   "counts": {
     "found": 87,
-    "eligible": 28,
+    "eligible": 27,
     "completed": 0,
     "strong": 0,
     "middle": 0,
     "pass": 0,
-    "waiting": 27,
-    "processing": 0,
+    "waiting": 15,
+    "processing": 11,
     "blocked": 1,
-    "excluded": 59,
+    "excluded": 60,
     "unverified_links": 24
   },
   "members": [
@@ -124,9 +124,9 @@
       "url": "https://www.amazon.jobs/en/jobs/10610052/principal-technical-program-manager-elastic-block-store",
       "source": "amazon_jobs",
       "job_snapshot_hash": "f95eabb497ba436a9f42eb2717b49c1c0c674d2dea2763616e046edd8dd2f7f6",
-      "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -147,7 +147,7 @@
       "source": "arbeitnow",
       "job_snapshot_hash": "f9c7712c1a820f2a60de00c9fa578145b5ee152418125562610a2aa7c9f03e1e",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -730,7 +730,7 @@
       "source": "ashby",
       "job_snapshot_hash": "078f1a8f35025f18a7252f02736ddba90004841f22a3ea2084b803bb1833f273",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -741,7 +741,7 @@
       "source": "google",
       "job_snapshot_hash": "7629e27ead87bfd6b7d1f2fd747ba949fc028acbd74e29e9a034c01ed7985357",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -763,7 +763,7 @@
       "source": "google",
       "job_snapshot_hash": "1eb1f836c867f08688a3818c5eeedd20fee5b5cc7cddb0b813ea45a5b2bcbfd9",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -774,7 +774,7 @@
       "source": "google",
       "job_snapshot_hash": "050d83a7e3d12f242eb6f345b8be47f5138ac2ea2871ca184a47c9f6174c632d",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -818,7 +818,7 @@
       "source": "greenhouse",
       "job_snapshot_hash": "6609ec19ea41d56764d917d13f1d93c7beaa5e8fc04aa3870c0d4ad9d683ba2d",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -840,7 +840,7 @@
       "source": "lever",
       "job_snapshot_hash": "33738cca7bf4ce571d22500c39393d4d1ecaff3a746411bde83b20f79f077cfc",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -862,7 +862,7 @@
       "source": "lever",
       "job_snapshot_hash": "6cea6d8cee9ccf63446ec93fc54fd522951b563b21d22558a5f57ee93efdf957",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -873,7 +873,7 @@
       "source": "microsoft",
       "job_snapshot_hash": "b38f25196fee6fd62d8ba7f57ee2e2a044d7e54679f8459e417811cbd0feb251",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -950,7 +950,7 @@
       "source": "workday",
       "job_snapshot_hash": "df7500f94c4c6431a948cee1cc8e96d128809f7ce0d02627bc47990d7072bf82",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -961,7 +961,7 @@
       "source": "workday",
       "job_snapshot_hash": "5b6c1f7bf955d15fac5e90abe17c362a0fda58b392ff3eb70bfe0a0816803893",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -1741,21 +1741,21 @@
       "status": "failed"
     }
   ],
-  "checked_at": "2026-11-20T06:17:36.640093+00:00",
+  "checked_at": "2026-11-20T06:18:38.752836+00:00",
   "legacy_backlog": {
-    "assessed": 515,
-    "pending": 53,
+    "assessed": 520,
+    "pending": 30,
     "unresolved": 55,
-    "in_progress": 0,
-    "total": 623,
-    "strong": 67
+    "in_progress": 11,
+    "total": 616,
+    "strong": 70
   },
-  "batch_id": "e70fcb2375a19ccb7218145e4d9ae67517bb8ac3bb43a099e0f0bd89cbe61cb4",
+  "batch_id": "2dd06e92ed74df3cae746774246e96651f8d3e067222a797172bd9ad2b8fa9c7",
   "status": "assessing",
   "input_blobs": {
     "jobs.json": "b1f321d8e64d6d26d22dad068d2500eb2fae34e4",
-    "fit_scores.json": "402e874c7feb44af087165f39966ba5c65097f18",
-    "fit_backfill.json": "5abcfb4ca1d173ad0f2b73ad75ce785366939c1e",
+    "fit_scores.json": "41d4f98acfee1537dce9423b2305364205835266",
+    "fit_backfill.json": "180555c29d7fb2c868a2358b59da506d5e62fe15",
     "meta.json": "483258e1ed6fcb80c00cc8ee0c8e3dfc61c1e474"
   }
 }
