@@ -7,15 +7,15 @@
   "collection_at": "2026-11-21T06:20:55.614795+00:00",
   "counts": {
     "found": 55,
-    "eligible": 12,
+    "eligible": 11,
     "completed": 10,
     "strong": 2,
     "middle": 5,
     "pass": 3,
-    "waiting": 1,
+    "waiting": 0,
     "processing": 0,
     "blocked": 1,
-    "excluded": 43,
+    "excluded": 44,
     "unverified_links": 28
   },
   "members": [
@@ -553,9 +553,9 @@
       "url": "https://boards.greenhouse.io/andurilindustries/jobs/5256907007?gh_jid=5256907007",
       "source": "greenhouse",
       "job_snapshot_hash": "9f465382d9a1c24a70fd2a3116e061257bc9296250abac2f99aae9ace738cf21",
-      "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -1198,21 +1198,21 @@
       "status": "failed"
     }
   ],
-  "checked_at": "2026-11-21T06:36:49.351084+00:00",
+  "checked_at": "2026-11-21T06:37:38.306561+00:00",
   "legacy_backlog": {
     "assessed": 533,
-    "pending": 2,
+    "pending": 0,
     "unresolved": 59,
     "in_progress": 0,
-    "total": 594,
+    "total": 592,
     "strong": 71
   },
-  "batch_id": "8ce2e6eed0b267844525779e2bf28abb17d988a512350fd25d1fa21376090105",
-  "status": "assessing",
+  "batch_id": "e33228924f7b4ad7032f4a3d303b9ee55dd44534d2fef6e5f846a1dab8eac14d",
+  "status": "blocked",
   "input_blobs": {
     "jobs.json": "4ec4386b26b3352b25e1950f8825ff2610d71f11",
-    "fit_scores.json": "a011455402c48bc8ea5709584d861de3c64083ab",
-    "fit_backfill.json": "95432809d54fa4d5ca2498b4d566cc4101f3a095",
+    "fit_scores.json": "0013896963ec5610944db8ea25588b77a3614e74",
+    "fit_backfill.json": "a1915e3a37ae58df57ebff4fd6043c3a9f4b6b66",
     "meta.json": "7342309b396d0537a0bdb8706d83bbfe9c82f0d0"
   }
 }
