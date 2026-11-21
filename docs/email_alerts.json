@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "checked_at": "2026-11-21T06:20:55.614795+00:00",
+  "checked_at": "2026-11-21T06:40:58.469357+00:00",
   "connection": {
     "source": "linkedin_email",
     "label": "LinkedIn job-alert emails",
@@ -15,14 +15,14 @@
     "unresolved_alert_messages": 24,
     "lookback_days": 14,
     "mode": "incremental",
-    "search_since": "2026-11-20T06:01:01.966947+00:00",
+    "search_since": "2026-11-20T06:20:55.614795+00:00",
     "last_success_at": null
   },
   "last_success_at": null,
   "scope": "One-time 14-day catch-up, then new unprocessed LinkedIn emails during the daily job search. Collected references are retained; this does not verify all LinkedIn or in-app listings.",
   "counts": {
-    "missing": 973,
-    "possible_match": 223
+    "missing": 974,
+    "possible_match": 222
   },
   "rows": [
     {
@@ -334,9 +334,9 @@
       "verdicts": [],
       "matches": [
         {
-          "key": "greenhouse:Alltrna:8538240002",
+          "key": "greenhouse:alltrna:8538240002",
           "title": "VP, Program Management & Business Operations",
-          "company": "Alltrna",
+          "company": "alltrna",
           "url": "https://job-boards.greenhouse.io/alltrna/jobs/8538240002",
           "assessment_date_eligible": false
         }
@@ -606,7 +606,7 @@
       "first_alert_at": "2026-10-19T23:54:42+00:00",
       "last_alert_at": "2026-10-20T05:57:44+00:00",
       "collection": "possible_match",
-      "assessment": "outside_date_scope",
+      "assessment": "assessed",
       "verdicts": [
         "Middle",
         "Pass",
@@ -705,13 +705,6 @@
           "assessment_date_eligible": true
         },
         {
-          "key": "microsoft:microsoft:1970393557050589",
-          "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050589",
-          "assessment_date_eligible": true
-        },
-        {
           "key": "microsoft:microsoft:1970393557039219",
           "title": "Principal Technical Program Manager",
           "company": "microsoft",
@@ -745,6 +738,13 @@
           "company": "microsoft",
           "url": "https://apply.careers.microsoft.com/careers/job/1970393556873572",
           "assessment_date_eligible": false
+        },
+        {
+          "key": "microsoft:microsoft:1970393557050589",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050589",
+          "assessment_date_eligible": true
         }
       ],
       "reason": "Title/company similarity is not proof of the same requisition."
@@ -1046,6 +1046,13 @@
         "Strong"
       ],
       "matches": [
+        {
+          "key": "workday:capitalone:/job/McLean-VA/Director--Technical-Program-Management_R1006300-1",
+          "title": "Director, Technical Program Management",
+          "company": "capitalone",
+          "url": "https://capitalone.wd12.myworkdayjobs.com/en-US/Capital_One/job/McLean-VA/Director--Technical-Program-Management_R1006300-1",
+          "assessment_date_eligible": true
+        },
         {
           "key": "workday:capitalone:/job/McLean-VA/Director--Technical-Program-Management_R1002717-1",
           "title": "Director, Technical Program Management",
@@ -2357,19 +2364,11 @@
       "employer_urls": [],
       "first_alert_at": "2026-10-31T07:57:43+00:00",
       "last_alert_at": "2026-10-31T07:57:43+00:00",
-      "collection": "possible_match",
+      "collection": "missing",
       "assessment": "not_assessed",
       "verdicts": [],
-      "matches": [
-        {
-          "key": "microsoft:microsoft:1970393557006450",
-          "title": "Principal Technical Program Manager - FDE",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557006450",
-          "assessment_date_eligible": true
-        }
-      ],
-      "reason": "Title/company similarity is not proof of the same requisition."
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
     },
     {
       "linkedin_id": "4453487184",
@@ -2486,7 +2485,7 @@
       "first_alert_at": "2026-10-26T03:57:42+00:00",
       "last_alert_at": "2026-11-16T01:57:42+00:00",
       "collection": "possible_match",
-      "assessment": "assessed",
+      "assessment": "reassessment_pending",
       "verdicts": [
         "Middle"
       ],
@@ -4325,6 +4324,13 @@
       ],
       "matches": [
         {
+          "key": "workday:capitalone:/job/McLean-VA/Director--Technical-Program-Management_R1006300-1",
+          "title": "Director, Technical Program Management",
+          "company": "capitalone",
+          "url": "https://capitalone.wd12.myworkdayjobs.com/en-US/Capital_One/job/McLean-VA/Director--Technical-Program-Management_R1006300-1",
+          "assessment_date_eligible": true
+        },
+        {
           "key": "workday:capitalone:/job/McLean-VA/Director--Technical-Program-Management_R1002717-1",
           "title": "Director, Technical Program Management",
           "company": "capitalone",
@@ -4628,6 +4634,13 @@
       ],
       "matches": [
         {
+          "key": "workday:capitalone:/job/McLean-VA/Director--Technical-Program-Management_R1006300-1",
+          "title": "Director, Technical Program Management",
+          "company": "capitalone",
+          "url": "https://capitalone.wd12.myworkdayjobs.com/en-US/Capital_One/job/McLean-VA/Director--Technical-Program-Management_R1006300-1",
+          "assessment_date_eligible": true
+        },
+        {
           "key": "workday:capitalone:/job/McLean-VA/Director--Technical-Program-Management_R1002717-1",
           "title": "Director, Technical Program Management",
           "company": "capitalone",
@@ -4666,6 +4679,13 @@
         "Strong"
       ],
       "matches": [
+        {
+          "key": "workday:capitalone:/job/McLean-VA/Director--Technical-Program-Management_R1006300-1",
+          "title": "Director, Technical Program Management",
+          "company": "capitalone",
+          "url": "https://capitalone.wd12.myworkdayjobs.com/en-US/Capital_One/job/McLean-VA/Director--Technical-Program-Management_R1006300-1",
+          "assessment_date_eligible": true
+        },
         {
           "key": "workday:capitalone:/job/McLean-VA/Director--Technical-Program-Management_R1002717-1",
           "title": "Director, Technical Program Management",
@@ -4958,10 +4978,8 @@
       "first_alert_at": "2026-10-23T23:57:42+00:00",
       "last_alert_at": "2026-10-23T23:57:42+00:00",
       "collection": "possible_match",
-      "assessment": "assessed",
-      "verdicts": [
-        "Middle"
-      ],
+      "assessment": "reassessment_pending",
+      "verdicts": [],
       "matches": [
         {
           "key": "workday:walmart:/job/USA-BELLEVUE-SKYLINE-OFFICE-WA-BELLEVUE-Home-Office/XMLNAME--USA--Senior-Director--Technical-Program-Management_R-2625789",
@@ -5283,7 +5301,7 @@
       "first_alert_at": "2026-10-23T05:57:41+00:00",
       "last_alert_at": "2026-10-31T07:57:43+00:00",
       "collection": "possible_match",
-      "assessment": "outside_date_scope",
+      "assessment": "assessed",
       "verdicts": [
         "Middle",
         "Pass",
@@ -5382,13 +5400,6 @@
           "assessment_date_eligible": true
         },
         {
-          "key": "microsoft:microsoft:1970393557050589",
-          "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050589",
-          "assessment_date_eligible": true
-        },
-        {
           "key": "microsoft:microsoft:1970393557039219",
           "title": "Principal Technical Program Manager",
           "company": "microsoft",
@@ -5422,6 +5433,13 @@
           "company": "microsoft",
           "url": "https://apply.careers.microsoft.com/careers/job/1970393556873572",
           "assessment_date_eligible": false
+        },
+        {
+          "key": "microsoft:microsoft:1970393557050589",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050589",
+          "assessment_date_eligible": true
         }
       ],
       "reason": "Title/company similarity is not proof of the same requisition."
@@ -5772,6 +5790,13 @@
       ],
       "matches": [
         {
+          "key": "workday:capitalone:/job/McLean-VA/Director--Technical-Program-Management_R1006300-1",
+          "title": "Director, Technical Program Management",
+          "company": "capitalone",
+          "url": "https://capitalone.wd12.myworkdayjobs.com/en-US/Capital_One/job/McLean-VA/Director--Technical-Program-Management_R1006300-1",
+          "assessment_date_eligible": true
+        },
+        {
           "key": "workday:capitalone:/job/McLean-VA/Director--Technical-Program-Management_R1002717-1",
           "title": "Director, Technical Program Management",
           "company": "capitalone",
@@ -5811,6 +5836,13 @@
       ],
       "matches": [
         {
+          "key": "workday:capitalone:/job/McLean-VA/Director--Technical-Program-Management_R1006300-1",
+          "title": "Director, Technical Program Management",
+          "company": "capitalone",
+          "url": "https://capitalone.wd12.myworkdayjobs.com/en-US/Capital_One/job/McLean-VA/Director--Technical-Program-Management_R1006300-1",
+          "assessment_date_eligible": true
+        },
+        {
           "key": "workday:capitalone:/job/McLean-VA/Director--Technical-Program-Management_R1002717-1",
           "title": "Director, Technical Program Management",
           "company": "capitalone",
@@ -5849,6 +5881,13 @@
         "Strong"
       ],
       "matches": [
+        {
+          "key": "workday:capitalone:/job/McLean-VA/Director--Technical-Program-Management_R1006300-1",
+          "title": "Director, Technical Program Management",
+          "company": "capitalone",
+          "url": "https://capitalone.wd12.myworkdayjobs.com/en-US/Capital_One/job/McLean-VA/Director--Technical-Program-Management_R1006300-1",
+          "assessment_date_eligible": true
+        },
         {
           "key": "workday:capitalone:/job/McLean-VA/Director--Technical-Program-Management_R1002717-1",
           "title": "Director, Technical Program Management",
@@ -7648,17 +7687,17 @@
       ],
       "matches": [
         {
-          "key": "greenhouse:databricks:8818416002",
-          "title": "Sr Staff Technical Program Manager- Security",
-          "company": "databricks",
-          "url": "https://databricks.com/company/careers/open-positions/job?gh_jid=8818416002",
-          "assessment_date_eligible": true
-        },
-        {
           "key": "greenhouse:databricks:8818577002",
           "title": "Sr Staff Technical Program Manager- Security",
           "company": "databricks",
           "url": "https://databricks.com/company/careers/open-positions/job?gh_jid=8818577002",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "greenhouse:databricks:8818416002",
+          "title": "Sr Staff Technical Program Manager- Security",
+          "company": "databricks",
+          "url": "https://databricks.com/company/careers/open-positions/job?gh_jid=8818416002",
           "assessment_date_eligible": true
         }
       ],
@@ -7688,19 +7727,11 @@
       "employer_urls": [],
       "first_alert_at": "2026-10-20T23:54:41+00:00",
       "last_alert_at": "2026-10-20T23:54:41+00:00",
-      "collection": "possible_match",
+      "collection": "missing",
       "assessment": "not_assessed",
       "verdicts": [],
-      "matches": [
-        {
-          "key": "netflix:netflix:790319022497",
-          "title": "Senior Product Operations Lead & Program Manager - Content Experience Innovation",
-          "company": "netflix",
-          "url": "https://explore.jobs.netflix.net/careers/job/790319022497",
-          "assessment_date_eligible": true
-        }
-      ],
-      "reason": "Title/company similarity is not proof of the same requisition."
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
     },
     {
       "linkedin_id": "4478650163",
@@ -8669,7 +8700,7 @@
       "first_alert_at": "2026-10-15T23:57:43+00:00",
       "last_alert_at": "2026-10-15T23:57:43+00:00",
       "collection": "possible_match",
-      "assessment": "outside_date_scope",
+      "assessment": "assessed",
       "verdicts": [
         "Middle",
         "Pass",
@@ -8768,13 +8799,6 @@
           "assessment_date_eligible": true
         },
         {
-          "key": "microsoft:microsoft:1970393557050589",
-          "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050589",
-          "assessment_date_eligible": true
-        },
-        {
           "key": "microsoft:microsoft:1970393557039219",
           "title": "Principal Technical Program Manager",
           "company": "microsoft",
@@ -8808,6 +8832,13 @@
           "company": "microsoft",
           "url": "https://apply.careers.microsoft.com/careers/job/1970393556873572",
           "assessment_date_eligible": false
+        },
+        {
+          "key": "microsoft:microsoft:1970393557050589",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050589",
+          "assessment_date_eligible": true
         }
       ],
       "reason": "Title/company similarity is not proof of the same requisition."
@@ -9911,7 +9942,7 @@
       "first_alert_at": "2026-10-25T03:57:43+00:00",
       "last_alert_at": "2026-10-25T03:57:43+00:00",
       "collection": "possible_match",
-      "assessment": "assessed",
+      "assessment": "reassessment_pending",
       "verdicts": [
         "Middle"
       ],
@@ -10016,17 +10047,17 @@
       "verdicts": [],
       "matches": [
         {
-          "key": "greenhouse:affirm:8012095003",
-          "title": "Senior Program Manager I",
-          "company": "affirm",
-          "url": "https://job-boards.greenhouse.io/affirm/jobs/8012095003",
-          "assessment_date_eligible": true
-        },
-        {
           "key": "greenhouse:affirm:8012093003",
           "title": "Senior Program Manager I",
           "company": "affirm",
           "url": "https://job-boards.greenhouse.io/affirm/jobs/8012093003",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "greenhouse:affirm:8012095003",
+          "title": "Senior Program Manager I",
+          "company": "affirm",
+          "url": "https://job-boards.greenhouse.io/affirm/jobs/8012095003",
           "assessment_date_eligible": true
         }
       ],
@@ -11525,11 +11556,19 @@
       "employer_urls": [],
       "first_alert_at": "2026-10-24T13:57:41+00:00",
       "last_alert_at": "2026-10-24T13:57:41+00:00",
-      "collection": "missing",
+      "collection": "possible_match",
       "assessment": "not_assessed",
       "verdicts": [],
-      "matches": [],
-      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+      "matches": [
+        {
+          "key": "workday:comcast:/job/PA---Philadelphia-1701-John-F-Kennedy-Blvd/Sr-Director--Program-Management---Early-Career---Rotational-Programming_R446718-1",
+          "title": "Sr Director, Program Management - Early Career & Rotational Programming",
+          "company": "comcast",
+          "url": "https://comcast.wd115.myworkdayjobs.com/en-US/Comcast_Careers/job/PA---Philadelphia-1701-John-F-Kennedy-Blvd/Sr-Director--Program-Management---Early-Career---Rotational-Programming_R446718-1",
+          "assessment_date_eligible": true
+        }
+      ],
+      "reason": "Title/company similarity is not proof of the same requisition."
     },
     {
       "linkedin_id": "4481967074",
@@ -13067,7 +13106,7 @@
       "first_alert_at": "2026-10-25T23:57:43+00:00",
       "last_alert_at": "2026-10-25T23:57:43+00:00",
       "collection": "possible_match",
-      "assessment": "outside_date_scope",
+      "assessment": "assessed",
       "verdicts": [
         "Middle",
         "Pass",
@@ -13166,13 +13205,6 @@
           "assessment_date_eligible": true
         },
         {
-          "key": "microsoft:microsoft:1970393557050589",
-          "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050589",
-          "assessment_date_eligible": true
-        },
-        {
           "key": "microsoft:microsoft:1970393557039219",
           "title": "Principal Technical Program Manager",
           "company": "microsoft",
@@ -13206,6 +13238,13 @@
           "company": "microsoft",
           "url": "https://apply.careers.microsoft.com/careers/job/1970393556873572",
           "assessment_date_eligible": false
+        },
+        {
+          "key": "microsoft:microsoft:1970393557050589",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050589",
+          "assessment_date_eligible": true
         }
       ],
       "reason": "Title/company similarity is not proof of the same requisition."
@@ -14341,6 +14380,13 @@
       ],
       "matches": [
         {
+          "key": "workday:capitalone:/job/McLean-VA/Director--Technical-Program-Management_R1006300-1",
+          "title": "Director, Technical Program Management",
+          "company": "capitalone",
+          "url": "https://capitalone.wd12.myworkdayjobs.com/en-US/Capital_One/job/McLean-VA/Director--Technical-Program-Management_R1006300-1",
+          "assessment_date_eligible": true
+        },
+        {
           "key": "workday:capitalone:/job/McLean-VA/Director--Technical-Program-Management_R1002717-1",
           "title": "Director, Technical Program Management",
           "company": "capitalone",
@@ -14394,6 +14440,13 @@
         "Strong"
       ],
       "matches": [
+        {
+          "key": "workday:capitalone:/job/McLean-VA/Director--Technical-Program-Management_R1006300-1",
+          "title": "Director, Technical Program Management",
+          "company": "capitalone",
+          "url": "https://capitalone.wd12.myworkdayjobs.com/en-US/Capital_One/job/McLean-VA/Director--Technical-Program-Management_R1006300-1",
+          "assessment_date_eligible": true
+        },
         {
           "key": "workday:capitalone:/job/McLean-VA/Director--Technical-Program-Management_R1002717-1",
           "title": "Director, Technical Program Management",
@@ -18441,7 +18494,7 @@
       "first_alert_at": "2026-11-05T15:57:42+00:00",
       "last_alert_at": "2026-11-05T15:57:42+00:00",
       "collection": "possible_match",
-      "assessment": "outside_date_scope",
+      "assessment": "assessed",
       "verdicts": [
         "Middle",
         "Pass",
@@ -18540,13 +18593,6 @@
           "assessment_date_eligible": true
         },
         {
-          "key": "microsoft:microsoft:1970393557050589",
-          "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050589",
-          "assessment_date_eligible": true
-        },
-        {
           "key": "microsoft:microsoft:1970393557039219",
           "title": "Principal Technical Program Manager",
           "company": "microsoft",
@@ -18580,6 +18626,13 @@
           "company": "microsoft",
           "url": "https://apply.careers.microsoft.com/careers/job/1970393556873572",
           "assessment_date_eligible": false
+        },
+        {
+          "key": "microsoft:microsoft:1970393557050589",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050589",
+          "assessment_date_eligible": true
         }
       ],
       "reason": "Title/company similarity is not proof of the same requisition."
@@ -18890,19 +18943,11 @@
       "employer_urls": [],
       "first_alert_at": "2026-11-05T23:57:43+00:00",
       "last_alert_at": "2026-11-05T23:57:43+00:00",
-      "collection": "possible_match",
+      "collection": "missing",
       "assessment": "not_assessed",
       "verdicts": [],
-      "matches": [
-        {
-          "key": "microsoft:microsoft:1970393557052882",
-          "title": "Director, MAVS Technology & Product",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557052882",
-          "assessment_date_eligible": true
-        }
-      ],
-      "reason": "Title/company similarity is not proof of the same requisition."
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
     },
     {
       "linkedin_id": "4487528331",
@@ -20922,7 +20967,7 @@
       "first_alert_at": "2026-11-12T01:57:42+00:00",
       "last_alert_at": "2026-11-12T01:57:42+00:00",
       "collection": "possible_match",
-      "assessment": "outside_date_scope",
+      "assessment": "assessed",
       "verdicts": [
         "Middle",
         "Pass",
@@ -21021,13 +21066,6 @@
           "assessment_date_eligible": true
         },
         {
-          "key": "microsoft:microsoft:1970393557050589",
-          "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050589",
-          "assessment_date_eligible": true
-        },
-        {
           "key": "microsoft:microsoft:1970393557039219",
           "title": "Principal Technical Program Manager",
           "company": "microsoft",
@@ -21061,6 +21099,13 @@
           "company": "microsoft",
           "url": "https://apply.careers.microsoft.com/careers/job/1970393556873572",
           "assessment_date_eligible": false
+        },
+        {
+          "key": "microsoft:microsoft:1970393557050589",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050589",
+          "assessment_date_eligible": true
         }
       ],
       "reason": "Title/company similarity is not proof of the same requisition."
@@ -21589,7 +21634,7 @@
       "first_alert_at": "2026-11-12T15:57:43+00:00",
       "last_alert_at": "2026-11-12T17:57:42+00:00",
       "collection": "possible_match",
-      "assessment": "outside_date_scope",
+      "assessment": "assessed",
       "verdicts": [
         "Middle",
         "Pass",
@@ -21688,13 +21733,6 @@
           "assessment_date_eligible": true
         },
         {
-          "key": "microsoft:microsoft:1970393557050589",
-          "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050589",
-          "assessment_date_eligible": true
-        },
-        {
           "key": "microsoft:microsoft:1970393557039219",
           "title": "Principal Technical Program Manager",
           "company": "microsoft",
@@ -21728,6 +21766,13 @@
           "company": "microsoft",
           "url": "https://apply.careers.microsoft.com/careers/job/1970393556873572",
           "assessment_date_eligible": false
+        },
+        {
+          "key": "microsoft:microsoft:1970393557050589",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050589",
+          "assessment_date_eligible": true
         }
       ],
       "reason": "Title/company similarity is not proof of the same requisition."
@@ -23997,7 +24042,7 @@
       "first_alert_at": "2026-11-19T15:57:43+00:00",
       "last_alert_at": "2026-11-19T15:57:43+00:00",
       "collection": "possible_match",
-      "assessment": "outside_date_scope",
+      "assessment": "assessed",
       "verdicts": [
         "Middle",
         "Pass",
@@ -24096,13 +24141,6 @@
           "assessment_date_eligible": true
         },
         {
-          "key": "microsoft:microsoft:1970393557050589",
-          "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050589",
-          "assessment_date_eligible": true
-        },
-        {
           "key": "microsoft:microsoft:1970393557039219",
           "title": "Principal Technical Program Manager",
           "company": "microsoft",
@@ -24136,6 +24174,13 @@
           "company": "microsoft",
           "url": "https://apply.careers.microsoft.com/careers/job/1970393556873572",
           "assessment_date_eligible": false
+        },
+        {
+          "key": "microsoft:microsoft:1970393557050589",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050589",
+          "assessment_date_eligible": true
         }
       ],
       "reason": "Title/company similarity is not proof of the same requisition."
@@ -24582,11 +24627,19 @@
       "employer_urls": [],
       "first_alert_at": "2026-11-20T13:57:41+00:00",
       "last_alert_at": "2026-11-20T13:57:41+00:00",
-      "collection": "missing",
+      "collection": "possible_match",
       "assessment": "not_assessed",
       "verdicts": [],
-      "matches": [],
-      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+      "matches": [
+        {
+          "key": "workday:zillow:/job/Remote-USA/Principal-Technical-Program-Manager_P751697-2",
+          "title": "Principal Technical Program Manager",
+          "company": "zillow",
+          "url": "https://zillow.wd5.myworkdayjobs.com/en-US/Zillow_Group_External/job/Remote-USA/Principal-Technical-Program-Manager_P751697-2",
+          "assessment_date_eligible": true
+        }
+      ],
+      "reason": "Title/company similarity is not proof of the same requisition."
     }
   ]
 }

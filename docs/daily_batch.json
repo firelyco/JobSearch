@@ -4,15 +4,15 @@
   "start_hour_eastern": 1,
   "deadline_hour_eastern": 6,
   "collection_completed": true,
-  "collection_at": "2026-11-21T06:20:55.614795+00:00",
+  "collection_at": "2026-11-21T06:40:58.469357+00:00",
   "counts": {
-    "found": 55,
-    "eligible": 11,
+    "found": 59,
+    "eligible": 15,
     "completed": 10,
     "strong": 2,
     "middle": 5,
     "pass": 3,
-    "waiting": 0,
+    "waiting": 4,
     "processing": 0,
     "blocked": 1,
     "excluded": 44,
@@ -614,6 +614,39 @@
       "verdict": "middle"
     },
     {
+      "key": "workday:capitalone:/job/McLean-VA/Director--Technical-Program-Management_R1006300-1",
+      "title": "Director, Technical Program Management",
+      "url": "https://capitalone.wd12.myworkdayjobs.com/en-US/Capital_One/job/McLean-VA/Director--Technical-Program-Management_R1006300-1",
+      "source": "workday",
+      "job_snapshot_hash": "dad9f314c63ceef164f4fd3d760b391aaea333f373ad0893167c34345962791a",
+      "eligible": true,
+      "status": "waiting",
+      "reason": "Unfinished assessment.",
+      "verdict": null
+    },
+    {
+      "key": "workday:gartner:/job/Irving-TX/VP--Program-Management--Digital-Product-Technology-_116146-1",
+      "title": "VP, Program Management (Digital Product Technology)",
+      "url": "https://gartner.wd5.myworkdayjobs.com/en-US/EXT/job/Irving-TX/VP--Program-Management--Digital-Product-Technology-_116146-1",
+      "source": "workday",
+      "job_snapshot_hash": "0062b64c40c5ac69369463350e6ea8501b4211cd6c9ba62bdaa2e154fe21e4ca",
+      "eligible": true,
+      "status": "waiting",
+      "reason": "Unfinished assessment.",
+      "verdict": null
+    },
+    {
+      "key": "workday:paloaltonetworks:/job/Office---USA---CA---Headquarters/Principal-Technical-Program-Manager--NetworkSecurity-_JR-024963",
+      "title": "Principal Technical Program Manager (NetworkSecurity)",
+      "url": "https://paloaltonetworks.wd5.myworkdayjobs.com/en-US/panwexternalcareers/job/Office---USA---CA---Headquarters/Principal-Technical-Program-Manager--NetworkSecurity-_JR-024963",
+      "source": "workday",
+      "job_snapshot_hash": "5c32e8cf5e69cf3cd32dc9113f7eb52858e29b147fa2e71d2128e63bddc9f59c",
+      "eligible": true,
+      "status": "waiting",
+      "reason": "Unfinished assessment.",
+      "verdict": null
+    },
+    {
       "key": "workday:snapchat:/job/Sunnyvale-California/Technical-Program-Manager_R0045839",
       "title": "Technical Program Manager - Level 5",
       "url": "https://snapchat.wd1.myworkdayjobs.com/en-US/snap/job/Sunnyvale-California/Technical-Program-Manager_R0045839",
@@ -622,6 +655,17 @@
       "eligible": false,
       "status": "excluded",
       "reason": "Outside agreed assessment criteria.",
+      "verdict": null
+    },
+    {
+      "key": "workday:zillow:/job/Remote-USA/Principal-Technical-Program-Manager_P751697-2",
+      "title": "Principal Technical Program Manager",
+      "url": "https://zillow.wd5.myworkdayjobs.com/en-US/Zillow_Group_External/job/Remote-USA/Principal-Technical-Program-Manager_P751697-2",
+      "source": "workday",
+      "job_snapshot_hash": "5f4e343fd8246c76bb360e6d528df86e720617030440fd114fafb1a9c91dffc5",
+      "eligible": true,
+      "status": "waiting",
+      "reason": "Unfinished assessment.",
       "verdict": null
     }
   ],
@@ -655,21 +699,21 @@
     "4492792290",
     "4492793232"
   ],
-  "coverage_issues": 108,
+  "coverage_issues": 140,
   "incomplete_sources": [
     {
       "source": "workday",
-      "label": "nvidia",
-      "status": "failed"
-    },
-    {
-      "source": "workday",
-      "label": "capitalone",
+      "label": "adobe",
       "status": "failed"
     },
     {
       "source": "workday",
       "label": "cisco",
+      "status": "failed"
+    },
+    {
+      "source": "workday",
+      "label": "nvidia",
       "status": "failed"
     },
     {
@@ -684,13 +728,168 @@
     },
     {
       "source": "workday",
-      "label": "salesforce",
-      "status": "failed"
+      "label": "capitalone",
+      "status": "partial"
     },
     {
       "source": "workday",
-      "label": "adobe",
+      "label": "salesforce",
       "status": "partial"
+    },
+    {
+      "source": "netflix",
+      "label": "program manager",
+      "status": "failed"
+    },
+    {
+      "source": "microsoft",
+      "label": "{'query': '', 'filters': {'career_discipline': ['Technical Program Management']}}",
+      "status": "partial"
+    },
+    {
+      "source": "web_search",
+      "label": "web_search",
+      "status": "failed"
+    },
+    {
+      "source": "web_search",
+      "label": "web_search",
+      "status": "failed"
+    },
+    {
+      "source": "web_search",
+      "label": "web_search",
+      "status": "failed"
+    },
+    {
+      "source": "web_search",
+      "label": "web_search",
+      "status": "failed"
+    },
+    {
+      "source": "web_search",
+      "label": "web_search",
+      "status": "failed"
+    },
+    {
+      "source": "web_search",
+      "label": "web_search",
+      "status": "failed"
+    },
+    {
+      "source": "web_search",
+      "label": "web_search",
+      "status": "failed"
+    },
+    {
+      "source": "web_search",
+      "label": "web_search",
+      "status": "failed"
+    },
+    {
+      "source": "web_search",
+      "label": "web_search",
+      "status": "failed"
+    },
+    {
+      "source": "web_search",
+      "label": "web_search",
+      "status": "failed"
+    },
+    {
+      "source": "web_search",
+      "label": "web_search",
+      "status": "failed"
+    },
+    {
+      "source": "web_search",
+      "label": "web_search",
+      "status": "failed"
+    },
+    {
+      "source": "web_search",
+      "label": "web_search",
+      "status": "failed"
+    },
+    {
+      "source": "web_search",
+      "label": "web_search",
+      "status": "failed"
+    },
+    {
+      "source": "web_search",
+      "label": "web_search",
+      "status": "failed"
+    },
+    {
+      "source": "web_search",
+      "label": "web_search",
+      "status": "failed"
+    },
+    {
+      "source": "web_search",
+      "label": "web_search",
+      "status": "failed"
+    },
+    {
+      "source": "web_search",
+      "label": "web_search",
+      "status": "failed"
+    },
+    {
+      "source": "web_search",
+      "label": "web_search",
+      "status": "failed"
+    },
+    {
+      "source": "web_search",
+      "label": "web_search",
+      "status": "failed"
+    },
+    {
+      "source": "web_search",
+      "label": "web_search",
+      "status": "failed"
+    },
+    {
+      "source": "web_search",
+      "label": "web_search",
+      "status": "failed"
+    },
+    {
+      "source": "web_search",
+      "label": "web_search",
+      "status": "failed"
+    },
+    {
+      "source": "web_search",
+      "label": "web_search",
+      "status": "failed"
+    },
+    {
+      "source": "web_search",
+      "label": "web_search",
+      "status": "failed"
+    },
+    {
+      "source": "web_search",
+      "label": "web_search",
+      "status": "failed"
+    },
+    {
+      "source": "web_search",
+      "label": "web_search",
+      "status": "failed"
+    },
+    {
+      "source": "web_search",
+      "label": "web_search",
+      "status": "failed"
+    },
+    {
+      "source": "web_search",
+      "label": "web_search",
+      "status": "failed"
     },
     {
       "source": "harmonic_employer",
@@ -848,13 +1047,18 @@
       "status": "partial"
     },
     {
-      "source": "workday",
-      "label": "{\"config\": {\"search\": \"program\", \"site\": \"dana-farber\", \"tenant\": \"danafarber\", \"wd_server\": \"wd5\"}, \"source\": \"workday\"}",
+      "source": "ashby",
+      "label": "{\"config\": \"truss\", \"source\": \"ashby\"}",
       "status": "failed"
     },
     {
       "source": "workday",
-      "label": "{\"config\": {\"search\": \"program\", \"site\": \"dana-farbernonrecruit\", \"tenant\": \"danafarber\", \"wd_server\": \"wd5\"}, \"source\": \"workday\"}",
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"ulricareers\", \"tenant\": \"ulse\", \"wd_server\": \"wd5\"}, \"source\": \"workday\"}",
+      "status": "failed"
+    },
+    {
+      "source": "workday",
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"External\", \"tenant\": \"geico\", \"wd_server\": \"wd1\"}, \"source\": \"workday\"}",
       "status": "failed"
     },
     {
@@ -864,17 +1068,7 @@
     },
     {
       "source": "workday",
-      "label": "{\"config\": {\"search\": \"program\", \"site\": \"careers\", \"tenant\": \"ouryahoo\", \"wd_server\": \"wd5\"}, \"source\": \"workday\"}",
-      "status": "failed"
-    },
-    {
-      "source": "workday",
-      "label": "{\"config\": {\"search\": \"program\", \"site\": \"panwexternalcareers\", \"tenant\": \"paloaltonetworks\", \"wd_server\": \"wd5\"}, \"source\": \"workday\"}",
-      "status": "failed"
-    },
-    {
-      "source": "workday",
-      "label": "{\"config\": {\"search\": \"program\", \"site\": \"Zillow_Group_External\", \"tenant\": \"zillow\", \"wd_server\": \"wd5\"}, \"source\": \"workday\"}",
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"annarbor\", \"tenant\": \"kla\", \"wd_server\": \"wd1\"}, \"source\": \"workday\"}",
       "status": "failed"
     },
     {
@@ -884,67 +1078,22 @@
     },
     {
       "source": "workday",
-      "label": "{\"config\": {\"search\": \"program\", \"site\": \"Jabil_Careers\", \"tenant\": \"jabil\", \"wd_server\": \"wd5\"}, \"source\": \"workday\"}",
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"snap\", \"tenant\": \"snapchat\", \"wd_server\": \"wd1\"}, \"source\": \"workday\"}",
       "status": "failed"
     },
     {
       "source": "workday",
-      "label": "{\"config\": {\"search\": \"program\", \"site\": \"SearchJobs\", \"tenant\": \"msd\", \"wd_server\": \"wd5\"}, \"source\": \"workday\"}",
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"EXTERNAL_CAREERS\", \"tenant\": \"boeing\", \"wd_server\": \"wd1\"}, \"source\": \"workday\"}",
       "status": "failed"
     },
     {
       "source": "workday",
-      "label": "{\"config\": {\"search\": \"program\", \"site\": \"EXT\", \"tenant\": \"gartner\", \"wd_server\": \"wd5\"}, \"source\": \"workday\"}",
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"External\", \"tenant\": \"cw\", \"wd_server\": \"wd1\"}, \"source\": \"workday\"}",
       "status": "failed"
     },
     {
       "source": "workday",
       "label": "{\"config\": {\"search\": \"program\", \"site\": \"jobs\", \"tenant\": \"paypal\", \"wd_server\": \"wd1\"}, \"source\": \"workday\"}",
-      "status": "failed"
-    },
-    {
-      "source": "workday",
-      "label": "{\"config\": {\"search\": \"program\", \"site\": \"Comcast_Careers\", \"tenant\": \"comcast\", \"wd_server\": \"wd115\"}, \"source\": \"workday\"}",
-      "status": "failed"
-    },
-    {
-      "source": "workday",
-      "label": "{\"config\": {\"search\": \"program\", \"site\": \"f5jobs\", \"tenant\": \"ffive\", \"wd_server\": \"wd5\"}, \"source\": \"workday\"}",
-      "status": "failed"
-    },
-    {
-      "source": "workday",
-      "label": "{\"config\": {\"search\": \"program\", \"site\": \"Novartis_Careers\", \"tenant\": \"novartis\", \"wd_server\": \"wd3\"}, \"source\": \"workday\"}",
-      "status": "failed"
-    },
-    {
-      "source": "workday",
-      "label": "{\"config\": {\"search\": \"program\", \"site\": \"annarbor\", \"tenant\": \"kla\", \"wd_server\": \"wd1\"}, \"source\": \"workday\"}",
-      "status": "partial"
-    },
-    {
-      "source": "workday",
-      "label": "{\"config\": {\"search\": \"program\", \"site\": \"broadbean_external\", \"tenant\": \"astrazeneca\", \"wd_server\": \"wd3\"}, \"source\": \"workday\"}",
-      "status": "failed"
-    },
-    {
-      "source": "workday",
-      "label": "{\"config\": {\"search\": \"program\", \"site\": \"Careers\", \"tenant\": \"astrazeneca\", \"wd_server\": \"wd3\"}, \"source\": \"workday\"}",
-      "status": "failed"
-    },
-    {
-      "source": "workday",
-      "label": "{\"config\": {\"search\": \"program\", \"site\": \"Global\", \"tenant\": \"statestreet\", \"wd_server\": \"wd1\"}, \"source\": \"workday\"}",
-      "status": "failed"
-    },
-    {
-      "source": "workday",
-      "label": "{\"config\": {\"search\": \"program\", \"site\": \"snap\", \"tenant\": \"snapchat\", \"wd_server\": \"wd1\"}, \"source\": \"workday\"}",
-      "status": "partial"
-    },
-    {
-      "source": "workday",
-      "label": "{\"config\": {\"search\": \"program\", \"site\": \"Workday\", \"tenant\": \"workday\", \"wd_server\": \"wd5\"}, \"source\": \"workday\"}",
       "status": "failed"
     },
     {
@@ -954,22 +1103,102 @@
     },
     {
       "source": "workday",
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"Northrop_Grumman_External_Site\", \"tenant\": \"ngc\", \"wd_server\": \"wd1\"}, \"source\": \"workday\"}",
+      "status": "failed"
+    },
+    {
+      "source": "workday",
       "label": "{\"config\": {\"search\": \"program\", \"site\": \"Vantor\", \"tenant\": \"maxar\", \"wd_server\": \"wd1\"}, \"source\": \"workday\"}",
+      "status": "failed"
+    },
+    {
+      "source": "workday",
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"Visa\", \"tenant\": \"visa\", \"wd_server\": \"wd5\"}, \"source\": \"workday\"}",
       "status": "partial"
     },
     {
       "source": "workday",
-      "label": "{\"config\": {\"search\": \"program\", \"site\": \"EXTERNAL_CAREERS\", \"tenant\": \"boeing\", \"wd_server\": \"wd1\"}, \"source\": \"workday\"}",
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"dana-farber\", \"tenant\": \"danafarber\", \"wd_server\": \"wd5\"}, \"source\": \"workday\"}",
       "status": "partial"
+    },
+    {
+      "source": "workday",
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"SearchJobs\", \"tenant\": \"msd\", \"wd_server\": \"wd5\"}, \"source\": \"workday\"}",
+      "status": "partial"
+    },
+    {
+      "source": "workday",
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"panwexternalcareers\", \"tenant\": \"paloaltonetworks\", \"wd_server\": \"wd5\"}, \"source\": \"workday\"}",
+      "status": "partial"
+    },
+    {
+      "source": "workday",
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"careers\", \"tenant\": \"mymoose\", \"wd_server\": \"wd1\"}, \"source\": \"workday\"}",
+      "status": "failed"
+    },
+    {
+      "source": "workday",
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"Global\", \"tenant\": \"statestreet\", \"wd_server\": \"wd1\"}, \"source\": \"workday\"}",
+      "status": "failed"
+    },
+    {
+      "source": "workday",
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"careers\", \"tenant\": \"ouryahoo\", \"wd_server\": \"wd5\"}, \"source\": \"workday\"}",
+      "status": "partial"
+    },
+    {
+      "source": "workday",
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"Jabil_Careers\", \"tenant\": \"jabil\", \"wd_server\": \"wd5\"}, \"source\": \"workday\"}",
+      "status": "partial"
+    },
+    {
+      "source": "workday",
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"f5jobs\", \"tenant\": \"ffive\", \"wd_server\": \"wd5\"}, \"source\": \"workday\"}",
+      "status": "partial"
+    },
+    {
+      "source": "workday",
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"Careers\", \"tenant\": \"flextronics\", \"wd_server\": \"wd1\"}, \"source\": \"workday\"}",
+      "status": "failed"
+    },
+    {
+      "source": "workday",
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"Careers\", \"tenant\": \"astrazeneca\", \"wd_server\": \"wd3\"}, \"source\": \"workday\"}",
+      "status": "failed"
+    },
+    {
+      "source": "workday",
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"broadbean_external\", \"tenant\": \"astrazeneca\", \"wd_server\": \"wd3\"}, \"source\": \"workday\"}",
+      "status": "failed"
+    },
+    {
+      "source": "workday",
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"Workday\", \"tenant\": \"workday\", \"wd_server\": \"wd5\"}, \"source\": \"workday\"}",
+      "status": "failed"
+    },
+    {
+      "source": "workday",
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"Zillow_Group_External\", \"tenant\": \"zillow\", \"wd_server\": \"wd5\"}, \"source\": \"workday\"}",
+      "status": "partial"
+    },
+    {
+      "source": "workday",
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"carboncareers\", \"tenant\": \"carbon\", \"wd_server\": \"wd504\"}, \"source\": \"workday\"}",
+      "status": "failed"
     },
     {
       "source": "workday",
       "label": "{\"config\": {\"search\": \"program\", \"site\": \"search\", \"tenant\": \"expedia\", \"wd_server\": \"wd108\"}, \"source\": \"workday\"}",
+      "status": "failed"
+    },
+    {
+      "source": "workday",
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"EXT\", \"tenant\": \"gartner\", \"wd_server\": \"wd5\"}, \"source\": \"workday\"}",
       "status": "partial"
     },
     {
       "source": "workday",
-      "label": "{\"config\": {\"search\": \"program\", \"site\": \"Northrop_Grumman_External_Site\", \"tenant\": \"ngc\", \"wd_server\": \"wd1\"}, \"source\": \"workday\"}",
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"dana-farbernonrecruit\", \"tenant\": \"danafarber\", \"wd_server\": \"wd5\"}, \"source\": \"workday\"}",
       "status": "partial"
     },
     {
@@ -979,22 +1208,12 @@
     },
     {
       "source": "workday",
-      "label": "{\"config\": {\"search\": \"program\", \"site\": \"BlueOrigin\", \"tenant\": \"blueorigin\", \"wd_server\": \"wd5\"}, \"source\": \"workday\"}",
-      "status": "failed"
-    },
-    {
-      "source": "workday",
-      "label": "{\"config\": {\"search\": \"program\", \"site\": \"Search\", \"tenant\": \"kla\", \"wd_server\": \"wd1\"}, \"source\": \"workday\"}",
-      "status": "failed"
-    },
-    {
-      "source": "workday",
       "label": "{\"config\": {\"search\": \"program\", \"site\": \"entegriscareers\", \"tenant\": \"entegris\", \"wd_server\": \"wd1\"}, \"source\": \"workday\"}",
       "status": "failed"
     },
     {
       "source": "workday",
-      "label": "{\"config\": {\"search\": \"program\", \"site\": \"external\", \"tenant\": \"wgu\", \"wd_server\": \"wd5\"}, \"source\": \"workday\"}",
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"BlueOrigin\", \"tenant\": \"blueorigin\", \"wd_server\": \"wd5\"}, \"source\": \"workday\"}",
       "status": "failed"
     },
     {
@@ -1004,22 +1223,12 @@
     },
     {
       "source": "workday",
-      "label": "{\"config\": {\"search\": \"program\", \"site\": \"TMNA\", \"tenant\": \"toyota\", \"wd_server\": \"wd503\"}, \"source\": \"workday\"}",
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"Search\", \"tenant\": \"kla\", \"wd_server\": \"wd1\"}, \"source\": \"workday\"}",
       "status": "failed"
     },
     {
       "source": "workday",
-      "label": "{\"config\": {\"search\": \"program\", \"site\": \"External\", \"tenant\": \"amat\", \"wd_server\": \"wd1\"}, \"source\": \"workday\"}",
-      "status": "failed"
-    },
-    {
-      "source": "workday",
-      "label": "{\"config\": {\"search\": \"program\", \"site\": \"CorporateCareers\", \"tenant\": \"mastercard\", \"wd_server\": \"wd1\"}, \"source\": \"workday\"}",
-      "status": "failed"
-    },
-    {
-      "source": "workday",
-      "label": "{\"config\": {\"search\": \"program\", \"site\": \"GLOBAL\", \"tenant\": \"kimberlyclark\", \"wd_server\": \"wd1\"}, \"source\": \"workday\"}",
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"external\", \"tenant\": \"wgu\", \"wd_server\": \"wd5\"}, \"source\": \"workday\"}",
       "status": "failed"
     },
     {
@@ -1029,12 +1238,12 @@
     },
     {
       "source": "workday",
-      "label": "{\"config\": {\"search\": \"program\", \"site\": \"shicareers\", \"tenant\": \"shi\", \"wd_server\": \"wd12\"}, \"source\": \"workday\"}",
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"Boston_Dynamics\", \"tenant\": \"bostondynamics\", \"wd_server\": \"wd1\"}, \"source\": \"workday\"}",
       "status": "failed"
     },
     {
       "source": "workday",
-      "label": "{\"config\": {\"search\": \"program\", \"site\": \"careers\", \"tenant\": \"workiva\", \"wd_server\": \"wd503\"}, \"source\": \"workday\"}",
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"External\", \"tenant\": \"amat\", \"wd_server\": \"wd1\"}, \"source\": \"workday\"}",
       "status": "failed"
     },
     {
@@ -1044,12 +1253,7 @@
     },
     {
       "source": "workday",
-      "label": "{\"config\": {\"search\": \"program\", \"site\": \"careers\", \"tenant\": \"gogo\", \"wd_server\": \"wd1\"}, \"source\": \"workday\"}",
-      "status": "failed"
-    },
-    {
-      "source": "workday",
-      "label": "{\"config\": {\"search\": \"program\", \"site\": \"Boston_Dynamics\", \"tenant\": \"bostondynamics\", \"wd_server\": \"wd1\"}, \"source\": \"workday\"}",
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"GLOBAL\", \"tenant\": \"kimberlyclark\", \"wd_server\": \"wd1\"}, \"source\": \"workday\"}",
       "status": "failed"
     },
     {
@@ -1059,18 +1263,18 @@
     },
     {
       "source": "workday",
-      "label": "{\"config\": {\"search\": \"program\", \"site\": \"Careers\", \"tenant\": \"motorolasolutions\", \"wd_server\": \"wd5\"}, \"source\": \"workday\"}",
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"careers\", \"tenant\": \"gogo\", \"wd_server\": \"wd1\"}, \"source\": \"workday\"}",
       "status": "failed"
     },
     {
       "source": "workday",
-      "label": "{\"config\": {\"search\": \"program\", \"site\": \"External\", \"tenant\": \"cw\", \"wd_server\": \"wd1\"}, \"source\": \"workday\"}",
-      "status": "partial"
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"CorporateCareers\", \"tenant\": \"mastercard\", \"wd_server\": \"wd1\"}, \"source\": \"workday\"}",
+      "status": "failed"
     },
     {
       "source": "workday",
-      "label": "{\"config\": {\"search\": \"program\", \"site\": \"Careers\", \"tenant\": \"flextronics\", \"wd_server\": \"wd1\"}, \"source\": \"workday\"}",
-      "status": "partial"
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"Careers\", \"tenant\": \"motorolasolutions\", \"wd_server\": \"wd5\"}, \"source\": \"workday\"}",
+      "status": "failed"
     },
     {
       "source": "ashby",
@@ -1079,18 +1283,33 @@
     },
     {
       "source": "workday",
-      "label": "{\"config\": {\"search\": \"program\", \"site\": \"FINC\", \"tenant\": \"finastra\", \"wd_server\": \"wd3\"}, \"source\": \"workday\"}",
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"Cohesity_Careers\", \"tenant\": \"cohesity\", \"wd_server\": \"wd5\"}, \"source\": \"workday\"}",
       "status": "failed"
     },
     {
       "source": "workday",
-      "label": "{\"config\": {\"search\": \"program\", \"site\": \"Cohesity_Careers\", \"tenant\": \"cohesity\", \"wd_server\": \"wd5\"}, \"source\": \"workday\"}",
-      "status": "failed"
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"External_Careers\", \"tenant\": \"genpact\", \"wd_server\": \"wd108\"}, \"source\": \"workday\"}",
+      "status": "partial"
+    },
+    {
+      "source": "workday",
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"Novartis_Careers\", \"tenant\": \"novartis\", \"wd_server\": \"wd3\"}, \"source\": \"workday\"}",
+      "status": "partial"
     },
     {
       "source": "greenhouse",
       "label": "{\"config\": \"verkada2\", \"source\": \"greenhouse\"}",
       "status": "failed"
+    },
+    {
+      "source": "workday",
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"Comcast_Careers\", \"tenant\": \"comcast\", \"wd_server\": \"wd115\"}, \"source\": \"workday\"}",
+      "status": "partial"
+    },
+    {
+      "source": "workday",
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"shicareers\", \"tenant\": \"shi\", \"wd_server\": \"wd12\"}, \"source\": \"workday\"}",
+      "status": "partial"
     },
     {
       "source": "workday",
@@ -1109,12 +1328,17 @@
     },
     {
       "source": "workday",
-      "label": "{\"config\": {\"search\": \"program\", \"site\": \"Careers_at_Quantiphi\", \"tenant\": \"quantiphi\", \"wd_server\": \"wd1\"}, \"source\": \"workday\"}",
-      "status": "failed"
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"FINC\", \"tenant\": \"finastra\", \"wd_server\": \"wd3\"}, \"source\": \"workday\"}",
+      "status": "partial"
     },
     {
-      "source": "ashby",
-      "label": "{\"config\": \"lime\", \"source\": \"ashby\"}",
+      "source": "workday",
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"GOCJobs\", \"tenant\": \"google\", \"wd_server\": \"wd501\"}, \"source\": \"workday\"}",
+      "status": "partial"
+    },
+    {
+      "source": "workday",
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"Careers_at_Quantiphi\", \"tenant\": \"quantiphi\", \"wd_server\": \"wd1\"}, \"source\": \"workday\"}",
       "status": "failed"
     },
     {
@@ -1123,33 +1347,8 @@
       "status": "failed"
     },
     {
-      "source": "lever",
-      "label": "{\"config\": \"jobgether\", \"source\": \"lever\"}",
-      "status": "failed"
-    },
-    {
       "source": "ashby",
-      "label": "{\"config\": \"truss\", \"source\": \"ashby\"}",
-      "status": "failed"
-    },
-    {
-      "source": "workday",
-      "label": "{\"config\": {\"search\": \"program\", \"site\": \"Visa\", \"tenant\": \"visa\", \"wd_server\": \"wd5\"}, \"source\": \"workday\"}",
-      "status": "failed"
-    },
-    {
-      "source": "workday",
-      "label": "{\"config\": {\"search\": \"program\", \"site\": \"ulricareers\", \"tenant\": \"ulse\", \"wd_server\": \"wd5\"}, \"source\": \"workday\"}",
-      "status": "failed"
-    },
-    {
-      "source": "workday",
-      "label": "{\"config\": {\"search\": \"program\", \"site\": \"External_Careers\", \"tenant\": \"genpact\", \"wd_server\": \"wd108\"}, \"source\": \"workday\"}",
-      "status": "failed"
-    },
-    {
-      "source": "workday",
-      "label": "{\"config\": {\"search\": \"program\", \"site\": \"External\", \"tenant\": \"geico\", \"wd_server\": \"wd1\"}, \"source\": \"workday\"}",
+      "label": "{\"config\": \"lime\", \"source\": \"ashby\"}",
       "status": "failed"
     },
     {
@@ -1175,6 +1374,11 @@
     {
       "source": "location_check",
       "label": "location_check",
+      "status": "failed"
+    },
+    {
+      "source": "description_check",
+      "label": "description_check",
       "status": "failed"
     },
     {
@@ -1198,7 +1402,7 @@
       "status": "failed"
     }
   ],
-  "checked_at": "2026-11-21T06:37:47.014421+00:00",
+  "checked_at": "2026-11-21T06:52:59.796556+00:00",
   "legacy_backlog": {
     "assessed": 533,
     "pending": 0,
@@ -1207,12 +1411,12 @@
     "total": 592,
     "strong": 71
   },
-  "batch_id": "3b3412b5bfe7977386470d6282953599cd9ed7920a73c0c6021b770bd9cb8e7b",
-  "status": "blocked",
+  "batch_id": "f71f709af4d1831bb3f8842be2b01e09955413962b98ad1ef1bae5bc9f671c6a",
+  "status": "assessing",
   "input_blobs": {
-    "jobs.json": "4ec4386b26b3352b25e1950f8825ff2610d71f11",
+    "jobs.json": "f37b5e8e6bdc5f155d14c8fa164fde8c8f9fbb1d",
     "fit_scores.json": "0013896963ec5610944db8ea25588b77a3614e74",
     "fit_backfill.json": "ebf068d1fd8fa4a6f843d46ab710f6f1fd46f626",
-    "meta.json": "7342309b396d0537a0bdb8706d83bbfe9c82f0d0"
+    "meta.json": "b93a56e1c73fd894495c98b8fe8975c90995ade6"
   }
 }
