@@ -7,15 +7,15 @@
   "collection_at": "2026-11-21T06:01:01.966947+00:00",
   "counts": {
     "found": 53,
-    "eligible": 19,
-    "completed": 3,
+    "eligible": 17,
+    "completed": 9,
     "strong": 1,
-    "middle": 1,
-    "pass": 1,
-    "waiting": 11,
-    "processing": 5,
-    "blocked": 0,
-    "excluded": 34,
+    "middle": 5,
+    "pass": 3,
+    "waiting": 0,
+    "processing": 7,
+    "blocked": 1,
+    "excluded": 36,
     "unverified_links": 28
   },
   "members": [
@@ -26,7 +26,7 @@
       "source": "amazon_jobs",
       "job_snapshot_hash": "d37246872aff53533dbb63102718061c05689ce668cd2700e6503a891bc28f70",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -37,7 +37,7 @@
       "source": "amazon_jobs",
       "job_snapshot_hash": "506f30f93cfedd3445d6c82521f8aa16ea2d2c7c610be632e243d21293138ee0",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -48,7 +48,7 @@
       "source": "amazon_jobs",
       "job_snapshot_hash": "71f119a473d08d9540069e37fc074b531445f00a0f6802230aca2892c03556d2",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -58,9 +58,9 @@
       "url": "https://www.amazon.jobs/en/jobs/10610410/senior-technical-program-manager-fauna",
       "source": "amazon_jobs",
       "job_snapshot_hash": "bd0e3e9a763d995f5539c031ed4887cd54af90def42bc68722a97ef55d56254b",
-      "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -70,7 +70,7 @@
       "source": "amazon_jobs",
       "job_snapshot_hash": "318f78bf05b08fa57ad064c2fef79897bef8f1ca79d11c51015857360dbf1408",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -80,9 +80,9 @@
       "url": "https://www.amazon.jobs/en/jobs/10610553/technical-program-manager-aws-availability-product-team",
       "source": "amazon_jobs",
       "job_snapshot_hash": "82b58450a8da57399bdfbb5f419afb0e80f4b4f022f52610ba496e9243224585",
-      "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -92,7 +92,7 @@
       "source": "amazon_jobs",
       "job_snapshot_hash": "d51d785a8ed89471b887c5bfeb49f6f341e4b909c62dff6f2476de6af773f9b8",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -103,7 +103,7 @@
       "source": "amazon_jobs",
       "job_snapshot_hash": "67a82512793bbdc6f2d7b419685b160cc067e3d593c2ce25b8e4bacb2b5a9815",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -147,9 +147,9 @@
       "source": "apple",
       "job_snapshot_hash": "2f7c33a51720a905e7057b472dfef47bfb985dfd03d24729e0ff8c29d004adf0",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "apple:apple:200695870",
@@ -158,9 +158,9 @@
       "source": "apple",
       "job_snapshot_hash": "01983ac0815815829f3dc718ae19cf28ca702ea5c13533ef4a5d3d91d47fce67",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "arbeitnow:Alan:senior-it-engineer-paris-france-485836",
@@ -202,8 +202,8 @@
       "source": "arbeitnow",
       "job_snapshot_hash": "33e1692b8219555071627341a08069bb5d44e2fe401711fd5def4fb151f9e9b5",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
+      "status": "blocked",
+      "reason": "Paid retry budget exhausted; review required.",
       "verdict": null
     },
     {
@@ -433,9 +433,9 @@
       "source": "arbeitnow",
       "job_snapshot_hash": "d980dcea45c163d822c222e5cc622c7f433518162ea01449b908eb1d39b7d40f",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "pass"
     },
     {
       "key": "arbeitnow:mirakllabs:tech-product-manager-agentic-platform-bordeaux-20459",
@@ -521,9 +521,9 @@
       "source": "google",
       "job_snapshot_hash": "6ad081d9b611f9369cb1460d0a5f438b8093c52234dc715ef6e1330edd12dd3b",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "google:google:125146540497871558",
@@ -532,9 +532,9 @@
       "source": "google",
       "job_snapshot_hash": "ae859253d2a69f0071b8e42d930f9e9333e7913589b664e8352658249398ef72",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "google:google:91036391269376710",
@@ -543,9 +543,9 @@
       "source": "google",
       "job_snapshot_hash": "dab673796973333c98a44629acd5577bdc505703d9cdcaffb9dbd3aaefc4c10a",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "pass"
     },
     {
       "key": "greenhouse:lightmatter:5490200008",
@@ -576,7 +576,7 @@
       "source": "lever",
       "job_snapshot_hash": "2c27fc7295ab7bbae9a1863f5c1a4615de40c29df7b36673c58a81b97a84ac41",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -1416,21 +1416,21 @@
       "status": "failed"
     }
   ],
-  "checked_at": "2026-11-21T06:16:14.186473+00:00",
+  "checked_at": "2026-11-21T06:17:17.881956+00:00",
   "legacy_backlog": {
-    "assessed": 522,
-    "pending": 20,
-    "unresolved": 59,
-    "in_progress": 5,
-    "total": 606,
+    "assessed": 528,
+    "pending": 8,
+    "unresolved": 60,
+    "in_progress": 8,
+    "total": 604,
     "strong": 70
   },
-  "batch_id": "d71bd93f1426659c6756f5277d18870399e361126d79e8d9c309ea1960f89eab",
+  "batch_id": "63522e540e578549cf2ee4f294447e16516ef461dff6c4db133642309f6d3cfb",
   "status": "assessing",
   "input_blobs": {
     "jobs.json": "d4bbb2174b9363bba9dc48377aa6f4cd22cbda55",
-    "fit_scores.json": "3540596916623bb016e879d3cff0f6166f106767",
-    "fit_backfill.json": "6357b9da5f5b2f02ebe7d55c3a035297bb6f599c",
+    "fit_scores.json": "fe85f0981928dced1f5f586a7529a6dfc9677e49",
+    "fit_backfill.json": "93d2cb50cf7937794bd5a80d17b9d7e82a1fa5dc",
     "meta.json": "bb7d12a79ee77c19dd0b0f32cc1f7738434df808"
   }
 }
