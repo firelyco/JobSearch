@@ -7,15 +7,15 @@
   "collection_at": "2026-11-21T06:01:01.966947+00:00",
   "counts": {
     "found": 53,
-    "eligible": 22,
-    "completed": 0,
-    "strong": 0,
-    "middle": 0,
-    "pass": 0,
-    "waiting": 22,
-    "processing": 0,
+    "eligible": 19,
+    "completed": 3,
+    "strong": 1,
+    "middle": 1,
+    "pass": 1,
+    "waiting": 11,
+    "processing": 5,
     "blocked": 0,
-    "excluded": 31,
+    "excluded": 34,
     "unverified_links": 28
   },
   "members": [
@@ -113,9 +113,9 @@
       "url": "https://www.amazon.jobs/en/jobs/10610910/technical-infrastructure-program-manager-corporate-network-engineering",
       "source": "amazon_jobs",
       "job_snapshot_hash": "56ef323e222801727ffa552ac740bb32a19387cf33d23d85959f173960d10490",
-      "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -135,9 +135,9 @@
       "url": "https://jobs.apple.com/en-us/details/200691097/technical-program-manager-optical-components",
       "source": "apple",
       "job_snapshot_hash": "06a0998e1b2b9ab42bee05fea0f256cd2799de904f59172982ffd7afe26fa650",
-      "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -158,7 +158,7 @@
       "source": "apple",
       "job_snapshot_hash": "01983ac0815815829f3dc718ae19cf28ca702ea5c13533ef4a5d3d91d47fce67",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -433,7 +433,7 @@
       "source": "arbeitnow",
       "job_snapshot_hash": "d980dcea45c163d822c222e5cc622c7f433518162ea01449b908eb1d39b7d40f",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -499,9 +499,9 @@
       "source": "ashby",
       "job_snapshot_hash": "34293d901e15e6b2b32d01cc3aab36d2b6fdf348aed609759ea3938100cb9d2a",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "strong"
     },
     {
       "key": "ashby:clera:a104e791-2d94-4e57-a0f4-98c77b55b336",
@@ -509,9 +509,9 @@
       "url": "https://jobs.ashbyhq.com/Clera/a104e791-2d94-4e57-a0f4-98c77b55b336",
       "source": "ashby",
       "job_snapshot_hash": "828be2fe2d9dba354db7a3a48ee2a1d44fab18bb4e2930225bfc664e60bea7aa",
-      "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -521,7 +521,7 @@
       "source": "google",
       "job_snapshot_hash": "6ad081d9b611f9369cb1460d0a5f438b8093c52234dc715ef6e1330edd12dd3b",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -532,7 +532,7 @@
       "source": "google",
       "job_snapshot_hash": "ae859253d2a69f0071b8e42d930f9e9333e7913589b664e8352658249398ef72",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -543,7 +543,7 @@
       "source": "google",
       "job_snapshot_hash": "dab673796973333c98a44629acd5577bdc505703d9cdcaffb9dbd3aaefc4c10a",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -554,9 +554,9 @@
       "source": "greenhouse",
       "job_snapshot_hash": "02d221013bd371f9adb929d592ecf679f92406d5510e7afe27749afe47f84f89",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "pass"
     },
     {
       "key": "greenhouse:tenstorrent:5302697007",
@@ -598,9 +598,9 @@
       "source": "microsoft",
       "job_snapshot_hash": "1dfbeba6910e9695aac7ec64804437f55827b935cefef7550e642e9a0cdfb3d4",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     }
   ],
   "link_ids": [
@@ -1416,21 +1416,21 @@
       "status": "failed"
     }
   ],
-  "checked_at": "2026-11-21T06:15:08.226563+00:00",
+  "checked_at": "2026-11-21T06:16:14.186473+00:00",
   "legacy_backlog": {
-    "assessed": 515,
-    "pending": 35,
+    "assessed": 522,
+    "pending": 20,
     "unresolved": 59,
-    "in_progress": 0,
-    "total": 609,
-    "strong": 68
+    "in_progress": 5,
+    "total": 606,
+    "strong": 70
   },
-  "batch_id": "fe6daac9c2485814806d330915bf3b7a2671ef3728b3b4df9ff763f9304180b1",
+  "batch_id": "d71bd93f1426659c6756f5277d18870399e361126d79e8d9c309ea1960f89eab",
   "status": "assessing",
   "input_blobs": {
     "jobs.json": "d4bbb2174b9363bba9dc48377aa6f4cd22cbda55",
-    "fit_scores.json": "fc56ca6b8e3e434e1998477e450ad8280b117a9c",
-    "fit_backfill.json": "841e797809b80809e8fa0ee3744aaccf5c2c3d9c",
+    "fit_scores.json": "3540596916623bb016e879d3cff0f6166f106767",
+    "fit_backfill.json": "6357b9da5f5b2f02ebe7d55c3a035297bb6f599c",
     "meta.json": "bb7d12a79ee77c19dd0b0f32cc1f7738434df808"
   }
 }
