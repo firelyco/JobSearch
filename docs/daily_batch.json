@@ -7,15 +7,15 @@
   "collection_at": "2026-11-21T06:01:01.966947+00:00",
   "counts": {
     "found": 53,
-    "eligible": 17,
-    "completed": 9,
-    "strong": 1,
+    "eligible": 11,
+    "completed": 10,
+    "strong": 2,
     "middle": 5,
     "pass": 3,
     "waiting": 0,
-    "processing": 7,
+    "processing": 0,
     "blocked": 1,
-    "excluded": 36,
+    "excluded": 42,
     "unverified_links": 28
   },
   "members": [
@@ -25,9 +25,9 @@
       "url": "https://www.amazon.jobs/en/jobs/10600174/sr-technical-program-manager-mobile-app-foundations-quality-and-release",
       "source": "amazon_jobs",
       "job_snapshot_hash": "d37246872aff53533dbb63102718061c05689ce668cd2700e6503a891bc28f70",
-      "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -36,9 +36,9 @@
       "url": "https://www.amazon.jobs/en/jobs/10607950/senior-technical-program-manager-amazon-customer-service",
       "source": "amazon_jobs",
       "job_snapshot_hash": "506f30f93cfedd3445d6c82521f8aa16ea2d2c7c610be632e243d21293138ee0",
-      "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -47,9 +47,9 @@
       "url": "https://www.amazon.jobs/en/jobs/10609332/technical-program-manager-business-risk",
       "source": "amazon_jobs",
       "job_snapshot_hash": "71f119a473d08d9540069e37fc074b531445f00a0f6802230aca2892c03556d2",
-      "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -69,9 +69,9 @@
       "url": "https://www.amazon.jobs/en/jobs/10610411/senior-technical-program-manager-fauna",
       "source": "amazon_jobs",
       "job_snapshot_hash": "318f78bf05b08fa57ad064c2fef79897bef8f1ca79d11c51015857360dbf1408",
-      "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -91,9 +91,9 @@
       "url": "https://www.amazon.jobs/en/jobs/10610715/technical-program-manager-iii-amazon-fuse",
       "source": "amazon_jobs",
       "job_snapshot_hash": "d51d785a8ed89471b887c5bfeb49f6f341e4b909c62dff6f2476de6af773f9b8",
-      "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -102,9 +102,9 @@
       "url": "https://www.amazon.jobs/en/jobs/10610812/technical-program-manager-iii-ai-applied-ai-solutions",
       "source": "amazon_jobs",
       "job_snapshot_hash": "67a82512793bbdc6f2d7b419685b160cc067e3d593c2ce25b8e4bacb2b5a9815",
-      "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -576,9 +576,9 @@
       "source": "lever",
       "job_snapshot_hash": "2c27fc7295ab7bbae9a1863f5c1a4615de40c29df7b36673c58a81b97a84ac41",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "strong"
     },
     {
       "key": "lever:payjoy:1d0b7618-ed22-4d24-87bd-ea64672996d7",
@@ -1416,21 +1416,21 @@
       "status": "failed"
     }
   ],
-  "checked_at": "2026-11-21T06:17:17.881956+00:00",
+  "checked_at": "2026-11-21T06:18:19.506225+00:00",
   "legacy_backlog": {
-    "assessed": 528,
-    "pending": 8,
+    "assessed": 531,
+    "pending": 0,
     "unresolved": 60,
-    "in_progress": 8,
-    "total": 604,
-    "strong": 70
+    "in_progress": 7,
+    "total": 598,
+    "strong": 71
   },
-  "batch_id": "63522e540e578549cf2ee4f294447e16516ef461dff6c4db133642309f6d3cfb",
-  "status": "assessing",
+  "batch_id": "ebe471fedef1ded25656433a79998daec4ee5972a3c4758c77791fc72c10d725",
+  "status": "blocked",
   "input_blobs": {
     "jobs.json": "d4bbb2174b9363bba9dc48377aa6f4cd22cbda55",
-    "fit_scores.json": "fe85f0981928dced1f5f586a7529a6dfc9677e49",
-    "fit_backfill.json": "93d2cb50cf7937794bd5a80d17b9d7e82a1fa5dc",
+    "fit_scores.json": "45a9cf04b599f66551a24d429beb6ffca189e0ad",
+    "fit_backfill.json": "e4d563468c29e4a57054a0314f8406387de1ea8d",
     "meta.json": "bb7d12a79ee77c19dd0b0f32cc1f7738434df808"
   }
 }
