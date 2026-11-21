@@ -12,9 +12,9 @@
     "strong": 2,
     "middle": 5,
     "pass": 3,
-    "waiting": 4,
+    "waiting": 0,
     "processing": 0,
-    "blocked": 1,
+    "blocked": 5,
     "excluded": 44,
     "unverified_links": 28
   },
@@ -620,8 +620,8 @@
       "source": "workday",
       "job_snapshot_hash": "dad9f314c63ceef164f4fd3d760b391aaea333f373ad0893167c34345962791a",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
+      "status": "blocked",
+      "reason": "Paid retry budget exhausted; review required.",
       "verdict": null
     },
     {
@@ -631,8 +631,8 @@
       "source": "workday",
       "job_snapshot_hash": "0062b64c40c5ac69369463350e6ea8501b4211cd6c9ba62bdaa2e154fe21e4ca",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
+      "status": "blocked",
+      "reason": "Paid retry budget exhausted; review required.",
       "verdict": null
     },
     {
@@ -642,8 +642,8 @@
       "source": "workday",
       "job_snapshot_hash": "5c32e8cf5e69cf3cd32dc9113f7eb52858e29b147fa2e71d2128e63bddc9f59c",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
+      "status": "blocked",
+      "reason": "Paid retry budget exhausted; review required.",
       "verdict": null
     },
     {
@@ -664,8 +664,8 @@
       "source": "workday",
       "job_snapshot_hash": "5f4e343fd8246c76bb360e6d528df86e720617030440fd114fafb1a9c91dffc5",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
+      "status": "blocked",
+      "reason": "Paid retry budget exhausted; review required.",
       "verdict": null
     }
   ],
@@ -1402,21 +1402,21 @@
       "status": "failed"
     }
   ],
-  "checked_at": "2026-11-21T06:54:49.345310+00:00",
+  "checked_at": "2026-11-21T06:55:10.134774+00:00",
   "legacy_backlog": {
     "assessed": 531,
-    "pending": 5,
-    "unresolved": 58,
+    "pending": 0,
+    "unresolved": 63,
     "in_progress": 0,
     "total": 594,
     "strong": 71
   },
-  "batch_id": "6cd8428b7bcdef8149ffe478ffeb7ab3ea285a3a5fb4aa6199b892498a253113",
-  "status": "assessing",
+  "batch_id": "e2f8b6a9459342b3099bf22cffe07f64ba6a312aeaf2c180d7eada06a5972fcd",
+  "status": "blocked",
   "input_blobs": {
     "jobs.json": "f37b5e8e6bdc5f155d14c8fa164fde8c8f9fbb1d",
     "fit_scores.json": "f60b68a4ecf2cb0e565a36041c65c3cd7ece1a51",
-    "fit_backfill.json": "3da7cd5a1bb7d6d0b474928411e133b992b08e7f",
+    "fit_backfill.json": "c0c60a2e81fcb68271c5d3cb63687bf691fe037f",
     "meta.json": "b93a56e1c73fd894495c98b8fe8975c90995ade6"
   }
 }
