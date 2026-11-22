@@ -8,11 +8,11 @@
   "counts": {
     "found": 26,
     "eligible": 2,
-    "completed": 0,
+    "completed": 2,
     "strong": 0,
     "middle": 0,
-    "pass": 0,
-    "waiting": 2,
+    "pass": 2,
+    "waiting": 0,
     "processing": 0,
     "blocked": 0,
     "excluded": 24,
@@ -180,9 +180,9 @@
       "source": "arbeitnow",
       "job_snapshot_hash": "9dcc6b2d878b530d26f2e6780b656335923751521ef824c1899b8da7a5476016",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "pass"
     },
     {
       "key": "arbeitnow:celonis:senior-lead-ai-deployment-engineer-supply-chain-paris-47202",
@@ -301,9 +301,9 @@
       "source": "workday",
       "job_snapshot_hash": "0640a554d27a7a2dea15edf532bac523c5245b143d9ba5c303dc8d26860cff0a",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "pass"
     }
   ],
   "link_ids": [
@@ -1342,21 +1342,21 @@
       "status": "failed"
     }
   ],
-  "checked_at": "2026-11-22T06:16:40.968874+00:00",
+  "checked_at": "2026-11-22T06:17:41.163316+00:00",
   "legacy_backlog": {
-    "assessed": 524,
-    "pending": 11,
+    "assessed": 532,
+    "pending": 0,
     "unresolved": 58,
-    "in_progress": 0,
+    "in_progress": 3,
     "total": 593,
     "strong": 71
   },
-  "batch_id": "c8a51d319cea1723b4da8e65fe6e25bba98b1d1359bf595151b1d69a13ca3bb3",
-  "status": "assessing",
+  "batch_id": "0fe6cd039232d31a580804648c1e2ae6c292d5acbd07451c8a3371ae538e5fec",
+  "status": "blocked",
   "input_blobs": {
     "jobs.json": "18c4ee8f19eb9b0f2f10af3cd1705a9291fa9b4d",
-    "fit_scores.json": "1883b9852a0ef50161270f8bc65bcc065916251f",
-    "fit_backfill.json": "8734f78c64896c5e19b4ea8e2e8e9c141e1b2b7f",
+    "fit_scores.json": "f7a7752906037d305f38f9ef2062120d9c3b4069",
+    "fit_backfill.json": "1798e27643caa8988dcfa4038c57511b28acff56",
     "meta.json": "fee717ac81c4afa3eebd90e7bad735a6cfa48018"
   }
 }
