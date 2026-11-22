@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "checked_at": "2026-11-22T06:20:53.697546+00:00",
+  "checked_at": "2026-11-22T06:40:54.033132+00:00",
   "connection": {
     "source": "linkedin_email",
     "label": "LinkedIn job-alert emails",
@@ -15,14 +15,14 @@
     "unresolved_alert_messages": 24,
     "lookback_days": 14,
     "mode": "incremental",
-    "search_since": "2026-11-21T06:01:04.581226+00:00",
+    "search_since": "2026-11-21T06:20:53.697546+00:00",
     "last_success_at": null
   },
   "last_success_at": null,
   "scope": "One-time 14-day catch-up, then new unprocessed LinkedIn emails during the daily job search. Collected references are retained; this does not verify all LinkedIn or in-app listings.",
   "counts": {
-    "missing": 997,
-    "possible_match": 225
+    "missing": 998,
+    "possible_match": 224
   },
   "rows": [
     {
@@ -7499,10 +7499,8 @@
       "first_alert_at": "2026-10-31T15:57:44+00:00",
       "last_alert_at": "2026-10-31T15:57:44+00:00",
       "collection": "possible_match",
-      "assessment": "assessed",
-      "verdicts": [
-        "Middle"
-      ],
+      "assessment": "reassessment_pending",
+      "verdicts": [],
       "matches": [
         {
           "key": "workday:paypal:/job/San-Jose-California-United-States-of-America/Sr-Manager--Technical-Programs_R0138300-1",
@@ -10103,17 +10101,17 @@
       "verdicts": [],
       "matches": [
         {
-          "key": "greenhouse:affirm:8012093003",
-          "title": "Senior Program Manager I",
-          "company": "affirm",
-          "url": "https://job-boards.greenhouse.io/affirm/jobs/8012093003",
-          "assessment_date_eligible": true
-        },
-        {
           "key": "greenhouse:affirm:8012095003",
           "title": "Senior Program Manager I",
           "company": "affirm",
           "url": "https://job-boards.greenhouse.io/affirm/jobs/8012095003",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "greenhouse:affirm:8012093003",
+          "title": "Senior Program Manager I",
+          "company": "affirm",
+          "url": "https://job-boards.greenhouse.io/affirm/jobs/8012093003",
           "assessment_date_eligible": true
         }
       ],
@@ -11612,19 +11610,11 @@
       "employer_urls": [],
       "first_alert_at": "2026-10-24T13:57:41+00:00",
       "last_alert_at": "2026-10-24T13:57:41+00:00",
-      "collection": "possible_match",
+      "collection": "missing",
       "assessment": "not_assessed",
       "verdicts": [],
-      "matches": [
-        {
-          "key": "workday:comcast:/job/PA---Philadelphia-1701-John-F-Kennedy-Blvd/Sr-Director--Program-Management---Early-Career---Rotational-Programming_R446718-1",
-          "title": "Sr Director, Program Management - Early Career & Rotational Programming",
-          "company": "comcast",
-          "url": "https://comcast.wd115.myworkdayjobs.com/en-US/Comcast_Careers/job/PA---Philadelphia-1701-John-F-Kennedy-Blvd/Sr-Director--Program-Management---Early-Career---Rotational-Programming_R446718-1",
-          "assessment_date_eligible": true
-        }
-      ],
-      "reason": "Title/company similarity is not proof of the same requisition."
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
     },
     {
       "linkedin_id": "4481967074",
