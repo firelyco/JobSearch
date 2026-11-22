@@ -1,28 +1,28 @@
 {
   "schema": 1,
-  "checked_at": "2026-11-21T06:40:58.469357+00:00",
+  "checked_at": "2026-11-22T06:01:04.581226+00:00",
   "connection": {
     "source": "linkedin_email",
     "label": "LinkedIn job-alert emails",
     "status": "partial",
-    "jobs": 1196,
-    "messages_checked": 0,
-    "alerts_with_jobs": 0,
-    "job_references_found": 0,
+    "jobs": 1222,
+    "messages_checked": 10,
+    "alerts_with_jobs": 9,
+    "job_references_found": 54,
     "failed_messages": 0,
     "alerts_without_job_links": 0,
     "messages_deferred": 0,
     "unresolved_alert_messages": 24,
     "lookback_days": 14,
     "mode": "incremental",
-    "search_since": "2026-11-20T06:20:55.614795+00:00",
+    "search_since": "2026-11-20T06:40:58.469357+00:00",
     "last_success_at": null
   },
   "last_success_at": null,
   "scope": "One-time 14-day catch-up, then new unprocessed LinkedIn emails during the daily job search. Collected references are retained; this does not verify all LinkedIn or in-app listings.",
   "counts": {
-    "missing": 974,
-    "possible_match": 222
+    "missing": 986,
+    "possible_match": 236
   },
   "rows": [
     {
@@ -606,7 +606,7 @@
       "first_alert_at": "2026-10-19T23:54:42+00:00",
       "last_alert_at": "2026-10-20T05:57:44+00:00",
       "collection": "possible_match",
-      "assessment": "assessed",
+      "assessment": "outside_date_scope",
       "verdicts": [
         "Middle",
         "Pass",
@@ -705,6 +705,13 @@
           "assessment_date_eligible": true
         },
         {
+          "key": "microsoft:microsoft:1970393557050589",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050589",
+          "assessment_date_eligible": true
+        },
+        {
           "key": "microsoft:microsoft:1970393557039219",
           "title": "Principal Technical Program Manager",
           "company": "microsoft",
@@ -738,13 +745,6 @@
           "company": "microsoft",
           "url": "https://apply.careers.microsoft.com/careers/job/1970393556873572",
           "assessment_date_eligible": false
-        },
-        {
-          "key": "microsoft:microsoft:1970393557050589",
-          "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050589",
-          "assessment_date_eligible": true
         }
       ],
       "reason": "Title/company similarity is not proof of the same requisition."
@@ -817,7 +817,7 @@
       "location": "Boston, MA",
       "employer_urls": [],
       "first_alert_at": "2026-10-30T12:59:24+00:00",
-      "last_alert_at": "2026-10-30T12:59:24+00:00",
+      "last_alert_at": "2026-11-21T23:57:43+00:00",
       "collection": "missing",
       "assessment": "not_assessed",
       "verdicts": [],
@@ -1085,7 +1085,7 @@
       "location": "Boston, MA (Hybrid)",
       "employer_urls": [],
       "first_alert_at": "2026-10-31T21:57:41+00:00",
-      "last_alert_at": "2026-11-01T01:57:42+00:00",
+      "last_alert_at": "2026-11-21T23:57:43+00:00",
       "collection": "missing",
       "assessment": "not_assessed",
       "verdicts": [],
@@ -1333,7 +1333,7 @@
       "location": "Waltham, MA",
       "employer_urls": [],
       "first_alert_at": "2026-10-21T12:30:03+00:00",
-      "last_alert_at": "2026-11-16T17:52:57+00:00",
+      "last_alert_at": "2026-11-21T23:57:43+00:00",
       "collection": "missing",
       "assessment": "not_assessed",
       "verdicts": [],
@@ -2364,11 +2364,19 @@
       "employer_urls": [],
       "first_alert_at": "2026-10-31T07:57:43+00:00",
       "last_alert_at": "2026-10-31T07:57:43+00:00",
-      "collection": "missing",
+      "collection": "possible_match",
       "assessment": "not_assessed",
       "verdicts": [],
-      "matches": [],
-      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+      "matches": [
+        {
+          "key": "microsoft:microsoft:1970393557006450",
+          "title": "Principal Technical Program Manager - FDE",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557006450",
+          "assessment_date_eligible": true
+        }
+      ],
+      "reason": "Title/company similarity is not proof of the same requisition."
     },
     {
       "linkedin_id": "4453487184",
@@ -2838,7 +2846,7 @@
       "location": "United States (Remote)",
       "employer_urls": [],
       "first_alert_at": "2026-10-30T15:57:43+00:00",
-      "last_alert_at": "2026-11-15T05:57:44+00:00",
+      "last_alert_at": "2026-11-21T15:57:41+00:00",
       "collection": "possible_match",
       "assessment": "outside_date_scope",
       "verdicts": [],
@@ -5301,7 +5309,7 @@
       "first_alert_at": "2026-10-23T05:57:41+00:00",
       "last_alert_at": "2026-10-31T07:57:43+00:00",
       "collection": "possible_match",
-      "assessment": "assessed",
+      "assessment": "outside_date_scope",
       "verdicts": [
         "Middle",
         "Pass",
@@ -5400,6 +5408,13 @@
           "assessment_date_eligible": true
         },
         {
+          "key": "microsoft:microsoft:1970393557050589",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050589",
+          "assessment_date_eligible": true
+        },
+        {
           "key": "microsoft:microsoft:1970393557039219",
           "title": "Principal Technical Program Manager",
           "company": "microsoft",
@@ -5433,13 +5448,6 @@
           "company": "microsoft",
           "url": "https://apply.careers.microsoft.com/careers/job/1970393556873572",
           "assessment_date_eligible": false
-        },
-        {
-          "key": "microsoft:microsoft:1970393557050589",
-          "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050589",
-          "assessment_date_eligible": true
         }
       ],
       "reason": "Title/company similarity is not proof of the same requisition."
@@ -5737,7 +5745,7 @@
       "location": "Santa Clara, CA (On-site)",
       "employer_urls": [],
       "first_alert_at": "2026-10-30T21:57:42+00:00",
-      "last_alert_at": "2026-10-30T21:57:42+00:00",
+      "last_alert_at": "2026-11-22T01:57:42+00:00",
       "collection": "missing",
       "assessment": "not_assessed",
       "verdicts": [],
@@ -6207,7 +6215,7 @@
       "location": "Sunnyvale, CA (On-site)",
       "employer_urls": [],
       "first_alert_at": "2026-10-26T13:57:42+00:00",
-      "last_alert_at": "2026-10-26T13:57:42+00:00",
+      "last_alert_at": "2026-11-22T01:57:42+00:00",
       "collection": "possible_match",
       "assessment": "outside_date_scope",
       "verdicts": [],
@@ -6632,10 +6640,8 @@
       "first_alert_at": "2026-10-15T21:57:43+00:00",
       "last_alert_at": "2026-11-06T15:57:42+00:00",
       "collection": "possible_match",
-      "assessment": "assessed",
-      "verdicts": [
-        "Middle"
-      ],
+      "assessment": "reassessment_pending",
+      "verdicts": [],
       "matches": [
         {
           "key": "workday:entegris:/job/Chaska-MN/Senior-Director--Enterprise-Portfolio-Manamagement_REQ-14680",
@@ -7727,11 +7733,19 @@
       "employer_urls": [],
       "first_alert_at": "2026-10-20T23:54:41+00:00",
       "last_alert_at": "2026-10-20T23:54:41+00:00",
-      "collection": "missing",
+      "collection": "possible_match",
       "assessment": "not_assessed",
       "verdicts": [],
-      "matches": [],
-      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+      "matches": [
+        {
+          "key": "netflix:netflix:790319022497",
+          "title": "Senior Product Operations Lead & Program Manager - Content Experience Innovation",
+          "company": "netflix",
+          "url": "https://explore.jobs.netflix.net/careers/job/790319022497",
+          "assessment_date_eligible": true
+        }
+      ],
+      "reason": "Title/company similarity is not proof of the same requisition."
     },
     {
       "linkedin_id": "4478650163",
@@ -8700,7 +8714,7 @@
       "first_alert_at": "2026-10-15T23:57:43+00:00",
       "last_alert_at": "2026-10-15T23:57:43+00:00",
       "collection": "possible_match",
-      "assessment": "assessed",
+      "assessment": "outside_date_scope",
       "verdicts": [
         "Middle",
         "Pass",
@@ -8799,6 +8813,13 @@
           "assessment_date_eligible": true
         },
         {
+          "key": "microsoft:microsoft:1970393557050589",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050589",
+          "assessment_date_eligible": true
+        },
+        {
           "key": "microsoft:microsoft:1970393557039219",
           "title": "Principal Technical Program Manager",
           "company": "microsoft",
@@ -8832,13 +8853,6 @@
           "company": "microsoft",
           "url": "https://apply.careers.microsoft.com/careers/job/1970393556873572",
           "assessment_date_eligible": false
-        },
-        {
-          "key": "microsoft:microsoft:1970393557050589",
-          "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050589",
-          "assessment_date_eligible": true
         }
       ],
       "reason": "Title/company similarity is not proof of the same requisition."
@@ -9268,10 +9282,8 @@
       "first_alert_at": "2026-10-16T13:57:42+00:00",
       "last_alert_at": "2026-10-24T05:57:43+00:00",
       "collection": "possible_match",
-      "assessment": "assessed",
-      "verdicts": [
-        "Pass"
-      ],
+      "assessment": "reassessment_pending",
+      "verdicts": [],
       "matches": [
         {
           "key": "workday:statestreet:/job/Boston-Massachusetts/Head-of-Technology-Governance---Program-Management--Senior-Vice-President_R-799678-1",
@@ -9367,17 +9379,17 @@
           "assessment_date_eligible": true
         },
         {
-          "key": "oracle_cloud:oracle:350908",
-          "title": "Principal Technical Program Manager",
-          "company": "oracle",
-          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/350908",
-          "assessment_date_eligible": true
-        },
-        {
           "key": "oracle_cloud:oracle:350948",
           "title": "Principal Technical Program Manager",
           "company": "oracle",
           "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/350948",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "oracle_cloud:oracle:350908",
+          "title": "Principal Technical Program Manager",
+          "company": "oracle",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/350908",
           "assessment_date_eligible": true
         },
         {
@@ -9471,10 +9483,8 @@
       "first_alert_at": "2026-10-24T05:57:43+00:00",
       "last_alert_at": "2026-10-24T05:57:43+00:00",
       "collection": "possible_match",
-      "assessment": "assessed",
-      "verdicts": [
-        "Pass"
-      ],
+      "assessment": "reassessment_pending",
+      "verdicts": [],
       "matches": [
         {
           "key": "workday:statestreet:/job/Boston-Massachusetts/Head-of-Technology-Governance---Program-Management--Senior-Vice-President_R-799678-1",
@@ -9496,10 +9506,8 @@
       "first_alert_at": "2026-10-16T23:54:43+00:00",
       "last_alert_at": "2026-10-16T23:54:43+00:00",
       "collection": "possible_match",
-      "assessment": "assessed",
-      "verdicts": [
-        "Pass"
-      ],
+      "assessment": "reassessment_pending",
+      "verdicts": [],
       "matches": [
         {
           "key": "workday:statestreet:/job/Boston-Massachusetts/Head-of-Technology-Governance---Program-Management--Senior-Vice-President_R-799678-1",
@@ -10297,11 +10305,19 @@
       "employer_urls": [],
       "first_alert_at": "2026-10-19T17:57:44+00:00",
       "last_alert_at": "2026-10-20T03:57:42+00:00",
-      "collection": "missing",
+      "collection": "possible_match",
       "assessment": "not_assessed",
       "verdicts": [],
-      "matches": [],
-      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+      "matches": [
+        {
+          "key": "workday:cisco:/job/San-Jose-California-US/Director---ASIC-Engineering--Technical-Planning-and-Engineering-Execution-_2028602",
+          "title": "Director - ASIC Engineering (Technical Planning and Engineering Execution)",
+          "company": "cisco",
+          "url": "https://cisco.wd5.myworkdayjobs.com/en-US/Cisco_Careers/job/San-Jose-California-US/Director---ASIC-Engineering--Technical-Planning-and-Engineering-Execution-_2028602",
+          "assessment_date_eligible": true
+        }
+      ],
+      "reason": "Title/company similarity is not proof of the same requisition."
     },
     {
       "linkedin_id": "4480933935",
@@ -11254,11 +11270,19 @@
       "employer_urls": [],
       "first_alert_at": "2026-10-21T13:57:41+00:00",
       "last_alert_at": "2026-10-31T03:57:41+00:00",
-      "collection": "missing",
+      "collection": "possible_match",
       "assessment": "not_assessed",
       "verdicts": [],
-      "matches": [],
-      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+      "matches": [
+        {
+          "key": "workday:statestreet:/job/Boston-Massachusetts/IT-Program-Project-Delivery--MD_R-799735",
+          "title": "IT Program Project Delivery, MD",
+          "company": "statestreet",
+          "url": "https://statestreet.wd1.myworkdayjobs.com/en-US/Global/job/Boston-Massachusetts/IT-Program-Project-Delivery--MD_R-799735",
+          "assessment_date_eligible": true
+        }
+      ],
+      "reason": "Title/company similarity is not proof of the same requisition."
     },
     {
       "linkedin_id": "4481754501",
@@ -12894,7 +12918,7 @@
       "location": "San Diego, CA (Hybrid)",
       "employer_urls": [],
       "first_alert_at": "2026-10-30T17:57:41+00:00",
-      "last_alert_at": "2026-10-31T03:57:41+00:00",
+      "last_alert_at": "2026-11-22T03:57:42+00:00",
       "collection": "missing",
       "assessment": "not_assessed",
       "verdicts": [],
@@ -13106,7 +13130,7 @@
       "first_alert_at": "2026-10-25T23:57:43+00:00",
       "last_alert_at": "2026-10-25T23:57:43+00:00",
       "collection": "possible_match",
-      "assessment": "assessed",
+      "assessment": "outside_date_scope",
       "verdicts": [
         "Middle",
         "Pass",
@@ -13205,6 +13229,13 @@
           "assessment_date_eligible": true
         },
         {
+          "key": "microsoft:microsoft:1970393557050589",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050589",
+          "assessment_date_eligible": true
+        },
+        {
           "key": "microsoft:microsoft:1970393557039219",
           "title": "Principal Technical Program Manager",
           "company": "microsoft",
@@ -13238,13 +13269,6 @@
           "company": "microsoft",
           "url": "https://apply.careers.microsoft.com/careers/job/1970393556873572",
           "assessment_date_eligible": false
-        },
-        {
-          "key": "microsoft:microsoft:1970393557050589",
-          "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050589",
-          "assessment_date_eligible": true
         }
       ],
       "reason": "Title/company similarity is not proof of the same requisition."
@@ -13373,7 +13397,7 @@
       "location": "San Francisco, CA (Hybrid)",
       "employer_urls": [],
       "first_alert_at": "2026-10-30T17:57:41+00:00",
-      "last_alert_at": "2026-10-30T23:57:43+00:00",
+      "last_alert_at": "2026-11-22T03:57:42+00:00",
       "collection": "missing",
       "assessment": "not_assessed",
       "verdicts": [],
@@ -14108,11 +14132,19 @@
       "employer_urls": [],
       "first_alert_at": "2026-10-28T19:57:44+00:00",
       "last_alert_at": "2026-11-13T01:57:43+00:00",
-      "collection": "missing",
+      "collection": "possible_match",
       "assessment": "not_assessed",
       "verdicts": [],
-      "matches": [],
-      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+      "matches": [
+        {
+          "key": "workday:statestreet:/job/Quincy-Massachusetts/VP--Program-Manager---Senior-Business-Analyst_R-800050-2",
+          "title": "VP, Program Manager / Senior Business Analyst",
+          "company": "statestreet",
+          "url": "https://statestreet.wd1.myworkdayjobs.com/en-US/Global/job/Quincy-Massachusetts/VP--Program-Manager---Senior-Business-Analyst_R-800050-2",
+          "assessment_date_eligible": true
+        }
+      ],
+      "reason": "Title/company similarity is not proof of the same requisition."
     },
     {
       "linkedin_id": "4484287091",
@@ -14539,7 +14571,7 @@
       "location": "San Diego, CA (Hybrid)",
       "employer_urls": [],
       "first_alert_at": "2026-10-30T17:57:41+00:00",
-      "last_alert_at": "2026-10-31T03:57:41+00:00",
+      "last_alert_at": "2026-11-22T03:57:42+00:00",
       "collection": "missing",
       "assessment": "not_assessed",
       "verdicts": [],
@@ -14569,7 +14601,7 @@
       "location": "San Jose, CA (Hybrid)",
       "employer_urls": [],
       "first_alert_at": "2026-10-30T13:57:43+00:00",
-      "last_alert_at": "2026-10-30T13:57:43+00:00",
+      "last_alert_at": "2026-11-22T01:57:42+00:00",
       "collection": "missing",
       "assessment": "not_assessed",
       "verdicts": [],
@@ -14630,11 +14662,19 @@
       "employer_urls": [],
       "first_alert_at": "2026-10-29T23:57:54+00:00",
       "last_alert_at": "2026-10-30T05:57:42+00:00",
-      "collection": "missing",
+      "collection": "possible_match",
       "assessment": "not_assessed",
       "verdicts": [],
-      "matches": [],
-      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+      "matches": [
+        {
+          "key": "workday:statestreet:/job/Quincy-Massachusetts/Project-Manager--VP_R-800286",
+          "title": "Consulting Program Manager, Vice President",
+          "company": "statestreet",
+          "url": "https://statestreet.wd1.myworkdayjobs.com/en-US/Global/job/Quincy-Massachusetts/Project-Manager--VP_R-800286",
+          "assessment_date_eligible": true
+        }
+      ],
+      "reason": "Title/company similarity is not proof of the same requisition."
     },
     {
       "linkedin_id": "4484722246",
@@ -15859,17 +15899,17 @@
           "assessment_date_eligible": true
         },
         {
-          "key": "oracle_cloud:oracle:350908",
-          "title": "Principal Technical Program Manager",
-          "company": "oracle",
-          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/350908",
-          "assessment_date_eligible": true
-        },
-        {
           "key": "oracle_cloud:oracle:350948",
           "title": "Principal Technical Program Manager",
           "company": "oracle",
           "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/350948",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "oracle_cloud:oracle:350908",
+          "title": "Principal Technical Program Manager",
+          "company": "oracle",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/350908",
           "assessment_date_eligible": true
         },
         {
@@ -17035,11 +17075,19 @@
       "employer_urls": [],
       "first_alert_at": "2026-11-03T17:57:44+00:00",
       "last_alert_at": "2026-11-19T23:54:42+00:00",
-      "collection": "missing",
+      "collection": "possible_match",
       "assessment": "not_assessed",
       "verdicts": [],
-      "matches": [],
-      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+      "matches": [
+        {
+          "key": "workday:statestreet:/job/Quincy-Massachusetts/Project-Manager--VP_R-800286",
+          "title": "Consulting Program Manager, Vice President",
+          "company": "statestreet",
+          "url": "https://statestreet.wd1.myworkdayjobs.com/en-US/Global/job/Quincy-Massachusetts/Project-Manager--VP_R-800286",
+          "assessment_date_eligible": true
+        }
+      ],
+      "reason": "Title/company similarity is not proof of the same requisition."
     },
     {
       "linkedin_id": "4486433272",
@@ -17050,11 +17098,19 @@
       "employer_urls": [],
       "first_alert_at": "2026-11-03T17:57:44+00:00",
       "last_alert_at": "2026-11-19T21:57:43+00:00",
-      "collection": "missing",
+      "collection": "possible_match",
       "assessment": "not_assessed",
       "verdicts": [],
-      "matches": [],
-      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+      "matches": [
+        {
+          "key": "workday:statestreet:/job/Quincy-Massachusetts/Project-Manager--VP_R-800286",
+          "title": "Consulting Program Manager, Vice President",
+          "company": "statestreet",
+          "url": "https://statestreet.wd1.myworkdayjobs.com/en-US/Global/job/Quincy-Massachusetts/Project-Manager--VP_R-800286",
+          "assessment_date_eligible": true
+        }
+      ],
+      "reason": "Title/company similarity is not proof of the same requisition."
     },
     {
       "linkedin_id": "4486470307",
@@ -18494,7 +18550,7 @@
       "first_alert_at": "2026-11-05T15:57:42+00:00",
       "last_alert_at": "2026-11-05T15:57:42+00:00",
       "collection": "possible_match",
-      "assessment": "assessed",
+      "assessment": "outside_date_scope",
       "verdicts": [
         "Middle",
         "Pass",
@@ -18593,6 +18649,13 @@
           "assessment_date_eligible": true
         },
         {
+          "key": "microsoft:microsoft:1970393557050589",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050589",
+          "assessment_date_eligible": true
+        },
+        {
           "key": "microsoft:microsoft:1970393557039219",
           "title": "Principal Technical Program Manager",
           "company": "microsoft",
@@ -18626,13 +18689,6 @@
           "company": "microsoft",
           "url": "https://apply.careers.microsoft.com/careers/job/1970393556873572",
           "assessment_date_eligible": false
-        },
-        {
-          "key": "microsoft:microsoft:1970393557050589",
-          "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050589",
-          "assessment_date_eligible": true
         }
       ],
       "reason": "Title/company similarity is not proof of the same requisition."
@@ -18943,11 +18999,19 @@
       "employer_urls": [],
       "first_alert_at": "2026-11-05T23:57:43+00:00",
       "last_alert_at": "2026-11-05T23:57:43+00:00",
-      "collection": "missing",
+      "collection": "possible_match",
       "assessment": "not_assessed",
       "verdicts": [],
-      "matches": [],
-      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+      "matches": [
+        {
+          "key": "microsoft:microsoft:1970393557052882",
+          "title": "Director, MAVS Technology & Product",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557052882",
+          "assessment_date_eligible": true
+        }
+      ],
+      "reason": "Title/company similarity is not proof of the same requisition."
     },
     {
       "linkedin_id": "4487528331",
@@ -20024,10 +20088,8 @@
       "first_alert_at": "2026-11-13T23:54:43+00:00",
       "last_alert_at": "2026-11-13T23:54:43+00:00",
       "collection": "possible_match",
-      "assessment": "assessed",
-      "verdicts": [
-        "Middle"
-      ],
+      "assessment": "reassessment_pending",
+      "verdicts": [],
       "matches": [
         {
           "key": "netflix:netflix:790319484232",
@@ -20967,7 +21029,7 @@
       "first_alert_at": "2026-11-12T01:57:42+00:00",
       "last_alert_at": "2026-11-12T01:57:42+00:00",
       "collection": "possible_match",
-      "assessment": "assessed",
+      "assessment": "outside_date_scope",
       "verdicts": [
         "Middle",
         "Pass",
@@ -21066,6 +21128,13 @@
           "assessment_date_eligible": true
         },
         {
+          "key": "microsoft:microsoft:1970393557050589",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050589",
+          "assessment_date_eligible": true
+        },
+        {
           "key": "microsoft:microsoft:1970393557039219",
           "title": "Principal Technical Program Manager",
           "company": "microsoft",
@@ -21099,13 +21168,6 @@
           "company": "microsoft",
           "url": "https://apply.careers.microsoft.com/careers/job/1970393556873572",
           "assessment_date_eligible": false
-        },
-        {
-          "key": "microsoft:microsoft:1970393557050589",
-          "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050589",
-          "assessment_date_eligible": true
         }
       ],
       "reason": "Title/company similarity is not proof of the same requisition."
@@ -21634,7 +21696,7 @@
       "first_alert_at": "2026-11-12T15:57:43+00:00",
       "last_alert_at": "2026-11-12T17:57:42+00:00",
       "collection": "possible_match",
-      "assessment": "assessed",
+      "assessment": "outside_date_scope",
       "verdicts": [
         "Middle",
         "Pass",
@@ -21733,6 +21795,13 @@
           "assessment_date_eligible": true
         },
         {
+          "key": "microsoft:microsoft:1970393557050589",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050589",
+          "assessment_date_eligible": true
+        },
+        {
           "key": "microsoft:microsoft:1970393557039219",
           "title": "Principal Technical Program Manager",
           "company": "microsoft",
@@ -21766,13 +21835,6 @@
           "company": "microsoft",
           "url": "https://apply.careers.microsoft.com/careers/job/1970393556873572",
           "assessment_date_eligible": false
-        },
-        {
-          "key": "microsoft:microsoft:1970393557050589",
-          "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050589",
-          "assessment_date_eligible": true
         }
       ],
       "reason": "Title/company similarity is not proof of the same requisition."
@@ -22566,11 +22628,19 @@
       "employer_urls": [],
       "first_alert_at": "2026-11-14T15:57:42+00:00",
       "last_alert_at": "2026-11-14T23:54:44+00:00",
-      "collection": "missing",
+      "collection": "possible_match",
       "assessment": "not_assessed",
       "verdicts": [],
-      "matches": [],
-      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+      "matches": [
+        {
+          "key": "workday:statestreet:/job/Boston-Massachusetts/IT-Program-Project-Delivery--MD_R-799735",
+          "title": "IT Program Project Delivery, MD",
+          "company": "statestreet",
+          "url": "https://statestreet.wd1.myworkdayjobs.com/en-US/Global/job/Boston-Massachusetts/IT-Program-Project-Delivery--MD_R-799735",
+          "assessment_date_eligible": true
+        }
+      ],
+      "reason": "Title/company similarity is not proof of the same requisition."
     },
     {
       "linkedin_id": "4490767721",
@@ -23524,13 +23594,6 @@
       "verdicts": [],
       "matches": [
         {
-          "key": "oracle_cloud:oracle:350930",
-          "title": "Program Management Director",
-          "company": "oracle",
-          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/350930",
-          "assessment_date_eligible": true
-        },
-        {
           "key": "oracle_cloud:oracle:346798",
           "title": "Program Management Director",
           "company": "oracle",
@@ -24003,19 +24066,11 @@
       "employer_urls": [],
       "first_alert_at": "2026-11-20T23:54:44+00:00",
       "last_alert_at": "2026-11-20T23:54:44+00:00",
-      "collection": "possible_match",
-      "assessment": "reassessment_pending",
+      "collection": "missing",
+      "assessment": "not_assessed",
       "verdicts": [],
-      "matches": [
-        {
-          "key": "oracle_cloud:oracle:350907",
-          "title": "Senior Manager, Technical Program Management",
-          "company": "oracle",
-          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/350907",
-          "assessment_date_eligible": true
-        }
-      ],
-      "reason": "Title/company similarity is not proof of the same requisition."
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
     },
     {
       "linkedin_id": "4492034535",
@@ -24042,7 +24097,7 @@
       "first_alert_at": "2026-11-19T15:57:43+00:00",
       "last_alert_at": "2026-11-19T15:57:43+00:00",
       "collection": "possible_match",
-      "assessment": "assessed",
+      "assessment": "outside_date_scope",
       "verdicts": [
         "Middle",
         "Pass",
@@ -24141,6 +24196,13 @@
           "assessment_date_eligible": true
         },
         {
+          "key": "microsoft:microsoft:1970393557050589",
+          "title": "Principal Technical Program Manager",
+          "company": "microsoft",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050589",
+          "assessment_date_eligible": true
+        },
+        {
           "key": "microsoft:microsoft:1970393557039219",
           "title": "Principal Technical Program Manager",
           "company": "microsoft",
@@ -24174,13 +24236,6 @@
           "company": "microsoft",
           "url": "https://apply.careers.microsoft.com/careers/job/1970393556873572",
           "assessment_date_eligible": false
-        },
-        {
-          "key": "microsoft:microsoft:1970393557050589",
-          "title": "Principal Technical Program Manager",
-          "company": "microsoft",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557050589",
-          "assessment_date_eligible": true
         }
       ],
       "reason": "Title/company similarity is not proof of the same requisition."
@@ -24350,10 +24405,8 @@
       "first_alert_at": "2026-11-19T15:57:43+00:00",
       "last_alert_at": "2026-11-19T15:57:43+00:00",
       "collection": "possible_match",
-      "assessment": "assessed",
-      "verdicts": [
-        "Strong"
-      ],
+      "assessment": "reassessment_pending",
+      "verdicts": [],
       "matches": [
         {
           "key": "greenhouse:mongodb:8355201",
@@ -24612,11 +24665,19 @@
       "employer_urls": [],
       "first_alert_at": "2026-11-20T15:57:41+00:00",
       "last_alert_at": "2026-11-20T15:57:41+00:00",
-      "collection": "missing",
+      "collection": "possible_match",
       "assessment": "not_assessed",
       "verdicts": [],
-      "matches": [],
-      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+      "matches": [
+        {
+          "key": "workday:cisco:/job/San-Jose-California-US/Director---ASIC-Engineering--Technical-Planning-and-Engineering-Execution-_2028602",
+          "title": "Director - ASIC Engineering (Technical Planning and Engineering Execution)",
+          "company": "cisco",
+          "url": "https://cisco.wd5.myworkdayjobs.com/en-US/Cisco_Careers/job/San-Jose-California-US/Director---ASIC-Engineering--Technical-Planning-and-Engineering-Execution-_2028602",
+          "assessment_date_eligible": true
+        }
+      ],
+      "reason": "Title/company similarity is not proof of the same requisition."
     },
     {
       "linkedin_id": "4492793232",
@@ -24640,6 +24701,430 @@
         }
       ],
       "reason": "Title/company similarity is not proof of the same requisition."
+    },
+    {
+      "linkedin_id": "4492810279",
+      "url": "https://www.linkedin.com/jobs/view/4492810279",
+      "title": "Technical Program Manager, Earth AI",
+      "company": "Google",
+      "location": "Mountain View, CA (On-site)",
+      "employer_urls": [],
+      "first_alert_at": "2026-11-21T13:57:41+00:00",
+      "last_alert_at": "2026-11-21T13:57:41+00:00",
+      "collection": "possible_match",
+      "assessment": "assessed",
+      "verdicts": [
+        "Middle"
+      ],
+      "matches": [
+        {
+          "key": "google:google:114430494015136454",
+          "title": "Technical Program Manager, Earth AI",
+          "company": "google",
+          "url": "https://www.google.com/about/careers/applications/jobs/results/114430494015136454",
+          "assessment_date_eligible": true
+        }
+      ],
+      "reason": "Title/company similarity is not proof of the same requisition."
+    },
+    {
+      "linkedin_id": "4492867921",
+      "url": "https://www.linkedin.com/jobs/view/4492867921",
+      "title": "Senior Integrated Technical Customer Program Manager",
+      "company": "NVIDIA",
+      "location": "Santa Clara, CA",
+      "employer_urls": [],
+      "first_alert_at": "2026-11-21T13:57:41+00:00",
+      "last_alert_at": "2026-11-21T13:57:41+00:00",
+      "collection": "missing",
+      "assessment": "not_assessed",
+      "verdicts": [],
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+    },
+    {
+      "linkedin_id": "4474811528",
+      "url": "https://www.linkedin.com/jobs/view/4474811528",
+      "title": "Technical Program Manager - Ranking AI",
+      "company": "Meta",
+      "location": "Menlo Park, CA",
+      "employer_urls": [],
+      "first_alert_at": "2026-11-21T13:57:41+00:00",
+      "last_alert_at": "2026-11-21T13:57:41+00:00",
+      "collection": "missing",
+      "assessment": "not_assessed",
+      "verdicts": [],
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+    },
+    {
+      "linkedin_id": "4477635884",
+      "url": "https://www.linkedin.com/jobs/view/4477635884",
+      "title": "Senior Technical Program Manager",
+      "company": "Akamai Technologies",
+      "location": "Cambridge, MA (Remote)",
+      "employer_urls": [],
+      "first_alert_at": "2026-11-21T13:57:41+00:00",
+      "last_alert_at": "2026-11-21T15:57:41+00:00",
+      "collection": "missing",
+      "assessment": "not_assessed",
+      "verdicts": [],
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+    },
+    {
+      "linkedin_id": "4483420205",
+      "url": "https://www.linkedin.com/jobs/view/4483420205",
+      "title": "Technical Program Manager, Infrastructure Software Systems",
+      "company": "Meta",
+      "location": "Menlo Park, CA",
+      "employer_urls": [],
+      "first_alert_at": "2026-11-21T13:57:41+00:00",
+      "last_alert_at": "2026-11-21T13:57:41+00:00",
+      "collection": "missing",
+      "assessment": "not_assessed",
+      "verdicts": [],
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+    },
+    {
+      "linkedin_id": "4492885268",
+      "url": "https://www.linkedin.com/jobs/view/4492885268",
+      "title": "Principal Technical Program Manager, Industry Software",
+      "company": "Archer",
+      "location": "United States (Remote)",
+      "employer_urls": [],
+      "first_alert_at": "2026-11-21T15:57:41+00:00",
+      "last_alert_at": "2026-11-21T15:57:41+00:00",
+      "collection": "missing",
+      "assessment": "not_assessed",
+      "verdicts": [],
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+    },
+    {
+      "linkedin_id": "4492879364",
+      "url": "https://www.linkedin.com/jobs/view/4492879364",
+      "title": "Senior Integrated Technical Customer Program Manager",
+      "company": "NVIDIA",
+      "location": "Texas, United States (Remote)",
+      "employer_urls": [],
+      "first_alert_at": "2026-11-21T15:57:41+00:00",
+      "last_alert_at": "2026-11-21T15:57:41+00:00",
+      "collection": "missing",
+      "assessment": "not_assessed",
+      "verdicts": [],
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+    },
+    {
+      "linkedin_id": "4484586200",
+      "url": "https://www.linkedin.com/jobs/view/4484586200",
+      "title": "Senior Manager, Engineering",
+      "company": "Gravie",
+      "location": "United States (Remote)",
+      "employer_urls": [],
+      "first_alert_at": "2026-11-21T15:57:41+00:00",
+      "last_alert_at": "2026-11-21T15:57:41+00:00",
+      "collection": "missing",
+      "assessment": "not_assessed",
+      "verdicts": [],
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+    },
+    {
+      "linkedin_id": "4447341668",
+      "url": "https://www.linkedin.com/jobs/view/4447341668",
+      "title": "Lead Principal Technical Program Manager - Robotics",
+      "company": "Oracle",
+      "location": "United States (Remote)",
+      "employer_urls": [],
+      "first_alert_at": "2026-11-21T15:57:41+00:00",
+      "last_alert_at": "2026-11-21T15:57:41+00:00",
+      "collection": "possible_match",
+      "assessment": "outside_date_scope",
+      "verdicts": [],
+      "matches": [
+        {
+          "key": "oracle_cloud:oracle:341432",
+          "title": "Lead Principal Technical Program Manager - Robotics",
+          "company": "oracle",
+          "url": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch/job/341432",
+          "assessment_date_eligible": false
+        }
+      ],
+      "reason": "Title/company similarity is not proof of the same requisition."
+    },
+    {
+      "linkedin_id": "4492853132",
+      "url": "https://www.linkedin.com/jobs/view/4492853132",
+      "title": "Executive Director Enterprise Project Management Office",
+      "company": "Arvest Bank",
+      "location": "United States (Remote)",
+      "employer_urls": [],
+      "first_alert_at": "2026-11-21T17:57:44+00:00",
+      "last_alert_at": "2026-11-21T17:57:44+00:00",
+      "collection": "missing",
+      "assessment": "not_assessed",
+      "verdicts": [],
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+    },
+    {
+      "linkedin_id": "4492861003",
+      "url": "https://www.linkedin.com/jobs/view/4492861003",
+      "title": "VP, Program Management (Digital Product Technology)",
+      "company": "Gartner",
+      "location": "Stamford, CT (Hybrid)",
+      "employer_urls": [],
+      "first_alert_at": "2026-11-21T17:57:44+00:00",
+      "last_alert_at": "2026-11-21T17:57:44+00:00",
+      "collection": "possible_match",
+      "assessment": "not_assessed",
+      "verdicts": [],
+      "matches": [
+        {
+          "key": "workday:gartner:/job/Irving-TX/VP--Program-Management--Digital-Product-Technology-_116146-1",
+          "title": "VP, Program Management (Digital Product Technology)",
+          "company": "gartner",
+          "url": "https://gartner.wd5.myworkdayjobs.com/en-US/EXT/job/Irving-TX/VP--Program-Management--Digital-Product-Technology-_116146-1",
+          "assessment_date_eligible": true
+        }
+      ],
+      "reason": "Title/company similarity is not proof of the same requisition."
+    },
+    {
+      "linkedin_id": "4492906584",
+      "url": "https://www.linkedin.com/jobs/view/4492906584",
+      "title": "Vice President, Head of Project Management Organization",
+      "company": "Infineon Technologies",
+      "location": "San Jose, CA",
+      "employer_urls": [],
+      "first_alert_at": "2026-11-21T17:57:44+00:00",
+      "last_alert_at": "2026-11-22T03:57:42+00:00",
+      "collection": "missing",
+      "assessment": "not_assessed",
+      "verdicts": [],
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+    },
+    {
+      "linkedin_id": "4493224180",
+      "url": "https://www.linkedin.com/jobs/view/4493224180",
+      "title": "Senior Director, CIO Strategy & Delivery",
+      "company": "SoFi",
+      "location": "San Francisco, CA",
+      "employer_urls": [],
+      "first_alert_at": "2026-11-21T17:57:44+00:00",
+      "last_alert_at": "2026-11-21T17:57:44+00:00",
+      "collection": "missing",
+      "assessment": "not_assessed",
+      "verdicts": [],
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+    },
+    {
+      "linkedin_id": "4492847532",
+      "url": "https://www.linkedin.com/jobs/view/4492847532",
+      "title": "VP, Program Management (Digital Product Technology)",
+      "company": "Gartner",
+      "location": "Irving, TX (Hybrid)",
+      "employer_urls": [],
+      "first_alert_at": "2026-11-21T17:57:44+00:00",
+      "last_alert_at": "2026-11-21T23:54:42+00:00",
+      "collection": "possible_match",
+      "assessment": "not_assessed",
+      "verdicts": [],
+      "matches": [
+        {
+          "key": "workday:gartner:/job/Irving-TX/VP--Program-Management--Digital-Product-Technology-_116146-1",
+          "title": "VP, Program Management (Digital Product Technology)",
+          "company": "gartner",
+          "url": "https://gartner.wd5.myworkdayjobs.com/en-US/EXT/job/Irving-TX/VP--Program-Management--Digital-Product-Technology-_116146-1",
+          "assessment_date_eligible": true
+        }
+      ],
+      "reason": "Title/company similarity is not proof of the same requisition."
+    },
+    {
+      "linkedin_id": "4492862060",
+      "url": "https://www.linkedin.com/jobs/view/4492862060",
+      "title": "Global PMO Lead",
+      "company": "UFORCE",
+      "location": "United States (Remote)",
+      "employer_urls": [],
+      "first_alert_at": "2026-11-21T17:57:44+00:00",
+      "last_alert_at": "2026-11-21T23:54:42+00:00",
+      "collection": "missing",
+      "assessment": "not_assessed",
+      "verdicts": [],
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+    },
+    {
+      "linkedin_id": "4491982032",
+      "url": "https://www.linkedin.com/jobs/view/4491982032",
+      "title": "Sr Director Special Programs",
+      "company": "Oracle",
+      "location": "Nashua, NH",
+      "employer_urls": [],
+      "first_alert_at": "2026-11-21T19:57:43+00:00",
+      "last_alert_at": "2026-11-21T19:57:43+00:00",
+      "collection": "missing",
+      "assessment": "not_assessed",
+      "verdicts": [],
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+    },
+    {
+      "linkedin_id": "4493219757",
+      "url": "https://www.linkedin.com/jobs/view/4493219757",
+      "title": "Program Director, Ground Based Radar Digitization",
+      "company": "Raytheon",
+      "location": "Woburn, MA (On-site)",
+      "employer_urls": [],
+      "first_alert_at": "2026-11-21T19:57:43+00:00",
+      "last_alert_at": "2026-11-21T23:57:43+00:00",
+      "collection": "missing",
+      "assessment": "not_assessed",
+      "verdicts": [],
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+    },
+    {
+      "linkedin_id": "4492841469",
+      "url": "https://www.linkedin.com/jobs/view/4492841469",
+      "title": "Global Program Operations Head (GPOH)",
+      "company": "Tango Therapeutics",
+      "location": "Boston, MA (Hybrid)",
+      "employer_urls": [],
+      "first_alert_at": "2026-11-21T19:57:43+00:00",
+      "last_alert_at": "2026-11-21T23:57:43+00:00",
+      "collection": "missing",
+      "assessment": "not_assessed",
+      "verdicts": [],
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+    },
+    {
+      "linkedin_id": "4492304036",
+      "url": "https://www.linkedin.com/jobs/view/4492304036",
+      "title": "Technical Program Manager, Quantum Technology",
+      "company": "Applied Materials",
+      "location": "Santa Clara, CA",
+      "employer_urls": [],
+      "first_alert_at": "2026-11-21T21:57:43+00:00",
+      "last_alert_at": "2026-11-22T03:57:42+00:00",
+      "collection": "missing",
+      "assessment": "not_assessed",
+      "verdicts": [],
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+    },
+    {
+      "linkedin_id": "4492581532",
+      "url": "https://www.linkedin.com/jobs/view/4492581532",
+      "title": "Sr. Director, Strategy & Business Operations - MRL",
+      "company": "Micron Technology",
+      "location": "San Jose, CA",
+      "employer_urls": [],
+      "first_alert_at": "2026-11-21T21:57:43+00:00",
+      "last_alert_at": "2026-11-21T21:57:43+00:00",
+      "collection": "missing",
+      "assessment": "not_assessed",
+      "verdicts": [],
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+    },
+    {
+      "linkedin_id": "4467959298",
+      "url": "https://www.linkedin.com/jobs/view/4467959298",
+      "title": "Sr Manager, Technology Strategy",
+      "company": "PayPal",
+      "location": "San Jose, CA",
+      "employer_urls": [],
+      "first_alert_at": "2026-11-21T21:57:43+00:00",
+      "last_alert_at": "2026-11-21T21:57:43+00:00",
+      "collection": "missing",
+      "assessment": "not_assessed",
+      "verdicts": [],
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+    },
+    {
+      "linkedin_id": "4492584530",
+      "url": "https://www.linkedin.com/jobs/view/4492584530",
+      "title": "Sr. Director, ITP Planning & Operations",
+      "company": "Micron Technology",
+      "location": "San Jose, CA",
+      "employer_urls": [],
+      "first_alert_at": "2026-11-21T21:57:43+00:00",
+      "last_alert_at": "2026-11-21T21:57:43+00:00",
+      "collection": "missing",
+      "assessment": "not_assessed",
+      "verdicts": [],
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+    },
+    {
+      "linkedin_id": "4493207140",
+      "url": "https://www.linkedin.com/jobs/view/4493207140",
+      "title": "Chief Of Staff (Data)",
+      "company": "PTR Global",
+      "location": "Cupertino, CA (Hybrid)",
+      "employer_urls": [],
+      "first_alert_at": "2026-11-21T21:57:43+00:00",
+      "last_alert_at": "2026-11-21T21:57:43+00:00",
+      "collection": "missing",
+      "assessment": "not_assessed",
+      "verdicts": [],
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+    },
+    {
+      "linkedin_id": "4492839233",
+      "url": "https://www.linkedin.com/jobs/view/4492839233",
+      "title": "BSMO Business Transformation & Innovation Senior Director",
+      "company": "Vertex Pharmaceuticals",
+      "location": "Boston, MA (Hybrid)",
+      "employer_urls": [],
+      "first_alert_at": "2026-11-21T23:57:43+00:00",
+      "last_alert_at": "2026-11-21T23:57:43+00:00",
+      "collection": "missing",
+      "assessment": "not_assessed",
+      "verdicts": [],
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+    },
+    {
+      "linkedin_id": "4492824924",
+      "url": "https://www.linkedin.com/jobs/view/4492824924",
+      "title": "Principal Technical Program Manager, NPU",
+      "company": "CARIAD, Inc.",
+      "location": "Mountain View, CA (Hybrid)",
+      "employer_urls": [],
+      "first_alert_at": "2026-11-22T01:57:42+00:00",
+      "last_alert_at": "2026-11-22T01:57:42+00:00",
+      "collection": "missing",
+      "assessment": "not_assessed",
+      "verdicts": [],
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
+    },
+    {
+      "linkedin_id": "4470634997",
+      "url": "https://www.linkedin.com/jobs/view/4470634997",
+      "title": "Director, Technical Program Management (Infrastructure/Kubernetes)",
+      "company": "Rafay",
+      "location": "United States (Remote)",
+      "employer_urls": [],
+      "first_alert_at": "2026-11-22T03:57:42+00:00",
+      "last_alert_at": "2026-11-22T03:57:42+00:00",
+      "collection": "missing",
+      "assessment": "not_assessed",
+      "verdicts": [],
+      "matches": [],
+      "reason": "Employer URL still needs resolution; this is a lead, not an assessed job."
     }
   ]
 }
