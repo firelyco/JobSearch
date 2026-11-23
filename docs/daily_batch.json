@@ -7,15 +7,15 @@
   "collection_at": "2026-11-23T06:01:02.811109+00:00",
   "counts": {
     "found": 18,
-    "eligible": 7,
-    "completed": 0,
+    "eligible": 2,
+    "completed": 1,
     "strong": 0,
     "middle": 0,
-    "pass": 0,
-    "waiting": 7,
-    "processing": 0,
+    "pass": 1,
+    "waiting": 0,
+    "processing": 1,
     "blocked": 0,
-    "excluded": 11,
+    "excluded": 16,
     "unverified_links": 22
   },
   "members": [
@@ -113,9 +113,9 @@
       "url": "https://coreweave.com/careers/job?4730695006&board=coreweave&gh_jid=4730695006",
       "source": "greenhouse",
       "job_snapshot_hash": "d1f22d19ddda1594be02b057a6982abdfca0f87315877c8c9bac5a2ecf6cc6fc",
-      "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -125,7 +125,7 @@
       "source": "greenhouse",
       "job_snapshot_hash": "455e13bf06b46f25dab683d927b6c569f85e42d9a98f17c9bcea4f326f996118",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -135,9 +135,9 @@
       "url": "https://coreweave.com/careers/job?4730704006&board=coreweave&gh_jid=4730704006",
       "source": "greenhouse",
       "job_snapshot_hash": "7294a1dd9bdd349938705a10037bedeb288254b2866bb49ae4ff85c6738e7f6e",
-      "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -146,9 +146,9 @@
       "url": "https://coreweave.com/careers/job?4730711006&board=coreweave&gh_jid=4730711006",
       "source": "greenhouse",
       "job_snapshot_hash": "50a2bcc2770cd5f2e705be140775bb93c54adc6d6a2dc6c430d4798f6e47751b",
-      "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -157,9 +157,9 @@
       "url": "https://coreweave.com/careers/job?4730716006&board=coreweave&gh_jid=4730716006",
       "source": "greenhouse",
       "job_snapshot_hash": "ea3d8d10ba192d8f7e3afdd64abc223cfbae4d0169e70bc15b0183dd92326cf1",
-      "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -168,9 +168,9 @@
       "url": "https://coreweave.com/careers/job?4730726006&board=coreweave&gh_jid=4730726006",
       "source": "greenhouse",
       "job_snapshot_hash": "0fd504fbad2ef350618d6be23a0b5aeded5984493b2eef84079ddc53ad297951",
-      "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -191,9 +191,9 @@
       "source": "microsoft",
       "job_snapshot_hash": "da65abf39d195d520e5bcddf3d09ce0d5cc991b153d8d98f70ed693239c0e9c1",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "pass"
     },
     {
       "key": "workday:nvidia:/job/India-Hyderabad/Senior-Technical-Program-Manager_JR2023373",
@@ -945,21 +945,21 @@
       "status": "failed"
     }
   ],
-  "checked_at": "2026-11-23T06:12:53.339801+00:00",
+  "checked_at": "2026-11-23T06:14:09.407579+00:00",
   "legacy_backlog": {
-    "assessed": 530,
-    "pending": 9,
+    "assessed": 532,
+    "pending": 0,
     "unresolved": 59,
-    "in_progress": 0,
-    "total": 598,
+    "in_progress": 2,
+    "total": 593,
     "strong": 71
   },
-  "batch_id": "1a4d5e10556adfbf550f6cb33d81f0264da22517995ff2eceb83f86025514265",
+  "batch_id": "622410ce1917608131d49dced64fb3c9e208f56965b86c6a890de0cc6fb17c3b",
   "status": "assessing",
   "input_blobs": {
     "jobs.json": "55b423dc61c019bf70346b97b003b98d63063db3",
-    "fit_scores.json": "68b76e38b44292894d0fa87763a4d59651521cc7",
-    "fit_backfill.json": "9059bd641bdbbd25f0c3031544987d415c6a9291",
+    "fit_scores.json": "d9cf0817969530abc5ad7ecd5208ce322ee245a0",
+    "fit_backfill.json": "f4ce9a8d1337c21948c445a273b9e07882357386",
     "meta.json": "b543fe2e0cf7159eb07f60678f858dcb76a3501b"
   }
 }
