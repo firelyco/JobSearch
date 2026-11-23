@@ -7,15 +7,15 @@
   "collection_at": "2026-11-23T06:01:02.811109+00:00",
   "counts": {
     "found": 18,
-    "eligible": 2,
+    "eligible": 1,
     "completed": 1,
     "strong": 0,
     "middle": 0,
     "pass": 1,
     "waiting": 0,
-    "processing": 1,
+    "processing": 0,
     "blocked": 0,
-    "excluded": 16,
+    "excluded": 17,
     "unverified_links": 22
   },
   "members": [
@@ -124,9 +124,9 @@
       "url": "https://coreweave.com/careers/job?4730698006&board=coreweave&gh_jid=4730698006",
       "source": "greenhouse",
       "job_snapshot_hash": "455e13bf06b46f25dab683d927b6c569f85e42d9a98f17c9bcea4f326f996118",
-      "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -945,21 +945,21 @@
       "status": "failed"
     }
   ],
-  "checked_at": "2026-11-23T06:14:09.407579+00:00",
+  "checked_at": "2026-11-23T06:14:29.342951+00:00",
   "legacy_backlog": {
     "assessed": 532,
     "pending": 0,
-    "unresolved": 59,
-    "in_progress": 2,
-    "total": 593,
+    "unresolved": 60,
+    "in_progress": 0,
+    "total": 592,
     "strong": 71
   },
-  "batch_id": "622410ce1917608131d49dced64fb3c9e208f56965b86c6a890de0cc6fb17c3b",
-  "status": "assessing",
+  "batch_id": "ea4c2498bf17ca05a6abc5ae5b36e4c2f6b834e2689636edf140b5c2e7c6812c",
+  "status": "blocked",
   "input_blobs": {
     "jobs.json": "55b423dc61c019bf70346b97b003b98d63063db3",
-    "fit_scores.json": "d9cf0817969530abc5ad7ecd5208ce322ee245a0",
-    "fit_backfill.json": "f4ce9a8d1337c21948c445a273b9e07882357386",
+    "fit_scores.json": "f95bf04b09e3ce474715b706def04aa2b60125ea",
+    "fit_backfill.json": "010ee0954c865151952f700419c74626c1e0e766",
     "meta.json": "b543fe2e0cf7159eb07f60678f858dcb76a3501b"
   }
 }
