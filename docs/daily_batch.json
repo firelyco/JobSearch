@@ -8,11 +8,11 @@
   "counts": {
     "found": 69,
     "eligible": 19,
-    "completed": 15,
+    "completed": 17,
     "strong": 2,
-    "middle": 9,
+    "middle": 11,
     "pass": 4,
-    "waiting": 3,
+    "waiting": 1,
     "processing": 0,
     "blocked": 1,
     "excluded": 50,
@@ -708,9 +708,9 @@
       "source": "microsoft",
       "job_snapshot_hash": "781fc225f637a0592e7325705fcaa5e4bb2b04e2c4fe3f82e0ec6a9c6d993c58",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "microsoft:microsoft:1970393557075045",
@@ -730,9 +730,9 @@
       "source": "microsoft",
       "job_snapshot_hash": "6355f2ecf63b0f964d6435d70e5c4a011d4fde9132f118aa750ce4066b32b7fd",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "oracle_cloud:dell:298874",
@@ -1586,21 +1586,21 @@
       "status": "failed"
     }
   ],
-  "checked_at": "2026-11-24T06:46:42.886871+00:00",
+  "checked_at": "2026-11-24T06:47:48.894176+00:00",
   "legacy_backlog": {
-    "assessed": 536,
-    "pending": 4,
+    "assessed": 538,
+    "pending": 1,
     "unresolved": 63,
-    "in_progress": 0,
+    "in_progress": 1,
     "total": 603,
     "strong": 73
   },
-  "batch_id": "380c59010c740e5fe8a3ccd2396ef057503352d25591731fe5160422385aea44",
+  "batch_id": "0f0e2eec8dfc3316a9d8f42879e2db187b9499601f7ec032d4bd312f77f6aa53",
   "status": "assessing",
   "input_blobs": {
     "jobs.json": "a384286e8be3c9f6372bf69d43e5022f9fbfe0ae",
-    "fit_scores.json": "4fa7f7ce6a9e3754a7dbbba67ad27e0661c9ec58",
-    "fit_backfill.json": "b5809fe80b5e709bc6ebfc1a3b49e5a3606797ae",
+    "fit_scores.json": "c77587b6555a81459337fb1314230745093d539a",
+    "fit_backfill.json": "8d15bff8329ea9a4d966912c26de77fcde55cccf",
     "meta.json": "632a41b4da567ce915485732a093cee6eb3ecffb"
   }
 }
