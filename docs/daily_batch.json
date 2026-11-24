@@ -7,15 +7,15 @@
   "collection_at": "2026-11-24T06:01:05.324304+00:00",
   "counts": {
     "found": 66,
-    "eligible": 29,
-    "completed": 5,
+    "eligible": 28,
+    "completed": 11,
     "strong": 1,
-    "middle": 2,
-    "pass": 2,
-    "waiting": 18,
-    "processing": 6,
+    "middle": 7,
+    "pass": 3,
+    "waiting": 6,
+    "processing": 11,
     "blocked": 0,
-    "excluded": 37,
+    "excluded": 38,
     "unverified_links": 37
   },
   "members": [
@@ -37,7 +37,7 @@
       "source": "amazon_jobs",
       "job_snapshot_hash": "fc78f49745d99becf9a30c4c3cedf3608961c991f31691b26b7bb97a8fbd55a3",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -59,7 +59,7 @@
       "source": "amazon_jobs",
       "job_snapshot_hash": "be3108da77b724886ee1e227a00b58a54155453e4753b8912ee7091da6715bbf",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -81,7 +81,7 @@
       "source": "amazon_jobs",
       "job_snapshot_hash": "c1a0661669fa4c480bdaedc280dadad74b9d18573771cc465df11dcef26cad61",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -92,7 +92,7 @@
       "source": "amazon_jobs",
       "job_snapshot_hash": "e9246546075d996bed11addfb96920272a5428fb3725c4d2db8de769b424c2c5",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -103,7 +103,7 @@
       "source": "amazon_jobs",
       "job_snapshot_hash": "ac792f34f420b4305f4dafe9a2ac26447871b53b92413c4238a48195f1898eca",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -114,7 +114,7 @@
       "source": "amazon_jobs",
       "job_snapshot_hash": "a2110c9cd86d88c73e93da909b7870088b13e0a8abfef50696dd2b28853c197f",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -125,7 +125,7 @@
       "source": "amazon_jobs",
       "job_snapshot_hash": "640e909ec0e41aea05033fbec4718b369ded9a08513021c5715fe85379433d03",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -520,9 +520,9 @@
       "url": "https://www.github.careers/experienced-professionals/jobs/8132",
       "source": "github",
       "job_snapshot_hash": "bb1b64e40264fda0d71ae4bf4509541ab93864e8687b78fdc06498dc774a80fa",
-      "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -532,9 +532,9 @@
       "source": "google",
       "job_snapshot_hash": "59916379a5f241fa3b3f613630bcd5df1c726711e7e25502bacd8e6cb5c5c414",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "pass"
     },
     {
       "key": "google:google:106914533175370438",
@@ -543,9 +543,9 @@
       "source": "google",
       "job_snapshot_hash": "f8b7c9160cb510d98dbc9258b6a450826aa95e019d4f431e39ebfdd15eff6941",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "google:google:120521814202819270",
@@ -554,9 +554,9 @@
       "source": "google",
       "job_snapshot_hash": "1dac1e47cdf8f20c5249e4902518b5e2647599d16d35ee1e9ccb72cef5eac7d5",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "google:google:141922983403758278",
@@ -565,9 +565,9 @@
       "source": "google",
       "job_snapshot_hash": "428433ab57d99c4e2aa33c4a41ff4f6b421e92a6dc3544afa00e7d0e6d09bfc1",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "google:google:142616328564286150",
@@ -576,9 +576,9 @@
       "source": "google",
       "job_snapshot_hash": "9acc89b263856411a99ad294dd36f9ad138c3ef8091bcfa230ba1f2fc964dfe8",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "greenhouse:andurilindustries:5255091007",
@@ -620,7 +620,7 @@
       "source": "greenhouse",
       "job_snapshot_hash": "d91e26bd6dc5b5072c5c89c0d6dae445cb760a748102ffb42148b72792dfaed5",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -631,9 +631,9 @@
       "source": "greenhouse",
       "job_snapshot_hash": "2699b78cb8609ec03bdbf36c12f8f5ed06721a4ccedc21c57d1e3d71ce6f75ca",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "lever:jobgether:05fb682d-e70e-496c-b9c2-54ac38c0b21d",
@@ -642,7 +642,7 @@
       "source": "lever",
       "job_snapshot_hash": "0efd339b4b60c7ebef42eaf117b75dc8ff7513385e520e25101e06ab8f28606a",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -664,7 +664,7 @@
       "source": "lever",
       "job_snapshot_hash": "0bd38a729e6d69f2373fd96d2481f7241896c44ad19c1831985594fefb8d86c4",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -675,7 +675,7 @@
       "source": "lever",
       "job_snapshot_hash": "421424f17ff9c80e6a7ef7b309254e47f6973db3ffbe57a2c127f12c50a10186",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -1628,21 +1628,21 @@
       "status": "failed"
     }
   ],
-  "checked_at": "2026-11-24T06:14:48.938848+00:00",
+  "checked_at": "2026-11-24T06:15:55.721267+00:00",
   "legacy_backlog": {
-    "assessed": 526,
-    "pending": 25,
+    "assessed": 532,
+    "pending": 13,
     "unresolved": 60,
-    "in_progress": 6,
-    "total": 617,
+    "in_progress": 11,
+    "total": 616,
     "strong": 71
   },
-  "batch_id": "671e4bb3a93c18ab7e18e183a2ac555ccb4efe0773072d50f9ef7d18b4cf90bf",
+  "batch_id": "b623f5febe89d3c57bc9398bb9829395928b88c7b32988866c83e972a0242379",
   "status": "assessing",
   "input_blobs": {
     "jobs.json": "86e9cb135c4ed70f0d81414a291f75e9486d1988",
-    "fit_scores.json": "4ceb7407390f7bc5df97861dbcc2a85cada345c3",
-    "fit_backfill.json": "b8407aa0e123f37385b3c1002a56e2b01318eb9b",
+    "fit_scores.json": "d36af3beaa147c9819d7f182f1bb5e70a8770bcf",
+    "fit_backfill.json": "26a00fc9545d2db894bf2f3e5cee201c419b9936",
     "meta.json": "317646cd612579fe18bca9c0976351aeb836d078"
   }
 }
