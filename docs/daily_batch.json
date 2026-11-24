@@ -12,9 +12,9 @@
     "strong": 2,
     "middle": 11,
     "pass": 4,
-    "waiting": 1,
+    "waiting": 0,
     "processing": 0,
-    "blocked": 1,
+    "blocked": 2,
     "excluded": 50,
     "unverified_links": 37
   },
@@ -719,8 +719,8 @@
       "source": "microsoft",
       "job_snapshot_hash": "1f509f30af21248a4db361ea1ba75091114d9b56c6e08f795632fcb5b91ecaaa",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
+      "status": "blocked",
+      "reason": "Paid retry budget exhausted; review required.",
       "verdict": null
     },
     {
@@ -1586,21 +1586,21 @@
       "status": "failed"
     }
   ],
-  "checked_at": "2026-11-24T06:47:48.894176+00:00",
+  "checked_at": "2026-11-24T06:48:50.314088+00:00",
   "legacy_backlog": {
     "assessed": 538,
     "pending": 1,
-    "unresolved": 63,
-    "in_progress": 1,
+    "unresolved": 64,
+    "in_progress": 0,
     "total": 603,
     "strong": 73
   },
-  "batch_id": "0f0e2eec8dfc3316a9d8f42879e2db187b9499601f7ec032d4bd312f77f6aa53",
-  "status": "assessing",
+  "batch_id": "fdcb610d01cb77ea805f711c6163d647db25486759bb6da41276dd3f62140e3f",
+  "status": "blocked",
   "input_blobs": {
     "jobs.json": "a384286e8be3c9f6372bf69d43e5022f9fbfe0ae",
-    "fit_scores.json": "c77587b6555a81459337fb1314230745093d539a",
-    "fit_backfill.json": "8d15bff8329ea9a4d966912c26de77fcde55cccf",
+    "fit_scores.json": "009e7aefd23c4b121825605dea4c4618fcc3c714",
+    "fit_backfill.json": "3030e4092408eb5bddc2647b7d6ee0e4811916fa",
     "meta.json": "632a41b4da567ce915485732a093cee6eb3ecffb"
   }
 }
