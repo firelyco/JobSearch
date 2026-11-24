@@ -7,15 +7,15 @@
   "collection_at": "2026-11-24T06:01:05.324304+00:00",
   "counts": {
     "found": 66,
-    "eligible": 30,
-    "completed": 0,
-    "strong": 0,
-    "middle": 0,
-    "pass": 0,
-    "waiting": 30,
-    "processing": 0,
+    "eligible": 29,
+    "completed": 5,
+    "strong": 1,
+    "middle": 2,
+    "pass": 2,
+    "waiting": 18,
+    "processing": 6,
     "blocked": 0,
-    "excluded": 36,
+    "excluded": 37,
     "unverified_links": 37
   },
   "members": [
@@ -25,9 +25,9 @@
       "url": "https://www.amazon.jobs/en/jobs/10609949/sr-tpm-satellite-avionics",
       "source": "amazon_jobs",
       "job_snapshot_hash": "60ccb14e8b845a2adefd930ef8d9f97519e99d5c62623b73daeba34b4f393e29",
-      "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -389,9 +389,9 @@
       "source": "arbeitnow",
       "job_snapshot_hash": "caafc50e84d50c869bca77a1b72a78521d5a0b1b9a87b4c70756e7ab6bf5d14a",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "pass"
     },
     {
       "key": "arbeitnow:Quantum-Systems GmbH:senior-verification-engineer-autonomy-systems-land-domain-gilching-107481",
@@ -466,9 +466,9 @@
       "source": "arbeitnow",
       "job_snapshot_hash": "0999bb183b343f6b9b15ae4b13da0850e8d84dd1ebaed48e9010f331a4c02eb8",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "pass"
     },
     {
       "key": "arbeitnow:isaraerospace:senior-computational-engineering-architect-parsdorf-bavaria-280172",
@@ -521,7 +521,7 @@
       "source": "github",
       "job_snapshot_hash": "bb1b64e40264fda0d71ae4bf4509541ab93864e8687b78fdc06498dc774a80fa",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -532,7 +532,7 @@
       "source": "google",
       "job_snapshot_hash": "59916379a5f241fa3b3f613630bcd5df1c726711e7e25502bacd8e6cb5c5c414",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -554,7 +554,7 @@
       "source": "google",
       "job_snapshot_hash": "1dac1e47cdf8f20c5249e4902518b5e2647599d16d35ee1e9ccb72cef5eac7d5",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -565,7 +565,7 @@
       "source": "google",
       "job_snapshot_hash": "428433ab57d99c4e2aa33c4a41ff4f6b421e92a6dc3544afa00e7d0e6d09bfc1",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -576,7 +576,7 @@
       "source": "google",
       "job_snapshot_hash": "9acc89b263856411a99ad294dd36f9ad138c3ef8091bcfa230ba1f2fc964dfe8",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -598,9 +598,9 @@
       "source": "greenhouse",
       "job_snapshot_hash": "b917fd4908935ad1452f6f766990263b307facfd135c285bad1ddac15295ff5c",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "greenhouse:instacart:8412535",
@@ -609,9 +609,9 @@
       "source": "greenhouse",
       "job_snapshot_hash": "b8a509185351c3d1b4c736d0da76be5f715526ddd05488a851409b53f0ab5aef",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "strong"
     },
     {
       "key": "greenhouse:itd:4518507009",
@@ -631,7 +631,7 @@
       "source": "greenhouse",
       "job_snapshot_hash": "2699b78cb8609ec03bdbf36c12f8f5ed06721a4ccedc21c57d1e3d71ce6f75ca",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -697,9 +697,9 @@
       "source": "lever",
       "job_snapshot_hash": "df8be93f7d3c069107416f0aa903ca9f6dcd8927a8b88c47c11938b2517c7c4a",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "oracle_cloud:dell:298874",
@@ -1628,21 +1628,21 @@
       "status": "failed"
     }
   ],
-  "checked_at": "2026-11-24T06:13:36.737668+00:00",
+  "checked_at": "2026-11-24T06:14:48.938848+00:00",
   "legacy_backlog": {
-    "assessed": 519,
-    "pending": 40,
+    "assessed": 526,
+    "pending": 25,
     "unresolved": 60,
-    "in_progress": 0,
-    "total": 619,
-    "strong": 69
+    "in_progress": 6,
+    "total": 617,
+    "strong": 71
   },
-  "batch_id": "a4d406f4cb701cae4a510a2bfcb969c738ca25cd080a1b8610737ac809af671c",
+  "batch_id": "671e4bb3a93c18ab7e18e183a2ac555ccb4efe0773072d50f9ef7d18b4cf90bf",
   "status": "assessing",
   "input_blobs": {
     "jobs.json": "86e9cb135c4ed70f0d81414a291f75e9486d1988",
-    "fit_scores.json": "4a8234ce02bc41e38f97515c68ea37fb058a8da8",
-    "fit_backfill.json": "818c7cbdb1552eb6a247c1efcccda5402152f9a9",
+    "fit_scores.json": "4ceb7407390f7bc5df97861dbcc2a85cada345c3",
+    "fit_backfill.json": "b8407aa0e123f37385b3c1002a56e2b01318eb9b",
     "meta.json": "317646cd612579fe18bca9c0976351aeb836d078"
   }
 }
