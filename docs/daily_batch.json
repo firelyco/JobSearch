@@ -7,15 +7,15 @@
   "collection_at": "2026-11-24T06:01:05.324304+00:00",
   "counts": {
     "found": 66,
-    "eligible": 19,
-    "completed": 13,
-    "strong": 1,
+    "eligible": 17,
+    "completed": 15,
+    "strong": 2,
     "middle": 9,
-    "pass": 3,
-    "waiting": 6,
-    "processing": 0,
+    "pass": 4,
+    "waiting": 0,
+    "processing": 2,
     "blocked": 0,
-    "excluded": 47,
+    "excluded": 49,
     "unverified_links": 37
   },
   "members": [
@@ -47,9 +47,9 @@
       "url": "https://www.amazon.jobs/en/jobs/10611465/technical-program-manager-ii",
       "source": "amazon_jobs",
       "job_snapshot_hash": "f27b587bdb6fcd5ece2d2f8988dd7e3d01c6011c1f188749c5fbfb634e05d404",
-      "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -69,9 +69,9 @@
       "url": "https://www.amazon.jobs/en/jobs/10612054/infrastructure-technical-program-manager-high-volume-fiber-deployment-gcid",
       "source": "amazon_jobs",
       "job_snapshot_hash": "581dab37e910dacfc41e79993615faf748231948d0611976221dbecb0ab03ffd",
-      "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -587,7 +587,7 @@
       "source": "greenhouse",
       "job_snapshot_hash": "b64e938526af4df3069409c8c85b0538130ebbebfdfbf5663a1b1a1bc0cc893a",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -686,9 +686,9 @@
       "source": "lever",
       "job_snapshot_hash": "fc51b55fe9dbb69c77f44a3995f43d23eb6db364939f6ba502e95f02f6a30ef8",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "pass"
     },
     {
       "key": "lever:zoox:d5926930-cbe2-4cfc-b0a1-d2e8ea54e398",
@@ -719,7 +719,7 @@
       "source": "oracle_cloud",
       "job_snapshot_hash": "cf453edcbe1fd0a9f8c8f8a89634cce19c88d4513e0286542cb1b5d3b523c5c3",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -730,9 +730,9 @@
       "source": "oracle_cloud",
       "job_snapshot_hash": "6b2f01acc7f5e193a231cbc7914f334e2c5334d5d28b5550322555b6656ce173",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "strong"
     },
     {
       "key": "workday:walmart:/job/USA-Crossman-Excellence-Building-CA-SUNNYVALE-Home-Office/XMLNAME--USA--Principal--Technical-Program-Manager_R-2713084-1",
@@ -1628,21 +1628,21 @@
       "status": "failed"
     }
   ],
-  "checked_at": "2026-11-24T06:17:10.858296+00:00",
+  "checked_at": "2026-11-24T06:18:14.434940+00:00",
   "legacy_backlog": {
-    "assessed": 534,
-    "pending": 13,
+    "assessed": 536,
+    "pending": 1,
     "unresolved": 60,
-    "in_progress": 0,
-    "total": 607,
-    "strong": 71
+    "in_progress": 8,
+    "total": 605,
+    "strong": 72
   },
-  "batch_id": "55b058639bf9658fab253b3159b352a1eaf71b582af916d5b782ec9adc5ab009",
+  "batch_id": "0cff1d9fd0bb5ddfec0a6a42fef87479084717a480f7107754e3e3a47a17595c",
   "status": "assessing",
   "input_blobs": {
     "jobs.json": "86e9cb135c4ed70f0d81414a291f75e9486d1988",
-    "fit_scores.json": "71225c7823fd32e88b332fcf9f0af5a7c0336829",
-    "fit_backfill.json": "7ec9d7e02ec9c0281a4799c6c62d24514eecc6ea",
+    "fit_scores.json": "cceb706127d4c9efa9fea91aa89beedad1e64db8",
+    "fit_backfill.json": "fb3b1d8b8a203ae7a3b1cf03d2adba1fb649e035",
     "meta.json": "317646cd612579fe18bca9c0976351aeb836d078"
   }
 }
