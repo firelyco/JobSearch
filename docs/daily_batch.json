@@ -12,9 +12,9 @@
     "strong": 2,
     "middle": 9,
     "pass": 4,
-    "waiting": 1,
+    "waiting": 0,
     "processing": 0,
-    "blocked": 0,
+    "blocked": 1,
     "excluded": 50,
     "unverified_links": 37
   },
@@ -719,8 +719,8 @@
       "source": "oracle_cloud",
       "job_snapshot_hash": "cf453edcbe1fd0a9f8c8f8a89634cce19c88d4513e0286542cb1b5d3b523c5c3",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
+      "status": "blocked",
+      "reason": "Paid retry budget exhausted; review required.",
       "verdict": null
     },
     {
@@ -1628,21 +1628,21 @@
       "status": "failed"
     }
   ],
-  "checked_at": "2026-11-24T06:19:54.969472+00:00",
+  "checked_at": "2026-11-24T06:21:20.026657+00:00",
   "legacy_backlog": {
-    "assessed": 537,
-    "pending": 5,
-    "unresolved": 60,
+    "assessed": 538,
+    "pending": 0,
+    "unresolved": 64,
     "in_progress": 1,
     "total": 603,
     "strong": 72
   },
-  "batch_id": "af32b480a4bf1be62f00c6d790fa7430118c10f16bf57becd4344d56ebe66d9c",
-  "status": "assessing",
+  "batch_id": "2d007d53a464fe881b25e8649222123c6d2ea3ee4912f9b4edb9589d5cf7c0ce",
+  "status": "blocked",
   "input_blobs": {
     "jobs.json": "86e9cb135c4ed70f0d81414a291f75e9486d1988",
-    "fit_scores.json": "8ed799bf1ccf3eaaf08153a39023fadda658fb61",
-    "fit_backfill.json": "3f625e52ba1d9700ad8fdbece53f3eb153609d58",
+    "fit_scores.json": "0aefd2d9f437b24463eda353c9fd090239b746ec",
+    "fit_backfill.json": "fbce6c5dabb2f8bf7b21fccdf21c54ee2e52c761",
     "meta.json": "317646cd612579fe18bca9c0976351aeb836d078"
   }
 }
