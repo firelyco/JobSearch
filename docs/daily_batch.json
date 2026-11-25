@@ -7,15 +7,15 @@
   "collection_at": "2026-11-25T06:01:02.351198+00:00",
   "counts": {
     "found": 75,
-    "eligible": 29,
-    "completed": 13,
+    "eligible": 25,
+    "completed": 15,
     "strong": 3,
-    "middle": 7,
+    "middle": 9,
     "pass": 3,
     "waiting": 5,
-    "processing": 11,
+    "processing": 5,
     "blocked": 0,
-    "excluded": 46,
+    "excluded": 50,
     "unverified_links": 29
   },
   "members": [
@@ -36,9 +36,9 @@
       "url": "https://www.amazon.jobs/en/jobs/10606464/senior-product-manager-technical-customer-delivery-excellence-cde",
       "source": "amazon_jobs",
       "job_snapshot_hash": "6f46df80714cfca7268fcd0c13aa4195480bd4215f22e1310640c2633cf24fbc",
-      "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -444,9 +444,9 @@
       "source": "ashby",
       "job_snapshot_hash": "8f0e71262317accfa7374f9d0dbf2781beff192a36773e3be9e01fb6f49dcce6",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "ashby:shield:0a8b3a43-e26b-4c81-966b-48c73adec4a8",
@@ -454,9 +454,9 @@
       "url": "https://jobs.ashbyhq.com/shield/0a8b3a43-e26b-4c81-966b-48c73adec4a8",
       "source": "ashby",
       "job_snapshot_hash": "2ea0d362d6c668a65336e41c6a872a1a5f4645cb4d0ca5905547abd6415b0ce6",
-      "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -542,9 +542,9 @@
       "url": "https://jobs.ashbyhq.com/shield/5ad75f31-fa7d-461b-b038-a38fda37e4fe",
       "source": "ashby",
       "job_snapshot_hash": "3a013fbf41351734feb9dd5876e734b7f6ba03318f738d7ff51ca1e4088e5ae2",
-      "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -608,9 +608,9 @@
       "url": "https://jobs.ashbyhq.com/shield/dea1293d-4a9a-431f-b38f-de02d22cc549",
       "source": "ashby",
       "job_snapshot_hash": "d1506d5c4bd870cac7431588983b96336c7c2c554a52b4777e9ad959f2419de4",
-      "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -620,9 +620,9 @@
       "source": "ashby",
       "job_snapshot_hash": "94bfc064b0641e3cbc47b0d52e44f2fc68e83bfe7af35f6aea38df050ad69c35",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "ashby:shield:f96e44cb-c381-4306-a534-36e4843fb13f",
@@ -1544,21 +1544,21 @@
       "status": "failed"
     }
   ],
-  "checked_at": "2026-11-25T06:20:38.842148+00:00",
+  "checked_at": "2026-11-25T06:21:40.031263+00:00",
   "legacy_backlog": {
-    "assessed": 545,
+    "assessed": 547,
     "pending": 11,
     "unresolved": 65,
-    "in_progress": 11,
-    "total": 632,
+    "in_progress": 5,
+    "total": 628,
     "strong": 74
   },
-  "batch_id": "d5cf7b8a8f0612f21e860904258c184cb570a9b3231ef8129ef2648ec3b6aa85",
+  "batch_id": "86d6ed19b52a554541b0d3d3f070151195b19d49eb1cb791fc7fc79772e0915b",
   "status": "assessing",
   "input_blobs": {
     "jobs.json": "d3f80453fef0ba666c766ad9d782887c88d61ef6",
-    "fit_scores.json": "f4c722aa95dbfe800f20d65278291d53dc7ea321",
-    "fit_backfill.json": "4ebfb725db1d7ae82e6e8e5b90d07a091e0d0c6f",
+    "fit_scores.json": "ba03be610de108a127f7f4598858c56d12f3590e",
+    "fit_backfill.json": "8c23061dc7f70f060c50decf139e9e9201474d42",
     "meta.json": "0a7f86bdb81e9cac54b60ee9c38da9294718e90c"
   }
 }
