@@ -7,15 +7,15 @@
   "collection_at": "2026-11-25T06:01:02.351198+00:00",
   "counts": {
     "found": 75,
-    "eligible": 38,
-    "completed": 10,
+    "eligible": 32,
+    "completed": 12,
     "strong": 3,
-    "middle": 5,
+    "middle": 7,
     "pass": 2,
     "waiting": 17,
-    "processing": 11,
+    "processing": 3,
     "blocked": 0,
-    "excluded": 37,
+    "excluded": 43,
     "unverified_links": 29
   },
   "members": [
@@ -58,9 +58,9 @@
       "url": "https://www.amazon.jobs/en/jobs/10612119/senior-technical-program-manager-agi-information-and-multimodal-ai-experiences-imax",
       "source": "amazon_jobs",
       "job_snapshot_hash": "14f84f61a00c1c3e765928e8c3baa1972eb31aadd577c2b7d8acc7fd2abc30f8",
-      "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -80,9 +80,9 @@
       "url": "https://www.amazon.jobs/en/jobs/10612916/principal-technical-program-manager",
       "source": "amazon_jobs",
       "job_snapshot_hash": "0b120fd619e696006c22457534395dadf9391056ba43b9deb2fb34566b2d29ef",
-      "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -91,9 +91,9 @@
       "url": "https://www.amazon.jobs/en/jobs/10612956/technical-program-manager-ii-amz10563991",
       "source": "amazon_jobs",
       "job_snapshot_hash": "f0b3834f5f6c53d90ff92de101d2d0f9f8d55506aeea7570ff6edfd40a40e055",
-      "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -102,9 +102,9 @@
       "url": "https://www.amazon.jobs/en/jobs/10612976/technical-program-manager-iii-amz10563789",
       "source": "amazon_jobs",
       "job_snapshot_hash": "29f83c3b150e5b6d01bfda1c394b578a62916bbb1af44b7b667d399ac811b88b",
-      "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -124,9 +124,9 @@
       "url": "https://www.amazon.jobs/en/jobs/10613193/technical-program-manager-iii-amz10563912",
       "source": "amazon_jobs",
       "job_snapshot_hash": "08ef458186651dec53cb4335aea130e0f1665e46f00f41e4fda489949146575f",
-      "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -135,9 +135,9 @@
       "url": "https://www.amazon.jobs/en/jobs/10613202/dc-design-portfolio-mngt-data-center-engineering",
       "source": "amazon_jobs",
       "job_snapshot_hash": "b84c7c5733c6f45782261ecafe6272b302d7a8fe65712474a496762a786b6a42",
-      "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -675,9 +675,9 @@
       "source": "google",
       "job_snapshot_hash": "c5dfeb8099c41f9c89a7f39ce93a3c1302101e2bd0f8069826dbd3fe756083d6",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "google:google:93701186548310726",
@@ -785,9 +785,9 @@
       "source": "microsoft",
       "job_snapshot_hash": "90cd7233649b201b671825b813beb67e0db73f8aa69d26a680ed48e32da598f8",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "microsoft:microsoft:1970393557077559",
@@ -1544,21 +1544,21 @@
       "status": "failed"
     }
   ],
-  "checked_at": "2026-11-25T06:18:01.479199+00:00",
+  "checked_at": "2026-11-25T06:19:01.872850+00:00",
   "legacy_backlog": {
-    "assessed": 542,
+    "assessed": 544,
     "pending": 23,
     "unresolved": 65,
-    "in_progress": 11,
-    "total": 641,
+    "in_progress": 3,
+    "total": 635,
     "strong": 74
   },
-  "batch_id": "f22f57a0cdc0082fb83b0d274645ea21ca5435b8837e63c4ddbd61f0d35e4f92",
+  "batch_id": "c30a7cdb7e8c72f40a3877d397b4239ba4c60feb70da975e6ace67cd5a42bc80",
   "status": "assessing",
   "input_blobs": {
     "jobs.json": "d3f80453fef0ba666c766ad9d782887c88d61ef6",
-    "fit_scores.json": "b6b5422906d2c82c38753d38040a87ad1a13c918",
-    "fit_backfill.json": "4510d46d4561692be966ad5a1c6cac656ba5789e",
+    "fit_scores.json": "7ac45927ab1447526fc9eadd3d024c08ff8b5461",
+    "fit_backfill.json": "1ce6927a5e5159da3f8b47eca0b26f2dff5a025d",
     "meta.json": "0a7f86bdb81e9cac54b60ee9c38da9294718e90c"
   }
 }
