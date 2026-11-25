@@ -7,15 +7,15 @@
   "collection_at": "2026-11-25T06:01:02.351198+00:00",
   "counts": {
     "found": 75,
-    "eligible": 25,
-    "completed": 15,
+    "eligible": 21,
+    "completed": 16,
     "strong": 3,
-    "middle": 9,
+    "middle": 10,
     "pass": 3,
     "waiting": 5,
-    "processing": 5,
+    "processing": 0,
     "blocked": 0,
-    "excluded": 50,
+    "excluded": 54,
     "unverified_links": 29
   },
   "members": [
@@ -25,9 +25,9 @@
       "url": "https://www.amazon.jobs/en/jobs/10596441/technical-program-manager-ges-na-technical-vendor-management",
       "source": "amazon_jobs",
       "job_snapshot_hash": "87d558a666bc147243279507287b4c1c7d9f6b04ea739451cbb61a7740c202dc",
-      "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -476,9 +476,9 @@
       "url": "https://jobs.ashbyhq.com/shield/25f65fc3-590f-4893-9415-1f22ffc96b02",
       "source": "ashby",
       "job_snapshot_hash": "ae538e49be5b0688e0d4fb928d3bc2c027c56d11af9ace4093ffd60c8b9c624d",
-      "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -498,9 +498,9 @@
       "url": "https://jobs.ashbyhq.com/shield/40a64edd-dd5a-4d7a-a7c3-86fad8496eff",
       "source": "ashby",
       "job_snapshot_hash": "f300aeb5a4617eb60b56168044482d65abc9949f45990fcd090b8ba2258e51c6",
-      "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -630,9 +630,9 @@
       "url": "https://jobs.ashbyhq.com/shield/f96e44cb-c381-4306-a534-36e4843fb13f",
       "source": "ashby",
       "job_snapshot_hash": "2a0b7b2fc4a0016a5abcd4c5851f57df684da35a8f7b549e4e57e5e48e0518ef",
-      "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -653,9 +653,9 @@
       "source": "ashby",
       "job_snapshot_hash": "8d20a4507a77eadf02e9fe85de49dd9f3d30b9fe3ee61c1372bd5d2a17eec26a",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "ashby:volta:3e8efff5-bb96-44ae-bc58-a57de5507c68",
@@ -1544,21 +1544,21 @@
       "status": "failed"
     }
   ],
-  "checked_at": "2026-11-25T06:21:40.031263+00:00",
+  "checked_at": "2026-11-25T06:22:27.828921+00:00",
   "legacy_backlog": {
-    "assessed": 547,
+    "assessed": 548,
     "pending": 11,
     "unresolved": 65,
-    "in_progress": 5,
-    "total": 628,
+    "in_progress": 0,
+    "total": 624,
     "strong": 74
   },
-  "batch_id": "86d6ed19b52a554541b0d3d3f070151195b19d49eb1cb791fc7fc79772e0915b",
+  "batch_id": "d1b832686c96eb7c46d2aaedfe73f36a913456bddfb86bfc33d7a3e6d17a9d23",
   "status": "assessing",
   "input_blobs": {
     "jobs.json": "d3f80453fef0ba666c766ad9d782887c88d61ef6",
-    "fit_scores.json": "ba03be610de108a127f7f4598858c56d12f3590e",
-    "fit_backfill.json": "8c23061dc7f70f060c50decf139e9e9201474d42",
+    "fit_scores.json": "0f742d1900a0ae74d003f63e0cb9fab80a0f6e72",
+    "fit_backfill.json": "520c9c01b84f933f02231852d83942871be3fdb8",
     "meta.json": "0a7f86bdb81e9cac54b60ee9c38da9294718e90c"
   }
 }
