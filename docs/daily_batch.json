@@ -8,13 +8,13 @@
   "counts": {
     "found": 75,
     "eligible": 21,
-    "completed": 19,
+    "completed": 20,
     "strong": 3,
-    "middle": 12,
+    "middle": 13,
     "pass": 4,
-    "waiting": 1,
-    "processing": 1,
-    "blocked": 0,
+    "waiting": 0,
+    "processing": 0,
+    "blocked": 1,
     "excluded": 54,
     "unverified_links": 29
   },
@@ -598,9 +598,9 @@
       "source": "ashby",
       "job_snapshot_hash": "34cb17f260dd9285f28f897642af8cd247a1eaf3dbb1a6b71d3ba3ce96e98d7e",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "ashby:shield:dea1293d-4a9a-431f-b38f-de02d22cc549",
@@ -642,8 +642,8 @@
       "source": "ashby",
       "job_snapshot_hash": "d5a72059f104bed72019bb7ce21226ccccd706654baa8331128dff3f9b1defdb",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "status": "blocked",
+      "reason": "Paid retry budget exhausted; review required.",
       "verdict": null
     },
     {
@@ -1544,21 +1544,21 @@
       "status": "failed"
     }
   ],
-  "checked_at": "2026-11-25T06:25:46.800618+00:00",
+  "checked_at": "2026-11-25T06:27:13.736320+00:00",
   "legacy_backlog": {
-    "assessed": 551,
-    "pending": 2,
-    "unresolved": 65,
-    "in_progress": 1,
+    "assessed": 553,
+    "pending": 0,
+    "unresolved": 66,
+    "in_progress": 0,
     "total": 619,
     "strong": 74
   },
-  "batch_id": "e832ac7dec83c22ced47b26d006eb183e22c9ad45a60949e503e724c90b98a61",
-  "status": "assessing",
+  "batch_id": "cb78dcdb14ab22e35496bb038fd1afb414dfdc72e01bddba8be684035a59ed58",
+  "status": "blocked",
   "input_blobs": {
     "jobs.json": "d3f80453fef0ba666c766ad9d782887c88d61ef6",
-    "fit_scores.json": "17ed910c4873f4e3efebfb67b696a511fd68bdfa",
-    "fit_backfill.json": "79b1177663417a00fcb80086fe0f898279f46b17",
+    "fit_scores.json": "04a9596b8e29aa516c65082781702a945c5c35b2",
+    "fit_backfill.json": "f70185b8f576ecacfe46e59c846f3974f9e661fa",
     "meta.json": "0a7f86bdb81e9cac54b60ee9c38da9294718e90c"
   }
 }
