@@ -8,12 +8,12 @@
   "counts": {
     "found": 75,
     "eligible": 40,
-    "completed": 1,
-    "strong": 1,
-    "middle": 0,
-    "pass": 0,
+    "completed": 7,
+    "strong": 2,
+    "middle": 4,
+    "pass": 1,
     "waiting": 28,
-    "processing": 11,
+    "processing": 5,
     "blocked": 0,
     "excluded": 35,
     "unverified_links": 29
@@ -279,9 +279,9 @@
       "source": "arbeitnow",
       "job_snapshot_hash": "09bf80ec6c8adf4af5bd1c9cd48db4c67e7458902a56cc1c1b869126815b7407",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "arbeitnow:Project Blackbook:project-director-technology-transformation-contact-centre-case-management-london-157203",
@@ -664,9 +664,9 @@
       "source": "ashby",
       "job_snapshot_hash": "e87c42f36b4055997d98512351fb724eb636ffb5295627dee42a470977eeca47",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "pass"
     },
     {
       "key": "google:google:119453947894080198",
@@ -741,9 +741,9 @@
       "source": "microsoft",
       "job_snapshot_hash": "aa5b07ed985a2c579b1921532ad89fa8190fc8d80dce968c2d63bf10a45fd52b",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "microsoft:microsoft:1970393557076144",
@@ -763,9 +763,9 @@
       "source": "microsoft",
       "job_snapshot_hash": "ca277da1ff01a95ea177f4b1eb5985ea26a5159987a82be4f53c6560f53e6cf5",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "strong"
     },
     {
       "key": "microsoft:microsoft:1970393557077138",
@@ -774,9 +774,9 @@
       "source": "microsoft",
       "job_snapshot_hash": "6b5c0fc090f621b04b9ddab0f1177d477d6f857eb2b720c33976ac258af34d65",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "microsoft:microsoft:1970393557077459",
@@ -796,9 +796,9 @@
       "source": "microsoft",
       "job_snapshot_hash": "70fc7c596d5e253284c62c8603f00c32f973e0f0a0bb5a43e8dcf33d580d603b",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "oracle_cloud:dell:299999",
@@ -1544,21 +1544,21 @@
       "status": "failed"
     }
   ],
-  "checked_at": "2026-11-25T06:15:27.069721+00:00",
+  "checked_at": "2026-11-25T06:16:46.588372+00:00",
   "legacy_backlog": {
-    "assessed": 533,
+    "assessed": 539,
     "pending": 34,
     "unresolved": 65,
-    "in_progress": 11,
+    "in_progress": 5,
     "total": 643,
-    "strong": 72
+    "strong": 73
   },
-  "batch_id": "cfd2a630361c348d0427ae5fe1b74ae4d92a25d8764a9395418a71d251ce3ec2",
+  "batch_id": "9769819a1242eca51d997c8f0bf74bc947f4c8bff06b92bf5d5a8d994b8abd56",
   "status": "assessing",
   "input_blobs": {
     "jobs.json": "d3f80453fef0ba666c766ad9d782887c88d61ef6",
-    "fit_scores.json": "8770ffa9df21061a1d12111bd3f79363c4643479",
-    "fit_backfill.json": "994e1dabc007143a2733a57ddb71d8ad67816275",
+    "fit_scores.json": "a6a68211e9217edb45321360ddb1750b5e17d44f",
+    "fit_backfill.json": "23df1ce2d2cf7b7e71e7ea127d60167a6dff9eaa",
     "meta.json": "0a7f86bdb81e9cac54b60ee9c38da9294718e90c"
   }
 }
