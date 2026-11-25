@@ -7,15 +7,15 @@
   "collection_at": "2026-11-25T06:01:02.351198+00:00",
   "counts": {
     "found": 75,
-    "eligible": 40,
-    "completed": 7,
-    "strong": 2,
-    "middle": 4,
-    "pass": 1,
-    "waiting": 28,
-    "processing": 5,
+    "eligible": 38,
+    "completed": 10,
+    "strong": 3,
+    "middle": 5,
+    "pass": 2,
+    "waiting": 17,
+    "processing": 11,
     "blocked": 0,
-    "excluded": 35,
+    "excluded": 37,
     "unverified_links": 29
   },
   "members": [
@@ -48,7 +48,7 @@
       "source": "amazon_jobs",
       "job_snapshot_hash": "ff1cec8d3ef23a6113c15ab4071efc118d4fd235fa56ce5a14c36361a33bfba1",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -59,7 +59,7 @@
       "source": "amazon_jobs",
       "job_snapshot_hash": "14f84f61a00c1c3e765928e8c3baa1972eb31aadd577c2b7d8acc7fd2abc30f8",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -69,9 +69,9 @@
       "url": "https://www.amazon.jobs/en/jobs/10612629/sr-tpm-live-sports-prime-video-sports-linear-operations",
       "source": "amazon_jobs",
       "job_snapshot_hash": "bc8e42515c6a252a602551652867a9df6687fffe40daef6f63a98e4150829017",
-      "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -81,7 +81,7 @@
       "source": "amazon_jobs",
       "job_snapshot_hash": "0b120fd619e696006c22457534395dadf9391056ba43b9deb2fb34566b2d29ef",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -92,7 +92,7 @@
       "source": "amazon_jobs",
       "job_snapshot_hash": "f0b3834f5f6c53d90ff92de101d2d0f9f8d55506aeea7570ff6edfd40a40e055",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -103,7 +103,7 @@
       "source": "amazon_jobs",
       "job_snapshot_hash": "29f83c3b150e5b6d01bfda1c394b578a62916bbb1af44b7b667d399ac811b88b",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -114,7 +114,7 @@
       "source": "amazon_jobs",
       "job_snapshot_hash": "570f67ecc57db5c9b5039154e842be11c1fa91cdb0f958a0ba74b71dfac0db37",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -125,7 +125,7 @@
       "source": "amazon_jobs",
       "job_snapshot_hash": "08ef458186651dec53cb4335aea130e0f1665e46f00f41e4fda489949146575f",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -136,7 +136,7 @@
       "source": "amazon_jobs",
       "job_snapshot_hash": "b84c7c5733c6f45782261ecafe6272b302d7a8fe65712474a496762a786b6a42",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -521,7 +521,7 @@
       "source": "ashby",
       "job_snapshot_hash": "0d916d5673b9fa190bd4865f556e7afd3aad69645803a4aaafd2085d4f158ca6",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -675,7 +675,7 @@
       "source": "google",
       "job_snapshot_hash": "c5dfeb8099c41f9c89a7f39ce93a3c1302101e2bd0f8069826dbd3fe756083d6",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -686,9 +686,9 @@
       "source": "google",
       "job_snapshot_hash": "7a4eeb7b834e63fefee3c90287087f2bda1ef4a86110179221fb0001c22463a7",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "greenhouse:altentechnologyusa:5308975007",
@@ -696,9 +696,9 @@
       "url": "https://job-boards.greenhouse.io/altentechnologyusa/jobs/5308975007",
       "source": "greenhouse",
       "job_snapshot_hash": "3d5895b6fa4054377782f2b8518d287dc250f039320d23cba3b90cb03f4895d6",
-      "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -708,9 +708,9 @@
       "source": "greenhouse",
       "job_snapshot_hash": "72295985c2c2b6e44bbc9f4a25969a909ccf334bbb7dd0cc10b1c9acd509fcf7",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "strong"
     },
     {
       "key": "greenhouse:verkada:5084056007",
@@ -752,9 +752,9 @@
       "source": "microsoft",
       "job_snapshot_hash": "4fc9afa19b8c3f532937924761eed48c959ad1542aa6c9c78e6b1f793fde5431",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "pass"
     },
     {
       "key": "microsoft:microsoft:1970393557076969",
@@ -1544,21 +1544,21 @@
       "status": "failed"
     }
   ],
-  "checked_at": "2026-11-25T06:16:46.588372+00:00",
+  "checked_at": "2026-11-25T06:18:01.479199+00:00",
   "legacy_backlog": {
-    "assessed": 539,
-    "pending": 34,
+    "assessed": 542,
+    "pending": 23,
     "unresolved": 65,
-    "in_progress": 5,
-    "total": 643,
-    "strong": 73
+    "in_progress": 11,
+    "total": 641,
+    "strong": 74
   },
-  "batch_id": "9769819a1242eca51d997c8f0bf74bc947f4c8bff06b92bf5d5a8d994b8abd56",
+  "batch_id": "f22f57a0cdc0082fb83b0d274645ea21ca5435b8837e63c4ddbd61f0d35e4f92",
   "status": "assessing",
   "input_blobs": {
     "jobs.json": "d3f80453fef0ba666c766ad9d782887c88d61ef6",
-    "fit_scores.json": "a6a68211e9217edb45321360ddb1750b5e17d44f",
-    "fit_backfill.json": "23df1ce2d2cf7b7e71e7ea127d60167a6dff9eaa",
+    "fit_scores.json": "b6b5422906d2c82c38753d38040a87ad1a13c918",
+    "fit_backfill.json": "4510d46d4561692be966ad5a1c6cac656ba5789e",
     "meta.json": "0a7f86bdb81e9cac54b60ee9c38da9294718e90c"
   }
 }
