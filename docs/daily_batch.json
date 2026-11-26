@@ -8,12 +8,12 @@
   "counts": {
     "found": 97,
     "eligible": 23,
-    "completed": 11,
+    "completed": 12,
     "strong": 1,
     "middle": 5,
-    "pass": 5,
+    "pass": 6,
     "waiting": 0,
-    "processing": 1,
+    "processing": 0,
     "blocked": 11,
     "excluded": 74,
     "unverified_links": 31
@@ -807,9 +807,9 @@
       "source": "google",
       "job_snapshot_hash": "246146a631584d17e3a8b9697bd485e70404fe12b5279d55afd11ab5cfe87f3a",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "pass"
     },
     {
       "key": "greenhouse:andurilindustries:5165514007",
@@ -1643,21 +1643,21 @@
       "status": "failed"
     }
   ],
-  "checked_at": "2026-11-26T08:06:36.266536+00:00",
+  "checked_at": "2026-11-26T08:06:51.513165+00:00",
   "legacy_backlog": {
-    "assessed": 552,
+    "assessed": 553,
     "pending": 0,
     "unresolved": 76,
-    "in_progress": 1,
+    "in_progress": 0,
     "total": 629,
     "strong": 74
   },
-  "batch_id": "e8dfdcc83296ce20654ef5bb78e105b43bf637e01ddbf753802744eb4c2f8052",
-  "status": "assessing",
+  "batch_id": "3c9bf2012c2b168d6601c9c193bf87136af66d227237663c38e6fe0a3076a189",
+  "status": "blocked",
   "input_blobs": {
     "jobs.json": "92e7bac12974cec354dd9ec074158b0ca30d7632",
-    "fit_scores.json": "792dfa8d1c90f884ecf0bef5711427a67fcb66a3",
-    "fit_backfill.json": "74f48db6ee48af1e4419c7667b012d1ed84f6cdf",
+    "fit_scores.json": "1a110e6e485682380016dd708d0d96221c3d7d06",
+    "fit_backfill.json": "c7bc7a410b06c7d8bc7df138d0e3a388bbf2b157",
     "meta.json": "850872e6c688499b0f7dac63079092eee12402c3"
   }
 }
