@@ -7,15 +7,15 @@
   "collection_at": "2026-11-26T07:20:57.129519+00:00",
   "counts": {
     "found": 95,
-    "eligible": 23,
+    "eligible": 22,
     "completed": 11,
     "strong": 1,
     "middle": 5,
     "pass": 5,
     "waiting": 0,
-    "processing": 1,
+    "processing": 0,
     "blocked": 11,
-    "excluded": 72,
+    "excluded": 73,
     "unverified_links": 31
   },
   "members": [
@@ -1059,9 +1059,9 @@
       "url": "https://kla.wd1.myworkdayjobs.com/en-US/Search/job/Ann-Arbor-MI/Technical-Program-Manager---Project-Manager_2639244-1",
       "source": "workday",
       "job_snapshot_hash": "17f1333f3ae0fce98269789f7c45c31494884af19bffb961de4686f6518a6e41",
-      "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     }
   ],
@@ -1841,21 +1841,21 @@
       "status": "failed"
     }
   ],
-  "checked_at": "2026-11-26T07:40:30.937382+00:00",
+  "checked_at": "2026-11-26T07:40:39.600998+00:00",
   "legacy_backlog": {
     "assessed": 552,
     "pending": 0,
-    "unresolved": 75,
-    "in_progress": 2,
-    "total": 629,
+    "unresolved": 76,
+    "in_progress": 0,
+    "total": 628,
     "strong": 74
   },
-  "batch_id": "ca14aea1a8d9b762e4b41af6bdf3c50d47356966e57b1b6431bde785ffc20711",
-  "status": "assessing",
+  "batch_id": "b13e14160e087eaaa4725b4750737744c834724571ceb6a0b4c386c57cf1fc4a",
+  "status": "blocked",
   "input_blobs": {
     "jobs.json": "f11a97a25c44cafb5bf60a0adc483572e8f6838f",
-    "fit_scores.json": "3e3823d31c38109a253a5434880a9fcbf204ce3e",
-    "fit_backfill.json": "c4366dac95a0f28f1aedca8693649783b77852e3",
+    "fit_scores.json": "bc0e8d3422d7a18123c62ac9f87be21404350f0a",
+    "fit_backfill.json": "655e3f567e1ef4be0c4b9d826322d97fada22275",
     "meta.json": "87565c70eb9cd90c04370d794487f206c3ed1c4d"
   }
 }
