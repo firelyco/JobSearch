@@ -8,12 +8,12 @@
   "counts": {
     "found": 95,
     "eligible": 23,
-    "completed": 10,
+    "completed": 11,
     "strong": 1,
-    "middle": 4,
+    "middle": 5,
     "pass": 5,
-    "waiting": 2,
-    "processing": 0,
+    "waiting": 0,
+    "processing": 1,
     "blocked": 11,
     "excluded": 72,
     "unverified_links": 31
@@ -829,9 +829,9 @@
       "source": "greenhouse",
       "job_snapshot_hash": "4140b0d97bc6d3939168a46a566fa4e542e36dddd1dc7bd7ca64b3699f41a420",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "lever:jobgether:1bbdae8b-2850-4fbd-add1-860ddee90e83",
@@ -1060,7 +1060,7 @@
       "source": "workday",
       "job_snapshot_hash": "17f1333f3ae0fce98269789f7c45c31494884af19bffb961de4686f6518a6e41",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     }
@@ -1841,21 +1841,21 @@
       "status": "failed"
     }
   ],
-  "checked_at": "2026-11-26T07:38:13.415392+00:00",
+  "checked_at": "2026-11-26T07:39:20.451651+00:00",
   "legacy_backlog": {
-    "assessed": 550,
-    "pending": 4,
+    "assessed": 551,
+    "pending": 0,
     "unresolved": 75,
-    "in_progress": 0,
+    "in_progress": 3,
     "total": 629,
     "strong": 74
   },
-  "batch_id": "1472159bb7ffca019d307ab9922d6047b1a36516d086dd38853aacaa5ed62e58",
+  "batch_id": "a543375c3cdd9c8f8ec2e9a08fcc009e993528b65d9ea78312a0d8a2026dfa97",
   "status": "assessing",
   "input_blobs": {
     "jobs.json": "f11a97a25c44cafb5bf60a0adc483572e8f6838f",
-    "fit_scores.json": "7beac8002b45ac6ee0d4b08b19ccd64377315e33",
-    "fit_backfill.json": "2a0f119bf8fd2a7ddf688ba42c61286f15a5fcbd",
+    "fit_scores.json": "40d2a1e19e366e6e3f10a47dab4055103163248d",
+    "fit_backfill.json": "0771028f088fb4a79d30ef4d2d6d401ac2f2fe98",
     "meta.json": "87565c70eb9cd90c04370d794487f206c3ed1c4d"
   }
 }
