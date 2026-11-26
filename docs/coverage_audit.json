@@ -1,8 +1,8 @@
 {
   "scope": "Configured employer queries and observed listings; internet-wide completeness is unknown.",
   "internet_coverage_verified": false,
-  "raw_unique": 38114,
-  "published_unique": 1491,
+  "raw_unique": 38341,
+  "published_unique": 1536,
   "watchlist_counts": {
     "discovery_gap": 4,
     "collected": 4,
@@ -171,15 +171,6 @@
           "assessment_date_eligible": true
         },
         {
-          "key": "microsoft:microsoft:1970393557053870",
-          "title": "Principal Technical Program Manager",
-          "url": "https://apply.careers.microsoft.com/careers/job/1970393557053870",
-          "location": "United States, Washington, Redmond | United States, Oregon, Hillsboro | United States, California, Mountain View | United States, North Carolina, Raleigh",
-          "published": true,
-          "open_status": "listed_in_feed",
-          "assessment_date_eligible": true
-        },
-        {
           "key": "microsoft:microsoft:1970393557026561",
           "title": "Principal Technical Program Manager, Responsible AI",
           "url": "https://apply.careers.microsoft.com/careers/job/1970393557026561",
@@ -292,6 +283,15 @@
           "title": "Principal Technical Program Manager",
           "url": "https://apply.careers.microsoft.com/careers/job/1970393557050672",
           "location": "United States, Washington, Redmond",
+          "published": true,
+          "open_status": "unverified_source_failure",
+          "assessment_date_eligible": true
+        },
+        {
+          "key": "microsoft:microsoft:1970393557053870",
+          "title": "Principal Technical Program Manager",
+          "url": "https://apply.careers.microsoft.com/careers/job/1970393557053870",
+          "location": "United States, Washington, Redmond | United States, Oregon, Hillsboro | United States, California, Mountain View | United States, North Carolina, Raleigh",
           "published": true,
           "open_status": "unverified_source_failure",
           "assessment_date_eligible": true
@@ -420,17 +420,6 @@
       "score": 0
     },
     {
-      "key": "greenhouse:gitlab:8784056002",
-      "title": "Principal Technical Program Manager",
-      "location": "Bangalore, India",
-      "reasons": [
-        "title match (+25)",
-        "staff or principal (+25)",
-        "excluded location: Bangalore, India (-60)"
-      ],
-      "score": 0
-    },
-    {
       "key": "greenhouse:anthropic:5460837008",
       "title": "International Finance Program Management",
       "location": "Dublin, IE",
@@ -445,6 +434,17 @@
       "location": "San Francisco, CA | New York City, NY",
       "reasons": [
         "no title match"
+      ],
+      "score": 0
+    },
+    {
+      "key": "greenhouse:gitlab:8784056002",
+      "title": "Principal Technical Program Manager",
+      "location": "Bangalore, India",
+      "reasons": [
+        "title match (+25)",
+        "staff or principal (+25)",
+        "excluded location: Bangalore, India (-60)"
       ],
       "score": 0
     },
@@ -476,6 +476,15 @@
         "title match (+25)",
         "senior tpm (+20)",
         "excluded location: Tokyo, Japan (-60)"
+      ],
+      "score": 0
+    },
+    {
+      "key": "greenhouse:samsara:8358633",
+      "title": "Manager, Operations Program Management",
+      "location": "Remote - US",
+      "reasons": [
+        "no title match"
       ],
       "score": 0
     },
@@ -524,15 +533,6 @@
       "score": 0
     },
     {
-      "key": "greenhouse:samsara:8358633",
-      "title": "Manager, Operations Program Management",
-      "location": "Remote - US",
-      "reasons": [
-        "no title match"
-      ],
-      "score": 0
-    },
-    {
       "key": "greenhouse:coreweave:4730432006",
       "title": "Engineering Program Coordinator",
       "location": "Livingston, NJ / New York, NY / San Francisco, CA / Bellevue, WA",
@@ -551,76 +551,11 @@
       "score": 0
     },
     {
-      "key": "workday:intel:/job/PRC-Chengdu/Foundry-Program-Manager--Service-Operations-and-Program-Management_JR0287147-1",
-      "title": "Foundry Program Manager, Service Operations and Program Management",
-      "location": "2 Locations",
+      "key": "workday:capitalone:/job/McLean-VA/Manager--CRA-Strategy---Program-Management_R1004592-1",
+      "title": "Manager, CRA Strategy & Program Management",
+      "location": "3 Locations",
       "reasons": [
         "no title match"
-      ],
-      "score": 0
-    },
-    {
-      "key": "oracle_cloud:dell:299958",
-      "title": "Consultant, Services Project Program Management",
-      "location": "MS, United States",
-      "reasons": [
-        "no title match"
-      ],
-      "score": 0
-    },
-    {
-      "key": "oracle_cloud:dell:D11268",
-      "title": "Analyst, Project/Program Management",
-      "location": "Singapore",
-      "reasons": [
-        "no title match"
-      ],
-      "score": 0
-    },
-    {
-      "key": "oracle_cloud:dell:299941",
-      "title": "Services Project-Program Management Consultant",
-      "location": "Kazakhstan",
-      "reasons": [
-        "no title match"
-      ],
-      "score": 0
-    },
-    {
-      "key": "oracle_cloud:dell:D11258",
-      "title": "Analyst, Project/Program Management",
-      "location": "Singapore",
-      "reasons": [
-        "no title match"
-      ],
-      "score": 0
-    },
-    {
-      "key": "oracle_cloud:dell:297758",
-      "title": "Consultant, Project|Program Management",
-      "location": "Singapore",
-      "reasons": [
-        "no title match"
-      ],
-      "score": 0
-    },
-    {
-      "key": "oracle_cloud:dell:300029",
-      "title": "Senior Consultant, Project Program Management",
-      "location": "TX, United States",
-      "reasons": [
-        "no title match"
-      ],
-      "score": 0
-    },
-    {
-      "key": "oracle_cloud:dell:299933",
-      "title": "Principal Consultant (Infrastructure Program Management - Data Center)",
-      "location": "Bengaluru, Karnataka, India",
-      "reasons": [
-        "title match (+25)",
-        "staff or principal (+25)",
-        "excluded location: Bengaluru, Karnataka, India (-60)"
       ],
       "score": 0
     },
@@ -823,11 +758,120 @@
       "score": 0
     },
     {
-      "key": "amazon_jobs:amazon:10590793",
-      "title": "Technical Infrastructure Program Manager, Infrasec",
-      "location": "Seattle, Washington, USA",
+      "key": "workday:nvidia:/job/India-Bengaluru/Technical-Program-Manager--Infrastructure_JR2026462",
+      "title": "Technical Program Manager, Infrastructure",
+      "location": "India, Bengaluru",
+      "reasons": [
+        "level not in title; needs profile assessment",
+        "title match (+25)",
+        "excluded location: India, Bengaluru (-60)"
+      ],
+      "score": 0
+    },
+    {
+      "key": "workday:nvidia:/job/India-Pune/Technical-Program-Manager---Ecommerce_JR2026519",
+      "title": "Technical Program Manager - Ecommerce",
+      "location": "India, Pune",
+      "reasons": [
+        "level not in title; needs profile assessment",
+        "title match (+25)",
+        "excluded location: India, Pune (-60)"
+      ],
+      "score": 0
+    },
+    {
+      "key": "workday:nvidia:/job/Taiwan-Taipei/Manager--Technical-Software-Program-Management_JR2028669",
+      "title": "Manager, Technical Software Program Management",
+      "location": "Taiwan, Taipei",
       "reasons": [
         "no title match"
+      ],
+      "score": 0
+    },
+    {
+      "key": "workday:nvidia:/job/China-Shanghai/Senior-Technical-Program-Manager--SCG-Efficiency_JR2017692",
+      "title": "Senior Technical Program Manager, SCG Efficiency",
+      "location": "China, Shanghai",
+      "reasons": [
+        "title match (+25)",
+        "senior tpm (+20)",
+        "excluded location: China, Shanghai (-60)"
+      ],
+      "score": 0
+    },
+    {
+      "key": "netflix:netflix:790318307129",
+      "title": "Technical Program Manager 5 - Content & Studio Engineering",
+      "location": "Warsaw,Poland",
+      "reasons": [
+        "title match (+25)",
+        "level not in title, fit check judges it (+20)",
+        "excluded location: Warsaw,Poland (-60)"
+      ],
+      "score": 0
+    },
+    {
+      "key": "oracle_cloud:dell:299958",
+      "title": "Consultant, Services Project Program Management",
+      "location": "MS, United States",
+      "reasons": [
+        "no title match"
+      ],
+      "score": 0
+    },
+    {
+      "key": "oracle_cloud:dell:D11268",
+      "title": "Analyst, Project/Program Management",
+      "location": "Singapore",
+      "reasons": [
+        "no title match"
+      ],
+      "score": 0
+    },
+    {
+      "key": "oracle_cloud:dell:299941",
+      "title": "Services Project-Program Management Consultant",
+      "location": "Kazakhstan",
+      "reasons": [
+        "no title match"
+      ],
+      "score": 0
+    },
+    {
+      "key": "oracle_cloud:dell:D11258",
+      "title": "Analyst, Project/Program Management",
+      "location": "Singapore",
+      "reasons": [
+        "no title match"
+      ],
+      "score": 0
+    },
+    {
+      "key": "oracle_cloud:dell:297758",
+      "title": "Consultant, Project|Program Management",
+      "location": "Singapore",
+      "reasons": [
+        "no title match"
+      ],
+      "score": 0
+    },
+    {
+      "key": "oracle_cloud:dell:300029",
+      "title": "Senior Consultant, Project Program Management",
+      "location": "TX, United States",
+      "reasons": [
+        "no title match"
+      ],
+      "score": 0
+    },
+    {
+      "key": "oracle_cloud:dell:299933",
+      "title": "Principal Consultant (Infrastructure Program Management - Data Center)",
+      "location": "Bengaluru, Karnataka, India",
+      "reasons": [
+        "title match (+25)",
+        "staff or principal (+25)",
+        "excluded location: Bengaluru, Karnataka, India (-60)"
       ],
       "score": 0
     },
@@ -848,6 +892,17 @@
         "title match (+25)",
         "staff or principal (+25)",
         "excluded location: India (-60)"
+      ],
+      "score": 0
+    },
+    {
+      "key": "oracle_cloud:oracle:351493",
+      "title": "Principal Technical Program Manager",
+      "location": "BENGALURU, KARNATAKA, India",
+      "reasons": [
+        "title match (+25)",
+        "staff or principal (+25)",
+        "excluded location: BENGALURU, KARNATAKA, India (-60)"
       ],
       "score": 0
     },
@@ -1017,17 +1072,6 @@
       "score": 0
     },
     {
-      "key": "microsoft:microsoft:1970393557074212",
-      "title": "Senior Technical Program Manager",
-      "location": "India, Telangana, Hyderabad",
-      "reasons": [
-        "title match (+25)",
-        "senior tpm (+20)",
-        "excluded location: India, Telangana, Hyderabad (-60)"
-      ],
-      "score": 0
-    },
-    {
       "key": "microsoft:microsoft:1970393557054007",
       "title": "Senior Silicon Technical Program Manager",
       "location": "India, Karnataka, Bangalore",
@@ -1039,25 +1083,11 @@
       "score": 0
     },
     {
-      "key": "microsoft:microsoft:1970393557051395",
-      "title": "Principal Datacenter Engineering Lease Program Manager",
-      "location": "Singapore, Singapore, Singapore | India, Telangana, Hyderabad",
+      "key": "arbeitnow:Alta Ares:pmo-manufacturing-h-f-blagnac-91268",
+      "title": "PMO (Manufacturing) H/F",
+      "location": "Toulouse",
       "reasons": [
-        "broader responsibility match; needs profile assessment",
-        "title match (+25)",
-        "staff or principal (+25)",
-        "excluded location: Singapore, Singapore, Singapore | India, Telangana, Hyderabad (-60)"
-      ],
-      "score": 0
-    },
-    {
-      "key": "microsoft:microsoft:1970393557051396",
-      "title": "Datacenter Engineering Lease Program Manager",
-      "location": "Singapore, Singapore, Singapore | Australia, New South Wales, Sydney",
-      "reasons": [
-        "broader responsibility match; needs profile assessment",
-        "title match (+25)",
-        "excluded location: Singapore, Singapore, Singapore | Australia, New South Wales, Sydney (-60)"
+        "no title match"
       ],
       "score": 0
     },
@@ -1147,6 +1177,46 @@
         "level not in title; needs profile assessment",
         "title match (+25)",
         "excluded location: Shanghai, China (-60)"
+      ],
+      "score": 0
+    },
+    {
+      "key": "greenhouse:amca:4253815009",
+      "title": "Program Management Internship, Business Operations (Summer 2027)",
+      "location": "El Segundo, CA",
+      "reasons": [
+        "excluded: title matches junior/intern/etc."
+      ],
+      "score": 0
+    },
+    {
+      "key": "greenhouse:atoms:8767720002",
+      "title": "Senior Program Manager - Hardware Issue Management",
+      "location": "San Francisco, CA",
+      "reasons": [
+        "no title match"
+      ],
+      "score": 0
+    },
+    {
+      "key": "greenhouse:ethoslife:8294196002",
+      "title": "Staff Technical Program Manager",
+      "location": "Bangalore, India",
+      "reasons": [
+        "title match (+25)",
+        "staff or principal (+25)",
+        "excluded location: Bangalore, India (-60)"
+      ],
+      "score": 0
+    },
+    {
+      "key": "greenhouse:ethoslife:8820242002",
+      "title": "Technical Program Manager",
+      "location": "Bangalore, India",
+      "reasons": [
+        "level not in title; needs profile assessment",
+        "title match (+25)",
+        "excluded location: Bangalore, India (-60)"
       ],
       "score": 0
     },
@@ -1268,64 +1338,6 @@
       "score": 0
     },
     {
-      "key": "greenhouse:amca:4253815009",
-      "title": "Program Management Internship, Business Operations (Summer 2027)",
-      "location": "El Segundo, CA",
-      "reasons": [
-        "excluded: title matches junior/intern/etc."
-      ],
-      "score": 0
-    },
-    {
-      "key": "workday:bostondynamics:/job/Waltham-Office-POST/Senior-Field-Application-Engineer_R2934",
-      "title": "Technical Project Manager (TPM), Partner Ecosystems and Integration - French Speaking",
-      "location": "Waltham Office (POST)",
-      "reasons": [
-        "no title match"
-      ],
-      "score": 0
-    },
-    {
-      "key": "greenhouse:atoms:8767720002",
-      "title": "Senior Program Manager - Hardware Issue Management",
-      "location": "San Francisco, CA",
-      "reasons": [
-        "no title match"
-      ],
-      "score": 0
-    },
-    {
-      "key": "greenhouse:ethoslife:8294196002",
-      "title": "Staff Technical Program Manager",
-      "location": "Bangalore, India",
-      "reasons": [
-        "title match (+25)",
-        "staff or principal (+25)",
-        "excluded location: Bangalore, India (-60)"
-      ],
-      "score": 0
-    },
-    {
-      "key": "greenhouse:ethoslife:8820242002",
-      "title": "Technical Program Manager",
-      "location": "Bangalore, India",
-      "reasons": [
-        "level not in title; needs profile assessment",
-        "title match (+25)",
-        "excluded location: Bangalore, India (-60)"
-      ],
-      "score": 0
-    },
-    {
-      "key": "ashby:base-power:c6228333-5f84-4363-9a3a-fd1dfb8ad1a2",
-      "title": "Hardware Technical Program Management Intern",
-      "location": "Austin, TX, Texas, United States",
-      "reasons": [
-        "excluded: title matches junior/intern/etc."
-      ],
-      "score": 0
-    },
-    {
       "key": "ashby:skydio:14f9203f-99ac-4049-a11c-b062806bd85c",
       "title": "Head of Material Program Management & Procurement",
       "location": "Hayward, California, United States",
@@ -1335,11 +1347,11 @@
       "score": 0
     },
     {
-      "key": "ashby:osmo:64356bd6-0598-40d0-b068-7e7f5b3143f0",
-      "title": "Software, TPM",
-      "location": "Remote; Elizabeth, NJ, New Jersey, United States",
+      "key": "ashby:base-power:c6228333-5f84-4363-9a3a-fd1dfb8ad1a2",
+      "title": "Hardware Technical Program Management Intern",
+      "location": "Austin, TX, Texas, United States",
       "reasons": [
-        "no title match"
+        "excluded: title matches junior/intern/etc."
       ],
       "score": 0
     },
@@ -1389,6 +1401,15 @@
       "score": 0
     },
     {
+      "key": "ashby:osmo:64356bd6-0598-40d0-b068-7e7f5b3143f0",
+      "title": "Software, TPM",
+      "location": "Remote; Elizabeth, NJ, New Jersey, United States",
+      "reasons": [
+        "no title match"
+      ],
+      "score": 0
+    },
+    {
       "key": "greenhouse:altentechnologyusa:5232729007",
       "title": "Program /Project Management- Quality Specialist",
       "location": "Auburn Hills, Michigan, United States",
@@ -1403,6 +1424,15 @@
       "location": "Palo Alto, California, United States",
       "reasons": [
         "no title match"
+      ],
+      "score": 0
+    },
+    {
+      "key": "workday:comcast:/job/PA---Philadelphia-1701-John-F-Kennedy-Blvd/Sr-Director--Program-Management---Early-Career---Rotational-Programming_R446718-1",
+      "title": "Sr Director, Program Management - Early Career & Rotational Programming",
+      "location": "PA - Philadelphia, 1701 John F Kennedy Blvd",
+      "reasons": [
+        "excluded: title matches junior/intern/etc."
       ],
       "score": 0
     },
@@ -1460,6 +1490,15 @@
       "score": 0
     },
     {
+      "key": "workday:toyota:/job/Plano-Texas/Analyst-II---Project-Program-Management_10340486",
+      "title": "Analyst II - Project/Program Management",
+      "location": "Plano, Texas",
+      "reasons": [
+        "no title match"
+      ],
+      "score": 0
+    },
+    {
       "key": "greenhouse:umt:8535992002",
       "title": "Program Management",
       "location": "Brooklyn, New York",
@@ -1469,20 +1508,46 @@
       "score": 0
     },
     {
-      "key": "workday:quantiphi:/job/Canada---Remote/TPM-RTE---French_JR10845",
-      "title": "TPM/RTE - French",
-      "location": "Canada - Remote",
+      "key": "workday:jiostar:/job/Bengaluru--We-Work/Director---Technical-Program-Management_JR11960-1",
+      "title": "Director - Technical Program Management",
+      "location": "Bengaluru- We Work",
       "reasons": [
-        "no title match"
+        "title match (+25)",
+        "director (+35)",
+        "excluded location: Bengaluru- We Work (-60)"
       ],
       "score": 0
     },
     {
-      "key": "ashby:illumio:c7efc869-b5da-48ca-a6ce-defc15525a34",
-      "title": "Technical Program Manager Intern",
-      "location": "Sunnyvale, California - HQ, United States",
+      "key": "workday:jiostar:/job/Bengaluru--We-Work/Staff-Technical-Program-Manager_JR12013",
+      "title": "Staff Technical Program Manager",
+      "location": "Bengaluru- We Work",
       "reasons": [
-        "excluded: title matches junior/intern/etc."
+        "title match (+25)",
+        "staff or principal (+25)",
+        "excluded location: Bengaluru- We Work (-60)"
+      ],
+      "score": 0
+    },
+    {
+      "key": "workday:jiostar:/job/Bengaluru--We-Work/Senior-Staff-Technical-Program-Manager--Video-Engineering-_JR10043",
+      "title": "Senior Staff Technical Program Manager",
+      "location": "Bengaluru- We Work",
+      "reasons": [
+        "title match (+25)",
+        "staff or principal (+25)",
+        "excluded location: Bengaluru- We Work (-60)"
+      ],
+      "score": 0
+    },
+    {
+      "key": "workday:jiostar:/job/Bengaluru--We-Work/Staff-Technical-Program-Manager_JR12015",
+      "title": "Senior Staff Technical Program Manager",
+      "location": "Bengaluru- We Work",
+      "reasons": [
+        "title match (+25)",
+        "staff or principal (+25)",
+        "excluded location: Bengaluru- We Work (-60)"
       ],
       "score": 0
     },
@@ -1541,62 +1606,9 @@
       "score": 0
     },
     {
-      "key": "workday:toyota:/job/Plano-Texas/Analyst-II---Project-Program-Management_10340486",
-      "title": "Analyst II - Project/Program Management",
-      "location": "Plano, Texas",
-      "reasons": [
-        "no title match"
-      ],
-      "score": 0
-    },
-    {
-      "key": "workday:jiostar:/job/Bengaluru--We-Work/Director---Technical-Program-Management_JR11960-1",
-      "title": "Director - Technical Program Management",
-      "location": "Bengaluru- We Work",
-      "reasons": [
-        "title match (+25)",
-        "director (+35)",
-        "excluded location: Bengaluru- We Work (-60)"
-      ],
-      "score": 0
-    },
-    {
-      "key": "workday:jiostar:/job/Bengaluru--We-Work/Staff-Technical-Program-Manager_JR12013",
-      "title": "Staff Technical Program Manager",
-      "location": "Bengaluru- We Work",
-      "reasons": [
-        "title match (+25)",
-        "staff or principal (+25)",
-        "excluded location: Bengaluru- We Work (-60)"
-      ],
-      "score": 0
-    },
-    {
-      "key": "workday:jiostar:/job/Bengaluru--We-Work/Senior-Staff-Technical-Program-Manager--Video-Engineering-_JR10043",
-      "title": "Senior Staff Technical Program Manager",
-      "location": "Bengaluru- We Work",
-      "reasons": [
-        "title match (+25)",
-        "staff or principal (+25)",
-        "excluded location: Bengaluru- We Work (-60)"
-      ],
-      "score": 0
-    },
-    {
-      "key": "workday:jiostar:/job/Bengaluru--We-Work/Staff-Technical-Program-Manager_JR12015",
-      "title": "Senior Staff Technical Program Manager",
-      "location": "Bengaluru- We Work",
-      "reasons": [
-        "title match (+25)",
-        "staff or principal (+25)",
-        "excluded location: Bengaluru- We Work (-60)"
-      ],
-      "score": 0
-    },
-    {
-      "key": "workday:comcast:/job/PA---Philadelphia-1701-John-F-Kennedy-Blvd/Sr-Director--Program-Management---Early-Career---Rotational-Programming_R446718-1",
-      "title": "Sr Director, Program Management - Early Career & Rotational Programming",
-      "location": "PA - Philadelphia, 1701 John F Kennedy Blvd",
+      "key": "ashby:illumio:c7efc869-b5da-48ca-a6ce-defc15525a34",
+      "title": "Technical Program Manager Intern",
+      "location": "Sunnyvale, California - HQ, United States",
       "reasons": [
         "excluded: title matches junior/intern/etc."
       ],
@@ -1606,7 +1618,7 @@
   "incomplete_sources": [
     {
       "source": "workday",
-      "label": "nvidia",
+      "label": "intel",
       "status": "failed",
       "jobs": 0,
       "reported_total": null,
@@ -1617,25 +1629,14 @@
     },
     {
       "source": "workday",
-      "label": "capitalone",
+      "label": "cisco",
       "status": "failed",
       "jobs": 0,
       "reported_total": null,
       "collected": 0,
       "pages": 0,
       "enumeration_complete": false,
-      "query": "program manager"
-    },
-    {
-      "source": "workday",
-      "label": "salesforce",
-      "status": "failed",
-      "jobs": 0,
-      "reported_total": null,
-      "collected": 0,
-      "pages": 0,
-      "enumeration_complete": false,
-      "query": "technical program manager"
+      "query": "program management leader"
     },
     {
       "source": "workday",
@@ -1650,64 +1651,359 @@
     },
     {
       "source": "workday",
-      "label": "adobe",
-      "status": "partial",
-      "jobs": 20,
-      "reported_total": 264,
-      "collected": 20,
-      "pages": 1,
-      "enumeration_complete": false,
-      "query": "program manager"
-    },
-    {
-      "source": "workday",
       "label": "cisco",
       "status": "partial",
-      "jobs": 60,
-      "reported_total": 161,
-      "collected": 60,
-      "pages": 3,
+      "jobs": 20,
+      "reported_total": 158,
+      "collected": 20,
+      "pages": 1,
       "enumeration_complete": false,
       "query": "technical program manager"
     },
     {
       "source": "workday",
-      "label": "intel",
+      "label": "capitalone",
       "status": "partial",
-      "jobs": 20,
-      "reported_total": 730,
-      "collected": 20,
-      "pages": 1,
+      "jobs": 80,
+      "reported_total": 938,
+      "collected": 80,
+      "pages": 4,
       "enumeration_complete": false,
       "query": "program manager"
     },
     {
       "source": "workday",
-      "label": "cisco",
+      "label": "salesforce",
       "status": "partial",
-      "jobs": 60,
-      "reported_total": 325,
-      "collected": 60,
-      "pages": 3,
+      "jobs": 40,
+      "reported_total": 288,
+      "collected": 40,
+      "pages": 2,
       "enumeration_complete": false,
-      "query": "program management leader"
+      "query": "technical program manager"
     },
     {
-      "source": "netflix",
-      "label": "program manager",
-      "status": "failed",
-      "jobs": 0
+      "source": "workday",
+      "label": "adobe",
+      "status": "partial",
+      "jobs": 40,
+      "reported_total": 268,
+      "collected": 40,
+      "pages": 2,
+      "enumeration_complete": false,
+      "query": "program manager"
+    },
+    {
+      "source": "workday",
+      "label": "nvidia",
+      "status": "partial",
+      "jobs": 40,
+      "reported_total": 760,
+      "collected": 40,
+      "pages": 2,
+      "enumeration_complete": false,
+      "query": "program manager"
     },
     {
       "source": "microsoft",
       "label": "{'query': '', 'filters': {'career_discipline': ['Technical Program Management']}}",
       "status": "partial",
       "jobs": 50,
-      "reported_total": 94,
+      "reported_total": 97,
       "collected": 50,
       "pages": 5,
       "enumeration_complete": false,
       "query": ""
+    },
+    {
+      "source": "web_search",
+      "query": "\"Vice President of Project Management\" \"Babcock Power Services\" careers",
+      "status": "failed"
+    },
+    {
+      "source": "web_search",
+      "query": "\"Director, Data Platform\" \"Visa\" careers",
+      "status": "failed"
+    },
+    {
+      "source": "web_search",
+      "query": "\"Director, Engineering\" \"Everlaw\" careers",
+      "status": "failed"
+    },
+    {
+      "source": "web_search",
+      "query": "\"Strategic Management, Sr. Staff\" \"Synopsys Inc\" careers",
+      "status": "failed"
+    },
+    {
+      "source": "web_search",
+      "query": "\"Technical Program Manager, Quantum Technology\" \"Applied Materials\" careers",
+      "status": "failed"
+    },
+    {
+      "source": "web_search",
+      "query": "\"Chief of Staff to the CFO\" \"CoreWeave\" careers",
+      "status": "failed"
+    },
+    {
+      "source": "web_search",
+      "query": "\"Head of Strategic Programs Operations\" \"Wiz (a Google Company)\" careers",
+      "status": "failed"
+    },
+    {
+      "source": "web_search",
+      "query": "\"Vice President, Program Management - Custom Silicon\" \"Marvell Technology\" careers",
+      "status": "failed"
+    },
+    {
+      "source": "web_search",
+      "query": "\"Manager, Product Program Management\" \"Anthropic\" careers",
+      "status": "failed"
+    },
+    {
+      "source": "web_search",
+      "query": "\"Technical Program Manager\" \"Berkshire Grey\" careers",
+      "status": "failed"
+    },
+    {
+      "source": "web_search",
+      "query": "\"Program Manager, People Innovation Labs\" \"OpenAI\" careers",
+      "status": "failed"
+    },
+    {
+      "source": "web_search",
+      "query": "\"Sr. AI Program Manager\" \"Medtronic\" careers",
+      "status": "failed"
+    },
+    {
+      "source": "web_search",
+      "query": "\"Senior Technical Project Manager \u2013 Developer Programs\" \"NVIDIA\" careers",
+      "status": "failed"
+    },
+    {
+      "source": "web_search",
+      "query": "\"Senior Technical Program Manager \u2013 AI Solution Delivery\" \"Lenovo\" careers",
+      "status": "failed"
+    },
+    {
+      "source": "web_search",
+      "query": "\"Senior Principal, Engineering Strategy & Execution\" \"Atlassian\" careers",
+      "status": "failed"
+    },
+    {
+      "source": "web_search",
+      "query": "\"Technical Program Manager, Compute\" \"Anthropic\" careers",
+      "status": "failed"
+    },
+    {
+      "source": "web_search",
+      "query": "\"Technical Program Manager, Storage & Data Infrastructure\" \"OpenAI\" careers",
+      "status": "failed"
+    },
+    {
+      "source": "web_search",
+      "query": "\"Principal Tech Program Manager, AWS Builder Acceleration\" \"Amazon Web Services (AWS)\" careers",
+      "status": "failed"
+    },
+    {
+      "source": "web_search",
+      "query": "\"Senior Director, PMO, Strategic Projects (Remote, US)\" \"Renew Home\" careers",
+      "status": "failed"
+    },
+    {
+      "source": "web_search",
+      "query": "\"VP, PMO\" \"Western Union\" careers",
+      "status": "failed"
+    },
+    {
+      "source": "web_search",
+      "query": "\"Director, Technical Program Management (Ranking AI)\" \"Meta\" careers",
+      "status": "failed"
+    },
+    {
+      "source": "web_search",
+      "query": "\"Senior Director, Technical Program Management\" \"Oracle\" careers",
+      "status": "failed"
+    },
+    {
+      "source": "web_search",
+      "query": "\"Senior Vice President of Project Delivery\" \"Stonegate Capital Group\" careers",
+      "status": "failed"
+    },
+    {
+      "source": "web_search",
+      "query": "\"Enterprise Transformation (Program Delivery), Transformation Director - Managing Director\" \"State Street\" careers",
+      "status": "failed"
+    },
+    {
+      "source": "web_search",
+      "query": "\"Director, Strategic Engineering Programs\" \"Aptiv\" careers",
+      "status": "failed"
+    },
+    {
+      "source": "web_search",
+      "query": "\"Director, Creative Operations\" \"Chewy\" careers",
+      "status": "failed"
+    },
+    {
+      "source": "web_search",
+      "query": "\"Director, Project Management\" \"Madrigal Pharmaceuticals\" careers",
+      "status": "failed"
+    },
+    {
+      "source": "web_search",
+      "query": "\"Portfolio Leader (Manager/Director Levels)\" \"Salesforce\" careers",
+      "status": "failed"
+    },
+    {
+      "source": "web_search",
+      "query": "\"SIP Project Director\" \"UMass Boston\" careers",
+      "status": "failed"
+    },
+    {
+      "source": "web_search",
+      "query": "\"Head of Operations\" \"Seek First\" careers",
+      "status": "failed"
+    },
+    {
+      "source": "web_search",
+      "query": "\"Chief of Staff\" \"Morpheus Talent Solutions\" careers",
+      "status": "failed"
+    },
+    {
+      "source": "web_search",
+      "query": "\"Director Global Expansion PMO\" \"Intuitive\" careers",
+      "status": "failed"
+    },
+    {
+      "source": "web_search",
+      "query": "\"Principal, Strategy and Operations Manager - GBSG U.S. Marketing\" \"Intuit\" careers",
+      "status": "failed"
+    },
+    {
+      "source": "web_search",
+      "query": "\"4492395848\" job careers",
+      "status": "failed"
+    },
+    {
+      "source": "web_search",
+      "query": "\"Vice President, AI Business Operations Transformation (Hybrid)\" \"Broadridge\" careers",
+      "status": "failed"
+    },
+    {
+      "source": "web_search",
+      "query": "\"Director, Engineering - Autonomous Vehicles\" \"NVIDIA\" careers",
+      "status": "failed"
+    },
+    {
+      "source": "web_search",
+      "query": "\"(USA) Group Director, Software Engineering\" \"Walmart\" careers",
+      "status": "failed"
+    },
+    {
+      "source": "web_search",
+      "query": "\"Technical Program/Project Management V (E5)\" \"Applied Materials\" careers",
+      "status": "failed"
+    },
+    {
+      "source": "web_search",
+      "query": "\"Senior Staff Technical Program Manager, Custom Silicon\" \"Google\" careers",
+      "status": "failed"
+    },
+    {
+      "source": "web_search",
+      "query": "\"VP, Tech Programs & Operations Modernization\" \"Synchrony\" careers",
+      "status": "failed"
+    },
+    {
+      "source": "web_search",
+      "query": "\"Sr, Director - Technical Project / Program Management\" \"Applied Materials\" careers",
+      "status": "failed"
+    },
+    {
+      "source": "web_search",
+      "query": "\"(USA) Principal, Technical Program Manager\" \"Walmart\" careers",
+      "status": "failed"
+    },
+    {
+      "source": "web_search",
+      "query": "\"Principal Program Manager\" \"Snowflake\" careers",
+      "status": "failed"
+    },
+    {
+      "source": "web_search",
+      "query": "\"Principal Technical Program Manager\" \"Nike\" careers",
+      "status": "failed"
+    },
+    {
+      "source": "web_search",
+      "query": "\"Technical Program Manager, Merchant Shopping\" \"Google\" careers",
+      "status": "failed"
+    },
+    {
+      "source": "web_search",
+      "query": "\"Program Director\" \"Olympus Corporation\" careers",
+      "status": "failed"
+    },
+    {
+      "source": "web_search",
+      "query": "\"Director, Technology Solutions\" \"Humana\" careers",
+      "status": "failed"
+    },
+    {
+      "source": "web_search",
+      "query": "\"Principal, Engineering Strategy & Operations\" \"Symbotic\" careers",
+      "status": "failed"
+    },
+    {
+      "source": "web_search",
+      "query": "\"Director, Program on Emerging Technology, Scientific Advancement & Global Policy\" \"Harvard Kennedy School\" careers",
+      "status": "failed"
+    },
+    {
+      "source": "web_search",
+      "query": "\"Director, IT Portfolio Governance and Vendor Management (Hybrid)\" \"Eversource Energy\" careers",
+      "status": "failed"
+    },
+    {
+      "source": "web_search",
+      "query": "\"Principal Technical Program Manager\" \"Ladders\" careers",
+      "status": "failed"
+    },
+    {
+      "source": "web_search",
+      "query": "\"Senior Manager, Project/Program (Info Systems) Management\" \"TalentHop\" careers",
+      "status": "failed"
+    },
+    {
+      "source": "web_search",
+      "query": "\"Program Manager\" \"Haystack\" careers",
+      "status": "failed"
+    },
+    {
+      "source": "web_search",
+      "query": "\"(USA) Group Director, Technical Program Management\" \"Ladders\" careers",
+      "status": "failed"
+    },
+    {
+      "source": "web_search",
+      "query": "\"Director, Technical Program Management (Remote-Eligible)\" \"Ladders\" careers",
+      "status": "failed"
+    },
+    {
+      "source": "web_search",
+      "query": "\"Executive Vice President of Project Management\" \"Prophecy Capital Group\" careers",
+      "status": "failed"
+    },
+    {
+      "source": "web_search",
+      "query": "\"Director, Technical Program Management\" \"Instacart\" careers",
+      "status": "failed"
+    },
+    {
+      "source": "web_search",
+      "query": "\"Senior Director, Enterprise PMO & DSPS\" \"Johnson & Johnson MedTech\" careers",
+      "status": "failed"
     },
     {
       "source": "harmonic_employer",
@@ -1764,9 +2060,9 @@
       "url": "https://jobs.a16z.com/jobs",
       "status": "partial",
       "leads": 27,
-      "employers_found": 22,
+      "employers_found": 21,
       "employers_checked": 8,
-      "deferred": 14,
+      "deferred": 13,
       "unresolved": 6,
       "listing_failures": 0
     },
@@ -1788,9 +2084,9 @@
       "url": "https://greylock.com/jobs/portfolio-jobs/",
       "status": "partial",
       "leads": 21,
-      "employers_found": 42,
+      "employers_found": 51,
       "employers_checked": 8,
-      "deferred": 34,
+      "deferred": 43,
       "unresolved": 8,
       "listing_failures": 0
     },
@@ -1799,11 +2095,11 @@
       "label": "Y Combinator startup discovery",
       "url": "https://www.ycombinator.com/jobs/role/operations",
       "status": "partial",
-      "leads": 1,
-      "employers_found": 58,
+      "leads": 2,
+      "employers_found": 57,
       "employers_checked": 8,
-      "deferred": 50,
-      "unresolved": 7,
+      "deferred": 49,
+      "unresolved": 6,
       "listing_failures": 0
     },
     {
@@ -1912,22 +2208,215 @@
       "source": "linkedin_email",
       "label": "LinkedIn job-alert emails",
       "status": "partial",
-      "jobs": 1310,
-      "messages_checked": 0,
-      "alerts_with_jobs": 0,
-      "job_references_found": 0,
+      "jobs": 1341,
+      "messages_checked": 11,
+      "alerts_with_jobs": 10,
+      "job_references_found": 60,
       "failed_messages": 0,
       "alerts_without_job_links": 0,
       "messages_deferred": 0,
       "unresolved_alert_messages": 26,
       "lookback_days": 14,
       "mode": "incremental",
-      "search_since": "2026-11-24T06:31:02.938295+00:00",
+      "search_since": "2026-11-24T07:00:57.117719+00:00",
       "last_success_at": null
+    },
+    {
+      "source": "lever",
+      "label": "{\"config\": \"InfrastructureandCapitalProjects\", \"source\": \"lever\"}",
+      "status": "failed",
+      "jobs": 0
+    },
+    {
+      "source": "workday",
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"f5jobs\", \"tenant\": \"ffive\", \"wd_server\": \"wd5\"}, \"source\": \"workday\"}",
+      "status": "failed",
+      "jobs": 0,
+      "reported_total": null,
+      "collected": 0,
+      "pages": 0,
+      "enumeration_complete": false,
+      "query": "program"
+    },
+    {
+      "source": "workday",
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"Northrop_Grumman_External_Site\", \"tenant\": \"ngc\", \"wd_server\": \"wd1\"}, \"source\": \"workday\"}",
+      "status": "failed",
+      "jobs": 0,
+      "reported_total": null,
+      "collected": 0,
+      "pages": 0,
+      "enumeration_complete": false,
+      "query": "program"
+    },
+    {
+      "source": "workday",
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"EXTERNAL\", \"tenant\": \"insmed\", \"wd_server\": \"wd504\"}, \"source\": \"workday\"}",
+      "status": "failed",
+      "jobs": 0,
+      "reported_total": null,
+      "collected": 0,
+      "pages": 0,
+      "enumeration_complete": false,
+      "query": "program"
+    },
+    {
+      "source": "workday",
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"Vantor\", \"tenant\": \"maxar\", \"wd_server\": \"wd1\"}, \"source\": \"workday\"}",
+      "status": "failed",
+      "jobs": 0,
+      "reported_total": null,
+      "collected": 0,
+      "pages": 0,
+      "enumeration_complete": false,
+      "query": "program"
+    },
+    {
+      "source": "workday",
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"Global\", \"tenant\": \"statestreet\", \"wd_server\": \"wd1\"}, \"source\": \"workday\"}",
+      "status": "failed",
+      "jobs": 0,
+      "reported_total": null,
+      "collected": 0,
+      "pages": 0,
+      "enumeration_complete": false,
+      "query": "program"
+    },
+    {
+      "source": "workday",
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"careers\", \"tenant\": \"mymoose\", \"wd_server\": \"wd1\"}, \"source\": \"workday\"}",
+      "status": "failed",
+      "jobs": 0,
+      "reported_total": null,
+      "collected": 0,
+      "pages": 0,
+      "enumeration_complete": false,
+      "query": "program"
+    },
+    {
+      "source": "workday",
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"Careers\", \"tenant\": \"flextronics\", \"wd_server\": \"wd1\"}, \"source\": \"workday\"}",
+      "status": "failed",
+      "jobs": 0,
+      "reported_total": null,
+      "collected": 0,
+      "pages": 0,
+      "enumeration_complete": false,
+      "query": "program"
+    },
+    {
+      "source": "workday",
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"carboncareers\", \"tenant\": \"carbon\", \"wd_server\": \"wd504\"}, \"source\": \"workday\"}",
+      "status": "failed",
+      "jobs": 0,
+      "reported_total": null,
+      "collected": 0,
+      "pages": 0,
+      "enumeration_complete": false,
+      "query": "program"
+    },
+    {
+      "source": "workday",
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"search\", \"tenant\": \"expedia\", \"wd_server\": \"wd108\"}, \"source\": \"workday\"}",
+      "status": "failed",
+      "jobs": 0,
+      "reported_total": null,
+      "collected": 0,
+      "pages": 0,
+      "enumeration_complete": false,
+      "query": "program"
     },
     {
       "source": "workday",
       "label": "{\"config\": {\"search\": \"program\", \"site\": \"Workday\", \"tenant\": \"workday\", \"wd_server\": \"wd5\"}, \"source\": \"workday\"}",
+      "status": "failed",
+      "jobs": 0,
+      "reported_total": null,
+      "collected": 0,
+      "pages": 0,
+      "enumeration_complete": false,
+      "query": "program"
+    },
+    {
+      "source": "workday",
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"broadbean_external\", \"tenant\": \"astrazeneca\", \"wd_server\": \"wd3\"}, \"source\": \"workday\"}",
+      "status": "failed",
+      "jobs": 0,
+      "reported_total": null,
+      "collected": 0,
+      "pages": 0,
+      "enumeration_complete": false,
+      "query": "program"
+    },
+    {
+      "source": "workday",
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"entegriscareers\", \"tenant\": \"entegris\", \"wd_server\": \"wd1\"}, \"source\": \"workday\"}",
+      "status": "failed",
+      "jobs": 0,
+      "reported_total": null,
+      "collected": 0,
+      "pages": 0,
+      "enumeration_complete": false,
+      "query": "program"
+    },
+    {
+      "source": "workday",
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"Search\", \"tenant\": \"kla\", \"wd_server\": \"wd1\"}, \"source\": \"workday\"}",
+      "status": "failed",
+      "jobs": 0,
+      "reported_total": null,
+      "collected": 0,
+      "pages": 0,
+      "enumeration_complete": false,
+      "query": "program"
+    },
+    {
+      "source": "workday",
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"CorporateCareers\", \"tenant\": \"mastercard\", \"wd_server\": \"wd1\"}, \"source\": \"workday\"}",
+      "status": "failed",
+      "jobs": 0,
+      "reported_total": null,
+      "collected": 0,
+      "pages": 0,
+      "enumeration_complete": false,
+      "query": "program"
+    },
+    {
+      "source": "workday",
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"External\", \"tenant\": \"amat\", \"wd_server\": \"wd1\"}, \"source\": \"workday\"}",
+      "status": "failed",
+      "jobs": 0,
+      "reported_total": null,
+      "collected": 0,
+      "pages": 0,
+      "enumeration_complete": false,
+      "query": "program"
+    },
+    {
+      "source": "workday",
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"Boston_Dynamics\", \"tenant\": \"bostondynamics\", \"wd_server\": \"wd1\"}, \"source\": \"workday\"}",
+      "status": "failed",
+      "jobs": 0,
+      "reported_total": null,
+      "collected": 0,
+      "pages": 0,
+      "enumeration_complete": false,
+      "query": "program"
+    },
+    {
+      "source": "workday",
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"CengageNorthAmericaCareers\", \"tenant\": \"cengage\", \"wd_server\": \"wd5\"}, \"source\": \"workday\"}",
+      "status": "failed",
+      "jobs": 0,
+      "reported_total": null,
+      "collected": 0,
+      "pages": 0,
+      "enumeration_complete": false,
+      "query": "program"
+    },
+    {
+      "source": "workday",
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"Novartis_Careers\", \"tenant\": \"novartis\", \"wd_server\": \"wd3\"}, \"source\": \"workday\"}",
       "status": "failed",
       "jobs": 0,
       "reported_total": null,
@@ -1960,40 +2449,7 @@
     },
     {
       "source": "workday",
-      "label": "{\"config\": {\"search\": \"program\", \"site\": \"Search\", \"tenant\": \"kla\", \"wd_server\": \"wd1\"}, \"source\": \"workday\"}",
-      "status": "failed",
-      "jobs": 0,
-      "reported_total": null,
-      "collected": 0,
-      "pages": 0,
-      "enumeration_complete": false,
-      "query": "program"
-    },
-    {
-      "source": "workday",
-      "label": "{\"config\": {\"search\": \"program\", \"site\": \"entegriscareers\", \"tenant\": \"entegris\", \"wd_server\": \"wd1\"}, \"source\": \"workday\"}",
-      "status": "failed",
-      "jobs": 0,
-      "reported_total": null,
-      "collected": 0,
-      "pages": 0,
-      "enumeration_complete": false,
-      "query": "program"
-    },
-    {
-      "source": "workday",
       "label": "{\"config\": {\"search\": \"program\", \"site\": \"external\", \"tenant\": \"wgu\", \"wd_server\": \"wd5\"}, \"source\": \"workday\"}",
-      "status": "failed",
-      "jobs": 0,
-      "reported_total": null,
-      "collected": 0,
-      "pages": 0,
-      "enumeration_complete": false,
-      "query": "program"
-    },
-    {
-      "source": "workday",
-      "label": "{\"config\": {\"search\": \"program\", \"site\": \"CengageNorthAmericaCareers\", \"tenant\": \"cengage\", \"wd_server\": \"wd5\"}, \"source\": \"workday\"}",
       "status": "failed",
       "jobs": 0,
       "reported_total": null,
@@ -2015,18 +2471,7 @@
     },
     {
       "source": "workday",
-      "label": "{\"config\": {\"search\": \"program\", \"site\": \"GLOBAL\", \"tenant\": \"kimberlyclark\", \"wd_server\": \"wd1\"}, \"source\": \"workday\"}",
-      "status": "failed",
-      "jobs": 0,
-      "reported_total": null,
-      "collected": 0,
-      "pages": 0,
-      "enumeration_complete": false,
-      "query": "program"
-    },
-    {
-      "source": "workday",
-      "label": "{\"config\": {\"search\": \"program\", \"site\": \"External\", \"tenant\": \"amat\", \"wd_server\": \"wd1\"}, \"source\": \"workday\"}",
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"shicareers\", \"tenant\": \"shi\", \"wd_server\": \"wd12\"}, \"source\": \"workday\"}",
       "status": "failed",
       "jobs": 0,
       "reported_total": null,
@@ -2048,7 +2493,7 @@
     },
     {
       "source": "workday",
-      "label": "{\"config\": {\"search\": \"program\", \"site\": \"careers\", \"tenant\": \"gogo\", \"wd_server\": \"wd1\"}, \"source\": \"workday\"}",
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"GLOBAL\", \"tenant\": \"kimberlyclark\", \"wd_server\": \"wd1\"}, \"source\": \"workday\"}",
       "status": "failed",
       "jobs": 0,
       "reported_total": null,
@@ -2059,7 +2504,7 @@
     },
     {
       "source": "workday",
-      "label": "{\"config\": {\"search\": \"program\", \"site\": \"Careers\", \"tenant\": \"motorolasolutions\", \"wd_server\": \"wd5\"}, \"source\": \"workday\"}",
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"careers\", \"tenant\": \"gogo\", \"wd_server\": \"wd1\"}, \"source\": \"workday\"}",
       "status": "failed",
       "jobs": 0,
       "reported_total": null,
@@ -2081,12 +2526,12 @@
     },
     {
       "source": "workday",
-      "label": "{\"config\": {\"search\": \"program\", \"site\": \"search\", \"tenant\": \"expedia\", \"wd_server\": \"wd108\"}, \"source\": \"workday\"}",
-      "status": "partial",
-      "jobs": 40,
-      "reported_total": 100,
-      "collected": 40,
-      "pages": 2,
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"Careers\", \"tenant\": \"motorolasolutions\", \"wd_server\": \"wd5\"}, \"source\": \"workday\"}",
+      "status": "failed",
+      "jobs": 0,
+      "reported_total": null,
+      "collected": 0,
+      "pages": 0,
       "enumeration_complete": false,
       "query": "program"
     },
@@ -2098,34 +2543,12 @@
     },
     {
       "source": "workday",
-      "label": "{\"config\": {\"search\": \"program\", \"site\": \"gocjobs\", \"tenant\": \"google\", \"wd_server\": \"wd501\"}, \"source\": \"workday\"}",
-      "status": "partial",
-      "jobs": 40,
-      "reported_total": 48,
-      "collected": 40,
-      "pages": 2,
-      "enumeration_complete": false,
-      "query": "program"
-    },
-    {
-      "source": "workday",
       "label": "{\"config\": {\"search\": \"program\", \"site\": \"FINC\", \"tenant\": \"finastra\", \"wd_server\": \"wd3\"}, \"source\": \"workday\"}",
       "status": "failed",
       "jobs": 0,
       "reported_total": null,
       "collected": 0,
       "pages": 0,
-      "enumeration_complete": false,
-      "query": "program"
-    },
-    {
-      "source": "workday",
-      "label": "{\"config\": {\"search\": \"program\", \"site\": \"Boston_Dynamics\", \"tenant\": \"bostondynamics\", \"wd_server\": \"wd1\"}, \"source\": \"workday\"}",
-      "status": "partial",
-      "jobs": 20,
-      "reported_total": 40,
-      "collected": 20,
-      "pages": 1,
       "enumeration_complete": false,
       "query": "program"
     },
@@ -2141,17 +2564,6 @@
       "query": "program"
     },
     {
-      "source": "workday",
-      "label": "{\"config\": {\"search\": \"program\", \"site\": \"CorporateCareers\", \"tenant\": \"mastercard\", \"wd_server\": \"wd1\"}, \"source\": \"workday\"}",
-      "status": "partial",
-      "jobs": 20,
-      "reported_total": 399,
-      "collected": 20,
-      "pages": 1,
-      "enumeration_complete": false,
-      "query": "program"
-    },
-    {
       "source": "greenhouse",
       "label": "{\"config\": \"verkada2\", \"source\": \"greenhouse\"}",
       "status": "failed",
@@ -2159,12 +2571,12 @@
     },
     {
       "source": "workday",
-      "label": "{\"config\": {\"search\": \"program\", \"site\": \"Altera\", \"tenant\": \"altera\", \"wd_server\": \"wd1\"}, \"source\": \"workday\"}",
-      "status": "failed",
-      "jobs": 0,
-      "reported_total": null,
-      "collected": 0,
-      "pages": 0,
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"Careers\", \"tenant\": \"astrazeneca\", \"wd_server\": \"wd3\"}, \"source\": \"workday\"}",
+      "status": "partial",
+      "jobs": 20,
+      "reported_total": 554,
+      "collected": 20,
+      "pages": 1,
       "enumeration_complete": false,
       "query": "program"
     },
@@ -2181,7 +2593,7 @@
     },
     {
       "source": "workday",
-      "label": "{\"config\": {\"search\": \"program\", \"site\": \"ExternalCareerSite\", \"tenant\": \"hp\", \"wd_server\": \"wd5\"}, \"source\": \"workday\"}",
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"Altera\", \"tenant\": \"altera\", \"wd_server\": \"wd1\"}, \"source\": \"workday\"}",
       "status": "failed",
       "jobs": 0,
       "reported_total": null,
@@ -2192,7 +2604,18 @@
     },
     {
       "source": "workday",
-      "label": "{\"config\": {\"search\": \"program\", \"site\": \"GOCJobs\", \"tenant\": \"google\", \"wd_server\": \"wd501\"}, \"source\": \"workday\"}",
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"Careers_at_Quantiphi\", \"tenant\": \"quantiphi\", \"wd_server\": \"wd1\"}, \"source\": \"workday\"}",
+      "status": "failed",
+      "jobs": 0,
+      "reported_total": null,
+      "collected": 0,
+      "pages": 0,
+      "enumeration_complete": false,
+      "query": "program"
+    },
+    {
+      "source": "workday",
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"ExternalCareerSite\", \"tenant\": \"hp\", \"wd_server\": \"wd5\"}, \"source\": \"workday\"}",
       "status": "failed",
       "jobs": 0,
       "reported_total": null,
@@ -2219,14 +2642,8 @@
       "jobs": 0
     },
     {
-      "source": "ashby",
-      "label": "{\"config\": \"truss\", \"source\": \"ashby\"}",
-      "status": "failed",
-      "jobs": 0
-    },
-    {
       "source": "workday",
-      "label": "{\"config\": {\"search\": \"program\", \"site\": \"ulricareers\", \"tenant\": \"ulse\", \"wd_server\": \"wd5\"}, \"source\": \"workday\"}",
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"Visa\", \"tenant\": \"visa\", \"wd_server\": \"wd5\"}, \"source\": \"workday\"}",
       "status": "failed",
       "jobs": 0,
       "reported_total": null,
@@ -2237,12 +2654,29 @@
     },
     {
       "source": "workday",
-      "label": "{\"config\": {\"search\": \"program\", \"site\": \"shicareers\", \"tenant\": \"shi\", \"wd_server\": \"wd12\"}, \"source\": \"workday\"}",
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"Comcast_Careers\", \"tenant\": \"comcast\", \"wd_server\": \"wd115\"}, \"source\": \"workday\"}",
       "status": "partial",
-      "jobs": 80,
-      "reported_total": 89,
-      "collected": 80,
-      "pages": 4,
+      "jobs": 100,
+      "reported_total": 333,
+      "collected": 100,
+      "pages": 5,
+      "enumeration_complete": false,
+      "query": "program"
+    },
+    {
+      "source": "ashby",
+      "label": "{\"config\": \"truss\", \"source\": \"ashby\"}",
+      "status": "failed",
+      "jobs": 0
+    },
+    {
+      "source": "workday",
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"External_Careers\", \"tenant\": \"genpact\", \"wd_server\": \"wd108\"}, \"source\": \"workday\"}",
+      "status": "failed",
+      "jobs": 0,
+      "reported_total": null,
+      "collected": 0,
+      "pages": 0,
       "enumeration_complete": false,
       "query": "program"
     },
@@ -2259,7 +2693,7 @@
     },
     {
       "source": "workday",
-      "label": "{\"config\": {\"search\": \"program\", \"site\": \"dana-farber\", \"tenant\": \"danafarber\", \"wd_server\": \"wd5\"}, \"source\": \"workday\"}",
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"ulricareers\", \"tenant\": \"ulse\", \"wd_server\": \"wd5\"}, \"source\": \"workday\"}",
       "status": "failed",
       "jobs": 0,
       "reported_total": null,
@@ -2280,10 +2714,40 @@
       "query": "program"
     },
     {
+      "source": "workday",
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"dana-farber\", \"tenant\": \"danafarber\", \"wd_server\": \"wd5\"}, \"source\": \"workday\"}",
+      "status": "failed",
+      "jobs": 0,
+      "reported_total": null,
+      "collected": 0,
+      "pages": 0,
+      "enumeration_complete": false,
+      "query": "program"
+    },
+    {
       "source": "greenhouse",
       "label": "{\"config\": \"philo\", \"source\": \"greenhouse\"}",
       "status": "failed",
       "jobs": 0
+    },
+    {
+      "source": "workday",
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"TMNA\", \"tenant\": \"toyota\", \"wd_server\": \"wd503\"}, \"source\": \"workday\"}",
+      "status": "partial",
+      "jobs": 100,
+      "reported_total": 137,
+      "collected": 100,
+      "pages": 5,
+      "enumeration_complete": false,
+      "query": "program"
+    },
+    {
+      "source": "greenhouse",
+      "label": "{\"config\": \"umt\", \"source\": \"greenhouse\"}",
+      "status": "deferred",
+      "jobs": 52,
+      "checked_at": "2026-11-25T07:00:57.117719+00:00",
+      "cached_results_retained": true
     },
     {
       "source": "workday",
@@ -2294,7 +2758,9 @@
       "collected": 0,
       "pages": 0,
       "enumeration_complete": false,
-      "query": "program"
+      "query": "program",
+      "checked_at": "2026-11-25T07:00:57.117719+00:00",
+      "cached_results_retained": true
     },
     {
       "source": "workday",
@@ -2305,18 +2771,9 @@
       "collected": 0,
       "pages": 0,
       "enumeration_complete": false,
-      "query": "program"
-    },
-    {
-      "source": "workday",
-      "label": "{\"config\": {\"search\": \"program\", \"site\": \"zillow_group_external\", \"tenant\": \"zillow\", \"wd_server\": \"wd5\"}, \"source\": \"workday\"}",
-      "status": "failed",
-      "jobs": 0,
-      "reported_total": null,
-      "collected": 0,
-      "pages": 0,
-      "enumeration_complete": false,
-      "query": "program"
+      "query": "program",
+      "checked_at": "2026-11-25T07:00:57.117719+00:00",
+      "cached_results_retained": true
     },
     {
       "source": "workday",
@@ -2327,7 +2784,35 @@
       "collected": 0,
       "pages": 0,
       "enumeration_complete": false,
-      "query": "program"
+      "query": "program",
+      "checked_at": "2026-11-25T07:00:57.117719+00:00",
+      "cached_results_retained": true
+    },
+    {
+      "source": "workday",
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"zillow_group_external\", \"tenant\": \"zillow\", \"wd_server\": \"wd5\"}, \"source\": \"workday\"}",
+      "status": "failed",
+      "jobs": 0,
+      "reported_total": null,
+      "collected": 0,
+      "pages": 0,
+      "enumeration_complete": false,
+      "query": "program",
+      "checked_at": "2026-11-25T07:00:57.117719+00:00",
+      "cached_results_retained": true
+    },
+    {
+      "source": "workday",
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"JioStar\", \"tenant\": \"jiostar\", \"wd_server\": \"wd102\"}, \"source\": \"workday\"}",
+      "status": "deferred",
+      "jobs": 64,
+      "reported_total": 64,
+      "collected": 64,
+      "pages": 4,
+      "enumeration_complete": true,
+      "query": "program",
+      "checked_at": "2026-11-25T07:00:57.117719+00:00",
+      "cached_results_retained": true
     },
     {
       "source": "workday",
@@ -2338,73 +2823,25 @@
       "collected": 0,
       "pages": 0,
       "enumeration_complete": false,
-      "query": "program"
+      "query": "program",
+      "checked_at": "2026-11-25T07:00:57.117719+00:00",
+      "cached_results_retained": true
     },
     {
-      "source": "workday",
-      "label": "{\"config\": {\"search\": \"program\", \"site\": \"Careers_at_Quantiphi\", \"tenant\": \"quantiphi\", \"wd_server\": \"wd1\"}, \"source\": \"workday\"}",
-      "status": "partial",
-      "jobs": 20,
-      "reported_total": 34,
-      "collected": 20,
-      "pages": 1,
-      "enumeration_complete": false,
-      "query": "program"
+      "source": "greenhouse",
+      "label": "{\"config\": \"flagshippioneeringinc\", \"source\": \"greenhouse\"}",
+      "status": "deferred",
+      "jobs": 107,
+      "checked_at": "2026-11-25T07:00:57.117719+00:00",
+      "cached_results_retained": true
     },
     {
-      "source": "workday",
-      "label": "{\"config\": {\"search\": \"program\", \"site\": \"Jabil_Careers\", \"tenant\": \"jabil\", \"wd_server\": \"wd5\"}, \"source\": \"workday\"}",
-      "status": "failed",
-      "jobs": 0,
-      "reported_total": null,
-      "collected": 0,
-      "pages": 0,
-      "enumeration_complete": false,
-      "query": "program"
-    },
-    {
-      "source": "workday",
-      "label": "{\"config\": {\"search\": \"program\", \"site\": \"snap\", \"tenant\": \"snapchat\", \"wd_server\": \"wd1\"}, \"source\": \"workday\"}",
-      "status": "failed",
-      "jobs": 0,
-      "reported_total": null,
-      "collected": 0,
-      "pages": 0,
-      "enumeration_complete": false,
-      "query": "program"
-    },
-    {
-      "source": "workday",
-      "label": "{\"config\": {\"search\": \"program\", \"site\": \"EXT\", \"tenant\": \"gartner\", \"wd_server\": \"wd5\"}, \"source\": \"workday\"}",
-      "status": "failed",
-      "jobs": 0,
-      "reported_total": null,
-      "collected": 0,
-      "pages": 0,
-      "enumeration_complete": false,
-      "query": "program"
-    },
-    {
-      "source": "workday",
-      "label": "{\"config\": {\"search\": \"program\", \"site\": \"External\", \"tenant\": \"cw\", \"wd_server\": \"wd1\"}, \"source\": \"workday\"}",
-      "status": "failed",
-      "jobs": 0,
-      "reported_total": null,
-      "collected": 0,
-      "pages": 0,
-      "enumeration_complete": false,
-      "query": "program"
-    },
-    {
-      "source": "workday",
-      "label": "{\"config\": {\"search\": \"program\", \"site\": \"jobs\", \"tenant\": \"paypal\", \"wd_server\": \"wd1\"}, \"source\": \"workday\"}",
-      "status": "failed",
-      "jobs": 0,
-      "reported_total": null,
-      "collected": 0,
-      "pages": 0,
-      "enumeration_complete": false,
-      "query": "program"
+      "source": "greenhouse",
+      "label": "{\"config\": \"veir\", \"source\": \"greenhouse\"}",
+      "status": "deferred",
+      "jobs": 9,
+      "checked_at": "2026-11-25T07:00:57.117719+00:00",
+      "cached_results_retained": true
     },
     {
       "source": "workday",
@@ -2415,18 +2852,125 @@
       "collected": 20,
       "pages": 1,
       "enumeration_complete": false,
-      "query": "program"
+      "query": "program",
+      "checked_at": "2026-11-25T07:00:57.117719+00:00",
+      "cached_results_retained": true
+    },
+    {
+      "source": "greenhouse",
+      "label": "{\"config\": \"Alltrna\", \"source\": \"greenhouse\"}",
+      "status": "deferred",
+      "jobs": 2,
+      "checked_at": "2026-11-25T07:00:57.117719+00:00",
+      "cached_results_retained": true
     },
     {
       "source": "workday",
-      "label": "{\"config\": {\"search\": \"program\", \"site\": \"Visa\", \"tenant\": \"visa\", \"wd_server\": \"wd5\"}, \"source\": \"workday\"}",
-      "status": "partial",
-      "jobs": 20,
-      "reported_total": 615,
-      "collected": 20,
-      "pages": 1,
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"Jabil_Careers\", \"tenant\": \"jabil\", \"wd_server\": \"wd5\"}, \"source\": \"workday\"}",
+      "status": "failed",
+      "jobs": 0,
+      "reported_total": null,
+      "collected": 0,
+      "pages": 0,
       "enumeration_complete": false,
-      "query": "program"
+      "query": "program",
+      "checked_at": "2026-11-25T07:00:57.117719+00:00",
+      "cached_results_retained": true
+    },
+    {
+      "source": "ashby",
+      "label": "{\"config\": \"tensorwave\", \"source\": \"ashby\"}",
+      "status": "deferred",
+      "jobs": 46,
+      "checked_at": "2026-11-25T07:00:57.117719+00:00",
+      "cached_results_retained": true
+    },
+    {
+      "source": "ashby",
+      "label": "{\"config\": \"crosswalk-health\", \"source\": \"ashby\"}",
+      "status": "deferred",
+      "jobs": 2,
+      "checked_at": "2026-11-25T07:00:57.117719+00:00",
+      "cached_results_retained": true
+    },
+    {
+      "source": "greenhouse",
+      "label": "{\"config\": \"xometry\", \"source\": \"greenhouse\"}",
+      "status": "deferred",
+      "jobs": 267,
+      "checked_at": "2026-11-25T07:00:57.117719+00:00",
+      "cached_results_retained": true
+    },
+    {
+      "source": "workday",
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"snap\", \"tenant\": \"snapchat\", \"wd_server\": \"wd1\"}, \"source\": \"workday\"}",
+      "status": "failed",
+      "jobs": 0,
+      "reported_total": null,
+      "collected": 0,
+      "pages": 0,
+      "enumeration_complete": false,
+      "query": "program",
+      "checked_at": "2026-11-25T07:00:57.117719+00:00",
+      "cached_results_retained": true
+    },
+    {
+      "source": "greenhouse",
+      "label": "{\"config\": \"billiontoone\", \"source\": \"greenhouse\"}",
+      "status": "deferred",
+      "jobs": 80,
+      "checked_at": "2026-11-25T07:00:57.117719+00:00",
+      "cached_results_retained": true
+    },
+    {
+      "source": "workday",
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"EXT\", \"tenant\": \"gartner\", \"wd_server\": \"wd5\"}, \"source\": \"workday\"}",
+      "status": "failed",
+      "jobs": 0,
+      "reported_total": null,
+      "collected": 0,
+      "pages": 0,
+      "enumeration_complete": false,
+      "query": "program",
+      "checked_at": "2026-11-25T07:00:57.117719+00:00",
+      "cached_results_retained": true
+    },
+    {
+      "source": "workday",
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"Netflix\", \"tenant\": \"netflix\", \"wd_server\": \"wd108\"}, \"source\": \"workday\"}",
+      "status": "deferred",
+      "jobs": 0,
+      "reported_total": 0,
+      "collected": 0,
+      "pages": 1,
+      "enumeration_complete": true,
+      "query": "program",
+      "checked_at": "2026-11-25T07:00:57.117719+00:00",
+      "cached_results_retained": true
+    },
+    {
+      "source": "greenhouse",
+      "label": "{\"config\": \"apptronik\", \"source\": \"greenhouse\"}",
+      "status": "deferred",
+      "jobs": 87,
+      "checked_at": "2026-11-25T07:00:57.117719+00:00",
+      "cached_results_retained": true
+    },
+    {
+      "source": "greenhouse",
+      "label": "{\"config\": \"arcinstitute\", \"source\": \"greenhouse\"}",
+      "status": "deferred",
+      "jobs": 21,
+      "checked_at": "2026-11-25T07:00:57.117719+00:00",
+      "cached_results_retained": true
+    },
+    {
+      "source": "greenhouse",
+      "label": "{\"config\": \"archer56\", \"source\": \"greenhouse\"}",
+      "status": "deferred",
+      "jobs": 79,
+      "checked_at": "2026-11-25T07:00:57.117719+00:00",
+      "cached_results_retained": true
     },
     {
       "source": "workday",
@@ -2437,33 +2981,37 @@
       "collected": 20,
       "pages": 1,
       "enumeration_complete": false,
-      "query": "program"
+      "query": "program",
+      "checked_at": "2026-11-25T07:00:57.117719+00:00",
+      "cached_results_retained": true
+    },
+    {
+      "source": "greenhouse",
+      "label": "{\"config\": \"personalizedbeautydiscoveryincdbaipsy\", \"source\": \"greenhouse\"}",
+      "status": "deferred",
+      "jobs": 9,
+      "checked_at": "2026-11-25T07:00:57.117719+00:00",
+      "cached_results_retained": true
+    },
+    {
+      "source": "greenhouse",
+      "label": "{\"config\": \"beamtherapeutics\", \"source\": \"greenhouse\"}",
+      "status": "deferred",
+      "jobs": 32,
+      "checked_at": "2026-11-25T07:00:57.117719+00:00",
+      "cached_results_retained": true
+    },
+    {
+      "source": "greenhouse",
+      "label": "{\"config\": \"rebuildmanufacturing\", \"source\": \"greenhouse\"}",
+      "status": "deferred",
+      "jobs": 138,
+      "checked_at": "2026-11-25T07:00:57.117719+00:00",
+      "cached_results_retained": true
     },
     {
       "source": "workday",
-      "label": "{\"config\": {\"search\": \"program\", \"site\": \"External_Careers\", \"tenant\": \"genpact\", \"wd_server\": \"wd108\"}, \"source\": \"workday\"}",
-      "status": "partial",
-      "jobs": 60,
-      "reported_total": 454,
-      "collected": 60,
-      "pages": 3,
-      "enumeration_complete": false,
-      "query": "program"
-    },
-    {
-      "source": "workday",
-      "label": "{\"config\": {\"search\": \"program\", \"site\": \"TMNA\", \"tenant\": \"toyota\", \"wd_server\": \"wd503\"}, \"source\": \"workday\"}",
-      "status": "partial",
-      "jobs": 100,
-      "reported_total": 139,
-      "collected": 100,
-      "pages": 5,
-      "enumeration_complete": false,
-      "query": "program"
-    },
-    {
-      "source": "workday",
-      "label": "{\"config\": {\"search\": \"program\", \"site\": \"f5jobs\", \"tenant\": \"ffive\", \"wd_server\": \"wd5\"}, \"source\": \"workday\"}",
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"External\", \"tenant\": \"cw\", \"wd_server\": \"wd1\"}, \"source\": \"workday\"}",
       "status": "failed",
       "jobs": 0,
       "reported_total": null,
@@ -2471,395 +3019,132 @@
       "pages": 0,
       "enumeration_complete": false,
       "query": "program",
-      "checked_at": "2026-11-25T06:31:02.938295+00:00",
+      "checked_at": "2026-11-25T07:00:57.117719+00:00",
       "cached_results_retained": true
     },
     {
       "source": "workday",
-      "label": "{\"config\": {\"search\": \"program\", \"site\": \"Comcast_Careers\", \"tenant\": \"comcast\", \"wd_server\": \"wd115\"}, \"source\": \"workday\"}",
-      "status": "partial",
-      "jobs": 100,
-      "reported_total": 330,
-      "collected": 100,
-      "pages": 5,
+      "label": "{\"config\": {\"search\": \"program\", \"site\": \"jobs\", \"tenant\": \"paypal\", \"wd_server\": \"wd1\"}, \"source\": \"workday\"}",
+      "status": "failed",
+      "jobs": 0,
+      "reported_total": null,
+      "collected": 0,
+      "pages": 0,
       "enumeration_complete": false,
       "query": "program",
-      "checked_at": "2026-11-25T06:31:02.938295+00:00",
+      "checked_at": "2026-11-25T07:00:57.117719+00:00",
       "cached_results_retained": true
     },
     {
-      "source": "greenhouse",
-      "label": "{\"config\": \"onetrust\", \"source\": \"greenhouse\"}",
+      "source": "ashby",
+      "label": "{\"config\": \"illumio\", \"source\": \"ashby\"}",
       "status": "deferred",
-      "jobs": 75,
-      "checked_at": "2026-11-25T06:31:02.938295+00:00",
+      "jobs": 86,
+      "checked_at": "2026-11-25T07:00:57.117719+00:00",
+      "cached_results_retained": true
+    },
+    {
+      "source": "ashby",
+      "label": "{\"config\": \"AeroVect\", \"source\": \"ashby\"}",
+      "status": "deferred",
+      "jobs": 44,
+      "checked_at": "2026-11-25T07:00:57.117719+00:00",
       "cached_results_retained": true
     },
     {
       "source": "lever",
-      "label": "{\"config\": \"InfrastructureandCapitalProjects\", \"source\": \"lever\"}",
-      "status": "failed",
-      "jobs": 0,
-      "checked_at": "2026-11-25T06:31:02.938295+00:00",
-      "cached_results_retained": true
-    },
-    {
-      "source": "workday",
-      "label": "{\"config\": {\"search\": \"program\", \"site\": \"Northrop_Grumman_External_Site\", \"tenant\": \"ngc\", \"wd_server\": \"wd1\"}, \"source\": \"workday\"}",
-      "status": "failed",
-      "jobs": 0,
-      "reported_total": null,
-      "collected": 0,
-      "pages": 0,
-      "enumeration_complete": false,
-      "query": "program",
-      "checked_at": "2026-11-25T06:31:02.938295+00:00",
-      "cached_results_retained": true
-    },
-    {
-      "source": "workday",
-      "label": "{\"config\": {\"search\": \"program\", \"site\": \"Novartis_Careers\", \"tenant\": \"novartis\", \"wd_server\": \"wd3\"}, \"source\": \"workday\"}",
-      "status": "failed",
-      "jobs": 0,
-      "reported_total": null,
-      "collected": 0,
-      "pages": 0,
-      "enumeration_complete": false,
-      "query": "program",
-      "checked_at": "2026-11-25T06:31:02.938295+00:00",
-      "cached_results_retained": true
-    },
-    {
-      "source": "greenhouse",
-      "label": "{\"config\": \"sharkninjaoperatingllc\", \"source\": \"greenhouse\"}",
-      "status": "deferred",
-      "jobs": 165,
-      "checked_at": "2026-11-25T06:31:02.938295+00:00",
-      "cached_results_retained": true
-    },
-    {
-      "source": "ashby",
-      "label": "{\"config\": \"formenergy\", \"source\": \"ashby\"}",
-      "status": "deferred",
-      "jobs": 209,
-      "checked_at": "2026-11-25T06:31:02.938295+00:00",
-      "cached_results_retained": true
-    },
-    {
-      "source": "greenhouse",
-      "label": "{\"config\": \"wikimedia\", \"source\": \"greenhouse\"}",
-      "status": "deferred",
-      "jobs": 13,
-      "checked_at": "2026-11-25T06:31:02.938295+00:00",
-      "cached_results_retained": true
-    },
-    {
-      "source": "workday",
-      "label": "{\"config\": {\"search\": \"program\", \"site\": \"Vantor\", \"tenant\": \"maxar\", \"wd_server\": \"wd1\"}, \"source\": \"workday\"}",
-      "status": "failed",
-      "jobs": 0,
-      "reported_total": null,
-      "collected": 0,
-      "pages": 0,
-      "enumeration_complete": false,
-      "query": "program",
-      "checked_at": "2026-11-25T06:31:02.938295+00:00",
-      "cached_results_retained": true
-    },
-    {
-      "source": "workday",
-      "label": "{\"config\": {\"search\": \"program\", \"site\": \"EXTERNAL\", \"tenant\": \"insmed\", \"wd_server\": \"wd504\"}, \"source\": \"workday\"}",
-      "status": "failed",
-      "jobs": 0,
-      "reported_total": null,
-      "collected": 0,
-      "pages": 0,
-      "enumeration_complete": false,
-      "query": "program",
-      "checked_at": "2026-11-25T06:31:02.938295+00:00",
-      "cached_results_retained": true
-    },
-    {
-      "source": "workday",
-      "label": "{\"config\": {\"search\": \"program\", \"site\": \"Careers\", \"tenant\": \"astrazeneca\", \"wd_server\": \"wd3\"}, \"source\": \"workday\"}",
-      "status": "failed",
-      "jobs": 0,
-      "reported_total": null,
-      "collected": 0,
-      "pages": 0,
-      "enumeration_complete": false,
-      "query": "program",
-      "checked_at": "2026-11-25T06:31:02.938295+00:00",
-      "cached_results_retained": true
-    },
-    {
-      "source": "workday",
-      "label": "{\"config\": {\"search\": \"program\", \"site\": \"broadbean_external\", \"tenant\": \"astrazeneca\", \"wd_server\": \"wd3\"}, \"source\": \"workday\"}",
-      "status": "failed",
-      "jobs": 0,
-      "reported_total": null,
-      "collected": 0,
-      "pages": 0,
-      "enumeration_complete": false,
-      "query": "program",
-      "checked_at": "2026-11-25T06:31:02.938295+00:00",
-      "cached_results_retained": true
-    },
-    {
-      "source": "greenhouse",
-      "label": "{\"config\": \"hackerrank\", \"source\": \"greenhouse\"}",
-      "status": "deferred",
-      "jobs": 31,
-      "checked_at": "2026-11-25T06:31:02.938295+00:00",
-      "cached_results_retained": true
-    },
-    {
-      "source": "lever",
-      "label": "{\"config\": \"tutorintelligence\", \"source\": \"lever\"}",
-      "status": "deferred",
-      "jobs": 0,
-      "checked_at": "2026-11-25T06:31:02.938295+00:00",
-      "cached_results_retained": true
-    },
-    {
-      "source": "ashby",
-      "label": "{\"config\": \"magiceden\", \"source\": \"ashby\"}",
-      "status": "deferred",
-      "jobs": 3,
-      "checked_at": "2026-11-25T06:31:02.938295+00:00",
-      "cached_results_retained": true
-    },
-    {
-      "source": "ashby",
-      "label": "{\"config\": \"assured\", \"source\": \"ashby\"}",
-      "status": "deferred",
-      "jobs": 42,
-      "checked_at": "2026-11-25T06:31:02.938295+00:00",
-      "cached_results_retained": true
-    },
-    {
-      "source": "ashby",
-      "label": "{\"config\": \"miovision\", \"source\": \"ashby\"}",
-      "status": "deferred",
-      "jobs": 11,
-      "checked_at": "2026-11-25T06:31:02.938295+00:00",
-      "cached_results_retained": true
-    },
-    {
-      "source": "ashby",
-      "label": "{\"config\": \"socure\", \"source\": \"ashby\"}",
-      "status": "deferred",
-      "jobs": 84,
-      "checked_at": "2026-11-25T06:31:02.938295+00:00",
-      "cached_results_retained": true
-    },
-    {
-      "source": "ashby",
-      "label": "{\"config\": \"radai\", \"source\": \"ashby\"}",
-      "status": "deferred",
-      "jobs": 27,
-      "checked_at": "2026-11-25T06:31:02.938295+00:00",
-      "cached_results_retained": true
-    },
-    {
-      "source": "greenhouse",
-      "label": "{\"config\": \"bloombergorg\", \"source\": \"greenhouse\"}",
-      "status": "deferred",
-      "jobs": 1,
-      "checked_at": "2026-11-25T06:31:02.938295+00:00",
-      "cached_results_retained": true
-    },
-    {
-      "source": "ashby",
-      "label": "{\"config\": \"vinci\", \"source\": \"ashby\"}",
-      "status": "deferred",
-      "jobs": 40,
-      "checked_at": "2026-11-25T06:31:02.938295+00:00",
-      "cached_results_retained": true
-    },
-    {
-      "source": "ashby",
-      "label": "{\"config\": \"skylo\", \"source\": \"ashby\"}",
-      "status": "deferred",
-      "jobs": 33,
-      "checked_at": "2026-11-25T06:31:02.938295+00:00",
-      "cached_results_retained": true
-    },
-    {
-      "source": "workday",
-      "label": "{\"config\": {\"search\": \"program\", \"site\": \"careers\", \"tenant\": \"mymoose\", \"wd_server\": \"wd1\"}, \"source\": \"workday\"}",
-      "status": "failed",
-      "jobs": 0,
-      "reported_total": null,
-      "collected": 0,
-      "pages": 0,
-      "enumeration_complete": false,
-      "query": "program",
-      "checked_at": "2026-11-25T06:31:02.938295+00:00",
-      "cached_results_retained": true
-    },
-    {
-      "source": "workday",
-      "label": "{\"config\": {\"search\": \"program\", \"site\": \"Global\", \"tenant\": \"statestreet\", \"wd_server\": \"wd1\"}, \"source\": \"workday\"}",
-      "status": "failed",
-      "jobs": 0,
-      "reported_total": null,
-      "collected": 0,
-      "pages": 0,
-      "enumeration_complete": false,
-      "query": "program",
-      "checked_at": "2026-11-25T06:31:02.938295+00:00",
-      "cached_results_retained": true
-    },
-    {
-      "source": "ashby",
-      "label": "{\"config\": \"leandata\", \"source\": \"ashby\"}",
-      "status": "deferred",
-      "jobs": 11,
-      "checked_at": "2026-11-25T06:31:02.938295+00:00",
-      "cached_results_retained": true
-    },
-    {
-      "source": "greenhouse",
-      "label": "{\"config\": \"missionlane\", \"source\": \"greenhouse\"}",
-      "status": "deferred",
-      "jobs": 13,
-      "checked_at": "2026-11-25T06:31:02.938295+00:00",
-      "cached_results_retained": true
-    },
-    {
-      "source": "ashby",
-      "label": "{\"config\": \"saronic\", \"source\": \"ashby\"}",
-      "status": "deferred",
-      "jobs": 305,
-      "checked_at": "2026-11-25T06:31:02.938295+00:00",
-      "cached_results_retained": true
-    },
-    {
-      "source": "greenhouse",
-      "label": "{\"config\": \"gomotive\", \"source\": \"greenhouse\"}",
-      "status": "deferred",
-      "jobs": 192,
-      "checked_at": "2026-11-25T06:31:02.938295+00:00",
-      "cached_results_retained": true
-    },
-    {
-      "source": "workday",
-      "label": "{\"config\": {\"search\": \"program\", \"site\": \"Careers\", \"tenant\": \"flextronics\", \"wd_server\": \"wd1\"}, \"source\": \"workday\"}",
-      "status": "failed",
-      "jobs": 0,
-      "reported_total": null,
-      "collected": 0,
-      "pages": 0,
-      "enumeration_complete": false,
-      "query": "program",
-      "checked_at": "2026-11-25T06:31:02.938295+00:00",
-      "cached_results_retained": true
-    },
-    {
-      "source": "greenhouse",
-      "label": "{\"config\": \"zipcolimited\", \"source\": \"greenhouse\"}",
+      "label": "{\"config\": \"nahc\", \"source\": \"lever\"}",
       "status": "deferred",
       "jobs": 38,
-      "checked_at": "2026-11-25T06:31:02.938295+00:00",
+      "checked_at": "2026-11-25T07:00:57.117719+00:00",
       "cached_results_retained": true
     },
     {
-      "source": "ashby",
-      "label": "{\"config\": \"promise-studios\", \"source\": \"ashby\"}",
+      "source": "lever",
+      "label": "{\"config\": \"anchorage\", \"source\": \"lever\"}",
       "status": "deferred",
-      "jobs": 4,
-      "checked_at": "2026-11-25T06:31:02.938295+00:00",
+      "jobs": 19,
+      "checked_at": "2026-11-25T07:00:57.117719+00:00",
       "cached_results_retained": true
     },
     {
       "source": "greenhouse",
-      "label": "{\"config\": \"alpha9oncology\", \"source\": \"greenhouse\"}",
+      "label": "{\"config\": \"solidpower\", \"source\": \"greenhouse\"}",
       "status": "deferred",
-      "jobs": 3,
-      "checked_at": "2026-11-25T06:31:02.938295+00:00",
+      "jobs": 8,
+      "checked_at": "2026-11-25T07:00:57.117719+00:00",
       "cached_results_retained": true
     },
     {
       "source": "location_check",
-      "url": "https://cisco.wd5.myworkdayjobs.com/en-US/Cisco_Careers/job/RTP-North-Carolina-US/Leader--Technical-Program-Manager---NPI---Technical-Sales-Enablement---Splunk_2028605",
+      "url": "https://capitalone.wd12.myworkdayjobs.com/en-US/Capital_One/job/Riverwoods-IL/Senior-Manager--Technical-Program-Management_R1001895-1",
       "status": "failed"
     },
     {
       "source": "location_check",
-      "url": "https://cisco.wd5.myworkdayjobs.com/en-US/Cisco_Careers/job/RTP-North-Carolina-US/Technical-Program-Manager---NPI---Technical-Sales-Enablement---Splunk_2028606-1",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/en-US/NVIDIAExternalCareerSite/job/India-Hyderabad/Senior-Technical-Program-Manager_JR2023373",
       "status": "failed"
     },
     {
       "source": "location_check",
-      "url": "https://cisco.wd5.myworkdayjobs.com/en-US/Cisco_Careers/job/RTP-North-Carolina-US/Technical-Program-Manager---NPI---Technical-Sales-Enablement---Splunk_2028608-1",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/en-US/NVIDIAExternalCareerSite/job/US-CA-Santa-Clara/Customer-Technical-Program-Manager_JR2004517",
       "status": "failed"
     },
     {
       "source": "location_check",
-      "url": "https://cisco.wd5.myworkdayjobs.com/en-US/Cisco_Careers/job/Reston-Virginia-US/XMLNAME-2031365-Technical-Program-Manager_2031365",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/en-US/NVIDIAExternalCareerSite/job/Israel-Yokneam/Senior-Software-Technical-Program-Manager_JR2026898",
       "status": "failed"
     },
     {
       "source": "location_check",
-      "url": "https://intel.wd1.myworkdayjobs.com/en-US/External/job/US-Oregon-Hillsboro/Principal-Technical-Program-Manager---DTCO---Design-Technology-Integration_JR0288271",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/en-US/NVIDIAExternalCareerSite/job/Israel-Yokneam/Director--Software-Technical-Program-Management_JR2029252",
       "status": "failed"
     },
     {
       "source": "location_check",
-      "url": "https://shi.wd12.myworkdayjobs.com/en-US/shicareers/job/Piscataway-NJ-USA/Director---AGT-PMO_JR4063",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/en-US/NVIDIAExternalCareerSite/job/US-CA-Santa-Clara/Senior-Technical-Program-Manager--Cloud-Infrastructure_JR2025890",
+      "status": "failed"
+    },
+    {
+      "source": "location_check",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/en-US/NVIDIAExternalCareerSite/job/US-CA-Santa-Clara/Senior-Technical-Program-Manager--AI-Inference_JR2027310",
+      "status": "failed"
+    },
+    {
+      "source": "location_check",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/en-US/NVIDIAExternalCareerSite/job/US-CA-Santa-Clara/Technical-Program-Manager--OEM-Enablement_JR2028754",
+      "status": "failed"
+    },
+    {
+      "source": "location_check",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/en-US/NVIDIAExternalCareerSite/job/US-CA-Santa-Clara/Senior-Technical-Program-Manager--Cloud-Infrastructure_JR2027569",
       "status": "failed"
     },
     {
       "source": "description_check",
-      "url": "https://shi.wd12.myworkdayjobs.com/en-US/shicareers/job/Somerset-NJ-USA/Sr-Director---Transformation-Portfolio-Management_JR3514",
+      "url": "https://astrazeneca.wd3.myworkdayjobs.com/en-US/Careers/job/Canada---Mississauga/Director--Portfolio-Management_R-264521",
       "status": "failed"
     },
     {
       "source": "description_check",
-      "url": "https://quantiphi.wd1.myworkdayjobs.com/en-US/Careers_at_Quantiphi/job/Canada---Remote/TPM-RTE---French_JR10845",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/en-US/NVIDIAExternalCareerSite/job/India-Bengaluru/Technical-Program-Manager--Infrastructure_JR2026462",
       "status": "failed"
     },
     {
       "source": "description_check",
-      "url": "https://visa.wd5.myworkdayjobs.com/en-US/Visa/job/IN---Bengaluru-India/Portfolio-Specialist_REF089167W",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/en-US/NVIDIAExternalCareerSite/job/India-Pune/Technical-Program-Manager---Ecommerce_JR2026519",
       "status": "failed"
     },
     {
       "source": "description_check",
-      "url": "https://boeing.wd1.myworkdayjobs.com/en-US/EXTERNAL_CAREERS/job/GBR---Bristol-UK/Engineering-Graduate-Programmes-2027--Register-your-interest_JR2026526974",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/en-US/NVIDIAExternalCareerSite/job/Taiwan-Taipei/Manager--Technical-Software-Program-Management_JR2028669",
       "status": "failed"
     },
     {
       "source": "description_check",
-      "url": "https://cisco.wd5.myworkdayjobs.com/en-US/Cisco_Careers/job/Richfield-Ohio-US/Account-Executive--Portfolio---US-Commercial---Cincinnati_2030390",
-      "status": "failed"
-    },
-    {
-      "source": "description_check",
-      "url": "https://cisco.wd5.myworkdayjobs.com/en-US/Cisco_Careers/job/Minato-Japan/SMB---Mid-Market-Portfolio-Business-Development-Manager--Japan---Korea-_2028186-1",
-      "status": "failed"
-    },
-    {
-      "source": "description_check",
-      "url": "https://intel.wd1.myworkdayjobs.com/en-US/External/job/US-California-Santa-Clara/Sr-Manager--AI-Portfolio-Marketing_JR0289100",
-      "status": "failed"
-    },
-    {
-      "source": "description_check",
-      "url": "https://cisco.wd5.myworkdayjobs.com/en-US/Cisco_Careers/job/Seattle-Washington-US/Account-Executive---Portfolio_2032288",
-      "status": "failed"
-    },
-    {
-      "source": "description_check",
-      "url": "https://cisco.wd5.myworkdayjobs.com/en-US/Cisco_Careers/job/Remote---Utah-USA/Sr-Director--Portfolio-Marketing_2029318",
-      "status": "failed"
-    },
-    {
-      "source": "description_check",
-      "url": "https://bostondynamics.wd1.myworkdayjobs.com/en-US/Boston_Dynamics/job/Waltham-Office-POST/Senior-Field-Application-Engineer_R2934",
+      "url": "https://nvidia.wd5.myworkdayjobs.com/en-US/NVIDIAExternalCareerSite/job/China-Shanghai/Senior-Technical-Program-Manager--SCG-Efficiency_JR2017692",
       "status": "failed"
     }
   ],
-  "checked_at": "2026-11-25T07:00:57.117719+00:00"
+  "checked_at": "2026-11-26T06:01:07.708508+00:00"
 }
