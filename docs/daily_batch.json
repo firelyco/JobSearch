@@ -7,15 +7,15 @@
   "collection_at": "2026-11-26T06:01:07.708508+00:00",
   "counts": {
     "found": 93,
-    "eligible": 22,
-    "completed": 8,
+    "eligible": 21,
+    "completed": 9,
     "strong": 1,
-    "middle": 3,
+    "middle": 4,
     "pass": 4,
     "waiting": 1,
-    "processing": 9,
-    "blocked": 4,
-    "excluded": 71,
+    "processing": 0,
+    "blocked": 11,
+    "excluded": 72,
     "unverified_links": 31
   },
   "members": [
@@ -37,8 +37,8 @@
       "source": "amazon_jobs",
       "job_snapshot_hash": "80aaea6c2c2b93a0e4a8a249509939cd7c1bd12afe817e9accfe24b23e849441",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "status": "blocked",
+      "reason": "Paid retry budget exhausted; review required.",
       "verdict": null
     },
     {
@@ -47,9 +47,9 @@
       "url": "https://www.amazon.jobs/en/jobs/10614132/sr-technical-infrastructure-program-manager-infra-capacity-delivery-infra-capacity-delivery",
       "source": "amazon_jobs",
       "job_snapshot_hash": "c627e330a3e5346001dad8734c3c58e3ee551d3a674c4334190f785003532c38",
-      "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -796,8 +796,8 @@
       "source": "google",
       "job_snapshot_hash": "561caa5ce7bf3ffb56a36f7dea75609c06e46b3f4f61958865dde2a37d6b6a8b",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "status": "blocked",
+      "reason": "Paid retry budget exhausted; review required.",
       "verdict": null
     },
     {
@@ -829,8 +829,8 @@
       "source": "lever",
       "job_snapshot_hash": "f714fbca455d11fab13c4ba4aee17bf0884da80fa3d69dee96da298086c7c7fe",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "status": "blocked",
+      "reason": "Paid retry budget exhausted; review required.",
       "verdict": null
     },
     {
@@ -851,8 +851,8 @@
       "source": "lever",
       "job_snapshot_hash": "fc2c42e8e704f84630545606a2e63f9d8f2505ae8bf2a328c45278e03d5b9146",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "status": "blocked",
+      "reason": "Paid retry budget exhausted; review required.",
       "verdict": null
     },
     {
@@ -862,8 +862,8 @@
       "source": "lever",
       "job_snapshot_hash": "b638cdcbf3ed0718c08b636f45a974db470f3306b0f7da0bcff35fcf790a4ea0",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "status": "blocked",
+      "reason": "Paid retry budget exhausted; review required.",
       "verdict": null
     },
     {
@@ -873,8 +873,8 @@
       "source": "lever",
       "job_snapshot_hash": "d9f968a3448f71f2de6f9c550f38035bdec8d85c6d5c9fefc9fb9b7657c6cc4e",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "status": "blocked",
+      "reason": "Paid retry budget exhausted; review required.",
       "verdict": null
     },
     {
@@ -884,8 +884,8 @@
       "source": "lever",
       "job_snapshot_hash": "9f0fe3a4c15b16f5924778faa700d2625a60658295651d4a02f8c0e666e5ace1",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "status": "blocked",
+      "reason": "Paid retry budget exhausted; review required.",
       "verdict": null
     },
     {
@@ -1027,9 +1027,9 @@
       "source": "workday",
       "job_snapshot_hash": "d217c425648b6dae50c3d6d8c1f9f8e922bd4f84d06e1842c98e6d968b5fdd56",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "middle"
     },
     {
       "key": "workday:cisco:/job/Caesarea-Israel/Technical-Program-Manager_2032888",
@@ -1949,21 +1949,21 @@
       "status": "failed"
     }
   ],
-  "checked_at": "2026-11-26T06:21:40.260903+00:00",
+  "checked_at": "2026-11-26T06:22:42.256965+00:00",
   "legacy_backlog": {
-    "assessed": 544,
+    "assessed": 546,
     "pending": 7,
-    "unresolved": 68,
-    "in_progress": 10,
-    "total": 629,
+    "unresolved": 75,
+    "in_progress": 0,
+    "total": 628,
     "strong": 74
   },
-  "batch_id": "27164f02bd180afc23b156141cae460b9099f1752e08df5129e70771603d5fbb",
+  "batch_id": "0b8be0daa2d89fb8153988ec61e09cab100fe76e16d841cb440b9711fca9e060",
   "status": "assessing",
   "input_blobs": {
     "jobs.json": "c87b7a4d842138c74f5c56de50e572823985185d",
-    "fit_scores.json": "c84db30b2e6a1cde99de48950be32ba0e2526850",
-    "fit_backfill.json": "4dcce4d17fb323218aa477bf16b2dd4b1dfd6606",
+    "fit_scores.json": "d6caf8cbad6f558b645394641f79a0b46904b11c",
+    "fit_backfill.json": "a4202e5dfa029585172f5270532de7f9c9dad2b0",
     "meta.json": "de1d44b65f8f3bda4b874111181d9675fd22983c"
   }
 }
