@@ -7,15 +7,15 @@
   "collection_at": "2026-11-26T07:50:55.057308+00:00",
   "counts": {
     "found": 97,
-    "eligible": 24,
+    "eligible": 23,
     "completed": 11,
     "strong": 1,
     "middle": 5,
     "pass": 5,
-    "waiting": 2,
-    "processing": 0,
+    "waiting": 0,
+    "processing": 1,
     "blocked": 11,
-    "excluded": 73,
+    "excluded": 74,
     "unverified_links": 31
   },
   "members": [
@@ -807,7 +807,7 @@
       "source": "google",
       "job_snapshot_hash": "246146a631584d17e3a8b9697bd485e70404fe12b5279d55afd11ab5cfe87f3a",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -850,9 +850,9 @@
       "url": "https://jobs.lever.co/jobgether/1b1d27cb-a66b-4b4a-bee3-9fdc03f3dbc6",
       "source": "lever",
       "job_snapshot_hash": "1651488f5df82e02d6bc73e292b70ecf882dc752dc1551ca30aae659c932fc91",
-      "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -1643,21 +1643,21 @@
       "status": "failed"
     }
   ],
-  "checked_at": "2026-11-26T08:05:34.110676+00:00",
+  "checked_at": "2026-11-26T08:06:36.266536+00:00",
   "legacy_backlog": {
     "assessed": 552,
-    "pending": 2,
+    "pending": 0,
     "unresolved": 76,
-    "in_progress": 0,
-    "total": 630,
+    "in_progress": 1,
+    "total": 629,
     "strong": 74
   },
-  "batch_id": "0dd908f6514ded2db5c8e1d83cacdec3df83b9b2c02f32792bf8a7d267891237",
+  "batch_id": "e8dfdcc83296ce20654ef5bb78e105b43bf637e01ddbf753802744eb4c2f8052",
   "status": "assessing",
   "input_blobs": {
     "jobs.json": "92e7bac12974cec354dd9ec074158b0ca30d7632",
-    "fit_scores.json": "514751d71a5d941f31a4d55c68af05093d911687",
-    "fit_backfill.json": "4cc725e4bc00bbebaaa8adf9a4826fbde6dc6882",
+    "fit_scores.json": "792dfa8d1c90f884ecf0bef5711427a67fcb66a3",
+    "fit_backfill.json": "74f48db6ee48af1e4419c7667b012d1ed84f6cdf",
     "meta.json": "850872e6c688499b0f7dac63079092eee12402c3"
   }
 }
