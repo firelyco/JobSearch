@@ -7,15 +7,15 @@
   "collection_at": "2026-11-27T07:00:59.337506+00:00",
   "counts": {
     "found": 41,
-    "eligible": 3,
+    "eligible": 2,
     "completed": 1,
     "strong": 0,
     "middle": 0,
     "pass": 1,
-    "waiting": 1,
+    "waiting": 0,
     "processing": 0,
     "blocked": 1,
-    "excluded": 38,
+    "excluded": 39,
     "unverified_links": 28
   },
   "members": [
@@ -454,9 +454,9 @@
       "url": "https://shi.wd12.myworkdayjobs.com/en-US/shicareers/job/Somerset-NJ-USA/Sr-Director---Transformation-Portfolio-Management_JR3514",
       "source": "workday",
       "job_snapshot_hash": "e3b5654a7df45b5f3611aeda420740275160411787095f4c41e413397828baaa",
-      "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -1039,21 +1039,21 @@
       "status": "failed"
     }
   ],
-  "checked_at": "2026-11-27T07:16:17.544286+00:00",
+  "checked_at": "2026-11-27T07:17:18.827015+00:00",
   "legacy_backlog": {
     "assessed": 549,
-    "pending": 2,
+    "pending": 1,
     "unresolved": 76,
     "in_progress": 0,
-    "total": 627,
+    "total": 626,
     "strong": 74
   },
-  "batch_id": "331cfdfd5afc51b2e66d0cd4ec8163afa46a75065d292151b73594f09555fccd",
-  "status": "assessing",
+  "batch_id": "7ee797563f329eacfdb26307a113c79bea39c91a92774f3c57923c7c438dddf7",
+  "status": "blocked",
   "input_blobs": {
     "jobs.json": "91bfaaa08f93ae53fd98dfaf03f3d83a64e20172",
-    "fit_scores.json": "70ff2132d618256aedc09646ba4c4d9eb77e3c5c",
-    "fit_backfill.json": "f08f75ad112926ddeb781db3b611115859bf0012",
+    "fit_scores.json": "1c8a82f68b20f5a89896d2b020dde30fdfec1cce",
+    "fit_backfill.json": "95449d0ab6d51f3c9685f7bef62b800723a17782",
     "meta.json": "650e6c44e58ec263b4a43149d6f3c376605387bf"
   }
 }
