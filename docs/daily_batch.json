@@ -8,11 +8,11 @@
   "counts": {
     "found": 42,
     "eligible": 6,
-    "completed": 3,
+    "completed": 5,
     "strong": 0,
     "middle": 0,
-    "pass": 3,
-    "waiting": 2,
+    "pass": 5,
+    "waiting": 0,
     "processing": 0,
     "blocked": 1,
     "excluded": 36,
@@ -323,9 +323,9 @@
       "source": "arbeitnow",
       "job_snapshot_hash": "58fb1b508dea3c6d72a2f39947e258c2f8d2c81a9d01f9e9c08b49cc870b4a04",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "pass"
     },
     {
       "key": "arbeitnow:databricks:senior-manager-capability-engineering-customer-training-emea-london-434514",
@@ -356,9 +356,9 @@
       "source": "arbeitnow",
       "job_snapshot_hash": "728a6d9fc67c7b6365b64efbcd1518f86f3cbd015cca8b8621bdf37820f2b95b",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "pass"
     },
     {
       "key": "arbeitnow:isaraerospace:principal-system-architect-spectrum-parsdorf-bavaria-146643",
@@ -1101,21 +1101,21 @@
       "status": "failed"
     }
   ],
-  "checked_at": "2026-11-28T14:24:41.473881+00:00",
+  "checked_at": "2026-11-28T14:25:30.586685+00:00",
   "legacy_backlog": {
-    "assessed": 546,
-    "pending": 2,
+    "assessed": 548,
+    "pending": 0,
     "unresolved": 76,
     "in_progress": 0,
     "total": 624,
     "strong": 74
   },
-  "batch_id": "a4ab56423c7a65a9a499230a195a394fd929d65ced1e2853505907bcb928329b",
-  "status": "assessing",
+  "batch_id": "cd64603758ffb74d3272445cf47fbbf38f89f5c7273d6349988dd17afefba948",
+  "status": "blocked",
   "input_blobs": {
     "jobs.json": "1d7074fa4034c1cf27aac5e56c7a839948b1d5e7",
-    "fit_scores.json": "79e0d8ba8b3b7520e4ae2c6aa4ada858f252b9c9",
-    "fit_backfill.json": "92d80d732d0627b00d6738aa31e679e8b037e75d",
+    "fit_scores.json": "04044d067b67014eeabb02036d7bdb02af3ffba8",
+    "fit_backfill.json": "ae2a87e08f30e1a856032b1ecc84e65e51027603",
     "meta.json": "bea27eac14c66fa5704d6c5d1ecdabbcb814749b"
   }
 }
