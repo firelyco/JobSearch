@@ -12,8 +12,8 @@
     "strong": 0,
     "middle": 0,
     "pass": 0,
-    "waiting": 10,
-    "processing": 0,
+    "waiting": 0,
+    "processing": 10,
     "blocked": 0,
     "excluded": 22,
     "unverified_links": 30
@@ -37,7 +37,7 @@
       "source": "amazon_jobs",
       "job_snapshot_hash": "2d9b68d81908612181adea407cb2fd689465ff45d6661946e85de0b884be39e2",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -48,7 +48,7 @@
       "source": "amazon_jobs",
       "job_snapshot_hash": "9e91a0ea62f8ec432e283cc9e946f602da7f9c99eb72a584bb53776756726566",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -59,7 +59,7 @@
       "source": "amazon_jobs",
       "job_snapshot_hash": "b22ad05d1a14c194367ffb16800a3b5e2d031e5baebe0cdd78fc2729d9fb5199",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -191,7 +191,7 @@
       "source": "arbeitnow",
       "job_snapshot_hash": "05d53a281a0ff795af03870690022d6c5be9437e583f0bf5896559b81eafc5f4",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -246,7 +246,7 @@
       "source": "arbeitnow",
       "job_snapshot_hash": "db090cc7de7f410ae6a74b9050508a6cebe24b31d524c6eef07352631796df4f",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -279,7 +279,7 @@
       "source": "arbeitnow",
       "job_snapshot_hash": "a4f418bfe73ded9ce688b7036bf7e786b84e9a83e1b8373b47999185f73a487b",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -312,7 +312,7 @@
       "source": "ashby",
       "job_snapshot_hash": "5e7afa583030f38b59a0e8c72a0481531b9922b6fe823d2c6e006fe2c361393b",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -345,7 +345,7 @@
       "source": "oracle_cloud",
       "job_snapshot_hash": "168d7c0e3abf6983dd6490855d4dc942363181015bcc6025e601ef2f298b4cf5",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -356,7 +356,7 @@
       "source": "oracle_cloud",
       "job_snapshot_hash": "33a511bcf0f873366a6968497e21d884a20a1d0c345279d7893315c277da57ec",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     },
@@ -367,7 +367,7 @@
       "source": "oracle_cloud",
       "job_snapshot_hash": "de71a6887357d57ce2405e6cc5dc7d5b1da701284f0e38961ea118e4fb0b138a",
       "eligible": true,
-      "status": "waiting",
+      "status": "processing",
       "reason": "Unfinished assessment.",
       "verdict": null
     }
@@ -1067,21 +1067,21 @@
       "status": "failed"
     }
   ],
-  "checked_at": "2026-11-28T06:12:37.545873+00:00",
+  "checked_at": "2026-11-28T06:13:26.120520+00:00",
   "legacy_backlog": {
-    "assessed": 549,
+    "assessed": 546,
     "pending": 0,
-    "unresolved": 77,
-    "in_progress": 0,
-    "total": 626,
-    "strong": 74
+    "unresolved": 76,
+    "in_progress": 11,
+    "total": 633,
+    "strong": 73
   },
-  "batch_id": "35da022d1c97953abb40dc4418786ad51c71d08ba4de21d85db934ffaa3ce9c2",
+  "batch_id": "6cdcc90367d531ae81331fa06f75ea89becec6f4dda1ae4262f59dd33fc50b8b",
   "status": "assessing",
   "input_blobs": {
     "jobs.json": "c28ffb9721b21fabc7d8af5044261297bd71aa1f",
     "fit_scores.json": "ddf9570c294d5301f1aa3d4542cfac181cc2a7eb",
-    "fit_backfill.json": "0c4fef08cfb807afb1c2fee519cc7e24e7a5e035",
+    "fit_backfill.json": "e6651fc293fe7e652013522db363a68ed98aa5f4",
     "meta.json": "3b7489e49971dfbb852691f56e2725a4f3c28b00"
   }
 }
