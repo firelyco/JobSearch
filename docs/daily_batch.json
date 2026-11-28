@@ -7,15 +7,15 @@
   "collection_at": "2026-11-28T06:00:55.062702+00:00",
   "counts": {
     "found": 32,
-    "eligible": 7,
-    "completed": 4,
+    "eligible": 6,
+    "completed": 5,
     "strong": 0,
     "middle": 0,
-    "pass": 4,
-    "waiting": 1,
-    "processing": 2,
-    "blocked": 0,
-    "excluded": 25,
+    "pass": 5,
+    "waiting": 0,
+    "processing": 0,
+    "blocked": 1,
+    "excluded": 26,
     "unverified_links": 30
   },
   "members": [
@@ -312,8 +312,8 @@
       "source": "ashby",
       "job_snapshot_hash": "5e7afa583030f38b59a0e8c72a0481531b9922b6fe823d2c6e006fe2c361393b",
       "eligible": true,
-      "status": "waiting",
-      "reason": "Unfinished assessment.",
+      "status": "blocked",
+      "reason": "Paid retry budget exhausted; review required.",
       "verdict": null
     },
     {
@@ -355,9 +355,9 @@
       "url": "https://iawmqy.fa.ocs.oraclecloud.com/hcmUI/CandidateExperience/en/sites/careers/job/300118",
       "source": "oracle_cloud",
       "job_snapshot_hash": "33a511bcf0f873366a6968497e21d884a20a1d0c345279d7893315c277da57ec",
-      "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
+      "eligible": false,
+      "status": "excluded",
+      "reason": "Outside agreed assessment criteria.",
       "verdict": null
     },
     {
@@ -367,9 +367,9 @@
       "source": "oracle_cloud",
       "job_snapshot_hash": "de71a6887357d57ce2405e6cc5dc7d5b1da701284f0e38961ea118e4fb0b138a",
       "eligible": true,
-      "status": "processing",
-      "reason": "Unfinished assessment.",
-      "verdict": null
+      "status": "completed",
+      "reason": "Existing validated result reused.",
+      "verdict": "pass"
     }
   ],
   "link_ids": [
@@ -1067,21 +1067,21 @@
       "status": "failed"
     }
   ],
-  "checked_at": "2026-11-28T06:14:27.366303+00:00",
+  "checked_at": "2026-11-28T06:15:00.078018+00:00",
   "legacy_backlog": {
-    "assessed": 551,
-    "pending": 1,
-    "unresolved": 76,
-    "in_progress": 2,
-    "total": 630,
+    "assessed": 552,
+    "pending": 0,
+    "unresolved": 77,
+    "in_progress": 0,
+    "total": 629,
     "strong": 74
   },
-  "batch_id": "58383d10169dcc6a3682cc127950747e8316d8517660453906672fbea11ce6c5",
-  "status": "assessing",
+  "batch_id": "0a6e86f335d4a3a498b96f4a47117f3fc96b6e5bd1a990da22cc4a61e703e279",
+  "status": "blocked",
   "input_blobs": {
     "jobs.json": "c28ffb9721b21fabc7d8af5044261297bd71aa1f",
-    "fit_scores.json": "27f10645e2d3c8b1d722a798cc92c34064739bc1",
-    "fit_backfill.json": "4ca23b0700cee1a5bf2ba203a66af606aa96e0fb",
+    "fit_scores.json": "2cd374f28692720e30a53a041c816f4ef69919bf",
+    "fit_backfill.json": "1be5c8d6b60422889ab1ee42230c86e970a32211",
     "meta.json": "3b7489e49971dfbb852691f56e2725a4f3c28b00"
   }
 }
